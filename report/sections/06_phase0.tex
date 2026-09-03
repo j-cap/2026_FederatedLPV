@@ -115,7 +115,84 @@ be large enough to affect prediction and control, but not so extreme that the
 benchmark makes family recovery trivial or unrealistic.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+All three centers remain asymptotically stable and controllable at all 201 tested
+speeds. Their worst discrete spectral radii are $0.9616$ (nominal), $0.9666$
+(heavy), and $0.9578$ (handling). Thus, the heavy center has the slowest absolute
+decay, while the changed-handling center has the fastest. The minimum
+controllability singular values are $2.506$, $2.854$, and $1.942$, respectively.
+As in Experiment 0A, these dimensioned singular values are used only to detect
+loss of rank or gross numerical degeneration.
+
+\begin{table}[ht]
+\centering
+\caption{Absolute parameters and steady-state handling measure of the three
+vehicle-family centers. Axle cornering stiffness values use positive magnitudes.}
+\label{tab:experiment0b-parameters}
+\begin{tabular}{lrrrrr}
+\toprule
+Family & $m$ [kg] & $I_z$ [$\mathrm{kg\,m^2}$] & $C_f$ [kN/rad]
+& $C_r$ [kN/rad] & $K_u$ [$10^{-3}\,\mathrm{s^2/m}$]\\
+\midrule
+Nominal & 1500 & 2500 & 80 & 80 & 2.679\\
+Heavy & 1725 & 3000 & 84 & 80 & 2.494\\
+Handling & 1425 & 2250 & 72 & 88 & 4.370\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All three centers are understeering, but their balance is distinct. Relative to
+the nominal center, the heavy model has a slightly smaller understeer coefficient
+and therefore a slightly higher steady-state yaw gain. Its least-negative pole is
+closer to zero and its high-speed sideslip magnitude is larger. The handling
+center has a $63\%$ larger understeer coefficient. Its yaw gain consequently
+flattens and then decreases slightly at high speed, while its sideslip magnitude
+is substantially reduced. These effects agree with the intended physical roles;
+the heavy family is not simply a uniform scaling, and the handling family changes
+the yaw--sideslip balance.
+
+The normalized frozen-model distance from nominal is nearly independent of speed:
+$0.086$--$0.089$ for the heavy center and approximately $0.056$ for the handling
+center. This is desirable for the experimental decomposition. Speed moves each
+vehicle along its own model curve, whereas structural offsets persist throughout
+the scheduling envelope, as shown in \cref{fig:experiment0b-characteristics}.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.95\linewidth]{experiment_0b_family_characteristics.pdf}
+ \caption{Frozen-speed characteristics of the three family centers. Structural
+ differences persist across speed. The handling center is more strongly
+ understeering, while the heavy center has slower pole decay and larger
+ high-speed sideslip magnitude than the nominal center. The normalized model
+ distance combines separately normalized $A_d$ and $B_d$ differences.}
+ \label{fig:experiment0b-characteristics}
+\end{figure}
+
+The step, sine-sweep, and lane-change-like inputs produce the same qualitative
+ordering at $12$, $20$, and $28\,\mathrm{m\,s^{-1}}$. For the representative
+lane-change-like maneuver at $28\,\mathrm{m\,s^{-1}}$, the heavy center increases
+peak yaw rate by $2.7\%$ and peak sideslip magnitude by $23.6\%$ relative to
+nominal. The handling center reduces the corresponding peaks by $15.2\%$ and
+$33.4\%$. At $20\,\mathrm{m\,s^{-1}}$, the respective changes are $+2.0\%$ and
+$+27.6\%$ for the heavy center, and $-12.6\%$ and $-33.5\%$ for the handling
+center. The complete response metrics for all 27 family--speed--maneuver cases are
+stored in machine-readable form.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.92\linewidth]{experiment_0b_family_responses.pdf}
+ \caption{Yaw-rate and sideslip responses to the same lane-change-like steering
+ input at the three predeclared test speeds. Family differences are modest at low
+ speed and become practically visible at medium and high speed.}
+ \label{fig:experiment0b-responses}
+\end{figure}
+
+Experiment 0B therefore \textbf{passes provisionally}. The centers are stable,
+controllable, interpretable, and dynamically distinct without being separated by
+orders of magnitude. The qualifier is important: the handling center is only
+about $5.6\%$ from nominal in the normalized frozen-model metric. Experiment 0C
+must therefore determine whether the proposed within-family scatter obscures this
+separation. The family centers are retained unchanged until that population-level
+test is complete.
 
 \subsection{Experiment 0C: within-family client population}
 \paragraph{Objective.}
