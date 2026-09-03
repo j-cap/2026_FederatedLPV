@@ -1,0 +1,30 @@
+\section{Vehicle benchmark}
+The plant is the linear dynamic bicycle model with
+$x=[\beta\ r]^\top$ and steering input $u=\delta$. Its parameters are
+$\vartheta=[m,I_z,l_f,l_r,C_f,C_r]$. The initial centers are a nominal balanced
+vehicle, a heavy/high-inertia vehicle, and a vehicle with a changed front--rear
+handling balance. Ten clients per family receive modest fixed parameter scatter.
+These values are initial hypotheses and will be checked for physical plausibility
+and nontrivial but non-extreme separability during plant validation.
+
+\begin{table}[ht]
+\centering
+\caption{Initial family centers relative to the nominal vehicle.}
+\label{tab:families}
+\begin{tabular}{lrrrr}
+\toprule
+Family & $m/m_0$ & $I_z/I_{z,0}$ & $C_f/C_{f,0}$ & $C_r/C_{r,0}$\\
+\midrule
+Nominal & 1.00 & 1.00 & 1.00 & 1.00\\
+Heavy & 1.15 & 1.20 & 1.05 & 1.00\\
+Handling balance & 0.95 & 0.90 & 0.90 & 1.10\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The training set combines independent lateral maneuvers and smooth speed profiles.
+It also includes frozen-speed identification runs at
+$12,16,20,24,28\,\mathrm{m\,s^{-1}}$. Test data contain unseen intermediate
+speeds, unseen speed sequences, and a lateral maneuver with different timing and
+amplitude. This separation is required to test dynamics generalization rather than
+memorization of a speed--maneuver pairing.

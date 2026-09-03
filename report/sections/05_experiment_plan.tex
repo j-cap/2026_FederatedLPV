@@ -1,0 +1,69 @@
+\section{Oracle experiment plan}
+The oracle study removes learning imperfections deliberately. True family labels
+are used, and long low-noise datasets support high-quality individual LPV models.
+The comparison in \cref{tab:methods} isolates scheduling and specialization.
+
+\begin{table}[ht]
+\centering
+\caption{Core oracle model architectures.}
+\label{tab:methods}
+\begin{tabular}{llllr}
+\toprule
+Method & Scheduling & Specialization & Interpretation & Families\\
+\midrule
+Global LTI & none & none & ignores both factors & 1\\
+Clustered LTI & none & oracle family & structural effect only & 3\\
+Global LPV & continuous & none & scheduling effect only & 1\\
+Clustered LPV & continuous & oracle family & both effects & 3\\
+Gridded LTI & discrete & family and speed & high-complexity oracle & 15\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Execution phases}
+\begin{enumerate}
+\item \textbf{Plant validation.} Inspect continuous and frozen discrete dynamics,
+  stability, handling properties, family separation, and within-family scatter.
+\item \textbf{LPV approximation validation.} Fit the proposed basis and measure
+  matrix approximation errors on a fine speed grid. Revise the basis if needed.
+\item \textbf{Oracle model comparison.} Evaluate one-step prediction, matrix error,
+  and generalization for the four factorial methods and the gridded oracle.
+\item \textbf{Controller comparison.} Use common LQI weights and gain scheduling on
+  fixed-family/changing-speed, fixed-speed/different-family, combined, and fully
+  unseen test scenarios.
+\item \textbf{LTI complexity sweep.} Sweep $K_{\mathrm{LTI}}\in\{1,2,3,5,8,10,15\}$
+  and determine how many prototypes are needed to match three LPV families.
+\item \textbf{Two-dimensional regime study.} Sweep structural heterogeneity
+  $\gamma_h\in\{0,0.5,1,1.5\}$ and narrow, medium, and broad speed envelopes.
+\end{enumerate}
+
+\subsection{Metrics and scenarios}
+Model quality is assessed through one-step state prediction, separate $\beta$ and
+$r$ RMSE, and $\lVert A_i(\rho)-\hat A(\rho)\rVert_F$ and
+$\lVert B_i(\rho)-\hat B(\rho)\rVert_F$ versus speed. Closed-loop evaluation uses
+yaw-rate tracking RMSE, sideslip RMS, steering RMS and peaks, steering-rate peaks,
+and a frozen-grid spectral-radius audit. Every result reports fleet average,
+dispersion, worst-family performance, and the family performance gap. Ten seeds
+vary client realizations and test trajectories.
+
+\subsection{Predeclared decision gates}
+The idea passes the oracle gate only if: (i) global LPV materially improves over
+global LTI over the broad speed envelope; (ii) clustered LPV improves over global
+LPV, particularly for the worst family; (iii) clustered LPV improves over
+clustered LTI on unseen varying-speed tests; (iv) three LPV families match or beat
+substantially more than three LTI prototypes; and (v) benefits generalize to
+unseen speed--maneuver combinations. Working thresholds are more than 10\%
+improvement for LPV relevance and approximately 5--10\% for specialization, but
+effect consistency and practical scale take precedence over arbitrary cutoffs.
+
+The project is paused or reformulated if global and clustered LPV are equivalent,
+clustered LTI matches clustered LPV, a few LTI prototypes match the LPV solution,
+benefits disappear out of distribution, or only unrealistic family separation
+creates the result.
+
+\subsection{Planned evidence package}
+The minimum evidence consists of six figures: ground-truth model entries versus
+speed, the LPV manifolds in model space, model error versus speed, a representative
+closed-loop trajectory, performance versus model/controller complexity, and a
+two-dimensional operating-range--heterogeneity regime map.
+

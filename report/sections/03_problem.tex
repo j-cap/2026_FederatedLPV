@@ -1,0 +1,25 @@
+\section{Problem formulation}
+Let the structural parameters of client $i$ be $\vartheta_i$ and the measured
+scheduling variable be $\rho_k$. During the oracle study,
+\begin{equation}
+  \vartheta_i(t)=\vartheta_i,\qquad \rho_k=v_{x,k}\in[10,30]\,\mathrm{m\,s^{-1}}.
+\end{equation}
+The eventual hierarchical model is
+\begin{equation}
+ \Theta_i(\rho)=\Theta_{\mathrm{shared}}(\rho)
+ +\Delta\Theta_{c(i)}(\rho)+\epsilon_i(\rho),
+ \qquad \Theta=[A\ B].
+\end{equation}
+The first finite-dimensional LPV basis to test is
+\begin{equation}
+ \Theta(\rho)=\Theta_0+\rho^{-1}\Theta_1+\rho^{-2}\Theta_2.
+\end{equation}
+Phase~1 must validate this approximation before it is used for learning.
+
+The controlled output is yaw rate $r$, with sideslip $\beta$ constrained through
+the cost. A two-degree-of-freedom scheduled LQI architecture is considered:
+\begin{equation}
+ u=-K_x(\rho)x-K_I(\rho)\chi+k_r(\rho)r^\star.
+\end{equation}
+The same $Q$ and $R$ weights are used for all methods so that improvements cannot
+be attributed to method-specific tuning.

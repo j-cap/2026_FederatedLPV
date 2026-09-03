@@ -1,0 +1,35 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\graphicspath{{../results/figures/}}
+
+\title{Federated LPV Identification and Control\\\large Development Report}
+\author{Jakob Weber}
+\date{\today}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This living report develops and tests a federated LPV approach that separates
+measurable operating-condition variation from persistent client heterogeneity.
+The first stage is an oracle feasibility study. Only after the structural benefit
+has been established will limited local data, learned clustering, uncertainty,
+and communication constraints be introduced. The report will progressively
+become the technical basis for a consolidated paper manuscript.
+\end{abstract}
+\tableofcontents
+
+\input{sections/01_idea}
+\input{sections/02_motivation}
+\input{sections/03_problem}
+\input{sections/04_benchmark}
+\input{sections/05_experiment_plan}
+\input{sections/06_results}
+\input{sections/07_federated_extension}
+\input{sections/08_paper_consolidation}
+
+\bibliographystyle{plain}
+\bibliography{references}
+\end{document}
