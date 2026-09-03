@@ -105,9 +105,72 @@ and free-run errors must not grow pathologically. Otherwise the basis or the
 time-varying discretization treatment is revised before Phase~2.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The experiment used three smooth speed profiles,
+$12\rightarrow20\rightarrow15$, $20\rightarrow28\rightarrow18$, and
+$15\rightarrow25\rightarrow12\,\mathrm{m\,s^{-1}}$, each lasting 12 seconds.
+All profiles were paired with the same independent three-frequency multisine
+steering signal, whose peak magnitude is below $2.2^\circ$.  This common input
+prevents speed and maneuver differences from being confounded.  The evaluation
+again covered all 300 vehicles from the ten robustness seeds, for 900
+trajectories in total.
+
+The reference trajectory was integrated by fourth-order Runge--Kutta while
+evaluating $A(v(t))$ and $B(v(t))$ continuously inside each sample.  Two
+scheduled discrete models were propagated recursively: exact ZOH matrices
+frozen at the left sample speed and the fitted reciprocal LPV matrices.  A third
+comparison evaluates the LPV trajectory directly against the exact scheduled
+discrete trajectory, thereby isolating basis approximation from the shared
+sample-wise freezing error.  Relative errors are normalized by the RMS norm of
+the corresponding reference state trajectory.
+
+\begin{table}[htbp]
+ \centering
+ \caption{Experiment 1B one-step and free-run relative RMSE over 900
+ trajectories. All error entries are percentages.}
+ \label{tab:experiment-1b}
+ \begin{tabular}{lrrrr}
+  \toprule
+  Comparison & 1-step avg. & 1-step max. & Free avg. & Free max. \\
+  \midrule
+  Exact frozen vs. continuous & $2.102\!\times\!10^{-3}$ & $3.275\!\times\!10^{-3}$ & $2.139\!\times\!10^{-2}$ & $3.339\!\times\!10^{-2}$ \\
+  Reciprocal LPV vs. continuous & $2.116\!\times\!10^{-3}$ & $3.297\!\times\!10^{-3}$ & $2.184\!\times\!10^{-2}$ & $3.358\!\times\!10^{-2}$ \\
+  Reciprocal LPV vs. exact frozen & $8.532\!\times\!10^{-5}$ & $1.725\!\times\!10^{-4}$ & $2.461\!\times\!10^{-3}$ & $6.112\!\times\!10^{-3}$ \\
+  \bottomrule
+ \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.92\linewidth]{../results/figures/experiment_1b_trajectory_validation.pdf}
+ \caption{Experiment 1B varying-speed validation.  The scheduled predictions
+ overlap visually with the continuous-time reference.  The lower panels expose
+ the small free-run errors and distinguish the LPV basis error from the common
+ within-sample speed-freezing error.}
+ \label{fig:experiment-1b}
+\end{figure}
+
+The fitted LPV model is visually indistinguishable from both references.  Its
+worst free-run error against the continuous-speed plant is only 0.0336\%, with
+worst physical RMSEs of $4.78\times10^{-4}$ degrees in sideslip and
+$1.15\times10^{-3}\,\mathrm{deg\,s^{-1}}$ in yaw rate.  Most of this discrepancy
+is already present for exact frozen matrices.  The isolated reciprocal-basis
+contribution has 0.00246\% mean and 0.00611\% worst free-run RMSE.  Its worst
+one-step error is $1.73\times10^{-4}$\%.  Errors remain bounded throughout each
+maneuver and decay with the faded input, rather than accumulating
+pathologically.
+
+Experiment 1B therefore passes.  The reciprocal representation is sufficiently
+accurate that its approximation error is negligible relative to the effects
+targeted in the oracle architecture comparison.
 
 \subsection{Phase-1 representation freeze}
-Experiment 1A selects the reciprocal basis and standardized regression features.
-The complete Phase-1 representation is frozen only after Experiment 1B confirms
-varying-speed trajectory accuracy, before oracle architecture comparisons begin.
+Experiments 1A and 1B jointly validate and freeze the Phase-1 representation:
+\begin{itemize}
+ \item scheduling basis $\Phi(v)=[1,v^{-1},v^{-2}]$;
+ \item standardized nonconstant regression features;
+ \item exact ZOH target matrices at $T_s=0.01\,\mathrm{s}$;
+ \item fitting anchors $v=\{12,16,20,24,28\}\,\mathrm{m\,s^{-1}}$.
+\end{itemize}
+These choices remain fixed in the Phase-2 oracle comparison.  The validated
+model is still the linear-tire bicycle plant; the nonlinear tanh-tire benchmark
+remains a later robustness layer after the core architectural claim is tested.
