@@ -1,0 +1,14 @@
+sample_time_s: 0.01
+fit_speeds_mps: [12.0, 16.0, 20.0, 24.0, 28.0]
+unseen_interpolation_speeds_mps: [14.0, 18.0, 22.0, 26.0]
+dense_evaluation_grid_mps:
+  start: 10.0
+  stop: 30.0
+  points: 201
+robustness_seeds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+candidate_bases:
+  linear: [1, v]
+  reciprocal: [1, 1/v, 1/v^2]
+  mixed: [1, v, 1/v, 1/v^2]
+standardize_nonconstant_features: true
+selected_basis: reciprocal

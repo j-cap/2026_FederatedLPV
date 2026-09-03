@@ -27,7 +27,61 @@ conditioning. The originally proposed basis is rejected if the evidence favors a
 different representation.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The comparison was run on all 30 clients for each of the ten robustness seeds,
+giving 300 independently perturbed vehicles.  Each model was fit to exact ZOH
+matrices at $v=\{12,16,20,24,28\}\,\mathrm{m\,s^{-1}}$.  The unseen points
+$v=\{14,18,22,26\}\,\mathrm{m\,s^{-1}}$ measure interpolation, while a
+201-point grid over $[10,30]\,\mathrm{m\,s^{-1}}$ also tests the two edge
+intervals outside the fitting anchors.  Nonconstant feature columns were
+standardized before least squares.  Table~\ref{tab:experiment-1a} reports the
+combined relative error
+\begin{equation}
+ e_{AB}=\sqrt{\frac{1}{2}\left(e_A^2+e_B^2\right)},\qquad
+ e_A=\frac{\lVert\widehat A_d-A_d\rVert_F}{\lVert A_d\rVert_F},
+\end{equation}
+with $e_B$ defined analogously.
+
+\begin{table}[htbp]
+ \centering
+ \caption{Experiment 1A basis comparison over 300 clients.  Error entries are
+ percentages; ``full worst'' includes edge extrapolation to 10 and
+ $30\,\mathrm{m\,s^{-1}}$.}
+ \label{tab:experiment-1a}
+ \begin{tabular}{lrrrrr}
+  \toprule
+  Basis & Terms & $\kappa_2$ & Interp. mean & Interp. worst & Full worst \\
+  \midrule
+  $[1,v]$ & 2 & 1.00 & $3.222\!\times\!10^{-1}$ & $6.607\!\times\!10^{-1}$ & 2.255 \\
+  $[1,v^{-1},v^{-2}]$ & 3 & 17.51 & $6.814\!\times\!10^{-5}$ & $2.711\!\times\!10^{-4}$ & $2.266\!\times\!10^{-3}$ \\
+  Mixed & 4 & 140.72 & $1.820\!\times\!10^{-5}$ & $7.137\!\times\!10^{-5}$ & $1.065\!\times\!10^{-3}$ \\
+  \bottomrule
+ \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=\linewidth]{../results/figures/experiment_1a_basis_errors.pdf}
+ \caption{Experiment 1A relative matrix errors.  The first two panels show a
+ representative nominal client; gray lines mark fitting anchors.  The final
+ panel gives population worst cases on a logarithmic scale.}
+ \label{fig:experiment-1a}
+\end{figure}
+
+The linear basis reaches a 2.26\% worst-case full-envelope error, which is too
+large compared with the method differences that later experiments seek to
+resolve.  The reciprocal basis reduces this error by roughly three orders of
+magnitude to 0.00227\%.  Adding the $v$ term halves an already negligible error,
+but increases the standardized design-matrix condition number from 17.5 to
+140.7 and adds another coefficient matrix.  The largest reciprocal-basis error
+occurs in edge extrapolation; its worst unseen-interpolation error is only
+$2.71\times10^{-4}$\%.
+
+Experiment 1A therefore passes.  We select and provisionally freeze
+\begin{equation}
+ \boxed{\Phi(v)=[1,v^{-1},v^{-2}]}
+\end{equation}
+as the smallest sufficiently accurate representation.  Experiment 1B must now
+verify that this pointwise result remains accurate under time-varying simulation.
 
 \subsection{Experiment 1B: varying-speed trajectory prediction}
 \paragraph{Objective.}
@@ -54,6 +108,6 @@ time-varying discretization treatment is revised before Phase~2.
 Pending.
 
 \subsection{Phase-1 representation freeze}
-The selected scheduling basis, feature scaling, fitting grid, and numerical
-regularization are frozen before oracle architecture comparisons begin.
-
+Experiment 1A selects the reciprocal basis and standardized regression features.
+The complete Phase-1 representation is frozen only after Experiment 1B confirms
+varying-speed trajectory accuracy, before oracle architecture comparisons begin.
