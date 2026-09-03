@@ -1,0 +1,36 @@
+\section{Core idea}
+The project separates two sources of variation that a frozen-model workflow can
+confound:
+\begin{equation}
+  \text{measurable operating variation} \neq
+  \text{persistent client heterogeneity}.
+\end{equation}
+For vehicle dynamics, longitudinal speed $\rho=v_x$ is measurable and varies
+within a drive. Structural parameters such as mass, yaw inertia, and tire
+cornering stiffness remain fixed for a client in the initial study. Client $i$ is
+represented as
+\begin{equation}
+  x_{i,k+1}=A_i(\rho_k)x_{i,k}+B_i(\rho_k)u_{i,k},
+\end{equation}
+and is assumed to belong approximately to one persistent dynamics family $c(i)$:
+\begin{equation}
+  A_i(\rho)\approx A_{c(i)}(\rho),\qquad
+  B_i(\rho)\approx B_{c(i)}(\rho).
+\end{equation}
+The central hypothesis is that LPV scheduling should explain operating-point
+variation, whereas clustered federated learning should handle unknown persistent
+structural variation. In geometric terms, the goal is to learn families of model
+manifolds rather than clusters of unrelated frozen-model points.
+
+\subsection{Research question and hypothesis}
+\paragraph{Research question.}
+Can federated system identification disentangle measurable operating-condition
+variation from persistent fleet heterogeneity, enabling a heterogeneous fleet to
+be represented and controlled by a small number of reusable LPV model and
+controller families?
+
+\paragraph{Hypothesis.}
+Explicit LPV scheduling combined with structural specialization yields better
+generalization and lower model/controller proliferation than either one global
+LPV model or purely clustered LTI models.
+

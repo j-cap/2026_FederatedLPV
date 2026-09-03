@@ -1,0 +1,10 @@
+seed: 1
+speed_grid_mps:
+  start: 10.0
+  stop: 30.0
+  points: 101
+vehicle_families:
+  nominal: {mass_scale: 1.00, inertia_scale: 1.00, front_stiffness_scale: 1.00, rear_stiffness_scale: 1.00}
+  heavy: {mass_scale: 1.15, inertia_scale: 1.20, front_stiffness_scale: 1.05, rear_stiffness_scale: 1.00}
+  handling: {mass_scale: 0.95, inertia_scale: 0.90, front_stiffness_scale: 0.90, rear_stiffness_scale: 1.10}
+
