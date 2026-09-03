@@ -12,3 +12,11 @@ candidate_bases:
   mixed: [1, v, 1/v, 1/v^2]
 standardize_nonconstant_features: true
 selected_basis: reciprocal
+trajectory_validation:
+  duration_s: 12.0
+  integration_reference: rk4_continuous_scheduling
+  speed_profiles_mps:
+    - [12.0, 20.0, 15.0]
+    - [20.0, 28.0, 18.0]
+    - [15.0, 25.0, 12.0]
+  steering_excitation: independent_three_frequency_multisine
