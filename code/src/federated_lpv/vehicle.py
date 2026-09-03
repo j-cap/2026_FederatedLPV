@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import NDArray
+from scipy.linalg import expm
 
 
 @dataclass(frozen=True)
@@ -59,3 +60,14 @@ def continuous_bicycle_matrices(
     b = np.array([[cf / (m * vx)], [cf * lf / iz]], dtype=float)
     return a, b
 
+
+def discrete_bicycle_matrices(
+    speed: float, parameters: VehicleParameters, sample_time: float
+) -> tuple[NDArray[np.float64], NDArray[np.float64]]:
+    """Discretize the frozen-speed bicycle model exactly under zero-order hold."""
+    if sample_time <= 0:
+        raise ValueError("sample_time must be strictly positive")
+    a, b = continuous_bicycle_matrices(speed, parameters)
+    augmented = np.block([[a, b], [np.zeros((1, 3))]])
+    discrete = expm(augmented * sample_time)
+    return discrete[:2, :2], discrete[:2, 2:]

@@ -26,7 +26,73 @@ No unintended instability, singularity, loss of controllability, discontinuity,
 or implausible gain may occur. Any failure blocks all following experiments.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The audit was executed on 201 uniformly spaced frozen speeds. The implementation
+uses an augmented matrix exponential for exact zero-order-hold discretization.
+All continuous-time models are asymptotically stable. The least-negative pole real
+part is $-3.911\,\mathrm{s^{-1}}$ at the high-speed end of the envelope. The
+corresponding maximum discrete-time spectral radius is $0.96164$, which remains
+below one with a clear numerical margin. The pole pair remains complex throughout
+the envelope. Its real part moves from $-11.733$ to
+$-3.911\,\mathrm{s^{-1}}$, while its imaginary magnitude changes from $2.989$ to
+$3.517\,\mathrm{s^{-1}}$. The model therefore becomes less strongly damped in
+absolute time as speed increases, without approaching open-loop instability.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.95\linewidth]{experiment_0a_nominal_validation.pdf}
+ \caption{Experiment 0A nominal-vehicle audit. The continuous pole pair remains in
+ the open left half-plane and its exact-ZOH image remains within the unit circle.
+ The yaw-rate gain increasingly departs from the kinematic gain as speed rises,
+ consistently with positive understeer. The sideslip gain changes sign because
+ the body sideslip at the center of gravity changes direction under steady-state
+ cornering; this is not an instability.}
+ \label{fig:experiment0a}
+\end{figure}
+
+The controllability matrix has full rank at every grid point. Its smallest
+singular value is $2.506$. The largest reported condition number is $173.1$ at
+$10\,\mathrm{m\,s^{-1}}$. Because the controllability columns mix quantities with
+physical units, this condition number is retained only as a numerical diagnostic,
+not as an invariant measure of control authority. Direct matrix conditioning is
+benign: $\max_v\kappa_2(A)=6.93$ and
+$\max_v\kappa_2(A_d)=1.13$.
+
+The steady-state yaw-rate gain rises from $3.260$ to
+$5.757\,\mathrm{s^{-1}}$, but its ratio to the kinematic value $v_x/L$ falls from
+$0.913$ to $0.537$. This agrees exactly with the positive understeer coefficient
+\begin{equation}
+ K_u=\frac{m(C_r l_r-C_f l_f)}{C_f C_r(l_f+l_r)}
+ =2.679\times10^{-3}\,\mathrm{s^2\,m^{-1}},
+\end{equation}
+for which the steady-state relation is
+$r/\delta=v_x/(L+K_u v_x^2)$. The sideslip gain changes from $0.260$ to
+$-1.081\,\mathrm{rad/rad}$ and crosses zero at approximately
+$14.11\,\mathrm{m\,s^{-1}}$. Independent steady-state solution of the force and
+yaw-moment balances gives the same gains and signs.
+
+\begin{table}[ht]
+\centering
+\caption{Selected Experiment 0A values at three frozen speeds.}
+\label{tab:experiment0a}
+\begin{tabular}{rrrrr}
+\toprule
+$v_x$ [$\mathrm{m\,s^{-1}}$] & $\Re\{\lambda\}$ [$\mathrm{s^{-1}}$]
+& $\rho(A_d)$ & $r/\delta$ [$\mathrm{s^{-1}}$] & $\beta/\delta$\\
+\midrule
+10 & $-11.733$ & 0.8893 & 3.260 & 0.260\\
+20 & $-5.867$ & 0.9430 & 5.166 & $-0.417$\\
+30 & $-3.911$ & 0.9616 & 5.757 & $-1.081$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Experiment 0A therefore \textbf{passes}. The equations, sign convention, exact
+discretization, sample time, and speed envelope can be retained for Experiment
+0B. This pass establishes internal physical and numerical consistency of the
+benchmark. It does not claim calibration to a particular production vehicle;
+absolute parameter realism remains a limitation to revisit before the eventual
+paper-level nonlinear study. Machine-readable speed-grid results and the summary
+statistics are stored with the experiment outputs.
 
 \subsection{Experiment 0B: structural-family validation}
 \paragraph{Objective.}
