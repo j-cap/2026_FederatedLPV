@@ -18,7 +18,16 @@ All methods must pass numerical checks and use identical train/test splits. Mode
 errors are decomposed by method, speed, family, client, and trajectory.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+M1--M5 were constructed independently for each of the ten fleet seeds.  Each
+seed contains 30 clients, ten from each oracle family.  Every architecture uses
+the same exact ZOH matrices at the five Phase-1 fitting anchors.  M1 averages
+over clients and speed, M2 averages over speed within each family, M3 fits one
+pooled reciprocal LPV model, and M4 fits one reciprocal LPV model per family.
+M5 averages clients within each family and anchor, then selects the nearest of
+the resulting 15 frozen prototypes at evaluation time.  All required matrix
+dimensions, family assignments, model counts, and prediction interfaces pass
+automated tests.  Experiment 2A therefore passes without changing the
+predeclared architectures or support.
 
 \subsection{Experiment 2B: isolate scheduling and specialization}
 \paragraph{Objective.}
@@ -47,6 +56,69 @@ specialization, with practical scale and seed consistency taking precedence over
 the numerical thresholds. If M3 and M4 are equivalent, clustering is unnecessary.
 If M2 and M4 are equivalent, LPV scheduling is unnecessary.
 
-\paragraph{Results, interpretation, and decision.}
-Pending.
+\paragraph{Results and decision.}
+Evaluation uses a 201-point speed grid over
+$[10,30]\,\mathrm{m\,s^{-1}}$ and the three independent varying-speed profiles
+from Experiment 1B.  The trajectory plant is the exact client-specific
+speed-scheduled ZOH model.  Table~\ref{tab:experiment-2} aggregates 300 clients,
+60,300 client--speed evaluations per method, and 900 trajectories per method.
+All errors are relative percentages.  The family gap is the difference between
+the largest and smallest family-mean free-run errors in percentage points.
 
+\begin{table}[htbp]
+ \centering
+ \small
+ \caption{Phase-2 oracle model comparison over ten fleet seeds.}
+ \label{tab:experiment-2}
+ \begin{tabular}{lrrrrrr}
+  \toprule
+  Method & Models & Matrix avg. & Fixed-20 avg. & Free avg. & Free max. & Family gap \\
+  \midrule
+  M1 & 1  & 6.070 & 5.591 & 16.230 & 34.070 & 7.388 \\
+  M2 & 3  & 2.987 & 2.070 & 13.090 & 28.564 & 3.271 \\
+  M3 & 1  & 5.537 & 5.546 & 10.859 & 26.441 & 6.846 \\
+  M4 & 3  & 1.949 & 1.952 &  3.532 & 12.821 & 1.056 \\
+  M5 & 15 & 2.058 & 1.952 &  4.422 & 12.988 & 1.059 \\
+  \bottomrule
+ \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.94\linewidth]{../results/figures/experiment_2_oracle_models.pdf}
+ \caption{Phase-2 oracle comparison.  Scheduling removes speed-dependent error,
+ family specialization removes structural bias, and M4 provides the best
+ accuracy--complexity combination.}
+ \label{fig:experiment-2}
+\end{figure}
+
+The three diagnostics support the intended two-factor interpretation.  Under
+varying speed, M3 reduces mean free-run error by 33.1\% relative to M1.  When
+family specialization is already present, M4 improves on M2 by 73.0\%.  At the
+fixed $20\,\mathrm{m\,s^{-1}}$ diagnostic, M4 reduces matrix error relative to
+M3 by 64.8\%, so the specialization effect is not an artifact of changing
+speed.  Finally, M4 improves varying-speed free-run error over M3 by 67.5\%.
+Thus, neither scheduling nor clustering subsumes the other.
+
+These effects are seed-consistent.  M1$\rightarrow$M3 improves all ten fleets
+by 28.1--36.9\%, M2$\rightarrow$M4 by 69.3--76.3\%, and
+M3$\rightarrow$M4 by 62.0--71.3\%.  M4 also reduces the family gap from 6.85
+to 1.06 percentage points.  Its remaining error is primarily the deliberately
+retained within-family client scatter, since one family model is not expected
+to reproduce every individual vehicle exactly.
+
+M5 is a strong discrete approximation, but its 15 prototypes still have 20.1\%
+higher mean free-run error than M4's three continuous LPV families.  M4 is better
+than M5 for every fleet seed, with improvements of 16.4--24.8\%.  Their worst
+trajectory errors are similar, indicating that rare within-family deviations,
+rather than speed discretization alone, determine the remaining tail.
+
+Experiment 2B therefore passes all gates.  The result establishes the central
+oracle claim on the linear plant:
+\begin{equation}
+ \boxed{\text{LPV handles operating-point variation, while specialization
+ handles persistent fleet variation.}}
+\end{equation}
+Controller synthesis may now proceed without changing the validated model
+architecture.  The later nonlinear-plant layer remains necessary to determine
+whether this conclusion survives tire saturation and model mismatch.
