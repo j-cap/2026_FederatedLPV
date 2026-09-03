@@ -2,6 +2,7 @@
 
 from .fleet import VehicleClient, sample_fleet
 from .lpv import BASIS_FUNCTIONS, LPVMatrixModel, fit_lpv_matrix_model
+from .oracle import ConstantMatrixModel, GriddedMatrixModel, OracleArchitecture, fit_oracle_architectures
 from .vehicle import (
     VehicleParameters,
     continuous_bicycle_matrices,
@@ -19,4 +20,8 @@ __all__ = [
     "family_centers",
     "sample_fleet",
     "fit_lpv_matrix_model",
+    "ConstantMatrixModel",
+    "GriddedMatrixModel",
+    "OracleArchitecture",
+    "fit_oracle_architectures",
 ]

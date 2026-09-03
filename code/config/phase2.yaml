@@ -1,0 +1,12 @@
+sample_time_s: 0.01
+training_speeds_mps: [12.0, 16.0, 20.0, 24.0, 28.0]
+dense_test_grid_mps: {start: 10.0, stop: 30.0, points: 201}
+fixed_speed_diagnostic_mps: 20.0
+robustness_seeds: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+architectures:
+  M1: {scheduling: none, specialization: global, model_count: 1}
+  M2: {scheduling: none, specialization: oracle_family, model_count: 3}
+  M3: {scheduling: reciprocal_lpv, specialization: global, model_count: 1}
+  M4: {scheduling: reciprocal_lpv, specialization: oracle_family, model_count: 3}
+  M5: {scheduling: nearest_speed_grid, specialization: oracle_family, model_count: 15}
+aggregation: uniform
