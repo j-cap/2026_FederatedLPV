@@ -1,0 +1,80 @@
+\section{Phase 0: plant and fleet validation}
+\label{sec:phase0}
+Phase~0 verifies the equations, discretization, operating envelope, and physical
+family design before identification or control is introduced.
+
+\subsection{Experiment 0A: nominal-vehicle validation}
+\paragraph{Objective.}
+Validate the nominal continuous and zero-order-hold-discretized bicycle model on
+$v_x\in[10,30]\,\mathrm{m\,s^{-1}}$ with initial sample time
+$T_s=0.01\,\mathrm{s}$.
+
+\paragraph{Predeclared expectation.}
+Matrix entries, poles, time constants, and steady-state gains vary smoothly with
+speed. The nominal model is physically plausible and numerically well conditioned
+over the complete envelope.
+
+\paragraph{Setup and planned evidence.}
+On a fine speed grid, compute continuous and discrete eigenvalues, controllability,
+steady-state steering-to-yaw-rate and steering-to-sideslip gains, and an understeer
+or equivalent handling measure. Plot selected $A$ and $B$ entries, pole
+trajectories, and steady-state gains versus speed. Check equations, units, and sign
+conventions independently.
+
+\paragraph{Decision gate.}
+No unintended instability, singularity, loss of controllability, discontinuity,
+or implausible gain may occur. Any failure blocks all following experiments.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 0B: structural-family validation}
+\paragraph{Objective.}
+Verify that the nominal, heavy/high-inertia, and changed-handling-balance centers
+create distinct but physically interpretable dynamics.
+
+\paragraph{Predeclared expectation.}
+The heavy family differs mainly in response speed and gain. The handling family
+changes yaw/sideslip balance rather than merely rescaling the nominal response.
+
+\paragraph{Setup and planned evidence.}
+At $v_x\in\{12,20,28\}\,\mathrm{m\,s^{-1}}$, apply a small steering step, a smooth
+sine sweep, and a lane-change-like input. Compare yaw rate, sideslip, poles,
+steady-state gains, and family-to-family dynamic distance. Report a compact table
+of absolute physical parameters and relative changes.
+
+\paragraph{Decision gate.}
+All centers must remain controllable and physically plausible. Differences must
+be large enough to affect prediction and control, but not so extreme that the
+benchmark makes family recovery trivial or unrealistic.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 0C: within-family client population}
+\paragraph{Objective.}
+Construct a 30-client fleet with ten clients per family and determine whether the
+desired hierarchical structure is actually present.
+
+\paragraph{Predeclared expectation.}
+Client envelopes overlap modestly within each family. Persistent differences
+between families remain visible over relevant parts of the speed range.
+
+\paragraph{Setup and planned evidence.}
+Sample bounded, fixed client parameters with initial ranges
+$m,I_z:\pm2.5\%$ and $C_f,C_r:\pm5\%$. Inspect physical parameters, frozen-model
+distances, response envelopes, and controllability over speed. The primary figure
+shows family centers and within-family bands for selected dynamic characteristics.
+
+\paragraph{Decision gate.}
+Within-family variation should be smaller than between-family variation without
+perfect separation on every scalar feature. Invalid samples are not silently
+discarded; the sampling rule must be revised if they occur systematically.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Phase-0 benchmark freeze}
+After Experiments 0A--0C pass, the equations, sample time, speed envelope, family
+centers, scatter model, and development seed are frozen. Later changes require an
+explicit report entry explaining the failure or new evidence that motivated them.

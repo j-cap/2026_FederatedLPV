@@ -1,0 +1,29 @@
+\section{Phase 5: model and controller complexity}
+\label{sec:phase5}
+
+\subsection{Experiment 5A: LTI-prototype sweep}
+\paragraph{Objective.}
+Answer the objection that sufficiently many LTI clusters can replace LPV models.
+
+\paragraph{Predeclared expectation.}
+Three LPV families match or outperform substantially more than three frozen LTI
+prototypes, particularly on unseen speeds and varying-speed trajectories.
+
+\paragraph{Setup and planned evidence.}
+Sweep
+\begin{equation}
+ K_{\mathrm{LTI}}\in\{1,2,3,5,8,10,15\}
+\end{equation}
+using the strongest reasonable oracle partitions, and compare with one global and
+three family-specific LPV models. Count both stored model parameterizations and
+independently calibrated controller families. Plot prediction and tracking error
+against each complexity measure.
+
+\paragraph{Decision gate.}
+If three or four LTI prototypes already match M4, the controller-proliferation
+argument is weak. If many more prototypes are required, the LPV-family abstraction
+has demonstrated a concrete complexity advantage.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+

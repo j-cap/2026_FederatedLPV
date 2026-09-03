@@ -1,0 +1,59 @@
+\section{Phase 1: LPV representation validation}
+\label{sec:phase1}
+
+\subsection{Experiment 1A: frozen-grid matrix approximation}
+\paragraph{Objective.}
+Select the smallest LPV basis that accurately represents the discretized bicycle
+models between measured speed anchors.
+
+\paragraph{Predeclared expectation.}
+The physically motivated reciprocal-speed basis is likely effective, but exact
+discretization may make a richer mixed basis necessary.
+
+\paragraph{Setup and planned evidence.}
+For every client, calculate exact frozen discrete matrices and fit
+\begin{align}
+ \Phi_1(v)&=[1,v],\\
+ \Phi_2(v)&=[1,v^{-1},v^{-2}],\\
+ \Phi_3(v)&=[1,v,v^{-1},v^{-2}].
+\end{align}
+Fit on the five training anchors and evaluate at unseen intermediate speeds and a
+dense grid. Report absolute and normalized $E_A(v)$ and $E_B(v)$, worst-client
+error, coefficient magnitude, and regression conditioning.
+
+\paragraph{Decision gate.}
+Choose the smallest basis with consistently low interpolation error and acceptable
+conditioning. The originally proposed basis is rejected if the evidence favors a
+different representation.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 1B: varying-speed trajectory prediction}
+\paragraph{Objective.}
+Confirm that pointwise matrix accuracy translates into accurate speed-varying
+simulation.
+
+\paragraph{Predeclared expectation.}
+The chosen LPV basis gives nearly exact one-step prediction and small, bounded
+free-run error on the linear plant.
+
+\paragraph{Setup and planned evidence.}
+Use moderate persistently exciting steering with independent smooth profiles such
+as $12\rightarrow20\rightarrow15$, $20\rightarrow28\rightarrow18$, and
+$15\rightarrow25\rightarrow12\,\mathrm{m\,s^{-1}}$. Compare the true
+speed-varying plant, exact frozen-matrix lookup, and fitted LPV model. Plot
+representative states and error versus time, speed, and client family.
+
+\paragraph{Decision gate.}
+One-step errors must be negligible relative to the later between-method effects,
+and free-run errors must not grow pathologically. Otherwise the basis or the
+time-varying discretization treatment is revised before Phase~2.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Phase-1 representation freeze}
+The selected scheduling basis, feature scaling, fitting grid, and numerical
+regularization are frozen before oracle architecture comparisons begin.
+

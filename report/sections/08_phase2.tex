@@ -1,0 +1,52 @@
+\section{Phase 2: oracle model comparison}
+\label{sec:phase2}
+This is the first direct test of the central hypothesis. Family labels are known,
+data are long and low-noise, and learning imperfections are intentionally absent.
+
+\subsection{Experiment 2A: construct M1--M5}
+\paragraph{Objective.}
+Construct the architectures in \cref{tab:methods} under matched data support.
+
+\paragraph{Setup and fairness rules.}
+Global models pool all clients. Clustered models use true family labels. LTI
+models are fitted across the same operating data as LPV models rather than at one
+favorable speed. Aggregation is uniform initially. Uncertainty weighting and
+learned clusters remain outside the oracle comparison.
+
+\paragraph{Decision gate.}
+All methods must pass numerical checks and use identical train/test splits. Model
+errors are decomposed by method, speed, family, client, and trajectory.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 2B: isolate scheduling and specialization}
+\paragraph{Objective.}
+Determine whether scheduling and structural specialization solve distinct and
+complementary errors.
+
+\paragraph{Predeclared expectation.}
+For speed variation within one family, LPV models outperform LTI models. At fixed
+speed across families, specialized models outperform global models. With both
+effects present, M4 outperforms M2 and M3.
+
+\paragraph{Setup and planned evidence.}
+Three diagnostic conditions are used:
+\begin{enumerate}
+ \item D1: one family over the full speed envelope;
+ \item D2: all families at $v_x=20\,\mathrm{m\,s^{-1}}$;
+ \item D3: all families under varying speed.
+\end{enumerate}
+Report one-step and free-run errors, error-versus-speed curves, worst-family error,
+and family gap. After development, repeat with ten independently sampled fleets.
+
+\paragraph{Decision gate.}
+M4 must improve on both M2 and M3 in D3. A useful working gate is more than 10\%
+for LPV relevance under broad speed variation and approximately 5--10\% for
+specialization, with practical scale and seed consistency taking precedence over
+the numerical thresholds. If M3 and M4 are equivalent, clustering is unnecessary.
+If M2 and M4 are equivalent, LPV scheduling is unnecessary.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+

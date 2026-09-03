@@ -1,0 +1,85 @@
+\section{Phase 4: nonlinear-plant escalation}
+\label{sec:phase4}
+Phase~4 replaces the linear plant, not the compact identified model class. It tests
+whether the structural conclusion survives realistic plant--model mismatch.
+
+\subsection{Experiment 4A: nonlinear tire-model validation}
+\paragraph{Objective.}
+Implement and validate saturating tire forces
+\begin{equation}
+ F_{y,j}=C_j\alpha_{\mathrm{sat},j}
+ \tanh\left(\frac{\alpha_j}{\alpha_{\mathrm{sat},j}}\right),
+ \qquad j\in\{f,r\}.
+\end{equation}
+
+\paragraph{Predeclared expectation.}
+The nonlinear plant agrees with the linear model at small slip and departs smoothly
+as tire saturation becomes relevant.
+
+\paragraph{Setup and planned evidence.}
+Check the force--slip curves, small-signal slope, force limits, integration
+accuracy, sideslip, yaw rate, and lateral acceleration. Preserve the Phase-0
+structural families initially so that the plant change is isolated.
+
+\paragraph{Decision gate.}
+The model must have correct small-slip behavior, smooth saturation, plausible force
+limits, and numerically converged simulations. Otherwise Phase~4 is blocked.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 4B: maneuver-severity calibration}
+\paragraph{Objective.}
+Define reproducible near-linear, moderately nonlinear, and strongly nonlinear but
+feasible operating levels.
+
+\paragraph{Setup and planned evidence.}
+Scale the lateral reference by
+$\gamma_m\in\{0.5,1.0,1.5\}$. Report peak slip, lateral acceleration, tire-force
+utilization, steering limits, and the fraction of time outside a predeclared
+near-linear tire region. Adjust the absolute base maneuver once, globally, if the
+three intended regimes are not obtained.
+
+\paragraph{Decision gate.}
+Severity levels must represent distinct regimes without making the strongest case
+physically meaningless or infeasible for every linear controller.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 4C: oracle models under nonlinear mismatch}
+\paragraph{Objective.}
+Repeat M1--M5 using nonlinear-plant trajectories while retaining linear LTI/LPV
+identified models.
+
+\paragraph{Predeclared expectation.}
+Absolute errors grow with maneuver severity, but the complementary benefits of
+scheduling and specialization remain under moderate nonlinear excitation.
+
+\paragraph{Setup and decision gate.}
+Evaluate one-step and free-run error versus speed, family, and severity. The M4
+advantage must survive at least the moderate regime and unseen speed--maneuver
+combinations. If all linear LPV models fail, revise the representation before FL.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 4D: controller transfer and redesign}
+\paragraph{Objective.}
+Separate robustness of the Phase-3 controller from the achievable performance of
+controllers redesigned using LPV approximations identified on nonlinear data.
+
+\paragraph{Setup.}
+The transfer test applies Phase-3 controllers unchanged. The redesign test refits
+the compact models on nonlinear trajectories and synthesizes controllers with the
+same common weights. The redesign test is primary; transfer is diagnostic.
+
+\paragraph{Decision gate.}
+The qualitative M4 benefit should survive moderate excitation. If it survives only
+near the linear region, the claim and operating envelope are restricted
+explicitly. Frozen-grid checks are necessary but are not presented as a formal LPV
+stability certificate.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
