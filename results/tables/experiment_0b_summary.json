@@ -1,0 +1,38 @@
+{
+  "nominal": {
+    "mass_kg": 1500.0,
+    "yaw_inertia_kg_m2": 2500.0,
+    "front_stiffness_n_per_rad": 80000.0,
+    "rear_stiffness_n_per_rad": 80000.0,
+    "understeer_coefficient_s2_per_m": 0.0026785714285714286,
+    "stable_all_speeds": true,
+    "max_discrete_spectral_radius": 0.9616438538929747,
+    "min_controllability_sigma": 2.50586372041504,
+    "distance_from_nominal_min": 0.0,
+    "distance_from_nominal_max": 0.0
+  },
+  "heavy": {
+    "mass_kg": 1725.0,
+    "yaw_inertia_kg_m2": 3000.0,
+    "front_stiffness_n_per_rad": 84000.0,
+    "rear_stiffness_n_per_rad": 80000.0,
+    "understeer_coefficient_s2_per_m": 0.002493622448979592,
+    "stable_all_speeds": true,
+    "max_discrete_spectral_radius": 0.966626418665458,
+    "min_controllability_sigma": 2.854487490566895,
+    "distance_from_nominal_min": 0.0861229061327044,
+    "distance_from_nominal_max": 0.08879960424606798
+  },
+  "handling": {
+    "mass_kg": 1425.0,
+    "yaw_inertia_kg_m2": 2250.0,
+    "front_stiffness_n_per_rad": 72000.0,
+    "rear_stiffness_n_per_rad": 88000.0,
+    "understeer_coefficient_s2_per_m": 0.004369588744588745,
+    "stable_all_speeds": true,
+    "max_discrete_spectral_radius": 0.9578339386867252,
+    "min_controllability_sigma": 1.9424255730444875,
+    "distance_from_nominal_min": 0.05619430183104406,
+    "distance_from_nominal_max": 0.05631685869785691
+  }
+}

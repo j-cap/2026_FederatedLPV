@@ -37,6 +37,26 @@ class VehicleModelTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "strictly positive"):
             discrete_bicycle_matrices(20.0, family_centers()["nominal"], 0.0)
 
+    def test_all_family_centers_are_stable_and_controllable_on_envelope(self) -> None:
+        for parameters in family_centers().values():
+            for speed in np.linspace(10.0, 30.0, 41):
+                a, b = continuous_bicycle_matrices(float(speed), parameters)
+                self.assertTrue(np.all(np.linalg.eigvals(a).real < 0.0))
+                self.assertEqual(np.linalg.matrix_rank(np.column_stack((b, a @ b))), 2)
+
+    def test_yaw_gain_matches_understeer_formula(self) -> None:
+        for parameters in family_centers().values():
+            length = parameters.front_length + parameters.rear_length
+            ku = parameters.mass * (
+                parameters.rear_stiffness * parameters.rear_length
+                - parameters.front_stiffness * parameters.front_length
+            ) / (parameters.front_stiffness * parameters.rear_stiffness * length)
+            for speed in (12.0, 20.0, 28.0):
+                a, b = continuous_bicycle_matrices(speed, parameters)
+                numerical_gain = -np.linalg.solve(a, b)[1, 0]
+                analytical_gain = speed / (length + ku * speed**2)
+                self.assertAlmostEqual(numerical_gain, analytical_gain, places=12)
+
 
 if __name__ == "__main__":
     unittest.main()
