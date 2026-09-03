@@ -1,0 +1,27 @@
+\section{Phase 7: federated extension after the oracle gate}
+\label{sec:phase7}
+Only a positive oracle result justifies removing its assumptions. The first
+federated hypothesis is deliberately narrow:
+\begin{quote}
+Compatible clients with complementary speed coverage can collaboratively estimate
+an LPV family more accurately over the complete operating envelope than any
+individual client, while family-specific aggregation prevents negative transfer.
+\end{quote}
+Imperfections are introduced incrementally:
+\begin{enumerate}
+ \item finite local data;
+ \item measurement and process noise;
+ \item partial and non-identical client speed coverage;
+ \item local LPV estimation and uncertainty quantification;
+ \item global aggregation and local-only baselines;
+ \item oracle-family federated aggregation;
+ \item learned family assignment;
+ \item uncertainty-aware clustered aggregation;
+ \item partial participation and communication limits.
+\end{enumerate}
+Changing payload during a drive is excluded from the first federated study. It
+would make the structural state time varying and introduce change detection,
+concept drift, and online reassignment before the stationary problem is understood.
+Robust LPV synthesis, additional scheduling variables, and higher-fidelity vehicle
+models are likewise evidence-driven later extensions.
+

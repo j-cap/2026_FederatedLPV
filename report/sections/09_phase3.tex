@@ -1,0 +1,53 @@
+\section{Phase 3: linear-plant controller oracle}
+\label{sec:phase3}
+
+\subsection{Experiment 3A: common controller architecture}
+\paragraph{Objective.}
+Translate model differences into a fair closed-loop comparison.
+
+\paragraph{Setup.}
+Augment the state with yaw-rate tracking error,
+\begin{equation}
+ \chi_{k+1}=\chi_k+T_s(r_k-r_k^\star),
+\end{equation}
+and use
+\begin{equation}
+ \delta_k=-K_x(v_k)x_k-K_I(v_k)\chi_k+k_r(v_k)r_k^\star.
+\end{equation}
+For LPV methods, calculate LQI gains at
+$v\in\{10,15,20,25,30\}\,\mathrm{m\,s^{-1}}$ and interpolate them. Select common
+$Q$ and $R$ once on the nominal vehicle and freeze them.
+
+\paragraph{Planned evidence and decision gate.}
+Audit controllability and closed-loop spectral radius for every client on a dense
+speed grid. Gain interpolation must be continuous and all evaluated closed loops
+must satisfy the predefined stability margin before simulation.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+
+\subsection{Experiment 3B: closed-loop scenarios C1--C4}
+\paragraph{Objective.}
+Test scheduling, specialization, their combination, and out-of-distribution
+generalization in closed loop.
+
+\paragraph{Predeclared expectation.}
+LPV methods dominate for a fixed family under changing speed (C1), specialized
+methods dominate across families at fixed speed (C2), M4 performs best when both
+effects vary (C3), and its advantage survives unseen speed--maneuver combinations
+(C4).
+
+\paragraph{Setup and planned evidence.}
+Use a smooth yaw-rate sine, single lane change, and double lane change/S-curve.
+Measure yaw-rate RMSE, sideslip RMS, steering RMS, peak steering, peak steering
+rate, worst-family result, and family gap. Plot one representative varying-speed
+trajectory and aggregate distributions across clients and seeds.
+
+\paragraph{Decision gate.}
+M4 must improve tracking or family consistency without materially greater steering
+effort. Benefits must survive C4. A method that wins only through aggressive input
+or one favorable maneuver does not pass.
+
+\paragraph{Results, interpretation, and decision.}
+Pending.
+

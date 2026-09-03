@@ -1,0 +1,82 @@
+\section{Experimental methodology}
+\label{sec:methodology}
+The study follows a gated progression:
+\begin{equation}
+\begin{split}
+&\text{plant validation}\rightarrow\text{LPV representation validation}
+\rightarrow\text{oracle model comparison}\\
+&\rightarrow\text{oracle controller comparison}
+\rightarrow\text{nonlinear-plant escalation}
+\rightarrow\text{federated identification}.
+\end{split}
+\end{equation}
+The early stages deliberately remove learning imperfections. This allows a
+negative result to reject the structural premise before a federated algorithm is
+developed. Results are first obtained for one deterministic development seed and
+then repeated for ten independently sampled fleets and test-trajectory variants.
+
+\subsection{Plant hierarchy}
+The first plant is the speed-dependent linear bicycle model from
+\cref{sec:benchmark}. It is LTI at a fixed speed but LPV across a drive:
+\begin{equation}
+ \dot x=A(v_x,\vartheta)x+B(v_x,\vartheta)\delta.
+\end{equation}
+It supports a clean test of the scheduling--specialization decomposition. After
+this oracle test, the plant is replaced by a nonlinear bicycle model with
+saturating hyperbolic-tangent tire forces. The identified models remain linear
+LTI or LPV models. Thus, the second plant tests whether the compact abstraction
+survives deliberate model mismatch.
+
+\subsection{Compared model architectures}
+\begin{table}[ht]
+\centering
+\caption{Core oracle model architectures.}
+\label{tab:methods}
+\begin{tabular}{llllr}
+\toprule
+Method & Scheduling & Specialization & Interpretation & Families\\
+\midrule
+M1: Global LTI & none & none & ignores both factors & 1\\
+M2: Clustered LTI & none & oracle family & structure only & 3\\
+M3: Global LPV & continuous & none & scheduling only & 1\\
+M4: Clustered LPV & continuous & oracle family & both factors & 3\\
+M5: Gridded LTI & discrete & family and speed & complex oracle & 15\\
+\bottomrule
+\end{tabular}
+\end{table}
+All methods receive equivalent data support. Controller comparisons use common
+state and input weights. Method-specific tuning is prohibited unless it is
+explicitly reported as a separate sensitivity analysis.
+
+\subsection{Training and test separation}
+Frozen-speed identification uses
+$v_x\in\{12,16,20,24,28\}\,\mathrm{m\,s^{-1}}$. Interpolation tests include
+$v_x\in\{14,18,22,26\}\,\mathrm{m\,s^{-1}}$. Varying-speed training trajectories
+combine smooth speed profiles and lateral maneuvers independently so that speed
+and maneuver identity are not confounded. Test data include unseen speeds, unseen
+speed sequences, unseen lateral timing and amplitude, and unseen speed--maneuver
+combinations.
+
+\subsection{Common metrics}
+Model metrics include one-step and free-run errors in sideslip and yaw rate, and
+matrix errors
+\begin{equation}
+ E_A(v)=\lVert A_i(v)-\hat A(v)\rVert_F,\qquad
+ E_B(v)=\lVert B_i(v)-\hat B(v)\rVert_F.
+\end{equation}
+Closed-loop metrics include yaw-rate tracking RMSE, sideslip RMS, steering RMS,
+peak steering, peak steering rate, and the frozen-grid closed-loop spectral
+radius. Every main result reports fleet mean, dispersion, worst-family result,
+and family gap
+\begin{equation}
+ \Delta J_{\mathrm{family}}=\max_c J_c-\min_c J_c.
+\end{equation}
+
+\subsection{Experiment documentation contract}
+Every experiment below is documented before execution using five fields:
+objective, predeclared expectation, setup and evidence, decision gate, and
+results/interpretation. The latter remains marked as pending until the experiment
+has been run. Configuration, random seeds, output paths, and the producing Git
+commit will be added with each result. Failed experiments and changed decisions
+remain in this development report even if they are omitted from the final paper.
+
