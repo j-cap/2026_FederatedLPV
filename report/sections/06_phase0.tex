@@ -215,9 +215,75 @@ perfect separation on every scalar feature. Invalid samples are not silently
 discarded; the sampling rule must be revised if they occur systematically.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The bounded sampling rule was evaluated for the development fleet (seed~1) and
+nine additional fleet seeds, giving 300 clients in the robustness audit. All
+clients are stable and controllable at every one of the 101 evaluated speeds. No
+sample was rejected or repaired. The exact fleet-generation settings are now
+stored in the Phase-0 configuration file.
+
+For structural comparison, each client is represented by its exact-ZOH $A_d$ and
+$B_d$ matrices at $10$, $15$, $20$, $25$, and
+$30\,\mathrm{m\,s^{-1}}$. The distance separately normalizes the $A_d$ and $B_d$
+differences at each speed before averaging over matrices and speeds. Across the ten
+fleets, the mean between-family distance is $2.88$--$3.57$ times the mean
+within-family distance, with mean ratio $3.28$. The true-label silhouette ranges
+from $0.548$ to $0.623$ and has mean $0.590$. Hence the hierarchy is consistent
+across seeds rather than being an artifact of the development realization.
+
+Nearest-center classification using the three exact, known family centers is
+correct for all 300 clients. The smallest correct-to-incorrect center-distance
+margin is $0.00585$. This perfect oracle-center result does not imply that cluster
+learning from short noisy trajectories will be trivial. It uses full-envelope,
+noise-free matrices and known centers. Moreover, in every tested fleet the largest
+within-family pairwise distance exceeds the smallest between-family distance. The
+population is therefore not separated by a universal scalar-distance threshold.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.98\linewidth]{experiment_0c_family_envelopes.pdf}
+ \caption{Seed-1 family centers and client envelopes under the predeclared bounded
+ scatter. Some scalar response bands overlap, especially for nominal and heavy
+ clients, while persistent multivariate family structure remains.}
+ \label{fig:experiment0c-envelopes}
+\end{figure}
+
+The response envelopes in \cref{fig:experiment0c-envelopes} show the intended
+balance. A single frozen scalar characteristic is not sufficient everywhere:
+nominal and heavy yaw-gain bands overlap substantially, and their high-speed
+sideslip bands overlap. The handling family becomes distinct mainly through the
+joint speed-dependent yaw and sideslip behavior. The pole envelopes remain stable
+and relatively compact for all families.
+
+For visualization only, the seed-1 model vectors were coefficient-wise
+standardized and projected with PCA. The first two components explain $98.2\%$ of
+the variance ($78.6\%$ and $19.6\%$ individually) and show three coherent groups
+in \cref{fig:experiment0c-pca}. PCA is not used to define the oracle labels or to
+claim performance of the future clustering algorithm.
+
+\begin{figure}[ht]
+ \centering
+ \includegraphics[width=0.70\linewidth]{experiment_0c_model_pca.pdf}
+ \caption{Diagnostic PCA projection of the 30 exact full-envelope client models in
+ the development fleet. True family labels are shown only to inspect whether the
+ designed structural information is recoverable in principle.}
+ \label{fig:experiment0c-pca}
+\end{figure}
+
+Experiment 0C therefore \textbf{passes}. The proposed scatter preserves a stable,
+reproducible hierarchy in multivariate dynamics while retaining overlap in
+individual characteristics and pairwise distances. Together, Experiments 0A--0C
+support freezing the linear benchmark for Phase~1. This conclusion remains scoped
+to exact full-envelope models. Limited coverage, estimation noise, and learned
+clustering are deliberately deferred and may substantially reduce recoverability.
 
 \subsection{Phase-0 benchmark freeze}
 After Experiments 0A--0C pass, the equations, sample time, speed envelope, family
 centers, scatter model, and development seed are frozen. Later changes require an
 explicit report entry explaining the failure or new evidence that motivated them.
+
+All three experiments passed. The frozen Phase-0 benchmark uses
+$T_s=0.01\,\mathrm{s}$, $v_x\in[10,30]\,\mathrm{m\,s^{-1}}$, the three centers in
+\cref{tab:experiment0b-parameters}, ten clients per family, bounded independent
+$\pm2.5\%$ scatter in mass and yaw inertia, bounded independent $\pm5\%$ scatter
+in front and rear cornering stiffness, and development seed~1. The next task is
+Experiment 1A: frozen-grid LPV basis validation.

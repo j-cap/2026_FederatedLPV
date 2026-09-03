@@ -6,6 +6,7 @@ from federated_lpv import (
     continuous_bicycle_matrices,
     discrete_bicycle_matrices,
     family_centers,
+    sample_fleet,
 )
 
 
@@ -56,6 +57,18 @@ class VehicleModelTests(unittest.TestCase):
                 numerical_gain = -np.linalg.solve(a, b)[1, 0]
                 analytical_gain = speed / (length + ku * speed**2)
                 self.assertAlmostEqual(numerical_gain, analytical_gain, places=12)
+
+    def test_fleet_sampling_is_reproducible_and_bounded(self) -> None:
+        fleet_a = sample_fleet(seed=1)
+        fleet_b = sample_fleet(seed=1)
+        self.assertEqual(fleet_a, fleet_b)
+        self.assertEqual(len(fleet_a), 30)
+        for client in fleet_a:
+            center = family_centers()[client.family]
+            self.assertLessEqual(abs(client.parameters.mass / center.mass - 1.0), 0.025)
+            self.assertLessEqual(abs(client.parameters.yaw_inertia / center.yaw_inertia - 1.0), 0.025)
+            self.assertLessEqual(abs(client.parameters.front_stiffness / center.front_stiffness - 1.0), 0.05)
+            self.assertLessEqual(abs(client.parameters.rear_stiffness / center.rear_stiffness - 1.0), 0.05)
 
 
 if __name__ == "__main__":
