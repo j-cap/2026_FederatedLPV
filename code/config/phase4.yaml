@@ -15,3 +15,24 @@ experiment_4a:
   small_signal_relative_rmse_gate_pct: 1.0
   jacobian_relative_error_gate: 1.0e-6
   integration_relative_rmse_gate_pct: 0.1
+
+experiment_4b:
+  duration_s: 12.0
+  base_reference_amplitude_deg_s: 8.5
+  severity_scales:
+    near_linear: 0.5
+    moderate: 1.0
+    strong: 1.5
+  speed_profiles_mps:
+    low_to_high: [12.0, 28.0, 16.0]
+    high_to_low: [28.0, 16.0, 24.0]
+  near_linear_slope_loss_threshold_pct: 5.0
+  steering_limit_deg: 12.0
+  lateral_acceleration_limit_mps2: 8.83
+  regime_gates:
+    near_linear_max_utilization: 0.35
+    near_linear_max_outside_fraction: 0.10
+    moderate_min_utilization: 0.35
+    moderate_max_utilization: 0.75
+    strong_min_utilization: 0.75
+    strong_max_utilization: 0.98

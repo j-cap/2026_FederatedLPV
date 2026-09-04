@@ -1,0 +1,44 @@
+{
+  "summary": {
+    "near_linear": {
+      "severity": "near_linear",
+      "scale": 0.5,
+      "reference_peak_deg_s": 4.867353264636831,
+      "max_force_utilization": 0.261531378989589,
+      "max_outside_fraction": 0.0775,
+      "max_lateral_accel_mps2": 2.275816878374463,
+      "max_steering_deg": 1.20466400849191,
+      "mean_tracking_rmse_deg_s": 0.015722247317272477,
+      "all_finite": true
+    },
+    "moderate": {
+      "severity": "moderate",
+      "scale": 1.0,
+      "reference_peak_deg_s": 9.734706529273662,
+      "max_force_utilization": 0.5171717289946084,
+      "max_outside_fraction": 0.3675,
+      "max_lateral_accel_mps2": 4.488622644097615,
+      "max_steering_deg": 2.4275008080408846,
+      "mean_tracking_rmse_deg_s": 0.033111857553515776,
+      "all_finite": true
+    },
+    "strong": {
+      "severity": "strong",
+      "scale": 1.5,
+      "reference_peak_deg_s": 14.602059793910493,
+      "max_force_utilization": 0.7527748148863779,
+      "max_outside_fraction": 0.5091666666666667,
+      "max_lateral_accel_mps2": 6.497493501393941,
+      "max_steering_deg": 3.6918436842196773,
+      "mean_tracking_rmse_deg_s": 0.056507470158623424,
+      "all_finite": true
+    }
+  },
+  "gates": {
+    "near_linear_pass": true,
+    "moderate_pass": true,
+    "strong_pass": true,
+    "feasibility_pass": true,
+    "experiment_pass": true
+  }
+}

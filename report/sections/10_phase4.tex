@@ -119,6 +119,7 @@ validated linear plant locally, provide bounded and physically interpretable tir
 forces, and are numerically converged at the existing sample time. Experiment 4B
 may proceed without changing the Phase-0 family definitions.
 \subsection{Experiment 4B: maneuver-severity calibration}
+\label{sec:experiment4b}
 \paragraph{Objective.}
 Define reproducible near-linear, moderately nonlinear, and strongly nonlinear but
 feasible operating levels.
@@ -130,12 +131,73 @@ utilization, steering limits, and the fraction of time outside a predeclared
 near-linear tire region. Adjust the absolute base maneuver once, globally, if the
 three intended regimes are not obtained.
 
+The test uses the unseen smooth S-curve from the Phase-3 generalization case and
+the M4 family-specific scheduled controller without retuning. Two continuously
+varying speed profiles are applied to every family center:
+$12\rightarrow28\rightarrow16\,\mathrm{m\,s^{-1}}$ and
+$28\rightarrow16\rightarrow24\,\mathrm{m\,s^{-1}}$. The tire is declared
+near-linear while its local slope retains at least $95\%$ of the zero-slip
+cornering stiffness. Because
+\begin{equation}
+ \frac{\partial F_{y,j}}{\partial \alpha_j}/C_j
+ =\operatorname{sech}^2(\alpha_j/\alpha_{\mathrm{sat},j}),
+\end{equation}
+this definition is independent of axle stiffness and load scaling.
+
 \paragraph{Decision gate.}
 Severity levels must represent distinct regimes without making the strongest case
 physically meaningless or infeasible for every linear controller.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+An initial coefficient of $8.0\,\mathrm{deg\,s^{-1}}$ did not quite reach the
+strong-regime utilization gate. In accordance with the protocol, the coefficient
+was adjusted once, globally, to $8.5\,\mathrm{deg\,s^{-1}}$ and then frozen. Due
+to the asymmetric S-curve shape, the resulting unscaled reference peak is
+$9.735\,\mathrm{deg\,s^{-1}}$. The calibrated worst-case results across both
+speed profiles and all family centers are given in
+\cref{tab:experiment4b-calibration}.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4B maneuver-severity calibration. ``Outside'' is the
+largest trajectory fraction for which at least one tire has lost more than
+$5\%$ of its zero-slip slope.}
+\label{tab:experiment4b-calibration}
+\begin{tabular}{lrrrrr}
+\toprule
+Regime & $\gamma_m$ & Peak $|r^\star|$ [deg/s] & Utilization
+& Outside [\%] & Peak $|a_y|$ [$\mathrm{m\,s^{-2}}$]\\
+\midrule
+Near-linear & 0.5 & 4.867 & 0.262 & 7.75 & 2.276\\
+Moderate    & 1.0 & 9.735 & 0.517 & 36.75 & 4.489\\
+Strong      & 1.5 & 14.602 & 0.753 & 50.92 & 6.497\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The maximum steering magnitudes are $1.205^\circ$, $2.428^\circ$, and
+$3.692^\circ$, respectively. Thus even the strongest tier remains below the
+predeclared $12^\circ$ steering limit and the $0.9g$ lateral-acceleration limit.
+All 18 family--profile--severity simulations remain finite. Maximum utilization
+increases monotonically through the declared bands: at most $0.35$ for the
+near-linear tier, between $0.35$ and $0.75$ for the moderate tier, and between
+$0.75$ and $0.98$ for the strong tier. The largest near-linear outside fraction
+is $7.75\%$, below its $10\%$ gate. The trajectories and regime separation are
+shown in \cref{fig:experiment4b-calibration}.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.95\linewidth]{experiment_4b_maneuver_severity.pdf}
+ \caption{Experiment 4B severity calibration under the M4 scheduled controller.
+ The same S-curve is scaled globally. Tire-force utilization and exposure beyond
+ the declared near-linear region increase monotonically, while the strong case
+ remains within the feasibility limits.}
+ \label{fig:experiment4b-calibration}
+\end{figure}
+
+Experiment 4B therefore \textbf{passes}. These three reference scales are now
+frozen for Experiments 4C and 4D. They are calibrated excitation regimes, not
+claims that the entire strong trajectory remains inside the linear tire region.
 
 \subsection{Experiment 4C: oracle models under nonlinear mismatch}
 \paragraph{Objective.}
