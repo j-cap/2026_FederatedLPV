@@ -383,3 +383,81 @@ transfers robustly, but direct certainty-equivalent redesign from unconstrained
 nonlinear-data regression is not justified. Before advancing the controller
 claim, a corrective Experiment 4D-R should add control-oriented regularization
 or robust/stability-constrained synthesis and repeat the same frozen evaluation.
+
+\subsection{Experiment 4D-R: stability-screened physics regularization}
+\label{sec:experiment4dr}
+\paragraph{Objective.}
+Test whether a minimal, predeclared control-oriented correction can stabilize
+nonlinear-data redesign while preserving useful adaptation.
+
+\paragraph{Method and selection rule.}
+For every architecture, blend the nonlinear-data model from 4C with its validated
+Phase-3 physics model,
+\begin{equation}
+ [A_\lambda(v)\ B_\lambda(v)]
+ =(1-\lambda)[A_{\mathrm{data}}(v)\ B_{\mathrm{data}}(v)]
+ +\lambda[A_{\mathrm{phys}}(v)\ B_{\mathrm{phys}}(v)].
+\end{equation}
+The candidate set is
+$\lambda\in\{0,0.1,0.25,0.5,0.75,1\}$. One common $\lambda$ is used for all
+methods. The selected value is the smallest candidate for which every M1--M5
+controller has worst frozen small-signal spectral radius at most $0.99$ over all
+training clients and 161 speeds in $[12,28]\,\mathrm{m\,s^{-1}}$. No held-out
+tracking result enters selection. This is an oracle diagnostic: the final
+federated method would require uncertainty sets or another deployable robustness
+screen in place of known training plants.
+
+\paragraph{Decision gate.}
+M4 must use $\lambda<1$, remain feasible for every moderate test client, and
+improve moderate tracking RMSE over both regularized M2 and M3 by at least $5\%$.
+
+\paragraph{Results, interpretation, and decision.}
+At $\lambda=0$, M3, M4, and M5 have worst radii $5.888$, $1.032$, and $19.869$.
+At $\lambda=0.25$, M4 and M5 pass, but M3 remains unstable with radius $1.484$.
+The common selection rule therefore chooses $\lambda=0.5$. The resulting worst
+radii are $0.957$, $0.962$, $0.967$, $0.963$, and $0.961$ for M1--M5. The
+regularization thus repairs the frozen-grid stability failure for every method.
+
+Held-out moderate results are given in \cref{tab:experiment4dr-results}. All
+methods are amplitude-feasible, and the M5 steering-rate peak falls from more
+than $800$ to $24.5\,\mathrm{deg\,s^{-1}}$.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4D-R results with the commonly selected physics weight
+$\lambda=0.5$. Tracking values are yaw-rate RMSE in $\mathrm{deg\,s^{-1}}$.}
+\label{tab:experiment4dr-results}
+\begin{tabular}{lrrr}
+\toprule
+Method & Mean tracking & Worst family & Worst spectral radius\\
+\midrule
+M1 global LTI       & 0.04538 & 0.05035 & 0.957\\
+M2 clustered LTI    & \textbf{0.03562} & \textbf{0.04146} & 0.962\\
+M3 global LPV       & 0.04612 & 0.05353 & 0.967\\
+M4 clustered LPV    & 0.04045 & 0.04398 & 0.963\\
+M5 gridded LTI      & 0.04535 & 0.04836 & 0.961\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+M4 improves on M3 by $12.3\%$, so family specialization remains beneficial
+within the LPV comparison. However, M4 is $13.5\%$ worse than M2. The correction
+therefore stabilizes redesign but does not restore the full scheduling plus
+specialization advantage. The selection path and held-out behavior are shown in
+\cref{fig:experiment4dr-regularization}.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.95\linewidth]{experiment_4dr_stability_regularized_redesign.pdf}
+ \caption{Experiment 4D-R stability-screened physics regularization. A common
+ weight of $0.5$ makes all redesigned controllers stable and feasible. M4 again
+ improves over global LPV, but clustered LTI remains best.}
+ \label{fig:experiment4dr-regularization}
+\end{figure}
+
+Experiment 4D-R therefore \textbf{fails the full performance gate}, despite
+passing the stability and feasibility gates. This rules out unconstrained matrix
+regression followed by simple post-hoc blending as the main controller-redesign
+method. The project now has a clean choice: retain the successful physics-model
+controller transfer as the Phase-4 robustness claim, or add a separate
+structure-preserving identification study before claiming data-driven redesign.

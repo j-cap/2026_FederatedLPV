@@ -67,3 +67,15 @@ experiment_4d:
     redesign_m3_to_m4_moderate_tracking_reduction_pct: 5.0
     redesign_m2_to_m4_moderate_tracking_reduction_pct: 5.0
     redesign_m4_moderate_feasible_fraction: 1.0
+
+experiment_4d_r:
+  correction: stability_screened_physics_regularization
+  candidate_physics_weights: [0.0, 0.1, 0.25, 0.5, 0.75, 1.0]
+  frozen_grid_mps: [12.0, 28.0, 161]
+  maximum_spectral_radius: 0.99
+  selection_data: oracle_training_fleet_only
+  decision_gates:
+    m4_selected_weight_less_than: 1.0
+    m4_moderate_feasible_fraction: 1.0
+    m3_to_m4_moderate_tracking_reduction_pct: 5.0
+    m2_to_m4_moderate_tracking_reduction_pct: 5.0
