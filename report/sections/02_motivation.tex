@@ -19,8 +19,11 @@ of the scheduling range. Several compatible clients can jointly identify an LPV
 family over an envelope that no single client has explored, without transferring
 raw trajectories. Structural specialization simultaneously limits negative
 transfer from physically incompatible clients. The full architecture separates
-three questions:
-\begin{center}
+the three questions summarized in \cref{tab:information-roles}.
+\begin{table}[ht]
+\centering
+\caption{Distinct information roles in the proposed architecture.}
+\label{tab:information-roles}
 \begin{tabular}{lll}
 \toprule
 Quantity & Meaning & Mechanism\\
@@ -30,9 +33,10 @@ $c_i$ & persistent dynamics family & clustering/personalization\\
 $\Sigma_i$ & reliability of local evidence & uncertainty-aware federation\\
 \bottomrule
 \end{tabular}
-\end{center}
+\end{table}
 
 This work continues the uncertainty-aware clustered identification and LQI design
 pipeline developed for the IFAC study. Its new contribution is to give scheduling
 variation and persistent fleet heterogeneity distinct mathematical roles.
-
+The relation to LPV control, heterogeneous federated learning, and federated
+system identification is developed in \cref{sec:related-work}.

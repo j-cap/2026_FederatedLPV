@@ -14,7 +14,11 @@ LPV families replaces many frozen LTI regimes. The development report remains th
 complete experimental record and supplies supplementary details.
 
 \section{Current execution status}
-The repository scaffold and initial continuous-time bicycle model are available.
-The next executable task is Experiment~0A. Identification trajectories,
-controllers, and federated learning are intentionally blocked until the nominal
-plant, discretization, handling behavior, and operating envelope pass that audit.
+Phases~0--3 are complete on the linear speed-dependent bicycle plant. The plant
+and client population passed validation (\cref{sec:phase0}); the reciprocal-speed
+LPV basis passed pointwise and trajectory validation (\cref{sec:phase1}); and the
+oracle model and controller comparisons support complementary benefits from
+scheduling and family specialization (\cref{sec:phase2,sec:phase3}). The next
+executable task is nonlinear tire-model validation in \cref{sec:phase4}. The LTI
+complexity sweep (\cref{sec:phase5}), regime map (\cref{sec:phase6}), and
+federated extension (\cref{sec:phase7}) remain planned.

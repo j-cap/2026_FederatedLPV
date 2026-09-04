@@ -1,0 +1,50 @@
+\section{Related work and positioning}
+\label{sec:related-work}
+
+\subsection{LPV modeling and vehicle control}
+LPV models represent dynamics whose coefficients depend on measurable scheduling
+variables, providing a systematic alternative to independently designed frozen
+controllers. Established LPV references cover identification, embedding choices,
+gain scheduling, and stability analysis
+\cite{toth2010lpv,apkarian1995selfscheduled,hoffmann2015survey}. Vehicle-control
+studies have used LPV formulations to expose velocity dependence and tire
+nonlinearities to scheduled controllers, including path-tracking designs validated
+in high-fidelity simulation \cite{corno2021lpv,gimondi2021lpv}. The bicycle and
+tire models used here follow the standard vehicle-dynamics hierarchy from linear
+cornering stiffness to nonlinear saturation \cite{pacejka2012tire}.
+
+This project does not claim novelty for representing vehicle dynamics as LPV or
+for interpolating gains over speed. Its LPV contribution is representational:
+known within-client operating variation is assigned to scheduling, so that
+persistent between-client differences can be learned without proliferating
+unrelated frozen-speed models.
+
+\subsection{Federated learning under heterogeneity}
+Federated averaging established the shared-model paradigm in which clients retain
+their raw data and communicate locally computed updates \cite{mcmahan2017fedavg}.
+When client objectives differ, federated multi-task and clustered methods replace
+a single compromise model with structured sharing
+\cite{smith2017federated,ghosh2020ifca,sattler2021clustered}. These methods motivate
+family-specific aggregation, but generally treat heterogeneity as a statistical
+or task-level property rather than separating a measured scheduling coordinate
+from a persistent physical phenotype.
+
+\subsection{Federated system identification and the research gap}
+FedSysID studies collaborative identification when clients observe similar but
+non-identical linear dynamical systems and quantifies the tradeoff between added
+samples and system heterogeneity \cite{wang2023fedsysid}. This directly supports
+the premise that a fleet can improve system identification through collaboration,
+while also showing why unstructured global aggregation can become harmful as
+physical differences increase.
+
+The gap addressed here lies at the intersection of these bodies of work. Existing
+LPV vehicle-control studies primarily assume a prescribed plant or centralized
+identification; clustered FL methods learn multiple client models but do not
+encode continuous operating-point variation; and current federated system
+identification centers on shared or nearby fixed-system models. The proposed
+architecture instead seeks a small number of \emph{LPV model manifolds}: each
+family shares a speed-dependent model, while family membership captures persistent
+vehicle heterogeneity. The oracle experiments in
+\cref{sec:phase0,sec:phase1,sec:phase2,sec:phase3} first test whether this
+decomposition is useful before any claim is made about recovering it from
+decentralized data.
