@@ -36,3 +36,19 @@ experiment_4b:
     moderate_max_utilization: 0.75
     strong_min_utilization: 0.75
     strong_max_utilization: 0.98
+
+experiment_4c:
+  fleet_seed: 1
+  clients_per_family: 10
+  training_speed_profiles_mps:
+    profile_1: [12.0, 20.0, 15.0]
+    profile_2: [20.0, 28.0, 18.0]
+  test_speed_profile_mps: [28.0, 16.0, 24.0]
+  training_maneuvers: [lane, sine]
+  test_maneuver: unseen_s_curve
+  lti_speed_anchors_mps: [12.0, 16.0, 20.0, 24.0, 28.0]
+  ridge: 1.0e-10
+  decision_gates:
+    moderate_m3_to_m4_one_step_reduction_pct: 5.0
+    moderate_m2_to_m4_one_step_reduction_pct: 5.0
+    moderate_m3_to_m4_free_run_reduction_pct: 5.0

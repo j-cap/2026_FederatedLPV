@@ -200,6 +200,7 @@ frozen for Experiments 4C and 4D. They are calibrated excitation regimes, not
 claims that the entire strong trajectory remains inside the linear tire region.
 
 \subsection{Experiment 4C: oracle models under nonlinear mismatch}
+\label{sec:experiment4c}
 \paragraph{Objective.}
 Repeat M1--M5 using nonlinear-plant trajectories while retaining linear LTI/LPV
 identified models.
@@ -214,7 +215,80 @@ advantage must survive at least the moderate regime and unseen speed--maneuver
 combinations. If all linear LPV models fail, revise the representation before FL.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The same 30-client fleet from seed 1 is simulated with the validated nonlinear
+plant. Training data combine a lane change under
+$12\rightarrow20\rightarrow15\,\mathrm{m\,s^{-1}}$ and a sinusoidal maneuver
+under $20\rightarrow28\rightarrow18\,\mathrm{m\,s^{-1}}$. Each maneuver is
+run at all three frozen 4B severities. The M4 controller generates bounded
+closed-loop excitation, but only the resulting $(x_k,u_k,v_k)$ samples and oracle
+family labels are used for identification.
+
+M1--M5 are refitted directly by least squares on these nonlinear trajectories.
+M1 and M2 use constant matrices, M3 and M4 use the reciprocal-speed basis, and
+M5 uses five family-specific nearest-speed models at
+$\{12,16,20,24,28\}\,\mathrm{m\,s^{-1}}$. The held-out test combines the unseen
+$28\rightarrow16\rightarrow24\,\mathrm{m\,s^{-1}}$ profile with the unseen
+S-curve. One-step predictions are reset to the measured state at every sample.
+Free-run predictions start at the true initial state and replay only the recorded
+steering and speed sequences. Thus the latter expose accumulated model mismatch
+without conflating it with controller redesign.
+
+For comparability between $\beta$ and $r$, normalized RMSE divides each state
+error by that trajectory's state standard deviation, with small fixed floors for
+nearly unexcited signals. The moderate-severity results are summarized in
+\cref{tab:experiment4c-moderate}.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4C held-out moderate-severity model errors, averaged over
+30 clients. The final column is the largest family-mean free-run NRMSE.}
+\label{tab:experiment4c-moderate}
+\begin{tabular}{lrrr}
+\toprule
+Method & One-step NRMSE & Free-run NRMSE & Worst family\\
+\midrule
+M1 global LTI       & 0.01418 & 1.0093 & 1.5173\\
+M2 clustered LTI    & 0.01289 & 0.7305 & 0.7806\\
+M3 global LPV       & 0.00699 & 0.5540 & 0.7549\\
+M4 clustered LPV    & \textbf{0.00281} & \textbf{0.1122} & \textbf{0.1441}\\
+M5 gridded LTI      & 0.00840 & 0.2965 & 0.3782\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Against M3, M4 reduces moderate one-step NRMSE by $59.9\%$ and free-run NRMSE
+by $79.8\%$. Against M2, the reductions are $78.2\%$ and $84.6\%$. M4 also
+outperforms the 15-model M5 representation. Its worst family mean is less than
+one fifth of M3's in free run. This supports the intended complementarity:
+continuous scheduling removes operating-point error, while family specialization
+removes persistent structural bias.
+
+The normalized M4 errors remain low at all three severities. Nevertheless, the
+absolute yaw-rate mismatch grows monotonically, as physically expected. M4's
+one-step yaw RMSE is $0.0054$, $0.0108$, and
+$0.0184\,\mathrm{deg\,s^{-1}}$ from near-linear to strong excitation. Its
+free-run yaw RMSE similarly rises from $0.136$ through $0.266$ to
+$0.388\,\mathrm{deg\,s^{-1}}$. The nonlinear mismatch is therefore visible,
+but does not erase the architecture ranking. The full severity trends,
+representative free-run trace, and worst-family comparison appear in
+\cref{fig:experiment4c-models}.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.95\linewidth]{experiment_4c_nonlinear_oracle_models.pdf}
+ \caption{Experiment 4C oracle linear-model comparison on nonlinear-plant data.
+ M4 retains the lowest held-out one-step and free-run errors across all calibrated
+ severities and sharply reduces the worst-family error.}
+ \label{fig:experiment4c-models}
+\end{figure}
+
+Experiment 4C therefore \textbf{passes}. The benefit of jointly representing
+speed scheduling and structural families survives moderate and strong tanh-tire
+nonlinearity on an unseen speed--maneuver combination. Experiment 4D may now test
+controller transfer and nonlinear-data redesign without revising the compact
+model representation.
+
+\clearpage
 
 \subsection{Experiment 4D: controller transfer and redesign}
 \paragraph{Objective.}
