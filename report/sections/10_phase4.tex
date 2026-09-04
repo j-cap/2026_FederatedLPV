@@ -291,6 +291,7 @@ model representation.
 \clearpage
 
 \subsection{Experiment 4D: controller transfer and redesign}
+\label{sec:experiment4d}
 \paragraph{Objective.}
 Separate robustness of the Phase-3 controller from the achievable performance of
 controllers redesigned using LPV approximations identified on nonlinear data.
@@ -307,4 +308,78 @@ explicitly. Frozen-grid checks are necessary but are not presented as a formal L
 stability certificate.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The transfer and redesign controllers are evaluated on all 30 clients using the
+same held-out $28\rightarrow16\rightarrow24\,\mathrm{m\,s^{-1}}$ S-curve and
+the three frozen severity scales. No controller receives method-specific tuning.
+The original Phase-3 controllers retain their $10$--$30\,\mathrm{m\,s^{-1}}$
+design grid. Redesigned controllers are synthesized only on the
+$12$--$28\,\mathrm{m\,s^{-1}}$ identification support. An initial redesign
+attempt that extrapolated the identified LPV models to $10$ and
+$30\,\mathrm{m\,s^{-1}}$ was rejected because the global LPV controller became
+unstable. Restricting synthesis to observed support is a common methodological
+correction, applied identically to M3 and M4, rather than controller tuning.
+
+The moderate-severity tracking results are shown in
+\cref{tab:experiment4d-moderate}. Feasibility requires finite trajectories,
+peak steering below $12^\circ$, and peak lateral acceleration below $0.9g$.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4D moderate-severity yaw-rate tracking RMSE averaged over
+30 clients. ``Transfer'' uses the unchanged Phase-3 controllers. ``Redesign''
+uses controllers synthesized from the 4C nonlinear-data models.}
+\label{tab:experiment4d-moderate}
+\begin{tabular}{lrrrr}
+\toprule
+Method & Transfer & Redesign & Worst family & Feasible\\
+\midrule
+M1 global LTI       & 0.04205 & 0.07879 & 0.08853 & 1.00\\
+M2 clustered LTI    & 0.03763 & \textbf{0.03758} & \textbf{0.05320} & 1.00\\
+M3 global LPV       & 0.03942 & 0.44160 & 0.46787 & 0.00\\
+M4 clustered LPV    & \textbf{0.03464} & 0.05737 & 0.07781 & 1.00\\
+M5 gridded LTI      & 0.04262 & 0.11602 & 0.21879 & 1.00\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The transfer diagnostic is positive. Unchanged M4 reduces moderate tracking
+error by $12.1\%$ relative to M3 and $8.0\%$ relative to M2. All transferred
+controllers remain feasible through strong excitation. This shows that the
+Phase-3 clustered scheduled controller is robust to the tested tire nonlinearity.
+
+The primary redesign gate, however, \textbf{fails}. Redesigned M4 remains
+feasible and improves on redesigned M3 by $87.0\%$, but its moderate tracking
+error is $52.7\%$ higher than redesigned M2. Redesigned M3 is infeasible for all
+moderate test clients. M5 remains amplitude-feasible, but nearest-grid switching
+produces steering-rate peaks above $800\,\mathrm{deg\,s^{-1}}$, which further
+weakens it as a practical alternative.
+
+A frozen small-signal audit over every client and 161 speeds from $12$ to
+$28\,\mathrm{m\,s^{-1}}$ explains why prediction quality from Experiment 4C is
+not sufficient for controller synthesis. All transferred designs have worst
+spectral radius below $0.967$. For the redesigned controllers, the worst radii
+are $0.967$, $0.960$, $5.888$, $1.032$, and $19.869$ for M1--M5. Thus the
+unconstrained trajectory regressions can fit one-step and replay behavior well
+while perturbing control-relevant matrix directions enough to destroy robust
+closed-loop stability. M4 happens to remain bounded on the tested maneuver, but
+its frozen-grid radius above one prevents treating the redesign as acceptable.
+The tracking, severity, and family effects are summarized in
+\cref{fig:experiment4d-controllers}.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.95\linewidth]{experiment_4d_nonlinear_controllers.pdf}
+ \caption{Experiment 4D controller transfer and nonlinear-data redesign. The
+ unchanged M4 controller transfers successfully. Unconstrained redesign from
+ trajectory-fitted models is unreliable, particularly for global LPV and
+ gridded LTI, and does not improve M4 over clustered LTI. Logarithmic axes are
+ used where failures would otherwise obscure the feasible methods.}
+ \label{fig:experiment4d-controllers}
+\end{figure}
+
+Experiment 4D therefore records a \textbf{mixed result and a failed primary
+gate}. The representation result survives in 4C, and the original M4 controller
+transfers robustly, but direct certainty-equivalent redesign from unconstrained
+nonlinear-data regression is not justified. Before advancing the controller
+claim, a corrective Experiment 4D-R should add control-oriented regularization
+or robust/stability-constrained synthesis and repeat the same frozen evaluation.
