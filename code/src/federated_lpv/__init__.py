@@ -9,6 +9,10 @@ from .vehicle import (
     continuous_bicycle_matrices,
     discrete_bicycle_matrices,
     family_centers,
+    nonlinear_bicycle_rhs,
+    nonlinear_tire_forces,
+    static_axle_loads,
+    tire_saturation_angles,
 )
 
 __all__ = [
@@ -19,6 +23,10 @@ __all__ = [
     "continuous_bicycle_matrices",
     "discrete_bicycle_matrices",
     "family_centers",
+    "static_axle_loads",
+    "tire_saturation_angles",
+    "nonlinear_tire_forces",
+    "nonlinear_bicycle_rhs",
     "sample_fleet",
     "fit_lpv_matrix_model",
     "ConstantMatrixModel",

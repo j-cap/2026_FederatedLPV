@@ -6,7 +6,11 @@ from federated_lpv import (
     continuous_bicycle_matrices,
     discrete_bicycle_matrices,
     family_centers,
+    nonlinear_bicycle_rhs,
+    nonlinear_tire_forces,
     sample_fleet,
+    static_axle_loads,
+    tire_saturation_angles,
 )
 
 
@@ -69,6 +73,55 @@ class VehicleModelTests(unittest.TestCase):
             self.assertLessEqual(abs(client.parameters.yaw_inertia / center.yaw_inertia - 1.0), 0.025)
             self.assertLessEqual(abs(client.parameters.front_stiffness / center.front_stiffness - 1.0), 0.05)
             self.assertLessEqual(abs(client.parameters.rear_stiffness / center.rear_stiffness - 1.0), 0.05)
+
+    def test_static_loads_sum_to_vehicle_weight(self) -> None:
+        parameters = family_centers()["nominal"]
+        front, rear = static_axle_loads(parameters)
+        self.assertAlmostEqual(front + rear, parameters.mass * 9.81)
+        self.assertAlmostEqual(front * parameters.front_length, rear * parameters.rear_length)
+
+    def test_tanh_force_is_odd_and_respects_friction_limit(self) -> None:
+        parameters = family_centers()["nominal"]
+        front_sat, _ = tire_saturation_angles(parameters)
+        positive = nonlinear_tire_forces(
+            np.zeros(2), 20.0 * front_sat, 20.0, parameters
+        )[0]
+        negative = nonlinear_tire_forces(
+            np.zeros(2), -20.0 * front_sat, 20.0, parameters
+        )[0]
+        front_load, _ = static_axle_loads(parameters)
+        self.assertAlmostEqual(positive, -negative, places=8)
+        self.assertLessEqual(abs(positive), 0.9 * front_load * (1.0 + 1e-12))
+        self.assertAlmostEqual(positive / (0.9 * front_load), 1.0, places=12)
+
+    def test_nonlinear_small_signal_jacobian_matches_linear_model(self) -> None:
+        for parameters in family_centers().values():
+            for speed in (12.0, 20.0, 28.0):
+                a, b = continuous_bicycle_matrices(speed, parameters)
+                epsilon = 1e-7
+                numerical_a = np.column_stack(
+                    [
+                        (
+                            nonlinear_bicycle_rhs(np.eye(2)[j] * epsilon, 0.0, speed, parameters)
+                            - nonlinear_bicycle_rhs(-np.eye(2)[j] * epsilon, 0.0, speed, parameters)
+                        )
+                        / (2.0 * epsilon)
+                        for j in range(2)
+                    ]
+                )
+                numerical_b = (
+                    nonlinear_bicycle_rhs(np.zeros(2), epsilon, speed, parameters)
+                    - nonlinear_bicycle_rhs(np.zeros(2), -epsilon, speed, parameters)
+                )[:, None] / (2.0 * epsilon)
+                np.testing.assert_allclose(numerical_a, a, rtol=1e-9, atol=1e-9)
+                np.testing.assert_allclose(numerical_b, b, rtol=1e-9, atol=1e-9)
+
+    def test_nonlinear_model_rejects_invalid_operating_conditions(self) -> None:
+        parameters = family_centers()["nominal"]
+        with self.assertRaisesRegex(ValueError, "strictly positive"):
+            nonlinear_bicycle_rhs(np.zeros(2), 0.0, 0.0, parameters)
+        with self.assertRaisesRegex(ValueError, "strictly positive"):
+            tire_saturation_angles(parameters, 0.0)
 
 
 if __name__ == "__main__":

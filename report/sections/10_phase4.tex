@@ -26,8 +26,98 @@ The model must have correct small-slip behavior, smooth saturation, plausible fo
 limits, and numerically converged simulations. Otherwise Phase~4 is blocked.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The nonlinear plant retains the Phase-0 state, input, structural family
+parameters, and sign conventions. A common dry-road friction coefficient
+$\mu=0.9$ is used. Static axle loads are
+\begin{equation}
+ F_{z,f}=mg\frac{l_r}{l_f+l_r},\qquad
+ F_{z,r}=mg\frac{l_f}{l_f+l_r},
+\end{equation}
+and the saturation angles are selected as
+\begin{equation}
+ \alpha_{\mathrm{sat},j}=\frac{\mu F_{z,j}}{C_j}.
+\end{equation}
+Consequently, each tanh law has the original cornering stiffness at zero slip
+and approaches the axle friction limit $\mu F_{z,j}$ smoothly. The resulting
+family-center scales and force limits are listed in \cref{tab:experiment4a-tires}.
 
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4A tanh-tire parameters for the three Phase-0 family
+centers at $\mu=0.9$.}
+\label{tab:experiment4a-tires}
+\begin{tabular}{lrrrr}
+\toprule
+Family & $\alpha_{\mathrm{sat},f}$ [deg] & $\alpha_{\mathrm{sat},r}$ [deg]
+& $F_{y,f}^{\max}$ [kN] & $F_{y,r}^{\max}$ [kN]\\
+\midrule
+Nominal & 5.420 & 4.065 & 7.568 & 5.676\\
+Heavy & 5.936 & 4.675 & 8.703 & 6.527\\
+Handling & 5.721 & 3.511 & 7.189 & 5.392\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Central finite differences were used to linearize the nonlinear right-hand side
+at zero sideslip, yaw rate, and steering for all family centers at
+$v_x\in\{12,20,28\}\,\mathrm{m\,s^{-1}}$. The maximum relative Jacobian error
+against the analytical Phase-0 matrices is $9.74\times10^{-13}$. Numerical force
+curves are odd, monotone, have the prescribed zero-slip slope, and remain within
+their friction limits.
+
+Open-loop simulations use a smooth steering doublet at the same three speeds.
+Three diagnostic amplitudes expose the transition from the linear limit to tire
+saturation. Their worst results over all family--speed combinations are reported
+in \cref{tab:experiment4a-responses}. These amplitudes validate the plant only;
+Experiment 4B will independently select the final near-linear, moderate, and
+strong-but-feasible maneuver levels.
+
+\begin{table}[htbp]
+\centering
+\caption{Worst Experiment 4A nonlinear response diagnostics over the three
+family centers and speeds $12$, $20$, and $28\,\mathrm{m\,s^{-1}}$. The model
+difference is trajectory RMSE relative to the corresponding linear response.}
+\label{tab:experiment4a-responses}
+\begin{tabular}{lrrrr}
+\toprule
+Input & Amplitude [deg] & Model difference [\%] & Force utilization & $|a_y|_{\max}$ [$\mathrm{m\,s^{-2}}$]\\
+\midrule
+Small & 0.1 & 0.0084 & 0.032 & 0.274\\
+Moderate & 2.0 & 3.705 & 0.595 & 5.121\\
+Strong & 6.0 & 173.7 & 1.000 & 8.826\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The small input produces virtually identical linear and nonlinear trajectories.
+The moderate input introduces a visible but controlled departure. The strongest
+case drives at least one axle close to its friction limit and therefore separates
+sharply from the unbounded linear-tire prediction, especially at high speed. All
+27 nonlinear family--speed--amplitude simulations remain finite. These behaviors,
+together with the tire curves, are summarized in
+\cref{fig:experiment4a-validation}.
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.95\linewidth]{experiment_4a_nonlinear_validation.pdf}
+ \caption{Experiment 4A nonlinear-plant validation. The tanh tire law recovers
+ the prescribed small-slip slope and saturates smoothly. The nonlinear vehicle
+ matches the linear model under weak excitation and departs under strong
+ excitation. The RK4 trajectory error decreases at the expected fourth-order
+ rate.}
+ \label{fig:experiment4a-validation}
+\end{figure}
+
+Integration was audited for the nominal $20\,\mathrm{m\,s^{-1}}$, $6^\circ$
+case using RK4 steps from $40$ to $5\,\mathrm{ms}$ against a $1.25\,\mathrm{ms}$
+reference. The relative trajectory error decreases by approximately a factor of
+16 whenever the step is halved. At the retained $10\,\mathrm{ms}$ step it is
+$7.10\times10^{-7}\%$, well below the predeclared $0.1\%$ gate.
+
+Experiment 4A therefore \textbf{passes}. The nonlinear equations recover the
+validated linear plant locally, provide bounded and physically interpretable tire
+forces, and are numerically converged at the existing sample time. Experiment 4B
+may proceed without changing the Phase-0 family definitions.
 \subsection{Experiment 4B: maneuver-severity calibration}
 \paragraph{Objective.}
 Define reproducible near-linear, moderately nonlinear, and strongly nonlinear but
@@ -82,4 +172,3 @@ stability certificate.
 
 \paragraph{Results, interpretation, and decision.}
 Pending.
-

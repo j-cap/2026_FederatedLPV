@@ -1,0 +1,45 @@
+{
+  "friction_coefficient": 0.9,
+  "maximum_relative_jacobian_error": 9.735311198099417e-13,
+  "family_jacobian_errors": {
+    "nominal": 5.943026911994057e-13,
+    "heavy": 4.3096518518395485e-13,
+    "handling": 9.735311198099417e-13
+  },
+  "severity_summary": {
+    "small": {
+      "max_relative_state_rmse_pct": 0.008387646353722118,
+      "max_force_utilization": 0.031748066909676166,
+      "max_lateral_accel_mps2": 0.27409264767099384
+    },
+    "moderate": {
+      "max_relative_state_rmse_pct": 3.7049496229197145,
+      "max_force_utilization": 0.595414326221587,
+      "max_lateral_accel_mps2": 5.121474568130416
+    },
+    "strong": {
+      "max_relative_state_rmse_pct": 173.72634240049297,
+      "max_force_utilization": 0.9999763774734413,
+      "max_lateral_accel_mps2": 8.826399911800259
+    }
+  },
+  "integration_convergence": [
+    {
+      "step_s": 0.04,
+      "relative_rmse_pct": 0.00019484818940001319
+    },
+    {
+      "step_s": 0.02,
+      "relative_rmse_pct": 1.1636310453774867e-05
+    },
+    {
+      "step_s": 0.01,
+      "relative_rmse_pct": 7.101489942962443e-07
+    },
+    {
+      "step_s": 0.005,
+      "relative_rmse_pct": 4.3695092051385966e-08
+    }
+  ],
+  "integration_error_at_0p01_pct": 7.101489942962443e-07
+}

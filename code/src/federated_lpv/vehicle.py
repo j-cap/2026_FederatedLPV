@@ -1,4 +1,4 @@
-"""Linear single-track vehicle model used by the oracle benchmark."""
+"""Linear and nonlinear single-track models used by the oracle benchmark."""
 
 from dataclasses import dataclass
 
@@ -71,3 +71,66 @@ def discrete_bicycle_matrices(
     augmented = np.block([[a, b], [np.zeros((1, 3))]])
     discrete = expm(augmented * sample_time)
     return discrete[:2, :2], discrete[:2, 2:]
+
+
+def static_axle_loads(
+    parameters: VehicleParameters, gravity: float = 9.81
+) -> tuple[float, float]:
+    """Return static front and rear axle loads for the single-track model."""
+    if gravity <= 0:
+        raise ValueError("gravity must be strictly positive")
+    length = parameters.front_length + parameters.rear_length
+    front = parameters.mass * gravity * parameters.rear_length / length
+    rear = parameters.mass * gravity * parameters.front_length / length
+    return front, rear
+
+
+def tire_saturation_angles(
+    parameters: VehicleParameters, friction_coefficient: float = 0.9
+) -> tuple[float, float]:
+    """Return tanh scale angles such that force limits equal static friction limits."""
+    if friction_coefficient <= 0:
+        raise ValueError("friction_coefficient must be strictly positive")
+    front_load, rear_load = static_axle_loads(parameters)
+    return (
+        friction_coefficient * front_load / parameters.front_stiffness,
+        friction_coefficient * rear_load / parameters.rear_stiffness,
+    )
+
+
+def nonlinear_tire_forces(
+    state: NDArray[np.float64],
+    steering: float,
+    speed: float,
+    parameters: VehicleParameters,
+    friction_coefficient: float = 0.9,
+) -> tuple[float, float, float, float]:
+    """Return front/rear lateral forces and slip angles for tanh tires."""
+    if speed <= 0:
+        raise ValueError("speed must be strictly positive")
+    beta, yaw_rate = np.asarray(state, dtype=float)
+    front_slip = float(steering - beta - parameters.front_length * yaw_rate / speed)
+    rear_slip = float(-beta + parameters.rear_length * yaw_rate / speed)
+    front_sat, rear_sat = tire_saturation_angles(parameters, friction_coefficient)
+    front_force = parameters.front_stiffness * front_sat * np.tanh(front_slip / front_sat)
+    rear_force = parameters.rear_stiffness * rear_sat * np.tanh(rear_slip / rear_sat)
+    return float(front_force), float(rear_force), front_slip, rear_slip
+
+
+def nonlinear_bicycle_rhs(
+    state: NDArray[np.float64],
+    steering: float,
+    speed: float,
+    parameters: VehicleParameters,
+    friction_coefficient: float = 0.9,
+) -> NDArray[np.float64]:
+    """Evaluate the nonlinear bicycle dynamics for x=[beta, yaw_rate]."""
+    front_force, rear_force, _, _ = nonlinear_tire_forces(
+        state, steering, speed, parameters, friction_coefficient
+    )
+    beta, yaw_rate = np.asarray(state, dtype=float)
+    beta_dot = (front_force + rear_force) / (parameters.mass * speed) - yaw_rate
+    yaw_rate_dot = (
+        parameters.front_length * front_force - parameters.rear_length * rear_force
+    ) / parameters.yaw_inertia
+    return np.asarray([beta_dot, yaw_rate_dot], dtype=float)
