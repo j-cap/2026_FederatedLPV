@@ -24,7 +24,32 @@ speed grid. Gain interpolation must be continuous and all evaluated closed loops
 must satisfy the predefined stability margin before simulation.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The common design uses
+\begin{equation}
+ Q=\operatorname{diag}(100,10,500),\qquad R=10,
+\end{equation}
+selected once and held fixed for M1--M5.  For a unit constant yaw-rate target,
+the design model is solved for $(x^\star,\delta^\star)$, and the prefilter is
+\begin{equation}
+ k_r=\delta^\star+K_xx^\star.
+\end{equation}
+This makes $(x^\star,\chi^\star=0)$ consistent with the full feedback law.  All
+augmented design pairs are controllable.  M3 and M4 gains are linearly
+interpolated over the five controller speeds, while M5 deliberately retains
+nearest-prototype switching.
+
+An implementation audit caught and rejected an initial prefilter
+$k_r=1/G_r(1)$ that supplied only equilibrium steering and omitted
+$K_xx^\star$.  That version forced the integrator to reconstruct the missing
+feedback command and reversed the expected tracking ranking.  The correction
+above is the standard equilibrium-consistent 2-DOF construction and was applied
+identically to every method before accepting any Phase-3 result.  It is not
+method-specific retuning.
+
+The frozen-grid audit covers all 300 clients, five methods, and 201 speeds.  All
+closed loops are stable.  The worst spectral radius is 0.969 for M4, leaving a
+minimum frozen-model margin of 0.031.  Interpolated gains are continuous by
+construction and tested at grid boundaries.  Experiment 3A therefore passes.
 
 \subsection{Experiment 3B: closed-loop scenarios C1--C4}
 \paragraph{Objective.}
@@ -49,5 +74,73 @@ effort. Benefits must survive C4. A method that wins only through aggressive inp
 or one favorable maneuver does not pass.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The four scenarios use independent yaw-rate references and speed profiles.  C1
+uses the nominal family, a smooth sine reference, and
+$12\rightarrow28\rightarrow16\,\mathrm{m\,s^{-1}}$.  C2 uses all families at
+$20\,\mathrm{m\,s^{-1}}$ with a lane-change reference.  C3 combines all
+families with the three Phase-1 speed profiles.  C4 pairs the unseen
+$28\rightarrow16\rightarrow24\,\mathrm{m\,s^{-1}}$ sequence with a
+different-amplitude and different-timing S-curve.  Table~\ref{tab:experiment-3}
+reports aggregate tracking and the C3 effort/stability diagnostics.
 
+\begin{table}[htbp]
+ \centering
+ \small
+ \caption{Phase-3 oracle controller results over ten fleet seeds. Tracking
+ columns are mean yaw-rate RMSE in $\mathrm{deg\,s^{-1}}$; $u$ is C3 steering
+ RMS in degrees and $\dot u_{\max}$ is the C3 worst peak rate in
+ $\mathrm{deg\,s^{-1}}$.}
+ \label{tab:experiment-3}
+ \begin{tabular}{lrrrrrrr}
+  \toprule
+  Method & C1 & C2 & C3 & C4 & $u$ & $\dot u_{\max}$ & $\rho_{\max}$ \\
+  \midrule
+  M1 & 0.0496 & 0.0222 & 0.0299 & 0.0362 & 0.5667 & 1.25 & 0.965 \\
+  M2 & 0.0408 & 0.0187 & 0.0270 & 0.0313 & 0.5666 & 1.25 & 0.967 \\
+  M3 & 0.0272 & 0.0204 & 0.0204 & 0.0374 & 0.5659 & 1.25 & 0.967 \\
+  M4 & 0.0220 & 0.0169 & 0.0160 & 0.0324 & 0.5658 & 1.25 & 0.969 \\
+  M5 & 0.0233 & 0.0169 & 0.0182 & 0.0388 & 0.5656 & 28.02 & 0.969 \\
+  \bottomrule
+ \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=0.94\linewidth]{../results/figures/experiment_3_oracle_controllers.pdf}
+ \caption{Phase-3 oracle controller comparison.  M4 gives the lowest aggregate
+ C3 tracking error with smooth control, while M5's discrete gain changes create
+ steering-rate spikes.  All frozen closed loops remain stable.}
+ \label{fig:experiment-3}
+\end{figure}
+
+The intended factor isolation is visible in closed loop.  In C1, adding
+scheduling reduces M1's tracking error by 45.2\% for M3.  In C2, family
+specialization reduces M3's error by 17.2\% for M4.  In the combined C3 test,
+M4 improves on M2 by 40.7\% and on M3 by 21.7\%.  All improvements occur for
+10/10 fleet seeds.  M4 also reduces the C3 family gap from
+$0.00682$ to $0.000849\,\mathrm{deg\,s^{-1}}$ relative to M3, an 87.6\%
+reduction.
+
+These tracking gains do not come from greater control effort.  M3 and M4 have
+nearly identical C3 steering RMS, peak steering, and peak steering rate.  M4
+also improves on M5's C3 tracking by 11.9\%.  Although M5 has similar steering
+RMS, nearest-grid gain switching raises its worst peak steering rate to
+$28.0\,\mathrm{deg\,s^{-1}}$, compared with $1.25\,\mathrm{deg\,s^{-1}}$ for
+M4.  This is a concrete practical advantage of a continuous controller family
+over discrete prototypes.
+
+The C4 result supports a narrower generalization claim.  M4 improves on global
+LPV M3 by 13.4\% for every seed and reduces its family gap by approximately
+77\%, so specialization remains useful on the unseen combination.  However,
+clustered LTI M2 is 3.76\% better than M4 on mean C4 tracking for all ten seeds.
+Thus M4 is not universally optimal on every trajectory, and this negative
+comparison is retained rather than hidden.  The particular C4 sequence does not
+reward scheduling enough to overcome that small difference.
+
+Experiment 3B is therefore a qualified pass.  The central complementarity claim
+holds strongly in C1--C3 and survives C4 relative to the appropriate global LPV
+baseline, with unchanged control effort and improved family consistency.  The
+data do not support the stronger claim that clustered LPV must beat clustered
+LTI on every individual speed--maneuver combination.  Phase 4 should now test
+the LTI-complexity tradeoff systematically rather than relying on a single
+five-point grid.
