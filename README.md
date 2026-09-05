@@ -59,3 +59,10 @@ The frozen protocol is in `code/config/experiment_4g.json`. Per-seed client,
 parameter, and stability CSVs preserve all runs. Aggregate comparisons use seed
 pairs as independent units. Use `--summarize-only` to rebuild summaries and the
 figure from those CSVs.
+
+Experiment 5A sweeps training-selected nearest-speed controller grids against M4.
+Run `PYTHONPATH=code/src OPENBLAS_NUM_THREADS=1 python code/experiments/experiment_5a_lti_complexity.py`.
+It reuses the committed 4G parameter fits and fleet protocol. The 5A JSON config
+records candidate counts and the matching tolerance. Per-seed CSVs retain
+selection scores, selected anchors, all test metrics, and stability audits.
+`--summarize-only` rebuilds the aggregate tables and figure.
