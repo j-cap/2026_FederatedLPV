@@ -74,3 +74,11 @@ ten independent train/test fleet pairs, and unchanged within-family scatter.
 Per-seed files preserve client metrics, fit diagnostics, common-data prediction
 errors, and full-envelope frozen stability audits. `--summarize-only` rebuilds
 the regime map and summaries. This remains a centralized oracle comparison.
+
+Experiment 6B checks the four corner regimes with the 6A models and gains frozen.
+Run `PYTHONPATH=code/src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_6b_acceleration_validation.py`.
+It compares historical integration, within-step speed variation without the
+coordinate correction, and lateral-momentum integration with consistent varying
+speed. Each uses the original and doubled maneuver duration. The 6B JSON freezes
+the protocol. Compressed client-level metrics, paired comparisons, and provenance
+hashes accompany the report. `--summarize-only` rebuilds its evidence.
