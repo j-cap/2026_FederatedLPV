@@ -1,0 +1,167 @@
+\subsection{Experiment 4E: control-relevant identification diagnosis}
+\label{sec:experiment4e}
+\paragraph{Question and controlled comparisons.}
+Does redesign fail because of numerical solution error, nonlinear training
+amplitudes, or limitations already present in pooled linear-plant identification?
+The same seed-1 fleet, collection controller, two training profiles, and held-out
+moderate S-curve are retained. Compare original nonlinear-data regression,
+column-scaled SVD solving the same ridge objective, SVD using only near-linear
+nonlinear trajectories, and SVD using linear-plant trajectories at all three
+amplitudes. The last case uses exact frozen-speed ZOH propagation for training.
+All redesigned controllers are tested on the nonlinear plant.
+
+For regression matrix $X$, define $S_{jj}=\|X_{:j}\|_2$. The numerical check is
+\begin{equation}
+ \min_W\left\|\begin{bmatrix}XS^{-1}\\\sqrt{\epsilon}S^{-1}\end{bmatrix}W
+ -\begin{bmatrix}Y\\0\end{bmatrix}\right\|_F^2,
+ \qquad \widehat\Theta^{\mathsf T}=S^{-1}W,\quad\epsilon=10^{-10}.
+\end{equation}
+Scaling changes the solver, not the regularization objective. M1, M2, and M5
+retain their original solver. A small absolute ridge coefficient is not
+necessarily negligible relative to weak regressor directions.
+
+\paragraph{Results.}
+\Cref{tab:experiment4e} shows that SVD reproduces the original M4 failure.
+Pooled raw condition numbers are approximately $1.46$--$1.80\times10^6$,
+falling to $5.86$--$7.76\times10^3$ after column scaling. All matrices have
+full column rank, but weak directions remain. The solver change alters M4
+tracking by less than $10^{-9}\,\mathrm{deg\,s^{-1}}$. Numerical roundoff
+therefore does not explain the observed failure.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4E: M4 diagnosis. Tracking is moderate-test yaw RMSE in
+$\mathrm{deg\,s^{-1}}$. Relative $B$ error is averaged over clients and 161
+speeds against each client's true small-signal matrix.}
+\label{tab:experiment4e}
+\begin{tabular}{lrrr}
+\toprule
+Identification data and solver & Tracking & Worst $\rho$ & Relative $B$ error\\
+\midrule
+Nonlinear, all amplitudes, original & 0.05737 & 1.0321 & 0.4633\\
+Nonlinear, all amplitudes, SVD & 0.05737 & 1.0321 & 0.4633\\
+Nonlinear, near-linear only, SVD & 0.06255 & 0.9770 & 0.4715\\
+Linear plant, all amplitudes, SVD & 0.06147 & 0.9772 & 0.4679\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The original worst M4 instability occurs at $12\,\mathrm{m\,s^{-1}}$ for
+handling\_07. Near-linear training restores frozen M4 stability, but does not
+improve tracking. Linear-plant training also leaves substantial input-matrix
+error and poor tracking. Global LPV remains unstable in both ablations.
+Nonlinear tire mismatch is therefore not the sole explanation. Relative matrix
+errors use the fixed state coordinates and are not coordinate-invariant metrics.
+
+\Cref{fig:experiment4e} relates input-channel error, gain, and stability for a
+representative heavy client. Complete client and speed results accompany the
+report as CSV files. Inspection confirms the same $r-r^\star$ integrator
+convention, radian states and inputs, and prefilter equilibrium equation in
+synthesis and simulation. Existing controller tests pass, providing no evidence
+of a sign or unit error without claiming exhaustive software verification.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{experiment_4e_diagnosis.pdf}
+\caption{Experiment 4E for heavy\_00. Original and SVD all-amplitude curves
+overlap. This representative client is not the fleet's worst-case client.}
+\label{fig:experiment4e}
+\end{figure}
+
+\paragraph{Interpretation and decision.}
+Training uses two fixed speed--maneuver pairings, not their full cross product.
+Pooled clients have different dynamics even within a family, and the reciprocal
+basis only approximates exact discrete-time dynamics. Weak excitation, pooling
+mismatch, basis approximation, and ridge bias can interact. Their individual
+causal contributions have not all been isolated. The demonstrated finding is
+that a solver change or reduced tire excitation alone does not recover the
+desired performance. Experiment 4F reduces the degrees of freedom through
+physical relationships while keeping controller weights fixed.
+
+A further linear-data check fits nominal\_00, heavy\_00, and handling\_00
+separately using their own trajectories. Mean relative $B$ errors are
+$2.29$--$4.20\times10^{-5}$ without ridge and
+$2.68$--$3.83\times10^{-4}$ with the original ridge. These are far below
+the pooled M4 error of $0.468$. This strongly implicates heterogeneous pooling
+under the existing closed-loop data distribution, rather than an inability of
+the basis to represent each individual client. It does not isolate pooling from
+all interactions with excitation. In closed loop, regression coefficients can
+compensate along correlated state--input directions, so the pooled best predictor
+need not equal an average of the individually identified physical models.
+
+\subsection{Experiment 4F: structured local-dynamics identification}
+\label{sec:experiment4f}
+\paragraph{Method and information boundary.}
+Fit near-linear nonlinear-plant trajectories using three positive ratios
+\begin{equation}
+ p=(a_f,a_r,h)=\left(C_f/m,\ C_r/m,\ m/I_z\right).
+\end{equation}
+Only the common geometry $l_f=1.2\,\mathrm m$, $l_r=1.6\,\mathrm m$ is known
+to the estimator. True client mass, inertia, and stiffnesses are not supplied.
+The continuous matrices satisfy
+\begin{equation}
+ A_c(v;p)=\begin{bmatrix}
+ -(a_f+a_r)/v & (a_rl_r-a_fl_f)/v^2-1\\
+ h(a_rl_r-a_fl_f) & -h(a_fl_f^2+a_rl_r^2)/v
+ \end{bmatrix},\qquad
+ B_c(v;p)=\begin{bmatrix}a_f/v\\ha_fl_f\end{bmatrix}.
+\end{equation}
+This avoids attempting to recover individually unidentifiable absolute physical
+quantities. The estimator minimizes one-step RK4 residuals at $0.01$ s, scaled
+by $0.05^\circ$ and $0.5^\circ\mathrm{/s}$ for sideslip and yaw rate.
+Logarithmic parameters enforce positivity, with bounds $a_f,a_r\in[1,300]$
+and $h\in[0.05,3]$ in corresponding SI units. Two common starting points,
+$(40,40,0.5)$ and $(80,60,1)$, are used for each group. Training loss selects
+the solution, with no held-out tracking-based selection. These are effective
+group fits, not claimed exact family-center recovery.
+
+\paragraph{Architecture comparison and changed estimation procedure.}
+One structured fit is obtained globally and one per oracle family. M3 and M4
+evaluate them continuously in speed. M1 and M2 freeze the corresponding fit at
+the preselected $20\,\mathrm{m\,s^{-1}}$. M5 uses five frozen family fits
+with nearest-anchor switching. All architectures receive the same structural
+prior. This differs from 4D's independently optimized constant and gridded
+regressions: 4F isolates deployment architecture after common identification.
+It does not establish dominance over every LTI fitting procedure. Earlier
+4D and 4E baselines remain part of the record.
+
+Synthesis uses exact frozen-speed ZOH matrices, unchanged $Q,R$, and the existing
+gain grid. Tests verify the reduced matrices against the validated physics and
+RK4 against ZOH. Scaled local residual-Jacobian condition numbers are
+$1.33$--$1.87$. Both starts agree within $9\times10^{-8}$ relative difference.
+These support local numerical identifiability, not a global proof.
+
+\paragraph{Results and gate.}
+\Cref{tab:experiment4f} gives the moderate results. M4 reduces mean tracking
+error by $8.7\%$ relative to structured M2 and $9.1\%$ relative to structured
+M3. It approaches the physics-transfer value $0.03464$ without blending with
+oracle matrices. Near-linear and strong M4 tracking errors are $0.01644$ and
+$0.05678\,\mathrm{deg\,s^{-1}}$. All architectures are amplitude-feasible
+at all three severities.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4F: structured identification and redesign. Tracking and
+worst-family values are yaw RMSE in $\mathrm{deg\,s^{-1}}$.}
+\label{tab:experiment4f}
+\begin{tabular}{lrrr}
+\toprule
+Architecture & Mean tracking & Worst family & Worst frozen $\rho$\\
+\midrule
+M1 & 0.04065 & 0.04340 & 0.9619\\
+M2 & 0.03775 & 0.03831 & 0.9646\\
+M3 & 0.03792 & 0.04453 & 0.9643\\
+M4 & \textbf{0.03446} & \textbf{0.03636} & 0.9663\\
+M5 & 0.04228 & 0.04270 & 0.9663\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The initial recovery gate passes: M4 is feasible, passes the frozen-grid audit,
+and improves tracking by over $5\%$ against both structured alternatives.
+This is one fleet with unseen trajectories on the same clients. Frozen
+stability is not a time-varying LPV certificate. Next, validate independent
+fleet seeds and additional speed--maneuver combinations, including the original
+fitted LTI baselines. Only then introduce local identification, federation, and
+learned clustering. Structured local-dynamics identification is a promising
+repair, not evidence of universal M4 superiority.

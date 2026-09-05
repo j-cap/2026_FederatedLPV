@@ -2,6 +2,12 @@
 \label{sec:phase4}
 Phase~4 replaces the linear plant, not the compact identified model class. It tests
 whether the structural conclusion survives realistic plant--model mismatch.
+Experiments 4A--4B validate the plant and excitation, 4C tests prediction, and
+4D separates transfer from redesign. The unsuccessful 4D-R correction motivates
+the diagnosis and structured redesign in 4E--4F. Earlier negative results remain
+part of the record. Throughout this phase, identification is centralized batch
+fitting with oracle family labels. Streaming RLS, federation, and learned
+clustering have not yet been introduced.
 
 \subsection{Experiment 4A: nonlinear tire-model validation}
 \paragraph{Objective.}
@@ -456,8 +462,10 @@ specialization advantage. The selection path and held-out behavior are shown in
 \end{figure}
 
 Experiment 4D-R therefore \textbf{fails the full performance gate}, despite
-passing the stability and feasibility gates. This rules out unconstrained matrix
+passing the stability and feasibility gates. This does not support unconstrained matrix
 regression followed by simple post-hoc blending as the main controller-redesign
 method. The project now has a clean choice: retain the successful physics-model
 controller transfer as the Phase-4 robustness claim, or add a separate
 structure-preserving identification study before claiming data-driven redesign.
+The subsequent Experiments 4E--4F pursue that second path
+(\cref{sec:experiment4e,sec:experiment4f}).

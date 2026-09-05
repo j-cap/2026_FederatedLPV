@@ -44,3 +44,10 @@ python code/experiments/phase0_validate_plant.py
 ```
 
 Generated experiment artifacts are written below `results/`.
+
+The latest Phase-4 studies are `experiment_4e_identification_diagnosis.py` and
+`experiment_4f_structured_identification.py` in `code/experiments/`. Run them with
+`PYTHONPATH=code/src python code/experiments/<script>.py` from the repository root.
+4E diagnoses the earlier failed redesign. 4F tests structured parameter-ratio
+identification. The report preserves both the negative results and the initial
+recovery, including its single-fleet and changed-baseline limitations.
