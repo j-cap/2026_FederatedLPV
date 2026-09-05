@@ -66,3 +66,11 @@ It reuses the committed 4G parameter fits and fleet protocol. The 5A JSON config
 records candidate counts and the matching tolerance. Per-seed CSVs retain
 selection scores, selected anchors, all test metrics, and stability audits.
 `--summarize-only` rebuilds the aggregate tables and figure.
+
+Experiment 6A tests four family-separation levels and three speed envelopes.
+Run `PYTHONPATH=code/src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_6a_regime_map.py`.
+The protocol in `code/config/experiment_6a.json` uses fresh structured fits,
+ten independent train/test fleet pairs, and unchanged within-family scatter.
+Per-seed files preserve client metrics, fit diagnostics, common-data prediction
+errors, and full-envelope frozen stability audits. `--summarize-only` rebuilds
+the regime map and summaries. This remains a centralized oracle comparison.

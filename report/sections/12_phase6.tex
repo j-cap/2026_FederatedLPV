@@ -2,6 +2,7 @@
 \label{sec:phase6}
 
 \subsection{Experiment 6A: scheduling--heterogeneity sweep}
+\label{sec:experiment6a}
 \paragraph{Objective.}
 Determine when each architecture is warranted rather than claiming that M4 is
 universally best.
@@ -29,5 +30,187 @@ advantage of M4. The map must show coherent transitions rather than one method
 winning due to numerical noise. Unexpected regions are investigated, not smoothed
 away.
 
+\paragraph{Implemented protocol.}
+The structured identification repair from Experiments 4F--4G is refitted in
+every cell. Training seeds 21--30 and test seeds 121--130 provide ten independent
+fleet pairs, each with 30 training and 30 test clients. The same random draws
+are reused across cells to make contrasts paired. Mass/inertia scatter remains
+$\pm2.5\%$ and stiffness scatter remains $\pm5\%$, multiplicatively around the
+scaled centers. Thus $\gamma_h=0$ removes systematic family separation while
+retaining individual variation. Labels then partition draws from the same
+distribution. Family fits may differ through finite-sample variation, but
+have no population-level structural advantage.
+
+For an envelope $[v_-,v_+]$, all previous speed profiles are transformed by
+\begin{equation}
+ v_{\rm new}(t)=v_-+\frac{v_{\rm old}(t)-12}{16}(v_+-v_-).
+\end{equation}
+The two identification profiles collectively cover each envelope. They retain
+their lane-change and sinusoidal references at severity 0.5. A training-fleet
+physics controller collects these data. Its family parameters are the average
+physical parameter ratios of the training clients. The estimator receives only
+the resulting trajectories, known geometry, and oracle family labels.
+The positive three-ratio fit, two starts, residual scaling, sampling time,
+and common LQI weights remain fixed. No test result selects a model or gain.
+
+M1 and M2 freeze the global and family structured fits at
+$20\,\mathrm{m\,s^{-1}}$. M3 and M4 interpolate gains from five equally spaced
+anchors spanning the current envelope. Thus the broad-speed study does not
+extrapolate the previous 12--28 identification support. As in 4F, these LTI
+baselines are frozen structured models, not independently optimized constant
+regressions or the training-selected single-anchor baseline of 5A.
+
+All methods are evaluated on the three held-out reference shapes from 4G at
+severities 0.5, 1, and 1.5. The former constant-22 scenario becomes constant
+20.5, 21.25, and 22.5 in the three envelopes. The references and duration remain
+unchanged, so envelope width also changes speed rate and lateral acceleration
+demand. This is an operating-envelope experiment, not an isolated test of speed
+rate. The historical frozen-speed nonlinear plant convention remains unchanged,
+including omission of the longitudinal-acceleration term in the sideslip
+coordinate transformation.
+Peak speed rates across the chosen profiles are 0.79, 1.96, and
+$3.93\,\mathrm{m\,s^{-2}}$, respectively. The broad envelope therefore exceeds
+the earlier illustrative $2\,\mathrm{m\,s^{-2}}$ target. Its interpretation is
+limited to this prescribed-speed benchmark. A time-stretched trajectory check
+with consistent longitudinal dynamics remains necessary for a stronger physical
+claim.
+
+\paragraph{Metrics and descriptive selection rule.}
+Primary yaw-rate RMSE averages the three moderate scenarios equally within
+each seed. We also retain each client/scenario/severity result, worst-family
+RMSE, steering RMS, peak steering rate, and amplitude feasibility. The latter
+uses the existing 12-degree steering and $\mu g$ lateral-acceleration limits,
+without an actuator rate limit or clipping. A 161-point audit spans each full
+envelope. Frozen spectral radii below one are a diagnostic, not a certificate
+for varying-speed nonlinear stability.
+
+Model errors use common moderate test trajectories collected by the
+training-fleet physics controller. Each fitted model predicts one step using
+the same RK4 convention. Separate sideslip and yaw-rate RMSE prevent a change
+in closed-loop state distribution from favoring a model in this comparison.
+
+For a descriptive regime classification, let $b$ be the empirical method with
+lowest mean moderate error. A method $m$ is within tolerance when the upper
+paired bootstrap bound on $J_m-1.05J_b$ is nonpositive, all its tested severities
+are feasible, and its worst frozen spectral radius is below one. Bootstrap
+resampling uses ten seed pairs, 10,000 draws, and seed 6101. We select the first
+eligible method in the order M1, M2, M3, M4, corresponding to 1, 3, 5, and 15
+stored gain vectors (each with a prefilter). Identified parameter counts are
+3, 9, 3, and 9, respectively, so this order is explicitly a controller-storage
+preference. Selection against an empirical best and multiple cell comparisons
+are descriptive, without a simultaneous confidence guarantee.
+
 \paragraph{Results, interpretation, and decision.}
-Pending.
+All 120 seed/cell combinations completed, giving 129,600 closed-loop
+client evaluations. All satisfy the amplitude-feasibility checks at all three
+severities. The worst audited frozen spectral radius is 0.97071.
+\Cref{tab:6a-regimes} reports the simplest eligible method, while
+\cref{fig:6a-map} separates the two sources of benefit. The map broadly follows
+the predeclared expectation without requiring M4 everywhere.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 6A: smallest controller bank within the descriptive 5\%
+tolerance of the empirical best, including uncertainty and feasibility checks.
+The criterion concerns moderate tracking, with feasibility checked at every
+severity.}
+\label{tab:6a-regimes}
+\begin{tabular}{lccc}
+\toprule
+Family separation & 18--22 & 15--25 & 10--30\\
+\midrule
+0 & M1 & M3 & M3\\
+0.5 & M2 & M3 & M4\\
+1 & M2 & M4 & M4\\
+1.5 & M2 & M4 & M4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{experiment_6a_regime_map.pdf}
+\caption{Experiment 6A: moderate tracking-error reductions, averaged over ten
+independent fleet pairs. Positive values favor the second method in each panel.
+The center panel isolates family specialization within LPV, and the outer
+panels show scheduling benefits for global and family models.}
+\label{fig:6a-map}
+\end{figure}
+
+At zero separation, M4 is 0.07--0.08\% worse than M3: arbitrary family labels
+provide no useful benefit. Global scheduling improves tracking by 1.29\%,
+8.03\%, and 25.65\% as the envelope widens. Consequently global LTI remains
+sufficient in the narrow cell and global LPV is selected in the wider cells.
+This is the intended negative control for structural specialization.
+
+With nominal separation, M4 improves on M3 by 12.44\%, 13.71\%, and 16.37\%
+across the three envelopes. Its improvement over M2 is only 1.24\% in the
+narrow cell, increasing to 7.79\% and 25.03\%. The paired confidence intervals
+for these six mean differences exclude zero. At 1.5-times separation the
+specialization benefit reaches 23.29--29.10\%, while the scheduling benefit
+within family models remains approximately 1.26--24.99\%. Structural
+specialization and scheduling therefore address distinguishable effects,
+although their benefits need not be statistically independent or additive.
+
+The boundary at half separation deserves care. In the broad envelope, M4's
+mean reduction relative to M3 is 4.73\%. Expressed relative to the better M4,
+M3's excess is approximately 4.97\%, and its confidence bound exceeds the 5\%
+tolerance. Thus M4 is selected in that cell. This is a tolerance-boundary
+classification, not evidence of a sharp physical transition.
+
+\Cref{tab:6a-nominal} gives the absolute results for nominal separation and the
+broad envelope. M4's worst-family RMSE is 26.4\% below M3's and 24.2\% below
+M2's. Steering RMS differs by less than 0.05\% across the methods. The tracking
+gain is therefore not purchased through a large increase in RMS steering,
+although peak steering rate is slightly higher for M4.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 6A: nominal separation, 10--30 m/s, moderate references.
+Tracking is mean $\pm$ seed standard deviation in degrees/s. Worst-family
+values average the maximum family error within each seed. Peak rate is the
+maximum over the tested moderate runs, in degrees/s.}
+\label{tab:6a-nominal}
+\begin{tabular}{lrrrr}
+\toprule
+Method & Tracking & Worst family & Steering RMS [deg] & Peak rate\\
+\midrule
+M1 & $0.04031\pm0.00097$ & 0.04867 & 0.80728 & 2.312\\
+M2 & $0.03623\pm0.00082$ & 0.03728 & 0.80724 & 2.321\\
+M3 & $0.03248\pm0.00105$ & 0.03840 & 0.80694 & 2.324\\
+M4 & $0.02716\pm0.00062$ & 0.02826 & 0.80694 & 2.332\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The common-data prediction diagnostic is consistent with an LPV advantage:
+in this cell the one-step yaw-rate RMSE is 0.04013, 0.04545, 0.02786, and
+0.01173 degrees/s for M1--M4, respectively. M4 improves on M3 by 57.9\%.
+However, M2's one-step yaw error exceeds M1's even though its closed-loop
+tracking is better. This retained counterexample reinforces the lesson of
+4D: model-prediction ranking alone does not determine controller quality.
+The separate sideslip metric and all remaining cells are retained in the
+prediction summary CSV.
+
+\paragraph{Decision and limitations.}
+The oracle regime study supports investing in learning persistent LPV families:
+both mechanisms matter when both variations are present, and simpler methods
+are sufficient in the appropriate limits. This remains evidence for the
+specified structured model class, controller weights, trajectory distribution,
+and prescribed-speed plant. It does not establish federation, recoverability
+of unknown labels, formal nonlinear stability, or superiority over optimized
+LTI freeze points and alternative controller designs. The next methodological
+step is limited local scheduling coverage and imperfect local identification,
+followed by testing whether aggregation and learned grouping recover the oracle
+benefit. Before strengthening the vehicle-level claim, the speed-rate and
+longitudinal-coordinate limitation above should receive a targeted check.
+
+\paragraph{Reproducibility.}
+The entry point is \texttt{experiment\_6a\_regime\_map.py}, with its frozen JSON
+protocol under \texttt{code/config/}. Compressed per-seed CSVs retain client
+metrics, fit diagnostics, common-data prediction errors, and stability audits.
+The seed summaries, paired comparisons, regime classifications, and figure
+can be rebuilt with \texttt{--summarize-only}. The implementation and existing
+suite pass 30 tests, including checks that nominal separation reproduces the
+original fleet, collapsed centers preserve only scatter, and synthesis spans
+the intended speed support.
