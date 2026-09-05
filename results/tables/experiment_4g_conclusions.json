@@ -1,0 +1,44 @@
+{
+  "protocol_sha256": "c4312217e7998cbc1b451eacfead7a6ba65062b176018400d7e30575a0d1153a",
+  "recovery_gate": true,
+  "primary_comparisons": [
+    {
+      "scenario": "all",
+      "baseline": "M2",
+      "mean_delta": 0.005843934239179307,
+      "ci_low": 0.00565016259491642,
+      "ci_high": 0.006023651883371712,
+      "reduction_pct": 17.491151785961716,
+      "positive_seed_pairs": 10
+    },
+    {
+      "scenario": "all",
+      "baseline": "M3",
+      "mean_delta": 0.004651778937830452,
+      "ci_low": 0.0043251690150136884,
+      "ci_high": 0.004967847873779846,
+      "reduction_pct": 14.438157067238427,
+      "positive_seed_pairs": 10
+    },
+    {
+      "scenario": "all",
+      "baseline": "LTI_all",
+      "mean_delta": 0.007712207631976148,
+      "ci_low": 0.0063654448274261585,
+      "ci_high": 0.009010418758659917,
+      "reduction_pct": 21.860571345966086,
+      "positive_seed_pairs": 10
+    },
+    {
+      "scenario": "all",
+      "baseline": "LTI_near",
+      "mean_delta": 0.005576943327681731,
+      "ci_low": 0.004331784794182595,
+      "ci_high": 0.006773637071676349,
+      "reduction_pct": 16.826499432967374,
+      "positive_seed_pairs": 10
+    }
+  ],
+  "replicates": 10,
+  "test_clients": 300
+}

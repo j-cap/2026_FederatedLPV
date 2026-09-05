@@ -1,0 +1,158 @@
+\subsection{Experiment 4G: independent-fleet and trajectory validation}
+\label{sec:experiment4g}
+\paragraph{Purpose and frozen protocol.}
+Experiment 4F recovered the expected architecture advantage on one fleet, but
+used the same clients for identification and testing. Experiment 4G tests whether
+that recovery transfers to independently sampled vehicles and additional
+trajectories. Training seeds are 11--20, paired with test seeds 111--120. Each
+fleet contains ten clients in each of the three unchanged physical families.
+Thus 300 training and 300 separate test vehicles are used. Test clients share
+the family distribution, not the realized physical parameters, with training
+clients. Repeated textual client IDs are scoped by fleet seed.
+
+All estimator bounds, starts, residual scaling, geometry assumptions, controller
+weights, and speed grids remain those of 4F. The physics controller used for
+data collection is constructed from the training fleet only. Structured fitting
+uses near-linear training records only. No test trajectories or test-plant
+matrices enter identification, tuning, or candidate selection. True test plants
+are accessed only for simulation and the post-design frozen audit. Family labels
+remain oracle information. The JSON protocol is frozen before the runs and its
+SHA-256 digest is stored with the conclusions.
+
+\paragraph{Comparators and additional trajectories.}
+The five structured architectures retain the definitions in
+\cref{sec:experiment4f}. Two additional clustered LTI baselines fit constant
+matrices directly: LTI-all uses all three training amplitudes, reproducing 4D's
+estimation approach, while LTI-near uses precisely the same near-linear records
+as structured M4. A training-physics M4 transfer controller supplies a reference.
+This separates the structured-LTI baseline choice from a claim against the
+original directly fitted LTI controllers.
+
+Each frozen controller is evaluated on three 12 s scenarios:
+\begin{enumerate}
+\item the previous held-out S-curve with $28\rightarrow16\rightarrow24$ m/s;
+\item a shifted double lane change with $16\rightarrow27\rightarrow19$ m/s,
+using opposite Gaussian yaw pulses of amplitude $8.5^\circ$/s, centered at
+3.8 and 7.4 s with widths 0.85 and 0.65 s;
+\item an unseen constant speed of 22 m/s and an enveloped sinusoidal yaw
+reference, in degrees/s,
+\[
+ r^\star(t)=7.5\sin^2(\pi t/12)\sin(2\pi\,0.18t+0.35).
+\]
+\end{enumerate}
+Every reference is scaled by 0.5, 1, and 1.5. The labels near-linear, moderate,
+and strong denote these inherited amplitude factors. The additional maneuvers
+have not been recalibrated to equal tire-force utilization. Speed remains in
+the identification support. These tests concern interpolation and new maneuver
+combinations, not extrapolation to new physical families or speeds.
+
+\paragraph{Statistical unit and decision rule.}
+Moderate-severity tracking is primary. For each train/test seed pair, average
+equally over the three scenarios and the balanced test fleet. Paired differences
+are baseline RMSE minus M4 RMSE. Confidence intervals resample the ten seed pairs
+10,000 times with bootstrap seed 4107, preserving all within-fleet dependencies.
+They are pointwise 95\% bootstrap intervals, not simultaneous significance
+statements. Individual clients and scenarios are not treated as independent
+replicates. Per-scenario contrasts and near-linear/strong outcomes are secondary.
+
+The recovery gate requires at least 5\% reduction in the ratio of mean primary
+RMSEs and a positive lower confidence bound against structured M2, structured
+M3, LTI-all, and LTI-near. M4 must also be amplitude-feasible in every run and
+have spectral radius below one on every held-out frozen audit point. The audit
+uses 161 speeds in $[12,28]$ m/s and is not a time-varying LPV certificate.
+No failed client or seed is excluded. A vectorized simulator accelerates fleet
+evaluation and is tested against the original scalar RK4 simulator and metrics.
+
+\paragraph{Results and interpretation.}
+All ten seed pairs completed, yielding 21,600 closed-loop evaluations across
+eight methods, three scenarios, three amplitude factors, and 300 held-out
+clients. \Cref{tab:experiment4g-means} reports the primary fleet averages and
+variation across seed pairs. Structured M4 nearly matches the training-physics
+controller, while outperforming both structured alternatives and the original
+directly fitted LTI baselines. Its average worst-family error is also smaller
+than those of the learned comparators.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4G: moderate tracking, averaged equally over three scenarios.
+Mean, seed standard deviation, and mean worst-family RMSE are in degrees/s.
+Worst-family values take the maximum family mean within each seed pair before
+averaging across pairs.}
+\label{tab:experiment4g-means}
+\begin{tabular}{lrrr}
+\toprule
+Method & Mean $\pm$ seed SD & Worst family & Worst frozen $\rho$\\
+\midrule
+Structured M1 & $0.03723\pm0.00067$ & 0.04487 & 0.9625\\
+Structured M2 & $0.03341\pm0.00066$ & 0.03430 & 0.9653\\
+Structured M3 & $0.03222\pm0.00063$ & 0.03766 & 0.9648\\
+Structured M4 & $\mathbf{0.02757}\pm0.00041$ & 0.02842 & 0.9668\\
+Structured M5 & $0.03342\pm0.00057$ & 0.03455 & 0.9668\\
+Direct LTI-all & $0.03528\pm0.00242$ & 0.05430 & 0.9639\\
+Direct LTI-near & $0.03314\pm0.00224$ & 0.05044 & 0.9625\\
+Physics M4 reference & $0.02752\pm0.00043$ & 0.02830 & 0.9668\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{tab:experiment4g-paired} gives the paired evidence. All four primary
+contrasts favor M4 in all ten seed pairs, with strictly positive interval lower
+bounds and reductions exceeding 5\%. Thus the frozen recovery gate passes.
+The direct-LTI comparisons are especially relevant: the improvement is not
+confined to the frozen structured LTI baseline introduced in 4F.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 4G paired moderate tracking contrasts. $\Delta$ is baseline
+minus M4 RMSE in degrees/s. Intervals bootstrap the ten complete seed pairs.}
+\label{tab:experiment4g-paired}
+\begin{tabular}{lrrr}
+\toprule
+Baseline & M4 reduction & Mean $\Delta$ & 95\% interval for $\Delta$\\
+\midrule
+Structured M2 & 17.5\% & 0.00584 & $[0.00565,0.00602]$\\
+Structured M3 & 14.4\% & 0.00465 & $[0.00433,0.00497]$\\
+Direct LTI-all & 21.9\% & 0.00771 & $[0.00637,0.00901]$\\
+Direct LTI-near & 16.8\% & 0.00558 & $[0.00433,0.00677]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\Cref{fig:experiment4g} shows that the aggregate result is supported by each
+scenario. Against structured M2, M4 improves by 9.1\% on the original S-curve,
+31.1\% on the shifted lane change, and 9.8\% at constant 22 m/s. Against
+direct LTI-near, the reductions are 11.3\%, 28.4\%, and 8.5\%. The last
+comparison favors M4 in nine of ten individual pairs, so scenario-wise
+dominance is not universal. Constant-speed performance reflects selecting an
+appropriate scheduled gain away from the LTI design speed, not time variation
+within that particular run. M5 chooses its lower nearest anchor at the 22 m/s
+tie, which explains its equality with structured M2 in this scenario.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{experiment_4g_validation.pdf}
+\caption{Experiment 4G. Left: moderate tracking averaged over scenarios, with
+seed standard deviations. Right: relative M4 benefits by scenario. Dashed gray
+marks the 5\% aggregate practical threshold, not a separate scenario gate.}
+\label{fig:experiment4g}
+\end{figure}
+
+All methods remain amplitude-feasible in every evaluated trajectory. Structured
+M4 has worst held-out frozen spectral radius 0.9668. Its near-linear and strong
+mean RMSEs are $0.01321\pm0.00020$ and $0.04532\pm0.00068$ degrees/s. The
+physics reference is approximately 0.17\% better on the aggregate moderate
+metric. Consequently, the result supports recovery of useful physics-controller
+performance from data, not superiority to known physics. Absolute differences
+are small and must be considered alongside their relative percentages.
+
+\paragraph{Scope and next decision.}
+The independent-fleet recovery is supported within the original family
+distribution, known geometry, noise-free state measurements, two training
+profile pairings, and three deterministic test scenarios. It does not establish
+robustness to new family centers, sensor noise, limited speed coverage, learned
+family assignments, or arbitrary scheduling rates. No formal time-varying
+stability certificate is claimed. The structured identification route now has
+stronger oracle support than 4F alone. The subsequent complexity and regime
+studies can use this validated route, while finite local information and
+federated recovery remain distinct questions. No federated learning claim follows
+from this centralized oracle experiment.

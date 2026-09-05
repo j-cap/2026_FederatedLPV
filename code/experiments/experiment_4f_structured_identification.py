@@ -41,16 +41,8 @@ class StructuredModel:
         d=expm(base.DT*aug)
         return d[:2,:2],d[:2,2:]
 
-def main():
-    clients=sample_fleet(seed=1); time=np.arange(0,base.DURATION+base.DT,base.DT)
-    physics=fit_oracle_architectures(clients,base.FIT_SPEEDS,base.DT)
-    transfer=design_oracle_controllers(physics,base.DT,base.Q,base.R,base.CONTROL_SPEEDS,base.FIT_SPEEDS)
-    records=[]
-    for profile,maneuver in zip(base.TRAIN_PROFILES,('lane','sine')):
-        v=base.smooth_profile(time,profile); ref=.5*base.reference_signal(time,maneuver)
-        for c in clients:
-            x,u=base.simulate_nonlinear(c,transfer['M4'],v,ref)
-            records.append(dict(family=c.family,state=x,input=u,speed=v))
+def fit_structured(records):
+    """Use the fixed 4F objective, bounds, and two starts; no plant parameters."""
     params={}; diagnostics=[]
     for key in ('global',*base.FAMILIES):
         rows=records if key=='global' else [r for r in records if r['family']==key]
@@ -69,6 +61,19 @@ def main():
         print('fit',diagnostics[-1],flush=True)
     models={m:StructuredModel('global' if m in ('M1','M3') else 'family',
         'constant' if m in ('M1','M2') else ('grid' if m=='M5' else 'lpv'),params) for m in base.METHODS}
+    return models, diagnostics
+
+def main():
+    clients=sample_fleet(seed=1); time=np.arange(0,base.DURATION+base.DT,base.DT)
+    physics=fit_oracle_architectures(clients,base.FIT_SPEEDS,base.DT)
+    transfer=design_oracle_controllers(physics,base.DT,base.Q,base.R,base.CONTROL_SPEEDS,base.FIT_SPEEDS)
+    records=[]
+    for profile,maneuver in zip(base.TRAIN_PROFILES,('lane','sine')):
+        v=base.smooth_profile(time,profile); ref=.5*base.reference_signal(time,maneuver)
+        for c in clients:
+            x,u=base.simulate_nonlinear(c,transfer['M4'],v,ref)
+            records.append(dict(family=c.family,state=x,input=u,speed=v))
+    models,diagnostics=fit_structured(records)
     controllers=redesign_controllers(models)
     audit=stability_audit(clients,{'structured':controllers})
     v=base.smooth_profile(time,base.TEST_PROFILE); rows=[]; summary=[]

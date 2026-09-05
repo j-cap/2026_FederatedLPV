@@ -51,3 +51,11 @@ The latest Phase-4 studies are `experiment_4e_identification_diagnosis.py` and
 4E diagnoses the earlier failed redesign. 4F tests structured parameter-ratio
 identification. The report preserves both the negative results and the initial
 recovery, including its single-fleet and changed-baseline limitations.
+
+Experiment 4G validates the frozen structured method on ten independent
+train/test fleet pairs and three held-out scenarios, including direct LTI fits.
+Run `PYTHONPATH=code/src OPENBLAS_NUM_THREADS=1 python code/experiments/experiment_4g_independent_validation.py`.
+The frozen protocol is in `code/config/experiment_4g.json`. Per-seed client,
+parameter, and stability CSVs preserve all runs. Aggregate comparisons use seed
+pairs as independent units. Use `--summarize-only` to rebuild summaries and the
+figure from those CSVs.
