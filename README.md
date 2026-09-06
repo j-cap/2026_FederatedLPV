@@ -94,3 +94,16 @@ error is 11.62% higher than Local, although 36.33% lower than Global.
 Local identification is already accurate with six seconds of data. Family
 pooling offers fewer deployed models at a measurable performance cost.
 There is no federation, streaming RLS, or learned clustering in this experiment.
+
+Experiment 7B tests family-informed personalization on new fleet seeds 41--50
+in the unchanged six-second noisy restricted-coverage setting.
+Run `PYTHONPATH=code/src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_7b_personalization.py --workers 4`.
+Each prior excludes the recipient client. Leave-one-episode-out validation
+selects regularization from a fixed grid, followed by a full local refit.
+The protocol is `code/config/experiment_7b.json`; `--summarize-only` rebuilds
+summaries. All 6,284 fits converge and 2,700 evaluations are amplitude-feasible.
+Personalization improves tracking over fixed Family pooling by 12.79%, but
+is 0.0573% worse than Local. The 5% improvement gate fails. This is near-parity
+with local accuracy, not a demonstrated federated accuracy benefit.
+Fold-level diagnostics, selected strengths, donor lists, and data hashes are
+retained. The LaTeX report explains the revised sequence and both negative gates.

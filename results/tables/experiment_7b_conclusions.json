@@ -1,0 +1,28 @@
+{
+  "provenance": {
+    "code/config/experiment_7b.json": "00590ed68ab7b24ef4c10f8425f7c274147f36363199c59142bc83c660f8f6fd",
+    "code/experiments/experiment_7b_personalization.py": "00f52ec314c819dc062198fd505472f1c77d965bd884f2c2020ada24b1a8af75",
+    "code/src/federated_lpv/output_error.py": "becfd26a7696355f643632e4c6fb176b42994c6fd43c4607d98b776d29a60e60",
+    "code/src/federated_lpv/personalization.py": "7904df01bf7bf52bebf465a1a7e8193470f66a6450b5a3952b679e6d16705a9e"
+  },
+  "evaluations": 2700,
+  "fits": 6284,
+  "all_fits_converged": true,
+  "all_starts_converged": true,
+  "bound_hits": 0,
+  "max_multistart_difference": 4.439359342071254e-07,
+  "all_amplitude_feasible": true,
+  "max_frozen_rho": 0.9693275071251448,
+  "selected_zero": 46,
+  "selected_max": 4,
+  "primary": {
+    "baseline": "Local",
+    "metric": "tracking",
+    "reduction_pct": -0.05726670007041486,
+    "mean_difference": -3.818862778871748e-06,
+    "ci_low": -7.369045665556748e-06,
+    "ci_high": -1.653106733072012e-07,
+    "positive_pairs": 3
+  },
+  "personalization_gate": false
+}

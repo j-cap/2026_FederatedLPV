@@ -47,10 +47,24 @@ def predict(parameters,data,dt=0.01):
     return state
 
 
-def fit(records):
+def fit(records, prior=None, strength=0.0, prior_scale=0.05):
+    """Output error plus a log-ratio prior; strength weights mean data loss.
+
+    A zero strength exactly preserves the unregularized 7A objective.
+    Positive strength minimizes mean squared standardized output error plus
+    strength * sum(((log(p)-log(prior))/prior_scale)**2).
+    """
+    if strength < 0 or prior_scale <= 0:
+        raise ValueError('strength must be nonnegative and prior_scale positive')
+    if strength and (prior is None or np.shape(prior)!=(3,) or np.any(np.asarray(prior)<=0)):
+        raise ValueError('positive strength requires three positive prior ratios')
     data=prepare(records)
     scales=np.deg2rad([.05,.1])
-    def residual(logp):return ((predict(np.exp(logp),data)-data['y'])/scales).ravel()
+    def residual(logp):
+        output=((predict(np.exp(logp),data)-data['y'])/scales).ravel()
+        if not strength:return output
+        penalty=np.sqrt(output.size*strength)*(logp-np.log(prior))/prior_scale
+        return np.r_[output,penalty]
     solutions=[least_squares(residual,np.log(p),jac='cs',bounds=(np.log([1,1,.05]),np.log([300,300,3])),
         ftol=1e-9,xtol=1e-9,gtol=1e-9,max_nfev=150) for p in ([40,40,.5],[80,60,1])]
     result=min(solutions,key=lambda s:s.cost);p=np.exp(result.x)
