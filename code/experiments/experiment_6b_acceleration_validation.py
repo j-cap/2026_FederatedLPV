@@ -42,7 +42,7 @@ def advance(z,u,v0,v1,p,mode,dt=base.DT):
     k4=rhs(z+dt*k3,u,v1,acc,p,mode)
     return z+dt*(k1+2*k2+2*k3+k4)/6
 
-def simulate(clients,controller,speed,reference,mode,dt=base.DT):
+def simulate(clients,controller,speed,reference,mode,dt=base.DT,client_controllers=None):
     if mode=='legacy':
         if dt!=base.DT:raise ValueError('legacy regression uses original dt')
         return legacy(clients,controller,speed,reference)
@@ -50,11 +50,18 @@ def simulate(clients,controller,speed,reference,mode,dt=base.DT):
     n=len(clients); nt=len(speed); p=vehicle_arrays(clients)
     z=np.zeros((n,2)); x=np.zeros((nt,n,2)); u=np.zeros((nt-1,n)); integral=np.zeros(n)
     gains=np.empty((nt-1,n,3)); pre=np.empty((nt-1,n))
-    for f in base.FAMILIES:
-        mask=np.array([c.family==f for c in clients])
-        values=[controller.evaluate(f,float(v)) for v in speed[:-1]]
-        gains[:,mask,:]=np.array([q[0] for q in values])[:,None,:]
-        pre[:,mask]=np.array([q[1] for q in values])[:,None]
+    groups=[(f,np.array([c.family==f for c in clients]),controller) for f in base.FAMILIES] if client_controllers is None else [
+        (c.family,np.arange(n)==j,client_controllers[c.client_id]) for j,c in enumerate(clients)]
+    for f,mask,selected_controller in groups:
+        if selected_controller.interpolation=='linear':
+            key='global' if selected_controller.specialization=='global' else f
+            values=np.column_stack([np.interp(speed[:-1],selected_controller.speeds,selected_controller.gains[key][:,j]) for j in range(3)])
+            gains[:,mask,:]=values[:,None,:]
+            pre[:,mask]=np.interp(speed[:-1],selected_controller.speeds,selected_controller.prefilters[key])[:,None]
+        else:
+            values=[selected_controller.evaluate(f,float(v)) for v in speed[:-1]]
+            gains[:,mask,:]=np.array([q[0] for q in values])[:,None,:]
+            pre[:,mask]=np.array([q[1] for q in values])[:,None]
     for k in range(nt-1):
         u[k]=-np.sum(gains[k]*np.column_stack((x[k],integral)),axis=1)+pre[k]*reference[k]
         z=advance(z,u[k],speed[k],speed[k+1],p,mode,dt)

@@ -82,3 +82,15 @@ coordinate correction, and lateral-momentum integration with consistent varying
 speed. Each uses the original and doubled maneuver duration. The 6B JSON freezes
 the protocol. Compressed client-level metrics, paired comparisons, and provenance
 hashes accompany the report. `--summarize-only` rebuilds its evidence.
+
+Experiment 7A compares batch output-error Local, Global, and oracle-Family fits
+across two recording budgets, two speed-coverage conditions, and clean/noisy
+outputs on the corrected plant.
+Run `PYTHONPATH=code/src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_7a_local_identification.py --workers 4`.
+The frozen protocol is `code/config/experiment_7a.json`; `--summarize-only`
+rebuilds the evidence. All 2,720 fits converge and 21,600 evaluations are
+amplitude-feasible. The primary collaboration gate fails: Family tracking
+error is 11.62% higher than Local, although 36.33% lower than Global.
+Local identification is already accurate with six seconds of data. Family
+pooling offers fewer deployed models at a measurable performance cost.
+There is no federation, streaming RLS, or learned clustering in this experiment.

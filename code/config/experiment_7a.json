@@ -1,0 +1,13 @@
+{
+  "seeds": [31,32,33,34,35,36,37,38,39,40],
+  "clients_per_family": 10,
+  "episode_durations": [2,8],
+  "coverage": ["broad","restricted"],
+  "noise": {"clean":[0,0],"noisy":[0.05,0.1]},
+  "broad_speeds": [10,20,30],
+  "restricted_speeds": [[10,14,18],[16,20,24],[22,26,30]],
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "bootstrap_seed": 7101,
+  "bootstrap_repetitions": 10000,
+  "notes": "Three independent zero-state episodes per client, total 6 or 24 s. Nested prefixes and measurement-noise draws. Restricted support assigned independently of family with equal category counts per family. Same nominal global data-collection controller for everyone. Output-error fit in vy coordinates, beta/r output noise only, exact inputs/speed, no process noise. Evaluate same physical clients on held-out 24-s moderate trajectories over 10--30 m/s. Local/global/oracle-family pooling share the same available dataset. Primary gate: noisy short restricted, family tracking >=5% better than local, positive paired CI, family amplitude feasible and frozen rho<1. No federation or learned clustering."
+}

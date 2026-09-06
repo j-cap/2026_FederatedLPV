@@ -4,8 +4,8 @@ Only a positive oracle result justifies removing its assumptions. The first
 federated hypothesis is deliberately narrow:
 \begin{quote}
 Compatible clients with complementary speed coverage can collaboratively estimate
-an LPV family more accurately over the complete operating envelope than any
-individual client, while family-specific aggregation prevents negative transfer.
+an LPV family more accurately over the complete operating envelope than local
+fitting on average, while family-specific aggregation limits negative transfer.
 \end{quote}
 Imperfections are introduced incrementally:
 \begin{enumerate}
@@ -25,3 +25,7 @@ concept drift, and online reassignment before the stationary problem is understo
 Robust LPV synthesis, additional scheduling variables, and higher-fidelity vehicle
 models are likewise evidence-driven later extensions.
 
+Experiment 7A (\cref{sec:experiment7a}) first compares local identification with
+centralized global and oracle-family pooling under finite data. A useful pooling
+benefit is the gate for implementing federated estimation with known families
+in 7B. Learned family assignment follows after that reference is established.
