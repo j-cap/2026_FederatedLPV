@@ -1,0 +1,35 @@
+{
+  "provenance": {
+    "code/config/experiment_8d.json": "86d25a5ae6826883ec18c2d52ca6b649b0906df6e554c473e37d838c5f1a1d48",
+    "code/src/federated_lpv/privacy.py": "1ddca10c19280a1bc1b12779a4c80bb714c5b10a1ea3a526b006519e9c53506f",
+    "code/experiments/experiment_8d_privacy_recovery.py": "a3442a3092ae34796fab5f89016004cdd9d07d2ba3b8aa9ed4846504ef88c08c"
+  },
+  "local_fits": 1500,
+  "privacy_releases": 1860,
+  "closed_loop_evaluations": 55800,
+  "all_local_fits_converged": true,
+  "acceptable_cells": [
+    {
+      "mechanism": "Tight-100",
+      "epsilon": "2",
+      "tracking_increase_pct": 6.048857086108517
+    },
+    {
+      "mechanism": "Tight-100",
+      "epsilon": "4",
+      "tracking_increase_pct": 0.6163128093843895
+    },
+    {
+      "mechanism": "Tight-100",
+      "epsilon": "8",
+      "tracking_increase_pct": 0.09291759281606637
+    },
+    {
+      "mechanism": "Tight-30",
+      "epsilon": "8",
+      "tracking_increase_pct": 6.2169747844879275
+    }
+  ],
+  "recovery_gate": true,
+  "box_clipped_coordinates": 0
+}

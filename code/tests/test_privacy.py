@@ -12,3 +12,9 @@ def test_nonprivate_mean_is_deterministic_and_bounded():
     p=np.array([[50,55,.6],[52,54,.62]])
     a,d=private_mean(p,np.inf,1e-5,np.random.default_rng(1));b,_=private_mean(p,np.inf,1e-5,np.random.default_rng(2))
     np.testing.assert_array_equal(a,b);assert np.all(a>0);assert d['sigma']==0
+
+
+def test_custom_public_bounds_are_respected():
+    bounds=np.array([[40,70],[35,75],[.45,.8]])
+    p,_=private_mean([[1,300,.05],[300,1,3]],np.inf,1e-5,np.random.default_rng(1),bounds=bounds)
+    assert np.all(p>=bounds[:,0]) and np.all(p<=bounds[:,1])

@@ -146,3 +146,15 @@ fleet are tested for epsilon 0.5, 1, 2, 4, and 8. No finite epsilon meets the
 predeclared 10% tracking-degradation gate. Epsilon 4 and 8 remain feasible in all
 runs; epsilon <=2 includes frozen-instability cases. The result motivates a
 control-aware privacy mechanism rather than weakening the privacy definition.
+
+Experiment 8D tests privacy-utility recovery on fresh training seeds 81--85 and
+separate nonlinear test fleets. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_8d_privacy_recovery.py --workers 5`.
+It retains replacement-adjacent client-level DP and delta=1e-5 while comparing
+the 8C broad box with tighter public benchmark-design bounds and compatible
+family cohorts of 10, 30, and 100 clients. The fixed 10% gate passes: Tight-100
+has 6.05% degradation at epsilon 2, full amplitude feasibility, and worst frozen
+radius 0.9692. Tight-30 passes only at epsilon 8 (6.22%); Tight-10 does not pass.
+This is a cohort-scale privacy recovery result, not evidence for private learned
+clustering, repeated-round accounting, dropout tolerance, or production secure
+aggregation.
