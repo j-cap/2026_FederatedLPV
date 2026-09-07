@@ -125,3 +125,14 @@ The decision is conditional readiness as an LPV/control paper, not readiness as
 a federated-algorithm paper. Machine-readable audit outputs are
 `results/tables/experiment_8a_claim_audit.csv` and
 `results/tables/experiment_8a_conclusions.json`.
+
+Experiment 8B implements distributed structured output-error identification on
+fresh fleet seeds 61--70. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_8b_federated_equivalence.py --workers 4`.
+Clients retain trajectories and upload one loss plus three gradient entries per
+server evaluation. Both Global and oracle-Family scopes are tested, together
+with a pairwise-mask aggregate-only emulator. The equivalence gate passes:
+maximum centralized--federated relative parameter error is 7.65e-8 and maximum
+tracking difference is 6.12e-10 deg/s; all 5,400 evaluations are feasible.
+The secure path is a numerical utility emulator, not production cryptography or
+differential privacy. Experiment 8C can now study an explicit privacy budget.
