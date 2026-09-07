@@ -107,3 +107,13 @@ is 0.0573% worse than Local. The 5% improvement gate fails. This is near-parity
 with local accuracy, not a demonstrated federated accuracy benefit.
 Fold-level diagnostics, selected strengths, donor lists, and data hashes are
 retained. The LaTeX report explains the revised sequence and both negative gates.
+
+Experiment 7C tests complementary coverage on fresh fleet seeds 51--60.
+Run `PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_7c_complementary_coverage.py --workers 4`.
+Each client records three one-second episodes at one assigned speed, while each
+oracle family jointly covers 10--30 m/s. LocalExtra receives an equal transition
+budget from the recipient itself over the complete speed set. All 640 fits
+converge and all 3,600 evaluations are feasible. Family beats Global by 35.22%,
+but is 13.61% worse than Local and fails the collaboration gate on every paired
+seed. Complementary speed coverage therefore does not create a federated accuracy
+benefit for the strongly structured three-ratio estimator.

@@ -1,0 +1,13 @@
+{
+  "seeds": [51, 52, 53, 54, 55, 56, 57, 58, 59, 60],
+  "clients_per_family": 10,
+  "episode_duration": 1.0,
+  "local_episodes": 3,
+  "coverage_speeds": [10, 12, 14, 16, 18, 22, 24, 26, 28, 30],
+  "noise_deg": [0.05, 0.1],
+  "test_scenarios": ["previous_s_curve", "shifted_double_lane", "constant_22"],
+  "bootstrap_seed": 7301,
+  "bootstrap_repetitions": 10000,
+  "primary_min_reduction_pct": 5,
+  "notes": "Experiment 7C complementary-coverage gate. Each client observes three one-second maneuvers at one client-specific constant speed; the ten clients in each oracle family jointly cover 10--30 m/s. LocalExtra receives the same number of transitions as the family pool, generated from the recipient vehicle over all ten speeds, and is an information-budget oracle rather than a deployable federated method. Test trajectories and stability audits are generated only after identification. Primary gate: oracle Family tracking at least 5% better than Local with a positive paired-seed bootstrap CI, amplitude feasibility, and frozen rho below one. Family versus LocalExtra quantifies the price of sharing heterogeneous rather than recipient-local data. No learned clustering or federated optimizer is claimed."
+}
