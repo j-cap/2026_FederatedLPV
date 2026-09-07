@@ -1,0 +1,27 @@
+{
+  "seeds": [96,97,98,99,100,101,102,103,104,105],
+  "test_clients_per_family": 10,
+  "episode_duration": 1.0,
+  "local_episodes": 3,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "noise_deg": [0.05,0.1],
+  "bounds": [[40,70],[35,75],[0.45,0.8]],
+  "cohorts": [10,20,30,50,100],
+  "epsilons": [2,4,8,"inf"],
+  "policies": ["balanced","random","biased-low-speed"],
+  "delta": 0.00001,
+  "privacy_draws": 5,
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "dp_seed": 8601,
+  "acceptable_tracking_increase_pct": 10,
+  "control_weights": {
+    "nominal": [1.63603729,1.81984499,0.33587092],
+    "heavy": [1.64407955,1.80771579,0.33647052],
+    "handling": [1.66629228,1.85627264,0.32330100]
+  },
+  "stress_points": [{"name":"nonviable","cohort":10,"epsilon":4},{"name":"boundary","cohort":30,"epsilon":4},{"name":"viable","cohort":100,"epsilon":4}],
+  "stress_conditions": ["correct","narrow-10pct","shift-plus-5pct","outliers-5pct","outliers-10pct"],
+  "stress_privacy_draws": 5,
+  "frictions": [0.9,0.7],
+  "notes": "8F-A maps active cohort and participation policy with fixed client-level DP. Balanced participation distributes active clients across all ten local speed categories; random participation is seeded; biased participation selects low-speed categories first. 8F-B freezes three epsilon=4 points from prior 8E (10 nonviable, 30 boundary, 100 viable) and tests public-box narrowing, +5% shift, injected out-of-box contribution contamination, and an unseen lower-friction nonlinear test plant. Outlier contamination scales the first two fitted ratios by 1.35 and 0.70 and the third by 1.30 for a fixed seeded fraction; it is an aggregation-contamination test, not newly simulated vehicle identification. Utility is <=10% tracking degradation from each matching non-private release, full amplitude feasibility, and frozen rho<1. The 15% 8E exploratory gate is not reused."
+}

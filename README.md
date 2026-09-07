@@ -168,3 +168,15 @@ fleet, but the largest mean gain is 11.39%, below the frozen 15% requirement.
 The 30-client, epsilon-4 privacy cost falls from 16.36% to 11.74% but still
 misses the 10% utility threshold. The joint gate therefore fails and is reported
 as a consistent but insufficient effect, not a successful proposed method.
+
+Experiment 8F maps deployment robustness on fresh training seeds 96--105. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_8f_deployment_robustness.py --workers 5`.
+Across balanced, random, and low-speed-biased partial participation, the minimum
+viable control-aware cohorts are 100, 50, and 20 clients at epsilon 2, 4, and 8;
+the isotropic requirements are 100, 50, and 30. At the established 100-client,
+epsilon-4 operating point, both mechanisms remain below the 10% tracking-cost
+gate under 10% bound narrowing, a 5% bound shift, 5--10% bounded outlier
+contributions, and nonlinear tire friction reduced from 0.9 to 0.7. The
+30-client boundary and 10-client nonviable points correctly remain outside the
+declared region. The deployment gate passes without reusing Experiment 8E's
+arbitrary 15% method-improvement threshold.

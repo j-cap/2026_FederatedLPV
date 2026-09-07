@@ -22,11 +22,11 @@ def vehicle_arrays(clients):
     return np.array([[c.parameters.mass,c.parameters.yaw_inertia,c.parameters.front_length,
         c.parameters.rear_length,c.parameters.front_stiffness,c.parameters.rear_stiffness] for c in clients]).T
 
-def rhs(z,u,v,acc,p,mode):
+def rhs(z,u,v,acc,p,mode,mu=base.MU):
     """Small-angle beta proxy is vy/v. Force laws unchanged from 6A."""
     mass,iz,lf,lr,cf,cr=p
     beta=z[:,0]/v if mode=='vy' else z[:,0]
-    ff=base.MU*mass*9.81*lr/(lf+lr); fr=base.MU*mass*9.81*lf/(lf+lr)
+    ff=mu*mass*9.81*lr/(lf+lr); fr=mu*mass*9.81*lf/(lf+lr)
     front=ff*np.tanh(cf*(u-beta-lf*z[:,1]/v)/ff)
     rear=fr*np.tanh(cr*(-beta+lr*z[:,1]/v)/fr)
     ay=(front+rear)/mass
@@ -34,15 +34,15 @@ def rhs(z,u,v,acc,p,mode):
     if mode=='beta_corrected':lateral-=acc*beta/v
     return np.column_stack((lateral,(lf*front-lr*rear)/iz))
 
-def advance(z,u,v0,v1,p,mode,dt=base.DT):
+def advance(z,u,v0,v1,p,mode,dt=base.DT,mu=base.MU):
     acc=(v1-v0)/dt; vm=(v0+v1)/2
-    k1=rhs(z,u,v0,acc,p,mode)
-    k2=rhs(z+dt*k1/2,u,vm,acc,p,mode)
-    k3=rhs(z+dt*k2/2,u,vm,acc,p,mode)
-    k4=rhs(z+dt*k3,u,v1,acc,p,mode)
+    k1=rhs(z,u,v0,acc,p,mode,mu)
+    k2=rhs(z+dt*k1/2,u,vm,acc,p,mode,mu)
+    k3=rhs(z+dt*k2/2,u,vm,acc,p,mode,mu)
+    k4=rhs(z+dt*k3,u,v1,acc,p,mode,mu)
     return z+dt*(k1+2*k2+2*k3+k4)/6
 
-def simulate(clients,controller,speed,reference,mode,dt=base.DT,client_controllers=None):
+def simulate(clients,controller,speed,reference,mode,dt=base.DT,client_controllers=None,mu=base.MU):
     if mode=='legacy':
         if dt!=base.DT:raise ValueError('legacy regression uses original dt')
         return legacy(clients,controller,speed,reference)
@@ -64,12 +64,12 @@ def simulate(clients,controller,speed,reference,mode,dt=base.DT,client_controlle
             pre[:,mask]=np.array([q[1] for q in values])[:,None]
     for k in range(nt-1):
         u[k]=-np.sum(gains[k]*np.column_stack((x[k],integral)),axis=1)+pre[k]*reference[k]
-        z=advance(z,u[k],speed[k],speed[k+1],p,mode,dt)
+        z=advance(z,u[k],speed[k],speed[k+1],p,mode,dt,mu)
         x[k+1]=z
         if mode=='vy':x[k+1,:,0]/=speed[k+1]
         integral+=dt*(x[k,:,1]-reference[k])
     mass,iz,lf,lr,cf,cr=p
-    ff=base.MU*mass*9.81*lr/(lf+lr);fr=base.MU*mass*9.81*lf/(lf+lr)
+    ff=mu*mass*9.81*lr/(lf+lr);fr=mu*mass*9.81*lf/(lf+lr)
     front=ff*np.tanh(cf*(u-x[:-1,:,0]-lf*x[:-1,:,1]/speed[:-1,None])/ff)
     rear=fr*np.tanh(cr*(-x[:-1,:,0]+lr*x[:-1,:,1]/speed[:-1,None])/fr)
     peak_u=np.rad2deg(np.max(abs(u),axis=0));peak_acc=np.max(abs((front+rear)/mass),axis=0)
@@ -79,7 +79,7 @@ def simulate(clients,controller,speed,reference,mode,dt=base.DT,client_controlle
         peak_steering_rate=np.rad2deg(np.max(abs(np.diff(u,axis=0)/dt),axis=0)),
         beta_rms=np.rad2deg(np.sqrt(np.mean(x[:,:,0]**2,axis=0))),
         steering_rms=np.rad2deg(np.sqrt(np.mean(u**2,axis=0))),
-        feasible=finite & (peak_u<=12.) & (peak_acc<=base.MU*9.81))
+        feasible=finite & (peak_u<=12.) & (peak_acc<=mu*9.81))
     return x,u,metrics
 
 def load_controllers(seed,gamma,envelope):

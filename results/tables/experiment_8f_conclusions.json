@@ -1,0 +1,157 @@
+{
+  "provenance": {
+    "code/config/experiment_8f.json": "4379632b20e2f554e8db172132677945c7dc4ebd9b1741c902348680c297e21e",
+    "code/src/federated_lpv/privacy.py": "dc1de8ce1b2b0b17b7b86d9c52e37ef7a303183916a575778b78abcac63f6072",
+    "code/experiments/experiment_6b_acceleration_validation.py": "31fc54070309924eb48fe9c316205991d06d32b4396f9f6e793e6e59195ead3a",
+    "code/experiments/experiment_8f_deployment_robustness.py": "348585029b71afbd1acd2a53fd139390c6979b3e472eab2d749f84c8333a719b"
+  },
+  "local_fits": 3000,
+  "privacy_releases": 25200,
+  "closed_loop_evaluations": 756000,
+  "all_local_fits_converged": true,
+  "minimum_viable_cohorts": [
+    {
+      "method": "ControlAware",
+      "policy": "balanced",
+      "epsilon": "2",
+      "minimum_viable_cohort": 100
+    },
+    {
+      "method": "ControlAware",
+      "policy": "balanced",
+      "epsilon": "4",
+      "minimum_viable_cohort": 50
+    },
+    {
+      "method": "ControlAware",
+      "policy": "balanced",
+      "epsilon": "8",
+      "minimum_viable_cohort": 20
+    },
+    {
+      "method": "ControlAware",
+      "policy": "biased-low-speed",
+      "epsilon": "2",
+      "minimum_viable_cohort": 100
+    },
+    {
+      "method": "ControlAware",
+      "policy": "biased-low-speed",
+      "epsilon": "4",
+      "minimum_viable_cohort": 50
+    },
+    {
+      "method": "ControlAware",
+      "policy": "biased-low-speed",
+      "epsilon": "8",
+      "minimum_viable_cohort": 20
+    },
+    {
+      "method": "ControlAware",
+      "policy": "random",
+      "epsilon": "2",
+      "minimum_viable_cohort": 100
+    },
+    {
+      "method": "ControlAware",
+      "policy": "random",
+      "epsilon": "4",
+      "minimum_viable_cohort": 50
+    },
+    {
+      "method": "ControlAware",
+      "policy": "random",
+      "epsilon": "8",
+      "minimum_viable_cohort": 20
+    },
+    {
+      "method": "Isotropic",
+      "policy": "balanced",
+      "epsilon": "2",
+      "minimum_viable_cohort": 100
+    },
+    {
+      "method": "Isotropic",
+      "policy": "balanced",
+      "epsilon": "4",
+      "minimum_viable_cohort": 50
+    },
+    {
+      "method": "Isotropic",
+      "policy": "balanced",
+      "epsilon": "8",
+      "minimum_viable_cohort": 30
+    },
+    {
+      "method": "Isotropic",
+      "policy": "biased-low-speed",
+      "epsilon": "2",
+      "minimum_viable_cohort": 100
+    },
+    {
+      "method": "Isotropic",
+      "policy": "biased-low-speed",
+      "epsilon": "4",
+      "minimum_viable_cohort": 50
+    },
+    {
+      "method": "Isotropic",
+      "policy": "biased-low-speed",
+      "epsilon": "8",
+      "minimum_viable_cohort": 30
+    },
+    {
+      "method": "Isotropic",
+      "policy": "random",
+      "epsilon": "2",
+      "minimum_viable_cohort": 100
+    },
+    {
+      "method": "Isotropic",
+      "policy": "random",
+      "epsilon": "4",
+      "minimum_viable_cohort": 50
+    },
+    {
+      "method": "Isotropic",
+      "policy": "random",
+      "epsilon": "8",
+      "minimum_viable_cohort": 30
+    }
+  ],
+  "stress_robustness": [
+    {
+      "point": "boundary",
+      "method": "ControlAware",
+      "viable_all_stresses": false
+    },
+    {
+      "point": "boundary",
+      "method": "Isotropic",
+      "viable_all_stresses": false
+    },
+    {
+      "point": "nonviable",
+      "method": "ControlAware",
+      "viable_all_stresses": false
+    },
+    {
+      "point": "nonviable",
+      "method": "Isotropic",
+      "viable_all_stresses": false
+    },
+    {
+      "point": "viable",
+      "method": "ControlAware",
+      "viable_all_stresses": true
+    },
+    {
+      "point": "viable",
+      "method": "Isotropic",
+      "viable_all_stresses": true
+    }
+  ],
+  "all_nonprivate_feasible": true,
+  "deployment_gate": true,
+  "box_clipped_coordinates": 16224
+}
