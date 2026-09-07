@@ -1,0 +1,103 @@
+\section{Experiment 8A: paper-readiness and contribution audit}
+\label{sec:experiment8a}
+
+\paragraph{Purpose.}
+Experiment 8A is a scope and evidence audit rather than another performance
+benchmark. It asks which claims survive the complete sequence through 7C, what
+the paper can be about without overstating federation, and which checks remain
+necessary before freezing a manuscript. The audit treats failed gates as
+evidence and does not redefine success criteria after seeing results. Its frozen
+record is \path{code/config/experiment_8a.json}; the machine-readable claim map
+is \path{results/tables/experiment_8a_claim_audit.csv}.
+
+\paragraph{Decision.}
+The project is \emph{conditionally ready as an LPV identification and control
+paper}, but it is not ready as a federated-algorithm paper. The proposed central
+claim is:
+\begin{quote}
+Measurable operating variation and persistent fleet heterogeneity are distinct
+design axes: scheduling addresses the former, whereas model specialization
+addresses the latter. Their combination is needed only when both effects are
+large enough relative to the required control accuracy.
+\end{quote}
+This is an empirical design rule within the tested benchmark, not a universal
+theorem. The paper should use ``fleet'' or ``multi-system'' rather than
+``federated'' in its title unless a later experiment supplies an actual
+distributed method and a separately justified benefit.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 8A claim audit. ``Boundary'' denotes a supported negative
+or limiting result rather than a positive method contribution.}
+\label{tab:experiment8a-claims}
+\begin{tabular}{p{0.08\linewidth}p{0.44\linewidth}p{0.18\linewidth}p{0.16\linewidth}}
+\toprule
+ID & Candidate claim & Status & Evidence\\
+\midrule
+C1 & Scheduling and specialization address different variation axes & Primary, supported & 2, 3, 4G, 6A, 6B\\
+C2 & Structured family LPV identification enables redesign on nonlinear-plant data & Supported & 4F, 4G, 6B\\
+C3 & Scheduled M4 uses fewer stored gains than the matching tested LTI grid & Supported with scope & 5A\\
+C4 & Family sharing beats Global but need not beat accurate Local identification & Boundary, supported & 7A--7C\\
+C5 & A federated LPV algorithm improves accuracy or control & Unsupported & None\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{Defensible contributions.}
+The first contribution is the two-axis regime map. Experiment 6A varies speed
+envelope and family separation independently and recovers the four expected
+architectures: Global LTI, Global LPV, Family LTI, and Family LPV. Experiment 6B
+preserves the corner decisions under corrected varying-speed dynamics and slower
+maneuvers. The second contribution is methodological: unconstrained matrix
+regression on nonlinear-plant records can yield unsuitable control redesigns,
+whereas the structured positive parameter-ratio estimator restores the intended
+family LPV advantage and transfers across independent fleets and trajectories
+in 4F--4G. The third is a bounded implementation result: in the tested search,
+M4 stores 15 gain vectors while the first gridded family-LTI alternative meeting
+the 5\% tracking tolerance stores 30. The fourth is a boundary result:
+Experiments 7A--7C consistently show that oracle-family sharing reduces error
+relative to Global pooling but cannot outperform a highly data-efficient Local
+structured fit.
+
+\paragraph{Claims explicitly excluded.}
+The present evidence does not support federated optimization, learned clustering,
+privacy preservation, communication efficiency, online adaptation, formal
+closed-loop stability, a universal model-selection law, or general superiority
+of LPV control. Frozen-radius audits and amplitude feasibility are empirical
+checks, not stability proofs. The complexity comparison is conditional on the
+tested gain grids and switching rule. Results use synthetic vehicle families,
+prescribed longitudinal speed, pure lateral tire forces, known scheduling, and
+measured sideslip proxy and yaw rate.
+
+\paragraph{Minimum work before manuscript freeze.}
+Only three items are classified as required. First, independently regenerate
+the headline numbers and figures from saved configurations and verify that every
+paper value traces to an artifact. Second, add one targeted higher-fidelity
+robustness check that introduces a genuinely absent coupling, preferably
+longitudinal dynamics with combined-slip tire forces; this should test the
+regime-map conclusion rather than launch a new method search. Third, sharpen the
+baseline and literature comparison against established local-LPV and multi-model
+identification/control approaches. Real vehicle data, learned family assignment,
+formal robust synthesis, and communication studies would strengthen the work but
+are not prerequisites for the scoped simulation paper.
+
+\paragraph{Candidate manuscript blueprint.}
+The recommended title is \emph{Scheduling or Specialization? Structured LPV
+Identification and Control under Operating and Fleet Heterogeneity}. After the
+introduction, the paper should define the two variation axes and four candidate
+architectures, present the nonlinear benchmark and structured estimator, report
+the regime map and robustness result, then give the redesign and complexity
+evidence. A compact final subsection should report 7A--7C as the boundary of
+collaboration: model sharing is valuable relative to a global model and for
+model-count reduction, but does not improve accuracy over Local here. The full
+diagnostic path, including failed 4D and 4D-R designs, belongs in supplementary
+material rather than the main narrative.
+
+\paragraph{Decision on an FL extension.}
+The current manuscript should not be delayed by implementing distributed
+optimization of the failed Family objective. Any FL extension starts with a new
+oracle mechanism and an application-grounded benefit. It enters this paper only
+if that gate adds a result that materially changes the contribution; otherwise
+it should become a separate study. This separation protects both stories: the
+LPV paper remains evidence-complete, while a future FL method is judged against
+Local rather than only against an intentionally weak Global baseline.

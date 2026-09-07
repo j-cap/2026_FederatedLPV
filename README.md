@@ -117,3 +117,11 @@ converge and all 3,600 evaluations are feasible. Family beats Global by 35.22%,
 but is 13.61% worse than Local and fails the collaboration gate on every paired
 seed. Complementary speed coverage therefore does not create a federated accuracy
 benefit for the strongly structured three-ratio estimator.
+
+Experiment 8A is the formal paper-readiness and contribution audit. It freezes
+the supported claim set, excluded claims, minimum remaining robustness work,
+and manuscript blueprint in `report/sections/15_experiment8a_paper_audit.tex`.
+The decision is conditional readiness as an LPV/control paper, not readiness as
+a federated-algorithm paper. Machine-readable audit outputs are
+`results/tables/experiment_8a_claim_audit.csv` and
+`results/tables/experiment_8a_conclusions.json`.
