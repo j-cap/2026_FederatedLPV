@@ -158,3 +158,13 @@ radius 0.9692. Tight-30 passes only at epsilon 8 (6.22%); Tight-10 does not pass
 This is a cohort-scale privacy recovery result, not evidence for private learned
 clustering, repeated-round accounting, dropout tolerance, or production secure
 aggregation.
+
+Experiment 8E tests public control-curvature-shaped client-level DP on fresh
+training seeds 86--95. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_8e_control_aware_privacy.py --workers 5`.
+The transformed-space Gaussian mechanism retains the same replacement adjacency
+and delta=1e-5 as 8C--8D. It improves tracking in every finite cell and every
+fleet, but the largest mean gain is 11.39%, below the frozen 15% requirement.
+The 30-client, epsilon-4 privacy cost falls from 16.36% to 11.74% but still
+misses the 10% utility threshold. The joint gate therefore fails and is reported
+as a consistent but insufficient effect, not a successful proposed method.

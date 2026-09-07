@@ -1,0 +1,23 @@
+{
+  "seeds": [86,87,88,89,90,91,92,93,94,95],
+  "test_clients_per_family": 10,
+  "episode_duration": 1.0,
+  "local_episodes": 3,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "noise_deg": [0.05,0.1],
+  "bounds": [[40,70],[35,75],[0.45,0.8]],
+  "cohorts": [10,30,100],
+  "epsilons": [2,4,8,"inf"],
+  "delta": 0.00001,
+  "privacy_draws": 10,
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "dp_seed": 8501,
+  "acceptable_tracking_increase_pct": 10,
+  "minimum_relative_improvement_pct": 15,
+  "control_weights": {
+    "nominal": [1.63603729,1.81984499,0.33587092],
+    "heavy": [1.64407955,1.80771579,0.33647052],
+    "handling": [1.66629228,1.85627264,0.32330100]
+  },
+  "notes": "Control-aware client-level DP with the same replacement adjacency and delta as 8C/8D. Family-specific diagonal weights are frozen public quantities derived before private evaluation: fourth roots of central finite-difference curvatures (h=0.1 in normalized log coordinates) of mean nonlinear yaw-tracking RMSE over the three declared public design maneuvers at the public family-center plants, normalized to unit geometric mean. In y=diag(w)z coordinates, contributions are enclosed by C=||w||2, clipped, and released with isotropic analytic-Gaussian noise; mapping back gives shaped noise and preserves DP. Isotropic and shaped methods use common random numbers. Gates: at least one finite cell has >=15% paired tracking improvement over isotropic, <=10% degradation from the common non-private mean, full amplitude feasibility, and frozen rho below one."
+}

@@ -41,3 +41,23 @@ def private_mean(parameters,epsilon,delta,rng,clip_norm=np.sqrt(3),bounds=None):
     if np.isinf(epsilon):sigma=0.;noise=np.zeros(3)
     else:sigma=analytic_gaussian_sigma(epsilon,delta,sensitivity);noise=rng.normal(0,sigma,3)
     return denormalize_log_parameters(mean+noise,bounds),dict(sigma=sigma,sensitivity=sensitivity,clip_norm=clip_norm,clipped_clients=int(np.sum(scale<1)),box_clipped_coordinates=int(np.sum(abs((np.log(np.asarray(parameters))-transform(bounds)[0])/transform(bounds)[1])>1)),noise_norm=float(np.linalg.norm(noise)))
+
+
+def shaped_private_mean(parameters,epsilon,delta,rng,weights,bounds=None):
+    """Client-DP mean under a fixed public diagonal geometry."""
+    weights=np.asarray(weights,float)
+    if weights.shape!=(3,) or np.any(~np.isfinite(weights)) or np.any(weights<=0):
+        raise ValueError('weights must be three finite positive values')
+    z=normalize_log_parameters(parameters,bounds);y=z*weights
+    clip_norm=float(np.linalg.norm(weights));norms=np.linalg.norm(y,axis=1)
+    scale=np.minimum(1,clip_norm/np.maximum(norms,1e-30));clipped=y*scale[:,None]
+    mean=clipped.mean(axis=0);sensitivity=2*clip_norm/len(y)
+    if np.isinf(epsilon):sigma=0.;noise_y=np.zeros(3)
+    else:sigma=analytic_gaussian_sigma(epsilon,delta,sensitivity);noise_y=rng.normal(0,sigma,3)
+    noise_z=noise_y/weights;released_z=(mean+noise_y)/weights
+    center,half_range=transform(bounds);raw=(np.log(np.asarray(parameters))-center)/half_range
+    return denormalize_log_parameters(released_z,bounds),dict(
+        sigma=sigma,sensitivity=sensitivity,clip_norm=clip_norm,
+        clipped_clients=int(np.sum(scale<1)),box_clipped_coordinates=int(np.sum(abs(raw)>1)),
+        noise_norm=float(np.linalg.norm(noise_z)),noise_sd_0=float(sigma/weights[0]),
+        noise_sd_1=float(sigma/weights[1]),noise_sd_2=float(sigma/weights[2]))
