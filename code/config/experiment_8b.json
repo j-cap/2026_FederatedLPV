@@ -1,0 +1,13 @@
+{
+  "seeds": [61,62,63,64,65,66,67,68,69,70],
+  "clients_per_family": 10,
+  "episode_duration": 1.0,
+  "local_episodes": 3,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "noise_deg": [0.05,0.1],
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "parameter_tolerance": 0.0002,
+  "tracking_tolerance_deg_s": 0.00001,
+  "secure_sum_tolerance": 1e-6,
+  "notes": "Federated-equivalence gate before privacy noise. Clients retain trajectories and transmit one loss plus three gradient entries per optimizer evaluation. Oracle-family and global groups are tested. Secure aggregation is a deterministic pairwise-mask floating-point emulator, not production cryptography and not dropout tolerant. The secure/plain absolute parameter tolerance is 1e-6 because floating-point mask cancellation can perturb the optimizer path; cryptographic fixed-point equivalence is not claimed. Gate: federated and secure estimates reproduce centralized fits within parameter and tracking tolerances; secure and plain federated estimates agree within secure_sum_tolerance; all fits converge; all controllers are feasible with frozen rho below one."
+}

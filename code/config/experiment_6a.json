@@ -1,0 +1,13 @@
+{
+  "training_seeds": [21,22,23,24,25,26,27,28,29,30],
+  "test_seed_offset": 100,
+  "clients_per_family": 10,
+  "heterogeneity": [0,0.5,1,1.5],
+  "envelopes": [[18,22],[15,25],[10,30]],
+  "severities": {"near_linear": 0.5,"moderate": 1,"strong": 1.5},
+  "scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "bootstrap_seed": 6101,
+  "bootstrap_repetitions": 10000,
+  "practical_tolerance": 0.05,
+  "notes": "Fixed multiplicative scatter around scaled centers. Fresh near-linear fits per cell. Same normalized speed profiles and yaw references. M1/M2 freeze at 20; M3/M4 interpolate five envelope anchors. Moderate tracking primary; ten paired seed replicates. Simplest eligible method within 5% of empirical best by upper paired bootstrap bound; descriptive, no multiplicity correction."
+}

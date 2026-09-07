@@ -1,0 +1,16 @@
+{
+  "seeds": [41,42,43,44,45,46,47,48,49,50],
+  "clients_per_family": 10,
+  "episode_durations": [2],
+  "coverage": ["restricted"],
+  "noise": {"noisy": [0.05,0.1]},
+  "broad_speeds": [10,20,30],
+  "restricted_speeds": [[10,14,18],[16,20,24],[22,26,30]],
+  "strengths": [0,0.001,0.01,0.1,1,10],
+  "prior_log_scale": 0.05,
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "bootstrap_seed": 7201,
+  "bootstrap_repetitions": 10000,
+  "primary_min_reduction_pct": 5,
+  "notes": "7B personalization diagnostic following the failed 7A gate. Fresh fleets, unchanged six-second noisy restricted-coverage regime. Each prior fits the other nine oracle-family clients only. Three-fold leave-one-episode-out validation selects strength by mean standardized free-run output error; ties choose smaller strength. Refit on all three local records. Local and Family use the same available data. No test data in selection, no extra validation recording budget, no federation or learned clustering. Primary gate: Personalized tracking at least 5% better than Local, positive paired seed bootstrap CI, amplitude feasible, frozen rho below one. Secondary prediction and Family comparisons do not replace primary gate."
+}

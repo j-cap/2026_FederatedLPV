@@ -1,0 +1,11 @@
+{
+  "training_seeds": [11,12,13,14,15,16,17,18,19,20],
+  "test_seed_offset": 100,
+  "anchors_per_family": [1,2,3,5,8,10],
+  "candidate_layouts": ["endpoints", "cell_centers", "training_quantiles"],
+  "single_anchor_candidates": [16,20,24],
+  "matching_tolerance_fraction": 0.05,
+  "bootstrap_seed": 5101,
+  "bootstrap_repetitions": 10000,
+  "notes": "Reuse frozen 4G structured fits. Common speed grid selected by moderate training tracking and amplitude feasibility only. Test scenarios and severities unchanged from 4G. Match requires upper paired bootstrap bound on J_LTI-1.05 J_M4 <= 0, test feasibility and frozen rho<1. No test-based anchor selection."
+}

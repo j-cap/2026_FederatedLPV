@@ -2,28 +2,129 @@
 \label{sec:phase5}
 
 \subsection{Experiment 5A: LTI-prototype sweep}
-\paragraph{Objective.}
-Answer the objection that sufficiently many LTI clusters can replace LPV models.
+\label{sec:experiment5a}
+\paragraph{Objective and refinement of the original plan.}
+After the independent-fleet validation in \cref{sec:experiment4g}, determine
+how many frozen gains approximate M4's three scheduled families. The original
+generic cluster-count sweep is refined to $n\in\{1,2,3,5,8,10\}$ speed anchors
+per known family, hence $3n$ frozen controllers. This isolates speed
+discretization while keeping structural specialization and identification fixed.
+It is not a learned-clustering study.
 
-\paragraph{Predeclared expectation.}
-Three LPV families match or outperform substantially more than three frozen LTI
-prototypes, particularly on unseen speeds and varying-speed trajectories.
+\paragraph{Frozen setup and selection boundary.}
+Reuse the ten 4G training/test seed pairs and their stored structured parameter
+fits. Both M4 and LTI grids use these same fits and unchanged $Q,R$. For $n>1$,
+candidate layouts are equally spaced endpoint-inclusive anchors over $[12,28]$
+m/s, equal-cell centers, and training-speed quantiles at probabilities
+$(j+1/2)/n$, $j=0,\ldots,n-1$. For $n=1$, compare 16, 20, and 24 m/s.
+Each grid is shared across the three families. For every count, select the
+amplitude-feasible candidate with smallest mean yaw RMSE on the two original
+moderate training maneuvers and the training fleet. This is a finite
+training-based search, not an optimal placement claim. No test metric enters
+anchor selection.
 
-\paragraph{Setup and planned evidence.}
-Sweep
-\begin{equation}
- K_{\mathrm{LTI}}\in\{1,2,3,5,8,10,15\}
-\end{equation}
-using the strongest reasonable oracle partitions, and compare with one global and
-three family-specific LPV models. Count both stored model parameterizations and
-independently calibrated controller families. Plot prediction and tracking error
-against each complexity measure.
+Selected LTI grids use nearest-anchor switching, with the lower anchor at ties.
+M4 retains interpolation over its five fixed anchors. Test the same three
+scenarios and three amplitude factors as 4G on independent test clients.
+Report tracking, steering RMS, peak steering rate, switch counts, amplitude
+feasibility, and frozen stability. Neither method receives hysteresis,
+smoothing, steering-rate limiting, or feedback-weight retuning.
 
-\paragraph{Decision gate.}
-If three or four LTI prototypes already match M4, the controller-proliferation
-argument is weak. If many more prototypes are required, the LPV-family abstraction
-has demonstrated a concrete complexity advantage.
+\paragraph{What is counted.}
+All methods originate from three fits with three parameter ratios each. Thus
+this study cannot claim fewer independently learned models for M4. M4 deploys
+15 gain vectors, each with three feedback coefficients and one prefilter,
+plus five shared speed anchors: 65 scalars. A frozen grid deploys $3n$ vectors
+and $n$ shared anchors: $13n$ scalars. Counts exclude common software, units,
+labels, and metadata. Retaining explicit frozen $A,B$ matrices adds $18n$
+matrix scalars. Alternatively, these matrices can be reconstructed from the
+same nine identified ratios. Family count, gain-vector count, and storage
+are therefore distinct quantities.
+
+\paragraph{Matching rule.}
+Moderate tracking averaged over all three scenarios is primary. A grid matches
+M4 if the upper endpoint of a paired 95\% percentile-bootstrap interval for
+$J_{\mathrm{LTI}}-1.05J_{\mathrm{M4}}$ is at most zero, all trajectories are
+amplitude-feasible, and the worst test frozen radius is below one. Resample ten
+complete seed pairs 10,000 times using seed 5101. The predeclared 5\% tolerance
+does not imply exact equivalence. Steering-rate peaks are reported as a practical
+cost without adding a new acceptance threshold. The minimum matching count is
+descriptive over tested candidates, not a universal lower bound or a deployment
+choice validated on a further untouched dataset.
 
 \paragraph{Results, interpretation, and decision.}
-Pending.
+The sweep completed 18,900 held-out closed-loop evaluations. Training selection
+chooses the same layout in all ten seed pairs: 24 m/s for $n=1$, training
+quantiles for $n=2,3,5$, and equal-cell centers for $n=8,10$.
+\Cref{tab:experiment5a} reports moderate tracking and practical deployment costs.
+All selected grids and M4 are amplitude-feasible at all three severities and
+pass the held-out frozen audit, with worst radii below 0.967.
 
+\begin{table}[htbp]
+\centering
+\caption{Experiment 5A: moderate results. RMSE is in degrees/s, and peak rate
+is the maximum steering rate in degrees/s across held-out clients and scenarios.
+Scalars include feedback gains, prefilters, and shared speed anchors.}
+\label{tab:experiment5a}
+\begin{tabular}{lrrrrr}
+\toprule
+Design & Gain vectors & Scalars & Mean RMSE & Gap to M4 & Peak rate\\
+\midrule
+M4 interpolation & 15 & 65 & 0.02757 & --- & 2.29\\
+$n=1$ & 3 & 13 & 0.03181 & 15.4\% & 2.27\\
+$n=2$ & 6 & 26 & 0.03310 & 20.1\% & 34.37\\
+$n=3$ & 9 & 39 & 0.03271 & 18.7\% & 30.89\\
+$n=5$ & 15 & 65 & 0.03393 & 23.1\% & 39.72\\
+$n=8$ & 24 & 104 & 0.02925 & 6.1\% & 39.45\\
+$n=10$ & 30 & 130 & 0.02834 & 2.8\% & 14.33\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The first tested matching grid has ten anchors per family, or 30 frozen gain
+vectors. Its paired 95\% interval for the tolerance-adjusted tracking gap is
+$[-0.000663,-0.000543]$ degrees/s, entirely below zero. Eight anchors per
+family do not match: their interval is $[0.000273,0.000329]$ degrees/s.
+This supports a twofold gain-storage benefit for the implemented interpolated
+controller, not a tenfold storage benefit inferred from counting three families
+against 30 frozen gains. Both methods use three structural families and the
+same nine fitted parameter ratios.
+
+\Cref{fig:experiment5a} shows that performance does not improve monotonically
+with anchor count. The grids are not nested, the selected layouts differ, and
+switches occur at different phases of a maneuver. Training-optimal selection
+within a finite candidate list does not imply test-optimal placement. In
+particular, the selected five-anchor grid is not the endpoint-inclusive M5
+used in 4G. This prevents attributing the observed curve to model count alone.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{experiment_5a_complexity.pdf}
+\caption{Experiment 5A: tracking versus frozen gain count and controller
+storage, followed by peak steering rate. Error bars are seed standard deviations.
+The horizontal tolerance line represents 5\% above M4's mean tracking error.}
+\label{fig:experiment5a}
+\end{figure}
+
+The ten-anchor grid's steering RMS is 0.80576 degrees, nearly equal to M4's
+0.80578 degrees, while peak steering rate rises from 2.29 to 14.33 degrees/s.
+It makes up to 12 switches per varying-speed maneuver. At strong excitation,
+the corresponding peak rates are 3.48 and 21.58 degrees/s. Comparable RMS
+effort therefore does not imply comparable input smoothness.
+
+Matching is aggregate, not universal across scenarios. With ten anchors per
+family, gaps are 5.03\% on the original S-curve, 3.16\% on the shifted lane
+change, and $-1.11\%$ at constant 22 m/s. The original S-curve narrowly fails
+the scenario-specific 5\% interval criterion. A single 24 m/s gain already
+slightly outperforms M4 on the constant-speed case. These findings reinforce
+that the value of interpolation depends on the task and operating variation.
+
+\paragraph{Decision and limitations.}
+Within this frozen comparison, many more than three frozen gains are needed
+to meet the aggregate tracking target, and M4 achieves smoother steering with
+less controller storage than the first matching grid. The scheduling argument
+is supported for the tested nearest-switching implementation. It is not a lower
+bound over all LTI designs, optimized partitions, hysteretic switching, or
+bumpless transfer schemes, and it proves no formal time-varying stability claim.
+Phase 6 should now test where the advantage persists as structural heterogeneity
+and speed range vary, before drawing a broader model-complexity conclusion.

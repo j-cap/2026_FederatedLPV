@@ -1,0 +1,21 @@
+{
+  "seeds": [81,82,83,84,85],
+  "test_clients_per_family": 10,
+  "episode_duration": 1.0,
+  "local_episodes": 3,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "noise_deg": [0.05,0.1],
+  "epsilons": [2,4,8,"inf"],
+  "delta": 0.00001,
+  "privacy_draws": 10,
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "dp_seed": 8401,
+  "acceptable_tracking_increase_pct": 10,
+  "mechanisms": [
+    {"name":"Broad-10","cohort":10,"bounds":[[1,300],[1,300],[0.05,3]]},
+    {"name":"Tight-10","cohort":10,"bounds":[[40,70],[35,75],[0.45,0.8]]},
+    {"name":"Tight-30","cohort":30,"bounds":[[40,70],[35,75],[0.45,0.8]]},
+    {"name":"Tight-100","cohort":100,"bounds":[[40,70],[35,75],[0.45,0.8]]}
+  ],
+  "notes": "Recovery study retaining replacement-adjacent client-level DP and delta=1e-5. Broad-10 repeats the 8C public box. Tight bounds are derived from the publicly specified benchmark fleet support and frozen before 8D execution; clipping preserves DP even for contributions outside the box. Cohort scaling assumes secure aggregation of 10, 30, or 100 compatible clients per family. Models are evaluated on a separate 10-client-per-family fleet. Each finite epsilon uses ten independent privacy draws per fleet. Gate remains <=10% tracking increase relative to the same mechanism's non-private mean, full amplitude feasibility, and frozen rho below one."
+}

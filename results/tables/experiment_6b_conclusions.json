@@ -1,0 +1,74 @@
+{
+  "protocol_sha256": "2474dbc4066a6e31fc8c049a163a2d9375a6e97fcf940522ae959c5dbbd559b9",
+  "evaluations": 259200,
+  "frozen_fit_sha256": {
+    "21": "c3c3ee62e6c20ba86ace508f91c952bc2067b6093544c4ade4e4436cc2a275db",
+    "22": "977d1be082b4fb8d27691f0c3037fde0e502945c7d6e16cf7d99bf487084814e",
+    "23": "1965032ef0ef206ce16305c3d7bb8652abc6a1b083ed2398e3b86c575d313f67",
+    "24": "78c5cc85a340e2d568a30dc68d5c6cbd04534b463607cf9dfb92a5099d9f775d",
+    "25": "d8c05e3e77a23b1c9cdbdf64afa662b4663b7371d0a449f3f6827ab86a9b66e8",
+    "26": "ea76e306cf3072e6181f25fbf439667741d74f5aa2f2f14c4743c313864e5f71",
+    "27": "604210314728436c4f3f0e5afba6c837c3067453fd8dfe7aa66e7ca54c9adcb3",
+    "28": "39ec3681d0b4a55ed57e66f31675d8e6a21bd9634a88a1a9591a2bd8337f843a",
+    "29": "8985477ff7285c803485b980e72ad09d51e1be7b42ac92b95cb39e99a461e1db",
+    "30": "9aeadf85b5728a136876a576d305f33efbe8d3c96ef4b059b6c373af0ac16f5e"
+  },
+  "legacy_replay_max_error": 7.949196856316121e-13,
+  "unchanged_frozen_rho_max": 0.9688779425459846,
+  "all_amplitude_feasible": true,
+  "robustness_gate": true,
+  "primary_comparisons": [
+    {
+      "gamma": 1,
+      "low": 10,
+      "high": 30,
+      "time_scale": 1,
+      "plant": "vy",
+      "baseline": "M3",
+      "improved": "M4",
+      "reduction_pct": 16.462356162422786,
+      "ci_low": 0.004905209347710808,
+      "ci_high": 0.00580484324616283,
+      "positive_pairs": 10
+    },
+    {
+      "gamma": 1,
+      "low": 10,
+      "high": 30,
+      "time_scale": 1,
+      "plant": "vy",
+      "baseline": "M2",
+      "improved": "M4",
+      "reduction_pct": 25.020113296899304,
+      "ci_low": 0.008929495709438354,
+      "ci_high": 0.009220596105940716,
+      "positive_pairs": 10
+    },
+    {
+      "gamma": 1,
+      "low": 10,
+      "high": 30,
+      "time_scale": 2,
+      "plant": "vy",
+      "baseline": "M3",
+      "improved": "M4",
+      "reduction_pct": 35.27125300185243,
+      "ci_low": 0.0037782755291599964,
+      "ci_high": 0.004474077617675339,
+      "positive_pairs": 10
+    },
+    {
+      "gamma": 1,
+      "low": 10,
+      "high": 30,
+      "time_scale": 2,
+      "plant": "vy",
+      "baseline": "M2",
+      "improved": "M4",
+      "reduction_pct": 44.95119436811374,
+      "ci_low": 0.006033480489782558,
+      "ci_high": 0.006336530847480074,
+      "positive_pairs": 10
+    }
+  ]
+}

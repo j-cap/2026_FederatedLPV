@@ -1,0 +1,13 @@
+{
+  "training_seeds": [11,12,13,14,15,16,17,18,19,20],
+  "test_seed_offset": 100,
+  "clients_per_family": 10,
+  "scenarios": ["previous_s_curve", "shifted_double_lane", "constant_22"],
+  "severities": {"near_linear": 0.5, "moderate": 1.0, "strong": 1.5},
+  "primary_severity": "moderate",
+  "minimum_mean_reduction_pct": 5.0,
+  "maximum_frozen_radius": 1.0,
+  "bootstrap_seed": 4107,
+  "bootstrap_repetitions": 10000,
+  "notes": "Frozen 4F estimator and Q/R. Independent train/test clients. Equal scenario and family weighting. No test-based tuning or exclusion. Seed pairs are the statistical units."
+}

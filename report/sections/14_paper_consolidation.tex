@@ -1,17 +1,14 @@
 \section{Path to paper consolidation}
 During development, this report favors traceability over page limits. Failed
-experiments, revised assumptions, and negative findings remain documented. Paper
-consolidation begins only after the oracle gates and at least one convincing
-non-oracle federated result.
+experiments, revised assumptions, and negative findings remain documented.
+Experiment 8A performs the formal paper-readiness audit without requiring a
+positive federated result (\cref{sec:experiment8a}).
 
 The consolidated paper should center on one precise claim and retain only the
-decisive evidence. A likely structure is: problem and motivation, proposed
-federated LPV method, experimental methodology, decisive oracle result, federated
-result under partial operating coverage, limitations, and conclusion. Candidate
-contributions are the scheduling--structure decomposition, an uncertainty-aware
-clustered federated LPV identification method, and evidence that a small number of
-LPV families replaces many frozen LTI regimes. The development report remains the
-complete experimental record and supplies supplementary details.
+decisive evidence. The evidence now supports an LPV architecture-selection and
+structured-identification paper, not an uncertainty-aware federated method.
+The development report remains the complete experimental record and supplies
+supplementary details.
 
 \section{Current execution status}
 Phases~0--3 are complete on the linear speed-dependent bicycle plant. The plant
@@ -30,8 +27,43 @@ successfully, but direct redesign from unconstrained nonlinear-data regressions
 fails the primary stability and performance gate (\cref{sec:experiment4d}).
 Experiment 4D-R shows that a
 common physics regularizer restores stability and feasibility, but does not make
-redesigned M4 outperform clustered LTI (\cref{sec:experiment4dr}). The next step
-is therefore a scope decision between retaining the successful transfer result
-or adding structure-preserving identification before further redesign. The LTI
-complexity sweep (\cref{sec:phase5}), regime map (\cref{sec:phase6}), and
-federated extension (\cref{sec:phase7}) remain planned.
+redesigned M4 outperform clustered LTI (\cref{sec:experiment4dr}). Experiment 4E
+shows that solver roundoff and tire nonlinearity alone do not explain the failure.
+Experiment 4F restores M4's initial tracking advantage through structured
+parameter-ratio identification (\cref{sec:experiment4e,sec:experiment4f}).
+Experiment 4G validates that repair on ten independent train/test fleet pairs
+and three held-out trajectories, including the original fitted LTI baselines.
+Its predeclared recovery gate passes (\cref{sec:experiment4g}). This establishes
+oracle support within the tested distribution, not a federated result.
+Experiment 5A finds that the first tested frozen grid matching M4 within the
+aggregate 5\% tolerance uses 30 gain vectors versus M4's 15, with higher peak
+steering rates (\cref{sec:experiment5a}). This is a result for the tested grid
+search and switching rule. Experiment 6A completes the oracle regime map:
+global LTI is sufficient at low separation and narrow speed range, global LPV
+at zero separation and wider ranges, family LTI at separated families and
+narrow range, and family LPV at nominal separation and wider ranges
+(\cref{sec:experiment6a}). All 129,600 tested runs satisfy amplitude feasibility.
+Experiment 6B checks four corner cells with frozen 6A controllers, corrected
+lateral-momentum integration, and slower references. Its robustness gate
+passes, and the corresponding regime choices persist
+(\cref{sec:experiment6b}). The largest moderate aggregate tracking change from
+the plant correction is 0.16\%, much smaller than the architecture differences.
+Prescribed longitudinal speed and pure lateral tire forces remain limitations.
+Experiment 7A completes the finite-data prerequisite comparison
+(\cref{sec:experiment7a}). Oracle-family pooling beats global pooling but
+increases primary tracking error by 11.62\% relative to accurate local fits.
+Its collaboration gate fails. This establishes a complexity--performance
+trade-off, not a federated accuracy benefit. Experiment 7B tests
+validation-selected family-informed personalization on ten new fleets
+(\cref{sec:experiment7b}). It improves tracking over fixed Family pooling by
+12.79\%, but is 0.0573\% worse than Local and fails its 5\% improvement gate.
+Most clients select weak regularization. A realistic local information
+limitation must be established before pursuing a federated accuracy claim;
+the federated extension (\cref{sec:phase7}) remains planned. Experiment 7C then
+imposes single-speed local coverage with complementary full-envelope oracle-family
+coverage (\cref{sec:experiment7c}). Family remains 13.61\% worse than Local in
+tracking, despite beating Global by 35.22\%; the gate again fails. The structured
+model extrapolates accurately from very sparse local coverage, while within-family
+pooling bias dominates its variance benefit. This closes the current
+federated-accuracy route unless a qualitatively different, application-grounded
+information limitation is introduced.

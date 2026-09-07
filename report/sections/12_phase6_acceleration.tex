@@ -1,0 +1,189 @@
+\subsection{Experiment 6B: acceleration and coordinate-consistency check}
+\label{sec:experiment6b}
+
+\paragraph{Question and scope.}
+Experiment 6A supports the scheduling--specialization decomposition but leaves
+an explicit prescribed-speed plant approximation. Does its principal conclusion
+survive a consistent lateral-momentum model, and does it persist when the speed
+profiles are slowed below the illustrative acceleration target? This is a
+paired transfer check with the 6A fitted models and controller gains frozen.
+It does not refit on corrected-plant data or introduce acceleration scheduling
+into the controller.
+
+\paragraph{Coordinate correction.}
+For the small-angle sideslip proxy used throughout this benchmark,
+$\beta=v_y/v_x$, the lateral-momentum and yaw equations give
+\begin{align}
+ \dot v_y&=\frac{F_{yf}+F_{yr}}{m}-v_xr,\\
+ \dot r&=\frac{l_fF_{yf}-l_rF_{yr}}{I_z},\\
+ \dot\beta&=\frac{F_{yf}+F_{yr}}{mv_x}-r
+             -\frac{\dot v_x}{v_x}\beta.
+ \label{eq:6b-coordinate}
+\end{align}
+The final term follows by differentiating $v_y/v_x$. It vanishes at constant
+speed, but is absent from the previous prescribed-speed implementation.
+We retain the same small-angle slip expressions and tanh force laws, written
+in lateral-velocity coordinates as
+\begin{align}
+ \alpha_f&=\delta-\frac{v_y+l_fr}{v_x}, &
+ \alpha_r&=\frac{-v_y+l_rr}{v_x}.
+\end{align}
+The controller still receives $(\beta,r)$ at each sample. This coordinate check
+does not replace the proxy by the exact angle $\arctan(v_y/v_x)$.
+
+\paragraph{Three plant implementations.}
+The historical implementation, denoted \texttt{legacy}, retains the 6A
+frozen-speed RK4 step. A diagnostic, \texttt{beta\_noacc}, varies speed between
+RK4 stages while omitting the final term in \cref{eq:6b-coordinate}. The
+coordinate-consistent implementation, \texttt{vy}, integrates $(v_y,r)$ and
+converts $v_y$ to $\beta$ at sampling instants. Speed is linearly interpolated
+between prescribed samples during integration. Steering remains held over each
+sample, and the integral state and sampled controller are unchanged. Comparing
+the first two implementations isolates within-step speed variation. Comparing
+the latter two isolates the coordinate term, up to integration error.
+
+All three retain static axle loads, pure lateral tanh tires, and externally
+prescribed longitudinal speed. There is no longitudinal-force allocation,
+combined-slip friction constraint, or acceleration-induced load transfer.
+Thus \texttt{vy} is coordinate-consistent under the existing bicycle
+assumptions, not a full longitudinal--lateral vehicle model.
+
+\paragraph{Frozen protocol and contrasts.}
+The four selected cells use $\gamma_h\in\{0,1\}$ and speed envelopes
+18--22 and 10--30 m/s. We load the committed 6A parameter fits for seeds
+21--30 and reconstruct exactly the same M1--M4 gains. Test fleets remain
+the paired held-out realizations 121--130. These are repeated conditions on
+the same clients, not additional independent fleet evidence. Per-seed fit-file
+hashes record the model provenance.
+
+Each of the three held-out scenarios and three severities is run with its
+original 12-second timing and with both speed and yaw reference stretched to
+24 seconds. The sample time remains 0.01 seconds. This retains reference
+amplitudes and speed support while halving the rate of both signals. Broad-range
+peak speed acceleration decreases from 3.93 to 1.96 m/s$^2$. Stretching the yaw
+reference also makes lateral tracking less demanding, so we compare architectures
+and plants within each timing condition rather than attributing cross-duration
+differences solely to acceleration.
+
+Primary metrics and amplitude-feasibility limits remain those of 6A. Paired
+bootstrap intervals resample ten seeds, using 10,000 draws and seed 6201.
+The predeclared robustness gate requires M4 to improve moderate mean tracking
+by at least 5\% over both M2 and M3 in the nominal-separation broad-envelope
+\texttt{vy} condition at both durations, with positive lower confidence bounds
+and amplitude feasibility at all tested severities. The four-corner
+smallest-controller classification is a secondary descriptive result using
+the previous 5\% upper-bound rule. The 6A frozen-speed stability audit applies
+to the unchanged gains and constant-speed linearizations, but does not certify
+the accelerating trajectories.
+
+\paragraph{Validation and reproducibility.}
+Constant-speed closed-loop trajectories and metrics agree with the previous
+simulator to numerical precision. The corrected derivative is checked against
+the coordinate transformation, and RK4 is checked against an independently
+implemented lateral-momentum ODE using adaptive integration and step halving.
+The complete suite passes 33 tests. The full legacy replay is also compared
+against the committed 6A raw metrics before generating conclusions.
+The entry point is \texttt{experiment\_6b\_acceleration\_validation.py}, with
+the frozen protocol under \texttt{code/config/}. Compressed per-seed client and
+profile CSVs support paired summaries and a \texttt{--summarize-only} rebuild.
+
+\paragraph{Results and decision.}
+All 259,200 client evaluations complete and pass amplitude feasibility.
+The maximum absolute discrepancy in the retained legacy-replay metrics is
+$7.95\times10^{-13}$, confirming reproduction of the corresponding 6A runs.
+The unchanged frozen audit has worst spectral radius 0.96888. The primary
+robustness gate passes at both durations, with all four paired comparisons
+favoring M4 in all ten fleet pairs and all lower confidence bounds positive.
+
+\Cref{tab:6b-tracking} gives the nominal-separation broad-envelope results.
+At the original timing, corrected-plant M4 improves on M3 by 16.46\% and on
+M2 by 25.02\%. At doubled duration, the reductions are 35.27\% and 44.95\%,
+respectively. The 95\% paired intervals for the absolute mean differences
+$J_{M3}-J_{M4}$ and $J_{M2}-J_{M4}$ are $[0.00491,0.00580]$ and
+$[0.00893,0.00922]$ degrees/s at 12 seconds, and $[0.00378,0.00447]$ and
+$[0.00603,0.00634]$ degrees/s at 24 seconds.
+
+\begin{table}[htbp]
+\centering
+\caption{Experiment 6B: mean moderate yaw-rate tracking RMSE in degrees/s for
+nominal separation and 10--30 m/s. Models and gains are identical across plant
+implementations and timings. The corrected plant integrates lateral momentum.}
+\label{tab:6b-tracking}
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{12 seconds} & \multicolumn{2}{c}{24 seconds}\\
+Method & Legacy & Corrected & Legacy & Corrected\\
+\midrule
+M1 & 0.040306 & 0.040336 & 0.016590 & 0.016597\\
+M2 & 0.036234 & 0.036246 & 0.013748 & 0.013748\\
+M3 & 0.032481 & 0.032533 & 0.011676 & 0.011692\\
+M4 & 0.027164 & 0.027177 & 0.007561 & 0.007568\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The slower references reduce absolute error for all four methods. Although
+M4's relative advantages increase, its absolute advantages over M2 and M3
+decrease. This is not evidence that reducing acceleration itself increases the
+benefit of LPV. Both the lateral reference rate and its interaction with speed
+change in this timing experiment.
+
+\Cref{fig:6b-acceleration} shows that the three plant implementations nearly
+overlap at the scale of the architecture differences. Across the four cells,
+two durations, and four methods, the largest absolute relative change in
+moderate mean tracking from \texttt{legacy} to \texttt{vy} is 0.1594\%.
+Changing within-step speed treatment alone produces at most 0.01394\% change.
+For broad-range nominal-family M4, the complete plant correction increases
+mean error by 0.0484\% at 12 seconds and 0.0938\% at 24 seconds. These changes
+are small but statistically resolvable in the paired simulations. They are
+not zero, and are much smaller than the architecture contrasts in this study.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\linewidth]{experiment_6b_acceleration.pdf}
+\caption{Experiment 6B: nominal-separation broad-range tracking across plant
+implementations. Error bars are standard deviations across ten seed pairs.
+\texttt{beta\_noacc} varies speed within RK4 but omits the coordinate term,
+whereas \texttt{vy} integrates the consistent momentum equations. Their near
+overlap shows that the controller-architecture differences dominate these
+plant corrections under both tested timings.}
+\label{fig:6b-acceleration}
+\end{figure}
+
+The four-corner descriptive classifications also remain unchanged at both
+durations and for all three implementations. Global LTI is sufficient with
+zero separation and narrow range, global LPV with zero separation and broad
+range, family LTI with nominal separation and narrow range, and family LPV
+with nominal separation and broad range. These are the corresponding four
+corners of \cref{tab:6a-regimes}. The intermediate-separation and
+intermediate-envelope boundaries of 6A were not rerun here.
+
+One reason a modest effect is plausible is the size of the added term relative
+to linear-tire sideslip damping. Their coefficient ratio is
+\begin{equation}
+ \frac{|\dot v_x|/v_x}{(C_f+C_r)/(mv_x)}
+ =\frac{m|\dot v_x|}{C_f+C_r}.
+\end{equation}
+At the nominal center, $(C_f+C_r)/m\simeq106.7\,\mathrm{m\,s^{-2}}$, so
+even the original peak speed acceleration gives approximately 3.7\% of that
+linear damping coefficient. This is an explanatory scale comparison, not an
+error bound for tanh tires or the closed loop. The small observed tracking
+effect is established by the paired simulations.
+
+The result supports continuing toward limited-data identification and
+federation: the tested M4 advantage is not an artifact of the omitted
+coordinate term or dependent on the faster timing. The remaining limitations
+are the prescribed longitudinal speed, pure lateral tire model, fixed
+controllers, and absence of a time-varying stability certificate. The result
+does not yet validate identification on corrected-plant data or the 5A
+controller-grid sweep under the new plant.
+
+\paragraph{Implication for subsequent identification.}
+The coordinate term is known kinematics shared by all clients, not a new
+structural family. Identification on accelerating trajectories should either
+use lateral-velocity coordinates or include the known term
+$-(\dot v_x/v_x)\beta$ in its predictor. The persistent unknown parameter ratios
+can then retain their original interpretation. This experiment tests transfer
+of existing speed-only controllers and does not claim that the previous
+identification objective is already corrected. Estimating acceleration from
+noisy production signals remains a separate practical question.
