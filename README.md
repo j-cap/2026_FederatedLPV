@@ -136,3 +136,13 @@ maximum centralized--federated relative parameter error is 7.65e-8 and maximum
 tracking difference is 6.12e-10 deg/s; all 5,400 evaluations are feasible.
 The secure path is a numerical utility emulator, not production cryptography or
 differential privacy. Experiment 8C can now study an explicit privacy budget.
+
+Experiment 8C evaluates one-shot replacement-adjacent client-level differential
+privacy on fresh fleets 71--80. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_8c_private_frontier.py --workers 4`.
+Bounded local log-parameter contributions are securely aggregatable and released
+with analytically calibrated Gaussian noise at delta=1e-5. Ten privacy draws per
+fleet are tested for epsilon 0.5, 1, 2, 4, and 8. No finite epsilon meets the
+predeclared 10% tracking-degradation gate. Epsilon 4 and 8 remain feasible in all
+runs; epsilon <=2 includes frozen-instability cases. The result motivates a
+control-aware privacy mechanism rather than weakening the privacy definition.
