@@ -180,3 +180,14 @@ contributions, and nonlinear tire friction reduced from 0.9 to 0.7. The
 30-client boundary and 10-client nonviable points correctly remain outside the
 declared region. The deployment gate passes without reusing Experiment 8E's
 arbitrary 15% method-improvement threshold.
+
+Experiment 8G performs a blind confirmation on fresh seeds 106--115. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_8g_blind_confirmation.py --workers 5`.
+The frozen primary prediction at 20 clients and epsilon 8 fails narrowly:
+control-aware DP costs 10.43% relative to its matching non-private family model,
+just outside the 10% gate, while isotropic DP costs 14.40%. Control-aware DP is
+better in all ten fleets (paired Wilcoxon p=0.000977). The secondary 50-client,
+epsilon-4 point confirms, with costs of 3.48% and 5.08%, respectively. Local
+models remain best in absolute tracking. Thus the robust paper claim uses the
+confirmed 50-client point; the 20-client result is reported as a boundary, not
+retrospectively relabelled as viable.

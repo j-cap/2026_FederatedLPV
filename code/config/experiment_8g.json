@@ -1,0 +1,25 @@
+{
+  "seeds": [106,107,108,109,110,111,112,113,114,115],
+  "training_clients_per_family": 50,
+  "test_clients_per_family": 10,
+  "episode_duration": 1.0,
+  "local_episodes": 3,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "noise_deg": [0.05,0.1],
+  "bounds": [[40,70],[35,75],[0.45,0.8]],
+  "operating_points": [
+    {"name": "discriminating", "cohort": 20, "epsilon": 8},
+    {"name": "shared-viable", "cohort": 50, "epsilon": 4}
+  ],
+  "delta": 0.00001,
+  "privacy_draws": 10,
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "dp_seed": 8701,
+  "acceptable_tracking_increase_pct": 10,
+  "control_weights": {
+    "nominal": [1.63603729,1.81984499,0.33587092],
+    "heavy": [1.64407955,1.80771579,0.33647052],
+    "handling": [1.66629228,1.85627264,0.32330100]
+  },
+  "notes": "Blind confirmation on fresh fleets. Primary frozen prediction from 8F: at n=20, epsilon=8, control-aware DP is viable and isotropic DP is not. Secondary prediction: both are viable at n=50, epsilon=4. Compare Local, matching non-private Family, IsotropicDP, and ControlAwareDP. Local accuracy superiority is not required or claimed. Gate also requires full nonlinear amplitude feasibility, frozen rho below one, and control-aware improvement over isotropic in the primary cell across fleet seeds."
+}
