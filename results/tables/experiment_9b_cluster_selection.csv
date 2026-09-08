@@ -1,0 +1,11 @@
+regime,source,k_mean,k_min,k_max,test_ari,silhouette,minimum_size
+baseline,LearnedK,3.0,3,3,0.979634078728516,0.5384813197591478,58
+baseline,OraclePartition,3.0,3,3,,0.5822309398374333,59
+continuous,LearnedK,2.0,2,2,,0.5133731442778406,80
+continuous,OraclePartition,2.0,2,2,,0.5676056715331191,82
+high-noise,LearnedK,2.8,2,6,0.3899282742422962,0.35637443153860604,17
+high-noise,OraclePartition,3.0,3,3,,0.5819767296640517,59
+short-data,LearnedK,3.2,2,7,0.08211115840370233,0.3485326092204435,12
+short-data,OraclePartition,3.0,3,3,,0.5741312235020696,59
+unbalanced,LearnedK,2.9,2,3,0.9543094696166985,0.530000664623701,20
+unbalanced,OraclePartition,3.0,3,3,,0.574653014692994,20

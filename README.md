@@ -204,3 +204,16 @@ it merges two groups on seed 124 and is 2.66% worse than oracle on average.
 Experiment 9A therefore supports learned compatibility discovery, but not the
 claim that the existing control-aware DP geometry is also a valid clustering
 geometry. Clustering is non-private in this gate and assumes a trusted server.
+
+Experiment 9B stress-tests ordinary label-free parameter clustering on fresh
+seeds 126--135. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9b_group_robustness.py --workers 5`.
+The frozen gate passes for baseline and strongly unbalanced discrete fleets:
+tracking remains within 0.08% and 1.49% of Oracle family, with unseen ARI 0.980
+and 0.954. It fails for 0.25-second records and fourfold output noise, where
+point-estimate clustering becomes unreliable (ARI 0.082 and 0.390). On a
+continuously heterogeneous population, Learned-K selects two regions, matches
+the true-ratio partition within 0.42%, and improves Global by 17.25%, narrowly
+below the predeclared 20% gate. All 10,500 fits converge and all 21,600 nonlinear
+evaluations are feasible and frozen-stable. This bounds the 9A claim and
+motivates uncertainty-aware clustering before private group discovery.

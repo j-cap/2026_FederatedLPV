@@ -1,0 +1,53 @@
+{
+  "provenance": {
+    "code/config/experiment_9b.json": "1b1c8f1c38cc5d44238cb9fd349d74442719f3eda918afee569acd928ddd7e53",
+    "code/experiments/experiment_9b_group_robustness.py": "7c9613104e0ff1a883c7c00ba1d9d33c80f139a82c8cdfe697b578faf17a9096"
+  },
+  "local_fits": 10500,
+  "closed_loop_evaluations": 21600,
+  "all_local_fits_converged": true,
+  "regime_gates": [
+    {
+      "regime": "baseline",
+      "kind": "discrete",
+      "tracking_cost_vs_reference_pct": 0.07789026770936847,
+      "global_improvement_pct": 35.659518347678656,
+      "test_ari": 0.979634078728516,
+      "passed": true
+    },
+    {
+      "regime": "short-data",
+      "kind": "discrete",
+      "tracking_cost_vs_reference_pct": 63.87349307635781,
+      "global_improvement_pct": -7.4580471240417445,
+      "test_ari": 0.08211115840370233,
+      "passed": false
+    },
+    {
+      "regime": "high-noise",
+      "kind": "discrete",
+      "tracking_cost_vs_reference_pct": 21.896833084600644,
+      "global_improvement_pct": 21.82118500611393,
+      "test_ari": 0.3899282742422962,
+      "passed": false
+    },
+    {
+      "regime": "unbalanced",
+      "kind": "discrete",
+      "tracking_cost_vs_reference_pct": 1.4864765507997868,
+      "global_improvement_pct": 21.077927528946493,
+      "test_ari": 0.9543094696166985,
+      "passed": true
+    },
+    {
+      "regime": "continuous",
+      "kind": "continuous",
+      "tracking_cost_vs_reference_pct": -0.4231685612264724,
+      "global_improvement_pct": 17.248983118761007,
+      "test_ari": null,
+      "passed": false
+    }
+  ],
+  "robustness_gate": false,
+  "privacy_applied": false
+}
