@@ -1,0 +1,21 @@
+{
+  "development_seeds": [126,127,128,129,130,131,132,133,134,135],
+  "confirmation_seeds": [136,137,138,139,140,141,142,143,144,145],
+  "bounds": [[40,70],[35,75],[0.45,0.8]],
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "local_episodes": 3,
+  "candidate_clusters": [1,2,3,4,5,6,7,8],
+  "minimum_cluster_size": 10,
+  "mixture_restarts": 10,
+  "mixture_iterations": 100,
+  "intrinsic_floor": 0.0025,
+  "point_minimum_silhouette": 0.25,
+  "point_restarts": 30,
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "regimes": [
+    {"name":"short-data", "train_counts":[60,60,60], "test_counts":[10,10,10], "episode_duration":0.25, "noise_deg":[0.05,0.1]},
+    {"name":"high-noise", "train_counts":[60,60,60], "test_counts":[10,10,10], "episode_duration":1.0, "noise_deg":[0.2,0.4]}
+  ],
+  "oracle_tracking_tolerance_pct": 5,
+  "notes": "9B seeds are a locked development replication and seeds 136-145 are the untouched confirmation set. The proposed method uses Gauss-Newton log-parameter covariances, a heteroscedastic Gaussian mixture with BIC-selected unknown K, and soft posterior model personalization. Confirmation is opened only if both development regimes are within 5% of OracleFamily, strictly improve PointK, remain feasible and frozen-stable, and retain fewer shared base models than Local. The same gate then applies to confirmation. ARI is diagnostic, not a gate, because posterior membership is deliberately soft. No privacy is applied."
+}

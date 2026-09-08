@@ -217,3 +217,17 @@ the true-ratio partition within 0.42%, and improves Global by 17.25%, narrowly
 below the predeclared 20% gate. All 10,500 fits converge and all 21,600 nonlinear
 evaluations are feasible and frozen-stable. This bounds the 9A claim and
 motivates uncertainty-aware clustering before private group discovery.
+
+Experiment 9C implements that uncertainty-aware repair on the locked 9B
+short-data and high-noise seeds. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9c_uncertainty_groups.py --phase development --workers 5`.
+Gauss--Newton log-parameter covariances feed a heteroscedastic Gaussian mixture;
+BIC selects an unknown number of groups and posterior memberships blend shared
+scheduled controllers. Under high noise this reduces point-clustering tracking
+error by 17.27%, but remains 5.31% above Oracle family and narrowly misses the
+frozen 5% gate. With 0.25-second records BIC selects one group in every fleet,
+and the oracle gap remains 55.45%. The development gate therefore fails and the
+untouched confirmation seeds 136--145 are deliberately not opened. All 4,200
+fits converge and all 10,800 nonlinear evaluations are feasible and stable.
+The result motivates acquiring more informative or repeated local records, not
+forcing extra clusters from structurally uncertain estimates.

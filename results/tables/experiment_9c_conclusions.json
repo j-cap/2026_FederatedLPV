@@ -1,0 +1,43 @@
+{
+  "provenance": {
+    "code/config/experiment_9c.json": "9ff2eda0705b9877425bd0f933e7e917ca790ef2b406b84127c82ec89dd4e87b",
+    "code/src/federated_lpv/uncertainty_clustering.py": "5a3d5c4b37a5bc10c5dd9e293709bb59c83150bb41d17175a57655a8b5ab466d",
+    "code/experiments/experiment_9c_uncertainty_groups.py": "3efbfa124b0cf80ee9a9ef1cb291647524f53de9918a1f842c24ff8a10441d90"
+  },
+  "local_fits": 4200,
+  "closed_loop_evaluations": 10800,
+  "all_local_fits_converged": true,
+  "development_gates": [
+    {
+      "phase": "development",
+      "regime": "short-data",
+      "tracking_cost_vs_oracle_pct": 55.45454079420746,
+      "improvement_vs_point_pct": 0.6499918120893011,
+      "passed": false
+    },
+    {
+      "phase": "development",
+      "regime": "high-noise",
+      "tracking_cost_vs_oracle_pct": 5.314247122347382,
+      "improvement_vs_point_pct": 17.27052094092877,
+      "passed": false
+    }
+  ],
+  "development_gate": false,
+  "confirmation_run": false,
+  "confirmation_gates": [],
+  "confirmation_gate": null,
+  "reserved_confirmation_seeds": [
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143,
+    144,
+    145
+  ],
+  "privacy_applied": false
+}
