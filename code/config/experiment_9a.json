@@ -1,0 +1,17 @@
+{
+  "seeds": [116,117,118,119,120,121,122,123,124,125],
+  "training_clients_per_family": 60,
+  "test_clients_per_family": 10,
+  "episode_duration": 1.0,
+  "local_episodes": 3,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "noise_deg": [0.05,0.1],
+  "bounds": [[40,70],[35,75],[0.45,0.8]],
+  "candidate_clusters": [2,3,4,5,6,7,8],
+  "minimum_silhouette": 0.25,
+  "minimum_cluster_size": 10,
+  "kmeans_restarts": 30,
+  "global_control_weights": [1.63603729,1.81984499,0.33587092],
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "notes": "Non-private hard gate for learned compatibility groups. Training and unseen test vehicles are separate. Parameter clustering uses normalized log-ratios. Control-aware clustering uses the same public nominal-center diagonal geometry for every client and therefore does not require family labels. K is selected by maximum training silhouette over K=2..8 subject to minimum cluster size; K=1 is selected if no admissible candidate reaches silhouette 0.25. FixedK3 is a baseline. The gate requires learned-K control-aware tracking no worse than oracle-family tracking, full amplitude feasibility, frozen rho below one, and fewer deployed models than Local. Simulator family labels are used only for oracle comparison and ARI diagnostics."
+}

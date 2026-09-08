@@ -191,3 +191,16 @@ epsilon-4 point confirms, with costs of 3.48% and 5.08%, respectively. Local
 models remain best in absolute tracking. Thus the robust paper claim uses the
 confirmed 50-client point; the 20-client result is reported as a boundary, not
 retrospectively relabelled as viable.
+
+Experiment 9A removes known family labels from non-private model sharing on
+fresh seeds 116--125. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9a_learned_groups.py --workers 5`.
+Label-free clustering of normalized log-parameter estimates selects three groups
+in every fleet, assigns all unseen test vehicles consistently with the simulated
+families (test ARI 1.0), and matches the oracle-family tracking result (0.007554
+versus 0.007556 rad/s) with three rather than 30 Local controllers. The proposed
+reuse of the privacy control weights as a clustering metric fails its hard gate:
+it merges two groups on seed 124 and is 2.66% worse than oracle on average.
+Experiment 9A therefore supports learned compatibility discovery, but not the
+claim that the existing control-aware DP geometry is also a valid clustering
+geometry. Clustering is non-private in this gate and assumes a trusted server.
