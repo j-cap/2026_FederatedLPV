@@ -231,3 +231,17 @@ untouched confirmation seeds 136--145 are deliberately not opened. All 4,200
 fits converge and all 10,800 nonlinear evaluations are feasible and stable.
 The result motivates acquiring more informative or repeated local records, not
 forcing extra clusters from structurally uncertain estimates.
+
+Experiment 9D replaces that fixed-data assumption with uncertainty-triggered
+adaptive calibration. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9d_adaptive_calibration.py --phase development --workers 5`.
+Clients start with three 0.25-second records and request a one-second maneuver at
+a complementary speed while normalized covariance trace exceeds 0.05. The
+development gate passes, after which the frozen policy also passes on untouched
+seeds 136--145. Confirmation Adaptive-soft tracking is 0.007758 rad/s: 2.86%
+above Oracle-adaptive and 33.50% better than the failed Short-point method. It
+uses 1.75 seconds per client instead of the fixed-full 2.75 seconds and retains
+2.8 shared models rather than 30 Local models. All 4,200 development and
+confirmation fits converge, and all 10,800 nonlinear evaluations are feasible
+and frozen-stable. Local remains best in absolute tracking; the positive result
+is reduced calibration and model proliferation with near-oracle shared control.
