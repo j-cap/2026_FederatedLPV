@@ -258,3 +258,16 @@ are more informative. Tire-fade and load-shift tests preserve the ranking. The
 next model should therefore combine a shared family backbone with a small,
 control-relevant local residual and evaluate tracking, calibration burden, and
 deployed degrees of freedom separately.
+
+Experiment 9F tests that personalized representation before introducing another
+federated optimizer. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9f_personalized_manifold.py --workers 5`.
+On ten fresh fleets, a one-scalar control-aware client head closes 69.5% of the
+Exact-family-to-Exact-individual tracking gap and is 0.62% better than the 9D
+Local fit on average; ordinary parameter PCA at the same rank closes only 6.6%
+and remains 6.77% worse than Local. Two local coordinates close 97.7% of the gap
+for the control-aware basis and 99.6% for parameter PCA. This is an oracle
+representation result: true unseen-client parameters are used to project the
+local coefficients. The next required gate is finite-data personalized
+estimation of those coefficients with federated learning of the shared centers
+and directions.

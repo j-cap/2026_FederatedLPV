@@ -1,0 +1,22 @@
+{
+  "seeds": [156,157,158,159,160,161,162,163,164,165],
+  "train_counts": [60,60,60],
+  "test_counts": [10,10,10],
+  "ranks": [0,1,2,3],
+  "gain_speeds": [10,15,20,25,30],
+  "gain_difference_step": 0.0001,
+  "weight_floor": 1e-8,
+  "initial_records": 3,
+  "maximum_records": 5,
+  "initial_record_duration": 0.25,
+  "additional_record_duration": 1.0,
+  "uncertainty_trace_threshold": 0.05,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "additional_speed_offsets": [9,5],
+  "noise_deg": [0.05,0.1],
+  "bounds": [[40,70],[35,75],[0.45,0.8]],
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "rank1_gate": "ControlRank1 tracking must be no worse than fitted Local tracking on the fresh-fleet mean.",
+  "rank2_gate": "ControlRank2 must be within 1% of ExactIndividual tracking and use fewer than three local coordinates.",
+  "notes": "Oracle structural gate before personalized FL. True family labels and true training/test ratios are deliberately used to isolate representation rank. ParameterPCA learns Euclidean log-parameter directions. ControlPCA learns family-specific directions under the local quadratic metric induced by scheduled LQI-gain sensitivity. Test coefficients are oracle projections of true unseen ratios; fitting those coefficients from finite local data is deferred. Rank 3 must reconstruct ExactIndividual numerically. Local uses the unchanged 9D finite-data fit as the practical accuracy comparator."
+}
