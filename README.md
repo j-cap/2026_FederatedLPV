@@ -271,3 +271,16 @@ representation result: true unseen-client parameters are used to project the
 local coefficients. The next required gate is finite-data personalized
 estimation of those coefficients with federated learning of the shared centers
 and directions.
+
+Experiment 9G performs that finite-data test. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9g_finite_personalized.py --workers 5`.
+Training clients transmit structured estimates and covariances; the server
+selects three unknown groups (mean ARI 0.951) and learns control-aware backbones.
+Unseen clients select a group on a held-out complementary record and fit only
+one or two local manifold coefficients. Rank two reaches near-parity at 0.61%
+worse tracking than full three-parameter Local and matches its gain error, but
+fails the strict no-worse gate. Rank one is 7.16% worse and fails its 2% gate.
+Oracle-family variants give nearly identical results, excluding clustering as
+the bottleneck. The remaining question is whether rank two can reach a fixed
+control-quality target with less local calibration; otherwise a reduction from
+three to two local coordinates is too modest to anchor the paper contribution.
