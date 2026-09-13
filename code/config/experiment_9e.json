@@ -1,0 +1,20 @@
+{
+  "seeds": [146,147,148,149,150,151,152,153,154,155],
+  "test_counts": [10,10,10],
+  "initial_records": 3,
+  "maximum_records": 5,
+  "initial_record_duration": 0.25,
+  "additional_record_duration": 1.0,
+  "uncertainty_trace_threshold": 0.05,
+  "coverage_speeds": [10,12,14,16,18,22,24,26,28,30],
+  "additional_speed_offsets": [9,5],
+  "noise_deg": [0.05,0.1],
+  "bounds": [[40,70],[35,75],[0.45,0.8]],
+  "test_scenarios": ["previous_s_curve","shifted_double_lane","constant_22"],
+  "deployment_conditions": {
+    "nominal": {"mass": 1.0, "yaw_inertia": 1.0, "front_stiffness": 1.0, "rear_stiffness": 1.0},
+    "tire_fade": {"mass": 1.0, "yaw_inertia": 1.0, "front_stiffness": 0.9, "rear_stiffness": 0.9},
+    "load_shift": {"mass": 1.1, "yaw_inertia": 1.12, "front_stiffness": 1.0, "rear_stiffness": 1.0}
+  },
+  "notes": "Fresh diagnostic seeds. All methods receive the same 9D adaptive calibration records. ExactIndividual uses the true calibrated vehicle, Local uses its fitted ratios, SwapWithinFamily uses the next test client's Local fit in the same family, ExactFamily uses the geometric mean of true calibrated ratios in that family, and GlobalExact uses the population geometric mean. ExactDeployment is an unattainable drift-aware upper reference. Deployment drift is applied equally after calibration. This experiment has no accuracy gate: it attributes the Local advantage before any redesign."
+}

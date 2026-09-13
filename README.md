@@ -245,3 +245,16 @@ uses 1.75 seconds per client instead of the fixed-full 2.75 seconds and retains
 confirmation fits converge, and all 10,800 nonlinear evaluations are feasible
 and frozen-stable. Local remains best in absolute tracking; the positive result
 is reduced calibration and model proliferation with near-oracle shared control.
+
+Experiment 9E audits why Local remains best rather than weakening that baseline.
+Run `PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9e_local_advantage_audit.py --workers 5`.
+Across ten fresh fleets, Exact-individual is 3.89% better than fitted Local,
+while swapping Local fits only within the correct family is 22.88% worse and an
+error-free Exact-family mean is 7.85% worse. The result attributes the gap to
+genuine within-family specialization; neither clustering nor federated
+optimization can remove it. Raw Local parameter error is effectively
+uncorrelated with tracking, while scheduled-gain and held-out prediction errors
+are more informative. Tire-fade and load-shift tests preserve the ranking. The
+next model should therefore combine a shared family backbone with a small,
+control-relevant local residual and evaluate tracking, calibration burden, and
+deployed degrees of freedom separately.
