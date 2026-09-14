@@ -284,3 +284,15 @@ Oracle-family variants give nearly identical results, excluding clustering as
 the bottleneck. The remaining question is whether rank two can reach a fixed
 control-quality target with less local calibration; otherwise a reduction from
 three to two local coordinates is too modest to anchor the paper contribution.
+
+Experiment 9H evaluates the full matched-prefix calibration frontier. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9h_calibration_frontier.py --workers 5`.
+The strict time-to-target gate fails: personalized rank two at 1.25 seconds does
+not match the 1.75-second Local reference, and both first cross its 2% tolerance
+at 1.75 seconds. Sharing nevertheless gives a clear cold-start advantage at
+equal budgets. Rank one improves Local tracking by 31.79% at 0.50 seconds and
+20.92% at 0.75 seconds; rank two improves it by 0.94% at 1.25 seconds, and both
+personalized variants reach Local parity at 1.75 seconds. The appropriate model
+order changes with information: shared backbone first, then rank one, then rank
+two. This motivates uncertainty-gated personalization rather than a fixed local
+head and provides a defensible operational benefit for fleet information sharing.
