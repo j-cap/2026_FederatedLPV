@@ -350,3 +350,18 @@ it wins only nine of ten fleets, whereas the rotating-bias and dropout regimes
 win all ten. Repeated rounds therefore do not repair missing population support.
 The deployment implication is to monitor cumulative group and operating-region
 coverage, solicit underrepresented clients, or fall back to Local identification.
+
+Experiment 9M reconstructs the main baselines on the same 9K confirmation
+fleets and adds a 50000-resample paired fleet bootstrap. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9m_unified_ablation.py --workers 5`.
+At 0.75 seconds, GlobalK1, LearnedCenter, and Fed20Rank1 improve Local by 8.43%,
+14.47%, and 16.90%. The Fed20Rank1 95% fleet-bootstrap interval is
+[11.79%, 21.10%]. LearnedCenter wins all ten fleets, showing that heterogeneous
+group structure supplies most of the initial cold-start benefit; the additional
+rank-one improvement over the center is 2.20% with an interval spanning zero.
+At 1.25 seconds, Fed20Rank1 improves LearnedCenter by 4.21% with a [2.40%,
+6.36%] interval and wins all ten fleets, showing that the local coordinate
+becomes useful as client information accumulates. Rank two overfits at 0.75
+seconds and provides no reliable advantage over rank one at 1.25 seconds. The
+analysis is explicitly retrospective because the 9K fleet outcomes were known;
+it quantifies the confirmed mechanism but is not another blind confirmation.

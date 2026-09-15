@@ -1,0 +1,18 @@
+{
+  "retrospective_confirmation_fleet_analysis": true,
+  "provenance": {
+    "code/config/experiment_9m.json": "2289c12ebd38f4302119445e35b076bf6b58ba9cacab67fcd3d04f8ac188a3c3",
+    "code/config/experiment_9k.json": "00c162c92a5153113bc3bddc5052262d9d88928c4f7a71d1eb983fa26c06ce94",
+    "code/experiments/experiment_9m_unified_ablation.py": "f769caf9b468fa1455105e18971c74665d00bef544565ef0a23f7385c0507f3c"
+  },
+  "fits": 2400,
+  "all_fits_converged": true,
+  "evaluations": 16200,
+  "all_feasible": true,
+  "statistical_gates": {
+    "cold_start_superiority": true,
+    "late_noninferiority": true
+  },
+  "bootstrap_unit": "fleet",
+  "bootstrap_resamples": 50000
+}
