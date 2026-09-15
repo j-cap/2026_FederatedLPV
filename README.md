@@ -296,3 +296,15 @@ personalized variants reach Local parity at 1.75 seconds. The appropriate model
 order changes with information: shared backbone first, then rank one, then rank
 two. This motivates uncertainty-gated personalization rather than a fixed local
 head and provides a defensible operational benefit for fleet information sharing.
+
+Experiment 9I tests whether fleet knowledge can also select the next calibration
+maneuver. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9i_active_identification.py --workers 5`.
+Fleet control-active improves Fleet-fixed by 1.94% and Local-fixed by 1.78%, but
+it is only 0.18% better than Local control-active and wins that paired comparison
+in five of ten fleets. More importantly, fleet parameter-active, fleet control-
+active, and Local control-active all select the same high-speed, high-frequency
+maneuver for every client. Active excitation helps, but the tested library has a
+globally dominant candidate and does not demonstrate personalized or control-
+aware fleet selection. The report therefore retains 9I as a negative mechanism
+boundary rather than pivoting the paper toward active learning.
