@@ -1,0 +1,64 @@
+{
+  "provenance": {
+    "code/config/experiment_9l.json": "a6e8bfdddd24c5a94c658e1675e24d61d17f8229e611c1a8ea818c6540ee5993",
+    "code/src/federated_lpv/federated_manifold.py": "db6c07d85912d80e3326188c454863dc5ea303dc2db5e66a35572671bd5eac4e",
+    "code/experiments/experiment_9l_nonrandom_participation.py": "809bdac421b7ffe38a5ab2e0d0e2da318193c7157bb532fdb209787b5d930ef7"
+  },
+  "fits": 2400,
+  "all_fits_converged": true,
+  "evaluations": 12600,
+  "all_feasible": true,
+  "stress_gates": [
+    {
+      "method": "Persistent20",
+      "degradation_vs_uniform_pct": 2.704470429552286,
+      "improvement_vs_local_pct": 12.831952064171281,
+      "within_uniform_tolerance": true,
+      "beats_local": true,
+      "fleetwise_win_rate": 0.9,
+      "worst_fleet_vs_local_pct": 34.430543429762885
+    },
+    {
+      "method": "FamilySkew20",
+      "degradation_vs_uniform_pct": 1.1430494769402388,
+      "improvement_vs_local_pct": 14.157172046086796,
+      "within_uniform_tolerance": true,
+      "beats_local": true,
+      "fleetwise_win_rate": 1.0,
+      "worst_fleet_vs_local_pct": -5.4709814932484395
+    },
+    {
+      "method": "OperatingSkew20",
+      "degradation_vs_uniform_pct": -2.403757450409072,
+      "improvement_vs_local_pct": 17.167442533527566,
+      "within_uniform_tolerance": true,
+      "beats_local": true,
+      "fleetwise_win_rate": 1.0,
+      "worst_fleet_vs_local_pct": -8.466877790408422
+    },
+    {
+      "method": "Dropout50",
+      "degradation_vs_uniform_pct": -1.3783842306976934,
+      "improvement_vs_local_pct": 16.29718068811721,
+      "within_uniform_tolerance": true,
+      "beats_local": true,
+      "fleetwise_win_rate": 1.0,
+      "worst_fleet_vs_local_pct": -8.99684157905064
+    }
+  ],
+  "all_stress_regimes_within_tolerance": true,
+  "all_stress_regimes_beat_local_in_aggregate": true,
+  "all_stress_regimes_beat_local_every_fleet": false,
+  "reserved_confirmation_seeds": [
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235
+  ]
+}

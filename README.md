@@ -336,3 +336,17 @@ The deliberately strict Fed100 gate fails: it is 0.281% worse than Central at
 identical below `1e-12`; the failure means the distinct Central and federated
 mixture implementations should be described as sub-percent control-equivalent,
 not numerically identical.
+
+Experiment 9L stresses the personalized federated backbone under nonrandom
+availability. Run `PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9l_nonrandom_participation.py --workers 5`.
+At the 0.75-second cold-start budget, a fixed 20% subset, 20x family
+underrepresentation, high-speed underrepresentation, and matched 50% message
+dropout all remain within the predeclared 5% tolerance relative to uniform 20%
+participation and improve aggregate tracking over Local by 12.83--17.17%.
+Dropout reduces the mean message count from 1296 to 745 while retaining 97.2%
+distinct-client coverage. The fleet-wise audit exposes an important boundary:
+Persistent20 selects one group on seed 221 and becomes 34.43% worse than Local;
+it wins only nine of ten fleets, whereas the rotating-bias and dropout regimes
+win all ten. Repeated rounds therefore do not repair missing population support.
+The deployment implication is to monitor cumulative group and operating-region
+coverage, solicit underrepresented clients, or fall back to Local identification.

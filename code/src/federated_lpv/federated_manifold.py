@@ -42,6 +42,24 @@ def select_federated_mixture(x,covariances,candidates,rounds,participation,seed,
     admissible=[m for m in models if m['admissible']];return min(admissible or models,key=lambda m:m['bic']),models
 
 
+def fit_federated_mixture_cohorts(x,covariances,k,cohorts,damping=.35,floor=.0025):
+    """Fit with an externally specified trace of messages received each round."""
+    x=np.asarray(x);covariances=np.asarray(covariances);cohorts=[np.asarray(c,dtype=int) for c in cohorts]
+    if not cohorts or any(len(c)==0 for c in cohorts):raise ValueError('every federated round needs at least one received message')
+    n,d=x.shape;mix,means,intrinsic=initialize(x[cohorts[0]],k,floor**2);messages=len(cohorts[0]);seen=set(cohorts[0].tolist())
+    for indices in cohorts[1:]:
+        seen.update(indices.tolist());r,_=responsibilities(x[indices],covariances[indices],mix,means,intrinsic);mass,precision,rhs,scatter=client_statistics(x[indices],covariances[indices],r,means,intrinsic);new_means=np.array([np.linalg.solve(precision[g]+1e-12*np.eye(d),rhs[g]) for g in range(k)]);new_intrinsic=np.array([_psd(scatter[g]/max(mass[g],1e-12),floor**2) for g in range(k)]);new_mix=mass/mass.sum();mix=(1-damping)*mix+damping*new_mix;means=(1-damping)*means+damping*new_means;intrinsic=(1-damping)*intrinsic+damping*new_intrinsic;messages+=len(indices)
+    observed=np.array(sorted(seen));r,ll=responsibilities(x,covariances,mix,means,intrinsic);observed_r,observed_ll=responsibilities(x[observed],covariances[observed],mix,means,intrinsic);parameters=(k-1)+k*d+k*d*(d+1)//2;bic=float(-2*observed_ll.sum()+parameters*np.log(len(observed)));return dict(k=k,mix=mix,means=means,intrinsic=intrinsic,responsibility=r,observed_responsibility=observed_r,observed_indices=observed,bic=bic,messages=messages,coverage=len(seen)/n,rounds=len(cohorts)-1)
+
+
+def select_federated_mixture_cohorts(x,covariances,candidates,cohorts,damping=.35,floor=.0025,minimum_size=10):
+    """Select K while holding the received-client trace fixed across candidates."""
+    models=[]
+    for k in candidates:
+        model=fit_federated_mixture_cohorts(x,covariances,k,cohorts,damping,floor);model['minimum_size']=float(model['observed_responsibility'].sum(0).min());model['admissible']=model['minimum_size']>=minimum_size;models.append(model)
+    admissible=[m for m in models if m['admissible']];return min(admissible or models,key=lambda m:m['bic']),models
+
+
 def aggregate_group_moments(log_parameters,responsibility):
     """Aggregate count, first and second moments for hard local assignments."""
     labels=np.argmax(responsibility,axis=1);moments=[]
