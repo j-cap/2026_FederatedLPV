@@ -308,3 +308,17 @@ maneuver for every client. Active excitation helps, but the tested library has a
 globally dominant candidate and does not demonstrate personalized or control-
 aware fleet selection. The report therefore retains 9I as a negative mechanism
 boundary rather than pivoting the paper toward active learning.
+
+Experiment 9J implements the missing distributed personalized-backbone stage.
+Run `PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9j_distributed_backbone.py --workers 5`.
+Clients retain structured estimates and personalization coordinates locally and
+send additive uncertainty-weighted mixture/manifold statistics. Full
+participation reproduces the centralized-summary tracking result to numerical
+precision. With 50% participation, degradation is at most 0.53%; with 20%, the
+method is 2.34% better at 0.75 seconds and 0.04% worse at 1.25 seconds. Fed20
+beats Local by 21.09% and 0.47% at the respective budgets. The cold-start result
+therefore survives an explicit federated implementation and partial
+participation, with mean numerical payloads falling from 1.160/0.670 MB
+(upload/download) at full participation to 0.258/0.138 MB at 20%. The additive
+interface is secure-aggregation-compatible, but cryptography and its overhead
+are not implemented. Seeds 206--215 remain reserved for frozen confirmation.
