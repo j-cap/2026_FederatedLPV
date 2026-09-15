@@ -322,3 +322,17 @@ participation, with mean numerical payloads falling from 1.160/0.670 MB
 (upload/download) at full participation to 0.258/0.138 MB at 20%. The additive
 interface is secure-aggregation-compatible, but cryptography and its overhead
 are not implemented. Seeds 206--215 remain reserved for frozen confirmation.
+
+Experiment 9K executes that frozen confirmation without tuning. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_9k_blind_confirmation.py --workers 5`.
+A machine-checked guard verifies that seeds 206--215 and every inherited 9J
+setting remain unchanged. Fed20 confirms the cold-start result, improving Local
+tracking by 17.27% at 0.75 seconds and winning nine of ten fleet comparisons.
+At 1.25 seconds it is 0.06% worse than Local, confirming the predicted parity
+after sufficient local calibration. Fed50 and Fed20 pass their 1% and 2%
+partial-participation gates, and all 10800 nonlinear evaluations are feasible.
+The deliberately strict Fed100 gate fails: it is 0.281% worse than Central at
+0.75 seconds rather than within 0.1%. Its deterministic internal rerun remains
+identical below `1e-12`; the failure means the distinct Central and federated
+mixture implementations should be described as sub-percent control-equivalent,
+not numerically identical.

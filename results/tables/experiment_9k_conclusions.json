@@ -1,0 +1,34 @@
+{
+  "frozen_settings_verified": true,
+  "confirmation_seeds": [
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215
+  ],
+  "provenance": {
+    "code/config/experiment_9k.json": "00c162c92a5153113bc3bddc5052262d9d88928c4f7a71d1eb983fa26c06ce94",
+    "code/config/experiment_9j.json": "bf0f7938842c8386d4d124f83e5474de00b9441e74f07b26c70d9c01afda678b",
+    "code/src/federated_lpv/federated_manifold.py": "f7e0676a6f21b7667a06852f0999cbbf17c47991f1f5f8529e0ac4bb0929ea7a",
+    "code/experiments/experiment_9j_distributed_backbone.py": "4612120ac9489c547256b21224a3ee619a7a9c75d94c774c18a59e1bd45b017c",
+    "code/experiments/experiment_9k_blind_confirmation.py": "b72bcf41eabd2601c636b6c0b27fa660369a76205032b656da944aae44515566"
+  },
+  "fits": 2400,
+  "all_fits_converged": true,
+  "evaluations": 10800,
+  "gate_results": {
+    "fed100_equivalence": false,
+    "fed50_partial_participation": true,
+    "fed20_partial_participation": true,
+    "fed20_cold_start": true,
+    "closed_loop_feasibility": true,
+    "deterministic_aggregation": true
+  },
+  "all_predeclared_gates_pass": false
+}
