@@ -365,3 +365,13 @@ becomes useful as client information accumulates. Rank two overfits at 0.75
 seconds and provides no reliable advantage over rank one at 1.25 seconds. The
 analysis is explicitly retrospective because the 9K fleet outcomes were known;
 it quantifies the confirmed mechanism but is not another blind confirmation.
+
+The paper-level method and evidence audit is in
+`paper/METHOD_EVIDENCE_AUDIT.md`. It concludes that the existing privacy-centered
+paper skeleton is obsolete and that the defensible IEEE IV core is unknown-group
+federated LPV backbone learning for cold-start transfer. The audit maps every
+intended claim to evidence, separates the final method from the earlier privacy
+campaign, identifies the persistent-coverage boundary, and lists mandatory
+pre-drafting corrections. In particular, the 9J--9K communication values count
+only the selected group order and must be recomputed to include federated
+selection over all candidate orders before they appear in the manuscript.
