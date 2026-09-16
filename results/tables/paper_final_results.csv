@@ -1,0 +1,29 @@
+study,budget_s,method,tracking_rad_s,feasible_rate,comparison,effect_pct,effect_definition,evidence_role,ci95_low_pct,ci95_high_pct,wins,fleets
+9K,0.75,Central,0.0107314657947815,1.0,Local,15.590081112526963,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,0.75,Fed100,0.0107616170206298,1.0,Local,15.352922221386,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,0.75,Fed20,0.0105181887512539,1.0,Local,17.267642993540367,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,0.75,Fed50,0.0106484851192041,1.0,Local,16.242777792427365,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,0.75,Local,0.0127135127437898,1.0,Local,-0.0,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,1.25,Central,0.0075297873637106,1.0,Local,0.3575977834536448,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,1.25,Fed100,0.0075312602882533,1.0,Local,0.3381064309593506,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,1.25,Fed20,0.0075615113296354,1.0,Local,-0.0622085164974084,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,1.25,Fed50,0.0075483521862747,1.0,Local,0.1119276964170246,reduction; ratio of aggregate means,blind confirmation,,,,
+9K,1.25,Local,0.0075568103500221,1.0,Local,-0.0,reduction; ratio of aggregate means,blind confirmation,,,,
+9M,0.75,Fed20Rank1,,,Local,16.897894488999377,mean paired fleet-wise reduction,retrospective mechanism ablation,11.786201849864588,21.097640229568576,9.0,10.0
+9M,0.75,CentralRank1,,,Local,15.19339973358974,mean paired fleet-wise reduction,retrospective mechanism ablation,9.550891829382191,19.674514633075702,9.0,10.0
+9M,0.75,LearnedCenter,,,Local,14.466681053714092,mean paired fleet-wise reduction,retrospective mechanism ablation,9.726272377936263,19.483836055094653,10.0,10.0
+9M,0.75,GlobalK1,,,Local,8.430625075659643,mean paired fleet-wise reduction,retrospective mechanism ablation,2.503957895559629,14.566171569779073,6.0,10.0
+9M,0.75,LearnedCenter,,,GlobalK1,5.952828779349259,mean paired fleet-wise reduction,retrospective mechanism ablation,-0.4430555865467191,11.658977502663015,7.0,10.0
+9M,0.75,Fed20Rank1,,,LearnedCenter,2.203226297707064,mean paired fleet-wise reduction,retrospective mechanism ablation,-4.560509088251288,8.794581991238042,6.0,10.0
+9M,1.25,Fed20Rank2,,,Local,-0.0584187399495528,mean paired fleet-wise reduction,retrospective mechanism ablation,-0.7058117079957078,0.5818891805578301,5.0,10.0
+9M,1.25,Fed20Rank1,,,Local,1.1224119394501193,mean paired fleet-wise reduction,retrospective mechanism ablation,-1.3272733986266507,3.4134011170221337,6.0,10.0
+9M,1.25,Fed20Rank1,,,LearnedCenter,4.209855712600078,mean paired fleet-wise reduction,retrospective mechanism ablation,2.4017483837778277,6.364915152715603,10.0,10.0
+9M,1.25,Fed20Rank1,,,Fed20Rank2,1.1714545907407596,mean paired fleet-wise reduction,retrospective mechanism ablation,-1.2925474725671893,3.5082951039226886,6.0,10.0
+9M,1.25,CentralRank2,,,Local,0.3504572376552223,mean paired fleet-wise reduction,retrospective mechanism ablation,-0.3924528201753093,1.0019257449820582,7.0,10.0
+9M,0.75,Fed20Rank1,,,CentralRank1,1.946730384788504,mean paired fleet-wise reduction,retrospective mechanism ablation,0.6946927194776206,3.186158421168635,8.0,10.0
+9M,1.25,Fed20Rank2,,,CentralRank2,-0.4141519443089941,mean paired fleet-wise reduction,retrospective mechanism ablation,-0.920567182593224,0.0064354135614308,5.0,10.0
+9L,0.75,Dropout50,0.0114178066467958,1.0,Local,16.29718068811721,reduction; ratio of aggregate means,development coverage stress test,,,,
+9L,0.75,FamilySkew20,0.0117097227984625,1.0,Local,14.157172046086796,reduction; ratio of aggregate means,development coverage stress test,,,,
+9L,0.75,OperatingSkew20,0.0112990952155123,1.0,Local,17.167442533527566,reduction; ratio of aggregate means,development coverage stress test,,,,
+9L,0.75,Persistent20,0.0118904945531342,1.0,Local,12.83195206417128,reduction; ratio of aggregate means,development coverage stress test,,,,
+9L,0.75,Uniform20,0.0115773875308478,1.0,Local,15.127308897795654,reduction; ratio of aggregate means,development coverage stress test,,,,
