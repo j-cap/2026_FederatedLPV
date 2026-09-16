@@ -1,0 +1,29 @@
+{
+  "accounting_version": "candidate-order discovery plus selected backbone",
+  "candidate_k": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "dimensions": {
+    "initialization_scalars": 10,
+    "em_upload_scalars_per_group": 16,
+    "mixture_broadcast_scalars_per_group": 10,
+    "final_selection_scalars": "K+1",
+    "manifold_upload_scalars_per_group": 10
+  },
+  "excludes": [
+    "transport headers",
+    "cryptographic overhead",
+    "retransmissions",
+    "new-client model download"
+  ],
+  "provenance": {
+    "code/config/experiment_9j.json": "bf0f7938842c8386d4d124f83e5474de00b9441e74f07b26c70d9c01afda678b",
+    "code/src/federated_lpv/communication.py": "8da11e69eb7b774bbdbbb5144af40ef3a9920b7f5a764c9086bbc4a450f150f6",
+    "code/experiments/paper_communication_audit.py": "221172fe209c148df4428d61aa0633e511e7dc353775bcf7e414194f59e42548"
+  }
+}
