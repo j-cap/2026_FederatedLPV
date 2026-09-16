@@ -2,7 +2,7 @@
 
 ## Objects and roles
 
-Mature client (i) retains its trajectory \(D_i\) and computes a three-dimensional log-parameter estimate \(z_i=\log p_i\), with \(p_i=[C_f/m,C_r/m,m/I_z]^T\), and a Gauss--Newton covariance \(C_i\). The coordinator learns latent group distributions and group-specific low-rank backbones. A previously unseen client downloads those backbones, selects a component, and estimates its private coordinate from a short local record.
+Previously observed client (i) retains its trajectory \(D_i\) and computes a three-dimensional log-parameter estimate \(z_i=\log p_i\), with \(p_i=[C_f/m,C_r/m,m/I_z]^T\), and a Gauss--Newton covariance \(C_i\). The coordinator learns latent group distributions and group-specific low-rank backbones. A previously unseen client downloads those backbones, selects a component, and estimates its private coordinate from a short local record.
 
 ## Discovery protocol
 
