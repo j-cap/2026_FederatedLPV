@@ -11,13 +11,13 @@ The accepted IFAC study supplies the closest methodological foundation: clients 
 | Group count | clustering-focused compatibility structure | unknown (K\in\{1,\ldots,6\}) selected by federated BIC statistics |
 | Shared representation | group centers/controllers | control-gain-weighted low-rank group backbones |
 | Personalization | group membership/controller assignment | unseen-client local coordinate fitted from 0.75--1.25 s of data |
-| Main question | identify compatible groups for control | whether mature-fleet knowledge improves cold-start LPV controller calibration |
+| Main question | identify compatible groups for control | whether prior fleet knowledge improves cold-start LPV controller calibration |
 | Federation stress test | limited | rotating partial participation, biased participation, and a persistent-coverage failure boundary |
 | Primary evidence | held-out clients | frozen blind fleets, nonlinear closed-loop tracking, paired fleet statistics, communication audit |
 
 ## Defensible novelty claim
 
-The contribution is the combination of (i) explicit LPV scheduling, (ii) federated unknown-order latent backbone learning, (iii) a control-gain-aware low-rank representation with a private local head for an unseen client, and (iv) a demonstrated coverage boundary under partial participation. The scientifically strongest result is transfer during information-limited deployment, not improved mature-client fitting and not clustering accuracy by itself.
+The contribution is the combination of (i) explicit LPV scheduling, (ii) federated unknown-order latent backbone learning, (iii) a control-gain-aware low-rank representation with a private local head for an unseen client, and (iv) a demonstrated coverage boundary under partial participation. The scientifically strongest result is transfer during information-limited deployment, not improved fitting of previously observed clients and not clustering accuracy by itself.
 
 ## Claims to avoid
 
