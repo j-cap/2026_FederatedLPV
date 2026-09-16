@@ -17,7 +17,7 @@ incrementally edited.
 
 The defensible central claim is:
 
-> A mature fleet can federatively learn latent, control-relevant LPV group
+> Previously observed fleet clients can federatively learn latent, control-relevant LPV group
 > backbones that regularize identification for a newly deployed,
 > information-limited vehicle. The benefit is largest during cold start,
 > survives unknown group membership and random partial participation, and
@@ -123,8 +123,8 @@ debiased by the local estimation covariances after clustering.
 
 ### 1.5 Deployment of a new client
 
-A mature fleet of 180 clients contributes to the shared representation. Each
-mature client has 4.75 s of complementary calibration data. A separate new
+A fleet of 180 previously observed clients contributes to the shared representation. Each
+fleet client has 4.75 s of complementary calibration data. A separate new
 client receives the learned backbones and uses only 0.75 or 1.25 s of local data
 to select a group and estimate zero, one, or two continuous coordinates.
 
@@ -309,7 +309,7 @@ This distinction should appear in the introduction and related work.
 
 1. **Structural motivation:** one compact 6A regime-map panel or table showing
    why both scheduling and heterogeneity matter.
-2. **Method figure:** mature clients, local structured estimates/covariances,
+2. **Method figure:** previously observed clients, local structured estimates/covariances,
    federated latent-group/backbone learning, and new-client local coordinate.
 3. **Primary result:** 9K blind cold-start comparison with Local, Central,
    Fed100/Fed50/Fed20 and the failed 0.1% equivalence gate disclosed.
@@ -317,7 +317,7 @@ This distinction should appear in the introduction and related work.
    interval for Fed20Rank1 versus Local.
 5. **Participation boundary:** concise 9L coverage-versus-performance panel,
    including the persistent-subset failure.
-6. **Protocol table:** mature/new-client data, fleet counts, budgets, nonlinear
+6. **Protocol table:** fleet/new-client data, fleet counts, budgets, nonlinear
    scenarios, participation, metrics, and statistical unit.
 
 ### Supplement/report only
