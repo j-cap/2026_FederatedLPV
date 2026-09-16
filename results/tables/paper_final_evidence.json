@@ -1,0 +1,62 @@
+{
+  "primary_claim": {
+    "method": "Fed20Rank1",
+    "budget_s": 0.75,
+    "tracking_reduction_vs_local_aggregate_ratio_pct": 17.267642993540367,
+    "paired_fleet_mean_improvement_pct": 16.897894488999377,
+    "paired_fleet_bootstrap_ci95_pct": [
+      11.786201849864588,
+      21.097640229568576
+    ],
+    "wins": 9,
+    "fleets": 10,
+    "feasible_rate": 1.0
+  },
+  "communication_confirmation": [
+    {
+      "phase": "confirmation",
+      "method": "Fed100",
+      "participation": 1.0,
+      "selected_k": 3.0,
+      "legacy_upload_bytes": 1159920.0,
+      "legacy_download_bytes": 669600.0,
+      "discovery_upload_bytes": 7341840.0,
+      "discovery_download_bytes": 4536000.0,
+      "fixed_k_upload_bytes": 1068480.0,
+      "fixed_k_download_bytes": 648000.0,
+      "discovery_client_transmissions": 34740.0
+    },
+    {
+      "phase": "confirmation",
+      "method": "Fed20",
+      "participation": 0.2,
+      "selected_k": 3.1,
+      "legacy_upload_bytes": 257572.8,
+      "legacy_download_bytes": 138384.0,
+      "discovery_upload_bytes": 1501920.0,
+      "discovery_download_bytes": 907200.0,
+      "fixed_k_upload_bytes": 240984.0,
+      "fixed_k_download_bytes": 133920.0,
+      "discovery_client_transmissions": 7956.0
+    },
+    {
+      "phase": "confirmation",
+      "method": "Fed50",
+      "participation": 0.5,
+      "selected_k": 3.0,
+      "legacy_upload_bytes": 590760.0,
+      "legacy_download_bytes": 334800.0,
+      "discovery_upload_bytes": 3691440.0,
+      "discovery_download_bytes": 2268000.0,
+      "fixed_k_upload_bytes": 546480.0,
+      "fixed_k_download_bytes": 324000.0,
+      "discovery_client_transmissions": 18000.0
+    }
+  ],
+  "provenance": {
+    "tracking": "experiment_9k_comparisons.csv",
+    "paired_statistics": "experiment_9m_statistics.csv",
+    "coverage": "experiment_9l_comparisons.csv",
+    "communication": "paper_communication_audit.csv"
+  }
+}
