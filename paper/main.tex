@@ -1,251 +1,59 @@
 \newif\ifIEEEavailable
 \IfFileExists{IEEEtran.cls}{\IEEEavailabletrue}{\IEEEavailablefalse}
-\ifIEEEavailable
-  \documentclass[conference]{IEEEtran}
-\else
-  \documentclass[10pt,twocolumn]{article}
-  \newenvironment{IEEEkeywords}{\par\small\noindent\textbf{Index Terms---}}{\par}
-\fi
+\ifIEEEavailable\documentclass[conference]{IEEEtran}\else\documentclass[10pt,twocolumn]{article}\newenvironment{IEEEkeywords}{\par\small\noindent\textbf{Index Terms---}}{\par}\fi
 \usepackage{amsmath,amssymb,booktabs,graphicx}
 \usepackage[hidelinks]{hyperref}
-
-\title{Control-Aware Private Federated LPV Identification\\
-for Heterogeneous Vehicle Fleets}
-
-\ifIEEEavailable
-  \author{\IEEEauthorblockN{Jakob Weber et al.}
-  \IEEEauthorblockA{Author information to be completed before submission}}
-\else
-  \author{Jakob Weber et al.\\\small Author information to be completed before submission}
-\fi
-
-\begin{document}
-\maketitle
-
+\title{Federated Personalized LPV Identification for Cold-Start Control in Heterogeneous Vehicle Fleets}
+\ifIEEEavailable\author{\IEEEauthorblockN{Jakob Weber et al.}\IEEEauthorblockA{Author information to be completed}}\else\author{Jakob Weber et al.\\\small Author information to be completed}\fi
+\begin{document}\maketitle
 \begin{abstract}
-Vehicle fleets exhibit two different sources of variation: measurable changes
-in operating conditions and persistent differences in vehicle dynamics.
-Treating both through one global model loses relevant structure, whereas fitting
-one model per vehicle requires repeated local calibration and produces many
-deployed controllers. This paper develops a federated linear-parameter-varying
-(LPV) identification framework that represents speed dependence explicitly and
-shares compact, family-compatible dynamic models without exchanging vehicle
-trajectories. The intended central contribution is a control-aware
-client-level-differentially-private aggregation mechanism whose privacy noise is
-shaped using public closed-loop sensitivity information. The method is evaluated
-by converting released models into scheduled controllers and testing them on
-nonlinear heterogeneous vehicle fleets. The study asks not only whether a
-private model estimate is accurate, but when privacy-preserving collaboration
-retains tracking performance, feasibility, and closed-loop robustness. Existing
-results establish the LPV structure, distributed-estimation equivalence, the
-failure of naive private aggregation for small cohorts, and utility recovery
-through public physical bounds and cohort scaling. The final manuscript will
-add the proposed control-aware mechanism and a frozen deployment-robustness
-comparison before making the corresponding performance claim.
+A newly deployed vehicle may lack sufficient excitation for controller identification, while a mature fleet has complementary data that cannot be pooled as raw trajectories. We propose federated personalized linear-parameter-varying (LPV) identification for this cold-start setting. Clients identify three structured log-parameters and local uncertainty; additive sufficient statistics learn a heteroscedastic latent mixture with unknown order. Each group supplies a controller-gain-aware rank-one backbone, while an unseen vehicle estimates its group and one private coordinate from a short record. Evaluation uses varying-speed controllers on nonlinear heterogeneous bicycle plants. In a frozen ten-fleet confirmation, 20\% rotating participation reduced yaw-rate tracking RMSE by 17.27\% relative to local identification with 0.75~s of client data and remained feasible in all tests. A paired retrospective analysis gives 16.90\% mean improvement (95\% fleet-bootstrap interval: 11.79--21.10\%; nine of ten wins). The advantage vanishes with sufficient local information, and a persistent narrow participant subset exposes a coverage failure. The result supports federated LPV learning as an amortized cold-start representation, not as a universal replacement for well-excited local identification.
 \end{abstract}
+\begin{IEEEkeywords}federated learning, LPV systems, system identification, personalized learning, vehicle control\end{IEEEkeywords}
 
-\begin{IEEEkeywords}
-federated learning, LPV systems, vehicle dynamics, system identification,
-differential privacy, vehicle control
-\end{IEEEkeywords}
+\section{Introduction}
+Vehicle dynamics vary with measurable operating conditions and persistent physical differences. Speed scheduling addresses the former; latent fleet structure addresses the latter. We ask whether a mature fleet can transfer a compact control representation to an unseen, information-limited vehicle without exchanging trajectories.
 
-\section{Intended Paper Story}
+The contributions are: (1) unknown-order federated heteroscedastic mixture estimation for structured LPV summaries; (2) a control-gain-aware low-rank group backbone with a client-private local coordinate; (3) blind nonlinear closed-loop evidence under rotating partial participation; and (4) a coverage stress test and complete discovery-versus-update communication audit. Unlike our earlier uncertainty-aware clustering study, novelty is not claimed for clustering alone: it is the combination of explicit LPV scheduling, unknown-order federation, unseen-client low-rank personalization, and the participation-coverage boundary.
 
-The paper is organized around one question:
-\begin{quote}
-\emph{How can heterogeneous vehicles collaboratively identify a compact
-speed-dependent control model while keeping each vehicle's complete local
-record protected?}
-\end{quote}
-The answer has three parts. First, measurable operating variation and persistent
-fleet heterogeneity should not be absorbed into the same model dimension:
-longitudinal speed is an LPV scheduling variable, whereas compatible vehicle
-classes share separate parameter vectors. Second, the structured model permits
-federated identification using only a small number of physically meaningful
-ratios while retaining centralized numerical performance. Third, formal privacy
-must be assessed at the controller level. Standard isotropic client-level noise
-can make an accurate model unusable; useful privacy is recovered through
-defensible public physical bounds, sufficient aggregation cohorts, and---in the
-intended final method---noise shaping based on public control sensitivity.
+\section{Problem Formulation}
+The evaluation plant is a nonlinear heterogeneous bicycle model with nonlinear tire forces. Identification and synthesis use a structured LPV approximation scheduled by longitudinal speed, with
+\begin{equation}p_i=[C_{f,i}/m_i,\ C_{r,i}/m_i,\ m_i/I_{z,i}]^\top,\quad z_i=\log p_i.\end{equation}
+Client $i$ retains $\mathcal D_i$ and obtains an output-error estimate $z_i$ and Gauss--Newton covariance $C_i$. A new client's objective is nonlinear yaw-rate tracking with only $T\in\{0.75,1.25\}$~s of local data.
 
-The narrative deliberately includes informative failures. Local identification
-is already strong in this structured benchmark, so neither family pooling nor
-personalization should be advertised as an accuracy improvement. Likewise, a
-ten-client isotropic private mean fails the predefined relative utility gate.
-These negative results motivate the final method and define where federated
-collaboration is useful: reducing per-vehicle calibration and model proliferation
-while enabling a useful private fleet model, rather than universally outperforming
-every local estimator.
+\section{Federated Latent LPV Backbones}
+The mature fleet is modeled by
+\begin{equation}z_i\sim\sum_{g=1}^{K}\pi_g\mathcal N(\mu_g,C_i+S_g).\end{equation}
+For each $K=1,\ldots,6$, clients compute responsibilities locally and transmit additive mass, precision, information-vector, and symmetric-scatter statistics. The server performs 30 fixed damped updates and selects $K$ by BIC subject to a minimum effective component size. Initialization, likelihood, BIC, and final group moments are also additive.
 
-\section{Claimed Contributions}
+Finite-difference sensitivities of scheduled controller gains define a positive metric $W_g$. Weighted PCA gives the group backbone
+\begin{equation}z_i\approx\mu_g+U_g a_i.\end{equation}
+The new client downloads $(\mu_g,U_g)$, selects a group, and estimates scalar $a_i$ locally with a quadratic prior. No new-client trajectory or coordinate is uploaded. This is federated sufficient-statistic estimation, not FedAvg.
 
-The final paper should make only the following contributions.
-\begin{enumerate}
-    \item A structured fleet model that separates speed scheduling from
-    persistent compatibility classes and identifies the regimes in which each
-    source of variation matters for control.
-    \item A federated output-error identification implementation for the compact
-    LPV parameterization, with numerical equivalence to centralized pooled
-    estimation and explicit communication accounting.
-    \item A client-level differential-privacy formulation evaluated end to end
-    through model estimation, scheduled controller synthesis, nonlinear tracking,
-    actuator feasibility, and frozen closed-loop robustness.
-    \item A control-aware private aggregation mechanism that improves the
-    privacy--control tradeoff over isotropic Gaussian aggregation under the same
-    adjacency definition and privacy budget. This contribution remains subject
-    to Experiments 8E--8G and must be removed or weakened if their gates fail.
-\end{enumerate}
-
-The manuscript will not claim private learned clustering, production-grade
-cryptography, nonlinear stability certification, or universal superiority over
-local identification. Compatibility classes are assumed to be available from
-public vehicle platform or configuration information. This choice also keeps the
-paper distinct from the authors' earlier uncertainty-aware clustered federated
-identification work.
-
-\section{Problem Formulation and Vehicle Setting}
-
-\emph{Section role: establish the minimum vehicle and learning problem needed to
-understand the method.}
-
-Introduce the nonlinear bicycle plant used for evaluation, the locally fitted
-structured lateral model, and the scheduling variable. Define client $i$, public
-compatibility class $g_i$, private local record $\mathcal D_i$, longitudinal
-speed $v_x$, and the three positive ratios
-\begin{equation}
- p_i=\begin{bmatrix}C_{f,i}/m_i & C_{r,i}/m_i & m_i/I_{z,i}\end{bmatrix}^{\!\top}.
-\end{equation}
-State that the identified LPV model is linear in the lateral states at a fixed
-operating point, while evaluation uses nonlinear tire forces and varying speed.
-Define the control metrics and the distinction between empirical nonlinear
-feasibility and the frozen linear spectral-radius diagnostic.
-
-Only the structural evidence needed to justify this representation belongs in
-the main paper. The full sequence of oracle experiments remains in the research
-report or supplementary material.
-
-\section{Federated Structured LPV Identification}
-
-\emph{Section role: present the non-private distributed baseline and establish
-that federation does not change the intended pooled objective.}
-
-Define the family-pooled output-error objective
-\begin{equation}
- \widehat p_g=\arg\min_{p}\sum_{i:g_i=g}L_i(p;\mathcal D_i),
-\end{equation}
-and the client/server protocol in which trajectories remain local and clients
-return aggregateable losses or gradients. Report communication in transmitted
-scalars and use the centralized, federated, and aggregate-only paths from
-Experiment 8B as an implementation-equivalence gate. Avoid presenting the
-pairwise-mask emulator as deployed secure-aggregation cryptography.
-
-\section{Control-Aware Client-Level Privacy}
-
-\emph{Section role: contain the paper's main methodological novelty.}
-
-Define replacement adjacency at the vehicle level: neighboring fleets differ in
-one vehicle's complete dataset. Explain bounded log-parameter contributions,
-clipping, the sensitivity of the family mean, analytic Gaussian calibration,
-and privacy-preserving post-processing into a scheduled controller.
-
-The proposed method should replace isotropic normalized noise by a transformation
-or covariance fixed from public closed-loop sensitivity information. The final
-version must provide:
-\begin{itemize}
-    \item an explicit public sensitivity or control-loss metric;
-    \item the resulting clipping geometry and Gaussian covariance;
-    \item a proposition establishing the same $(\epsilon,\delta)$ client-level
-    guarantee as the isotropic baseline;
-    \item a clear statement of trust, secure aggregation, and repeated-release
-    assumptions.
-\end{itemize}
+\subsection{Trust boundary}
+Raw trajectories, individual summaries, and new-client coordinates remain local; the server receives cohort sums and broadcasts mixture/backbone states. Experiments emulate the roles in one process. Updates are compatible with additive secure aggregation, but cryptography and differential privacy are not implemented; no formal privacy claim is made.
 
 \section{Experimental Protocol}
+A mature fleet of 180 clients provides 4.75~s complementary records. Separate new clients receive 0.75 or 1.25~s records. Ten frozen fleet seeds are independent confirmation units. Baselines include Local, centralized latent backbones, full and partial federated backbones, one global component, and exact individual parameters. Tests use varying-speed maneuvers and nonlinear plants. Primary tracking is yaw-rate RMSE in rad/s; feasibility requires finite simulation and steering/acceleration limits.
 
-\emph{Section role: make the final comparison auditable without reproducing the
-entire development history.}
+Communication counts independent float64 payload scalars. Unknown-$K$ discovery includes every candidate order; fixed-$K$ update costs are separate. Headers, cryptographic expansion, retransmissions, and a new client's one-off download are excluded.
 
-Use fresh fleets and compare Local, Central pooled, non-private Federated,
-isotropic DP-Federated, and control-aware DP-Federated models. Retain Global and
-known-family scopes only where they answer a stated question. Evaluate multiple
-speed-varying maneuvers on nonlinear held-out plants, with fleet seeds as the
-independent statistical units.
+\section{Results}
+\subsection{Structural motivation}
+The earlier regime map shows that speed scheduling and persistent specialization solve distinct errors. Those studies use deg/s and are not numerically pooled with the final rad/s results.
 
-The final protocol should include:
-\begin{itemize}
-    \item privacy budgets and fixed $\delta$;
-    \item local data duration and speed coverage;
-    \item cohort size and partial participation;
-    \item public-bound misspecification or out-of-box clients;
-    \item nonlinear plant mismatch;
-    \item tracking, steering effort, constraint feasibility, frozen radius,
-    communication, and clipping frequency.
-\end{itemize}
+\subsection{Blind cold-start confirmation}
+At 0.75~s, Fed20 attained 0.01052~rad/s versus 0.01271~rad/s for Local: a 17.27\% reduction by the ratio-of-aggregate-means convention, with complete feasibility. Full and 50\% participation were similarly beneficial. At 1.25~s, Local had sufficient information and the federated advantage contracted to practical parity.
 
-\section{Results: From Structural Need to Private Control}
+\subsection{Mechanism and participation}
+The retrospective ablation assigns most early benefit to the learned group center. Rank-one personalization adds an uncertain increment at 0.75~s but becomes consistently useful relative to the center at 1.25~s. Rank two is not required. Random rotating 20\% cohorts preserve broad cumulative coverage; a persistent narrow subset can corrupt discovery and is the principal observed failure boundary.
 
-\emph{Section role: give a short causal chain rather than an experiment diary.}
-
-\subsection{Why scheduled family models?}
-Condense Experiments 2--6 into one regime-map result: scheduling addresses broad
-speed variation, specialization addresses persistent dynamic separation, and
-their combination is needed when both occur. Include the compactness result only
-as supporting evidence.
-
-\subsection{Does the federated implementation preserve the estimator?}
-Use Experiment 8B to show centralized--federated numerical equivalence and then
-move on; this should occupy a small table or several sentences, not a full main
-result figure.
-
-\subsection{What does privacy cost?}
-Use Experiment 8C as the negative baseline: isotropic client-level noise with ten
-clients does not satisfy the predefined tracking gate and can produce adverse
-frozen-radius cases at strong privacy.
-
-\subsection{When is private fleet learning useful?}
-Use Experiment 8D to show the effects of public bounds and cohort size. The
-current strongest passing point is $\epsilon=2$ with 100 clients per known
-family, 6.05\% tracking degradation relative to the matching non-private mean,
-complete amplitude feasibility, and worst frozen radius 0.9692. The final result
-must add Experiments 8E--8G and directly compare the proposed control-aware
-mechanism with Local and isotropic private baselines.
+\subsection{Communication}
+For Fed100, complete unknown-$K$ discovery requires 7.342~MB upload and 4.536~MB download; reusing $K=3$ requires 1.068~MB and 0.648~MB. Fed20 discovery requires 1.502~MB and 0.907~MB; its mean selected-order update requires 0.241~MB and 0.134~MB. These supersede legacy selected-$K$ counts.
 
 \section{Discussion and Limitations}
-
-Explain that privacy utility depends on the number of simultaneously
-aggregateable compatible clients and on defensible public parameter knowledge.
-Discuss the unusually accurate local estimator, known compatibility metadata,
-full-participation assumptions in the present 8D result, privacy composition,
-simulator-derived bounds, nonlinear-model mismatch, and the absence of a formal
-nonlinear stability certificate. Explicitly distinguish this paper's
-scheduling/privacy contribution from learned clustering.
+Federation supplies an amortized prior from more mature-fleet data; this is not a same-total-data contest. Ten fleets limit tail resolution, and synthetic generating families are used only for evaluation. The gain-weighted basis is not directly optimized for nonlinear tracking. Feasibility and frozen radii are diagnostics, not a nonlinear LPV stability certificate. Formal privacy, networked secure aggregation, richer plants, and real fleet data remain future work.
 
 \section{Conclusion}
-
-The intended conclusion is conditional rather than universal: federated LPV
-identification becomes useful for heterogeneous vehicle fleets when operating
-variation is scheduled explicitly, only compatible vehicles are aggregated,
-and the privacy mechanism respects downstream control sensitivity. The final
-sentence should report the empirically supported privacy/cohort operating region,
-not claim that federated estimation always improves local accuracy.
-
-\section*{Drafting and Evidence Map}
-
-\begin{table}[htbp]
-\centering
-\caption{Evidence retained for the conference manuscript.}
-\begin{tabular}{p{0.22\columnwidth}p{0.68\columnwidth}}
-\toprule
-Evidence & Function in paper\\
-\midrule
-Experiments 4F--4G & Validate structured identification on nonlinear fleets\\
-Experiments 5A--6B & Justify compactness and scheduling/heterogeneity regime map\\
-Experiments 7A--7C & Establish limits of pooling and local-accuracy benefit\\
-Experiment 8B & Verify actual distributed estimation\\
-Experiments 8C--8D & Establish naive privacy failure and cohort/bound recovery\\
-Experiments 8E--8G & Supply the final control-aware method and frozen comparison\\
-\bottomrule
-\end{tabular}
-\end{table}
-
+Federated latent LPV backbones reduce cold-start control error when local excitation is scarce and rotating participation covers the fleet. Once local data become informative, local fitting recovers parity; without coverage, federation can fail.
 \end{document}
