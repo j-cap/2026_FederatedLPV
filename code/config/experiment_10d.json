@@ -1,0 +1,21 @@
+{
+  "development_seeds": [361, 362, 363, 364, 365, 366, 367, 368, 369, 370],
+  "sample_time": 0.01,
+  "curvature_per_m": 0.005,
+  "speed_grid": [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+  "coverage_blocks": [[10, 12, 14], [16, 18, 20], [22, 24, 26], [28, 30]],
+  "samples_per_local_speed": 36,
+  "state_excitation_std": [0.004363323, 0.034906585],
+  "steering_excitation_std": 0.005235988,
+  "next_state_noise_std": [0.000174533, 0.000523599],
+  "candidate_clusters": [1, 2, 3, 4, 5],
+  "mixture_restarts": 12,
+  "mixture_iterations": 30,
+  "minimum_cluster_size": 5,
+  "lqr_q": [25.0, 2.0],
+  "lqr_r": 0.15,
+  "recovery_duration_s": 1.5,
+  "initial_perturbation": [0.008726646, 0.052359878],
+  "bootstrap_resamples": 20000,
+  "notes": "Development-only unknown-group complementary-sharing experiment. Initial blocks are balanced independently within physical families, but family labels are used only for oracle comparison and retrospective ARI. LearnedCluster fits a mixture of L=7 LPV regressions directly to each client's observed speed--matrix pairs; it never requires a locally identified L=7 model. K in 1..5 is selected by BIC over standardized observation residuals, with at least five clients per cluster and multiple deterministic restarts. Evaluation compares Local, Global, LearnedCluster, OracleFamily, equal-budget LocalFull, and ExactLPV on full-envelope matrix error and guarded nonlinear recovery."
+}

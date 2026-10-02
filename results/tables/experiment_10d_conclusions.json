@@ -1,0 +1,18 @@
+{
+  "modal_selected_k": 2,
+  "three_group_rate": 0.0,
+  "mean_ari": 0.41791366590139517,
+  "oracle_benefit_retained": {
+    "prediction_error": 0.9770129079295673,
+    "recovery": 0.9982469871621591
+  },
+  "prediction_gate_pass": true,
+  "control_gate_pass": true,
+  "all_learned_feasible": true,
+  "interpretation": "Learned clustering is successful only if it retains most of the oracle-family benefit without using family labels; ARI is diagnostic rather than an optimization target.",
+  "provenance": {
+    "code/config/experiment_10d.json": "b0ae2c5eee93719c90023b7a2f8f4db643f00534cfcdd1f44a3156595fb40ec5",
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/experiments/experiment_10d_learned_compatible_groups.py": "25a646d50dc16ecb23bf7a7b158f1558d77c79ab30a9fde5bc5102be4978e9cb"
+  }
+}

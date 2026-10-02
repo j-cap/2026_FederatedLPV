@@ -412,3 +412,17 @@ accurate. Personalization never improves nonlinear recovery over FamilyPool.
 The evidence supports a coverage-gated progression from shared backbone to
 personalized model to fully local model for identification quality, not a claim
 of personalized-control superiority.
+
+Experiment 10D removes oracle family labels from the sharing rule. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_10d_learned_compatible_groups.py --workers 5`.
+It fits mixtures of the frozen order-seven LPV regression directly to clients'
+partial speed--matrix observations, enforces at least five clients per group,
+and selects one to five groups by BIC. The selected label-free model reduces
+full-envelope matrix error by 94.06% and nonlinear recovery error by 1.40%
+relative to restricted Local, with positive fleet-bootstrap intervals. It also
+improves matrix error by 34.27% relative to Global, while remaining 62.25%
+worse than OracleFamily. BIC chooses two compatibility groups in nine fleets
+and one in one; it never recovers the simulator's three nominal families.
+Thus the result supports learned task-compatible sharing, not latent physical
+family discovery. The learned model retains about 97.7% of OracleFamily's
+matrix-error benefit and essentially all of its recovery benefit over Local.
