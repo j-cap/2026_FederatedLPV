@@ -388,3 +388,15 @@ requires four additional orthogonalized polynomial terms, so the audit freezes
 model, while the combined fleet envelope is full rank. This establishes a
 legitimate representation and complementary-information premise for 10B, but
 does not itself claim federated estimation or control improvement.
+
+Experiment 10B tests that premise using noisy finite perturbation transitions
+from ten new fleets. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_10b_oracle_complementary_gate.py --workers 5`.
+Oracle-family sharing reduces locally unseen-speed matrix error by about 97%
+relative to Local and improves nonlinear closed-loop recovery by about 1.7%,
+with positive fleet-bootstrap intervals and 100% feasibility. FamilyPool also
+reduces error by 57.70% relative to Global, but their control difference is not
+resolved. The personalized family model is 5.13% worse in prediction than the
+plain family backbone, showing that a local head is premature at this cold-start
+budget. Experiment 10B therefore passes the complementary-sharing gate while
+supporting compatible backbone sharing rather than a personalization claim.

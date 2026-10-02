@@ -1,0 +1,19 @@
+{
+  "development_seeds": [321, 322, 323, 324, 325, 326, 327, 328, 329, 330],
+  "sample_time": 0.01,
+  "curvature_per_m": 0.005,
+  "speed_grid": [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+  "coverage_blocks": [[10, 12, 14], [16, 18, 20], [22, 24, 26], [28, 30]],
+  "samples_per_local_speed": 36,
+  "state_excitation_std": [0.004363323, 0.034906585],
+  "steering_excitation_std": 0.005235988,
+  "next_state_noise_std": [0.000174533, 0.000523599],
+  "ridge_candidates": [0.000001, 0.0001, 0.01, 1.0, 100.0],
+  "lqr_q": [25.0, 2.0],
+  "lqr_r": 0.15,
+  "recovery_duration_s": 1.5,
+  "initial_perturbation": [0.008726646, 0.052359878],
+  "bootstrap_resamples": 20000,
+  "primary_methods": ["Local", "FamilyPersonalized"],
+  "notes": "Development-only oracle-family complementary-coverage gate. Clients receive noisy finite one-step perturbation data at one speed block. Local is the locally identifiable physics span L=3. LocalRegularized uses L=7 with a local L=3 prior and leave-one-speed-out ridge selection. Global and FamilyPool fit shared L=7 maps. FamilyPersonalized regularizes each L=7 client map toward its oracle-family backbone with local validation. LocalFull uses recipient-local data over the full speed grid with the same total transition count as one family pool. ExactLPV fits L=7 to exact recipient Jacobians. Evaluation uses exact held-out matrices and nonlinear recovery simulations only after fitting. Outside its calibrated block, Local and LocalRegularized use the safe nearest-calibrated-speed controller rather than attempting controller synthesis from an unsupported extrapolation; their prediction metric still measures the actual unseen-speed model error. The primary gate is paired fleet-level superiority of FamilyPersonalized over Local on locally unseen speeds in prediction and nonlinear control, with all controllers feasible. No clustering or federated optimizer is claimed."
+}
