@@ -1,0 +1,20 @@
+{
+  "development_seeds": [341, 342, 343, 344, 345, 346, 347, 348, 349, 350],
+  "sample_time": 0.01,
+  "curvature_per_m": 0.005,
+  "speed_grid": [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+  "initial_coverage_blocks": [[10, 12, 14], [16, 18, 20], [22, 24, 26], [28, 30]],
+  "coverage_stages": ["base", 5, 8, 11],
+  "samples_per_speed": 36,
+  "state_excitation_std": [0.004363323, 0.034906585],
+  "steering_excitation_std": 0.005235988,
+  "next_state_noise_std": [0.000174533, 0.000523599],
+  "ridge_candidates": [0.000001, 0.0001, 0.01, 1.0, 100.0],
+  "personalization_activation_max_strength": 1.0,
+  "lqr_q": [25.0, 2.0],
+  "lqr_r": 0.15,
+  "recovery_duration_s": 1.5,
+  "initial_perturbation": [0.008726646, 0.052359878],
+  "bootstrap_resamples": 20000,
+  "notes": "Development-only backbone-to-personalization transition audit on fresh fleets. Initial block assignment is balanced independently inside each oracle family so every family jointly covers all four blocks. The oracle-family L=7 backbone is frozen from every client's initial restricted block. Each recipient then adds nearest missing speeds until it covers 5, 8, and all 11 grid speeds; the backbone never receives these extra records. FamilyPersonalized selects ridge strength by leave-one-local-speed-out validation. LocalRegularized uses the same data and validation but an L=3 local physics prior. Metrics cover the full speed envelope at every stage. An infeasible personalized controller falls back to FamilyPool; an infeasible local controller falls back to its nearest-observed-speed L=3 physics controller, and fallback use is reported. The target result is a statistically supported crossover where personalization first beats the fixed FamilyPool; a no-crossover result is accepted."
+}

@@ -1,0 +1,13 @@
+{
+  "prediction_crossover_stage": 2,
+  "control_crossover_stage": null,
+  "joint_crossover_stage": null,
+  "all_personalized_feasible": true,
+  "maximum_personalized_fallback_rate": 0.00030303030303030303,
+  "interpretation": "Personalization first improves full-envelope model accuracy at eight locally covered speeds, but never improves nonlinear recovery over the family backbone. At full coverage, LocalRegularized is more accurate than FamilyPersonalized and control remains statistically equivalent.",
+  "provenance": {
+    "code/config/experiment_10c.json": "d5848501c45ef9f7934952ae8ded415784e2997a8e4566eeb602915591fddb31",
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/experiments/experiment_10c_personalization_transition.py": "0aa05f12a1fd983543ed210d490e6bdf7988c046029d144c75b81aa375527821"
+  }
+}

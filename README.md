@@ -400,3 +400,15 @@ resolved. The personalized family model is 5.13% worse in prediction than the
 plain family backbone, showing that a local head is premature at this cold-start
 budget. Experiment 10B therefore passes the complementary-sharing gate while
 supporting compatible backbone sharing rather than a personalization claim.
+
+Experiment 10C sweeps progressive recipient coverage while freezing the
+oracle-family backbone learned at cold start. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_10c_personalization_transition.py --workers 5`.
+Personalization is harmful at the initial 2--3 speeds, unresolved at five,
+and first improves full-envelope model accuracy at eight covered speeds by
+7.74% with a positive fleet-bootstrap interval. At all eleven speeds it improves
+the backbone by 13.66%, but a fully local model is then another 13.79% more
+accurate. Personalization never improves nonlinear recovery over FamilyPool.
+The evidence supports a coverage-gated progression from shared backbone to
+personalized model to fully local model for identification quality, not a claim
+of personalized-control superiority.
