@@ -1,0 +1,13 @@
+protocol,method,baseline,metric,improvement_pct,ci_low,ci_high,wins,valid_pairs,feasibility_wins,feasibility_losses
+controlled,FederatedLearned,Local,prediction_error,94.67368102371587,94.32109751583712,95.01522916981037,10,10,0,0
+controlled,FederatedLearned,Local,recovery,1.4460198396486823,1.3375871867727886,1.5703133573539716,10,10,0,0
+controlled,FederatedLearned,Global,prediction_error,40.640685571223095,36.44431673243573,44.752751466071,10,10,0,0
+controlled,FederatedLearned,Global,recovery,0.04870297010291735,0.036559023951686476,0.06254494991927206,10,10,0,0
+controlled,FederatedLearned,OracleFamily,prediction_error,-45.357785523870334,-57.682197338485594,-33.78613832133021,0,10,0,0
+controlled,FederatedLearned,OracleFamily,recovery,-0.0057514820996651395,-0.0188551520179554,0.0068972311508079705,4,10,0,0
+label_free,FederatedLearned,Local,prediction_error,93.41296311901216,92.59852369607573,94.2081753438201,10,10,0,0
+label_free,FederatedLearned,Local,recovery,1.2162213506311172,1.127814252741917,1.3105126498069115,10,10,0,0
+label_free,FederatedLearned,Global,prediction_error,23.744723135826696,15.387943328799219,31.03935871249379,8,10,0,0
+label_free,FederatedLearned,Global,recovery,0.03115058966086215,0.01966650629159225,0.0415730355718178,8,10,0,0
+label_free,FederatedLearned,OracleFamily,prediction_error,-70.27476776336512,-95.15425860224977,-45.13646165343814,1,10,0,0
+label_free,FederatedLearned,OracleFamily,recovery,0.007037108111411043,-0.023774964532726917,0.03298959305143567,6,9,1,0

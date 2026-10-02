@@ -426,3 +426,17 @@ and one in one; it never recovers the simulator's three nominal families.
 Thus the result supports learned task-compatible sharing, not latent physical
 family discovery. The learned model retains about 97.7% of OracleFamily's
 matrix-error benefit and essentially all of its recovery benefit over Local.
+
+Experiment 10E implements the latent-group estimator as a federated
+sufficient-statistic protocol on fresh fleets. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_10e_federated_latent_groups.py --workers 5`.
+Clients retain their partial speed--matrix observations and transmit only
+order-seven Gram/right-hand-side statistics, six-number residual summaries,
+and candidate-group assignment scores. The complete search over `K=1..5` and
+all deterministic restarts is included in the communication count. Federated
+and centralized latent grouping select identical partitions, with maximum LPV
+coefficient discrepancy `3.20e-14`. Under globally randomized label-free
+coverage, FederatedLearned reduces matrix error by 93.41% and recovery error by
+1.22% relative to restricted Local, while remaining feasible on every fleet.
+It improves matrix error by 23.74% over Global, but their recovery differs by
+only 0.031%; a stronger control-relevance test is therefore still required.

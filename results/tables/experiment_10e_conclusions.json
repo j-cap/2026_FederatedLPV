@@ -1,0 +1,26 @@
+{
+  "equivalence_gate": true,
+  "label_free_prediction_gate": true,
+  "label_free_control_gate": true,
+  "all_federated_feasible": true,
+  "maximum_coefficient_error": 3.1974423109204515e-14,
+  "maximum_bic_error": 1.872763277788181e-09,
+  "modal_selected_k": {
+    "controlled": 2,
+    "label_free": 2
+  },
+  "mean_ari": {
+    "controlled": 0.4896954870272032,
+    "label_free": 0.35209160740171835
+  },
+  "mean_total_megabytes_per_fleet": {
+    "controlled": 2.043072,
+    "label_free": 2.2426559999999998
+  },
+  "interpretation": "Passing 10E establishes numerical federated equivalence and label-free complementary-sharing benefit. It does not establish privacy or control superiority over Global.",
+  "provenance": {
+    "code/config/experiment_10e.json": "f630a7605bdf874d1ec763ca7a9bf7987191a803c301b0d8c7f01d0e59ebe1d4",
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/experiments/experiment_10e_federated_latent_groups.py": "7b01fbec0299c4bc9f175c687ada9113e0b84f2bc6993166664ffd0a19589588"
+  }
+}
