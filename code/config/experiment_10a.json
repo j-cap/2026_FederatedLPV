@@ -1,0 +1,14 @@
+{
+  "development_seeds": [301, 302, 303, 304, 305, 306, 307, 308, 309, 310],
+  "sample_time": 0.01,
+  "speed_grid": [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+  "blocked_validation": [[10, 12], [14, 16], [18, 20, 22], [24, 26], [28, 30]],
+  "curvatures_per_m": [0.0, 0.0025, 0.005],
+  "orthogonalization_grid": {"minimum_mps": 10.0, "maximum_mps": 30.0, "points": 401},
+  "candidate_orders": [3, 4, 5, 6, 7],
+  "partial_coverage_blocks": [[10, 12, 14], [16, 18, 20], [22, 24, 26], [28, 30]],
+  "one_standard_error_rule": true,
+  "practical_relative_error_floor": 0.0001,
+  "maximum_aggregate_condition": 1000000.0,
+  "notes": "Development-only basis-order and partial-coverage necessity audit. L=3 is the frozen physics span [1,1/v,1/v^2]; L=4..7 append nested powers of normalized speed. Each candidate space is orthogonalized by a fixed QR transform on a 401-point 10--30 m/s reference grid, avoiding arbitrary residual-center ordering and improving conditioning without changing the represented span. Targets are exact discrete Jacobians of the nonlinear tanh-tire plant about feasible steady-cornering equilibria. Whole contiguous speed blocks are withheld. L is chosen by the one-standard-error rule on fleet-level blocked-speed errors, subject to conditioning; errors below the 0.01% practical floor are treated as equivalent so numerical noise cannot reward needless terms. Straight-line curvature is a negative control. Partial client blocks are used only for rank/conditioning diagnostics; no federated accuracy comparison is made in 10A."
+}

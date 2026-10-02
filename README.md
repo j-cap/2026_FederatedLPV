@@ -375,3 +375,16 @@ campaign, identifies the persistent-coverage boundary, and lists mandatory
 pre-drafting corrections. In particular, the 9J--9K communication values count
 only the selected group order and must be recomputed to include federated
 selection over all candidate orders before they appear in the manuscript.
+
+Experiment 10A starts the complementary-operating-coverage redesign with a
+development-only basis-order and identifiability audit. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_10a_basis_coverage_audit.py`.
+It linearizes the existing nonlinear tanh-tire plant along steady-cornering
+operating points and selects the smallest nested speed basis by whole-region
+blocked validation. The straight-line negative control retains the physical
+three-term reciprocal basis. The strongest nonlinear cornering condition
+requires four additional orthogonalized polynomial terms, so the audit freezes
+`L=7`. Every tested restricted client speed block is rank deficient for this
+model, while the combined fleet envelope is full rank. This establishes a
+legitimate representation and complementary-information premise for 10B, but
+does not itself claim federated estimation or control improvement.
