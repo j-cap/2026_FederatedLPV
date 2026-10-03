@@ -440,3 +440,18 @@ coverage, FederatedLearned reduces matrix error by 93.41% and recovery error by
 1.22% relative to restricted Local, while remaining feasible on every fleet.
 It improves matrix error by 23.74% over Global, but their recovery differs by
 only 0.031%; a stronger control-relevance test is therefore still required.
+
+Experiment 10F performs that control-relevance test with strict
+development/confirmation separation. Run
+`PYTHONPATH=code/src:code/experiments OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/experiment_10f_control_relevance.py all --workers 5`.
+Twelve LQI weight combinations are audited using ExactLPV only; the frozen
+choice is `Q=diag(25,50,1000)`, `R=0.15`. Final confirmation uses fresh seeds
+411--420, label-free coverage, speed-varying lateral-acceleration references,
+steering amplitude/rate constraints, anti-windup, and dense-grid stability
+checks. FederatedLearned improves mean yaw tracking over Global by 4.26% in the
+moderate maneuver and 1.21% in the hard maneuver, with positive paired
+bootstrap intervals. Hard-maneuver worst-client tracking improves by 3.31%.
+All federated controllers are feasible and small-signal stable. The result
+establishes control relevance, although the absolute gains over Global remain
+small at 0.0018--0.0019 deg/s and must not be presented as a large practical
+improvement.

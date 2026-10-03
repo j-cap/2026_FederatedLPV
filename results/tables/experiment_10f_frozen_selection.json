@@ -1,0 +1,18 @@
+{
+  "selection_rule": "minimum ExactLPV mean tracking RMSE among candidates passing feasibility, mean saturation, and dense-grid stability gates",
+  "selected": {
+    "name": "C11",
+    "q_beta": 25.0,
+    "q_yaw": 50.0,
+    "q_integral": 1000.0,
+    "r": 0.15
+  },
+  "development_seeds": [
+    381,
+    382,
+    383,
+    384,
+    385
+  ],
+  "federated_or_global_results_used_for_selection": false
+}

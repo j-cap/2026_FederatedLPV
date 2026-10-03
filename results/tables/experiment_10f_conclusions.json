@@ -1,0 +1,36 @@
+{
+  "selected_controller": {
+    "name": "C11",
+    "q_beta": 25.0,
+    "q_yaw": 50.0,
+    "q_integral": 1000.0,
+    "r": 0.15
+  },
+  "moderate_global_tracking_gate": true,
+  "hard_global_tracking_gate": true,
+  "hard_global_worst_client_gate": true,
+  "all_federated_feasible": true,
+  "all_federated_small_signal_stable": true,
+  "multi_group_fleet_rate": 0.6,
+  "selected_group_counts": {
+    "2": 6,
+    "1": 4
+  },
+  "global_to_exact_gap_closed_pct": {
+    "moderate": {
+      "tracking": 63.2552864787185,
+      "worst_client": 21.37586502755987
+    },
+    "hard": {
+      "tracking": 32.88194543215979,
+      "worst_client": 30.388967391494003
+    }
+  },
+  "interpretation": "A control-relevance claim requires a positive confirmation interval against Global after controller selection using ExactLPV only.",
+  "provenance": {
+    "code/config/experiment_10f.json": "2a0abe3aee9f611e919cd62e7631c8473b129138a925d03f2da3322e713e50d7",
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "results/tables/experiment_10f_frozen_selection.json": "e8aecf46870621e375772aaa78fb72238cb2712e0bad320c07e07b63467904db",
+    "code/experiments/experiment_10f_control_relevance.py": "430f2fda2850db66475018e43279e2eaaca844b22980bbd37bd307f18388b42b"
+  }
+}
