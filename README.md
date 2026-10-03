@@ -455,3 +455,16 @@ All federated controllers are feasible and small-signal stable. The result
 establishes control relevance, although the absolute gains over Global remain
 small at 0.0018--0.0019 deg/s and must not be presented as a large practical
 improvement.
+
+Experiment 10G tests whether plausible compact, SUV, and sport classes plus
+class-dependent steering-actuator dynamics create a stronger oracle control
+advantage before extending the federated estimator. Run
+`PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10g_vehicle_class_gate.py all`.
+The nonlinear tanh-tire plant is augmented by a first-order actuator, and
+Global, oracle-class, and client-exact scheduled LQI controllers are compared
+on ten untouched fleets after client-exact-only controller selection. The
+prerequisite gate fails: OracleClass does not improve on Global in either
+maneuver, and client-exact nominal LQI is less robust near nonlinear tire and
+steering constraints. The negative result prevents an unjustified federated
+extension and motivates an explicitly robust or constraint-aware control
+question rather than further post-hoc LQI tuning.
