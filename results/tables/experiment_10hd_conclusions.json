@@ -1,0 +1,27 @@
+{
+  "development_gates": {
+    "modal_three_groups": false,
+    "ari_gate": false,
+    "local_matrix_error_gate": false,
+    "positive_global_intervals": true,
+    "global_improvement_gate": false,
+    "all_learned_finite": true,
+    "development_gate_pass": false
+  },
+  "confirmation_run": false,
+  "reserved_confirmation_seeds": [
+    551,
+    552,
+    553,
+    554,
+    555,
+    556,
+    557,
+    558,
+    559,
+    560
+  ],
+  "decision": "Stop after the failed development gate; do not expose confirmation fleets.",
+  "script_sha256": "bcfb2affe255e4812c514a4be8291545765bb4ce8006dc32477ead3d6a035196",
+  "config_sha256": "167e498db8dce437434c65f992daa867638eaf768db58fe3a66bcde8764ba4ca"
+}

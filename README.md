@@ -520,3 +520,16 @@ retaining 85--94% of the Global-to-Exact observer gap and matching the oracle
 class observer closely. This establishes a label-free CFL observer-grouping
 mechanism, but the update summaries are controlled noisy matrix surrogates;
 end-to-end local output-error observer learning remains the next gate.
+
+Experiment 10H-D performs that measured-output interface gate. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hd_measured_output_observer_groups.py --phase development --workers 5`.
+Clients receive only yaw rate, lateral acceleration, applied steering, speed,
+and steering command. A common nominal KF generates local pseudo-states, from
+which regularized partial LPV updates enter the unchanged unknown-K grouping.
+The development gate fails: modal K is two, mean ARI is 0.365, local matrices
+have 52.2% relative error, and LearnedClusterKF improves over GlobalKF by only
+0.7% in mean and 2.4--2.8% in worst-client tracking. The tiny pseudo-state
+prediction residual is therefore not evidence of physical model recovery.
+Confirmation seeds 551--560 remain sealed. The next method must jointly
+estimate states and physically anchored parameters, rather than regress on a
+single mismatched observer's pseudo-states.

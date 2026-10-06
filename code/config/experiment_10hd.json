@@ -1,0 +1,19 @@
+{
+  "development_seeds": [541, 542, 543, 544, 545],
+  "confirmation_seeds": [551, 552, 553, 554, 555, 556, 557, 558, 559, 560],
+  "candidate_clusters": [1, 2, 3, 4, 5],
+  "mixture_restarts": 16,
+  "mixture_iterations": 40,
+  "minimum_cluster_size": 5,
+  "ridge_strength": 1e-8,
+  "local_prior_strength": 0.1,
+  "local_transient_samples": 100,
+  "offline_bias_centering": true,
+  "bootstrap_resamples": 10000,
+  "minimum_global_improvement_pct": 5.0,
+  "minimum_oracle_gap_retention_pct": 50.0,
+  "maximum_tracking_excess_vs_oracle_pct": 10.0,
+  "minimum_development_ari": 0.8,
+  "maximum_development_matrix_error": 0.25,
+  "notes": "10H-D end-to-end measured-output update gate. Clients observe yaw rate, lateral acceleration, applied steering, speed, and steering command over one frozen 10H speed block/frequency band. A single fixed nominal fleet-physics KF reconstructs pseudo-states locally. Offline trajectory centering estimates constant sensor bias. Regularized local state-transition fits are shrunk toward the same nominal model, and only partial matrix summaries enter the unchanged unknown-K mixture. True states, matrices, and class labels are excluded from learning and used only for diagnostics/oracle comparators. The H03 Global LQI controller and 10H-A/B measurement and observer settings remain frozen."
+}

@@ -1,0 +1,13 @@
+scenario,metric,method,baseline,improvement_pct,ci_low,ci_high
+broadband,mean_tracking,LearnedClusterKF,GlobalKF,0.7326610738092594,0.318034342399509,1.1405801470825376
+broadband,mean_tracking,LearnedClusterKF,OracleClassKF,0.32852340248186007,0.05972140121886531,0.5973254037448548
+broadband,mean_tracking,LearnedClusterKF,NominalKF,3.7596796888786024,3.3211981565151825,4.384709214647534
+broadband,worst_tracking,LearnedClusterKF,GlobalKF,2.8173948260784143,1.3529614213062575,3.9457458981185938
+broadband,worst_tracking,LearnedClusterKF,OracleClassKF,-2.143490813231561,-3.7132694146741656,-0.6338417710673131
+broadband,worst_tracking,LearnedClusterKF,NominalKF,6.447952474621905,6.02856058180866,6.867344367435152
+transient,mean_tracking,LearnedClusterKF,GlobalKF,0.6778111907540394,0.24052090345030191,1.2073265794949373
+transient,mean_tracking,LearnedClusterKF,OracleClassKF,-0.9093850310922923,-1.156979829872323,-0.613098713594248
+transient,mean_tracking,LearnedClusterKF,NominalKF,1.9586989782775077,1.275512897754117,2.648406831262232
+transient,worst_tracking,LearnedClusterKF,GlobalKF,2.446569836272177,1.087345960977125,3.4872039496811853
+transient,worst_tracking,LearnedClusterKF,OracleClassKF,-3.5406800259747713,-4.50566412228048,-2.417139756521753
+transient,worst_tracking,LearnedClusterKF,NominalKF,3.968459767306205,3.059517056844829,4.868631337857838
