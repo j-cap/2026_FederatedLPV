@@ -252,7 +252,9 @@ def nuisance_profiles(evaluator, fitted, coordinates, cfg):
         local = []
         for offset in cfg["profile_log_offsets"]:
             target = fitted[j] + offset
-            start = coordinates.feasible_profile_start(fitted, j, target)
+            # The center is the already audited fit. Reprojecting it can make
+            # redundant bound/equality constraints inconsistent at roundoff.
+            start = fitted if offset == 0 else coordinates.feasible_profile_start(fitted, j, target)
             if start is None:
                 rows.append(
                     {
@@ -839,10 +841,18 @@ def main():
             )
             if not args.resume or not complete:
                 jobs.append((seed, part))
+    failures = []
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
-        futures = [pool.submit(evaluate_seed, seed, part) for seed, part in jobs]
+        futures = {pool.submit(evaluate_seed, seed, part): (seed, part) for seed, part in jobs}
         for future in as_completed(futures):
-            print(f"Completed 10H-I {future.result()}", flush=True)
+            error = future.exception()
+            if error is None:
+                print(f"Completed 10H-I {future.result()}", flush=True)
+            else:
+                failures.append(futures[future])
+                print(f"Failed 10H-I {futures[future]}: {error!r}; other jobs continue", flush=True)
+    if failures:
+        raise RuntimeError(f"Incomplete jobs {failures}; use --resume after addressing the error")
     if args.seed is None and args.part == "all":
         summarize()
 

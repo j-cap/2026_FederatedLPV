@@ -158,3 +158,46 @@ def test_confirmation_seeds_are_sealed_and_grid_is_predeclared():
     assert set(cfg["development_seeds"]).isdisjoint(cfg["reserved_confirmation_seeds"])
     assert set(range(591, 601)) | set(range(611, 621)) == set(cfg["reserved_confirmation_seeds"])
     assert cfg["covariance_grid"] == [1e-4, 1e-3, 1e-2, 1e-1, 1.0, 10.0]
+
+
+def test_zero_offset_profile_reuses_fit_despite_bound_roundoff(monkeypatch):
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).parents[1] / "experiments"))
+    from experiment_10hi_physically_coupled_fit import nuisance_profiles
+
+    co = coordinates()
+    evaluator = CoupledLikelihood(InnovationLikelihood(fixture(), 0.01, Q, R), co)
+    fitted = np.zeros(8)
+    fitted[3] = np.log(3.0) + 1e-14
+    cfg = json.loads((Path(__file__).parents[1] / "config/experiment_10hi.json").read_text())
+    cfg["profile_log_offsets"] = [0.0]
+
+    def forbidden_projection(*args):
+        raise AssertionError("The profile center must not be reprojected")
+
+    monkeypatch.setattr(PhysicalCoordinates, "feasible_profile_start", forbidden_projection)
+    _, profiles = nuisance_profiles(evaluator, fitted, co, cfg)
+    assert len(profiles) == 8 and profiles.feasible.all()
+    assert_allclose(profiles.actual_log_distance, 0.0, atol=0)
+    assert profiles.constraint_violation.max() < 1e-12
+
+
+def test_innovation_audit_uses_the_repaired_likelihood_covariance():
+    import sys
+
+    sys.path.insert(0, str(Path(__file__).parents[1] / "experiments"))
+    from experiment_10hi_innovation_audit import whitened_diagnostics
+
+    from federated_lpv.innovation_likelihood import steady_filter
+
+    data = fixture()
+    z = coordinates().effective(np.linspace(-.1, .12, 8))
+    audit = whitened_diagnostics(data, z, .01, Q, R)
+    evaluator = InnovationLikelihood(data, .01, Q, R)
+    determinant_term = np.mean([
+        steady_filter(z, speed, .01, Q, R)["logdet"] - np.linalg.slogdet(R)[1]
+        for speed in data.speeds
+    ])
+    assert_allclose(audit["normalized_innovation_squared_mean"],
+                    evaluator.value(z) - determinant_term, rtol=1e-10)
