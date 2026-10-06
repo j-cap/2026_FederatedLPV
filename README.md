@@ -598,3 +598,35 @@ closed-loop tracking claims.
 The process-noise scale is frozen from earlier oracle observer tuning; this
 paired repair does not yet validate an entirely measured-output-only covariance
 selection pipeline.
+
+Experiment 10H-I enforces the exact bicycle coupling with eight positive
+coordinates and preserves all nine existing coefficient bounds. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hi_physically_coupled_fit.py --workers 5`.
+`--homogeneous-only` checks recovery on one public synthetic model, `--part A`
+isolates physical structure at the inherited covariance, and `--part B` chooses
+one covariance scale with two client-blocked inner training folds. `--resume`
+preserves completed jobs; `--summarize-only` rebuilds aggregate evidence.
+Confirmation 591--600 and 611--620 remains sealed.
+
+The eight-coordinate fitter passes the controlled numerical/prediction gate:
+all 30 joint/staged restarts converge, coupling holds to roundoff, and mean
+held-out fixed-weight prediction gain is 18.23%, versus 18.02% in 10H-H.
+Noiseless homogeneous recovery is accurate to 1.14e-8 relative error, and the
+noisy reference to 0.99%, with no active bounds. Every heterogeneous pooled
+fit still hits a bound, so enforcing coupling does not resolve the complete
+physical-calibration gate.
+
+Measured-output covariance selection chooses scale 1 on all five fleets.
+Absolute held-out sensor-weighted error falls from 5.010 to 1.996, a mean paired
+59.91% decrease versus the fixed-covariance eight-coordinate fit. Relative to
+the nominal observer at the same selected covariance, model refitting adds
+8.35% prediction improvement. The complete gate still fails: four fleets miss
+the declared 2% likelihood-improvement minimum, one of 180 inner restarts misses
+the KKT threshold, and boundary/profile requirements remain unmet.
+The post-hoc command
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hi_innovation_audit.py`
+also finds correlated, miscalibrated innovations. Prediction-selected Q does
+not establish a calibrated grouping likelihood. No class label, client truth,
+latent state, or outer held-out score enters covariance/model selection.
+Mixture learning remains deferred; these are output-prediction results, not
+new observer-state or closed-loop-control claims.

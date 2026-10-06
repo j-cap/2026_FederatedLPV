@@ -1,0 +1,71 @@
+{
+  "protocol_commit": "0381587",
+  "source_versions_sha256": {
+    "0381587": {
+      "code/config/experiment_10hi.json": "03549bdc2a5327c9d70a09c62160187b929bb9fc46bccd88a74cadb5ac95d546",
+      "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+      "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+      "code/experiments/experiment_10hi_physically_coupled_fit.py": "027217be89d32c52639f9e52dca2c5a26695c23f1b12e930b7266ef3e43aee9c"
+    },
+    "9f08abc": {
+      "code/config/experiment_10hi.json": "03549bdc2a5327c9d70a09c62160187b929bb9fc46bccd88a74cadb5ac95d546",
+      "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+      "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+      "code/experiments/experiment_10hi_physically_coupled_fit.py": "78221a72b2f5b1d149d7db6845c5526d1c834a54dc061fe6595754fc9ca35f9e"
+    }
+  },
+  "jobs": [
+    {
+      "seed": 601,
+      "part": "A",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 601,
+      "part": "B",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 602,
+      "part": "A",
+      "execution_revision": "9f08abc"
+    },
+    {
+      "seed": 602,
+      "part": "B",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 603,
+      "part": "A",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 603,
+      "part": "B",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 604,
+      "part": "A",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 604,
+      "part": "B",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 605,
+      "part": "A",
+      "execution_revision": "0381587"
+    },
+    {
+      "seed": 605,
+      "part": "B",
+      "execution_revision": "0381587"
+    }
+  ],
+  "homogeneous_execution_revision": "0381587",
+  "correction": "Initial 602/A profiling stopped because a redundant zero-offset projection rejected roundoff at an active bound. Revision 9f08abc reuses the already audited center and resumes that job. Core fitting, constraints, gradients, restart selection, nonzero profile targets, covariance selection, configuration and all gates are unchanged. Other completed jobs are preserved; final aggregation uses the maintained runner."
+}

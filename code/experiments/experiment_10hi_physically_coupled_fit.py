@@ -742,6 +742,9 @@ def summarize():
         ROOT / "code/experiments/experiment_10ha_tire_force_observer.py",
         *[ROOT / f"code/config/experiment_{name}.json" for name in ["10h", "10ha", "10hf"]],
         OUT / "experiment_10ha_frozen_selection.json",
+        OUT / "experiment_10hi_execution_manifest.json",
+        ROOT / "code/tests/test_experiment_10hi.py",
+        ROOT / "code/experiments/experiment_10hi_innovation_audit.py",
     ]
     output = {
         "methods": conclusions,
@@ -772,7 +775,7 @@ def plot(frames):
         label = f"{part}: {method}"
         axes[0].plot(
             local.seed.astype(str),
-            local.heldout_sensor_mse_improvement_pct,
+            local.heldout_sensor_mse_fitted,
             "o-",
             color=color,
             label=label,
@@ -784,7 +787,7 @@ def plot(frames):
     archived = archived[archived.method == "staged"]
     axes[0].plot(
         archived.seed.astype(str),
-        archived.heldout_sensor_mse_improvement_pct,
+        archived.heldout_sensor_mse_fitted,
         "x--",
         color="#777777",
         label="10H-H nine coordinates",
@@ -794,8 +797,8 @@ def plot(frames):
         scores = local.groupby("process_noise_scale").validation_sensor_mse.mean()
         axes[2].semilogx(scores.index, scores, "o-", label=str(seed))
     axes[0].set(
-        title="Held-out fixed-weight prediction",
-        ylabel="Improvement over nominal (%)",
+        title="Held-out fixed-weight prediction error",
+        ylabel="Sensor-normalized MSE",
         xlabel="Opened fleet",
     )
     axes[1].set(title="Physical coefficient bounds", ylabel="Active bounds", xlabel="Opened fleet")
@@ -804,6 +807,7 @@ def plot(frames):
         ylabel="Inner validation sensor MSE",
         xlabel="Process-noise scale",
     )
+    axes[2].set_yscale("log")
     for ax in axes:
         ax.legend(fontsize=7)
     fig.tight_layout()

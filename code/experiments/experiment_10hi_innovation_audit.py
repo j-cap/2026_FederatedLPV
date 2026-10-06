@@ -88,11 +88,33 @@ def main():
                 )
     frame = pd.DataFrame(rows)
     frame.to_csv(OUT / f"{PREFIX}_innovation_calibration.csv", index=False)
+    a = runs[(runs.part == "A") & (runs.method == "staged")].set_index("seed")
+    b = runs[(runs.part == "B") & (runs.method == "staged")].set_index("seed")
+    archived_path = OUT / "experiment_10hh_runs.csv"
+    archived = pd.read_csv(archived_path)
+    archived = archived[archived.method == "staged"].set_index("seed")
+    comparison = pd.DataFrame(
+        {
+            "archived_nine_sensor_mse": archived.heldout_sensor_mse_fitted,
+            "A_nominal_sensor_mse": a.heldout_sensor_mse_nominal,
+            "A_fitted_sensor_mse": a.heldout_sensor_mse_fitted,
+            "B_nominal_sensor_mse": b.heldout_sensor_mse_nominal,
+            "B_fitted_sensor_mse": b.heldout_sensor_mse_fitted,
+            "A_improvement_vs_nine_pct": 100
+            * (archived.heldout_sensor_mse_fitted - a.heldout_sensor_mse_fitted)
+            / archived.heldout_sensor_mse_fitted,
+            "B_improvement_vs_A_pct": 100
+            * (a.heldout_sensor_mse_fitted - b.heldout_sensor_mse_fitted)
+            / a.heldout_sensor_mse_fitted,
+        }
+    )
+    comparison.to_csv(OUT / f"{PREFIX}_predictive_comparison.csv")
     paths = [
         Path(__file__),
         OUT / f"{PREFIX}_runs.csv",
         OUT / f"{PREFIX}_parameters.csv",
         ROOT / "code/src/federated_lpv/innovation_likelihood.py",
+        archived_path,
     ]
     output = {
         "posthoc_diagnostic": True,

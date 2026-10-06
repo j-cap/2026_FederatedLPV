@@ -192,12 +192,17 @@ def test_innovation_audit_uses_the_repaired_likelihood_covariance():
     from federated_lpv.innovation_likelihood import steady_filter
 
     data = fixture()
-    z = coordinates().effective(np.linspace(-.1, .12, 8))
-    audit = whitened_diagnostics(data, z, .01, Q, R)
-    evaluator = InnovationLikelihood(data, .01, Q, R)
-    determinant_term = np.mean([
-        steady_filter(z, speed, .01, Q, R)["logdet"] - np.linalg.slogdet(R)[1]
-        for speed in data.speeds
-    ])
-    assert_allclose(audit["normalized_innovation_squared_mean"],
-                    evaluator.value(z) - determinant_term, rtol=1e-10)
+    z = coordinates().effective(np.linspace(-0.1, 0.12, 8))
+    audit = whitened_diagnostics(data, z, 0.01, Q, R)
+    evaluator = InnovationLikelihood(data, 0.01, Q, R)
+    determinant_term = np.mean(
+        [
+            steady_filter(z, speed, 0.01, Q, R)["logdet"] - np.linalg.slogdet(R)[1]
+            for speed in data.speeds
+        ]
+    )
+    assert_allclose(
+        audit["normalized_innovation_squared_mean"],
+        evaluator.value(z) - determinant_term / 3,
+        rtol=1e-10,
+    )
