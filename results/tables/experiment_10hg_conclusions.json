@@ -1,0 +1,37 @@
+{
+  "aggregate": {
+    "optimizer_success_rate": 0.0,
+    "mean_heldout_improvement_pct": 15.763537336932085,
+    "minimum_heldout_improvement_pct": 9.498127161177866,
+    "maximum_restart_objective_spread_pct": 4.698722857960938,
+    "maximum_restart_parameter_cv": 0.32961588018926113,
+    "minimum_profile_edge_increase_pct": -0.056566612019248196,
+    "maximum_boundary_fraction": 0.1111111111111111,
+    "mean_retrospective_log_rmse": 0.6412714906650401
+  },
+  "development_gates": {
+    "optimizer_success_gate": false,
+    "heldout_improvement_gate": true,
+    "restart_objective_gate": false,
+    "restart_parameter_gate": false,
+    "profile_curvature_gate": false,
+    "boundary_gate": false,
+    "development_gate_pass": false
+  },
+  "confirmation_run": false,
+  "reserved_confirmation_seeds": [
+    611,
+    612,
+    613,
+    614,
+    615,
+    616,
+    617,
+    618,
+    619,
+    620
+  ],
+  "leakage_statement": "No true client physical quantity, state, matrix, class center, or label enters fitting, restart selection, held-out scoring, or gate decisions.",
+  "script_sha256": "6f0dd42f0b52193f3d02107b31faf75f354fdf026f92eced7f3c5453781e8d36",
+  "config_sha256": "b1fb44050f8302d93506c3b9d4461ab9acdd2df2f06f39a9742aa2e5566a1603"
+}

@@ -560,3 +560,13 @@ conditioning rather than restoring rank. Physical-score grouping fails:
 modal BIC K is two, fixed-K=3 mean ARI is 0.209, and balanced accuracy is
 0.593. The next gate is therefore a structured global output-error fit before
 attempting jointly evolving mixture models and memberships.
+
+Experiment 10H-G fits one structured global LPV model directly from measured
+outputs before attempting a mixture. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hg_global_prediction_error.py`.
+The fit improves normalized prediction error on label-blind held-out clients
+by 9.50--21.86% (15.76% mean), but the optimizer gate fails: all five selected
+runs exhaust the iteration budget, restart parameter dispersion reaches
+0.330, three fits hit a bound, and one conditional profile still descends away
+from the selected point. Raw-output fitting is informative, but mixture/EM
+learning remains blocked until the single-model estimator is reproducible.

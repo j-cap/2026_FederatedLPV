@@ -1,0 +1,20 @@
+{
+  "development_seeds": [601, 602, 603, 604, 605],
+  "reserved_confirmation_seeds": [611, 612, 613, 614, 615, 616, 617, 618, 619, 620],
+  "quiet_bias_samples": 100,
+  "samples_per_segment": 200,
+  "heldout_client_modulus": 3,
+  "heldout_client_remainder": 2,
+  "restart_count": 3,
+  "restart_log_standard_deviation": 0.22,
+  "parameter_lower_multiplier": 0.35,
+  "parameter_upper_multiplier": 3.0,
+  "optimizer_max_iterations": 25,
+  "profile_log_offsets": [-0.16, -0.08, 0.0, 0.08, 0.16],
+  "minimum_heldout_nll_improvement_pct": 2.0,
+  "maximum_restart_objective_spread_pct": 0.5,
+  "maximum_restart_parameter_cv": 0.08,
+  "minimum_profile_edge_increase_pct": 0.02,
+  "maximum_boundary_fraction": 0.0,
+  "notes": "10H-G leakage-safe K=1 structured global prediction-error optimizer gate. Training and model selection use only measured yaw rate, lateral acceleration, applied steering, command, speed, and a quiet-segment bias estimate. Client labels, states, physical parameters, exact matrices, and class centers never enter fitting, restart selection, held-out scoring, or gates. Every third client is held out by position within the generated fleet list; this deterministic split is label-blind. Hidden truth is opened only for retrospective error interpretation. Confirmation seeds remain sealed."
+}
