@@ -1,0 +1,147 @@
+{
+  "post_fit_reporting_only": true,
+  "no_model_bound_covariance_or_gate_selected": true,
+  "panels": {
+    "0.01": {
+      "widest_active_bound_fleets": 5,
+      "widest_all_profiles_two_sided": false,
+      "minimum_local_profile_edge_increase_pct": 0.1377016842943794,
+      "mean_normalized_NIS": 3.285195605306801,
+      "maximum_within_record_autocorrelation_lags_1_20": 0.8115879411703112,
+      "maximum_within_record_past_input_correlation_lags_1_20": 0.322065886697727,
+      "maximum_fitted_plant_spectral_radius": 0.9691389976535292,
+      "physical_parameter_ranges": {
+        "actuator_rate": {
+          "minimum": 7.292199018279335,
+          "maximum": 8.645921388390176
+        },
+        "actuator_time_constant": {
+          "minimum": 0.1156614726271753,
+          "maximum": 0.137132845317757
+        },
+        "front_decay": {
+          "minimum": 0.789486415754589,
+          "maximum": 0.9644371370428914
+        },
+        "front_force_gain": {
+          "minimum": 56.166782505324605,
+          "maximum": 69.1392829629226
+        },
+        "front_length": {
+          "minimum": 0.3384760957591498,
+          "maximum": 0.4903324402818199
+        },
+        "front_normalized_stiffness": {
+          "minimum": 70.81194056234845,
+          "maximum": 72.04474354614536
+        },
+        "front_relaxation_length": {
+          "minimum": 1.0368742156343644,
+          "maximum": 1.2666462399409402
+        },
+        "inertial_ratio": {
+          "minimum": 1.333321493602139,
+          "maximum": 2.059164481936649
+        },
+        "rear_decay": {
+          "minimum": 0.7048111292560397,
+          "maximum": 0.9012461558240854
+        },
+        "rear_force_gain": {
+          "minimum": 9.595959595953545,
+          "maximum": 9.595959595959608
+        },
+        "rear_length": {
+          "minimum": 2.558332927729922,
+          "maximum": 2.91273340230547
+        },
+        "rear_normalized_stiffness": {
+          "minimum": 10.647434703540174,
+          "maximum": 13.614937672860767
+        },
+        "rear_relaxation_length": {
+          "minimum": 1.1095747743696234,
+          "maximum": 1.4188198206454907
+        },
+        "wheelbase": {
+          "minimum": 2.896809023489072,
+          "maximum": 3.40306584258729
+        }
+      }
+    },
+    "1.0": {
+      "widest_active_bound_fleets": 1,
+      "widest_all_profiles_two_sided": false,
+      "minimum_local_profile_edge_increase_pct": 0.0019374365037976,
+      "mean_normalized_NIS": 0.4369555343582654,
+      "maximum_within_record_autocorrelation_lags_1_20": 0.347202359429786,
+      "maximum_within_record_past_input_correlation_lags_1_20": 0.17290936871199,
+      "maximum_fitted_plant_spectral_radius": 0.9939644486190252,
+      "physical_parameter_ranges": {
+        "actuator_rate": {
+          "minimum": 9.662002803698174,
+          "maximum": 11.533480559836873
+        },
+        "actuator_time_constant": {
+          "minimum": 0.086704095508021,
+          "maximum": 0.103498210497025
+        },
+        "front_decay": {
+          "minimum": 1.0416145365226357,
+          "maximum": 1.8411548125993424
+        },
+        "front_force_gain": {
+          "minimum": 61.745933848012015,
+          "maximum": 98.32781943227226
+        },
+        "front_length": {
+          "minimum": 1.02365248098075,
+          "maximum": 1.299617171438707
+        },
+        "front_normalized_stiffness": {
+          "minimum": 53.40551416936692,
+          "maximum": 59.27906311114563
+        },
+        "front_relaxation_length": {
+          "minimum": 0.5431373794081987,
+          "maximum": 0.9600480455451756
+        },
+        "inertial_ratio": {
+          "minimum": 0.3723265818438245,
+          "maximum": 0.4977860855289484
+        },
+        "rear_decay": {
+          "minimum": 0.3311471516084187,
+          "maximum": 0.5702526392774747
+        },
+        "rear_force_gain": {
+          "minimum": 9.595959595959595,
+          "maximum": 21.40062591170544
+        },
+        "rear_length": {
+          "minimum": 2.174268818380152,
+          "maximum": 2.909433860086724
+        },
+        "rear_normalized_stiffness": {
+          "minimum": 28.9779318630734,
+          "maximum": 37.52832418070103
+        },
+        "rear_relaxation_length": {
+          "minimum": 1.7536087185269789,
+          "maximum": 3.019805530993965
+        },
+        "wheelbase": {
+          "minimum": 3.400757778223072,
+          "maximum": 4.112638327396636
+        }
+      }
+    }
+  },
+  "provenance_sha256": {
+    "code/experiments/experiment_10hj_result_audit.py": "eadbf27c7b936af22ec87ecbc2a6ef1738faee9489b4451f822e5e7e5522ac91",
+    "results/tables/experiment_10hj_runs.csv": "bcb95d7a8f62e227523e4c7665f1ddfe7f546f4148e8bf27c749396bbdda7f03",
+    "results/tables/experiment_10hj_forecasts.csv": "a3a513889433e602e6be9a4377b3f0e8e5e285682b572ea858a005ff393fb46e",
+    "results/tables/experiment_10hj_residuals.csv": "4f9e1372ab11d633cce526cca4d73d994ada76955400312cfdf88d667aa52fc8",
+    "results/tables/experiment_10hj_physical_parameters.csv": "e402a4879e50e9bcf5b07d5e733755f380304bc5f42708a84a80115a1e63e7c1"
+  }
+}

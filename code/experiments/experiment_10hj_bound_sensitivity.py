@@ -359,7 +359,22 @@ def summarize():
         for scale in cfg["process_noise_scales"]:
             manifest = json.loads((OUT / f"{job_prefix(seed, scale)}_complete.json").read_text())
             if manifest["source_sha256"] != expected:
-                raise RuntimeError("Completed job does not match execution sources")
+                # Reporting may be repaired without rerunning immutable fits.
+                # Verify the archived script and require byte-identical fitting
+                # code (everything before summarize), plus all other sources.
+                script = str(Path(__file__).relative_to(ROOT))
+                archived_source = subprocess.check_output(
+                    ["git", "show", f"{manifest['revision']}:{script}"], cwd=ROOT
+                )
+                recorded = manifest["source_sha256"]
+                if (
+                    hashlib.sha256(archived_source).hexdigest() != recorded[script]
+                    or archived_source.decode().split("def summarize():")[0]
+                    != Path(__file__).read_text().split("def summarize():")[0]
+                    or {k: v for k, v in recorded.items() if k != script}
+                    != {k: v for k, v in expected.items() if k != script}
+                ):
+                    raise RuntimeError("Completed job does not match immutable fitting sources")
             for name, digest in manifest["output_sha256"].items():
                 if hashlib.sha256((OUT / name).read_bytes()).hexdigest() != digest:
                     raise RuntimeError(f"Completed output changed: {name}")
@@ -447,7 +462,9 @@ def summarize():
             (restart.kkt_residual <= cfg["maximum_kkt_residual"]).sum()
         ),
         "limitations": "Opened development data; heterogeneous steady Gaussian working model and quiet-bias uncertainty. Profiles are not calibrated confidence intervals. Diagnostic boxes are not engineering priors. No labels, latent states or client truths are accessed by fitting or output validation. Correlations are descriptive. No state-estimation or closed-loop claim.",
-        "source_sha256": expected,
+        "reporting_source_sha256": expected,
+        "execution_sources_verified": True,
+        "reporting_only_update": any(m["source_sha256"] != expected for m in manifests),
     }
     (OUT / f"{PREFIX}_conclusions.json").write_text(json.dumps(conclusions, indent=2) + "\n")
     (OUT / f"{PREFIX}_execution_manifest.json").write_text(json.dumps(manifests, indent=2) + "\n")
@@ -478,7 +495,7 @@ def plot(frames):
         axes[row, 0].set(title=f"Q scale {scale:g}: rear gain", ylabel="b_r / b_r nominal")
         axes[row, 1].set(title="Held-out one-step prediction", ylabel="Fixed-R normalized MSE")
         forecast = frames["forecasts"]
-        forecast = forecast[(forecast.process_noise_scale == scale) & (forecast.mode == "forecast")]
+        forecast = forecast[(forecast.process_noise_scale == scale) & (forecast["mode"] == "forecast")]
         for name in names:
             curve = (
                 forecast[(forecast.box == name) & (forecast.model == "fitted")]

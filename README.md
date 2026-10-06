@@ -630,3 +630,27 @@ not establish a calibrated grouping likelihood. No class label, client truth,
 latent state, or outer held-out score enters covariance/model selection.
 Mixture learning remains deferred; these are output-prediction results, not
 new observer-state or closed-loop-control claims.
+
+Experiment 10H-J diagnoses the heuristic bounds and single-model dynamics.
+The protocol was committed before execution. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hj_bound_sensitivity.py --workers 5`.
+`--resume` preserves completed jobs and `--summarize-only` verifies immutable
+execution evidence before rebuilding summaries. The post-fit reporting command
+is `PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hj_result_audit.py`.
+Three nested coefficient boxes [0.35,3], [0.2,5] and [0.1,10] are compared
+at separate fixed Q scales 0.01 and 1. No box or Q is selected, and no new
+engineering prior or physical-readiness gate is introduced. The bound
+provenance and required independent evidence are documented in
+[`docs/experiment_10hj_bound_provenance.md`](docs/experiment_10hj_bound_provenance.md).
+
+All 90 fitting restarts and all feasible local/extended profiles satisfy the
+numerical checks. At Q=0.01, all five rear gains follow the new lower limits;
+mean one-step error falls 5.010→4.126. At Q=1, widening removes four of five
+boundary solutions and error falls 1.996→1.945, but the 0.5-second forecast
+error rises 170.535→222.477 and full simulation deteriorates in every fleet.
+Innovations remain colored and miscalibrated. Bounds were partly restrictive,
+but widening them does not produce a validated dynamics model. The next
+scientific test is label-blind K=1 versus K=2 joint fitting with common
+covariance/bias assumptions and multi-step validation, rather than further
+blind bound expansion. Confirmation seeds remain sealed. The full suite
+passes 130 tests; new-code lint passes. No latent-state or control gain is claimed.

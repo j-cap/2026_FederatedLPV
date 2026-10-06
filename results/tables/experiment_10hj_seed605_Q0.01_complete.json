@@ -1,0 +1,44 @@
+{
+  "seed": 605,
+  "process_noise_scale": 0.01,
+  "revision": "aadfc7f3a1d88838f23e725c0619221bc688b21c",
+  "source_sha256": {
+    "code/config/experiment_10hj.json": "00deebbdf15ca2da34bd7f9ff8bacf094427a30e9b464404e487168392b36cc3",
+    "code/experiments/experiment_10hj_bound_sensitivity.py": "71409cfb813f1bfed6fb78f507ce0fa1f159f0b1e327e56d7964fe99c8f58c11",
+    "docs/experiment_10hj_protocol.md": "f98da1856f3fbb4120cbcdf43b594d18ee5e97aa11a0b7fd5133b6d7bfa73fbc",
+    "code/src/federated_lpv/output_validation.py": "6f311ac69ea04d4202a06224628ae5b7623dfef70901f66354d8fd13bd1091cc",
+    "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+    "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+    "code/experiments/experiment_10hi_physically_coupled_fit.py": "fe131c34a34c76431d18b4e8f1d192b6316682be38ed7b23430a99b31e8d0c17",
+    "code/experiments/experiment_10hh_single_model_repair.py": "dd3248b0e0d40cf6e8632ebc1745e66724c94fdc7e165a7616e8813f33a343c5",
+    "code/experiments/experiment_10hf_output_identifiability.py": "867ec77e0ba1d8a562de7595ddcc4920bbbe474291ff38a061af86909a84147e",
+    "code/experiments/experiment_10h_higher_order_lpv_gate.py": "129abcffe99c752ea9baf9eb949b43ef7dd9b66f622d6d2ef7387b542dc51a7b",
+    "code/experiments/experiment_10ha_tire_force_observer.py": "9c1a44068061b280448d9d647868852323a43c5993c894fccf9b6effb61a89cc",
+    "code/config/experiment_10h.json": "4450b715f59bab03f6bdd61979387673124cee651494945d8a8907ae7bff1d0e",
+    "code/config/experiment_10ha.json": "c17398296909fa656138130e13435845e1bae41bbbce9b7eb3943281016d7ace",
+    "code/config/experiment_10hf.json": "ab58c1fb4bdb43964628c3dec484957b0d465d185466e6e6e1b4bcef3d707185",
+    "code/tests/test_experiment_10hj.py": "d703229cc29deb443a30884d1a2ddb68c6b067efd266792898e2939ee912daa0",
+    "results/tables/experiment_10hi_runs.csv": "5050ba7076a106a997b92a8674637ac3e968661bf74ed7d89a031868a7413821"
+  },
+  "measured_array_sha256": {
+    "train": "e811710307f11de5398555ec75739ea74a5f2ca753a45671df5024bb3bbcfc56",
+    "heldout": "571d6716a5ac40d668bb60ad280dd219e8dc0b187862b92f15b8b718675812ec"
+  },
+  "elapsed_seconds": 477.2095262969997,
+  "confirmation_run": false,
+  "output_sha256": {
+    "experiment_10hj_seed605_Q0.01_runs.csv": "d8898d21e562a762356b514faea1b8bc7daed6ab86ecca38c12269e38a7ed215",
+    "experiment_10hj_seed605_Q0.01_restarts.csv": "bc7b93ebdb05eaeabe576c914d4fa132f2e7c63da88e32d1fa8cb64f4873b486",
+    "experiment_10hj_seed605_Q0.01_phases.csv": "4dd116a3430a9d894715a3adb5dcf46545651702230bc1a7a1b1a2a4adfca6d0",
+    "experiment_10hj_seed605_Q0.01_parameters.csv": "9dfc468d23030ae316aa0f62e0feb1a427bcd89b9c7c083519e039affb8d11ac",
+    "experiment_10hj_seed605_Q0.01_physical_parameters.csv": "14d308e8ac50b56bc93914fd543fa73d1160e40567de9f26f323f1e18db62182",
+    "experiment_10hj_seed605_Q0.01_profiles.csv": "cf13a1fee6b0a3323ea41cb05813a1d3eba71b72b773b6d3a218179d54644422",
+    "experiment_10hj_seed605_Q0.01_rear_gain_profiles.csv": "d796936ebc84a5574d31f8b7790696bf9a9c4dd027afcae5a5d671edc64e0305",
+    "experiment_10hj_seed605_Q0.01_curvature.csv": "cc98780de0c324e46c608e1a24285265b4d1f841d15c634620dac8e6c3587ea9",
+    "experiment_10hj_seed605_Q0.01_forecasts.csv": "b4bb22133e19ead243993110d06bf46ad9a4d382f15fc5f3ec1f7d0b6a5d3da7",
+    "experiment_10hj_seed605_Q0.01_residuals.csv": "27ecc212880608bb0a36f3b105386c7c5e2c769886d8ddb63d8a735a28f41601",
+    "experiment_10hj_seed605_Q0.01_correlations.csv": "cae66cf5b384cfa843d7bf4259cd885275d22cc28533888da4c89c6d31dc1247",
+    "experiment_10hj_seed605_Q0.01_gradient_checks.csv": "d96cac5bf9aa2fc299d0169a97cf6b38b51b754e1d4c8caf99d912128bd97b18",
+    "experiment_10hj_seed605_Q0.01_splits.csv": "2108903c1c14ed8928d33b118c6938414f12d30719b5d8831061ceb160207af8"
+  }
+}
