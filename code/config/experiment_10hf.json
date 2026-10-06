@@ -1,0 +1,26 @@
+{
+  "development_seeds": [581, 582, 583, 584, 585, 586, 587, 588, 589, 590],
+  "reserved_confirmation_seeds": [591, 592, 593, 594, 595, 596, 597, 598, 599, 600],
+  "finite_difference_log_step": 0.02,
+  "quiet_bias_samples": 100,
+  "information_relative_tolerance": 1e-6,
+  "maximum_group_information_condition": 100000000.0,
+  "candidate_clusters": [1, 2, 3, 4, 5],
+  "gmm_restarts": 24,
+  "minimum_cluster_size": 5,
+  "minimum_fixed_k3_ari": 0.8,
+  "minimum_fixed_k3_balanced_accuracy": 0.85,
+  "minimum_fixed_k3_class_recall": 0.75,
+  "nominal_design": {
+    "mass": 1650.0,
+    "yaw_inertia": 2700.0,
+    "front_length": 1.25,
+    "rear_length": 1.55,
+    "front_stiffness": 85000.0,
+    "rear_stiffness": 95000.0,
+    "actuator_time_constant": 0.12,
+    "front_relaxation_length": 0.50,
+    "rear_relaxation_length": 0.60
+  },
+  "notes": "10H-F leakage-safe output-identifiability and physical-score audit. The learned coordinates are nine effective continuous-time LPV coefficients: two normalized yaw-force gains, front/rear beta-force gains, front/rear yaw-force gains, two relaxation decay rates, and actuator rate. No true client mass, inertia, stiffness, geometry, relaxation length, actuator constant, state, or matrix enters filtering, finite differences, Fisher information, score construction, GMM fitting, BIC, or assignment. A quiet segment estimates trajectory-constant sensor bias. Labels are opened only for retrospective compatible-group information aggregation and permutation-invariant clustering metrics."
+}

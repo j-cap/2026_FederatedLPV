@@ -546,3 +546,17 @@ balanced accuracy 0.747, with some fleets losing a class completely. The
 development gate fails and confirmation remains sealed. Aggregate one-shot
 innovation clustering is therefore insufficient as the sole initialization
 for joint mixture identification.
+
+Experiment 10H-F audits measured-output identifiability in nine effective,
+physically anchored LPV coordinates and tests Fisher-whitened physical scores.
+Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hf_output_identifiability.py`.
+No hidden client parameter, state, matrix, or label enters filtering,
+finite-difference information, score construction, or clustering. At a
+relative 1e-6 tolerance, 296/300 local information matrices are full rank, but
+their median condition is 5.95e4 and maximum is 9.64e5. All 30 compatible
+aggregates are full rank with conditions below 2.15e4, so sharing improves
+conditioning rather than restoring rank. Physical-score grouping fails:
+modal BIC K is two, fixed-K=3 mean ARI is 0.209, and balanced accuracy is
+0.593. The next gate is therefore a structured global output-error fit before
+attempting jointly evolving mixture models and memberships.
