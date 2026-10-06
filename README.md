@@ -533,3 +533,16 @@ prediction residual is therefore not evidence of physical model recovery.
 Confirmation seeds 551--560 remain sealed. The next method must jointly
 estimate states and physically anchored parameters, rather than regress on a
 single mismatched observer's pseudo-states.
+
+Experiment 10H-E tests whether compatible groups are directly separable from
+measured-output innovations without hidden-parameter leakage. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10he_innovation_separability.py`.
+Every client uses one fixed nominal design observer and communicates only
+aggregate innovation statistics derived from yaw rate, lateral acceleration,
+applied steering, command, and speed. True client parameters, states, matrices,
+and labels never enter clustering. BIC selects one group in all ten development
+fleets. Even with K fixed retrospectively to three, mean ARI is only 0.455 and
+balanced accuracy 0.747, with some fleets losing a class completely. The
+development gate fails and confirmation remains sealed. Aggregate one-shot
+innovation clustering is therefore insufficient as the sole initialization
+for joint mixture identification.

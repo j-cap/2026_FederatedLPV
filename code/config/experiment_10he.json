@@ -1,0 +1,25 @@
+{
+  "development_seeds": [561, 562, 563, 564, 565, 566, 567, 568, 569, 570],
+  "reserved_confirmation_seeds": [571, 572, 573, 574, 575, 576, 577, 578, 579, 580],
+  "candidate_clusters": [1, 2, 3, 4, 5],
+  "gmm_restarts": 24,
+  "minimum_cluster_size": 5,
+  "maximum_pca_components": 8,
+  "minimum_ari": 0.8,
+  "minimum_balanced_accuracy": 0.85,
+  "minimum_class_recall": 0.75,
+  "maximum_membership_entropy": 0.35,
+  "bootstrap_resamples": 10000,
+  "nominal_design": {
+    "mass": 1650.0,
+    "yaw_inertia": 2700.0,
+    "front_length": 1.25,
+    "rear_length": 1.55,
+    "front_stiffness": 85000.0,
+    "rear_stiffness": 95000.0,
+    "actuator_time_constant": 0.12,
+    "front_relaxation_length": 0.50,
+    "rear_relaxation_length": 0.60
+  },
+  "notes": "10H-E leakage-safe innovation-separability gate. Clients use one fixed nominal design observer and expose only aggregate signatures of locally whitened innovations from measured yaw rate, lateral acceleration, applied steering, speed, and steering command. The algorithm never accesses true client mass, inertia, stiffness, geometry, relaxation length, actuator constant, latent state, LPV matrix, or class label. Known speed-block effects are residualized using fleet aggregates before PCA and diagonal-covariance GMM clustering. K in 1..5 is selected by BIC with minimum group size five. Physical classes are used only after fitting for permutation-invariant ARI, balanced accuracy, and recall. Confirmation seeds remain sealed unless all development gates pass."
+}

@@ -1,0 +1,40 @@
+{
+  "aggregate": {
+    "modal_k": 1,
+    "three_group_rate": 0.0,
+    "mean_ari": 0.0,
+    "minimum_ari": 0.0,
+    "mean_balanced_accuracy": 0.33333333333333337,
+    "minimum_seed_balanced_accuracy": 0.3333333333333333,
+    "mean_minimum_class_recall": 0.0,
+    "minimum_class_recall": 0.0,
+    "mean_membership_entropy": 0.0,
+    "fixed_k3_mean_ari": 0.4551231862086408,
+    "fixed_k3_mean_balanced_accuracy": 0.7466666666666667,
+    "fixed_k3_minimum_class_recall": 0.0
+  },
+  "development_gates": {
+    "modal_three_groups": false,
+    "ari_gate": false,
+    "balanced_accuracy_gate": false,
+    "class_recall_gate": false,
+    "entropy_gate": true,
+    "development_gate_pass": false
+  },
+  "confirmation_run": false,
+  "reserved_confirmation_seeds": [
+    571,
+    572,
+    573,
+    574,
+    575,
+    576,
+    577,
+    578,
+    579,
+    580
+  ],
+  "leakage_statement": "No true client parameter, state, matrix, or class label enters feature construction, PCA, GMM fitting, BIC selection, or assignment.",
+  "script_sha256": "ee24adccb491e549335c9343620354ff4fd63efbaaad0b226e98fbee244901e1",
+  "config_sha256": "5e5acab9f225b67abfb4565a3c8a3ba1881a2a094a4ba8f62e4cffaf179ee5a6"
+}
