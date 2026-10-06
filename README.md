@@ -495,3 +495,14 @@ the frozen 10H LQI does not: mean tracking degrades by 13--21% and worst-client
 tracking by 37--45%, concentrated in SUV observer mismatch. Experiment 10H-A
 supports tire-force observability but blocks an unqualified full-state-to-
 output-feedback transition.
+
+Experiment 10H-B isolates why the GlobalKF control interface fails. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hb_observer_mechanism.py`.
+Using frozen 10H/10H-A fleets, controller, observer tuning, and common random
+numbers, it compares ExactKF, oracle-class, and fleet-global observers both
+with and without sensor bias. Within-class mismatch adds only 0.7--2.4% to
+tracking error, while cross-class mismatch adds 11--34%; sensor bias adds
+5.5--11.3%. OracleClassKF recovers 90--95% of the GlobalKF-to-ExactKF gap at
+all mean/worst and broadband/transient endpoints. The audit therefore supports
+class-compatible shared observers as a concrete CFL mechanism, while leaving
+learned (non-oracle) grouping as the next required gate.

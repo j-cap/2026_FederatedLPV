@@ -1,0 +1,7 @@
+{
+  "confirmation_seeds": [511, 512, 513, 514, 515, 516, 517, 518, 519, 520],
+  "bootstrap_resamples": 10000,
+  "minimum_oracle_gap_recovery_pct": 25.0,
+  "maximum_oracle_excess_vs_exact_pct": 10.0,
+  "notes": "10H-B observer-mechanism audit. Reuses the frozen 10H fleet, H03 Global LQI controller, 10H-A measurement noise, bias, process-noise scale, and confirmation seeds. Exact, oracle-class, and global scheduled Kalman observers are evaluated with paired noise under noise-only and noise-plus-trajectory-constant-bias conditions. No observer or controller is retuned."
+}
