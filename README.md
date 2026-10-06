@@ -570,3 +570,31 @@ runs exhaust the iteration budget, restart parameter dispersion reaches
 0.330, three fits hit a bound, and one conditional profile still descends away
 from the selected point. Raw-output fitting is informative, but mixture/EM
 learning remains blocked until the single-model estimator is reproducible.
+
+Experiment 10H-H repairs and validates that single-model estimator on the same
+five opened development fleets. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hh_single_model_repair.py --workers 5`.
+`--resume` continues completed per-fleet outputs and `--summarize-only` rebuilds
+aggregate evidence. There is no confirmation execution option; seeds 611--620
+remain sealed. The estimator uses the correct Riccati prior covariance, the
+full steady-state Gaussian working likelihood, analytic matrix/Riccati/filter
+derivatives, and training-only information scaling. Joint and staged fits retain
+the same public bounds and deterministic starts.
+
+Staging passes the numerical repair gate: all 15 final restarts are stationary,
+maximum parameter CV is 1.71e-6, and fixed sensor-weighted held-out prediction
+error improves by 18.02% on average (11.90--25.38%). A direct joint restart on
+seed 605 returns a false convergence flag with projected gradient 0.551, so
+optimizer flags alone are insufficient. Both methods still fail the full
+physical-model gate: every selected solution hits a bound. A separate post-hoc
+`--diagnose-bounds` audit confirms positive free-face curvature and correct
+boundary-gradient signs, and finds a 29.52--79.42% discrepancy in the exact
+front/rear common-inertial-ratio identity. The nine independent coefficients
+therefore need an eight-coordinate physical coupling before joint mixture
+learning. No hidden client quantities enter this diagnostic. The report also
+flags the historical 10H-A covariance convention for later observer/control
+revalidation. These results are measured-output prediction results, not new
+closed-loop tracking claims.
+The process-noise scale is frozen from earlier oracle observer tuning; this
+paired repair does not yet validate an entirely measured-output-only covariance
+selection pipeline.

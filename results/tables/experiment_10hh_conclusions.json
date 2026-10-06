@@ -1,0 +1,93 @@
+{
+  "methods": {
+    "joint": {
+      "aggregate": {
+        "mean_heldout_objective_improvement_pct": 18.570589328723525,
+        "minimum_heldout_objective_improvement_pct": 12.240449630748182,
+        "mean_heldout_sensor_mse_improvement_pct": 18.017897626300453,
+        "minimum_heldout_sensor_mse_improvement_pct": 11.904666319084653,
+        "all_restart_success_rate": 1.0,
+        "maximum_projected_gradient": 0.5513063376809151,
+        "maximum_restart_objective_spread_pct": 0.3108425279316578,
+        "maximum_restart_parameter_cv": 0.1364812078564691,
+        "minimum_hessian_eigenvalue": -0.2391846452213116,
+        "minimum_profile_edge_increase_pct": 0.0,
+        "maximum_boundary_fraction": 0.2222222222222222,
+        "maximum_gradient_check_relative_error": 6.389261349010949e-08,
+        "maximum_hessian_asymmetry": 1.6001052948935152e-08,
+        "invalid_evaluations": 0
+      },
+      "gates": {
+        "analytic_gradient_gate": true,
+        "optimizer_success_gate": true,
+        "stationarity_gate": false,
+        "heldout_likelihood_gate": true,
+        "heldout_fixed_weight_prediction_gate": true,
+        "restart_objective_gate": true,
+        "restart_parameter_gate": false,
+        "hessian_gate": false,
+        "conditional_profile_gate": false,
+        "boundary_gate": false,
+        "numerical_repair_gate": false,
+        "development_gate_pass": false
+      }
+    },
+    "staged": {
+      "aggregate": {
+        "mean_heldout_objective_improvement_pct": 18.5705867280356,
+        "minimum_heldout_objective_improvement_pct": 12.24044171630005,
+        "mean_heldout_sensor_mse_improvement_pct": 18.01789460185517,
+        "minimum_heldout_sensor_mse_improvement_pct": 11.904659262046296,
+        "all_restart_success_rate": 1.0,
+        "maximum_projected_gradient": 1.2471997101811489e-05,
+        "maximum_restart_objective_spread_pct": 1.785814743758201e-10,
+        "maximum_restart_parameter_cv": 1.7101866483632842e-06,
+        "minimum_hessian_eigenvalue": -0.2391847905873924,
+        "minimum_profile_edge_increase_pct": 0.0,
+        "maximum_boundary_fraction": 0.2222222222222222,
+        "maximum_gradient_check_relative_error": 6.389261349010949e-08,
+        "maximum_hessian_asymmetry": 1.589132424331695e-08,
+        "invalid_evaluations": 0
+      },
+      "gates": {
+        "analytic_gradient_gate": true,
+        "optimizer_success_gate": true,
+        "stationarity_gate": true,
+        "heldout_likelihood_gate": true,
+        "heldout_fixed_weight_prediction_gate": true,
+        "restart_objective_gate": true,
+        "restart_parameter_gate": true,
+        "hessian_gate": false,
+        "conditional_profile_gate": false,
+        "boundary_gate": false,
+        "numerical_repair_gate": true,
+        "development_gate_pass": false
+      }
+    }
+  },
+  "confirmation_run": false,
+  "reserved_confirmation_seeds": [
+    611,
+    612,
+    613,
+    614,
+    615,
+    616,
+    617,
+    618,
+    619,
+    620
+  ],
+  "leakage_statement": "Only measured arrays and public design covariances, scheduling, nominal coordinates, and bounds enter the learner. Hidden fleet quantities and labels remain behind the simulator boundary.",
+  "interpretation": "Paired development repair, not blind confirmation. Steady-state Gaussian quasi-likelihood; fixed Q and unmodeled quiet-bias estimation uncertainty limit stochastic interpretation. Conditional profiles do not establish global uniqueness.",
+  "inherited_covariance_tuning": "Process-noise scale 0.01 was originally selected in 10H-A using latent-state estimation errors. No current-fleet truths are used to retune it. A fully measured-output-only covariance-selection pipeline remains to be validated.",
+  "provenance_sha256": {
+    "code/config/experiment_10hh.json": "103da5bb38657bdac71fbd1a77a938b12ef01a4f00aeb395a0526812b3665457",
+    "code/experiments/experiment_10hh_single_model_repair.py": "dd3248b0e0d40cf6e8632ebc1745e66724c94fdc7e165a7616e8813f33a343c5",
+    "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+    "code/config/experiment_10h.json": "4450b715f59bab03f6bdd61979387673124cee651494945d8a8907ae7bff1d0e",
+    "code/config/experiment_10ha.json": "c17398296909fa656138130e13435845e1bae41bbbce9b7eb3943281016d7ace",
+    "code/config/experiment_10hf.json": "ab58c1fb4bdb43964628c3dec484957b0d465d185466e6e6e1b4bcef3d707185",
+    "results/tables/experiment_10ha_frozen_selection.json": "33530068eea8f8b84f766b057dbbe58d04579c9e9a38fcfc117dee1161b3255d"
+  }
+}

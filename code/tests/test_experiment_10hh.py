@@ -7,7 +7,7 @@ import numpy as np
 from numpy.testing import assert_allclose
 
 from federated_lpv.innovation_likelihood import (
-    C, InnovationLikelihood, MeasuredDataset, projected_gradient,
+    C, InnovationLikelihood, MeasuredDataset, projected_gradient, physical_coupling_diagnostic,
     steady_filter, structured_matrices,
 )
 
@@ -93,3 +93,12 @@ def test_confirmation_seeds_are_not_part_of_development():
     cfg = json.loads((Path(__file__).parents[1]/'config/experiment_10hh.json').read_text())
     assert set(cfg['development_seeds']).isdisjoint(cfg['reserved_confirmation_seeds'])
     assert cfg['reserved_confirmation_seeds'] == list(range(611, 621))
+
+
+def test_physical_coupling_check_uses_an_exact_nominal_identity():
+    # Known nominal fixture, no client truths are supplied to the diagnostic.
+    v = np.array([.6*1.2, .6*1.5, 100., 1.2*100., 90., 1.5*90., 2., 1.7, 8.])
+    result = physical_coupling_diagnostic(np.log(v))
+    assert_allclose(result['log_coupling_residual'],0.,atol=1e-14)
+    v[0] *= 1.2
+    assert physical_coupling_diagnostic(np.log(v))['relative_coupling_discrepancy'] > .1

@@ -19,7 +19,7 @@ from scipy.optimize import minimize
 
 from federated_lpv.innovation_likelihood import (
     InnovationLikelihood, MeasuredDataset, PARAMETER_NAMES,
-    information_scale, projected_gradient,
+    information_scale, projected_gradient, physical_coupling_diagnostic,
 )
 from experiment_10h_higher_order_lpv_gate import sample_fleet
 from experiment_10hf_output_identifiability import (
@@ -322,9 +322,16 @@ def summarize():
             conditional_profile_gate=aggregate['minimum_profile_edge_increase_pct'] >= cfg['minimum_profile_edge_increase_pct'],
             boundary_gate=aggregate['maximum_boundary_fraction'] <= cfg['maximum_boundary_fraction'],
         )
+        gates['numerical_repair_gate'] = all(gates[name] for name in [
+            'analytic_gradient_gate', 'optimizer_success_gate', 'stationarity_gate',
+            'heldout_likelihood_gate', 'heldout_fixed_weight_prediction_gate',
+            'restart_objective_gate', 'restart_parameter_gate',
+        ])
         gates['development_gate_pass'] = all(gates.values())
         conclusions[method] = {'aggregate':aggregate, 'gates':gates}
-        summary_rows.append(dict(method=method, **aggregate, development_gate_pass=gates['development_gate_pass']))
+        summary_rows.append(dict(method=method, **aggregate,
+                                 numerical_repair_gate=gates['numerical_repair_gate'],
+                                 development_gate_pass=gates['development_gate_pass']))
     pd.DataFrame(summary_rows).to_csv(OUT/f'{PREFIX}_summary.csv', index=False)
     hashes = {str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
               for p in [CONFIG, Path(__file__), ROOT/'code/src/federated_lpv/innovation_likelihood.py',
@@ -334,6 +341,7 @@ def summarize():
                   reserved_confirmation_seeds=cfg['reserved_confirmation_seeds'],
                   leakage_statement='Only measured arrays and public design covariances, scheduling, nominal coordinates, and bounds enter the learner. Hidden fleet quantities and labels remain behind the simulator boundary.',
                   interpretation='Paired development repair, not blind confirmation. Steady-state Gaussian quasi-likelihood; fixed Q and unmodeled quiet-bias estimation uncertainty limit stochastic interpretation. Conditional profiles do not establish global uniqueness.',
+                  inherited_covariance_tuning='Process-noise scale 0.01 was originally selected in 10H-A using latent-state estimation errors. No current-fleet truths are used to retune it. A fully measured-output-only covariance-selection pipeline remains to be validated.',
                   provenance_sha256=hashes)
     (OUT/f'{PREFIX}_conclusions.json').write_text(json.dumps(output, indent=2)+'\n')
     plot(frames)
@@ -364,15 +372,77 @@ def plot(frames):
     plt.close(fig)
 
 
+def diagnose_bounds():
+    """Post-hoc interpretation only: never changes fits or predeclared gates."""
+    cfg, inherited = load_configuration()
+    fitted_table = pd.read_csv(OUT/f'{PREFIX}_parameters.csv')
+    rows, coordinate_rows = [], []
+    for seed in cfg['development_seeds']:
+        datasets, _ = measured_datasets(seed, cfg, inherited)
+        h, ha, hf = (inherited[name] for name in ['10h','10ha','10hf'])
+        noise_scale = json.loads((OUT/'experiment_10ha_frozen_selection.json').read_text())['process_noise_scale']
+        q = np.diag(np.asarray(ha['base_process_noise_diagonal'])*noise_scale)
+        evaluator = InnovationLikelihood(datasets['train'], h['sample_time'], q, measurement_covariance(ha))
+        nominal = np.log(nominal_effective_parameters(hf))
+        lower = nominal+np.log(cfg['parameter_lower_multiplier'])
+        upper = nominal+np.log(cfg['parameter_upper_multiplier'])
+        for method in cfg['methods']:
+            local = fitted_table[(fitted_table.seed == seed)&(fitted_table.method == method)]
+            fitted = np.log(local.set_index('parameter').loc[list(PARAMETER_NAMES),'fitted'].to_numpy())
+            gradient = evaluator.value_gradient(fitted)[1]
+            step = cfg['hessian_log_step']
+            hessian = np.column_stack([
+                (evaluator.value_gradient(fitted+np.eye(9)[j]*step)[1]
+                 - evaluator.value_gradient(fitted-np.eye(9)[j]*step)[1])/(2*step)
+                for j in range(9)
+            ])
+            hessian = (hessian+hessian.T)/2
+            at_lower = np.isclose(fitted,lower,atol=1e-5,rtol=0)
+            at_upper = np.isclose(fitted,upper,atol=1e-5,rtol=0)
+            free = ~(at_lower|at_upper)
+            free_eigen = np.linalg.eigvalsh(hessian[np.ix_(free,free)])
+            boundary_names = []
+            for j,name in enumerate(PARAMETER_NAMES):
+                if not free[j]:
+                    side = 'lower' if at_lower[j] else 'upper'
+                    boundary_names.append(name+':'+side)
+                    # Positive gradient at a lower bound means moving inward
+                    # raises loss; a zero clipped outward profile is not flatness.
+                    coordinate_rows.append(dict(seed=seed,method=method,parameter=name,
+                                                bound=side,gradient=gradient[j],
+                                                kkt_sign_satisfied=bool(gradient[j]>=0 if at_lower[j] else gradient[j]<=0)))
+            rows.append(dict(seed=seed,method=method,active_coordinates=';'.join(boundary_names),
+                             free_dimension=int(free.sum()),
+                             minimum_free_hessian_eigenvalue=float(free_eigen[0]),
+                             free_hessian_condition=float(free_eigen[-1]/free_eigen[0]),
+                             maximum_free_gradient=float(np.max(np.abs(gradient[free]))),
+                             **physical_coupling_diagnostic(fitted)))
+    frame = pd.DataFrame(rows)
+    frame.to_csv(OUT/f'{PREFIX}_bound_diagnostics.csv',index=False)
+    pd.DataFrame(coordinate_rows).to_csv(OUT/f'{PREFIX}_bound_coordinate_gradients.csv',index=False)
+    output = dict(posthoc_diagnostic=True,predeclared_gates_unchanged=True,
+                  minimum_free_hessian_eigenvalue=float(frame.minimum_free_hessian_eigenvalue.min()),
+                  minimum_physical_coupling_discrepancy_pct=float(100*frame.relative_coupling_discrepancy.min()),
+                  maximum_physical_coupling_discrepancy_pct=float(100*frame.relative_coupling_discrepancy.max()),
+                  interpretation='Boundary KKT and free-face curvature distinguish a constrained minimum from an unconverged fit. Independent nine-coordinate fits need not obey the exact common-inertial-ratio bicycle identity; this diagnostic uses only fitted coefficients, not simulator truth.',
+                  estimator_sha256=hashlib.sha256((ROOT/'code/src/federated_lpv/innovation_likelihood.py').read_bytes()).hexdigest())
+    (OUT/f'{PREFIX}_bound_diagnostic_conclusions.json').write_text(json.dumps(output,indent=2)+'\n')
+    print(json.dumps(output,indent=2),flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workers',type=int,default=5)
     parser.add_argument('--seed',type=int,help='One predeclared development seed only')
     parser.add_argument('--summarize-only',action='store_true')
+    parser.add_argument('--diagnose-bounds',action='store_true',help='Post-hoc bound and physical-coupling interpretation')
     parser.add_argument('--resume',action='store_true')
     args = parser.parse_args()
     cfg,_ = load_configuration()
     OUT.mkdir(parents=True,exist_ok=True)
+    if args.diagnose_bounds:
+        diagnose_bounds()
+        return
     if args.summarize_only:
         summarize()
         return
@@ -380,7 +450,11 @@ def main():
     if any(seed not in cfg['development_seeds'] for seed in seeds):
         parser.error('Only opened development seeds are allowed; confirmation is sealed')
     if args.resume:
-        seeds = [seed for seed in seeds if not (OUT/f'{PREFIX}_seed{seed}_runs.csv').exists()]
+        required = ['runs','restarts','parameters','profiles','hessian_eigenvalues',
+                    'phases','gradient_checks','splits','archived_ablation']
+        seeds = [seed for seed in seeds if not all(
+            (OUT/f'{PREFIX}_seed{seed}_{name}.csv').exists() for name in required
+        )]
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         futures = {pool.submit(evaluate_seed,seed):seed for seed in seeds}
         for future in as_completed(futures):

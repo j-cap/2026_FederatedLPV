@@ -192,3 +192,19 @@ def projected_gradient(parameters, gradient, lower, upper, tolerance=1e-7):
 def information_scale(matrix, minimum=.2, maximum=5.):
     raw = 1 / np.sqrt(np.maximum(np.diag(matrix), 1e-12))
     return np.clip(raw / np.median(raw), minimum, maximum)
+
+
+def physical_coupling_diagnostic(log_parameters):
+    """Check an exact bicycle relation using fitted coefficients alone.
+
+    yaw_front * front_beta / front_yaw and
+    yaw_rear * rear_beta / rear_yaw must represent the same m/I_z.
+    Neither mass, inertia nor geometry needs to be known to check this relation.
+    The nine-independent-coordinate model does not enforce it during fitting.
+    """
+    z = np.asarray(log_parameters)
+    front = float(np.exp(z[0]+z[2]-z[3]))
+    rear = float(np.exp(z[1]+z[4]-z[5]))
+    return dict(inferred_front_inertial_ratio=front, inferred_rear_inertial_ratio=rear,
+                relative_coupling_discrepancy=abs(front-rear)/((front+rear)/2),
+                log_coupling_residual=float(z[0]+z[2]-z[3]-z[1]-z[4]+z[5]))
