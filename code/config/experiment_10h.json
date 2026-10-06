@@ -1,0 +1,57 @@
+{
+  "development_seeds": [461, 462, 463, 464, 465],
+  "pilot_seeds": [471, 472, 473, 474, 475, 476, 477, 478, 479, 480],
+  "confirmation_seeds": [481, 482, 483, 484, 485, 486, 487, 488, 489, 490],
+  "clients_per_class": 10,
+  "sample_time": 0.01,
+  "duration_s": 12.0,
+  "speed_grid": [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30],
+  "coverage_blocks": [[10, 12, 14], [16, 18, 20], [22, 24, 26], [28, 30]],
+  "frequency_bands_hz": [[0.15, 0.35], [0.4, 0.7], [0.8, 1.2]],
+  "identification_samples_per_speed": 500,
+  "identification_input_std_rad": 0.008,
+  "lpv_basis_order": 5,
+  "scatter": {
+    "mass": 0.05,
+    "yaw_inertia": 0.07,
+    "geometry": 0.02,
+    "stiffness": 0.08,
+    "actuator_time_constant": 0.12,
+    "relaxation_length": 0.12
+  },
+  "classes": {
+    "compact": {
+      "mass": 1300.0, "yaw_inertia": 1900.0,
+      "front_length": 1.10, "rear_length": 1.50,
+      "front_stiffness": 70000.0, "rear_stiffness": 75000.0,
+      "actuator_time_constant": 0.10,
+      "front_relaxation_length": 0.42, "rear_relaxation_length": 0.50
+    },
+    "suv": {
+      "mass": 2100.0, "yaw_inertia": 3900.0,
+      "front_length": 1.35, "rear_length": 1.70,
+      "front_stiffness": 90000.0, "rear_stiffness": 100000.0,
+      "actuator_time_constant": 0.18,
+      "front_relaxation_length": 0.82, "rear_relaxation_length": 0.95
+    },
+    "sport": {
+      "mass": 1550.0, "yaw_inertia": 2350.0,
+      "front_length": 1.25, "rear_length": 1.45,
+      "front_stiffness": 105000.0, "rear_stiffness": 115000.0,
+      "actuator_time_constant": 0.065,
+      "front_relaxation_length": 0.25, "rear_relaxation_length": 0.30
+    }
+  },
+  "controller_candidates": [
+    {"name": "H01", "q_beta": 25.0, "q_yaw": 20.0, "q_force": 0.02, "q_actuator": 2.0, "q_integral": 500.0, "r": 1.0},
+    {"name": "H02", "q_beta": 25.0, "q_yaw": 50.0, "q_force": 0.02, "q_actuator": 5.0, "q_integral": 1000.0, "r": 0.5},
+    {"name": "H03", "q_beta": 50.0, "q_yaw": 75.0, "q_force": 0.05, "q_actuator": 5.0, "q_integral": 1500.0, "r": 0.2},
+    {"name": "H04", "q_beta": 100.0, "q_yaw": 100.0, "q_force": 0.10, "q_actuator": 10.0, "q_integral": 2000.0, "r": 0.1}
+  ],
+  "maximum_command_deg": 15.0,
+  "minimum_sharing_improvement_pct": 5.0,
+  "maximum_global_excess_vs_exact_pct": 5.0,
+  "maximum_aggregate_condition": 100000000.0,
+  "bootstrap_resamples": 10000,
+  "notes": "Higher-order LPV prerequisite audit. State is [beta,r,Fyf/m,Fyr/m,delta_a]. Primary evaluation uses the exact matched time-varying LPV plant, avoiding nonlinear saturation as a confounder. Restricted clients observe one speed block and one steering-frequency band. Seeds 471--480 were an opened oracle-class pilot: Global was already robust and class specialization was not beneficial. The revised, predeclared sharing gate adds an optimistic noise-free LocalRestricted controller and uses untouched seeds 481--490. Controller weights remain frozen from ClientExact development performance."
+}

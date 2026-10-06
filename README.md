@@ -468,3 +468,17 @@ maneuver, and client-exact nominal LQI is less robust near nonlinear tire and
 steering constraints. The negative result prevents an unjustified federated
 extension and motivates an explicitly robust or constraint-aware control
 question rather than further post-hoc LQI tuning.
+
+Experiment 10H keeps the gain-scheduled LQI setting but replaces the easy
+two-state identification problem by a five-state LPV model with front/rear
+tire-relaxation and steering-actuator dynamics. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10h_higher_order_lpv_gate.py all`.
+Every client sees only one speed block and one steering-frequency band. Its
+30-column LPV regression has rank 12--18, whereas every class aggregate has
+full rank 30. On fresh fleets, Global pooling improves over an optimistic
+noise-free LocalRestricted controller by 9.42%/2.55% in broadband/transient
+mean tracking and 14.71%/13.65% in worst-client tracking. All paired intervals
+are positive and every controller is stable and feasible. The strict 5% gain
+gate fails for transient mean tracking, so 10H supports a strong fleet-tail and
+calibration-coverage claim, not a uniformly large nominal-mean claim. Oracle
+class specialization remains unnecessary in this setting.
