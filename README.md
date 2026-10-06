@@ -506,3 +506,17 @@ tracking error, while cross-class mismatch adds 11--34%; sensor bias adds
 all mean/worst and broadband/transient endpoints. The audit therefore supports
 class-compatible shared observers as a concrete CFL mechanism, while leaving
 learned (non-oracle) grouping as the next required gate.
+
+Experiment 10H-C removes the known-class assumption at the observer-grouping
+level. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hc_learned_observer_groups.py --phase all --workers 5`.
+Clients share only partial noisy LPV matrix-update summaries from their local
+speed blocks. A multi-start hard mixture selects an unknown group count from
+one to five by BIC; physical labels are used only for OracleClassKF and ARI.
+On ten untouched fleets, BIC selects three groups in nine fleets and four in
+one, with mean ARI 0.986. LearnedClusterKF improves over GlobalKF by
+9.31--10.34% in mean tracking and 21.74--22.92% in worst-client tracking,
+retaining 85--94% of the Global-to-Exact observer gap and matching the oracle
+class observer closely. This establishes a label-free CFL observer-grouping
+mechanism, but the update summaries are controlled noisy matrix surrogates;
+end-to-end local output-error observer learning remains the next gate.

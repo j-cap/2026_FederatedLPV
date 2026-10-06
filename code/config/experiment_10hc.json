@@ -1,0 +1,14 @@
+{
+  "development_seeds": [521, 522, 523, 524, 525],
+  "confirmation_seeds": [531, 532, 533, 534, 535, 536, 537, 538, 539, 540],
+  "candidate_clusters": [1, 2, 3, 4, 5],
+  "mixture_restarts": 16,
+  "mixture_iterations": 40,
+  "minimum_cluster_size": 5,
+  "matrix_update_noise_relative_std": 0.005,
+  "ridge_strength": 1e-8,
+  "bootstrap_resamples": 10000,
+  "minimum_oracle_gap_retention_pct": 75.0,
+  "maximum_tracking_excess_vs_oracle_pct": 5.0,
+  "notes": "10H-C learned unknown-cardinality grouping of partial observer-model updates. Each client contributes noisy discrete LPV matrix updates only at its frozen 10H speed block; no raw trajectory or class label enters clustering. A hard mixture of L=5 matrix schedules is fit with deterministic multi-starts, minimum group size five, and K in 1..5 selected independently per fleet by BIC. Development and confirmation fleets are disjoint. The H03 Global LQI controller, 10H-A observer process covariance, biased measurement model, and 10H-B output-feedback protocol remain frozen. Physical class labels are used only for OracleClassKF and retrospective ARI."
+}
