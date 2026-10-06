@@ -1,0 +1,27 @@
+{
+  "development_seeds": [501, 502, 503, 504, 505],
+  "confirmation_seeds": [511, 512, 513, 514, 515, 516, 517, 518, 519, 520],
+  "sample_time": 0.01,
+  "duration_s": 16.0,
+  "observer_transient_s": 2.0,
+  "measurement_noise_std": {
+    "yaw_rate_deg_s": 0.03,
+    "lateral_acceleration_mps2": 0.03,
+    "steering_deg": 0.02
+  },
+  "measurement_bias_std": {
+    "yaw_rate_deg_s": 0.05,
+    "lateral_acceleration_mps2": 0.04,
+    "steering_deg": 0.03
+  },
+  "process_noise_candidates": [0.01, 0.03, 0.1, 0.3, 1.0],
+  "base_process_noise_diagonal": [1e-7, 1e-6, 2e-4, 2e-4, 1e-6],
+  "algebraic_savgol_window": 51,
+  "algebraic_savgol_order": 3,
+  "maximum_beta_rmse_deg": 0.3,
+  "maximum_force_nrmse_pct": 25.0,
+  "maximum_mean_control_degradation_pct": 5.0,
+  "maximum_worst_control_degradation_pct": 10.0,
+  "bootstrap_resamples": 10000,
+  "notes": "10H-A observer feasibility audit for the five-state higher-order LPV model. Measurements are yaw rate, lateral acceleration, and applied steering. Exact-model and fleet-Global scheduled Kalman observers are compared with an optimistic algebraic force reconstruction using filtered yaw acceleration and true client geometry/inertia ratio. Observer process-noise scale is selected on development fleets; confirmation uses fresh fleets. Output-feedback LQI uses the frozen H03 controller weights from 10H."
+}

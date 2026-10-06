@@ -482,3 +482,16 @@ are positive and every controller is stable and feasible. The strict 5% gain
 gate fails for transient mean tracking, so 10H supports a strong fleet-tail and
 calibration-coverage claim, not a uniformly large nominal-mean claim. Oracle
 class specialization remains unnecessary in this setting.
+
+Experiment 10H-A audits whether the latent sideslip and normalized tire-force
+states used by 10H can be estimated from production-like signals. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10ha_tire_force_observer.py all`.
+A scheduled Kalman observer uses yaw rate, lateral acceleration, applied
+steering, and speed. All exact systems are observable. On ten fresh fleets,
+the shared GlobalKF obtains 0.048 deg sideslip RMSE and 7.96%/5.32% front/rear
+normalized-force NRMSE; an ExactKF reaches 3.72%/3.12% force NRMSE. State
+estimation therefore passes its gate. Directly feeding GlobalKF states into
+the frozen 10H LQI does not: mean tracking degrades by 13--21% and worst-client
+tracking by 37--45%, concentrated in SUV observer mismatch. Experiment 10H-A
+supports tire-force observability but blocks an unqualified full-state-to-
+output-feedback transition.
