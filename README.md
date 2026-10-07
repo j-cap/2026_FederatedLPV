@@ -679,3 +679,28 @@ without establishing physical group recovery or deployment readiness.
 The full suite passes 136 tests and all four new Python files pass scoped lint.
 Confirmation remains sealed. No new latent-state, closed-loop or federated
 communication gain is claimed.
+
+Experiment 10H-L extends 10H-K with six split starts, two whole-client inner
+folds, and one-second first-record calibration. It jointly selects a fitting
+direction and a 0/10/25% forecast-gain margin for global fallback using only
+inner future outputs. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hl_validated_model_selection.py --workers 5`.
+`--resume` retains immutable context caches and `--summarize-only` verifies
+source/output hashes. Independent reporting uses
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hl_result_audit.py`.
+All comparisons use the same 100-sample calibration and future origins;
+historical 10H-K errors retain their original 50-sample budget.
+
+All 250 fit records pass numerical checks (210 new, 40 audited reuse).
+At Q=0.01, validation plus fallback gives a mean paired 22.24% 0.5-second
+gain over six-start likelihood MAP in all five fleets; at Q=1 it deteriorates
+in all five, with mean paired gain -60.19%. Clients degraded relative to the
+global model fall from 13 to one and from eight to three, respectively, but
+fallback supplies no individual guarantee. Selecting an initialization index
+does not reliably transfer its inner-fold solution to the full training fit.
+The next selection test should freeze fitted candidates before independent
+client validation, avoiding a new optimizer basin after selection. Covariance
+miscalibration and heuristic bounds remain unresolved. The full suite passes
+142 tests; independent source/data/selection/forecast checks and scoped lint
+pass. Confirmation remains sealed; no new state, control or communication
+benefit is claimed.
