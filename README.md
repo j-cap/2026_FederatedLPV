@@ -654,3 +654,28 @@ scientific test is label-blind K=1 versus K=2 joint fitting with common
 covariance/bias assumptions and multi-step validation, rather than further
 blind bound expansion. Confirmation seeds remain sealed. The full suite
 passes 130 tests; new-code lint passes. No latent-state or control gain is claimed.
+
+Experiment 10H-K compares that audited K=1 baseline with two jointly learned
+eight-coordinate plants and client memberships. The protocol was committed
+before fitting. Run
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hk_joint_client_mixture.py --workers 5`.
+`--resume` retains completed jobs; `--summarize-only` verifies source/output
+hashes. Run the independent reporting audit with
+`OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=code/src:code/experiments python code/experiments/experiment_10hk_result_audit.py`.
+K=2 keeps the same diagnostic bounds, fixed-Q panels, bias preprocessing and
+working likelihood as K=1. Unseen-client membership uses only 50 samples of
+the first listed record, then freezes across all speed records. All future
+scores start after calibration; no full held-out score chooses a component.
+
+All 30 K=2 restarts pass KKT/feasibility checks, and every fleet improves at
+every predeclared horizon and suffix simulation. Mean paired 0.5-second
+forecast improvement is 70.07% at Q=0.01 and 73.31% at Q=1; 39/50 and 43/50
+individual clients improve. Some clients deteriorate substantially, mixture
+solutions/partitions vary across starts, and innovations remain miscalibrated.
+One original gradient check misses its declared 1e-5 threshold at 1.14e-5;
+unchanged-point step refinement reaches 7.81e-7, while preserving the original
+miss. This supports multiple predictive fleet plants on development data,
+without establishing physical group recovery or deployment readiness.
+The full suite passes 136 tests and all four new Python files pass scoped lint.
+Confirmation remains sealed. No new latent-state, closed-loop or federated
+communication gain is claimed.

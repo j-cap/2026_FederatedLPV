@@ -1,0 +1,47 @@
+{
+  "seed": 601,
+  "process_noise_scale": 0.01,
+  "revision": "d5e1b111468f9b3ed486139d9508519b860262c1",
+  "source_sha256": {
+    "code/config/experiment_10hk.json": "3f73516a4531670a596b59450e2839ca298dfba0cd6843efcf377a93133b8b2e",
+    "code/experiments/experiment_10hk_joint_client_mixture.py": "8f808fcaf0fcbeac6f7e4fe9d6dbb5c9add5cada814be923760f1b023d3da301",
+    "docs/experiment_10hk_protocol.md": "9c5be9736bb31c2fbc4130ca9ef4427b62b91f5a731eebd66833d148cfea544f",
+    "code/tests/test_experiment_10hk.py": "6e49d74a2b7cbc0afbab6c84d549e2115524d487c18f952e31b23441aae309eb",
+    "code/src/federated_lpv/client_mixture.py": "7d341f75bf1e9789bb2c5e436e16b6a979cce6e24a3674b1e03c9bd78e50e60f",
+    "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+    "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+    "code/src/federated_lpv/output_validation.py": "6f311ac69ea04d4202a06224628ae5b7623dfef70901f66354d8fd13bd1091cc",
+    "code/experiments/experiment_10hh_single_model_repair.py": "dd3248b0e0d40cf6e8632ebc1745e66724c94fdc7e165a7616e8813f33a343c5",
+    "code/experiments/experiment_10hi_physically_coupled_fit.py": "fe131c34a34c76431d18b4e8f1d192b6316682be38ed7b23430a99b31e8d0c17",
+    "code/experiments/experiment_10hf_output_identifiability.py": "867ec77e0ba1d8a562de7595ddcc4920bbbe474291ff38a061af86909a84147e",
+    "code/experiments/experiment_10ha_tire_force_observer.py": "9c1a44068061b280448d9d647868852323a43c5993c894fccf9b6effb61a89cc",
+    "code/experiments/experiment_10h_higher_order_lpv_gate.py": "129abcffe99c752ea9baf9eb949b43ef7dd9b66f622d6d2ef7387b542dc51a7b",
+    "code/config/experiment_10h.json": "4450b715f59bab03f6bdd61979387673124cee651494945d8a8907ae7bff1d0e",
+    "code/config/experiment_10ha.json": "c17398296909fa656138130e13435845e1bae41bbbce9b7eb3943281016d7ace",
+    "code/config/experiment_10hf.json": "ab58c1fb4bdb43964628c3dec484957b0d465d185466e6e6e1b4bcef3d707185",
+    "results/tables/experiment_10hj_seed601_Q0.01_complete.json": "73e906465d3312eae38aab0f402618d125c7fe7bad004c3baa232f0002659ca2",
+    "results/tables/experiment_10hj_seed601_Q0.01_runs.csv": "467f037d753788d544b29b07b5a5202e0950eb2fb8b4f2d244de2565ce8a0493",
+    "results/tables/experiment_10hj_seed601_Q0.01_physical_parameters.csv": "1ed91d2078a56b379edf82abe3c2808d47fb0c97a04132e7b8f08b25e8b01603",
+    "results/tables/experiment_10hj_seed601_Q0.01_restarts.csv": "921f0ab742e05337eab3a954cedd6c9f36682e859a32b5533561a78287e8e9c2"
+  },
+  "measured_array_sha256": {
+    "train": "fbc85bc00fffadefe2029f868b220343d269c12e58459ae8b3ee803978534d35",
+    "heldout": "46f7163333e52e877963b934a01ba23fd0aa17ab87387ed24afae34767b14af7"
+  },
+  "output_sha256": {
+    "experiment_10hk_seed601_Q0.01_runs.csv": "14092ab24779de43b7d37ec33b7fac6d7bc6d02a4ed7d687ecf78a17cd766ba1",
+    "experiment_10hk_seed601_Q0.01_restarts.csv": "2c491756a85ccee19adfdd4b5aaa58721af8241eda30928e6510f5d6c0357a93",
+    "experiment_10hk_seed601_Q0.01_phases.csv": "a8ddfcbfc98b011bb7e84ca281b6ec955e44257ab684ce4481e2833df9ff097e",
+    "experiment_10hk_seed601_Q0.01_initials.csv": "def2e73f601eb4dbad3c7cc5ed3688126643894df88e855852fa11dad7e1d77f",
+    "experiment_10hk_seed601_Q0.01_parameters.csv": "e08bfcae6384ed3f4ea888609fd58f652bea9ef635e51c2365eb2bbda7550200",
+    "experiment_10hk_seed601_Q0.01_physical_parameters.csv": "f36679aa944d691f6a969cc81ebb7e8771888fa895b2301283d675b31a0228bc",
+    "experiment_10hk_seed601_Q0.01_memberships.csv": "922bbd0aab019d6979d68832e24bd1476976b9ccde34450ea6c41ba492a6b361",
+    "experiment_10hk_seed601_Q0.01_forecasts.csv": "f66a643b810f4d5c027056a2a7d3ec1728f93c55b29fb1bb340dd944e6c78794",
+    "experiment_10hk_seed601_Q0.01_residuals.csv": "f931491b5fde8e5f2fdd62c70c400a49e70e2ac877189a3d1e24700bf42d6408",
+    "experiment_10hk_seed601_Q0.01_correlations.csv": "18b40963679b35f4b3276a64cd87472d4f5840409a748293c2650c441e649c2e",
+    "experiment_10hk_seed601_Q0.01_gradient_checks.csv": "69279f237e4212951a78238fe2f6581cf61aa20c435c483cf54ddf10908aedcd",
+    "experiment_10hk_seed601_Q0.01_splits.csv": "e12c6488b3d4f71591090cd089f2401620038aa2d993b6720a6b50aa20a5be17"
+  },
+  "elapsed_seconds": 53.466801063000275,
+  "confirmation_run": false
+}

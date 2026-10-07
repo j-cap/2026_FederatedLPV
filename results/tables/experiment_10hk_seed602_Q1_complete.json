@@ -1,0 +1,47 @@
+{
+  "seed": 602,
+  "process_noise_scale": 1.0,
+  "revision": "d5e1b111468f9b3ed486139d9508519b860262c1",
+  "source_sha256": {
+    "code/config/experiment_10hk.json": "3f73516a4531670a596b59450e2839ca298dfba0cd6843efcf377a93133b8b2e",
+    "code/experiments/experiment_10hk_joint_client_mixture.py": "8f808fcaf0fcbeac6f7e4fe9d6dbb5c9add5cada814be923760f1b023d3da301",
+    "docs/experiment_10hk_protocol.md": "9c5be9736bb31c2fbc4130ca9ef4427b62b91f5a731eebd66833d148cfea544f",
+    "code/tests/test_experiment_10hk.py": "6e49d74a2b7cbc0afbab6c84d549e2115524d487c18f952e31b23441aae309eb",
+    "code/src/federated_lpv/client_mixture.py": "7d341f75bf1e9789bb2c5e436e16b6a979cce6e24a3674b1e03c9bd78e50e60f",
+    "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+    "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+    "code/src/federated_lpv/output_validation.py": "6f311ac69ea04d4202a06224628ae5b7623dfef70901f66354d8fd13bd1091cc",
+    "code/experiments/experiment_10hh_single_model_repair.py": "dd3248b0e0d40cf6e8632ebc1745e66724c94fdc7e165a7616e8813f33a343c5",
+    "code/experiments/experiment_10hi_physically_coupled_fit.py": "fe131c34a34c76431d18b4e8f1d192b6316682be38ed7b23430a99b31e8d0c17",
+    "code/experiments/experiment_10hf_output_identifiability.py": "867ec77e0ba1d8a562de7595ddcc4920bbbe474291ff38a061af86909a84147e",
+    "code/experiments/experiment_10ha_tire_force_observer.py": "9c1a44068061b280448d9d647868852323a43c5993c894fccf9b6effb61a89cc",
+    "code/experiments/experiment_10h_higher_order_lpv_gate.py": "129abcffe99c752ea9baf9eb949b43ef7dd9b66f622d6d2ef7387b542dc51a7b",
+    "code/config/experiment_10h.json": "4450b715f59bab03f6bdd61979387673124cee651494945d8a8907ae7bff1d0e",
+    "code/config/experiment_10ha.json": "c17398296909fa656138130e13435845e1bae41bbbce9b7eb3943281016d7ace",
+    "code/config/experiment_10hf.json": "ab58c1fb4bdb43964628c3dec484957b0d465d185466e6e6e1b4bcef3d707185",
+    "results/tables/experiment_10hj_seed602_Q1_complete.json": "5459e2400709ecf306f5231185d09091072140ce2b6c3d5f4954c0a3904e9cf5",
+    "results/tables/experiment_10hj_seed602_Q1_runs.csv": "d91bd2c268c3d21128432a4a35b970f6837b93956aacdbc0fe764aca741fbe7d",
+    "results/tables/experiment_10hj_seed602_Q1_physical_parameters.csv": "551ee00f563fdca9add943e02da139f7283733d49b3403a4c190ea04a753115a",
+    "results/tables/experiment_10hj_seed602_Q1_restarts.csv": "89ec7f5d5fa793b0409ba4962e6332d3426e8c89c18c898c8f8a5733bd8ff65e"
+  },
+  "measured_array_sha256": {
+    "train": "c3bcb7f3207ef113f9c4f474aa62a46e50ae31a395c7646fd81a39c083773769",
+    "heldout": "27ec6056881a3b15bfe81e95dd0c1ea41fbbf44245083c263917639ad0b68ba0"
+  },
+  "output_sha256": {
+    "experiment_10hk_seed602_Q1_runs.csv": "fdb4b63161cfc371ee05e03f0832789c166fea093e697a5291444acaa2b7a047",
+    "experiment_10hk_seed602_Q1_restarts.csv": "106ce70df82468453d4906afa61af18ac12cfe7421db7af7a5dc0b2657575d95",
+    "experiment_10hk_seed602_Q1_phases.csv": "3b8575a80892aa8ec74c112e82b3839f0ab615d322f8f61f8c59fd19d44c8385",
+    "experiment_10hk_seed602_Q1_initials.csv": "a96b6ce271d1bdcaa5ac4ffadd6e0ada6041dd345f7ab071366f48c2e02d1e93",
+    "experiment_10hk_seed602_Q1_parameters.csv": "e74215b6f0b494426d9a9db251e5b0ff95246477b3fd173fce4b5f8fbc0ad172",
+    "experiment_10hk_seed602_Q1_physical_parameters.csv": "7ffb3daf136940323fa06654d274a79714eca331936c8f22ff33d6ad62a52599",
+    "experiment_10hk_seed602_Q1_memberships.csv": "761abe9084d908f975ffae29b726b17262ea430df4c328ead3bf8171aee29f19",
+    "experiment_10hk_seed602_Q1_forecasts.csv": "f2c4f48e6ce7640895b5f2f2bbc26a7f4f5e106e8bfdd3f04865956119f6e17e",
+    "experiment_10hk_seed602_Q1_residuals.csv": "a23092fc303f1da33deec87c41095dc41f7ba3130ed213382e17e27a7ecbbee4",
+    "experiment_10hk_seed602_Q1_correlations.csv": "d94a67a22c513ed95929d512b1a8261b7b1e6d84523720d15d0caba32e895642",
+    "experiment_10hk_seed602_Q1_gradient_checks.csv": "33854daf4ffdc23b73f0bcc35726c37923280ed251520aac8c06ccf30502f25a",
+    "experiment_10hk_seed602_Q1_splits.csv": "715f6c38616ccbc6d67f51152b17d32696bf05fe406f3dacb10426b0cdbf213f"
+  },
+  "elapsed_seconds": 58.779464654000094,
+  "confirmation_run": false
+}
