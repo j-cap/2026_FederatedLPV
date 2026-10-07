@@ -1,0 +1,15 @@
+{
+  "base_config": "experiment_10hk.json",
+  "restart_count": 6,
+  "global_restart_count": 3,
+  "restart_log_standard_deviation": 0.22,
+  "inner_client_fold_count": 2,
+  "membership_prefix_samples": 100,
+  "forecast_burn_in_samples": 100,
+  "calibration_burn_in_samples": 20,
+  "calibration_horizons_samples": [5, 20, 50],
+  "selection_horizons_samples": [5, 20, 50],
+  "fallback_minimum_prefix_gain_candidates": [0.0, 0.1, 0.25],
+  "selection_tie_tolerance": 0.000000000001,
+  "notes": "10H-L extends the completed 10H-K development comparison. Fixed eight-coordinate models, bounds, Q/R panels and preprocessing. Two client-blocked inner folds rank six matched deterministic split directions by future multi-step validation. Jointly select direction and empirical global-fallback prefix gain margin by mean client/horizon log error ratio to K=1. Full-fit numerical eligibility may exclude a strategy, never outer performance. Full-data first three K=2 restarts and global K=1 are immutable audited reuse; remaining full and all fold fits are new. Initial one-second first-record calibration; frozen decisions across all records. Future scores use common origins 100..150. Report all model-selection and assignment ablations, client tail and restart prediction variation. Margins are empirical candidates, not calibrated safety guarantees. Confirmation remains sealed."
+}
