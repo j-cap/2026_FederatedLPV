@@ -1,0 +1,35 @@
+{
+  "experiment": "10H-Q",
+  "status": "blocked_missing_parent",
+  "required_parent_revision": "93f24cc",
+  "parent_revision_resolves": false,
+  "resolved_parent_revision": null,
+  "missing_parent_paths": [
+    "code/config/experiment_10hp.json",
+    "docs/experiment_10hp_protocol.md",
+    "code/src/federated_lpv/output_feedback_control.py",
+    "code/experiments/experiment_10hp_output_feedback.py",
+    "code/experiments/experiment_10hp_result_audit.py"
+  ],
+  "missing_parent_artifact_patterns": [
+    "results/tables/experiment_10hn_*",
+    "results/tables/experiment_10hp_*"
+  ],
+  "fleet_rollouts_executed": 0,
+  "rollout_adapter_implemented": false,
+  "frozen_models_refitted": false,
+  "confirmation_run": false,
+  "remaining_work": [
+    "Restore the original 93f24cc checkout and selected model/assignment artifacts",
+    "Verify the original parent provenance locks",
+    "Implement the rollout/replay adapter against the restored 10H-P interfaces",
+    "Reproduce overlapping parent cases before executing locked diagnostics"
+  ],
+  "preparation_sha256": {
+    "code/config/experiment_10hq.json": "f459a857728bab37bfe736fea5403b782806bd801288b376a431e443d299adce",
+    "docs/experiment_10hq_protocol.md": "3c9d0d33c049be4796ae54b34735a68d647f1720e9c6fe5d5241ac75198c9fab",
+    "code/src/federated_lpv/feedback_diagnostics.py": "df8b7f175a3da99622d4b6fa320a23dba14acb1809b0b57f44bce8798531903f",
+    "code/experiments/experiment_10hq_preflight.py": "baa230decea86f359594d85919c5e933fa0304210ab8884e270093b62b5ecaf1",
+    "code/tests/test_feedback_diagnostics.py": "d2ddbd70e5aa1442007f8df1d2b8667511847e45ae983c2743e6cbdc50d2828d"
+  }
+}
