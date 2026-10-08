@@ -1,0 +1,34 @@
+{
+  "experiment": "10H-Q",
+  "purpose": "Frozen-model feedback bottleneck diagnostic",
+  "required_parent_revision": "93f24cc",
+  "development_seeds": [601, 602, 603, 604, 605],
+  "reserved_confirmation_seed_ranges": [[591, 600], [611, 620]],
+  "fitting_panels": [0.01, 1.0],
+  "primary_panel": 0.01,
+  "controller_designs": ["nominal", "learned", "oracle"],
+  "state_sources": ["nominal_kf", "learned_kf", "true_state"],
+  "learned_both_corrections": ["beta", "forces", "beta_forces"],
+  "common_input_records": ["nominal", "learned_both"],
+  "common_input_observers": ["nominal", "learned", "oracle"],
+  "recipients_per_seed": 10,
+  "donor_deployments_per_recipient": 2,
+  "maneuvers_per_deployment": 2,
+  "planned_closed_loop_rollouts": 4800,
+  "state_coordinates": ["beta", "yaw_rate", "front_force_per_mass", "rear_force_per_mass", "applied_steering"],
+  "inherited_settings_file": "code/config/experiment_10hp.json",
+  "required_parent_paths": [
+    "code/config/experiment_10hp.json",
+    "docs/experiment_10hp_protocol.md",
+    "code/src/federated_lpv/output_feedback_control.py",
+    "code/experiments/experiment_10hp_output_feedback.py",
+    "code/experiments/experiment_10hp_result_audit.py"
+  ],
+  "required_parent_artifact_patterns": [
+    "results/tables/experiment_10hn_*",
+    "results/tables/experiment_10hp_*"
+  ],
+  "fit_or_select_models": false,
+  "confirmation_run": false,
+  "truth_allowed_only_for": ["simulator", "oracle_diagnostics", "scoring"]
+}
