@@ -17,6 +17,11 @@ separate action.
 - For long experiments, commit and push the protocol before execution and save
   reproducible checkpoints during execution. Keep large regenerable trajectories
   out of git when appropriate, but preserve their reconstruction inputs and hashes.
+- Push an execution-results checkpoint as soon as the run finishes, before
+  spending time on post-fit audits or report rendering. Push audit and report
+  checkpoints separately. Treat scratch as replaceable even during an active turn.
+- Provide a tested command to restore ignored trajectories from committed inputs,
+  checking their committed hashes without modifying frozen tables or manifests.
 - If pushing fails, try the connected GitHub tools when available. State any
   remaining synchronization failure explicitly and preserve a recovery archive.
 - Do not force-push unrelated history or alter historical locked files merely
