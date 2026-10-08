@@ -1,0 +1,22 @@
+{
+  "experiment": "10H-P reconstruction",
+  "reconstruction": true,
+  "development_seeds": [601, 602, 603, 604, 605],
+  "fitting_panels": [0.01, 1.0],
+  "primary_panel": 0.01,
+  "duration_s": 12.0,
+  "sample_time": 0.01,
+  "controller_grid": [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+  "frozen_speed_audit_points": 201,
+  "state_burnin_s": 2.0,
+  "quiet_bias_samples": 100,
+  "maximum_command_deg": 15.0,
+  "maximum_beta_deg": 6.0,
+  "noise_seed_offset": 3900000,
+  "saved_step_tolerance": 1e-10,
+  "full_path_tolerance": 1e-8,
+  "methods": ["nominal", "learned_observer", "learned_controller", "learned_both"],
+  "planned_rollouts": 1600,
+  "confirmation_run": false,
+  "notes": "Core four-method reconstruction; O scalar-Q calibration and local/global observer extensions are deferred. Noise seed is freshly declared; old trajectories and exact RNG settings were not recovered."
+}
