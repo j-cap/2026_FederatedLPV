@@ -1,0 +1,18 @@
+\section{10H-N reconstruction: multihorizon refinement}
+Starting from the 20 reconstructed M libraries, each donor-global plant and
+two components was refined with an equal-weight sensor-normalized measured-output
+loss at horizons 1, 5, 20 and 50. Component training memberships were held fixed
+at their M values, an explicit reconstruction choice. Derivatives included both
+the KF recursion and future open-loop forecast. Bounds, covariances and the
+eight-coordinate physical coupling were unchanged.
+
+Of 60 proposed refinements, 59 passed success, normalized KKT, feasibility and
+training-loss checks; the remaining plant retained its original coefficients.
+Validation selected the actual refined bundle for 16 of 20 libraries. At horizon
+50, mean paired recipient gains relative to M were 6.49\% for
+$Q_{\rm fit}=0.01$ and 26.99\% for $Q_{\rm fit}=1$. Short-horizon gains were mixed:
+at horizon 1 they were $-4.04\%$ and $-3.55\%$, and at horizon 5 they were
+3.26\% and $-11.16\%$. Individual long-horizon harms remain substantial. These
+fresh development results support a feedback diagnostic, not a uniform transfer
+claim. The libraries and prefix-only recipient assignments are frozen before
+closed-loop evaluation; no controller costs or bounds are retuned.
