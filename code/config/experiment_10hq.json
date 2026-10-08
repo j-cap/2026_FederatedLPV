@@ -1,28 +1,74 @@
 {
   "experiment": "10H-Q",
   "purpose": "Frozen-model feedback bottleneck diagnostic",
-  "required_parent_revision": "93f24cc",
-  "development_seeds": [601, 602, 603, 604, 605],
-  "reserved_confirmation_seed_ranges": [[591, 600], [611, 620]],
-  "fitting_panels": [0.01, 1.0],
+  "required_parent_revision": "6afb002ac1011dac1ba41a70f34ae2564fcc637e",
+  "development_seeds": [
+    601,
+    602,
+    603,
+    604,
+    605
+  ],
+  "reserved_confirmation_seed_ranges": [
+    [
+      591,
+      600
+    ],
+    [
+      611,
+      620
+    ]
+  ],
+  "fitting_panels": [
+    0.01,
+    1.0
+  ],
   "primary_panel": 0.01,
-  "controller_designs": ["nominal", "learned", "oracle"],
-  "state_sources": ["nominal_kf", "learned_kf", "true_state"],
-  "learned_both_corrections": ["beta", "forces", "beta_forces"],
-  "common_input_records": ["nominal", "learned_both"],
-  "common_input_observers": ["nominal", "learned", "oracle"],
+  "controller_designs": [
+    "nominal",
+    "learned",
+    "oracle"
+  ],
+  "state_sources": [
+    "nominal_kf",
+    "learned_kf",
+    "true_state"
+  ],
+  "learned_both_corrections": [
+    "beta",
+    "forces",
+    "beta_forces"
+  ],
+  "common_input_records": [
+    "nominal",
+    "learned_both"
+  ],
+  "common_input_observers": [
+    "nominal",
+    "learned",
+    "oracle"
+  ],
   "recipients_per_seed": 10,
   "donor_deployments_per_recipient": 2,
   "maneuvers_per_deployment": 2,
   "planned_closed_loop_rollouts": 4800,
-  "state_coordinates": ["beta", "yaw_rate", "front_force_per_mass", "rear_force_per_mass", "applied_steering"],
+  "state_coordinates": [
+    "beta",
+    "yaw_rate",
+    "front_force_per_mass",
+    "rear_force_per_mass",
+    "applied_steering"
+  ],
   "inherited_settings_file": "code/config/experiment_10hp.json",
   "required_parent_paths": [
     "code/config/experiment_10hp.json",
     "docs/experiment_10hp_protocol.md",
     "code/src/federated_lpv/output_feedback_control.py",
     "code/experiments/experiment_10hp_output_feedback.py",
-    "code/experiments/experiment_10hp_result_audit.py"
+    "code/experiments/experiment_10hp_result_audit.py",
+    "results/tables/experiment_10hp_complete.json",
+    "results/tables/experiment_10hp_audit.json",
+    "results/tables/experiment_10hn_libraries.json"
   ],
   "required_parent_artifact_patterns": [
     "results/tables/experiment_10hn_*",
@@ -30,5 +76,15 @@
   ],
   "fit_or_select_models": false,
   "confirmation_run": false,
-  "truth_allowed_only_for": ["simulator", "oracle_diagnostics", "scoring"]
+  "truth_allowed_only_for": [
+    "simulator",
+    "oracle_diagnostics",
+    "scoring"
+  ],
+  "parent_mode": "reconstructed",
+  "unavailable_original_parent_revision": "93f24cc",
+  "required_parent_manifest": "results/tables/experiment_10hp_complete.json",
+  "required_parent_manifest_sha256": "78747a88454f31106c25bf22949b8fb696c9392c5ee29341f179a66d568f1c3c",
+  "required_parent_audit": "results/tables/experiment_10hp_audit.json",
+  "required_parent_audit_sha256": "e229137f5be565148ddd5c3d9a7183d496649294b1d6a80c427629430f1b2075"
 }

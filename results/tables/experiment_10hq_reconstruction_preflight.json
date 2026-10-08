@@ -1,0 +1,27 @@
+{
+  "experiment": "10H-Q",
+  "status": "ready_for_frozen_diagnostic",
+  "required_parent_revision": "6afb002ac1011dac1ba41a70f34ae2564fcc637e",
+  "parent_revision_resolves": true,
+  "resolved_parent_revision": "6afb002ac1011dac1ba41a70f34ae2564fcc637e",
+  "missing_parent_paths": [],
+  "missing_parent_artifact_patterns": [],
+  "fleet_rollouts_executed": 0,
+  "rollout_adapter_implemented": true,
+  "frozen_models_refitted": false,
+  "confirmation_run": false,
+  "parent_reconstructed": true,
+  "provenance_errors": [],
+  "remaining_work": [
+    "Repeat the four frozen reconstructed P cases and verify array equality",
+    "Execute the twelve locked Q cases and common-input replays",
+    "Audit, report, commit and push the completed diagnostic"
+  ],
+  "preparation_sha256": {
+    "code/config/experiment_10hq.json": "34c6a7f3096e214f80c0c6fb14ddfd39bf18f99b7c0b08256711295dca93c3d1",
+    "docs/experiment_10hq_protocol.md": "cb66771afd839332d2b34aa31b7da8a512bb19196b25572a25644dd7a81303ec",
+    "code/src/federated_lpv/feedback_diagnostics.py": "df8b7f175a3da99622d4b6fa320a23dba14acb1809b0b57f44bce8798531903f",
+    "code/experiments/experiment_10hq_preflight.py": "61fcf952ceb01901ea37840584950be6a9e0d7f35885e7ffbd08e3cb40f9684d",
+    "code/tests/test_feedback_diagnostics.py": "d2ddbd70e5aa1442007f8df1d2b8667511847e45ae983c2743e6cbdc50d2828d"
+  }
+}

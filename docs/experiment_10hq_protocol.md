@@ -1,4 +1,4 @@
-# Experiment 10H-Q: isolate the feedback bottleneck
+# Experiment 10H-Q reconstruction: isolate the feedback bottleneck
 
 ## Purpose and frozen parent
 
@@ -7,12 +7,14 @@ the learned controller model, or limited headroom under the fixed maneuvers and
 LQI costs. This is an opened-development diagnostic, not confirmation or a new
 federated-transfer claim. Freeze this protocol before any 10H-Q rollouts.
 
-The required parent is the completed 10H-P checkout at `93f24cc`, with its original
-execution inputs, selected 10H-N model libraries, recipient assignments and
-provenance locks. Do not refit, reselect memberships, tune bounds/covariances,
-replace the parent with 10H-L models, or infer model coefficients from reported
-metrics. If the parent inputs are unavailable, record a blocked preparation
-status and do not report experiment results.
+The original parent `93f24cc` and M–P learned coefficients could not be recovered.
+The user authorized rebuilding M/N and the core P before continuing Q. This is
+therefore a fresh Q reconstruction, not a reproduction of lost historical results.
+Its required parent is the audited reconstructed P at
+`6afb002ac1011dac1ba41a70f34ae2564fcc637e`, using frozen reconstructed N libraries.
+The config pins both P execution and audit manifest hashes. Verify all inherited
+source/output locks before execution. Q itself must not refit, reselect memberships,
+tune bounds/covariances, average plants or infer coefficients from historical metrics.
 
 Inherit both donor-library deployments, development seeds 601–605, ten held-out
 recipients per seed, both maneuvers, noise/bias draws, quiet-bias correction,
@@ -108,13 +110,14 @@ maneuver and tail outcomes. No post hoc deployable winner or blind-confirmation
 gate is created. All oracle interventions are simulation diagnostics; truth and
 labels remain excluded from fitting, assignment and deployable methods.
 
-## Recovery and execution status
+## Reconstruction and execution status
 
-At preparation time the current workspace lacks the earlier checkout and GitHub
-main is `91bbdd6` (10H-L). The parent `93f24cc` is unavailable on GitHub and the
-10H-M–P source/models cannot be recovered here. Prepare reusable calculations and
-tests on a separate branch, but defer the rollout adapter and all fleet results
-until the original committed checkout is restored. After recovery, verify its
-provenance, commit the adapter before execution, reproduce the four overlapping
-10H-P cases, then execute the complete locked comparison. Historical files stay
-unchanged. Commit locally; pushing is a separate action.
+The unchanged 10H-L fits underpin the fresh M/N libraries. N's fixed-membership
+multihorizon refinement and P's freshly declared noise RNG are documented
+reconstruction choices. Original O calibration and extra local/global P baselines
+are deferred. The four core P cases are sufficient parents for this diagnostic.
+Q repeats all four on identical inputs and checks array equality before interpreting
+new interventions. Commit/push this amended protocol and adapter before execution;
+commit/push all completed results, audits, frozen inputs and report changes.
+Confirmation remains sealed. Keep strict saved-step and full-path replay checks
+separate and report all failures, including sensitivity to floating-point ordering.
