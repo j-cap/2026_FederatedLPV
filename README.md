@@ -43,6 +43,9 @@ Its 1,600 P overlaps match exactly. Saved-step, projection and provenance checks
 pass; 116 strict full-path replays remain sensitive to floating-point ordering.
 
 The primary-panel learned controller is worse than nominal with true states.
+Mean paired fleet tracking RMSE increases by 172.36%/333.60% for
+broadband/transient relative to nominal true-state control. The oracle true-state
+controller improves by only 1.42%/1.68% under the fixed tasks and costs.
 Force truth corrections also worsen Both. Improved beta estimates coexist with
 worse force estimates and steering projections, consistent with compensation
 between controller and observer errors. Fixed-cost oracle headroom is modest.
@@ -60,7 +63,7 @@ See [execution and restoration](docs/experiment_10hq_execution.md), the
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -e "./code[dev]"
-python -m unittest discover -s code/tests
+PYTHONPATH=code/src:code/experiments python -m pytest code/tests -q
 python code/experiments/phase0_validate_plant.py
 ```
 

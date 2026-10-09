@@ -3,12 +3,13 @@
   "confirmation_run": false,
   "tests_passed": 170,
   "scoped_q_lint_passed": true,
-  "report_pages": 147,
+  "report_pages": 148,
   "report_new_pages_visually_checked": [
     144,
     145,
     146,
-    147
+    147,
+    148
   ],
   "exact_regeneration_sample_count": 320,
   "saved_step_integrity_passed": true,
@@ -25,16 +26,27 @@
       620
     ]
   ],
-  "audit_metadata_note": "The current-source audit from 48ef173 is retained after integrating the later restoration checkpoint; the import-only source formatting changed its SHA, not any audit values. Conclusion and source pins agree.",
+  "audit_metadata_note": "Independent Q audits were rerun against the current source. Saved-step, projection, paired aggregation and source locks pass; 116 strict alternate full-path sensitivity cases remain visible.",
   "artifact_sha256": {
+    "README.md": "7aa8b3c0584c6b6608cd20d6ad24b5ce5284e3b573539daf158e0f9836004e0d",
     "code/experiments/experiment_10hq_feedback_bottleneck.py": "1d3a415ca7e779e18b9242dfb3468c935de1a77b859ca6a890d6f39318a0d6e5",
     "code/experiments/experiment_10hq_figures.py": "a0b9e8b310703df1119c7fa8882e6fb068b0515743706b80c293a7270c9d4590",
-    "code/experiments/experiment_10hq_final_verification.py": "2599e1dac751503699381ae5eee0947329b0137121c32eda9cacb374f870efd6",
+    "code/experiments/experiment_10hq_final_verification.py": "cb948b0e61a4b9d2541de9db9b5e5a50a2c0a521ac0f3c9334346375a6cfb56c",
     "code/experiments/experiment_10hq_parent_overlap.py": "a743b496df75db1928cb209976458f727b35ff076507dcca76e9dc00fdddbd8c",
+    "code/experiments/experiment_10hq_plot.py": "fa53c7ff5f11ed150373c289b32d10f7614d5341185f94ccf8bc6b060f3684ad",
     "code/experiments/experiment_10hq_preflight.py": "61fcf952ceb01901ea37840584950be6a9e0d7f35885e7ffbd08e3cb40f9684d",
     "code/experiments/experiment_10hq_reporting.py": "2855d301d1f406c65ccf6d43911ef93d419032917ec60435e54f6bdae6d64945",
     "code/experiments/experiment_10hq_restore_trajectories.py": "169fe00170924118b59fe67da58395960dc0b9ab78562ea3c2fac3411c57a8b8",
     "code/experiments/experiment_10hq_result_audit.py": "357f2ab458a268c5a1815ffd0c3c7b246e29ea7cb9be350120a8b54ad9e6a2d4",
+    "code/tests/test_experiment_10hq.py": "45911e37aedec2cd4350fecedddcff2a3c9bc8cbcfb1c51c7872565bcd72e275",
+    "docs/experiment_10hq_execution.md": "4875156a68aced59189e349fff4337ffbbe47923a78599dd7f7b618ac0f7e777",
+    "docs/experiment_10hq_protocol.md": "cb66771afd839332d2b34aa31b7da8a512bb19196b25572a25644dd7a81303ec",
+    "report/2026_FederatedLPV_report.pdf": "f59c6010d9491e2c0359c4e4366f2a3184c52fc7ffd739c1ac2448e5c30d9920",
+    "report/main.tex": "f6e3146c70e151953d251725de08c91e4d6258c49e063fa3c11871ce61940614",
+    "report/sections/58_experiment10hq_reconstruction.tex": "3aee1db358f180f7cf588942445856a77929baeeec667662b912afe0c9722ffb",
+    "results/figures/experiment_10hq_command_projection.pdf": "9abe6dbfe95089a5551ec355e5310d4fa976381978e998fe5acf20388309fee7",
+    "results/figures/experiment_10hq_feedback_bottleneck.pdf": "583e45cc60b32dc1379496bc778d4a52e74a39757623f481df4ebf60c5c46ebe",
+    "results/figures/experiment_10hq_tracking_diagnostic.pdf": "822cf290c0ec9ad75cd8101f36d1c05db8ed3ed35fa4baf8f1b0a21477c6cc7f",
     "results/tables/experiment_10hq_audit.json": "6dc131940f5d7989b87208e9c3b7123cbb806443e05a01a14600c37d79474c31",
     "results/tables/experiment_10hq_common_input.csv": "58d4b8432fdf0c9568c34a502a49e9dac74b26fe6c4b78d320dcf867547bdf12",
     "results/tables/experiment_10hq_common_input_fleets.csv": "18b2f2ace73001d663df6e1d5939b56e24928ae93541439a5ad2d6cbf74f0489",
@@ -44,7 +56,8 @@
     "results/tables/experiment_10hq_deployed_physical_coordinates.csv": "f0e566c91161b6bb2272db31e10d3b5a27a395571df8a2d31ff42fafe28498aa",
     "results/tables/experiment_10hq_environment.json": "9fb8ead0655444aa92060962e800168cd88019212bd0193667861360270f6f58",
     "results/tables/experiment_10hq_feedback_summary.csv": "5c94c49a6848dcd050d29c5e3a42054dae0d6b8a7461ce446175061d15fd0a40",
-    "results/tables/experiment_10hq_final_verification.json": "a7855ac2fbef6a2149d379f561a0eb6c19cfc33de444d9bc6cdc331b3eaf18af",
+    "results/tables/experiment_10hq_figure_manifest.json": "bbc6c2ce36beca87aac2057ec239afb6c2fa06643f81c772e8c60c03468b0a19",
+    "results/tables/experiment_10hq_final_verification.json": "50824c25e940ffc31de67ca5ba3c8a0ae8ed2dab7b0f41324be7619b615a1014",
     "results/tables/experiment_10hq_fleets.csv": "01aafe8d5a87c6869ab4d309c3df5689c268ac15311f8166597d47870646f86c",
     "results/tables/experiment_10hq_metrics.csv": "21801df122d03ad9c1fe091c5ff3775166bb42116373b6dbd1d057d4c4e4cfd6",
     "results/tables/experiment_10hq_paired_fleets.csv": "eda22c1a18b26184d2d76d581d9622649b5deb94a1fc82bb6cbe25e48b105173",
@@ -104,14 +117,11 @@
     "results/tables/experiment_10hq_seed605_Q1_frozen_feedback.csv": "c89960bf362030ed1ecd841a436496655074e219ab338d3f9efce05112e12823",
     "results/tables/experiment_10hq_seed605_Q1_metrics.csv": "70114feeaae9fba7d4207f9119a40fe974a21bf7fd140220b7a014cfb222facc",
     "results/tables/experiment_10hq_summary.csv": "e20452d4a599dd6c8773d3d3656746f94fbecf11fc8d2de7de53401241fb944e",
-    "results/tables/experiment_10hq_tails.csv": "ae94c2152b3e27045dd3bc35ce03e303540fe6ec8eecb656665b51982f881efd",
-    "README.md": "eefd5650a4862dedb24a6be8e81fd10928181eca7fc2f67c83cee25eeb547747",
-    "docs/experiment_10hq_protocol.md": "cb66771afd839332d2b34aa31b7da8a512bb19196b25572a25644dd7a81303ec",
-    "docs/experiment_10hq_execution.md": "2a19ebfd8142804f3d6bc15796bb32cdbb0ae7917be4ddf8dda705091a0b966c",
-    "report/main.tex": "f6e3146c70e151953d251725de08c91e4d6258c49e063fa3c11871ce61940614",
-    "report/sections/58_experiment10hq_reconstruction.tex": "ea5c972a77a97980950f86b1bf7dafa34acaae92c1d91536b2a852a397c4926f",
-    "report/2026_FederatedLPV_report.pdf": "94d8e9c155fb2ad4d21076f90d83a9c10caa233ec7bb6217677887ab1f860af9",
-    "results/figures/experiment_10hq_feedback_bottleneck.pdf": "583e45cc60b32dc1379496bc778d4a52e74a39757623f481df4ebf60c5c46ebe",
-    "code/tests/test_experiment_10hq.py": "45911e37aedec2cd4350fecedddcff2a3c9bc8cbcfb1c51c7872565bcd72e275"
-  }
+    "results/tables/experiment_10hq_tails.csv": "ae94c2152b3e27045dd3bc35ce03e303540fe6ec8eecb656665b51982f881efd"
+  },
+  "status": "completed_opened_development_diagnostic",
+  "report_compiles": true,
+  "report_new_section_has_no_overfull_boxes": true,
+  "all_parent_and_q_records_hash_restored": 6400,
+  "audit_and_conclusion_source_hashes_match": true
 }

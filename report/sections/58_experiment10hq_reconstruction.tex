@@ -55,24 +55,29 @@ effect. In the comparison panel, learned full-state control improves four of
 five fleets, but large harm in the fifth produces negative fleet-average gains
 of $-26.39\%$ and $-31.34\%$ against nominal full-state control. The tails matter.
 
+Both retains P's primary 3.02\%/0.04\% gains against nominal output feedback,
+with 24/50 and 28/50 recipients improving. In the comparison panel, 38/50 and
+39/50 recipients improve, but worst-recipient deterioration of 547\% and 626\%
+keeps both fleet-average gains negative. A favorable median does not establish
+uniformly beneficial transfer.
+
 Oracle full-state control improves on nominal full-state control by only
 1.42\% broadband and 1.68\% transient in the primary panel. All five fleet means
 improve, but only 25/50 and 26/50 recipients do. Its gains against nominal
 output feedback are 5.89\% and 7.75\%. Thus headroom is modest under these fixed
 tasks and LQI costs; the oracle is not an optimal tracking bound.
 
-\subsection{Common-input reconstruction and compensation}
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\linewidth]{experiment_10hq_feedback_bottleneck.pdf}
-\caption{Primary-panel tracking and common-input projected steering error.
-Bars are means of five fleet summaries; dots show individual fleets. Lower
-panels hold Both's recorded inputs and controller gains fixed. Their projection
-is an instantaneous command-error diagnostic, not a decomposition of tracking
-loss across different closed-loop trajectories.}
+\includegraphics[width=\linewidth]{experiment_10hq_tracking_diagnostic.pdf}
+\caption{Frozen tracking diagnostic for both fitting panels. Bars are mean
+paired fleet RMSE ratios against nominal output feedback; dots retain all five
+fleets. The vertical axis is logarithmic. True states do not rescue the learned
+controller, and a harmful fleet tail remains visible in the comparison panel.}
 \label{fig:10hq-bottleneck}
 \end{figure}
 
+\subsection{Common-input reconstruction and compensation}
 On the same Both records, learned KF beta RMSE improves from 0.03672 to
 0.02581 degrees broadband and from 0.06199 to 0.04558 degrees transient.
 However, front/rear force-per-mass RMSEs increase from 0.02325/0.01174 to
@@ -86,6 +91,17 @@ degrees transient. The learned KF's signed joint-force contributions are 3.795
 and 7.639 degrees. The same ordering holds on nominal records and in the
 comparison panel. All five component second moments and their cross terms are
 retained: summing component RMS values would discard cancellation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\linewidth]{experiment_10hq_command_projection.pdf}
+\caption{Command-error RMS on the same frozen Both records under the same
+learned controller gains. Each value averages recipient RMS after the two
+donor deployments, then ten recipients per fleet and five fleets. The
+true-model KF is a simulation diagnostic. These projections do not decompose
+tracking loss across different closed-loop paths.}
+\label{fig:10hq-command}
+\end{figure}
 
 The combination of poor learned full-state control, harmful force corrections
 and larger common-input force projections is consistent with compensation
@@ -103,6 +119,9 @@ projection audit covers 7,200 diagnostic rows, with maximum metric error
 $2.85\times10^{-14}$. A separate verification checks 620 provenance references,
 the two-stage paired aggregation, and 400 cross-panel nominal/oracle full-state
 trajectory pairs, which agree exactly despite differing unused KF internals.
+All 6,400 P/Q trajectories were restored against their committed hashes;
+a further 320 sampled regenerations matched bytewise. Verification also checks
+that the audit, conclusion and current-source hashes agree.
 
 Strict independent full-path replay at tolerance $10^{-8}$ passes for 4,684
 records; 116 remain sensitive to floating-point ordering, with maximum
@@ -112,12 +131,21 @@ full-state paths include sensitive cases. Conservative bounds using each
 record's observed alternate-path RMSE change preserve the signs of the three
 primary prespecified contrasts above. These bounds are neither confidence
 intervals nor a general robustness guarantee. Tolerances were not relaxed.
+For example, the primary learned-versus-nominal true-state envelopes are
+$[-172.61,-172.12]\%$ broadband and $[-333.601,-333.599]\%$ transient.
+The oracle envelopes are $[1.360,1.485]\%$ and $[1.68047,1.68070]\%$.
+Small comparison-panel sideslip-correction effects can change sign under the
+observed arithmetic-path sensitivity.
 
 Frozen-speed checks do not certify scheduled stability. Primary learned
 full-state control has maximum frozen radius 0.9964 despite poor tracking;
 comparison-panel learned full-state control has five of 100 deployed pairs
 with radius at least one and maximum 4.426. Finite clipped rollouts therefore
 do not establish a usable controller family.
+Nominal true-state control also has an unstable grid point in 12/100 deployed
+pairs. Learned Both has none in the primary panel and three in the comparison
+panel; oracle true-state control has none. These findings remain conditional
+on the frozen grid and unsaturated feedback check.
 
 The inherited coefficient bounds are heuristic, even with exact physical
 coupling. Post hoc inspection of deployed primary models gives front lengths
@@ -128,6 +156,11 @@ priority is independently justified physical-coordinate constraints and
 controller-relevant validation before adding observer complexity. This
 diagnostic does not demonstrate the intended iterative federated improvement
 of KF and controller matrices.
+The next gate should validate the implied steering-to-yaw dynamics and feedback
+behavior using measured outputs and independently available geometry or actuator
+information. Hidden simulator parameters must remain outside fitting and
+selection. A revised-model protocol must be frozen before execution; the public
+nominal KF/LQI remains the baseline and confirmation remains sealed.
 
 Execution, restoration and audit commands are in
 \texttt{docs/experiment\_10hq\_execution.md}; result tables, second moments,

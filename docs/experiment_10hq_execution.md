@@ -13,15 +13,20 @@ export PYTHONPATH=code/src:code/experiments
 export OPENBLAS_NUM_THREADS=1
 export OMP_NUM_THREADS=1
 python code/experiments/experiment_10hq_preflight.py
-python code/experiments/experiment_10hq_restore_trajectories.py --experiment 10hp --workers 4
+python code/experiments/experiment_10hq_restore_trajectories.py --experiment both --workers 4
 python code/experiments/experiment_10hq_parent_overlap.py --workers 4
 python code/experiments/experiment_10hq_feedback_bottleneck.py --workers 4
-python code/experiments/experiment_10hp_result_audit.py --mode 10hq --workers 4
+python code/experiments/experiment_10hq_restore_trajectories.py --verify-regeneration --experiment both --workers 4
 python code/experiments/experiment_10hq_result_audit.py --workers 4
 python code/experiments/experiment_10hq_reporting.py
 python code/experiments/experiment_10hq_final_verification.py
-python code/experiments/experiment_10hq_figures.py
+python code/experiments/experiment_10hq_plot.py
 ```
+
+These commands reproduce checks from a checkout containing the committed Q
+execution tables. Restoration is necessary before auditing completed jobs,
+because the runner reuses their locked tables without regenerating ignored NPZs.
+For the original fresh execution, P alone was restored before running Q.
 
 The overlap precheck regenerates all 1,600 P cases using Q's oracle-enabled design
 setup and requires exact equality of every stored array. Q's runner resumes
@@ -46,8 +51,7 @@ full-path sensitivity, and exact parent overlap are separate checks. Their
 original tolerances remain unchanged.
 
 The Q audit entry point includes the saved-step/full-path audit, followed by an
-independent common-input KF replay and steering projection calculation. Running
-the preceding P audit command separately is optional. Compile the living report
+independent common-input KF replay and steering projection calculation. Compile the living report
 with `make -C report`; its checked PDF is also committed.
 
 Current status: all 4,800 Q runs are finite and all 1,600 P overlaps are exact.
