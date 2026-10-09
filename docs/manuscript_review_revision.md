@@ -79,24 +79,46 @@ Final summarization requires all ten verified fleets.
 
 ### Commands from the repository root
 
-Activate the existing project environment. If dependencies need installing:
+Create and activate the supplied Conda environment. These commands also work in
+Windows Command Prompt / Anaconda Prompt:
 
-```bash
-python -m pip install -e './code[dev]'
+```text
+conda env create -f environment.yml
+conda activate federated_lpv
 ```
+
+The environment pins the validated core scientific package versions, installs
+`./code[dev]` as an editable package, and sets `OPENBLAS_NUM_THREADS`,
+`OMP_NUM_THREADS`, and `MKL_NUM_THREADS` to one on activation. A dotenv `.env`
+file is not a Conda environment specification. If this environment already
+exists, update it with `conda env update -n federated_lpv -f environment.yml`,
+then deactivate and reactivate it.
 
 Preflight and a full one-fleet smoke check:
 
-```bash
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/paper_review_validation.py --preflight
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/paper_review_validation.py --smoke
+```text
+python code/experiments/paper_review_validation.py --preflight
+python code/experiments/paper_review_validation.py --smoke
 ```
 
 Run the ten-fleet supplement:
 
-```bash
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python code/experiments/paper_review_validation.py --run --workers 5
+```text
+python code/experiments/paper_review_validation.py --run --workers 5
 ```
+
+If using another environment, Bash accepts variable assignments before the
+command, whereas Windows Command Prompt needs separate commands:
+
+```bat
+set "OPENBLAS_NUM_THREADS=1"
+set "OMP_NUM_THREADS=1"
+set "MKL_NUM_THREADS=1"
+```
+
+The runner canonicalizes CRLF to LF for locked Python/JSON/CSV sources, allowing
+Git for Windows checkouts without bypassing substantive source-change checks.
+Binary record hashes remain exact.
 
 Rerunning this command resumes verified checkpoints. If all checkpoints exist
 and only the summary needs regenerating:
@@ -130,6 +152,13 @@ Preflight passes and the full original seed-371 smoke check reproduces the
 parent errors and selected group count. The smoke does not write production
 results. The revised five-page conference PDF is compiled and visually checked.
 The full ten-fleet supplementary run has not been executed.
+
+The Windows setup correction adds `environment.yml` and a CRLF-safe text-source
+digest. Its YAML and six scientific package pins were checked against the
+validated runtime, and a pip dependency dry run resolved Windows x64 / Python
+3.12 wheels. All five review-runner tests, preflight, and the seed-371 smoke
+check pass after the correction. Native Conda environment creation was not run
+in this container because Conda is not installed here.
 
 ## IEEE class provenance
 

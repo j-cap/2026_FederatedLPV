@@ -1,0 +1,22 @@
+# Create from the repository root: conda env create -f environment.yml
+# Core package versions match the validated review-runner environment.
+name: federated_lpv
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12
+  - pip
+  - setuptools>=68
+  - pip:
+      - numpy==2.3.5
+      - scipy==1.17.0
+      - pandas==2.2.3
+      - matplotlib==3.10.8
+      - scikit-learn==1.8.0
+      - PyYAML==6.0.3
+      - "-e ./code[dev]"
+variables:
+  OPENBLAS_NUM_THREADS: "1"
+  OMP_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"

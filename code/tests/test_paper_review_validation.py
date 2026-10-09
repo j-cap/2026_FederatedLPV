@@ -21,6 +21,21 @@ def test_preflight_rejects_changed_historical_source(monkeypatch):
         review.preflight()
 
 
+def test_source_digest_accepts_windows_line_endings_but_preserves_binary(tmp_path):
+    lf = tmp_path / "lf.py"
+    crlf = tmp_path / "crlf.py"
+    lf.write_bytes(b"value = 1\nprint(value)\n")
+    crlf.write_bytes(b"value = 1\r\nprint(value)\r\n")
+    assert review.digest(lf) == review.digest(crlf)
+    crlf.write_bytes(b"value = 2\r\nprint(value)\r\n")
+    assert review.digest(lf) != review.digest(crlf)
+    binary_lf = tmp_path / "lf.gz"
+    binary_crlf = tmp_path / "crlf.gz"
+    binary_lf.write_bytes(b"record\n")
+    binary_crlf.write_bytes(b"record\r\n")
+    assert review.digest(binary_lf) != review.digest(binary_crlf)
+
+
 def test_size_alone_does_not_establish_scheduling_information():
     import json
     basis = json.loads((review.ROOT / "code/config/experiment_10a.json").read_text())

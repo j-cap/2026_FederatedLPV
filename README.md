@@ -29,6 +29,23 @@ the [active identification manuscript](paper/main.tex), and
 [paper build instructions](paper/README.md). The prior cold-start manuscript is
 preserved in [paper/archive/9m_cold_start](paper/archive/9m_cold_start).
 
+## Conda setup (Windows, Linux, or macOS)
+
+Create the environment from the repository root. On Windows, use Anaconda
+Prompt or a Command Prompt where `conda` is initialized:
+
+```text
+conda env create -f environment.yml
+conda activate federated_lpv
+python code/experiments/paper_review_validation.py --preflight
+python code/experiments/paper_review_validation.py --run --workers 5
+```
+
+The environment installs the editable project package and all required
+dependencies, including pandas. Activating it sets the BLAS/OpenMP thread
+limits automatically. See the [review run instructions](docs/manuscript_review_revision.md)
+for the smoke check, resumable execution, and committing results.
+
 ## Repository layout
 
 ```text
