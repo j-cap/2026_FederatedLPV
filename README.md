@@ -24,6 +24,7 @@ cornering curve. Ordinary state-record-only identification and frozen transfer
 to wholly held-out vehicles are not yet validated.
 
 Read the [scope and evidence consolidation](docs/identification_consolidation.md),
+the [manuscript review revision and focused run commands](docs/manuscript_review_revision.md),
 the [active identification manuscript](paper/main.tex), and
 [paper build instructions](paper/README.md). The prior cold-start manuscript is
 preserved in [paper/archive/9m_cold_start](paper/archive/9m_cold_start).

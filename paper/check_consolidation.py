@@ -126,7 +126,7 @@ def main():
         for method, short in [("Local", "Local"), ("Global", "Global"),
                               ("FederatedLearned", "Fed"), ("ExactLPV", "Exact")]:
             number(f"Track{short}{suffix}", one(tables["10f_summary"], scenario=scenario,
-                                                method=method), "tracking", 5)
+                                                method=method), "tracking", 4)
         for baseline in ["Local", "Global"]:
             row = one(tables["10f_comparisons"], scenario=scenario, method="FederatedLearned",
                       baseline=baseline, metric="tracking")

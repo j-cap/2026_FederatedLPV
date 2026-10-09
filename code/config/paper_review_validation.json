@@ -1,0 +1,40 @@
+{
+  "seeds": [
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380
+  ],
+  "parent_absolute_error_tolerance": 1e-08,
+  "bootstrap_seed": 20261009,
+  "scope": "Restore original label-free calibration/fits, audit selected group information, and add 10B LocalRegularized on identical 10E inputs. No new fleet seeds, KF, controller retuning, or tracking rollouts.",
+  "source_sha256": {
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/config/experiment_10b.json": "be6a10189acf7495b2b5429f347d5270479b6e0fc1c51a91fe5c11b74c3c98f8",
+    "code/config/experiment_10e.json": "f630a7605bdf874d1ec763ca7a9bf7987191a803c301b0d8c7f01d0e59ebe1d4",
+    "code/experiments/experiment_10a_basis_coverage_audit.py": "f99bd6e9c5808c0817b59729dca92e7773127eb5f0c114a7d03562393270bff3",
+    "code/experiments/experiment_10b_oracle_complementary_gate.py": "5e66093d9c749f4b72273ad1b33ab74c76cde2f2d88ac4201f3f8eb3576063b1",
+    "code/experiments/experiment_10d_learned_compatible_groups.py": "25a646d50dc16ecb23bf7a7b158f1558d77c79ab30a9fde5bc5102be4978e9cb",
+    "code/experiments/experiment_10e_federated_latent_groups.py": "7b01fbec0299c4bc9f175c687ada9113e0b84f2bc6993166664ffd0a19589588",
+    "code/src/federated_lpv/fleet.py": "e5a83d88e12d5fc3c33aa7cc95d264b0a607d3b1f6c338a495f7c4967130e22d",
+    "code/src/federated_lpv/vehicle.py": "47d3a5638171d20ce448c7d529b55a9cfb184abb17d5e83e0cb448252bc587d6",
+    "results/tables/experiment_10e_seed_summary.csv": "f5fb7460a55a0452a8aa29a231d941dd111021607beff0b5279ac2a380d90646",
+    "results/tables/experiment_10e_diagnostics.csv": "e79a12e66eaf5c73af2b8320c0eea8c420b9ff47b0ab25292c71b999b1a4a8e5",
+    "results/tables/experiment_10e_seed371_label_free_clients.csv.gz": "2ac7068043894cc88a2087285844a05cb16b9cd8f594a6638ec135b9471b7a42",
+    "results/tables/experiment_10e_seed372_label_free_clients.csv.gz": "e151a39ae143d2df5688efde61440414666823583ad810d428103be7ae56c72e",
+    "results/tables/experiment_10e_seed373_label_free_clients.csv.gz": "a0159fcdadea064b64a1cc744f55c1e656a9b1382d17cc8a86acc71de23ac1b7",
+    "results/tables/experiment_10e_seed374_label_free_clients.csv.gz": "902e0bd1efacfaba9618ef3b1e5fea700820031b53e94127159e5ae9672cd003",
+    "results/tables/experiment_10e_seed375_label_free_clients.csv.gz": "9cb4f6bdab098175ff2d4edf0e2582aeacd0c51f0767b03be901f33451211ed1",
+    "results/tables/experiment_10e_seed376_label_free_clients.csv.gz": "a9847abaddf3e90a4d4480c170b25d5a5aca1f4392fed2ccf422aa5302121a7d",
+    "results/tables/experiment_10e_seed377_label_free_clients.csv.gz": "34c9984987485c094a53edf419812b95da81585dd0771589b57da2acac2ab7bd",
+    "results/tables/experiment_10e_seed378_label_free_clients.csv.gz": "70b4917e1d2bfdfff3ac9e3c3c55c1291b6ce0a4f7645de7fd55911e36e0f9b2",
+    "results/tables/experiment_10e_seed379_label_free_clients.csv.gz": "4848e6217a8c2df5ffb649529bfdf25af3ff1711fa2427622c2c820a549b3e73",
+    "results/tables/experiment_10e_seed380_label_free_clients.csv.gz": "4b892021a5ab038ff4539edbec20f9dad6e0db9bd66527e4dacf469f009e4591"
+  }
+}
