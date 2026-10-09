@@ -4,10 +4,10 @@ import json
 from pathlib import Path
 
 import numpy as np
-from numpy.testing import assert_allclose
-from test_experiment_10hp import Q, R, WEIGHTS, Z, setup
-
 from experiment_10hq_preflight import parent_preflight
+from numpy.testing import assert_allclose
+from test_experiment_10hp import WEIGHTS, Q, R, Z, setup
+
 from federated_lpv.feedback_diagnostics import diagnostic_cases
 from federated_lpv.innovation_likelihood import structured_matrices
 from federated_lpv.output_feedback_control import design_schedule, rollout

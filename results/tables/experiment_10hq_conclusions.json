@@ -1,0 +1,177 @@
+{
+  "reconstruction": true,
+  "confirmation_run": false,
+  "primary_contrasts": [
+    {
+      "process_noise_scale": 0.01,
+      "scenario": "broadband",
+      "contrast": "forces_vs_both",
+      "target": "learned_with_learned_kf_correct_forces",
+      "reference": "learned_with_learned_kf",
+      "mean_gain_pct": -160.93147112868536,
+      "fleets_improved": 1,
+      "mean_replay_gain_lower_pct": -160.93147112868544,
+      "mean_replay_gain_upper_pct": -160.93147112868525
+    },
+    {
+      "process_noise_scale": 0.01,
+      "scenario": "broadband",
+      "contrast": "learned_vs_nominal_true_state",
+      "target": "learned_with_true_state",
+      "reference": "nominal_with_true_state",
+      "mean_gain_pct": -172.36268082210321,
+      "fleets_improved": 1,
+      "mean_replay_gain_lower_pct": -172.60581684010884,
+      "mean_replay_gain_upper_pct": -172.1203508965222
+    },
+    {
+      "process_noise_scale": 0.01,
+      "scenario": "broadband",
+      "contrast": "oracle_vs_nominal_true_state",
+      "target": "oracle_with_true_state",
+      "reference": "nominal_with_true_state",
+      "mean_gain_pct": 1.4226096784438647,
+      "fleets_improved": 5,
+      "mean_replay_gain_lower_pct": 1.3598706502903846,
+      "mean_replay_gain_upper_pct": 1.4851555657982995
+    },
+    {
+      "process_noise_scale": 0.01,
+      "scenario": "transient",
+      "contrast": "forces_vs_both",
+      "target": "learned_with_learned_kf_correct_forces",
+      "reference": "learned_with_learned_kf",
+      "mean_gain_pct": -294.91876090383596,
+      "fleets_improved": 1,
+      "mean_replay_gain_lower_pct": -294.9187609038363,
+      "mean_replay_gain_upper_pct": -294.91876090383573
+    },
+    {
+      "process_noise_scale": 0.01,
+      "scenario": "transient",
+      "contrast": "learned_vs_nominal_true_state",
+      "target": "learned_with_true_state",
+      "reference": "nominal_with_true_state",
+      "mean_gain_pct": -333.6002968901088,
+      "fleets_improved": 1,
+      "mean_replay_gain_lower_pct": -333.60103636555993,
+      "mean_replay_gain_upper_pct": -333.5995574191566
+    },
+    {
+      "process_noise_scale": 0.01,
+      "scenario": "transient",
+      "contrast": "oracle_vs_nominal_true_state",
+      "target": "oracle_with_true_state",
+      "reference": "nominal_with_true_state",
+      "mean_gain_pct": 1.6805852042785419,
+      "fleets_improved": 5,
+      "mean_replay_gain_lower_pct": 1.680465637156594,
+      "mean_replay_gain_upper_pct": 1.6807047706709177
+    }
+  ],
+  "physical_coordinate_ranges": {
+    "0.01": {
+      "inertial_ratio": {
+        "minimum": 0.44582205778653705,
+        "maximum": 2.110170417555934,
+        "nominal": 0.6111111111111113
+      },
+      "front_length": {
+        "minimum": 0.22266636233750747,
+        "maximum": 1.5038757570271706,
+        "nominal": 1.25
+      },
+      "rear_length": {
+        "minimum": 1.242387563547812,
+        "maximum": 3.712911631986696,
+        "nominal": 1.550000000000001
+      },
+      "front_force_gain": {
+        "minimum": 45.155429454022716,
+        "maximum": 1030.3030303030316,
+        "nominal": 103.03030303030305
+      },
+      "rear_force_gain": {
+        "minimum": 9.59595959595959,
+        "maximum": 959.5959595959595,
+        "nominal": 95.95959595959592
+      },
+      "front_decay": {
+        "minimum": 0.7334803582037711,
+        "maximum": 19.846387971952257,
+        "nominal": 2.0
+      },
+      "rear_decay": {
+        "minimum": 0.5465024947010142,
+        "maximum": 12.518055143926066,
+        "nominal": 1.6666666666666667
+      },
+      "actuator_rate": {
+        "minimum": 5.344688826800743,
+        "maximum": 18.202756309595124,
+        "nominal": 8.333333333333332
+      }
+    },
+    "1.0": {
+      "inertial_ratio": {
+        "minimum": 0.3964819030716976,
+        "maximum": 5.10654095324392,
+        "nominal": 0.6111111111111113
+      },
+      "front_length": {
+        "minimum": 1.00292634324117,
+        "maximum": 2.2859603872171346,
+        "nominal": 1.25
+      },
+      "rear_length": {
+        "minimum": 0.7771084547389578,
+        "maximum": 4.115083639579086,
+        "nominal": 1.550000000000001
+      },
+      "front_force_gain": {
+        "minimum": 12.055403964574825,
+        "maximum": 1030.3030303030307,
+        "nominal": 103.03030303030305
+      },
+      "rear_force_gain": {
+        "minimum": 9.595959595959595,
+        "maximum": 959.5959595959595,
+        "nominal": 95.95959595959592
+      },
+      "front_decay": {
+        "minimum": 0.4093442686651076,
+        "maximum": 20.000000000000007,
+        "nominal": 2.0
+      },
+      "rear_decay": {
+        "minimum": 0.4626049595840709,
+        "maximum": 16.666666666666668,
+        "nominal": 1.6666666666666667
+      },
+      "actuator_rate": {
+        "minimum": 5.758361693153733,
+        "maximum": 17.68698249577424,
+        "nominal": 8.333333333333332
+      }
+    }
+  },
+  "interpretation": [
+    "True states do not rescue the learned controller in mean fleet tracking loss.",
+    "Force truth corrections worsen primary-panel Both tracking; observer/controller errors may compensate.",
+    "Common-input beta improvement coexists with worse force and steering-relevant reconstruction.",
+    "Oracle full-state improvement is modest for these fixed tasks/costs, not an optimal tracking bound.",
+    "Physical coupling and heuristic coefficient bounds do not guarantee plausible controller models.",
+    "No iterative federated KF/controller improvement or blind confirmation has been demonstrated."
+  ],
+  "replay_envelope_definition": "Absolute alternate-path RMSE changes bound paired means; not confidence intervals or a general robustness guarantee.",
+  "common_input_summary_definition": "Mean of recipient RMS values after averaging two donor deployments, then ten recipients per fleet, then five fleets; second moments are averaged separately.",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "pandas": "2.2.3"
+  },
+  "source_sha256": "2855d301d1f406c65ccf6d43911ef93d419032917ec60435e54f6bdae6d64945",
+  "audit_sha256": "6dc131940f5d7989b87208e9c3b7123cbb806443e05a01a14600c37d79474c31",
+  "projection_audit_sha256": "15193e06054e4427d04e101b31cea40c4ff9ae8fe9bbf071ba330057e7c3343f"
+}
