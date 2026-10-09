@@ -1,0 +1,63 @@
+\section{Current scope: full-envelope identification}
+\label{sec:current-scope}
+\paragraph{Decision of 9 October 2026.}
+The primary contribution is now full-envelope LPV identification from incomplete
+local operating coverage. Measured speed represents operating variation;
+learned compatible groups represent persistent client differences. The active
+formulation assumes available states $x=[\beta,r]^\top$ for identification and
+feedback. Scheduled LQI is supporting validation. The KF and higher-order
+10H experiment chain is paused. This decision changes the manuscript scope;
+it does not change any historical experiment or launch a new simulation.
+
+\paragraph{Evidence to consolidate.}
+Experiments 10A--10E provide the main chain: development-only representation
+selection, complementary-coverage rank, finite noisy state-transition fitting,
+learned compatibility and numerical federated equivalence. In the primary
+label-free 10E setting, mean paired fleet full-envelope matrix-error reductions
+are 93.41\% against restricted Local and 23.74\% against Global, with a
+95\% fleet-bootstrap interval $[15.39,31.04]\%$ for the latter. The selected
+models use two groups in eight of ten fleets and one in two. Group discovery
+must therefore allow a shared global model as a valid outcome.
+
+The 10F confirmation supports downstream model usability. Against Local,
+tracking gains are 23.86\% for moderate and 8.96\% for hard maneuvers. Against
+Global, the gains are 4.26\% and 1.21\%, respectively. The corresponding
+absolute changes are only 0.001824 and 0.001874 degrees/s. A large tracking
+advantage is not the primary
+claim. The reference Global model here is fitted from fleet observations,
+not the public nominal model used in reconstructed 10H-Q.
+
+\paragraph{Assumptions and claim boundaries.}
+The existing basis is the frozen orthogonalized span
+$[1,v^{-1},v^{-2},z,z^2,z^3,z^4]$, $z=(v-20)/10$. Full envelope refers to
+10--30 m/s along the audited cornering operating curve, not all nonlinear
+state/input conditions. The finite-data benchmark uses independent state/input
+perturbations around simulator-computed equilibria, exact current regressors
+and noisy next-state targets. Group fitting receives estimated local matrices
+and speed, but simulator-derived centering remains privileged setup information.
+Consequently, this evidence does not yet validate learning from ordinary driving
+records with no operating-point information.
+
+Whole-envelope matrix errors must not be relabelled as unseen-speed-only errors.
+The evaluated clients contribute restricted fitting records; fresh-fleet
+replication is not frozen-model transfer to wholly held-out recipients.
+Raw-data locality provides no formal privacy guarantee. Frozen-speed stability
+checks and finite clipped trajectories provide no scheduled-stability certificate.
+The active manuscript retains these limitations explicitly.
+
+\paragraph{Disposition and next decision.}
+The identification draft is \path{paper/main.tex}; the preceding cold-start
+manuscript is preserved under \path{paper/archive/9m_cold_start/}. The detailed
+claim/evidence map and one unresolved state-record interface boundary are in
+the repository's consolidation note. No broad new campaign is planned.
+If controlled equilibrium-centered data are retained, consolidate and review
+the existing evidence. If a state-record-only learning claim is required, first
+freeze one regression-interface gate using only supplied state/input/speed arrays
+and empirically available centering, with the existing basis and identification
+endpoint. Hidden physical parameters, true Jacobians and family labels must
+remain outside that fit and selection.
+
+The remainder of this report is the chronological development record. Older
+scope statements and proposed next steps describe their original stage and
+are superseded by this section for current work.
+\clearpage

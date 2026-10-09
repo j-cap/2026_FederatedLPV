@@ -1,0 +1,604 @@
+{
+  "decision_date": "2026-10-09",
+  "evidence_baseline_commit": "aef68883d4caa4c97d06cfa244b13ba1671cb9a5",
+  "operation": "existing_evidence_consolidation_no_fitting_or_simulations",
+  "primary_claim": "full-envelope LPV identification from incomplete local coverage",
+  "state_assumption": "available beta and yaw rate for identification and feedback",
+  "benchmark_boundary": "controlled equilibrium-centered perturbations; exact current regressors; noisy next states",
+  "primary_metric": "whole-speed-envelope relative matrix error, not unseen-speed-only error",
+  "not_validated": [
+    "ordinary sequential state-record-only identification",
+    "noisy state regressors",
+    "frozen transfer to wholly held-out recipients",
+    "formal privacy",
+    "scheduled stability",
+    "calibration-time saving percentage"
+  ],
+  "paired_fleet_contrast_checks": 60,
+  "archived_files_byte_identical": 5,
+  "all_checks_pass": true,
+  "evidence_macros": {
+    "BasisLowError": "2.6607",
+    "BasisHighError": "0.0007",
+    "UnionCondition": "3.406",
+    "OracleUnseenError": "1.816",
+    "LocalUnseenError": "66.121",
+    "GlobalUnseenError": "4.296",
+    "IdentLocalError": "49.562",
+    "IdentGlobalError": "4.250",
+    "IdentCentralError": "3.249",
+    "IdentFedError": "3.249",
+    "IdentLocalGain": "93.41",
+    "IdentGlobalGain": "23.74",
+    "IdentGlobalLow": "15.39",
+    "IdentGlobalHigh": "31.04",
+    "SearchTraffic": "2.243",
+    "CoefficientError": "3.20",
+    "BicError": "1.87",
+    "TrackLocalModerate": "0.05396",
+    "TrackGlobalModerate": "0.04290",
+    "TrackFedModerate": "0.04108",
+    "TrackExactModerate": "0.04002",
+    "ControlLocalModerate": "23.86",
+    "ControlGlobalModerate": "4.26",
+    "ControlGlobalModerateLow": "1.95",
+    "ControlGlobalModerateHigh": "6.55",
+    "ControlAbsoluteModerate": "0.001824",
+    "TrackLocalHard": "0.16981",
+    "TrackGlobalHard": "0.15644",
+    "TrackFedHard": "0.15457",
+    "TrackExactHard": "0.15074",
+    "ControlLocalHard": "8.96",
+    "ControlGlobalHard": "1.21",
+    "ControlGlobalHardLow": "0.47",
+    "ControlGlobalHardHigh": "2.01",
+    "ControlAbsoluteHard": "0.001874",
+    "ControlRadius": "0.9759"
+  },
+  "extracted_claims": {
+    "BasisLowError": {
+      "value": 2.6607347941217396,
+      "column": "error_mean",
+      "source_row": {
+        "curvature": "0.005",
+        "order": "3",
+        "error_mean": "0.026607347941217396",
+        "error_se": "4.3997815605905187e-05",
+        "error_worst_client_fold": "0.0950539232336744",
+        "condition_worst": "27.469546195843204"
+      }
+    },
+    "BasisHighError": {
+      "value": 0.0006956167294176644,
+      "column": "error_mean",
+      "source_row": {
+        "curvature": "0.005",
+        "order": "7",
+        "error_mean": "6.956167294176644e-06",
+        "error_se": "3.5870643013340365e-08",
+        "error_worst_client_fold": "4.728247136149583e-05",
+        "condition_worst": "240.38072040421116"
+      }
+    },
+    "UnionCondition": {
+      "value": 3.4057333723308494,
+      "column": "condition_max",
+      "source_row": {
+        "curvature": "0.005",
+        "scope": "aggregate_envelope",
+        "order": "7",
+        "rank_min": "7",
+        "rank_max": "7",
+        "condition_median": "3.4057333723308494",
+        "condition_max": "3.4057333723308494"
+      }
+    },
+    "OracleUnseenError": {
+      "value": 1.815799639343475,
+      "column": "prediction_error",
+      "source_row": {
+        "region": "unseen",
+        "method": "FamilyPool",
+        "prediction_error": "0.01815799639343475",
+        "prediction_std": "0.0016732908951934155",
+        "recovery": "0.1775987505112082",
+        "recovery_std": "0.00044799031475022626",
+        "steering_rms": "0.008982859956003147",
+        "feasible_rate": "1.0"
+      }
+    },
+    "LocalUnseenError": {
+      "value": 66.12111122026418,
+      "column": "prediction_error",
+      "source_row": {
+        "region": "unseen",
+        "method": "Local",
+        "prediction_error": "0.6612111122026418",
+        "prediction_std": "0.03990133191177209",
+        "recovery": "0.1806662519118082",
+        "recovery_std": "0.0006218461429948596",
+        "steering_rms": "0.008983826665701996",
+        "feasible_rate": "1.0"
+      }
+    },
+    "GlobalUnseenError": {
+      "value": 4.296367332089149,
+      "column": "prediction_error",
+      "source_row": {
+        "region": "unseen",
+        "method": "Global",
+        "prediction_error": "0.042963673320891495",
+        "prediction_std": "0.002057353841995348",
+        "recovery": "0.177671339629849",
+        "recovery_std": "0.0004610752280128783",
+        "steering_rms": "0.00898115748475422",
+        "feasible_rate": "1.0"
+      }
+    },
+    "IdentLocalError": {
+      "value": 49.56220834269842,
+      "column": "prediction_error",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "Local",
+        "prediction_error": "0.49562208342698416",
+        "prediction_std": "0.03180684602347665",
+        "recovery": "0.17923207697804688",
+        "recovery_std": "0.0004061833277467351",
+        "feasible_rate": "1.0"
+      }
+    },
+    "IdentGlobalError": {
+      "value": 4.249845798172361,
+      "column": "prediction_error",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "Global",
+        "prediction_error": "0.04249845798172361",
+        "prediction_std": "0.00169257977593066",
+        "recovery": "0.17710719617984189",
+        "recovery_std": "0.0004019691775692747",
+        "feasible_rate": "1.0"
+      }
+    },
+    "IdentCentralError": {
+      "value": 3.248925119314356,
+      "column": "prediction_error",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "CentralLearned",
+        "prediction_error": "0.03248925119314356",
+        "prediction_std": "0.006455730113925564",
+        "recovery": "0.1770520151607909",
+        "recovery_std": "0.00039774646491247227",
+        "feasible_rate": "1.0"
+      }
+    },
+    "IdentFedError": {
+      "value": 3.248925119314354,
+      "column": "prediction_error",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "FederatedLearned",
+        "prediction_error": "0.03248925119314354",
+        "prediction_std": "0.006455730113925572",
+        "recovery": "0.17705201516079092",
+        "recovery_std": "0.0003977464649124755",
+        "feasible_rate": "1.0"
+      }
+    },
+    "IdentLocalGain": {
+      "value": 93.41296311901216,
+      "column": "improvement_pct",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "FederatedLearned",
+        "baseline": "Local",
+        "metric": "prediction_error",
+        "improvement_pct": "93.41296311901216",
+        "ci_low": "92.59852369607573",
+        "ci_high": "94.2081753438201",
+        "wins": "10",
+        "valid_pairs": "10",
+        "feasibility_wins": "0",
+        "feasibility_losses": "0"
+      }
+    },
+    "IdentGlobalGain": {
+      "value": 23.744723135826696,
+      "column": "improvement_pct",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "prediction_error",
+        "improvement_pct": "23.744723135826696",
+        "ci_low": "15.387943328799219",
+        "ci_high": "31.03935871249379",
+        "wins": "8",
+        "valid_pairs": "10",
+        "feasibility_wins": "0",
+        "feasibility_losses": "0"
+      }
+    },
+    "IdentGlobalLow": {
+      "value": 15.387943328799219,
+      "column": "ci_low",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "prediction_error",
+        "improvement_pct": "23.744723135826696",
+        "ci_low": "15.387943328799219",
+        "ci_high": "31.03935871249379",
+        "wins": "8",
+        "valid_pairs": "10",
+        "feasibility_wins": "0",
+        "feasibility_losses": "0"
+      }
+    },
+    "IdentGlobalHigh": {
+      "value": 31.03935871249379,
+      "column": "ci_high",
+      "source_row": {
+        "protocol": "label_free",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "prediction_error",
+        "improvement_pct": "23.744723135826696",
+        "ci_low": "15.387943328799219",
+        "ci_high": "31.03935871249379",
+        "wins": "8",
+        "valid_pairs": "10",
+        "feasibility_wins": "0",
+        "feasibility_losses": "0"
+      }
+    },
+    "TrackLocalModerate": {
+      "value": 0.053961288814298444,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "Local",
+        "tracking": "0.053961288814298444",
+        "tracking_std": "0.0007468856694365774",
+        "worst_client": "0.08870386071627852",
+        "tracking_peak": "0.24881976766361835",
+        "beta_peak": "1.4444294407332112",
+        "steering_rms": "0.5605335728638992",
+        "steering_rate_peak": "4.234505063127216",
+        "saturation_fraction": "0.0",
+        "feasible_rate": "1.0",
+        "rho": "0.9760795006777624"
+      }
+    },
+    "TrackGlobalModerate": {
+      "value": 0.042903324246904864,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "Global",
+        "tracking": "0.042903324246904864",
+        "tracking_std": "0.0009157611746506885",
+        "worst_client": "0.05637441118869361",
+        "tracking_peak": "0.15118599149764517",
+        "beta_peak": "1.4411781501975371",
+        "steering_rms": "0.558711305404129",
+        "steering_rate_peak": "4.112335467159536",
+        "saturation_fraction": "0.0",
+        "feasible_rate": "1.0",
+        "rho": "0.9756081218461368"
+      }
+    },
+    "TrackFedModerate": {
+      "value": 0.0410795649270852,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "FederatedLearned",
+        "tracking": "0.0410795649270852",
+        "tracking_std": "0.001958340348464226",
+        "worst_client": "0.05302699499799798",
+        "tracking_peak": "0.1436755555262078",
+        "beta_peak": "1.4369228122248232",
+        "steering_rms": "0.5585978813324062",
+        "steering_rate_peak": "4.115469842043832",
+        "saturation_fraction": "0.0",
+        "feasible_rate": "1.0",
+        "rho": "0.9758909827361876"
+      }
+    },
+    "TrackExactModerate": {
+      "value": 0.040020151280115365,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "ExactLPV",
+        "tracking": "0.040020151280115365",
+        "tracking_std": "2.1698884456628197e-05",
+        "worst_client": "0.04071461830368141",
+        "tracking_peak": "0.11159049444624196",
+        "beta_peak": "1.43307932195321",
+        "steering_rms": "0.5586605138848937",
+        "steering_rate_peak": "4.147730388405956",
+        "saturation_fraction": "0.0",
+        "feasible_rate": "1.0",
+        "rho": "0.9758557407592258"
+      }
+    },
+    "ControlLocalModerate": {
+      "value": 23.863180738193442,
+      "column": "improvement_pct",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "FederatedLearned",
+        "baseline": "Local",
+        "metric": "tracking",
+        "improvement_pct": "23.863180738193442",
+        "ci_low": "21.500694935097645",
+        "ci_high": "25.80705515972892",
+        "absolute_improvement_deg_s": "0.012881723887213248",
+        "absolute_ci_low": "0.011581126475163916",
+        "absolute_ci_high": "0.013963150145854036",
+        "wins": "10"
+      }
+    },
+    "ControlGlobalModerate": {
+      "value": 4.255215925158065,
+      "column": "improvement_pct",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "4.255215925158065",
+        "ci_low": "1.9498660268320278",
+        "ci_high": "6.548964599839916",
+        "absolute_improvement_deg_s": "0.0018237593198196656",
+        "absolute_ci_low": "0.0008536064684528305",
+        "absolute_ci_high": "0.0028098182618716506",
+        "wins": "6"
+      }
+    },
+    "ControlGlobalModerateLow": {
+      "value": 1.9498660268320278,
+      "column": "ci_low",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "4.255215925158065",
+        "ci_low": "1.9498660268320278",
+        "ci_high": "6.548964599839916",
+        "absolute_improvement_deg_s": "0.0018237593198196656",
+        "absolute_ci_low": "0.0008536064684528305",
+        "absolute_ci_high": "0.0028098182618716506",
+        "wins": "6"
+      }
+    },
+    "ControlGlobalModerateHigh": {
+      "value": 6.548964599839916,
+      "column": "ci_high",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "4.255215925158065",
+        "ci_low": "1.9498660268320278",
+        "ci_high": "6.548964599839916",
+        "absolute_improvement_deg_s": "0.0018237593198196656",
+        "absolute_ci_low": "0.0008536064684528305",
+        "absolute_ci_high": "0.0028098182618716506",
+        "wins": "6"
+      }
+    },
+    "ControlAbsoluteModerate": {
+      "value": 0.0018237593198196656,
+      "column": "absolute_improvement_deg_s",
+      "source_row": {
+        "scenario": "moderate",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "4.255215925158065",
+        "ci_low": "1.9498660268320278",
+        "ci_high": "6.548964599839916",
+        "absolute_improvement_deg_s": "0.0018237593198196656",
+        "absolute_ci_low": "0.0008536064684528305",
+        "absolute_ci_high": "0.0028098182618716506",
+        "wins": "6"
+      }
+    },
+    "TrackLocalHard": {
+      "value": 0.1698072598474704,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "hard",
+        "method": "Local",
+        "tracking": "0.1698072598474704",
+        "tracking_std": "0.0018538706517033487",
+        "worst_client": "0.21844459354575224",
+        "tracking_peak": "0.8330977937676989",
+        "beta_peak": "2.881339029872492",
+        "steering_rms": "3.0784619504212745",
+        "steering_rate_peak": "52.356861511580384",
+        "saturation_fraction": "0.001924999999999995",
+        "feasible_rate": "1.0",
+        "rho": "0.9760795006777624"
+      }
+    },
+    "TrackGlobalHard": {
+      "value": 0.15644190371670466,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "hard",
+        "method": "Global",
+        "tracking": "0.15644190371670466",
+        "tracking_std": "0.0036899650527973957",
+        "worst_client": "0.18316737314017878",
+        "tracking_peak": "0.8336155754195742",
+        "beta_peak": "2.893571108776509",
+        "steering_rms": "3.0898262683177466",
+        "steering_rate_peak": "36.88715245263317",
+        "saturation_fraction": "0.0029388888888888806",
+        "feasible_rate": "1.0",
+        "rho": "0.9756081218461368"
+      }
+    },
+    "TrackFedHard": {
+      "value": 0.15456809912602668,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "hard",
+        "method": "FederatedLearned",
+        "tracking": "0.15456809912602668",
+        "tracking_std": "0.004753950809895544",
+        "worst_client": "0.1771363013434351",
+        "tracking_peak": "0.8484363919842858",
+        "beta_peak": "2.879975011225442",
+        "steering_rms": "3.0897137424126324",
+        "steering_rate_peak": "39.55160134095517",
+        "saturation_fraction": "0.0031972222222222133",
+        "feasible_rate": "1.0",
+        "rho": "0.9758909827361876"
+      }
+    },
+    "TrackExactHard": {
+      "value": 0.1507433218169691,
+      "column": "tracking",
+      "source_row": {
+        "scenario": "hard",
+        "method": "ExactLPV",
+        "tracking": "0.1507433218169691",
+        "tracking_std": "0.00043218706511235794",
+        "worst_client": "0.16332111867866064",
+        "tracking_peak": "0.8986384156677026",
+        "beta_peak": "2.871003114117008",
+        "steering_rms": "3.0893878414304137",
+        "steering_rate_peak": "46.644888606351216",
+        "saturation_fraction": "0.0035333333333333245",
+        "feasible_rate": "1.0",
+        "rho": "0.9758557407592258"
+      }
+    },
+    "ControlLocalHard": {
+      "value": 8.959396049879043,
+      "column": "improvement_pct",
+      "source_row": {
+        "scenario": "hard",
+        "method": "FederatedLearned",
+        "baseline": "Local",
+        "metric": "tracking",
+        "improvement_pct": "8.959396049879043",
+        "ci_low": "7.039242062073705",
+        "ci_high": "10.733320231651518",
+        "absolute_improvement_deg_s": "0.015239160721443712",
+        "absolute_ci_low": "0.01198165156384233",
+        "absolute_ci_high": "0.01834792473286732",
+        "wins": "10"
+      }
+    },
+    "ControlGlobalHard": {
+      "value": 1.2067083581389935,
+      "column": "improvement_pct",
+      "source_row": {
+        "scenario": "hard",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "1.2067083581389935",
+        "ci_low": "0.4684731592050917",
+        "ci_high": "2.006085831471418",
+        "absolute_improvement_deg_s": "0.0018738045906779826",
+        "absolute_ci_low": "0.0007288883458115708",
+        "absolute_ci_high": "0.003104999321222579",
+        "wins": "6"
+      }
+    },
+    "ControlGlobalHardLow": {
+      "value": 0.4684731592050917,
+      "column": "ci_low",
+      "source_row": {
+        "scenario": "hard",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "1.2067083581389935",
+        "ci_low": "0.4684731592050917",
+        "ci_high": "2.006085831471418",
+        "absolute_improvement_deg_s": "0.0018738045906779826",
+        "absolute_ci_low": "0.0007288883458115708",
+        "absolute_ci_high": "0.003104999321222579",
+        "wins": "6"
+      }
+    },
+    "ControlGlobalHardHigh": {
+      "value": 2.006085831471418,
+      "column": "ci_high",
+      "source_row": {
+        "scenario": "hard",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "1.2067083581389935",
+        "ci_low": "0.4684731592050917",
+        "ci_high": "2.006085831471418",
+        "absolute_improvement_deg_s": "0.0018738045906779826",
+        "absolute_ci_low": "0.0007288883458115708",
+        "absolute_ci_high": "0.003104999321222579",
+        "wins": "6"
+      }
+    },
+    "ControlAbsoluteHard": {
+      "value": 0.0018738045906779826,
+      "column": "absolute_improvement_deg_s",
+      "source_row": {
+        "scenario": "hard",
+        "method": "FederatedLearned",
+        "baseline": "Global",
+        "metric": "tracking",
+        "improvement_pct": "1.2067083581389935",
+        "ci_low": "0.4684731592050917",
+        "ci_high": "2.006085831471418",
+        "absolute_improvement_deg_s": "0.0018738045906779826",
+        "absolute_ci_low": "0.0007288883458115708",
+        "absolute_ci_high": "0.003104999321222579",
+        "wins": "6"
+      }
+    }
+  },
+  "source_sha256": {
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/config/experiment_10b.json": "be6a10189acf7495b2b5429f347d5270479b6e0fc1c51a91fe5c11b74c3c98f8",
+    "code/config/experiment_10c.json": "d5848501c45ef9f7934952ae8ded415784e2997a8e4566eeb602915591fddb31",
+    "code/config/experiment_10d.json": "b0ae2c5eee93719c90023b7a2f8f4db643f00534cfcdd1f44a3156595fb40ec5",
+    "code/config/experiment_10e.json": "f630a7605bdf874d1ec763ca7a9bf7987191a803c301b0d8c7f01d0e59ebe1d4",
+    "code/config/experiment_10f.json": "2a0abe3aee9f611e919cd62e7631c8473b129138a925d03f2da3322e713e50d7",
+    "code/experiments/experiment_10a_basis_coverage_audit.py": "f99bd6e9c5808c0817b59729dca92e7773127eb5f0c114a7d03562393270bff3",
+    "code/experiments/experiment_10b_oracle_complementary_gate.py": "5e66093d9c749f4b72273ad1b33ab74c76cde2f2d88ac4201f3f8eb3576063b1",
+    "code/experiments/experiment_10d_learned_compatible_groups.py": "25a646d50dc16ecb23bf7a7b158f1558d77c79ab30a9fde5bc5102be4978e9cb",
+    "code/experiments/experiment_10e_federated_latent_groups.py": "7b01fbec0299c4bc9f175c687ada9113e0b84f2bc6993166664ffd0a19589588",
+    "code/experiments/experiment_10f_control_relevance.py": "430f2fda2850db66475018e43279e2eaaca844b22980bbd37bd307f18388b42b",
+    "results/figures/experiment_10e_federated_latent_groups.pdf": "1d9831e27907caa3d692bf1300455b1f2ff5162b9d50dd950d020f616a0b9eae",
+    "results/tables/experiment_10a_conclusions.json": "e48cdafe428d6b47685013901ca95ebd6c5c02ea8dbf2b0c626595b6ba9fb705",
+    "results/tables/experiment_10a_coverage_summary.csv": "93fd12c19c314487221f4c7babea06ee1027c657dd8e4edff49f807d63e74337",
+    "results/tables/experiment_10a_selection.csv": "0ac29239789b72a17701e1ac2c656657d0107ed4eef28f38e46bba391c703bb8",
+    "results/tables/experiment_10a_summary.csv": "4cfbf0c0112c33f18645232ef8f95f1ad2265c149808a732c2c20b66d56f8266",
+    "results/tables/experiment_10b_comparisons.csv": "4f2e2681c175da150d9ba94be9d1a1599ca6d88e8aa0e84b5d7a5f27e28aa057",
+    "results/tables/experiment_10b_summary.csv": "8013edf4890ecbdfba7474012aeea086dc2a7d27935eb3260b90655ad3e83c81",
+    "results/tables/experiment_10c_comparisons.csv": "32bc3643b3cf7a8a7edd155b966dd9ce894daf0b55695be1815c5ba2e23113f1",
+    "results/tables/experiment_10e_comparisons.csv": "f73b791ff8ee4532b2ca8e29252670c160020f024799c00ed823ac7bb9dd9b54",
+    "results/tables/experiment_10e_conclusions.json": "2eb462979a8d961f120ef184d8e56f3ff3122e890ccac21ef566a8b3f9afe389",
+    "results/tables/experiment_10e_diagnostics.csv": "e79a12e66eaf5c73af2b8320c0eea8c420b9ff47b0ab25292c71b999b1a4a8e5",
+    "results/tables/experiment_10e_seed_summary.csv": "f5fb7460a55a0452a8aa29a231d941dd111021607beff0b5279ac2a380d90646",
+    "results/tables/experiment_10e_summary.csv": "07593aa8e0112b04eed079e5140b524110e9ab3ec20d65428bc66ccf6376b2e1",
+    "results/tables/experiment_10f_comparisons.csv": "692df36f0b225fb0f9ac1aee3b8ff0bf0703c6191d5c764719908e555396e60e",
+    "results/tables/experiment_10f_conclusions.json": "23721fd9ba5914a6c4af197069d3b63dd363a156ebe3365ea682a5aa193787f6",
+    "results/tables/experiment_10f_frozen_selection.json": "e8aecf46870621e375772aaa78fb72238cb2712e0bad320c07e07b63467904db",
+    "results/tables/experiment_10f_seed_summary.csv": "e48c195a8b7e770ffec99ed6e73b9b081530b75d5b2fbceb746418b076c9c3c9",
+    "results/tables/experiment_10f_summary.csv": "a2c9e6ddf70a9ca92c8e0e1fc565f0daf0195bff2368f4c4c2f9383981d700bd"
+  }
+}

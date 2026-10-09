@@ -1,14 +1,32 @@
 # Federated LPV Identification and Control
 
-This repository studies whether measurable operating-point variation and persistent
-client heterogeneity should be represented separately in federated control. The
-initial benchmark uses lateral vehicle dynamics: longitudinal speed is the LPV
-scheduling variable, while mass, inertia, and tire parameters define persistent
-vehicle families.
+The current contribution is **full-envelope LPV identification from incomplete
+local operating coverage**. Clients observe restricted speed regions; compatible
+federated sharing supplies information needed to identify reusable models across
+the envelope. Speed scheduling represents operating variation, while learned
+groups represent persistent vehicle differences.
 
-The first milestone is deliberately an **oracle feasibility study**. Before adding
-federated learning, limited data, or learned clustering, it tests whether a small
-number of family-specific LPV models and scheduled controllers is useful at all.
+The active formulation assumes available lateral states `x = [beta, yaw rate]`
+for identification and feedback. It reuses the frozen seven-function speed basis
+and the 10A-10E identification evidence. LQI tracking from 10F is supporting
+validation. The KF and higher-order experiment chain is paused.
+
+In the primary label-free 10E setting, mean paired fleet full-envelope matrix
+error improves by **93.41% over restricted Local** and **23.74% over Global**
+(95% fleet-bootstrap interval: 15.39-31.04% for the latter). Centralized and
+federated grouped fitting agree numerically. LQI confirmation improves tracking
+over Global by 4.26%/1.21%, with only about 0.0018 degrees/s absolute changes.
+
+This is a controlled available-state proof of concept: training uses independent
+perturbations about simulator-computed equilibria, exact current regressors and
+noisy next-state targets. Full envelope means 10-30 m/s along the audited
+cornering curve. Ordinary state-record-only identification and frozen transfer
+to wholly held-out vehicles are not yet validated.
+
+Read the [scope and evidence consolidation](docs/identification_consolidation.md),
+the [active identification manuscript](paper/main.tex), and
+[paper build instructions](paper/README.md). The prior cold-start manuscript is
+preserved in [paper/archive/9m_cold_start](paper/archive/9m_cold_start).
 
 ## Repository layout
 
@@ -18,7 +36,7 @@ results/    Reproducible outputs; generated data are not committed by default
 report/     Living LaTeX development report and bibliography
 ```
 
-## Scientific comparison
+## Historical initial architecture comparison
 
 The core two-factor comparison is:
 
@@ -33,7 +51,10 @@ The core two-factor comparison is:
 See [`report/main.tex`](report/main.tex) for the motivation, benchmark definition,
 experiment plan, decision gates, and the progressively updated findings.
 
-## Current development status: reconstructed 10H-Q
+## Preserved latest diagnostic: reconstructed 10H-Q
+
+The scope decision above supersedes this diagnostic's proposed next experiment.
+Its results and restoration artifacts remain unchanged as development evidence.
 
 The unchanged 10H-L inputs support freshly reconstructed M/N libraries, core P
 and the frozen Q bottleneck diagnostic. Original lost M–P artifacts are not
@@ -68,6 +89,17 @@ python code/experiments/phase0_validate_plant.py
 ```
 
 Generated experiment artifacts are written below `results/`.
+
+For the active consolidation, verify existing tables and build the manuscript:
+
+```bash
+python paper/check_consolidation.py
+make -C paper
+```
+
+The following entries preserve the chronological development history. Their
+older contribution statements and proposed next steps do not override the
+current [scope decision](docs/identification_consolidation.md).
 
 The latest Phase-4 studies are `experiment_4e_identification_diagnosis.py` and
 `experiment_4f_structured_identification.py` in `code/experiments/`. Run them with

@@ -1,0 +1,48 @@
+{
+  "decision_date": "2026-10-09",
+  "evidence_baseline_commit": "aef68883d4caa4c97d06cfa244b13ba1671cb9a5",
+  "operation": "documentation_and_manuscript_consolidation",
+  "new_simulations_or_fits": 0,
+  "historical_experiment_sources_and_results_changed": false,
+  "checks": {
+    "frozen_evidence_sources": 29,
+    "paired_fleet_contrasts": 60,
+    "extracted_manuscript_numbers": 36,
+    "byte_identical_archived_files": 5,
+    "evidence_check": "passed",
+    "scoped_lint": "passed",
+    "git_diff_check": "passed",
+    "paper_build": "passed",
+    "report_clean_build": "passed",
+    "visual_review": "five paper pages and new report scope page checked"
+  },
+  "pdf_pages": {
+    "paper/2026_FederatedLPV_identification_draft.pdf": 5,
+    "report/2026_FederatedLPV_report.pdf": 149
+  },
+  "layout_notes": [
+    "The balanced last manuscript page reports a 1.08336pt vbox warning; visual review finds no clipping or overlap.",
+    "Four report hbox warnings belong to unchanged historical chapters; the new scope section has none."
+  ],
+  "remaining_boundary": "Ordinary sequential state-record fitting without simulator-provided operating-point centering has not been validated.",
+  "artifact_sha256": {
+    ".gitignore": "8ef807b5d94fa99ec4a4a456a4389dca72b4b9227c0ce28e5fbf1b5c143c364f",
+    "README.md": "1b33c58fef3536b1c6a72d97081c04a9a86866c3aedf9b1ceb331a2e97e2d59e",
+    "docs/identification_consolidation.md": "033e3d0fbafd63082be0230780f20903702746ad4a83b3fd954abb5cd0032f1d",
+    "paper/2026_FederatedLPV_identification_draft.pdf": "72035888e1989cbae9eaa7875087e20e74bf41d8b57e455b7d5bc29a53be99a6",
+    "paper/Makefile": "893a63d32218010271be97a1edbc16e6275b58b900c9d4b391f46e7f8594f05b",
+    "paper/README.md": "867bd0af92ca2a9a3b85c8ee5e953e922a5970a84ad71e3b967d0cd6ac37b68c",
+    "paper/archive/9m_cold_start/ALGORITHM_AND_TRUST_MODEL.md": "7a818781b75f2eac093262a57a4c0e5348be584e492808f52784a144850011c4",
+    "paper/archive/9m_cold_start/METHOD_EVIDENCE_AUDIT.md": "4148290059c9a94b2b18e8a453d061f0e06dd530bd7fa6a4df9409b81ad2a653",
+    "paper/archive/9m_cold_start/NOVELTY_AND_OVERLAP.md": "44833f7ee1aef2afea02f0830e33b36008bdc43fd9cf3c353db064ca5b0190b3",
+    "paper/archive/9m_cold_start/UNITS_AND_METRICS_AUDIT.md": "4ca07d26dfa77948e9db00e9cb19b21ff18504f0ee7060e8f4fd54f3111d3cc9",
+    "paper/archive/9m_cold_start/main.tex": "029bc71c316fc784ed9d6407d606dd5dea4034b228d967b70915a2332f025551",
+    "paper/check_consolidation.py": "4787bbaae6ac165019964f0bdc18f06c7b0fe14ade008e98eeb9579262cdd6c1",
+    "paper/evidence_numbers.tex": "0584fba923187f4741b15944043f26a7b127bf6c1e45a3ee2f3020cd303f8697",
+    "paper/main.tex": "b08345b1f6e3239e1c3cca548763f3e272a203482895fa88b3f6836640fbafd3",
+    "report/2026_FederatedLPV_report.pdf": "0564178bc882baa64ef36807693cbed15b569a8cf7e2cd7c8dc89542b366fe57",
+    "report/main.tex": "3ece80ee68436824a5319361fbe975f10b2d3a571305723cad3bca35731788d6",
+    "report/sections/00_current_scope.tex": "deda074004a2f81f970797b50a07911b464552db31822f51c0f0d10e1f1e5ddf",
+    "results/tables/consolidation_identification_evidence.json": "1f4bba2a7ab1e544076405a75fd19bdd69d40c4852567f385d63d868181f52db"
+  }
+}

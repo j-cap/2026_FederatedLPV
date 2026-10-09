@@ -4,641 +4,403 @@
   \documentclass[conference]{IEEEtran}
 \else
   \documentclass[10pt,twocolumn]{article}
+  \usepackage[margin=20mm]{geometry}
   \newenvironment{IEEEkeywords}{\par\small\noindent\textbf{Index Terms---}}{\par}
 \fi
-
-\usepackage{amsmath,amssymb,booktabs,graphicx,multirow}
+\usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
+\usepackage{balance}
 \usepackage[hidelinks]{hyperref}
-\graphicspath{{results/figures/}{../results/figures/}}
-
-\newcommand{\vect}[1]{\boldsymbol{#1}}
+\graphicspath{{../results/figures/}}
+\input{evidence_numbers}
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\tr}{\operatorname{tr}}
-\newcommand{\Local}{\textsc{Local}}
-\newcommand{\FedTwenty}{\textsc{Fed20}}
+\newcommand{\rank}{\operatorname{rank}}
 
-\title{Federated Personalized LPV Identification for Cold-Start Control in Heterogeneous Vehicle Fleets}
-
+\title{Federated Full-Envelope LPV Identification\\from Incomplete Local Coverage}
 \ifIEEEavailable
   \author{\IEEEauthorblockN{Jakob Weber et al.}
-  \IEEEauthorblockA{Author affiliations to be completed before submission}}
+  \IEEEauthorblockA{Working draft -- 9 October 2026}}
 \else
-  \author{Jakob Weber et al.\\\small Author affiliations to be completed before submission}
+  \author{Jakob Weber et al.}
+  \date{Working draft -- 9 October 2026}
 \fi
 
 \begin{document}
+\raggedbottom
 \maketitle
-
 \begin{abstract}
-A newly deployed vehicle may not yet have sufficiently informative data to
-identify an individualized controller, whereas previously observed fleet
-clients collectively cover a broader range of dynamics and operating
-conditions. A single global model cannot exploit this information without
-suppressing control-relevant heterogeneity. This paper proposes a personalized
-federated framework for cold-start linear-parameter-varying (LPV)
-identification. Each fleet client estimates three structured log-parameters and
-a local uncertainty approximation. Additive sufficient statistics then learn a
-heteroscedastic mixture with an unknown number of latent groups and construct a
-controller-gain-aware low-rank backbone for each group. A new client selects a
-backbone and estimates one client-specific coordinate from a short local
-record; its trajectory and coordinate remain local. The identified model is
-used to synthesize a speed-scheduled controller and evaluated on nonlinear,
-heterogeneous bicycle plants. In a frozen ten-fleet confirmation, the method
-with 20\% rotating participation reduces aggregate yaw-rate tracking RMSE by
-17.27\% relative to independent local identification at a 0.75~s calibration
-budget, with nine of ten fleet-wise wins and complete empirical feasibility. A
-paired retrospective analysis estimates a 16.90\% mean improvement with a 95\%
-fleet-bootstrap interval of 11.79--21.10\%. The advantage contracts to parity
-as local information increases, while a fixed narrow participant subset
-exposes a coverage failure. Federated LPV learning is therefore most useful as
-a fleet-informed cold-start prior, not as a universal replacement for
-well-excited local identification.
+A vehicle's local calibration data may cover only a small part of its speed
+range, even when the fleet collectively observes the complete operating
+envelope. This study investigates federated identification of reusable
+linear-parameter-varying (LPV) models under such incomplete local coverage.
+Speed scheduling represents operating variation, while learned compatibility
+groups account for persistent differences between vehicles. Assuming available
+lateral states, clients estimate local state/input matrices and contribute
+additive regression statistics and assignment scores to learn group LPV maps
+without transmitting their trajectories. A nonlinear vehicle benchmark first
+justifies a richer scheduling basis and shows that complementary coverage
+supplies directions missing from individual client regressions. Under
+label-free coverage, federated grouped fitting reduces mean paired fleet
+full-envelope matrix error by \IdentLocalGain\% relative to restricted local
+fitting and \IdentGlobalGain\% relative to one pooled model. The federated and
+centralized grouped solutions agree numerically. Separate scheduled-LQI
+confirmation provides a modest tracking benefit, supporting model usability
+without making large control gains the primary claim. The evidence uses
+controlled perturbations about simulator-computed equilibria, exact current
+state regressors and noisy next-state targets. Identification from ordinary
+driving records and robustness to state-estimation error remain outside the
+validated scope.
 \end{abstract}
-
 \begin{IEEEkeywords}
-federated learning, linear parameter-varying systems, system identification,
-personalized learning, vehicle control
+federated identification, LPV systems, incomplete operating coverage,
+compatible model sharing, vehicle dynamics
 \end{IEEEkeywords}
 
 \section{Introduction}
-\label{sec:introduction}
+Vehicles change their dynamics with speed while retaining persistent differences
+in configuration, inertial properties and tires. LPV models expose measurable
+operating variation to identification and controller design
+\cite{toth2010lpv}. A single fleet-wide LPV model may still average incompatible
+dynamics. Conversely, independent local identification requires each vehicle
+to supply enough operating coverage to estimate its full model.
 
-Model-based vehicle controllers must accommodate two different forms of
-variation. First, the dynamics change with measurable operating conditions,
-such as longitudinal speed. Linear-parameter-varying (LPV) models expose this
-dependence to controller synthesis instead of absorbing it into model error.
-Second, vehicles retain persistent differences caused by mass, inertia, tire
-properties, and configuration. These differences remain even at the same
-operating point. A useful fleet model must therefore represent both scheduling
-and structural heterogeneity.
+The information limitation considered here is incomplete scheduling coverage.
+Each client observes only a contiguous speed block. The fleet union can span
+the full interval, but useful sharing requires both sufficient aggregate
+coverage and compatible dynamics. Neither more local repetitions at the same
+speeds nor a known vehicle-family label necessarily resolves missing model
+directions. We ask whether a federated protocol can construct full-envelope
+LPV maps from these complementary local observations.
 
-Independent system identification is a natural solution when every vehicle
-has sufficiently rich data. In the present structured setting it is also a
-strong baseline: only three physically meaningful ratios must be estimated,
-and local identification approaches the individual optimum once excitation is
-adequate. The difficult case occurs earlier. A newly deployed vehicle may have
-only a short and incompletely exciting record, precisely when its first
-controller must be calibrated. Requiring a complete local experiment for every
-new client repeats effort and ignores information already accumulated across
-the fleet.
+Federation retains raw trajectories locally and exchanges computed updates
+\cite{mcmahan2017fedavg}. Learning several models is an established response to
+heterogeneous clients \cite{ghosh2020ifca}. Our question is specifically how
+compatible sharing compensates for incomplete operating coverage in a
+speed-dependent dynamical model. We do not claim novelty for clustering,
+polynomial regression, or additive sufficient statistics in isolation.
 
-Straightforward fleet sharing does not resolve the problem. One global model
-reduces variance but biases structurally different vehicles toward the same
-dynamics. A separate model for every vehicle preserves individuality but offers
-no transfer. Family-pooled models occupy a useful middle ground, yet require
-compatibility labels to be known in advance and cannot represent variation
-within a family. The missing capability is to discover reusable fleet
-structure, transfer it to an unseen vehicle, and retain a small local degree of
-freedom for personalization.
+The study makes three connected contributions. First, a development-only
+basis audit distinguishes a genuinely underdetermined local LPV representation
+from a low-dimensional physical model that already extrapolates accurately.
+Second, a federated hard-assignment regression protocol identifies compatible
+group maps and selects the number of groups while allowing a single pooled
+map. Third, finite noisy state-transition experiments quantify whole-envelope
+model error, verify centralized--federated equivalence, and assess model
+usability through a separate nonlinear LQI tracking test.
 
-We address this gap with a federated latent-backbone method for structured LPV
-identification. Previously observed clients estimate local physical summaries
-and their Gauss--Newton uncertainty approximations. An iterative server learns
-a heteroscedastic latent mixture from additive sufficient statistics and
-selects its order by the Bayesian information criterion (BIC). Within each
-learned group, a metric derived from scheduled-controller gain sensitivities
-defines a low-dimensional affine backbone. A new client downloads the
-backbones, selects a compatible group, and estimates a single coordinate using
-its short record. Raw trajectories and new-client coordinates are not shared.
+The primary contribution is identification. Available states are an explicit
+assumption for both fitting and feedback. We exclude KF learning, tire-force
+state inference, continuous local personalization and privacy mechanisms from
+this formulation. The result should be read as a controlled calibration proof
+of concept, with a precisely disclosed operating-point construction.
 
-The resulting interpretation is deliberately narrower than generic claims that
-federation should always outperform local estimation. Fleet knowledge acts as
-a control-relevant prior while the new client is information limited. As more
-local excitation becomes available, the client first adapts within a
-fleet-supported direction and eventually reaches local parity. The shared
-representation is useful only if participation covers the fleet dynamics;
-participation rate alone is not an adequate reliability measure.
-
-The paper makes four contributions:
-\begin{enumerate}
-  \item a personalized LPV architecture that separates measured operating
-  variation, latent fleet heterogeneity, and residual client individuality;
-  \item an unknown-order federated heteroscedastic-mixture algorithm based on
-  additive statistics, followed by controller-gain-aware low-rank backbone
-  construction;
-  \item a frozen nonlinear closed-loop confirmation showing a 17.27\% reduction
-  in cold-start tracking error with 20\% rotating participation; and
-  \item a mechanism and participation audit showing when the group prior, local
-  coordinate, and cumulative fleet coverage create---or destroy---the benefit.
-\end{enumerate}
-
-The contribution differs from our preceding uncertainty-aware clustered
-identification study, which focused on recovering compatible regimes for
-controller design. Here, clustering is not the endpoint: explicit LPV
-scheduling, an unknown-order federated representation, and local adaptation of
-an unseen client form the central transfer mechanism.
-
-\section{Related Work and Positioning}
-\label{sec:related}
-
-Federated learning enables clients to optimize a shared model without moving
-their raw records to a central database \cite{mcmahan2017fedavg}. Heterogeneous
-client populations have motivated clustered and personalized variants that
-learn several shared models or decompose a model into shared and local parts
-\cite{smith2017mocha,fallah2020personalized}. Most such methods are developed
-for prediction losses and high-dimensional statistical models. Their direct
-use for control is complicated because parameter error, model error, and
-closed-loop performance need not rank candidate representations identically.
-
-Federated system identification has consequently begun to combine local
-estimators with physically structured aggregation. Our earlier method used
-local recursive estimates, covariance-aware clustering, and group-level
-controller design \cite{weber2026ifac}. The present work retains uncertainty as
-an input to grouping but changes the scientific question from regime recovery
-to cold-start transfer. It uses batch output-error identification of an LPV
-parameterization, learns the number of groups, constructs control-aware
-low-rank backbones, and evaluates local adaptation by a previously unseen
-client.
-
-LPV modeling and gain scheduling provide established tools for systems whose
-dynamics depend on measurable operating variables \cite{toth2010lpv}. In the
-vehicle setting, the same scheduling variable should not be expected to explain
-persistent variation in inertial and tire parameters. Our earlier regime-map
-experiments confirm this distinction within the tested benchmark: scheduling
-addresses broad speed variation, whereas specialization addresses structural
-separation. This motivates the explicit three-level decomposition used below.
-
-\section{Problem Formulation}
-\label{sec:problem}
-
-\subsection{Fleet and cold-start setting}
-
-Let $\mathcal I=\{1,\ldots,N\}$ denote previously observed fleet clients. Client
-$i$ retains a local record
+\section{Problem and Information Assumptions}
+\subsection{Speed-dependent models and incomplete coverage}
+Let client $i$ have available lateral states $x=[\beta,r]^\top$, steering
+input $u$ and measured longitudinal speed $v$. Local state/input perturbations
+about a cornering equilibrium approximately satisfy
 \begin{equation}
-  \mathcal D_i=\{\vect y_{i,t},\delta_{i,t},v_{i,t}\}_{t=1}^{T_i},
+ \Delta x_{i,k+1}=A_i(v)\Delta x_{i,k}+B_i(v)\Delta u_{i,k}+e_{i,k}.
+ \label{eq:transition}
 \end{equation}
-containing measured lateral states or outputs $\vect y_{i,t}$, steering input
-$\delta_{i,t}$, and longitudinal speed $v_{i,t}$. A separate, unseen client
-$j$ has only a short calibration record $\mathcal D_j^{(\tau)}$ of duration
-$\tau$. The goal is to design a speed-scheduled controller for client $j$ using
-its short local record and a representation learned from $\mathcal I$, without
-uploading either client's raw trajectory.
-
-This is an asymmetric transfer setting. The fleet representation is learned
-once from broader historical coverage, whereas the new-client comparison asks
-how much local calibration is required at deployment. It is not an equal-total-
-data comparison between federation and local identification.
-
-\subsection{Nonlinear plant and structured LPV model}
-
-Evaluation uses a planar bicycle model with lateral velocity $v_y$, yaw rate
-$r$, steering angle $\delta$, longitudinal speed $v_x$, and nonlinear saturated
-tire forces. For controller synthesis, the client fits a structured LPV
-approximation whose scheduling variable is $v_x$. The identifiable positive
-ratios are
+Write the six stacked entries of $[A_i(v),B_i(v)]$ as a row $m_i(v)\in\R^6$.
+Compatible clients are represented approximately by a shared map
 \begin{equation}
- \vect p_i=
- \begin{bmatrix}C_{f,i}/m_i\\ C_{r,i}/m_i\\ m_i/I_{z,i}\end{bmatrix},
- \qquad \vect z_i=\log \vect p_i\in\R^3,
- \label{eq:ratios}
+ m_i(v)\approx m_{g_i}(v)=\phi(v)^\top\Theta_{g_i},
+ \qquad \Theta_g\in\R^{L\times6},
+ \label{eq:map}
 \end{equation}
-where $C_f,C_r$ are axle cornering stiffnesses, $m$ is mass, and $I_z$ is yaw
-inertia. At a fixed speed the approximation is linear in the lateral states;
-across speed it defines the LPV matrices
+where $g_i$ is unknown. Scheduling captures within-client speed dependence;
+group differences capture persistent heterogeneity. This is an approximation:
+within-group differences and finite-data error remain.
+
+Each client supplies estimated local matrices at speeds in a subset
+$\mathcal V_i$. The target is useful prediction throughout
+$\mathcal V=[10,30]$ m/s without requiring every vehicle to collect observations
+across that interval. Here ``full envelope'' means this speed range along the
+audited cornering curve, not the entire nonlinear state/input domain.
+
+\subsection{Frozen representation}
+The existing basis-selection experiment retains the span
 \begin{equation}
- \dot{\vect x}=A(\rho;\vect p_i)\vect x+B(\rho;\vect p_i)\delta,
- \qquad \rho=v_x.
- \label{eq:lpv}
+ \phi(v)\sim[1,v^{-1},v^{-2},z,z^2,z^3,z^4]^\top,
+ \qquad z=(v-20)/10.
+ \label{eq:basis}
 \end{equation}
-The logarithm enforces positivity and makes multiplicative physical variation
-approximately additive.
+An invertible QR transformation on a fixed 401-point speed grid improves
+conditioning without changing that span. The reciprocal terms retain known
+speed dependence and the polynomial terms provide residual flexibility.
+The selected order is $L=7$; straight-line development data retain $L=3$.
+No control comparison selects the basis or its order.
 
-Client $i$ obtains
+\subsection{What information is available}
+The benchmark provides exact current state/input perturbations and noisy
+next-state observations. At each available speed, clients estimate
+$[A_d,B_d]$ by least squares from 36 independent transitions. Group fitting
+uses these matrix estimates and their speeds, not exact matrices, vehicle
+parameters or family labels.
+
+However, the transition generator computes the centering equilibrium using
+simulator parameters. It then generates perturbations about that point and
+subtracts the equilibrium for regression. This is privileged operating-point
+setup information. Although an equilibrium might instead be measured in a
+controlled experiment, that alternative has not been validated here. The
+current results therefore do not establish a state-record-only learning
+interface for ordinary sequential driving data. They also do not test noisy
+current-state regressors or errors-in-variables identification.
+
+The same clients provide restricted fitting records and receive the resulting
+maps. Evaluation at additional speeds tests generalization across operating
+conditions. Replicating the procedure on fresh fleets does not establish
+transfer of a frozen model library to wholly held-out recipient vehicles.
+
+\section{Federated Compatible LPV Regression}
+\subsection{Client statistics and group fitting}
+For observed speeds, client $i$ forms a basis matrix
+$\Phi_i\in\R^{n_i\times L}$ and local matrix-entry targets
+$Y_i\in\R^{n_i\times6}$. For a fixed partition, ridge regression gives
 \begin{equation}
- \widehat{\vect z}_i=\arg\min_{\vect z\in\mathcal Z}
- L_i(\vect z;\mathcal D_i),
- \label{eq:localoe}
+ \widehat\Theta_g=
+ \left(\sum_{i:g_i=g}G_i+\lambda I\right)^{-1}
+ \sum_{i:g_i=g}H_i,
+ \label{eq:fed}
 \end{equation}
-where $L_i$ is the batch output-error loss and $\mathcal Z$ is a public physical
-box. A Gauss--Newton approximation $C_i$ describes local estimation uncertainty.
-It is used as a heteroscedastic measurement covariance, not interpreted as an
-exact posterior.
+where $G_i=\Phi_i^\top\Phi_i$ and $H_i=\Phi_i^\top Y_i$.
+These quantities are additive. Consequently, the federated and pooled
+centralized solutions are algebraically identical for the same partition,
+basis, regularization and arithmetic conventions.
 
-\subsection{Control objective}
+The scheduling coefficients of an unregularized group map are identifiable
+when $\rank(\sum_{i:g_i=g}G_i)=L$. Individual $G_i$ may be singular while
+the sum has full rank. Regularization creates a numerical solution but does
+not create missing information. Full rank also does not remove pooling bias
+from genuinely incompatible dynamics.
 
-Each estimated parameter vector is mapped to scheduled feedback and prefilter
-gains over a fixed speed grid. Nonlinear evaluation uses yaw-rate tracking RMSE
+\subsection{Unknown compatible groups}
+The server broadcasts candidate maps. Each client returns its sum of squared
+matrix-entry residuals, normalized by a common entry-wise scale derived from
+additive target moments. Model fitting and hard residual-minimizing assignment
+alternate for at most 30 iterations. Groups must contain at least five clients.
+Candidate orders are $K=1,\ldots,5$, with twelve deterministic initializations
+for $K>1$. The initialization uses standardized client residual summaries
+around the global fit. These summaries are communicated as well.
+
+The existing model-selection score is
 \begin{equation}
- e_{j,s}=\sqrt{\frac{1}{T_s}\sum_{t=1}^{T_s}
- \bigl(r_{j,s,t}-r_{s,t}^{\mathrm{ref}}\bigr)^2},
- \label{eq:tracking}
+ \mathrm{BIC}=n\log(\mathrm{SSE}/n)+p_K\log n,
+ \qquad p_K=6LK+K-1,
+ \label{eq:bic}
 \end{equation}
-for new client $j$ and scenario $s$. Empirical feasibility additionally
-requires finite simulation and compliance with steering and lateral-
-acceleration limits. These tests and frozen-point spectral radii are diagnostics;
-they do not constitute a nonlinear time-varying stability proof.
+with $n$ the number of scalar matrix-entry observations. This is the implemented
+selection heuristic, not a guarantee of recovering physical families or the
+globally optimal partition. In particular, the minimum-size rule does not
+guarantee every group has adequate scheduling coverage. A single shared map is
+an eligible and sometimes selected result.
 
-\section{Federated Latent-Backbone Method}
-\label{sec:method}
+\subsection{Communication and trust}
+For $L=7$, the symmetric Gram matrix has 28 distinct entries and the
+right-hand side has 42. The accounting includes initialization summaries,
+group tags, scores, broadcasts and every tested candidate/restart, rather than
+only the selected model. The label-free experiment uses a mean
+\SearchTraffic~MB per fleet with 64-bit scalars. The exhaustive search is not
+demonstrated communication-efficient.
 
-\subsection{Uncertainty-aware latent groups}
+The protocol is evaluated by an emulator. Raw trajectories remain local, but
+matrix statistics, residual summaries and scores can reveal information.
+Neither cryptographic secure aggregation nor differential privacy is
+implemented. Data locality is the supported architectural property.
 
-The fleet summaries are modeled by a heteroscedastic Gaussian mixture
-\begin{equation}
- \widehat{\vect z}_i\sim
- \sum_{g=1}^{K}\pi_g\,
- \mathcal N\!\left(\vect\mu_g,C_i+S_g\right),
- \label{eq:mixture}
-\end{equation}
-where $\vect\mu_g$ is a group center and $S_g$ captures physical variation not
-explained by $C_i$. For a current server state
-$\Theta=\{\pi_g,\vect\mu_g,S_g\}_{g=1}^{K}$, client $i$ evaluates
-\begin{equation}
- q_{ig}=\frac{\pi_g\mathcal N(\widehat{\vect z}_i;
- \vect\mu_g,C_i+S_g)}{\sum_h\pi_h\mathcal N(\widehat{\vect z}_i;
- \vect\mu_h,C_i+S_h)}.
- \label{eq:responsibility}
-\end{equation}
+\section{Identification Evidence}
+\subsection{Representation and missing scheduling directions}
+The basis audit uses exact discrete Jacobians of the nonlinear bicycle plant
+about steady cornering points, with contiguous speed regions withheld during
+validation. These exact targets select a representation on development fleets;
+they are not the finite-data fitting targets in the later experiments.
+At curvature 0.005 m$^{-1}$, mean blocked-speed matrix error falls from
+\BasisLowError\% at order three to \BasisHighError\% at order seven.
+The straight-line negative control retains order three, preventing numerical
+improvement in an already adequate model from rewarding unnecessary terms.
 
-The client then contributes, for each group, responsibility mass, precision,
-information vector, and uncertainty-corrected scatter. Denoting
-$P_{ig}=(C_i+S_g)^{-1}$, representative additive quantities are
-\begin{align}
- n_g &= \sum_i q_{ig}, \qquad
- \Lambda_g = \sum_i q_{ig}P_{ig},\nonumber\\
- \vect h_g &= \sum_i q_{ig}P_{ig}\widehat{\vect z}_i,\nonumber\\
- Q_g &= \sum_i q_{ig}
- (\widehat{\vect z}_i-\vect\mu_g)(\widehat{\vect z}_i-\vect\mu_g)^\top.
- \label{eq:suffstats}
-\end{align}
-Only cohort sums of these terms are required by the server. It updates the
-mixture state with fixed damping and broadcasts the new state for the next
-round. Candidate orders $K\in\{1,\ldots,6\}$ are fitted separately. Clients
-finally contribute local likelihood and responsibility masses, enabling a BIC
-comparison subject to a minimum effective group size.
+The four local blocks are $\{10,12,14\}$, $\{16,18,20\}$,
+$\{22,24,26\}$ and $\{28,30\}$ m/s. Their basis matrices have ranks
+three, three, three and two for seven coefficients. The eleven-speed union
+has rank seven and condition \UnionCondition. Sharing can therefore add
+unobserved scheduling directions rather than only repeat local observations.
 
-\subsection{Control-aware group backbone}
+\subsection{Finite-data compatibility prerequisite}
+With finite nonlinear perturbation transitions, an oracle-family pool achieves
+\OracleUnseenError\% matrix error at locally unobserved speeds, compared with
+\LocalUnseenError\% for Local and \GlobalUnseenError\% for Global.
+Local uses the locally supported reciprocal span; a higher-order locally
+regularized alternative does not improve on it in this restricted setting.
+This verifies the compatible-coverage mechanism before removing family labels.
+It is a centralized oracle comparison, not the proposed federated result.
 
-After selecting $K$, hard group assignments provide additive group counts,
-first moments, and symmetric second moments. For each group, the server forms a
-metric from finite-difference sensitivities of the scheduled controller gain
-table $\mathcal K(\vect z)$,
-\begin{equation}
- W_g=J_{K,g}^{\top}J_{K,g}+\eta I,
- \qquad
- J_{K,g}=\left.\frac{\partial\operatorname{vec}\mathcal K(\vect z)}
- {\partial\vect z}\right|_{\vect z=\vect\mu_g},
- \label{eq:gainmetric}
-\end{equation}
-with small $\eta>0$. Weighted principal-component analysis of the aggregated
-group covariance yields a direction $U_g$ and the affine representation
-\begin{equation}
- \vect z\approx\vect\mu_g+U_g\vect a.
- \label{eq:backbone}
-\end{equation}
-The metric makes the basis sensitive to scheduled gains; it is not claimed to
-optimize nonlinear tracking loss directly.
+An equal-information-budget LocalFull reference records the recipient itself
+throughout the envelope using approximately the family pool's total transition
+budget. It is more accurate than FamilyPool. Sharing is useful because each
+ordinary vehicle lacks those records, not because distributed data collection
+is inherently better at equal recipient information.
 
-\subsection{New-client adaptation}
-
-The unseen client receives $\{\vect\mu_g,U_g\}_{g=1}^{K}$ and, for each group,
-solves
-\begin{equation}
- \widehat{\vect a}_{jg}=\arg\min_{\vect a}
- L_j(\vect\mu_g+U_g\vect a;\mathcal D_j^{(\tau)})
- +\lambda\|\vect a\|_2^2.
- \label{eq:personalization}
-\end{equation}
-It selects the group with the lowest local criterion and synthesizes its
-controller from $\widehat{\vect z}_j=\vect\mu_g+U_g\widehat{\vect a}_{jg}$.
-Rank zero corresponds to the learned center; rank one provides one continuous
-client-specific coordinate. The group decision, coordinate, and calibration
-record remain local.
+\subsection{Primary label-free identification result}
+Ten fresh 30-client fleets randomize speed blocks globally without inspecting
+family labels. Learned group fitting is compared with restricted Local and a
+single Global LPV map using the same available observations. Table~\ref{tab:id}
+reports full-envelope relative matrix errors. These values must not be
+relabelled as unseen-speed-only errors.
 
 \begin{table}[t]
 \centering
-\caption{Information and trust boundary of the evaluated protocol.}
-\label{tab:trust}
-\small
-\begin{tabular}{p{0.34\columnwidth}p{0.55\columnwidth}}
+\caption{Label-free full-envelope matrix error in percent, averaged over ten
+fleets. Centralized and federated grouped methods use the same observations.}
+\label{tab:id}
+\begin{tabular}{lr}
 \toprule
-Quantity & Visibility\\
+Method & Matrix error [\%]\\
 \midrule
-Raw trajectories & retained by each client\\
-Local estimate and covariance & local input to message computation\\
-Additive statistics & cohort sums received by server\\
-Mixture and backbones & server model, broadcast to clients\\
-New-client group and coordinate & retained by new client\\
-True generating family & evaluation only\\
+Restricted Local & \IdentLocalError\\
+Global LPV & \IdentGlobalError\\
+Centralized learned groups & \IdentCentralError\\
+Federated learned groups & \IdentFedError\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{Federated protocol and communication}
+Mean paired fleet improvements are \IdentLocalGain\% against Local and
+\IdentGlobalGain\% against Global. The Global-relative 95\% fleet-bootstrap
+interval is $[\IdentGlobalLow,\IdentGlobalHigh]\%$, with improvement in eight
+of ten fleets. Two groups are selected in eight fleets and one in two.
+The controlled, family-stratified coverage reference is reported separately;
+it is not substituted for the label-free primary result.
 
-Algorithmically, initialization uses additive counts, first moments, and
-second moments. Each of 30 mixture rounds consists of a server broadcast,
-local responsibility evaluation, and aggregation of the statistics in
-\eqref{eq:suffstats}. Model-order selection adds responsibility masses and one
-likelihood scalar per candidate, after which final moments determine the
-backbones. Thus the approach is federated sufficient-statistic estimation, not
-federated averaging.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{experiment_10e_federated_latent_groups.pdf}
+\caption{Existing 10E identification, regulation and full-search communication
+evidence. Controlled coverage is family-stratified; label-free coverage is
+assigned without family labels. The left panel carries the primary model
+result. Small regulation differences and all candidate/restart communication
+are retained as supporting and complexity evidence.}
+\label{fig:evidence}
+\end{figure*}
 
-The implementation emulates clients and server in one process. Its messages
-are compatible with additive secure aggregation, but no cryptographic protocol
-or differential privacy is implemented. Communication counts independent
-float32 payload scalars and excludes headers, cryptographic expansion,
-retransmissions, and the one-time new-client download. We distinguish complete
-unknown-$K$ discovery from a fixed-$K$ update in which the selected order is
-reused.
+The federated and centralized protocols select identical group counts and
+partitions in all 20 fleet/protocol jobs. The maximum grouped coefficient
+discrepancy is $\CoefficientError\times10^{-14}$ and the maximum BIC
+discrepancy is $\BicError\times10^{-9}$. This verifies the implemented
+distributed regression path numerically. The observed agreement is not a
+convergence or identifiability theorem for arbitrary grouped data.
 
-\section{Experimental Design}
-\label{sec:experiments}
+\subsection{Personalization and coverage boundaries}
+A separate development sweep increases recipient coverage while freezing its
+family backbone. A personalized head initially worsens model error; at eight
+and eleven observed speeds it improves prediction by 7.74\% and 13.66\%,
+without a positive regulation benefit over the shared family model. At full
+coverage independent Local is more accurate. Continuous personalization is
+therefore unnecessary for the restricted-coverage contribution studied here.
 
-\subsection{Fleet generation and data}
+Known family labels do not ensure sufficient coverage. Under label-free
+assignment, one oracle family lacks the highest-speed block in an evaluated
+fleet and produces an infeasible full-envelope controller. This is a boundary
+of the oracle comparator, not proof that learned grouping always guarantees
+coverage. The identified groups must be assessed jointly for fit and information.
 
-Each fleet contains 180 representation-learning clients drawn from three
-synthetic physical populations, with 60 clients per population, and 30 separate
-new clients used only for evaluation. Fleet clients provide 4.75~s of
-complementary calibration data spanning speeds from 10 to 30~m/s. New clients
-receive either 0.75 or 1.25~s of local data. The server considers one through
-six mixture components, requires an effective group size of at least ten, and
-uses 30 communication rounds with damping 0.35.
-
-Controllers are evaluated on three unseen varying-speed or constant-speed
-nonlinear scenarios. The main confirmation uses ten reserved fleet seeds that
-were not inspected during method development. Client/scenario outcomes are
-averaged within a fleet; the fleet seed is the independent statistical unit.
-All primary tracking values are reported in rad/s.
-
-\subsection{Compared methods}
+\section{Supporting LQI Validation}
+Separate confirmation applies the identified maps in speed-scheduled LQI on
+nonlinear speed-varying tracking maneuvers. Available physical states provide
+feedback. Controller weights were selected using only ExactLPV development
+performance, with feasibility and saturation checks; the learned-versus-Global
+comparison did not enter selection. Ten untouched fleets follow a disclosed
+discarded maneuver pilot. Steering amplitude/rate limits and anti-windup remain
+fixed across methods.
 
 \begin{table}[t]
 \centering
-\caption{Methods in the matched confirmation-fleet analysis.}
-\label{tab:methods}
-\small
-\begin{tabular}{lp{0.61\columnwidth}}
-\toprule
-Method & Shared and local information\\
-\midrule
-\Local & three parameters fitted from new-client data\\
-GlobalK1 & one fleet-wide center; no local coordinate\\
-LearnedCenter & learned group center; no coordinate\\
-CentralRank1 & centralized summaries; one local coordinate\\
-\FedTwenty Rank1 & 20\% rotating federation; one coordinate\\
-ExactIndividual & true individual parameters; diagnostic only\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The frozen confirmation additionally includes 100\% and 50\% participation.
-Fed20, Fed50, and Fed100 sample clients independently in every round. A separate
-development stress test evaluates uniform rotating participation, a fixed
-20\% subset, family- and operating-point-biased availability, and 50\% message
-dropout after uniform selection.
-
-\subsection{Metrics and statistical analysis}
-
-The primary metric is nonlinear yaw-rate RMSE from \eqref{eq:tracking}.
-Secondary metrics are the Euclidean norm of log-parameter error, relative
-Frobenius error of scheduled gain tables, empirical feasibility, learned group
-count, adjusted Rand index (ARI), cumulative client coverage, and payload.
-ARI uses synthetic generating labels for evaluation only.
-
-The frozen confirmation reports the ratio of aggregate fleet means. A
-retrospective mechanism analysis computes paired percentage improvements within
-each of the ten fleets and resamples those fleet effects 50,000 times. Its 95\%
-percentile intervals quantify consistency but are not a second blind
-confirmation. The two percentage estimands are therefore labeled separately.
-
-\section{Results}
-\label{sec:results}
-
-\subsection{Cold-start benefit under partial participation}
-
-Table~\ref{tab:confirmation} gives the frozen confirmation. With 0.75~s of
-new-client data, every shared heterogeneous representation improves upon
-\Local. \FedTwenty achieves 0.010518~rad/s compared with 0.012714~rad/s for
-\Local, corresponding to a 17.27\% reduction by the preregistered ratio-of-
-aggregate-means convention. It remains close to the centralized and full-
-participation counterparts despite using only 20\% of clients per round. All
-evaluated controllers satisfy the empirical feasibility criteria.
-
-\begin{table}[t]
-\centering
-\caption{Frozen confirmation: nonlinear tracking RMSE [rad/s]. ``vs. Local''
-is the ratio of aggregate means; negative values are improvements.}
-\label{tab:confirmation}
-\small
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{lrrrr}
-\toprule
-& \multicolumn{2}{c}{0.75~s} & \multicolumn{2}{c}{1.25~s}\\
-Method & RMSE & vs. Local & RMSE & vs. Local\\
-\midrule
-Local   & 0.012714 & 0.00\%  & 0.007557 & 0.00\%\\
-Central & 0.010731 & $-15.59$\% & 0.007530 & $-0.36$\%\\
-Fed100  & 0.010762 & $-15.35$\% & 0.007531 & $-0.34$\%\\
-Fed50   & 0.010648 & $-16.24$\% & 0.007539 & $-0.24$\%\\
-Fed20   & 0.010518 & $-17.27$\% & 0.007562 & $+0.07$\%\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-At 1.25~s, the methods converge: the frozen progressive Fed20 policy is only
-0.07\% worse than Local. This contraction is central to the interpretation.
-Federation regularizes an information-limited estimate; it does not replace a
-well-informed local fit. The full-participation method is control-equivalent to
-Central within 0.3\%, although it misses the deliberately strict 0.1\%
-equivalence gate and is not described as numerically identical.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{experiment_9k_blind_confirmation.pdf}
-\caption{Blind confirmation of the shared-backbone method. The fleet-informed
-advantage is concentrated at the shorter calibration budget.}
-\label{fig:confirmation}
-\end{figure}
-
-\subsection{What produces the improvement?}
-
-The matched retrospective ablation in Table~\ref{tab:ablation} separates a
-global center, latent group structure, and continuous personalization. At
-0.75~s, GlobalK1 improves over Local by a paired mean of 8.43\%, but wins only
-six fleets. LearnedCenter improves Local by 14.47\%, wins all ten fleets, and
-has a 95\% interval of 9.73--19.48\%. The group structure therefore explains
-most of the robust cold-start gain.
-
-\begin{table}[t]
-\centering
-\caption{Matched mechanism analysis on confirmation fleets. Intervals resample
-paired fleet-wise percentage improvements.}
-\label{tab:ablation}
-\scriptsize
-\setlength{\tabcolsep}{3pt}
-\begin{tabular}{llrr}
-\toprule
-Budget & Comparison & Mean [\%] & 95\% CI [\%]\\
-\midrule
-0.75 s & Fed20R1--Local & 16.90 & [11.79, 21.10]\\
-0.75 s & Center--Local & 14.47 & [9.73, 19.48]\\
-0.75 s & GlobalK1--Local & 8.43 & [2.50, 14.57]\\
-0.75 s & Center--GlobalK1 & 5.95 & [$-0.44$, 11.66]\\
-0.75 s & Fed20R1--Center & 2.20 & [$-4.56$, 8.79]\\
-1.25 s & Fed20R1--Center & 4.21 & [2.40, 6.36]\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-The rank-one coordinate adds 2.20\% over LearnedCenter at 0.75~s, but its
-interval crosses zero. It would therefore be incorrect to attribute the entire
-cold-start improvement to continuous personalization. At 1.25~s, the role
-changes: rank one improves LearnedCenter by 4.21\%, with ten of ten wins and an
-interval of 2.40--6.36\%. The emerging mechanism is staged. A discrete group
-prior is most valuable under severe information scarcity; a local coordinate
-becomes estimable as additional excitation arrives. Rank two is unnecessary in
-the matched analysis and overfits at the shorter budget.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{experiment_9m_unified_ablation.pdf}
-\caption{Unified ablation of global sharing, latent group centers, and local
-low-dimensional adaptation.}
-\label{fig:ablation}
-\end{figure}
-
-\subsection{Participation rate versus fleet coverage}
-
-Random rotating 20\% cohorts achieve 99.94\% cumulative client coverage and
-retain the cold-start benefit even though their mean ARI is 0.917 rather than
-one. Exact recovery of the synthetic generating families is therefore not
-necessary for useful control.
-
-The availability stress test reveals the relevant failure boundary. Rotating
-family- or operating-point-biased cohorts and 50\% post-selection dropout still
-improve the aggregate 0.75~s result over Local in the tested development fleets.
-In contrast, repeatedly selecting one fixed narrow subset can collapse group
-discovery; its variability increases sharply and one fleet becomes 34.43\%
-worse than Local. Partial participation is thus safe neither by definition nor
-by rate alone. Cumulative representation coverage is the operative condition.
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\linewidth]{experiment_9l_nonrandom_participation.pdf}
-\caption{Participation stress test. Rotating availability preserves broad
-coverage; a persistent subset exposes the principal observed failure mode.}
-\label{fig:participation}
-\end{figure}
-
-\subsection{Communication}
-
-The unknown-order method fits every candidate $K=1,\ldots,6$; communication
-must therefore include all candidates rather than only the selected model.
-Table~\ref{tab:communication} reports corrected float32 payloads. Discovery is
-a less frequent representation-learning operation, while the fixed-$K$ column
-describes an update after the fleet has retained its selected order.
-
-\begin{table}[t]
-\centering
-\caption{Mean confirmation-fleet payload. Upload/download are separated.}
-\label{tab:communication}
-\small
+\caption{Supporting confirmation: mean yaw tracking RMSE [degrees/s] across
+ten fleets. Restricted Local holds the nearest observed-speed controller
+outside its block.}
+\label{tab:control}
 \begin{tabular}{lrr}
 \toprule
-Method & Discovery [MB] & Fixed-$K$ update [MB]\\
+Method & Moderate & Hard\\
 \midrule
-Fed100 & 7.342 / 4.536 & 1.068 / 0.648\\
-Fed50  & 3.691 / 2.268 & 0.546 / 0.324\\
-Fed20  & 1.502 / 0.907 & 0.241 / 0.134\\
+Restricted Local & \TrackLocalModerate & \TrackLocalHard\\
+Global LPV & \TrackGlobalModerate & \TrackGlobalHard\\
+Federated learned groups & \TrackFedModerate & \TrackFedHard\\
+ExactLPV reference & \TrackExactModerate & \TrackExactHard\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\section{Discussion}
-\label{sec:discussion}
+Mean paired fleet tracking gains are \ControlLocalModerate\%/\ControlLocalHard\%
+against Local and \ControlGlobalModerate\%/\ControlGlobalHard\% against Global
+for moderate/hard maneuvers. The Global-relative intervals are
+$[\ControlGlobalModerateLow,\ControlGlobalModerateHigh]\%$ and
+$[\ControlGlobalHardLow,\ControlGlobalHardHigh]\%$.
+Absolute mean differences are only \ControlAbsoluteModerate/\ControlAbsoluteHard
+degrees/s. These results support model usability and a modest control effect.
+They do not support a large practical tracking advantage over Global.
 
-\subsection{What federation contributes}
+All federated confirmation trajectories satisfy the tested constraints; the
+maximum frozen-point spectral radius is \ControlRadius. Neither frozen-speed
+checks nor finite constrained trajectories constitute a scheduled LPV or
+nonlinear stability certificate. Four confirmation fleets select one group;
+federated and Global methods are then identical. The six remaining fleets
+provide the positive mean tracking differences against Global.
 
-The benefit does not arise because distributed optimization improves an
-already accurate local estimator. It arises because fleet-level observations
-constrain an otherwise weak new-client problem. In statistical terms, the
-learned group center supplies a heterogeneous empirical-Bayes prior, and the
-rank-one coordinate defines a data-efficient client-specific head. In control
-terms, the representation restricts early identification to parameter
-variations that have been observed across the fleet and matter to the scheduled
-gain map.
+\section{Discussion and Limits}
+The evidence separates three effects. Complementary coverage supplies missing
+scheduling directions. Compatibility specialization reduces pooling bias.
+Federation reproduces centralized grouped fitting while retaining trajectories
+locally. The main comparison is access to a full-envelope model from restricted
+local records, not an equal-total-data contest or a guarantee that grouping
+helps every vehicle.
 
-This interpretation explains both the positive and negative evidence. At
-0.75~s, unconstrained three-parameter Local identification has excessive
-variance, so group structure helps. At 1.25~s, the local record supports a
-reliable displacement within the learned subspace. With still more excitation,
-the independent local estimator can recover the full parameter vector and the
-sharing advantage should vanish.
+The benchmark still assumes controlled perturbation data, simulator-derived
+operating-point centering and available states. It covers one speed-dependent
+map along a prescribed cornering curve. Exact Jacobians are used for
+development representation selection and evaluation, and current state/input
+regressors are uncorrupted. No claim is made for noisy pseudo-states, ordinary
+driving records, real fleet data or frozen-library transfer to new recipients.
+The model-selection criterion is heuristic, aggregate rank depends on group
+coverage, and exhaustive search has measurable communication cost.
 
-\subsection{Operational implications}
+The narrower scope also distinguishes this formulation from our earlier
+uncertainty-aware clustered identification work \cite{weber2026ifac}. The
+present emphasis is missing scheduling information and reusable LPV maps,
+with numerical distributed equivalence. A submission-level novelty comparison
+must assess that combined contribution; clustering and additive statistics
+alone are established components.
 
-The results suggest that fleet-informed calibration should be deployed as a
-transient prior rather than a permanent constraint. A practical system could
-begin from the selected group center, enable the low-dimensional head once its
-local information criterion is adequate, and finally release the full local
-model after sufficient excitation. The participation audit further suggests a
-server-side coverage monitor: accepting a nominal 20\% cohort is insufficient
-if the same subpopulation repeatedly participates.
+If broader state-record-only identification is required, the next validation
+should isolate the learning interface using supplied state/input/speed arrays
+and empirically available centering. The basis, primary model-error endpoint
+and comparison methods should remain fixed. KF learning, higher-order plants
+and controller retuning are separate questions and are paused in this study.
 
-\subsection{Limitations}
-
-The evidence is entirely simulation based. Vehicles are generated from three
-physical populations, and the compact model contains only three ratios. The
-unknown-order mechanism is nevertheless evaluated without access to those
-labels; labels enter only the ARI audit and availability stress construction.
-Validation on measured fleet data and a higher-dimensional LPV model remains
-necessary to establish scalability and external validity.
-
-The comparison is intentionally asymmetric: 180 fleet clients contribute more
-total data than the new client. The claim is reduced new-client calibration,
-not reduced total fleet data. Ten independent confirmation fleets provide
-paired evidence but limited resolution of rare failures. The gain-weighted
-basis approximates controller relevance locally and does not optimize nonlinear
-closed-loop loss. Finally, raw-data locality is not equivalent to formal
-privacy. The evaluated protocol neither implements cryptographic secure
-aggregation nor differential privacy, and empirical feasibility is not a
-formal nonlinear stability guarantee.
-
+\balance
 \section{Conclusion}
-\label{sec:conclusion}
-
-This paper formulated heterogeneous fleet learning as a cold-start transfer
-problem for LPV controller calibration. An unknown-order federated mixture
-learns reusable group structure from additive client statistics; a
-controller-gain-aware low-rank backbone then provides a small local head for an
-unseen vehicle. On nonlinear confirmation fleets, 20\% rotating participation
-reduces tracking RMSE by 17.27\% at a 0.75~s calibration budget. The mechanism
-analysis shows that learned group centers dominate under severe information
-scarcity, while continuous personalization becomes useful as local information
-increases. The benefit contracts to local parity and can fail when
-participation lacks fleet coverage. Federated LPV identification should
-therefore be understood as a coverage-dependent cold-start prior, not as a
-universal substitute for local identification.
+Compatible federated sharing can identify full-envelope LPV maps when local
+speed coverage leaves individual regressions underdetermined. On the controlled
+available-state benchmark, label-free grouped fitting improves whole-envelope
+matrix error over Local and Global and reproduces centralized fitting.
+Scheduled LQI provides supporting confirmation with modest Global-relative
+tracking gains. The validated contribution is coverage-dependent model
+identification under explicit operating-point assumptions, with general
+state-record deployment left for a separate interface validation.
 
 \begin{thebibliography}{9}
-
-\bibitem{mcmahan2017fedavg}
-H.~B. McMahan, E.~Moore, D.~Ramage, S.~Hampson, and B.~A. y Arcas,
-``Communication-efficient learning of deep networks from decentralized data,''
-in \emph{Proc. AISTATS}, 2017, pp.~1273--1282.
-
-\bibitem{smith2017mocha}
-V.~Smith, C.-K. Chiang, M.~Sanjabi, and A.~S. Talwalkar,
-``Federated multi-task learning,'' in \emph{Advances in Neural Information
-Processing Systems}, 2017.
-
-\bibitem{fallah2020personalized}
-A.~Fallah, A.~Mokhtari, and A.~Ozdaglar,
-``Personalized federated learning with theoretical guarantees: A model-agnostic
-meta-learning approach,'' in \emph{Advances in Neural Information Processing
-Systems}, 2020.
-
 \bibitem{toth2010lpv}
 R.~T\'oth, \emph{Modeling and Identification of Linear Parameter-Varying
-Systems}. Berlin, Germany: Springer, 2010.
-
+Systems}. Springer, 2010.
+\bibitem{mcmahan2017fedavg}
+H.~B. McMahan et al., ``Communication-efficient learning of deep networks from
+decentralized data,'' in \emph{Proc. AISTATS}, 2017, pp.~1273--1282.
+\bibitem{ghosh2020ifca}
+A.~Ghosh et al., ``An efficient framework for clustered federated learning,''
+in \emph{Advances in Neural Information Processing Systems}, 2020.
 \bibitem{weber2026ifac}
 J.~Weber et al., ``Uncertainty-aware clustered federated identification for
 controller design: Application to lateral dynamics and yaw-rate tracking,''
 accepted for publication in \emph{Proc. IFAC World Congress}, 2026.
-
 \end{thebibliography}
-
 \end{document}
