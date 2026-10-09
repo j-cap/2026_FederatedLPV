@@ -1,0 +1,136 @@
+\section{10H-Q reconstruction: the feedback bottleneck}
+\label{sec:10hq}
+The frozen diagnostic tests all combinations of controller and state source
+using the audited reconstructed P parent at \texttt{6afb002}. Controllers are
+public nominal, learned N and simulator oracle; supplied states are nominal
+KF, learned KF or true plant state. Three additional learned-Both cases replace
+only beta, both axle forces, or beta plus both forces in the controller input.
+These interventions never overwrite the observer's internal state. The measured
+yaw integrator, noise draws, clipping, costs, speed schedules and assignments
+remain fixed. Q performs no fitting or membership selection.
+
+The 4,800 rollouts cover five development fleets, ten recipients, two separate
+donor deployments, two maneuvers, two fitting panels and twelve cases. A further
+2,400 common-input replays compare nominal, learned and oracle KFs on the same
+nominal and Both records. The original M--P artifacts were unavailable: this is
+a fresh reconstruction from intact L inputs, not reproduction of lost historical
+results. Confirmation seeds 591--600 and 611--620 remain sealed.
+
+\subsection{Tracking and interventions}
+\begin{center}
+\small
+\begin{tabular}{lrrrr}
+\toprule
+ & \multicolumn{2}{c}{$Q_{\rm fit}=0.01$} & \multicolumn{2}{c}{$Q_{\rm fit}=1$}\\
+Controller / supplied state & Broadband & Transient & Broadband & Transient\\
+\midrule
+Nominal / nominal KF & 0.00 & 0.00 & 0.00 & 0.00\\
+Nominal / learned KF & 2.14 & $-9.20$ & $-6.26$ & $-12.19$\\
+Nominal / true state & 4.55 & 6.18 & 2.78 & 4.66\\
+Learned / nominal KF & $-176.26$ & $-370.17$ & $-19.92$ & $-23.41$\\
+Learned / learned KF (Both) & 3.02 & 0.04 & $-1.57$ & $-2.42$\\
+Learned / true state & $-159.75$ & $-306.38$ & $-22.85$ & $-25.27$\\
+Oracle / nominal KF & 1.17 & 3.42 & 0.20 & 2.14\\
+Oracle / learned KF & 5.90 & $-5.46$ & $-4.11$ & $-10.43$\\
+Oracle / true state & 5.89 & 7.75 & 4.15 & 6.26\\
+Both + true beta & 3.00 & $-0.59$ & $-1.80$ & $-2.70$\\
+Both + true forces & $-158.04$ & $-304.12$ & $-16.93$ & $-18.74$\\
+Both + true beta and forces & $-158.21$ & $-306.18$ & $-23.44$ & $-26.43$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Entries are mean paired fleet tracking gains in percent against nominal output
+feedback. First average the two deployment RMSEs per recipient, then ten
+recipients per fleet; percentage gains are paired within each of five fleets.
+Positive entries mean lower tracking RMSE. The two panels change both learned
+plants and KF design settings and are not a causal comparison of fitting Q.
+
+The prespecified full-state comparison is decisive in the primary panel:
+learned versus nominal control gives $-172.36\%$ broadband and $-333.60\%$
+transient mean fleet gains. Only one of five fleets improves; recipient counts
+are 19/50 and 12/50. Supplying true states does not rescue learned control.
+Correcting Both's forces instead gives $-160.93\%$ and $-294.92\%$ against Both,
+with only 14/50 and 13/50 recipients improving. Beta correction has little
+effect. In the comparison panel, learned full-state control improves four of
+five fleets, but large harm in the fifth produces negative fleet-average gains
+of $-26.39\%$ and $-31.34\%$ against nominal full-state control. The tails matter.
+
+Oracle full-state control improves on nominal full-state control by only
+1.42\% broadband and 1.68\% transient in the primary panel. All five fleet means
+improve, but only 25/50 and 26/50 recipients do. Its gains against nominal
+output feedback are 5.89\% and 7.75\%. Thus headroom is modest under these fixed
+tasks and LQI costs; the oracle is not an optimal tracking bound.
+
+\subsection{Common-input reconstruction and compensation}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{experiment_10hq_feedback_bottleneck.pdf}
+\caption{Primary-panel tracking and common-input projected steering error.
+Bars are means of five fleet summaries; dots show individual fleets. Lower
+panels hold Both's recorded inputs and controller gains fixed. Their projection
+is an instantaneous command-error diagnostic, not a decomposition of tracking
+loss across different closed-loop trajectories.}
+\label{fig:10hq-bottleneck}
+\end{figure}
+
+On the same Both records, learned KF beta RMSE improves from 0.03672 to
+0.02581 degrees broadband and from 0.06199 to 0.04558 degrees transient.
+However, front/rear force-per-mass RMSEs increase from 0.02325/0.01174 to
+0.05325/0.05438 $\mathrm{m/s^2}$ broadband and from 0.03366/0.01392 to
+0.09006/0.08881 $\mathrm{m/s^2}$ transient. These are mean recipient RMS values
+after deployment averaging, not a pooled trajectory RMS.
+
+With the same learned state gain, total projected steering RMS is 0.759/3.896/
+0.190 degrees for nominal/learned/oracle KF broadband and 1.336/7.719/0.190
+degrees transient. The learned KF's signed joint-force contributions are 3.795
+and 7.639 degrees. The same ordering holds on nominal records and in the
+comparison panel. All five component second moments and their cross terms are
+retained: summing component RMS values would discard cancellation.
+
+The combination of poor learned full-state control, harmful force corrections
+and larger common-input force projections is consistent with compensation
+between controller-model and observer errors. It does not establish an additive
+causal tracking decomposition or prove that bounds alone caused the failure.
+Better beta reconstruction is insufficient evidence of a useful complete
+physical state estimate for the learned LQI.
+
+\subsection{Validation, limits and consequence}
+All 4,800 rollouts are finite, with no design failures or beta/steering limit
+violations. Saturation is retained in the per-case tables. All 1,600 overlapping
+P records agree exactly in every array. Independent saved-step and metric
+errors are below $2.0\times10^{-15}$. An independent observer replay and
+projection audit covers 7,200 diagnostic rows, with maximum metric error
+$2.85\times10^{-14}$. A separate verification checks 620 provenance references,
+the two-stage paired aggregation, and 400 cross-panel nominal/oracle full-state
+trajectory pairs, which agree exactly despite differing unused KF internals.
+
+Strict independent full-path replay at tolerance $10^{-8}$ passes for 4,684
+records; 116 remain sensitive to floating-point ordering, with maximum
+tracking-RMSE change 0.11949 degrees/s. The principal primary-panel learned
+Both, learned full-state and force-correction paths are not sensitive. Nominal
+full-state paths include sensitive cases. Conservative bounds using each
+record's observed alternate-path RMSE change preserve the signs of the three
+primary prespecified contrasts above. These bounds are neither confidence
+intervals nor a general robustness guarantee. Tolerances were not relaxed.
+
+Frozen-speed checks do not certify scheduled stability. Primary learned
+full-state control has maximum frozen radius 0.9964 despite poor tracking;
+comparison-panel learned full-state control has five of 100 deployed pairs
+with radius at least one and maximum 4.426. Finite clipped rollouts therefore
+do not establish a usable controller family.
+
+The inherited coefficient bounds are heuristic, even with exact physical
+coupling. Post hoc inspection of deployed primary models gives front lengths
+down to 0.223 m and rear lengths up to 3.713 m. These are inferred model
+coordinates, not measurements of client geometry. Output prediction and the
+coupling identity do not ensure plausible control-design models. The next
+priority is independently justified physical-coordinate constraints and
+controller-relevant validation before adding observer complexity. This
+diagnostic does not demonstrate the intended iterative federated improvement
+of KF and controller matrices.
+
+Execution, restoration and audit commands are in
+\texttt{docs/experiment\_10hq\_execution.md}; result tables, second moments,
+recipient tails and provenance are committed. The numerical environment is
+Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0 and pandas 2.2.3 with one BLAS thread.
+The repository suite passes 170 tests, and Q sources pass scoped lint.

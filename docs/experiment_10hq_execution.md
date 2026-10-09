@@ -17,6 +17,10 @@ python code/experiments/experiment_10hq_restore_trajectories.py --experiment 10h
 python code/experiments/experiment_10hq_parent_overlap.py --workers 4
 python code/experiments/experiment_10hq_feedback_bottleneck.py --workers 4
 python code/experiments/experiment_10hp_result_audit.py --mode 10hq --workers 4
+python code/experiments/experiment_10hq_result_audit.py --workers 4
+python code/experiments/experiment_10hq_reporting.py
+python code/experiments/experiment_10hq_final_verification.py
+python code/experiments/experiment_10hq_figures.py
 ```
 
 The overlap precheck regenerates all 1,600 P cases using Q's oracle-enabled design
@@ -40,3 +44,14 @@ Restoration checks exact committed NPZ hashes and stops if the numerical
 environment produces different bytes. Saved-step integrity, independent
 full-path sensitivity, and exact parent overlap are separate checks. Their
 original tolerances remain unchanged.
+
+The Q audit entry point includes the saved-step/full-path audit, followed by an
+independent common-input KF replay and steering projection calculation. Running
+the preceding P audit command separately is optional. Compile the living report
+with `make -C report`; its checked PDF is also committed.
+
+Current status: all 4,800 Q runs are finite and all 1,600 P overlaps are exact.
+Saved-step and projection integrity pass. Strict alternate-order full-path
+replay passes for 4,684 records, with 116 sensitive records retained. Paired
+contrasts use two donor deployments per recipient and five fleets as the paired
+units. Oracle interventions remain diagnostics, not deployable selected methods.

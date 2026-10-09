@@ -33,6 +33,27 @@ The core two-factor comparison is:
 See [`report/main.tex`](report/main.tex) for the motivation, benchmark definition,
 experiment plan, decision gates, and the progressively updated findings.
 
+## Current development status: reconstructed 10H-Q
+
+The unchanged 10H-L inputs support freshly reconstructed M/N libraries, core P
+and the frozen Q bottleneck diagnostic. Original lost M–P artifacts are not
+claimed to have been recovered. Confirmation seeds remain sealed. Q completes
+4,800 closed-loop rollouts and 2,400 common-input KF replays without refitting.
+Its 1,600 P overlaps match exactly. Saved-step, projection and provenance checks
+pass; 116 strict full-path replays remain sensitive to floating-point ordering.
+
+The primary-panel learned controller is worse than nominal with true states.
+Force truth corrections also worsen Both. Improved beta estimates coexist with
+worse force estimates and steering projections, consistent with compensation
+between controller and observer errors. Fixed-cost oracle headroom is modest.
+These results prioritize physical plausibility and controller-relevant validation;
+they do not demonstrate the intended iterative federated KF/controller benefit.
+
+See [execution and restoration](docs/experiment_10hq_execution.md), the
+[frozen protocol](docs/experiment_10hq_protocol.md),
+[paired contrasts](results/tables/experiment_10hq_paired_summary.csv), and the
+[development report](report/2026_FederatedLPV_report.pdf).
+
 ## Quick start
 
 ```bash
