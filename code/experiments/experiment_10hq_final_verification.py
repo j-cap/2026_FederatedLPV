@@ -63,6 +63,23 @@ def run():
                 assert np.array_equal(first[key], second[key]), key
         equal += 1
     assert equal == 400
+    audit_sources = {
+        "experiment_10hq_audit.json": "code/experiments/experiment_10hp_result_audit.py",
+        "experiment_10hq_projection_audit.json": "code/experiments/experiment_10hq_result_audit.py",
+    }
+    for name, source in audit_sources.items():
+        audit = json.loads((OUT / name).read_text())
+        assert audit["audit_source_sha256"] == sha(ROOT / source), name
+        assert audit["result_manifest_sha256"] == sha(OUT / "experiment_10hq_complete.json")
+        assert audit["audit_table_sha256"] == sha(OUT / name.replace(".json", ".csv").replace(
+            "experiment_10hq_audit.csv", "experiment_10hq_replay_audit.csv"
+        )), name
+    conclusions = json.loads((OUT / "experiment_10hq_conclusions.json").read_text())
+    assert conclusions["source_sha256"] == sha(ROOT / "code/experiments/experiment_10hq_reporting.py")
+    assert conclusions["audit_sha256"] == sha(OUT / "experiment_10hq_audit.json")
+    assert conclusions["projection_audit_sha256"] == sha(OUT / "experiment_10hq_projection_audit.json")
+    regeneration = json.loads((OUT / "experiment_10hq_regeneration_audit.json").read_text())
+    assert regeneration["all_checks_pass"] and regeneration["verified_or_restored"] == 320
     changed = subprocess.check_output(
         ["git", "diff", "--name-only", BASE, "--", "code"], cwd=ROOT, text=True
     ).splitlines()
@@ -77,6 +94,8 @@ def run():
         "closed_loop_runs": 4800, "common_input_replays": 2400,
         "cross_panel_true_state_pairs_identical": equal,
         "maximum_fleet_aggregation_error": error, "maximum_gain_aggregation_error": gain_error,
+        "audit_and_conclusion_source_hashes_match": True,
+        "sampled_parent_and_q_hash_regenerations": regeneration["verified_or_restored"],
         "historical_source_unchanged_from": BASE,
         "source_sha256": sha(ROOT / "code/experiments/experiment_10hq_final_verification.py"),
     }
