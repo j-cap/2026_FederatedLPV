@@ -116,9 +116,12 @@ git commit -m "Generate manuscript identification figures from frozen evidence"
 git push
 ```
 
-Add the overview PDF to the same or a later commit once its content has been
-reviewed. After the figures are available, the next manuscript pass will place
-them, finalize captions, convert the procedure table into an algorithm, and
-revise the benchmark/results tables and surrounding prose. A control
+The author's overview PDF has been reviewed and integrated as Figure 1,
+using `results/figures/paper_method_overview.pdf`. The caption explains the
+seven-function basis, conditional rank recovery, illustrative groups, and
+controlled calibration setting. The existing speed-error plot is now Figure 2.
+After the remaining generated figures are available, the next manuscript pass
+will place them, finalize captions, convert the procedure table into an
+algorithm, and revise the benchmark/results tables and surrounding prose. A control
 time-history figure is outside this preparation; it would need trajectory
 capture from the fixed evaluation protocol.

@@ -28,7 +28,10 @@ simulation. Audit saved coefficients without fitting or rollouts using
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
 
-The next visual revision is prepared without changing the active manuscript.
+The author's overview PDF is integrated as Figure 1, with an introductory
+reference and a caption stating the basis-rank and calibration assumptions.
+It is saved as `results/figures/paper_method_overview.pdf`.
+The remaining diagnostic visual revision is prepared separately.
 See [figure generation and the PaperBanana overview brief](../docs/manuscript_figure_generation.md).
 Run `python paper/prepare_identification_figures.py --preflight`, then
 `python paper/prepare_identification_figures.py --generate` to export the basis,

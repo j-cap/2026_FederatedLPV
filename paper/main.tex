@@ -61,6 +61,24 @@ each client observes only a contiguous speed block. Repeating transitions
 at those same speeds reduces estimation noise but cannot supply missing
 basis directions. Complementary fleet coverage can supply them, provided
 that the combined clients have sufficiently compatible dynamics.
+Figure~\ref{fig:overview} summarizes this coverage limitation and the
+client--server identification procedure.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.99\textwidth]{paper_method_overview.pdf}
+\caption{Overview of compatible federated LPV identification.
+(a) Illustrative clients observe narrow speed blocks. Their scheduling designs
+have rank two or three for a seven-function basis; compatible sharing can supply
+missing directions if the pooled group design has rank seven. The displayed
+groups are illustrative. (b) Clients retain calibration records and local
+matrix targets, exchange additive statistics, summaries, and assignment scores,
+and receive fitted group maps. Fitting and assignment iterate for each candidate
+$K$, followed by BIC-based selection. Available states and equilibrium-centered
+calibration are assumed. The envelope is the 10--30\,m/s interval along the
+prescribed cornering curve; LQI provides a supporting usability check.}
+\label{fig:overview}
+\end{figure*}
 
 Federated learning exchanges computed information while retaining records
 locally \cite{mcmahan2017fedavg}. Clustered learning addresses persistent
@@ -441,7 +459,6 @@ seeds 381--385, subject to feasibility and saturation checks. A weaker
 maneuver pilot on seeds 391--400 was discarded before the final confirmation.
 Neither grouped-versus-Global results nor confirmation fleets select weights.
 
-\balance
 The moderate maneuver smoothly varies speed $11\to29\to15$ m/s and
 uses an enveloped two-frequency lateral-acceleration demand with scale
 4 m/s$^2$ and frequencies 0.35/0.72 Hz. The hard maneuver varies speed
@@ -503,6 +520,7 @@ minimum size does not guarantee rank, and the exhaustive search incurs
 measurable communication. The observed full-rank coverage is an empirical
 result for these fleets, not a guarantee of the group-selection algorithm.
 
+\balance
 Within these assumptions, compatible federated regression enables clients
 with incomplete local coverage to obtain useful LPV maps over the speed
 interval. Nonlinear scheduled-LQI tests support model usability without
