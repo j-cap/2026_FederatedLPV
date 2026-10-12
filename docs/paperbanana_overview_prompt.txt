@@ -1,0 +1,130 @@
+Create a polished scientific overview figure for an IEEE conference paper titled
+"Federated Full-Envelope LPV Identification from Incomplete Local Coverage".
+This is a first draft for author review. Prioritize scientific accuracy,
+readability at the final printed size, and clear visual hierarchy.
+
+MAIN MESSAGE
+Individual vehicles observe only a few speeds and therefore lack enough
+scheduling information to identify a seven-function LPV map. Sharing information
+among sufficiently compatible vehicles can supply the missing directions.
+Pooling all vehicles can instead mix incompatible dynamics. Group membership is
+unknown and is learned from the local calibration information.
+
+FIGURE FORMAT AND STYLE
+Use a white background, flat vector-style shapes, thin clean strokes, and a
+restrained colorblind-friendly palette: dark gray for local records, blue
+(#236b9a) and orange (#cf741c) for illustrative learned groups, muted green for
+observed speed coverage. Avoid gradients, shadows, 3D objects, decorative road
+scenes, photorealistic vehicles, and large cloud clip art. Use small identical
+vehicle icons only if they clarify the client/server relationship.
+
+Design for a full two-column width of approximately 180 mm and a height of
+85-100 mm. Text must remain readable at that size: approximately 8-9 pt labels,
+slightly larger panel headings, one consistent serif or scientific typeface.
+Use two panels with labels (a) and (b). Reserve whitespace for arrows and labels.
+Do not place a large overall title, caption paragraph, or numerical performance
+claims inside the figure. Keep equations few, legible, and correctly typeset.
+Keep all labels short and spelled exactly as specified below.
+
+PANEL (a): "Incomplete local coverage, shared speed envelope"
+Show a horizontal speed axis spanning 10 to 30 m/s, with eleven explicit grid
+positions: 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30.
+Show four neutral example client rows, labeled "Client i", "Client j",
+"Client k", and "Client l". Their observed grid points are respectively:
+  Client i: 10, 12, 14 m/s
+  Client j: 16, 18, 20 m/s
+  Client k: 22, 24, 26 m/s
+  Client l: 28, 30 m/s
+Use filled marks at observed points and faint empty marks elsewhere. A light
+block background can reinforce coverage, but discrete observations must remain
+explicit. State "Illustrative clients" and "Local rank: 2-3 < L = 7".
+
+Beside or below this coverage matrix, show a compact compatibility-aware sharing
+symbol leading to two colored output strips, labeled "Group map 1" and
+"Group map 2", both extending across the 10-30 m/s interval. The two maps are
+illustrative outputs, not two known physical vehicle families. Label this part
+"Learned compatible groups" and add the compact qualifier "Full rank required".
+Do not draw fabricated quantitative matrix curves or suggest every arbitrary
+partition necessarily restores rank. Do not assign group colors according to
+speed block: vehicles at the same speed can have different dynamics, and a
+compatible group can receive observations from multiple speed blocks.
+
+PANEL (b): "Federated compatible regression"
+Use a left-to-right client/server layout with an explicit return arrow for the
+iterative fit-and-assignment cycle. The local processing area is on the left,
+the server is on the right. Label the local area "On each client" and the server
+area "Server".
+
+Inside the client area, show this short processing chain:
+  "Local calibration records"
+    -> "Local matrix estimates A_i(v), B_i(v)"
+    -> "Statistics and assignment scores"
+The first box may include a small secondary label "Available x = [beta, r]^T;
+steering u; speed v". If Greek letters are supported, typeset beta as beta's
+Greek symbol and the transpose as a superscript T. These are independent
+one-step perturbation records about fixed cornering equilibria, not a recorded
+continuous driving trajectory.
+
+Label the client-to-server fitting arrow "G_i, H_i; summary statistics".
+If space permits, place these two exact definitions below the local statistics
+box, rather than adding another large block:
+  G_i = Phi_i^T Phi_i
+  H_i = Phi_i^T Y_i
+Here Phi_i contains the fixed scheduling basis evaluated at the client's
+observed speeds; Y_i contains six-entry local matrix targets.
+
+Inside the server area, show:
+  "Aggregate within candidate groups"
+    -> "Fit group LPV maps"
+    -> "Update assignments; select K"
+Use a loop arrow or circular iteration annotation labeled "Fit / assign".
+The server selects K from {1, 2, 3, 4, 5}; K = 1 is allowed. Exact fleet labels
+and true physical parameters are not supplied to this procedure.
+
+Show a server-to-client arrow labeled "Broadcast candidate group maps".
+At the client, connect this arrow to the local scoring step and show a separate
+client-to-server arrow labeled "Return assignment scores q_ig". Scores are
+computed from residuals on local matrix targets, with common entry scaling.
+Residual summaries for initialization and target moments for scaling are also
+exchanged; do not claim that G_i and H_i are the only transmitted quantities.
+
+At the output of the loop, show a small result box:
+  "Assigned group map over 10-30 m/s"
+with the equation
+  m_hat_i(v) = phi(v)^T Theta_hat_{g_i}
+If space permits, connect this result with a thin secondary arrow to a small
+box "Supporting LQI validation". Keep that box subordinate to identification;
+do not show a full controller or observer block diagram.
+
+SCIENTIFIC BOUNDARIES THAT MUST BE PRESERVED
+- L = 7 is a fixed basis chosen on separate development data. The basis spans
+  [1, 1/v, 1/v^2, z, z^2, z^3, z^4], with z = (v - 20)/10; a fixed QR transform
+  changes conditioning without changing the span. Do not imply clients learn
+  arbitrary basis functions or identify complete local seven-function maps.
+- Raw transition records and local matrix targets remain on the clients. The
+  shared statistics and scores are informative. Do not depict encryption,
+  differential privacy, cryptographic secure aggregation, or a privacy guarantee.
+- Available lateral states are assumed. Current regressors are exact; next-state
+  targets are noisy. There is no Kalman filter, state-reconstruction stage, or
+  joint observer/model learning in this study.
+- "Full envelope" means the 10-30 m/s speed interval along one prescribed
+  cornering curve. It does not mean arbitrary nonlinear driving conditions.
+- Calibration clients also receive the resulting maps. Do not depict transfer
+  to a separate fleet of unseen recipients or a frozen pretrained library.
+- Learned groups are compatibility partitions with remaining within-group
+  variation, not certified recovery of true physical vehicle families.
+- Do not draw error bars, statistical gains, or numerical accuracy claims. Those
+  belong in the separate data-driven results figures.
+
+INTENDED CAPTION (outside the artwork)
+"Overview of compatible federated LPV identification. (a) Individual clients
+observe only narrow speed blocks; sufficiently compatible sharing can recover
+the scheduling information needed for a full-interval map. The displayed groups
+are illustrative. (b) Clients estimate local matrices and exchange additive
+statistics, summaries, and assignment scores. The server alternates group fits
+and assignments and returns group maps; raw records remain local. Available
+states and controlled equilibrium-centered calibration are assumed."
+
+Before finalizing, check that every arrow has a clear source and destination,
+the feedback loop does not carry raw records to the server, group labels are
+inferred rather than supplied, and all text remains readable at 180 mm width.

@@ -27,3 +27,9 @@ simulation. Audit saved coefficients without fitting or rollouts using
 `python paper/audit_review_validation.py` when an independent audit is needed.
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
+
+The next visual revision is prepared without changing the active manuscript.
+See [figure generation and the PaperBanana overview brief](../docs/manuscript_figure_generation.md).
+Run `python paper/prepare_identification_figures.py --preflight`, then
+`python paper/prepare_identification_figures.py --generate` to export the basis,
+information, fleet/client, and revised speed-error panels from frozen records.
