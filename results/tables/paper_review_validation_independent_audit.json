@@ -1,0 +1,146 @@
+{
+  "status": "independently_audited",
+  "result_commit": "6b05653a2e0b5aeeadf5e2e66a96f11085ba1a02",
+  "fleets": 10,
+  "clients": 300,
+  "errors": 13200,
+  "checked_sources": 23,
+  "checkpoints": 10,
+  "reference_evaluations": 3300,
+  "model_error_entries_verified": 9900,
+  "maximum_saved_model_error_difference": 4.1289714702852365e-12,
+  "maximum_parent_record_error_difference": 3.097162526444208e-10,
+  "maximum_parent_mean_error_difference": 5.047184892248424e-12,
+  "groups": 18,
+  "all_groups_full_rank": true,
+  "all_groups_cover_eleven_speeds": true,
+  "group_design_condition_range": [
+    3.25987584070395,
+    3.8731096813727532
+  ],
+  "group_client_range": [
+    12,
+    30
+  ],
+  "local_rank_counts": {
+    "3": 230,
+    "2": 70
+  },
+  "regularization_strength_counts": {
+    "0.0001": 71,
+    "0.01": 90,
+    "100.0": 82,
+    "1e-06": 24,
+    "1.0": 33
+  },
+  "client_tails": [
+    {
+      "region": "seen",
+      "clients": 300,
+      "grouped_worse": 54,
+      "grouped_better": 186,
+      "numerical_ties": 60,
+      "maximum_deterioration_percentage_points": 3.0256492061055624,
+      "maximum_local_regularization_change_percentage_points": 0.012948144470944709
+    },
+    {
+      "region": "unseen",
+      "clients": 300,
+      "grouped_worse": 71,
+      "grouped_better": 169,
+      "numerical_ties": 60,
+      "maximum_deterioration_percentage_points": 4.406446908258505,
+      "maximum_local_regularization_change_percentage_points": 0.00944201131925504
+    }
+  ],
+  "fleet_checks": [
+    {
+      "seed": 371,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 372,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 373,
+      "checkpoint_verified": true,
+      "selected_k": 1,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 374,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 375,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 376,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 377,
+      "checkpoint_verified": true,
+      "selected_k": 1,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 378,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 379,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    },
+    {
+      "seed": 380,
+      "checkpoint_verified": true,
+      "selected_k": 2,
+      "model_error_verified": true,
+      "group_information_verified": true
+    }
+  ],
+  "operation": "read_only_results_audit_with_reference_jacobian_evaluation_no_fitting_or_rollouts",
+  "source_sha256": {
+    "results/tables/paper_review_validation_manifest.json": "50e7cfee52bea95266046f985cc59139fd9c79fcada3dd12220a14bfe34bc364",
+    "results/tables/paper_review_validation_summary.csv": "7b051397db7b744db5bfb71cbc9655cf3b3101f2f312f79185022d3c0deab051",
+    "results/tables/paper_review_validation_comparisons.csv": "53ddce81de21e2da80f2bc5f498eddaf22442aa882ce9bc8988b887ebda4225f",
+    "results/tables/paper_review_validation_groups.csv": "461278d801332c22c2351c3144bd93def90b52af9026c29bcc1e41c2b4c50a86",
+    "results/tables/paper_review_validation_seed_summary.csv": "6761a9bc23eb7ff7558c226ded3c8587c104ae1799f7b7f68e33567e03dce581",
+    "results/tables/paper_review_validation_seed371.json": "b5237261f92004cba408d5249a7ac1dcd7f09fd05b39fed02b674251aa681229",
+    "results/tables/paper_review_validation_seed372.json": "d99b0e964962cb25f726f3ed8a1dc4605a3211b28bd5c7c7184e70c464aa9512",
+    "results/tables/paper_review_validation_seed373.json": "bcd9015a8c869a9a8f96e710dc7abdf66b8e6ace0919536d195a236b2bf40f14",
+    "results/tables/paper_review_validation_seed374.json": "76ec7481b3c39c9c36a23bcd3289d04a5c1b0e26d871f8bb87561a502a9ebb54",
+    "results/tables/paper_review_validation_seed375.json": "9326487d16c4ad0b159040a2339de1dccf334267d942e377513ec47ef62045e2",
+    "results/tables/paper_review_validation_seed376.json": "a19d667fb05e217b7da96a5d1a7a53c47f72e942958ac1b24c1388073ed9c206",
+    "results/tables/paper_review_validation_seed377.json": "5f1cf151ff2b42d25c4747df135662674f712a9d80c7bab54bf1f1af7a24d103",
+    "results/tables/paper_review_validation_seed378.json": "306587b62565d3404263c8e139299014d87eacd22ceed12bdc0d1c1d50d3bac9",
+    "results/tables/paper_review_validation_seed379.json": "1f2e5494f671211a85dbf7eed9e7d045e5ec3614d7f471dd9b26991fa5eb8be4",
+    "results/tables/paper_review_validation_seed380.json": "73edb55aa178152301cd1dbd560ae4487d660ec2c62a0e2416468b6679b11462"
+  }
+}

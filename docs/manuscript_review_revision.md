@@ -2,6 +2,12 @@
 
 Date: 9 October 2026. Parent manuscript: `b572036`.
 
+Update, 12 October 2026: the ten-fleet supplement is committed at `6b05653` and
+independently audited. Both targeted gaps are resolved within the benchmark;
+see [the results analysis](manuscript_review_results_analysis.md). Statements
+about pending execution below record the original preparation state. The
+active manuscript has not yet incorporated these new matched results.
+
 The manuscript remains a controlled, available-state study of full-envelope
 identification from incomplete local speed coverage. The basis, plant,
 primary error, original seeds, and historical results are unchanged.
@@ -13,10 +19,10 @@ primary error, original seeds, and historical results are unchanged.
 | Novelty and IFAC overlap | Introduction distinguishes missing scheduling information from local LPV interpolation, clustered learning, and earlier uncertainty-aware vehicle identification. Adds primary LPV references. | Text revised; no claim of a new clustering or regression primitive. |
 | Undefined endpoint | Specifies matrix-entry order, physical units, relative norm, eleven-speed grid, averaging order, paired gains and fleet bootstrap. | Complete. |
 | Unobserved speeds obscured | Reanalyses the original 19,800 label-free records; adds observed/unobserved columns and speed/block curves with fleet-bootstrap bands. | Complete without fitting or simulation. |
-| Conditional rank argument | Adds a fixed-partition proposition and justification; separates this from successful group discovery. | Text complete; selected-group diagnostics await reconstruction. |
+| Conditional rank argument | Adds a fixed-partition proposition and justification; separates this from successful group discovery. | 18/18 selected groups independently verified full rank with all eleven speeds; manuscript integration pending. |
 | Incomplete method | Gives local transition regression, QR basis convention, ridge constants, assignment scaling, initialization, group-size rejection, stopping and BIC conventions. | Complete. |
 | Incomplete benchmark | Adds vehicle centers/scatter, tire equations, perturbation/noise levels, timing, seed partitions and control settings. | Complete. |
-| Local baseline fairness | States $L=3$ Local versus $L=7$ shared models beside the results. Discloses that the richer locally regularized comparator was tested only in the earlier oracle experiment. | Matched primary comparison prepared, not yet executed. |
+| Local baseline fairness | States $L=3$ Local versus $L=7$ shared models beside the results. | Matched richer local comparator completed and independently audited; negligible change from Local, manuscript integration pending. |
 | Development-report presentation | Uses vendored IEEEtran, removes internal experiment names from scientific results, replaces the old three-panel figure, and compresses personalization and repeated limitations. | Complete. |
 
 ## Evidence already available

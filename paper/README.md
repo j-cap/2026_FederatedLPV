@@ -17,7 +17,9 @@ IEEEtran 1.8b class is included and conference formatting is required.
 
 The [review revision and run instructions](../docs/manuscript_review_revision.md)
 describe the resolved text issues, the existing-record region analysis, and the
-prepared selected-group/regularized-Local supplement. The supplement has passed
-preflight and a one-fleet smoke check; its full results are still pending.
+selected-group/regularized-Local supplement. The full ten-fleet results are
+complete and independently audited; see [the analysis](../docs/manuscript_review_results_analysis.md).
+The manuscript still needs these matched findings integrated. Audit the saved
+results without fitting or rollouts using `python paper/audit_review_validation.py`.
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
