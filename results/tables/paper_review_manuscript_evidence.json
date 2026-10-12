@@ -1,0 +1,159 @@
+{
+  "status": "verified",
+  "operation": "manuscript_evidence_integration_no_fitting_or_simulations",
+  "original_result_commit": "6b05653a2e0b5aeeadf5e2e66a96f11085ba1a02",
+  "independent_audit_commit": "b3024323bad22b5b2077983d502c5f1d70004a15",
+  "fleets": 10,
+  "groups": 18,
+  "paired_fleet_checks": 20,
+  "numerical_claims": {
+    "ReviewLocalFullError": {
+      "value": 49.56222894311127,
+      "source": {
+        "region": "full",
+        "method": "LocalRegularized",
+        "mean": "0.49562228943111275",
+        "std": "0.03180708453695373"
+      }
+    },
+    "ReviewLocalSeenError": {
+      "value": 1.930125339295518,
+      "source": {
+        "region": "seen",
+        "method": "LocalRegularized",
+        "mean": "0.01930125339295518",
+        "std": "0.0011274625976299979"
+      }
+    },
+    "ReviewLocalUnseenError": {
+      "value": 65.56815849419107,
+      "source": {
+        "region": "unseen",
+        "method": "LocalRegularized",
+        "mean": "0.6556815849419106",
+        "std": "0.04245934360004968"
+      }
+    },
+    "ReviewFullGain": {
+      "value": 93.41296486269627,
+      "source": {
+        "region": "full",
+        "method": "FederatedLearned",
+        "baseline": "LocalRegularized",
+        "improvement_pct": "93.41296486269627",
+        "ci_low": "92.5927606459731",
+        "ci_high": "94.21172913780973",
+        "wins": "10"
+      }
+    },
+    "ReviewFullLow": {
+      "value": 92.5927606459731,
+      "source": {
+        "region": "full",
+        "method": "FederatedLearned",
+        "baseline": "LocalRegularized",
+        "improvement_pct": "93.41296486269627",
+        "ci_low": "92.5927606459731",
+        "ci_high": "94.21172913780973",
+        "wins": "10"
+      }
+    },
+    "ReviewFullHigh": {
+      "value": 94.21172913780973,
+      "source": {
+        "region": "full",
+        "method": "FederatedLearned",
+        "baseline": "LocalRegularized",
+        "improvement_pct": "93.41296486269627",
+        "ci_low": "92.5927606459731",
+        "ci_high": "94.21172913780973",
+        "wins": "10"
+      }
+    },
+    "ReviewUnseenGain": {
+      "value": 94.58655010049165,
+      "source": {
+        "region": "unseen",
+        "method": "FederatedLearned",
+        "baseline": "LocalRegularized",
+        "improvement_pct": "94.58655010049165",
+        "ci_low": "93.91581941268001",
+        "ci_high": "95.25279931430342",
+        "wins": "10"
+      }
+    },
+    "ReviewUnseenLow": {
+      "value": 93.91581941268001,
+      "source": {
+        "region": "unseen",
+        "method": "FederatedLearned",
+        "baseline": "LocalRegularized",
+        "improvement_pct": "94.58655010049165",
+        "ci_low": "93.91581941268001",
+        "ci_high": "95.25279931430342",
+        "wins": "10"
+      }
+    },
+    "ReviewUnseenHigh": {
+      "value": 95.25279931430342,
+      "source": {
+        "region": "unseen",
+        "method": "FederatedLearned",
+        "baseline": "LocalRegularized",
+        "improvement_pct": "94.58655010049165",
+        "ci_low": "93.91581941268001",
+        "ci_high": "95.25279931430342",
+        "wins": "10"
+      }
+    },
+    "ReviewUnseenLocalChange": {
+      "value": 0.0001565866484032341,
+      "source": "100*(Local.mean-LocalRegularized.mean), region=unseen"
+    },
+    "ReviewGroups": {
+      "value": 18,
+      "source": "paper_review_validation_groups.csv"
+    },
+    "ReviewConditionMin": {
+      "value": 3.25987584070395,
+      "source": "minimum stacked scheduling design condition"
+    },
+    "ReviewConditionMax": {
+      "value": 3.8731096813727532,
+      "source": "maximum stacked scheduling design condition"
+    }
+  },
+  "macros": {
+    "ReviewLocalFullError": "49.562",
+    "ReviewLocalSeenError": "1.930",
+    "ReviewLocalUnseenError": "65.568",
+    "ReviewFullGain": "93.41",
+    "ReviewFullLow": "92.59",
+    "ReviewFullHigh": "94.21",
+    "ReviewUnseenGain": "94.59",
+    "ReviewUnseenLow": "93.92",
+    "ReviewUnseenHigh": "95.25",
+    "ReviewUnseenLocalChange": "0.00016",
+    "ReviewGroups": "18",
+    "ReviewConditionMin": "3.26",
+    "ReviewConditionMax": "3.87"
+  },
+  "source_sha256": {
+    "results/tables/paper_review_validation_manifest.json": "50e7cfee52bea95266046f985cc59139fd9c79fcada3dd12220a14bfe34bc364",
+    "results/tables/paper_review_validation_summary.csv": "7b051397db7b744db5bfb71cbc9655cf3b3101f2f312f79185022d3c0deab051",
+    "results/tables/paper_review_validation_comparisons.csv": "53ddce81de21e2da80f2bc5f498eddaf22442aa882ce9bc8988b887ebda4225f",
+    "results/tables/paper_review_validation_groups.csv": "461278d801332c22c2351c3144bd93def90b52af9026c29bcc1e41c2b4c50a86",
+    "results/tables/paper_review_validation_seed_summary.csv": "6761a9bc23eb7ff7558c226ded3c8587c104ae1799f7b7f68e33567e03dce581",
+    "results/tables/paper_review_validation_seed371.json": "b5237261f92004cba408d5249a7ac1dcd7f09fd05b39fed02b674251aa681229",
+    "results/tables/paper_review_validation_seed372.json": "d99b0e964962cb25f726f3ed8a1dc4605a3211b28bd5c7c7184e70c464aa9512",
+    "results/tables/paper_review_validation_seed373.json": "bcd9015a8c869a9a8f96e710dc7abdf66b8e6ace0919536d195a236b2bf40f14",
+    "results/tables/paper_review_validation_seed374.json": "76ec7481b3c39c9c36a23bcd3289d04a5c1b0e26d871f8bb87561a502a9ebb54",
+    "results/tables/paper_review_validation_seed375.json": "9326487d16c4ad0b159040a2339de1dccf334267d942e377513ec47ef62045e2",
+    "results/tables/paper_review_validation_seed376.json": "a19d667fb05e217b7da96a5d1a7a53c47f72e942958ac1b24c1388073ed9c206",
+    "results/tables/paper_review_validation_seed377.json": "5f1cf151ff2b42d25c4747df135662674f712a9d80c7bab54bf1f1af7a24d103",
+    "results/tables/paper_review_validation_seed378.json": "306587b62565d3404263c8e139299014d87eacd22ceed12bdc0d1c1d50d3bac9",
+    "results/tables/paper_review_validation_seed379.json": "1f2e5494f671211a85dbf7eed9e7d045e5ec3614d7f471dd9b26991fa5eb8be4",
+    "results/tables/paper_review_validation_seed380.json": "73edb55aa178152301cd1dbd560ae4487d660ec2c62a0e2416468b6679b11462",
+    "results/tables/paper_review_validation_independent_audit.json": "c743c66fd50edccec3345c83946a95244f6866d5b06e374a927c02ef764a4ded"
+  }
+}

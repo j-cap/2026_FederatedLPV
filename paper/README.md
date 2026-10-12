@@ -9,6 +9,7 @@ Build and check from the repository root:
 ```bash
 python paper/check_consolidation.py
 python paper/analyze_identification_records.py
+python paper/check_review_integration.py
 make -C paper
 ```
 
@@ -19,7 +20,10 @@ The [review revision and run instructions](../docs/manuscript_review_revision.md
 describe the resolved text issues, the existing-record region analysis, and the
 selected-group/regularized-Local supplement. The full ten-fleet results are
 complete and independently audited; see [the analysis](../docs/manuscript_review_results_analysis.md).
-The manuscript still needs these matched findings integrated. Audit the saved
-results without fitting or rollouts using `python paper/audit_review_validation.py`.
+The matched baseline and selected-group findings are integrated in the main
+table, results and discussion. `check_review_integration.py` verifies the audited
+inputs and generates `review_evidence_numbers.tex`; it performs no fitting or
+simulation. Audit saved coefficients without fitting or rollouts using
+`python paper/audit_review_validation.py` when an independent audit is needed.
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.

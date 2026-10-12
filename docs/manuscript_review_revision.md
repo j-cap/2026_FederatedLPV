@@ -5,8 +5,10 @@ Date: 9 October 2026. Parent manuscript: `b572036`.
 Update, 12 October 2026: the ten-fleet supplement is committed at `6b05653` and
 independently audited. Both targeted gaps are resolved within the benchmark;
 see [the results analysis](manuscript_review_results_analysis.md). Statements
-about pending execution below record the original preparation state. The
-active manuscript has not yet incorporated these new matched results.
+about pending execution below record the original preparation state.
+The active manuscript now includes the matched Regularized Local comparison
+and selected-group scheduling diagnostics, with original primary estimates
+and the controlled-calibration scope retained.
 
 The manuscript remains a controlled, available-state study of full-envelope
 identification from incomplete local speed coverage. The basis, plant,
@@ -19,10 +21,10 @@ primary error, original seeds, and historical results are unchanged.
 | Novelty and IFAC overlap | Introduction distinguishes missing scheduling information from local LPV interpolation, clustered learning, and earlier uncertainty-aware vehicle identification. Adds primary LPV references. | Text revised; no claim of a new clustering or regression primitive. |
 | Undefined endpoint | Specifies matrix-entry order, physical units, relative norm, eleven-speed grid, averaging order, paired gains and fleet bootstrap. | Complete. |
 | Unobserved speeds obscured | Reanalyses the original 19,800 label-free records; adds observed/unobserved columns and speed/block curves with fleet-bootstrap bands. | Complete without fitting or simulation. |
-| Conditional rank argument | Adds a fixed-partition proposition and justification; separates this from successful group discovery. | 18/18 selected groups independently verified full rank with all eleven speeds; manuscript integration pending. |
+| Conditional rank argument | Adds a fixed-partition proposition and justification; separates this from successful group discovery. | 18/18 full-rank groups, eleven-speed coverage and design conditioning integrated; no general grouping guarantee claimed. |
 | Incomplete method | Gives local transition regression, QR basis convention, ridge constants, assignment scaling, initialization, group-size rejection, stopping and BIC conventions. | Complete. |
 | Incomplete benchmark | Adds vehicle centers/scatter, tire equations, perturbation/noise levels, timing, seed partitions and control settings. | Complete. |
-| Local baseline fairness | States $L=3$ Local versus $L=7$ shared models beside the results. | Matched richer local comparator completed and independently audited; negligible change from Local, manuscript integration pending. |
+| Local baseline fairness | States $L=3$ Local versus $L=7$ shared models beside the results. | Matched regularized Local added to the main table and defined in the benchmark; negligible change and paired group gains reported. |
 | Development-report presentation | Uses vendored IEEEtran, removes internal experiment names from scientific results, replaces the old three-panel figure, and compresses personalization and repeated limitations. | Complete. |
 
 ## Evidence already available
@@ -147,8 +149,10 @@ git commit -m "Add matched manuscript-review validation results"
 git push origin experiment/10hq-preparation
 ```
 
-The manuscript explicitly leaves these two checks unresolved until the complete
-result is audited. No automatic manuscript claim is changed after execution.
+The full run and independent audit are complete. Both targeted checks are now
+integrated in the manuscript. `python paper/check_review_integration.py`
+verifies the audited source hashes, extracts numerical claims and checks twenty
+additional paired fleet comparisons without fitting or simulation.
 
 ## Preparation verification
 
@@ -157,7 +161,8 @@ false rank conclusions from repeated speeds, and mismatched parent predictions.
 Preflight passes and the full original seed-371 smoke check reproduces the
 parent errors and selected group count. The smoke does not write production
 results. The revised five-page conference PDF is compiled and visually checked.
-The full ten-fleet supplementary run has not been executed.
+At that preparation stage, the full ten-fleet run had not been executed;
+its completion and integration are recorded in the update above.
 
 The Windows setup correction adds `environment.yml` and a CRLF-safe text-source
 digest. Its YAML and six scientific package pins were checked against the

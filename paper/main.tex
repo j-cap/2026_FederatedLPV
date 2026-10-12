@@ -5,13 +5,14 @@
 \graphicspath{{../results/figures/}}
 \input{evidence_numbers}
 \input{region_numbers}
+\input{review_evidence_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
 
 \title{Federated Full-Envelope LPV Identification\\from Incomplete Local Coverage}
 \author{\IEEEauthorblockN{Jakob Weber et al.}
-\IEEEauthorblockA{Working draft -- 9 October 2026}}
+\IEEEauthorblockA{Working draft -- 12 October 2026}}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -30,6 +31,8 @@ restricted Local and \IdentGlobalGain\% relative to Global. At locally
 unobserved speeds, mean error is \PrimaryFedUnseenError\%, compared with
 \PrimaryLocalUnseenError\% for Local and \PrimaryGlobalUnseenError\% for Global.
 The distributed implementation reproduces centralized grouped fitting.
+The richer locally regularized comparator retains essentially the same
+error as restricted Local, and all \ReviewGroups\ selected groups have full-rank scheduling designs.
 Separate scheduled-LQI tests provide modest supporting tracking gains.
 The validated setting is controlled equilibrium-centered calibration with
 available states, exact current regressors, and noisy next-state targets.
@@ -160,6 +163,7 @@ local estimation covariance is not propagated. Unequal noise or excitation
 could therefore motivate weighting, but is outside the present comparison.
 
 \begin{proposition}
+\label{prop:rank}
 For a fixed partition and exact shared-map targets
 $Y_i=\Phi_i\Theta_g$, the unregularized coefficients are unique if and
 only if the vertically stacked group design has rank $L$, equivalently
@@ -262,7 +266,8 @@ Nominal & 1500 & 2500 & 80000 & 80000\\
 Heavy & 1725 & 3000 & 84000 & 80000\\
 Handling & 1425 & 2250 & 72000 & 88000\\
 \bottomrule
-\end{tabular}\\[-1pt]
+\end{tabular}
+\par\smallskip
 \footnotesize Stiffnesses in N/rad.
 \end{table}
 
@@ -311,10 +316,15 @@ records. Global, centralized groups, and federated groups use $L=7$
 and the same fleet records. Thus Local tests access to complementary
 information, while Global tests sharing without compatibility selection.
 Centralized groups isolate the distributed implementation from the model
-benefit. An earlier oracle-family comparison also tests an $L=7$ Local
-fit regularized toward its $L=3$ fit with leave-one-speed-out selection.
-That comparator has not yet been evaluated in the primary label-free
-fleets and is not substituted for a matched primary comparison.
+benefit. Regularized Local uses $L=7$ with a ridge penalty toward the
+client's $L=3$ fit, expressed in the richer basis. The penalty strength is
+selected by leave-one-speed-out validation from
+$\{10^{-6},10^{-4},10^{-2},1,10^2\}$; clients with only two speeds use
+the fixed middle candidate $10^{-2}$. This comparator requires no shared
+records. Its matched check and the group-information diagnostics reuse
+the original ten label-free fleets and calibration protocol. Reconstructed
+parent errors were verified against the saved client-speed results.
+These checks provide no additional independent confirmation fleets.
 An additional full-coverage recipient reference is more accurate than
 family pooling at approximately equal transition budget: sharing addresses
 missing local access, not inherent superiority at equal recipient information.
@@ -337,6 +347,18 @@ separate development fleets. The richer locally regularized comparator
 does not improve on Local there. These oracle results motivate the
 mechanism before removing labels, but are not the proposed federated result.
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.96\textwidth]{paper_identification_coverage.pdf}
+\caption{Label-free matrix error by local coverage block. Shading marks
+observed speeds. Curves average within block and fleet, then across ten
+fleets, with pointwise 95\% fleet-bootstrap bands. The logarithmic vertical
+axis retains both Local extrapolation failure and the smaller
+Global--grouped difference. The curves summarize the primary records;
+they are not a separate confirmation experiment.}
+\label{fig:coverage}
+\end{figure*}
+
 \subsection{Primary label-free results}
 Table~\ref{tab:id} separates the full-envelope endpoint from its observed
 and unobserved regions. Mean paired gains over Local and Global are
@@ -351,16 +373,30 @@ Aggregate improvement does not extend to every client:
 \PrimaryUnseenWorseClients\ of 300 client instances have larger
 unobserved-speed error than Global, after excluding numerical ties.
 
+The richer locally regularized fit has negligible effect on Local's
+full-envelope error at the reported precision. At unobserved speeds,
+it reduces mean error by only \ReviewUnseenLocalChange~percentage points.
+Grouped fitting improves full-envelope error over Regularized Local by
+\ReviewFullGain\%, with a 95\% paired fleet-bootstrap interval of
+$[\ReviewFullLow,\ReviewFullHigh]\%$. The corresponding unobserved-speed
+gain is \ReviewUnseenGain\%, interval
+$[\ReviewUnseenLow,\ReviewUnseenHigh]\%$, with wins in all ten fleets
+for both endpoints. Thus the sharing benefit persists against this
+specified richer local alternative. This comparison does not establish
+failure of all local estimators or stronger physical priors.
+
 \begin{table}[t]
 \centering
 \caption{Mean relative matrix error [\%] across ten label-free fleets.
-Local uses $L=3$, the shared methods $L=7$.}
+Restricted Local uses $L=3$; Regularized Local and shared methods use $L=7$.
+Regularized Local is penalized toward its own $L=3$ fit.}
 \label{tab:id}
 \begin{tabular}{lrrr}
 \toprule
 Method & Full & Observed & Unobserved\\
 \midrule
 Restricted Local & \IdentLocalError & \PrimaryLocalSeenError & \PrimaryLocalUnseenError\\
+Regularized Local & \ReviewLocalFullError & \ReviewLocalSeenError & \ReviewLocalUnseenError\\
 Global & \IdentGlobalError & \PrimaryGlobalSeenError & \PrimaryGlobalUnseenError\\
 Centralized groups & \IdentCentralError & \PrimaryFedSeenError & \PrimaryFedUnseenError\\
 Federated groups & \IdentFedError & \PrimaryFedSeenError & \PrimaryFedUnseenError\\
@@ -368,26 +404,28 @@ Federated groups & \IdentFedError & \PrimaryFedSeenError & \PrimaryFedUnseenErro
 \end{tabular}
 \end{table}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.96\textwidth]{paper_identification_coverage.pdf}
-\caption{Label-free matrix error by local coverage block. Shading marks
-observed speeds. Curves average within block and fleet, then across ten
-fleets, with pointwise 95\% fleet-bootstrap bands. The logarithmic vertical
-axis retains both Local extrapolation failure and the smaller
-Global--grouped difference. The curves summarize the primary records;
-they are not a separate confirmation experiment.}
-\label{fig:coverage}
-\end{figure*}
+
 
 Federated and centralized protocols select identical partitions and group
 counts in all 20 fleet/protocol jobs, including the separate family-stratified
 coverage reference. Maximum coefficient discrepancy is
 $\CoefficientError\times10^{-14}$ and maximum BIC discrepancy is
 $\BicError\times10^{-9}$. This is implementation verification under matched
-inputs. Selected-group rank and conditioning are not available in the
-original saved summaries and remain to be checked by a matched reconstruction.
-A known-family reference also loses a speed block in one fleet and produces
+inputs.
+
+\subsection{Scheduling information in selected groups}
+All \ReviewGroups\ selected groups contain observations at all eleven
+grid speeds and have scheduling-design rank seven. Their stacked design
+condition numbers range from \ReviewConditionMin\ to \ReviewConditionMax\
+in the fixed QR basis. Every individual seven-function design remains
+deficient, with rank two or three. The learned partitions therefore
+satisfy the scheduling-information condition in
+Proposition~\ref{prop:rank} for this benchmark. These condition numbers
+refer to the scheduling design, not its Gram matrix or the complete
+dynamical-identification information matrix. Full rank does not remove
+within-group bias or guarantee physical-family recovery.
+
+A known-family reference loses a speed block in one fleet and produces
 an infeasible full-envelope controller, illustrating that compatibility
 labels alone do not establish information coverage.
 
@@ -403,6 +441,7 @@ seeds 381--385, subject to feasibility and saturation checks. A weaker
 maneuver pilot on seeds 391--400 was discarded before the final confirmation.
 Neither grouped-versus-Global results nor confirmation fleets select weights.
 
+\balance
 The moderate maneuver smoothly varies speed $11\to29\to15$ m/s and
 uses an enveloped two-frequency lateral-acceleration demand with scale
 4 m/s$^2$ and frequencies 0.35/0.72 Hz. The hard maneuver varies speed
@@ -443,13 +482,16 @@ frozen-point spectral radius is \ControlRadius, which is not a scheduled
 or nonlinear stability certificate. Four fleets select one group, making
 federated and Global controllers identical there.
 
-\balance
 \section{Discussion and Conclusion}
 The results distinguish complementary information, compatibility selection,
 and federation. Pooling speed blocks can supply directions absent from
 local regressions, but sharing across incompatible clients introduces bias.
-Grouped fitting improves full-envelope error over both restricted Local
-and Global while matching centralized fitting under the same records.
+Grouped fitting improves full-envelope error over restricted Local,
+Regularized Local and Global while matching centralized fitting under
+the same records. The selected groups attain full scheduling rank in
+the evaluated fleets. Local regularization leaves the extrapolation error
+almost unchanged, supporting the role of complementary observations
+within the chosen LPV representation.
 The observed-speed advantage of Local also makes the tradeoff explicit:
 a shared map primarily addresses access across the operating interval.
 
@@ -458,9 +500,8 @@ simulator-derived centering and uncorrupted current regressors. It covers
 one cornering curve, not ordinary driving, noisy state estimates, real
 fleets, or frozen-library transfer. Group selection is heuristic,
 minimum size does not guarantee rank, and the exhaustive search incurs
-measurable communication. The remaining matched checks concern selected
-group information and the richer regularized Local comparator. Neither
-is established by the headline errors alone.
+measurable communication. The observed full-rank coverage is an empirical
+result for these fleets, not a guarantee of the group-selection algorithm.
 
 Within these assumptions, compatible federated regression enables clients
 with incomplete local coverage to obtain useful LPV maps over the speed

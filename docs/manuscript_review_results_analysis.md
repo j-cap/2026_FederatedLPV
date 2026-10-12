@@ -99,16 +99,17 @@ regressors, noisy next-state targets and one cornering curve remain assumptions.
 No real-fleet, ordinary-driving or frozen-library transfer claim is added.
 The modest supporting LQI evidence remains unchanged.
 
-## Manuscript implications
+## Manuscript integration
 
-The next text edit should add LocalRegularized to the main results table,
-replace both pending-evidence statements with the audited findings, and state
-the observed group rank/coverage/conditioning separately from any general
-algorithm guarantee. Retain the observed-speed Local advantage and recipient
-tails. Preserve the original Global-relative headline and primary interval;
-this supplement is a matched check, not extra independent confirmation.
+Integration completed on 12 October 2026. Regularized Local is included in the
+main results table, both pending-evidence statements are replaced by audited
+findings, and a dedicated subsection reports observed group rank, coverage
+and conditioning separately from general algorithm guarantees. The observed-
+speed Local advantage, recipient tails, original Global-relative headline and
+primary interval are retained. The manuscript explicitly distinguishes this
+matched check from additional independent confirmation.
 
-After those edits, prioritize novelty positioning against local LPV
+Next, prioritize novelty positioning against local LPV
 identification and the IFAC contribution, clarity and presentation. These
 results do not require another simulation campaign or reopening KF learning.
 
