@@ -31,8 +31,14 @@ The preceding personalized cold-start manuscript and its audits are preserved in
 The author's overview PDF is integrated as Figure 1, with an introductory
 reference and a caption stating the basis-rank and calibration assumptions.
 It is saved as `results/figures/paper_method_overview.pdf`.
-The remaining diagnostic visual revision is prepared separately.
+The committed diagnostics are integrated as Figures 2--4: development basis
+validation and scheduling information, speed-wise identification error by local
+block, and paired fleet gains with descriptive client tradeoffs. Captions and
+results text distinguish the development and primary data, define fleet-level
+uncertainty, and identify clients as nested within fleets. The figures reuse
+frozen evidence and add no simulations or independent confirmation runs.
 See [figure generation and the PaperBanana overview brief](../docs/manuscript_figure_generation.md).
-Run `python paper/prepare_identification_figures.py --preflight`, then
+Run `python paper/prepare_identification_figures.py --preflight` to verify the
+frozen inputs. If figure regeneration is needed, run
 `python paper/prepare_identification_figures.py --generate` to export the basis,
 information, fleet/client, and revised speed-error panels from frozen records.

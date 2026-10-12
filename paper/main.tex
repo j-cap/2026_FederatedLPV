@@ -305,6 +305,48 @@ Development representation selection uses separate seeds 301--310,
 contiguous blocked-speed validation, a one-standard-error rule,
 and a practical relative-error floor of $10^{-4}$.
 
+% Declare wide figures early enough for IEEEtran to place them alongside
+% the results, rather than leaving deferred floats after the references.
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.98\textwidth]{paper_basis_information.pdf}
+\caption{Scheduling representation and information coverage.
+(a) Mean blocked-speed matrix error across ten development fleets;
+error bars denote one standard error. Rings mark the selected orders,
+and the dotted line is the 0.01\% practical selection floor.
+(b) Filled cells mark observed grid speeds for the seven-function basis.
+The development union and all 18 audited primary groups have rank seven,
+unlike individual clients. Development union and learned-group coverage
+are distinct checks; full rank does not remove within-group bias.}
+\label{fig:basis-information}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.98\textwidth]{paper_identification_coverage_v2.pdf}
+\caption{Primary label-free matrix error by local speed block.
+Light shading marks each observed block; short green marks identify its
+observed grid speeds. Curves average clients within block and fleet,
+then across ten fleets; bands are pointwise 95\% fleet-bootstrap intervals
+from 20,000 draws. The logarithmic axis retains Local extrapolation
+failure. These curves and Fig.~\ref{fig:fleet-client} reuse the primary
+records, providing no additional independent confirmation.}
+\label{fig:coverage}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=.98\textwidth]{paper_fleet_client_tradeoff.pdf}
+\caption{Primary fleet gains and client tradeoffs.
+(a) Paired full-envelope errors for all ten independent fleets;
+connectors join methods within each fleet, and $K=1$ marks the two ties.
+(b) Descriptive empirical cumulative distribution of client mean
+unobserved-speed error changes (Grouped minus Global) in percentage points;
+negative values indicate improvement. Ties use a $10^{-12}$ dimensionless-error
+tolerance. The 300 client instances are nested within ten fleets.}
+\label{fig:fleet-client}
+\end{figure*}
+
 \subsection{Endpoints, averaging, and baselines}
 Reference matrices $m_i^\star(v)$ are numerical continuous-time Jacobians
 at the prescribed equilibrium, discretized by an augmented matrix
@@ -329,53 +371,38 @@ gains average $100(1-E_s^M/E_s^B)$ over paired fleets, rather than taking
 the ratio of grand mean errors. Confidence intervals resample those ten
 fleet units 20,000 times.
 
-Restricted Local fits $L=3$ with ridge $10^{-8}$ using each client's
-records. Global, centralized groups, and federated groups use $L=7$
-and the same fleet records. Thus Local tests access to complementary
-information, while Global tests sharing without compatibility selection.
-Centralized groups isolate the distributed implementation from the model
-benefit. Regularized Local uses $L=7$ with a ridge penalty toward the
-client's $L=3$ fit, expressed in the richer basis. The penalty strength is
-selected by leave-one-speed-out validation from
+Restricted Local uses $L=3$, ridge $10^{-8}$, and each client's records.
+Global and both grouped methods use $L=7$ and the same fleet records.
+These baselines separate complementary coverage, compatibility selection,
+and distributed implementation. Regularized Local uses $L=7$ with ridge
+toward its own $L=3$ fit expressed in the richer basis. Leave-one-speed-out
+validation selects the penalty from
 $\{10^{-6},10^{-4},10^{-2},1,10^2\}$; clients with only two speeds use
-the fixed middle candidate $10^{-2}$. This comparator requires no shared
-records. Its matched check and the group-information diagnostics reuse
-the original ten label-free fleets and calibration protocol. Reconstructed
-parent errors were verified against the saved client-speed results.
-These checks provide no additional independent confirmation fleets.
-An additional full-coverage recipient reference is more accurate than
-family pooling at approximately equal transition budget: sharing addresses
-missing local access, not inherent superiority at equal recipient information.
+the fixed middle candidate $10^{-2}$. No records are shared for this comparator.
+Its matched check and the group-information audit reuse the original ten
+fleets and calibration protocol, with reconstructed parent errors verified
+against saved client-speed results. They add no independent confirmation.
+A full-coverage recipient reference outperforms family pooling at
+approximately equal transition budget, bounding the benefit to missing
+local access rather than superiority at equal recipient information.
 
 \section{Identification Results}
 \subsection{Why complementary coverage is needed}
 At curvature 0.005 m$^{-1}$, development blocked-speed matrix error falls
 from \BasisLowError\% at order three to \BasisHighError\% at order seven.
-Straight-line selection retains order three, avoiding unnecessary richness
-when the physical span is already adequate. The four local designs have
-ranks three, three, three, and two for seven coefficients. Their union has
-rank seven and audited condition \UnionCondition. This shows the
-potential to add missing directions; it does not assert that every
-learned group inherits full union coverage.
+Figure~\ref{fig:basis-information}(a) contrasts this basis requirement
+with the straight-line case, which retains order three. For seven
+coefficients, the local blocks have ranks three, three, three, and two;
+the development union has rank seven and condition \UnionCondition~
+(Fig.~\ref{fig:basis-information}(b)). Complementary coverage can therefore
+supply missing directions, conditional on the learned partition.
 
 With finite transitions and known compatibility, oracle-family pooling
 achieves \OracleUnseenError\% unobserved-speed error, versus
 \LocalUnseenError\% for Local and \GlobalUnseenError\% for Global on
 separate development fleets. The richer locally regularized comparator
 does not improve on Local there. These oracle results motivate the
-mechanism before removing labels, but are not the proposed federated result.
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=.96\textwidth]{paper_identification_coverage.pdf}
-\caption{Label-free matrix error by local coverage block. Shading marks
-observed speeds. Curves average within block and fleet, then across ten
-fleets, with pointwise 95\% fleet-bootstrap bands. The logarithmic vertical
-axis retains both Local extrapolation failure and the smaller
-Global--grouped difference. The curves summarize the primary records;
-they are not a separate confirmation experiment.}
-\label{fig:coverage}
-\end{figure*}
+mechanism; the primary evaluation below withholds labels.
 
 \subsection{Primary label-free results}
 Table~\ref{tab:id} separates the full-envelope endpoint from its observed
@@ -386,10 +413,14 @@ with improvement in eight of ten fleets. Two groups are selected in eight
 fleets and one in two. Restricted Local is most accurate at its own
 observed speeds, whereas sharing substantially reduces its unsupported
 extrapolation error. Grouped sharing additionally reduces Global's pooling
-error. Figure~\ref{fig:coverage} shows where those changes occur.
-Aggregate improvement does not extend to every client:
-\PrimaryUnseenWorseClients\ of 300 client instances have larger
-unobserved-speed error than Global, after excluding numerical ties.
+error. Figure~\ref{fig:coverage} locates these changes relative to each
+client block. Figure~\ref{fig:fleet-client}(a) shows the paired fleet
+errors, including the two $K=1$ ties. Aggregate improvement does not
+extend to every client: 169 instances improve, 60 are numerical ties, and
+\PrimaryUnseenWorseClients\ have larger unobserved-speed error than Global.
+Figure~\ref{fig:fleet-client}(b) shows this tradeoff. Its 300 client
+instances are nested within ten fleets and are descriptive, rather than
+independent replicates for confidence intervals.
 
 The richer locally regularized fit has negligible effect on Local's
 full-envelope error at the reported precision. At unobserved speeds,
@@ -399,15 +430,13 @@ Grouped fitting improves full-envelope error over Regularized Local by
 $[\ReviewFullLow,\ReviewFullHigh]\%$. The corresponding unobserved-speed
 gain is \ReviewUnseenGain\%, interval
 $[\ReviewUnseenLow,\ReviewUnseenHigh]\%$, with wins in all ten fleets
-for both endpoints. Thus the sharing benefit persists against this
-specified richer local alternative. This comparison does not establish
-failure of all local estimators or stronger physical priors.
+for both endpoints. This supports sharing over the specified local
+alternative; it does not exclude other estimators or stronger physical priors.
 
 \begin{table}[t]
 \centering
 \caption{Mean relative matrix error [\%] across ten label-free fleets.
-Restricted Local uses $L=3$; Regularized Local and shared methods use $L=7$.
-Regularized Local is penalized toward its own $L=3$ fit.}
+Regularized Local uses $L=7$, penalized toward its own $L=3$ fit.}
 \label{tab:id}
 \begin{tabular}{lrrr}
 \toprule
@@ -435,13 +464,12 @@ inputs.
 All \ReviewGroups\ selected groups contain observations at all eleven
 grid speeds and have scheduling-design rank seven. Their stacked design
 condition numbers range from \ReviewConditionMin\ to \ReviewConditionMax\
-in the fixed QR basis. Every individual seven-function design remains
-deficient, with rank two or three. The learned partitions therefore
-satisfy the scheduling-information condition in
-Proposition~\ref{prop:rank} for this benchmark. These condition numbers
-refer to the scheduling design, not its Gram matrix or the complete
-dynamical-identification information matrix. Full rank does not remove
-within-group bias or guarantee physical-family recovery.
+in the fixed QR basis, as summarized in Fig.~\ref{fig:basis-information}(b).
+The learned partitions satisfy Proposition~\ref{prop:rank}'s scheduling
+condition for this benchmark. The reported conditioning concerns the
+scheduling design, rather than its Gram or the full dynamical-identification
+information matrix. Full rank neither removes within-group bias nor
+guarantees physical-family recovery.
 
 A known-family reference loses a speed block in one fleet and produces
 an infeasible full-envelope controller, illustrating that compatibility
@@ -487,6 +515,7 @@ ExactLPV reference & \TrackExactModerate & \TrackExactHard\\
 \end{tabular}
 \end{table}
 
+\balance
 Mean paired tracking gains are \ControlLocalModerate\%/\ControlLocalHard\%
 against Local and \ControlGlobalModerate\%/\ControlGlobalHard\% against
 Global for moderate/hard demands. Global-relative intervals are
@@ -500,31 +529,24 @@ or nonlinear stability certificate. Four fleets select one group, making
 federated and Global controllers identical there.
 
 \section{Discussion and Conclusion}
-The results distinguish complementary information, compatibility selection,
-and federation. Pooling speed blocks can supply directions absent from
-local regressions, but sharing across incompatible clients introduces bias.
-Grouped fitting improves full-envelope error over restricted Local,
-Regularized Local and Global while matching centralized fitting under
-the same records. The selected groups attain full scheduling rank in
-the evaluated fleets. Local regularization leaves the extrapolation error
-almost unchanged, supporting the role of complementary observations
-within the chosen LPV representation.
-The observed-speed advantage of Local also makes the tradeoff explicit:
-a shared map primarily addresses access across the operating interval.
+Complementary speed blocks supply directions absent from local regressions,
+while compatibility selection reduces pooling error. Grouped fitting
+improves full-envelope identification over both local comparators and
+Global, and federation reproduces centralized fitting on matched records.
+The figures also expose the tradeoff: Local is more accurate at observed
+speeds, and some clients deteriorate relative to Global. The benefit is
+aggregate access across the speed interval, rather than uniform client
+improvement or recovery of the generating physical families.
 
-The evidence is a controlled calibration proof of concept with
-simulator-derived centering and uncorrupted current regressors. It covers
-one cornering curve, not ordinary driving, noisy state estimates, real
-fleets, or frozen-library transfer. Group selection is heuristic,
-minimum size does not guarantee rank, and the exhaustive search incurs
-measurable communication. The observed full-rank coverage is an empirical
-result for these fleets, not a guarantee of the group-selection algorithm.
+The controlled calibration uses simulator-derived centering and exact
+current regressors along one cornering curve. Ordinary driving, noisy state
+estimates, real fleets, and frozen-library transfer remain unvalidated.
+Group selection is heuristic: full rank is empirical, minimum size does
+not guarantee it, and exhaustive search incurs measurable communication.
 
-\balance
-Within these assumptions, compatible federated regression enables clients
-with incomplete local coverage to obtain useful LPV maps over the speed
-interval. Nonlinear scheduled-LQI tests support model usability without
-requiring large tracking gains as the primary contribution.
+Compatible federated regression therefore supplies useful LPV maps across
+the speed interval under the stated assumptions. Nonlinear scheduled-LQI
+tests support usability with modest tracking gains.
 
 \begin{thebibliography}{9}
 \bibitem{toth2010lpv}

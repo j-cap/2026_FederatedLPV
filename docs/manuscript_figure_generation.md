@@ -1,6 +1,6 @@
 # Manuscript figure preparation
 
-The visual revision is prepared separately from manuscript integration. The
+The visual revision is integrated in `paper/main.tex` as Figures 1--4. The
 generator reads committed, frozen results only. It performs no model fitting,
 plant simulations, controller retuning, or changes to manuscript numbers.
 
@@ -44,11 +44,11 @@ input is rejected; do not update the lock simply to bypass a failure.
 
 `--generate` produces these combined figures in `results/figures/`:
 
-| File | Content | Planned placement |
+| File | Content | Manuscript placement |
 | --- | --- | --- |
-| `paper_basis_information.pdf` | Basis-order validation and observed-speed/rank audit | Section V-A |
-| `paper_fleet_client_tradeoff.pdf` | Paired full-envelope fleet errors and client unobserved-error changes | Section V-B |
-| `paper_identification_coverage_v2.pdf` | Four speed-error panels with distinct line styles and explicit observed grid marks | Replace the existing results figure during integration |
+| `paper_basis_information.pdf` | Basis-order validation and observed-speed/rank audit | Figure 2, referenced in Sections V-A and V-C |
+| `paper_identification_coverage_v2.pdf` | Four speed-error panels with distinct line styles and explicit observed grid marks | Figure 3, Section V-B; replaces the older speed-error figure |
+| `paper_fleet_client_tradeoff.pdf` | Paired full-envelope fleet errors and client unobserved-error changes | Figure 4, Section V-B |
 
 Each combined figure has a PNG preview. Each panel also has a separate PDF and
 PNG, with suffixes `_a`, `_b` (and `_c`, `_d` for coverage). There are **11 PDFs
@@ -65,7 +65,7 @@ the manifest are intended to be committed. Existing tables, figures, and
 For a scratch preview, use `--generate --output-dir YOUR_DIRECTORY`. In that
 case the manifest is saved in that directory as well.
 
-## Interpretation and planned captions
+## Interpretation and captions
 
 **Basis and information figure:** (a) Mean blocked-speed relative matrix error
 over ten development fleets; error bars are one standard error across fleets.
@@ -119,9 +119,10 @@ git push
 The author's overview PDF has been reviewed and integrated as Figure 1,
 using `results/figures/paper_method_overview.pdf`. The caption explains the
 seven-function basis, conditional rank recovery, illustrative groups, and
-controlled calibration setting. The existing speed-error plot is now Figure 2.
-After the remaining generated figures are available, the next manuscript pass
-will place them, finalize captions, convert the procedure table into an
-algorithm, and revise the benchmark/results tables and surrounding prose. A control
-time-history figure is outside this preparation; it would need trajectory
+controlled calibration setting. The three committed combined diagnostic PDFs
+are included unchanged as Figures 2--4, with final captions and results
+references. Their hashes match the generation manifest, and the frozen-input
+preflight passes. The result tables remain alongside the figures to retain
+the baseline and observed/unobserved endpoint comparisons. A control
+time-history figure is outside this integration; it would need trajectory
 capture from the fixed evaluation protocol.
