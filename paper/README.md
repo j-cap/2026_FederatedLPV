@@ -35,7 +35,12 @@ point 2 is addressed through the prior-preservation audit and a distinct
 development-tuned Smooth Local comparator on the same frozen primary
 targets. Its protocol, results, limitations, and Windows commands are in
 [the point 2 revision note](../docs/manuscript_review_point2_local_baseline.md).
-Review points 3--6 remain open.
+Review point 3, as requested in the current pass, makes the local-baseline
+near-equivalence explicit and motivates the distinct local-prior test.
+The centered-ridge correction and nullspace equations distinguish ideal
+equality from the implemented finite-ridge case; the comparison reuses the
+completed Smooth Local supplement. See [the point 3 revision note](../docs/manuscript_review_point3_prior_equivalence.md).
+Review points 4--6 remain open.
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
 

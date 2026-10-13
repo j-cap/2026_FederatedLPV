@@ -370,28 +370,53 @@ Restricted Local uses $L=3$, ridge $10^{-8}$, and each client's records.
 Global and both grouped methods use $L=7$ and the same fleet records.
 These baselines separate complementary coverage, compatibility selection,
 and distributed implementation. Prior-centered Local uses $L=7$ with ridge
-toward its own $L=3$ fit expressed in the richer basis. Leave-one-speed-out
-validation selects the penalty from
+toward its own $L=3$ fit expressed in the richer basis, denoted
+$\Theta_{i,0}$. Leave-one-speed-out validation selects the penalty $\rho_i$ from
 $\{10^{-6},10^{-4},10^{-2},1,10^2\}$; clients with only two speeds use
-the fixed middle candidate $10^{-2}$. This diagnostic retains the restricted
-prior in local null directions, apart from numerical shrinkage.
+the fixed middle candidate $10^{-2}$.
 
-Smooth Local instead penalizes function curvature in the same $L=7$ span:
+To explain its near-equivalence to Restricted Local, define
+$R_i=Y_i-\Phi_i\Theta_{i,0}$,
+$\Delta_i=\widehat\Theta_i^{\rm P}-\Theta_{i,0}$, and
+$P_i=\Phi_i^\top\Phi_i+(\rho_i+\epsilon)I$.
+The centered-ridge normal equations imply
+\begin{equation}
+ \begin{aligned}
+ P_i\Delta_i&=\Phi_i^\top R_i-\epsilon\Theta_{i,0},\\
+ N_i\Delta_i&=-\frac{\epsilon}{\rho_i+\epsilon}N_i\Theta_{i,0},
+ \end{aligned}
+ \label{eq:prior-correction}
+\end{equation}
+where $N_i$ has orthonormal rows spanning $\ker\Phi_i$ and
+$\epsilon=10^{-12}$. If $R_i=0$ and $\epsilon=0$, then $\Delta_i=0$
+for every $\rho_i>0$. The three-function local design has full row rank
+at two or three distinct speeds and can therefore interpolate these
+targets. The implemented ridge terms yield near-interpolation instead.
+The richer fit preserves unsupported directions of the same prior,
+apart from numerical shrinkage; extra basis functions add no local data.
+
+\begin{samepage}
+To test sharing against a distinct local prior, Smooth Local penalizes
+function curvature with $L=7$:
 \begin{equation}
  \widehat\Theta_i^{\rm S}=\arg\min_\Theta
  \frac{\|Y_i-\Phi_i\Theta\|_F^2}{n_i}
  +\alpha\|Q_2\Theta\|_F^2+\eta\|\Theta\|_F^2.
  \label{eq:smooth-local}
 \end{equation}
+\end{samepage}
 Here $\|Q_2\Theta\|_F^2$ uses 401-point trapezoidal quadrature for
 $\tfrac12\int_{-1}^1\|d^2[\phi(v(z))^\top\Theta]/dz^2\|_2^2\,dz$;
-$\eta=10^{-16}$ is numerical ridge. Affine functions are unpenalized;
-there is no $L=3$ coefficient prior. A common
+$\eta=10^{-16}$ is numerical ridge. The curvature penalty leaves
+$\operatorname{span}\{1,z\}$ unpenalized, distinct from Restricted Local's
+$\operatorname{span}\{1,v^{-1},v^{-2}\}$. Smoothness supplies a prior,
+without restoring local scheduling rank. A common
 $\alpha$ is selected from $\{10^{-6},10^{-4},10^{-2},1,10^2,10^4,10^6\}$
 on development fleets 321--330 using unobserved-speed matrix error.
 The largest penalty within one fleet standard error of the best mean is
-chosen: $10^6$. Reference Jacobians serve this offline tuning;
-recipient fitting uses only its own noisy targets.
+chosen: $10^6$, approaching an affine speed map. Reference Jacobians
+serve this offline tuning; recipient fitting uses only its own noisy
+targets at the original two or three speeds.
 This matched check and the group-information audit reuse the original ten
 fleets and calibration protocol, with reconstructed parent errors verified
 against saved client-speed results. They add no independent confirmation.
@@ -439,9 +464,10 @@ independent replicates for confidence intervals.
 Prior-centered Local changes unobserved-speed error by only
 \ReviewUnseenLocalChange~percentage points. Its prior's observed-target
 relative residual has median \PriorResidualMedian\% and maximum
-\PriorResidualMax\% across 300 clients. Small residuals drive small
-corrections, while unsupported directions retain the prior. This diagnostic
-provides little independent evidence about local regularization.
+\PriorResidualMax\% across 300 clients. Equation~\ref{eq:prior-correction}
+explains the prior retention; its correction and nullspace identities are
+verified for all 300 saved fits. This diagnostic provides little independent
+evidence about a different extrapolation prior.
 
 Smooth Local substantially reduces Local's extrapolation error and has the
 lowest observed-speed error (Table~\ref{tab:id}). Grouped fitting still
@@ -455,7 +481,8 @@ unobserved-speed gap; other local priors remain untested.
 \begin{table}[t]
 \centering
 \caption{Mean matrix error [\%] across ten label-free fleets.
-The two $L=7$ local fits use distinct priors.}
+Prior-centered Local retains the restricted prior; Smooth Local tests
+function curvature.}
 \label{tab:id}
 \begin{tabular}{lrrr}
 \toprule
