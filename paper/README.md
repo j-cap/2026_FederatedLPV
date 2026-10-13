@@ -45,6 +45,11 @@ records and the absolute-state scheduled-LQI implementation, including
 augmentation, prefilter, limiting, conditional integration, and the scope of
 the frozen-speed stability check. See [the point 4 revision note](../docs/manuscript_review_point4_workflow.md).
 Review points 5--6 remain open.
+The focused point 5 coverage/calibration robustness protocol and runner are
+prepared for local execution; see [the protocol and Windows commands](../docs/manuscript_review_point5_robustness_protocol.md).
+It uses ten fresh paired fleets, seven predeclared conditions, resumable
+per-condition checkpoints, and a separate saved-model audit. No point 5
+numerical claims have been integrated before its production run.
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
 
