@@ -7,6 +7,7 @@
 \input{region_numbers}
 \input{review_evidence_numbers}
 \input{local_baseline_numbers}
+\input{robustness_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
@@ -32,10 +33,12 @@ development-tuned Smooth Local and \IdentGlobalGain\% relative to Global. At loc
 unobserved speeds, mean error is \PrimaryFedUnseenError\%, compared with
 \SmoothLocalUnseenError\% for Smooth Local and \PrimaryGlobalUnseenError\% for Global.
 The distributed implementation reproduces centralized grouped fitting.
-All \ReviewGroups\ selected groups have full-rank scheduling designs.
 Separate scheduled-LQI tests provide modest supporting tracking gains.
-The validated setting is controlled equilibrium-centered calibration with
+The primary setting is controlled equilibrium-centered calibration with
 available states, exact current regressors, and noisy next-state targets.
+Fresh robustness tests show that fleet-wide coverage deficiency favors the
+local smoothness prior, while reduced calibration signal-to-noise can
+eliminate the grouping gain over Global.
 \end{abstract}
 \begin{IEEEkeywords}
 federated identification, LPV systems, incomplete operating coverage,
@@ -96,6 +99,8 @@ full local coefficient maps or family labels, followed by a group-rank audit.
 Third, paired fleet comparisons separate coverage and compatibility benefits
 at recipient-unobserved grid speeds. Centralized--federated agreement verifies
 implementation. Nonlinear scheduled-LQI tests check downstream usability.
+Fresh paired stress tests examine the limits imposed by deficient pooled
+coverage and calibration quality.
 
 \section{Identification Problem}
 \subsection{Available states and incomplete speed coverage}
@@ -146,15 +151,15 @@ $X_+$, it estimates
  [\widehat A,\widehat B]=\widehat C^\top.
  \label{eq:local}
 \end{equation}
-Current state/input regressors are exact, and only next-state targets
-receive noise. These estimates, with their speeds, are the group-regression
+In the primary study, current state/input regressors are exact, and only
+next-state targets receive noise. These estimates, with their speeds, are the group-regression
 targets. Vehicle parameters, exact evaluation matrices, and family labels
 do not enter that fitting or assignment interface.
 
 The benchmark supplies centering equilibria from simulator parameters.
-Measured operating-point centers could replace them in a controlled
-experiment, but that alternative and ordinary-driving identification are
-not validated here.
+Section~\ref{sec:robustness-protocol} separately perturbs current measurements
+and assumed centers. Estimating these centers from ordinary driving remains
+unvalidated.
 The same clients contribute calibration records and receive the maps.
 Evaluation at additional speeds tests operating-condition generalization;
 fresh fleets repeat the whole procedure rather than testing a frozen
@@ -174,8 +179,8 @@ For a fixed partition, the group fit is
 with $\lambda=10^{-8}$ and numerical diagonal $\epsilon=10^{-12}$.
 The same unweighted ridge objective and basis are used in centralized
 and federated grouped fitting. The matrix estimates have equal weight;
-local estimation covariance is not propagated. Unequal noise or excitation
-could therefore motivate weighting, but is outside the present comparison.
+local estimation covariance is not propagated. The sensitivity study retains
+this unweighted rule; uncertainty-weighted alternatives are not compared.
 
 \begin{proposition}
 \label{prop:rank}
@@ -305,7 +310,7 @@ The rows $[\Delta x_j^\top,\Delta u_j]$ and
 $\widetilde{\Delta x}_{j,+}^\top$ form $Z$ and $X_+$ in
 \eqref{eq:local}; the three-column regressor is checked for full rank.
 These records are independently reset transitions, not consecutive driving
-samples. Only next-state targets receive noise $\nu_j$.
+samples. In the primary study, only next-state targets receive noise $\nu_j$.
 Zero-mean independent Gaussian perturbation
 standard deviations are approximately $0.25^\circ$ for $\beta$, $2^\circ$/s
 for $r$, and $0.30^\circ$ for steering. Added next-state noise has
@@ -444,6 +449,41 @@ A full-coverage recipient reference outperforms family pooling at
 approximately equal transition budget, bounding the benefit to missing
 local access rather than superiority at equal recipient information.
 
+\subsection{Focused robustness protocol}
+\label{sec:robustness-protocol}
+To test the dependence on pooled coverage and calibration quality, ten fresh
+fleets (seeds 1201--1210) are evaluated under seven predeclared paired
+conditions. The reference repeats the primary procedure. All
+conditions retain each client's two- or three-speed count, 36 transitions
+per speed, physical parameters, basis, grouping settings, and the frozen
+Smooth Local penalty. Perturbation/noise draws are paired by client and
+speed-slot index; coverage changes alter speed locations while retaining
+record budgets.
+
+For family-coverage restriction, all ten heavy clients observe the first
+two or three speeds in $\{10,12,14\}$ m/s; other clients retain their blocks.
+Labels enter only this stress generator and a separate OracleFamily
+diagnostic, never learned fitting or selection. Fleet-coverage restriction
+maps the four blocks to $\{10,12,14\}$, $\{16,18,20\}$,
+$\{10,12,14\}$, and $\{16,18\}$ m/s, respectively.
+Four calibration conditions separately halve state/input excitation
+standard deviations, double next-state noise standard deviations, add
+current measurement noise with standard deviations
+$(0.01^\circ,0.03^\circ/{\rm s},0.01^\circ)$ for $(\beta,r,u)$, or bias
+their assumed centers by magnitudes
+$(0.05^\circ,0.2^\circ/{\rm s},0.1^\circ)$.
+Bias signs are drawn independently per component/client and held fixed
+across its speeds. Center bias changes only the subtraction in
+\eqref{eq:local}, retaining identical measured records and zero-intercept OLS.
+
+A predeclared rank-only fallback replaces deficient selected group maps
+with Global after selection, without changing grouping or fitting.
+Global deficiency is flagged separately. The fixed full-grid error
+\eqref{eq:error} is the main endpoint; recipient-unobserved sets change
+with coverage. Intervals are pointwise 95\% paired-fleet bootstrap intervals.
+No representation, prior, or controller is retuned, and no tracking rollout
+is added.
+
 \section{Identification Results}
 \subsection{Why complementary coverage is needed}
 At curvature 0.005 m$^{-1}$, development blocked-speed matrix error falls
@@ -538,9 +578,64 @@ scheduling design, rather than its Gram or the full dynamical-identification
 information matrix. Full rank neither removes within-group bias nor
 guarantees physical-family recovery.
 
-A known-family reference loses a speed block in one fleet and produces
-an infeasible full-envelope controller, illustrating that compatibility
-labels alone do not establish information coverage.
+\subsection{Coverage and calibration robustness}
+\label{sec:robustness-results}
+Table~\ref{tab:robustness} reports the fresh study separately from the primary
+fleets. Restricting heavy-family coverage leaves its ten-client OracleFamily
+design at rank three, despite exceeding the minimum size of five. Its
+family-specific full-grid error rises from \RobustHeavyRefOracle\% to
+\RobustHeavyGroupOracle\%. Thus client count and known compatibility do
+not ensure scheduling information. The fleet and all selected learned groups
+remain rank seven. Each heavy-client group includes clients from other
+families. Federated fitting retains a mean paired
+\RobustGroupGlobalGain\% gain over Global, interval
+$[\RobustGroupGlobalLow,\RobustGroupGlobalHigh]\%$.
+This observed pooling response is not a rank guarantee from BIC.
+
+\begin{table}[t]
+\centering
+\caption{Fresh robustness study: mean full-grid matrix error [\%] across
+ten paired fleets. $n_1$ counts fleets selecting $K=1$; the others select
+$K=2$. Smooth denotes the frozen Smooth Local prior.}
+\label{tab:robustness}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lrrrr}
+\toprule
+Condition & Federated & Global & Smooth & $n_1$\\
+\midrule
+Reference & \RobustRefFed & \RobustRefGlobal & \RobustRefSmooth & \RobustRefKOne\\
+Family restriction & \RobustGroupFed & \RobustGroupGlobal & \RobustGroupSmooth & \RobustGroupKOne\\
+Fleet restriction & \RobustFleetFed & \RobustFleetGlobal & \RobustFleetSmooth & \RobustFleetKOne\\
+Half excitation & \RobustWeakFed & \RobustWeakGlobal & \RobustWeakSmooth & \RobustWeakKOne\\
+Double target noise & \RobustNoiseFed & \RobustNoiseGlobal & \RobustNoiseSmooth & \RobustNoiseKOne\\
+Noisy regressors & \RobustRegressorFed & \RobustRegressorGlobal & \RobustRegressorSmooth & \RobustRegressorKOne\\
+Biased centers & \RobustBiasFed & \RobustBiasGlobal & \RobustBiasSmooth & \RobustBiasKOne\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Fleet-wide restriction instead gives rank six for Global and every selected
+or oracle-family group. Federated error reaches \RobustFleetFed\%, versus
+\RobustFleetSmooth\% for Smooth Local. On the five speeds absent from the
+entire fleet (22--30 m/s), their errors are \RobustFleetFedOutside\% and
+\RobustFleetSmoothOutside\%. The Global fallback is itself deficient and
+cannot supply the missing direction. Smoothness provides useful extrapolation
+in this condition, without restoring identifiability. An isolated deficient
+selected group with full-rank Global does not occur in this study; rescue
+of that case by the fallback is therefore not demonstrated.
+
+Weaker excitation and doubled target noise select $K=1$ in all ten fleets,
+making Federated identical to Global. Both reduce calibration
+signal-to-noise and give similar errors under the paired perturbations.
+Noisy regressors and biased centers also reduce the selected group count;
+their paired gain intervals over Global include zero. Sharing remains more
+accurate than Smooth Local in all four calibration conditions, but a grouping
+advantage over Global is not established there. All local transition designs
+retain rank three, and selected scheduling designs remain rank seven in these
+conditions: calibration sensitivity and scheduling deficiency are distinct
+limits. These are controlled identification tests, not online sensor-noise
+or tracking-robustness validation.
 
 \section{Supporting LQI Validation}
 Ten separate confirmation fleets (seeds 411--420) refit the maps and
@@ -618,7 +713,6 @@ ExactLPV reference & \TrackExactModerate & \TrackExactHard\\
 \end{tabular}
 \end{table}
 
-\balance
 Mean paired tracking gains are \ControlLocalModerate\%/\ControlLocalHard\%
 against Local and \ControlGlobalModerate\%/\ControlGlobalHard\% against
 Global for moderate/hard demands. Global-relative intervals are
@@ -636,7 +730,7 @@ federated and Global controllers identical there.
 
 \section{Discussion and Conclusion}
 Complementary speed blocks supply directions absent from local regressions,
-while compatibility selection reduces pooling error. Grouped fitting
+while compatibility selection reduces pooling error. On the primary fleets, grouped fitting
 improves full-envelope identification over Restricted Local, the distinct
 Smooth Local comparator, and
 Global, and federation reproduces centralized fitting on matched records.
@@ -645,15 +739,21 @@ speeds, and some clients deteriorate relative to Global. The benefit is
 aggregate access across the speed interval, rather than uniform client
 improvement or recovery of the generating physical families.
 
-The controlled calibration uses simulator-derived centering and exact
-current regressors along one cornering curve. Ordinary driving, noisy state
-estimates, real fleets, and frozen-library transfer remain unvalidated.
-Group selection is heuristic: full rank is empirical, minimum size does
-not guarantee it, and exhaustive search incurs measurable communication.
+\balance
+The fresh stress tests bound this benefit. Minimum group size does not
+ensure scheduling rank, and a Global fallback cannot restore information
+absent from the fleet; the fixed Smooth Local prior outperforms grouping in
+that condition. In the tested lower-signal-to-noise conditions, selection
+reduces to Global. Measurement and centering perturbations extend
+the controlled calibration study, while ordinary driving, state-estimator
+errors, real fleets, and frozen-library transfer remain unvalidated.
+Group selection is heuristic: full rank is empirical, and exhaustive search
+incurs measurable communication.
 
 Compatible federated regression therefore supplies useful LPV maps across
-the speed interval under the stated assumptions. Nonlinear scheduled-LQI
-tests support usability with modest tracking gains. Smooth Local has only
+the speed interval when pooled coverage and calibration quality support it.
+Nonlinear scheduled-LQI tests under the original calibration assumptions
+support usability with modest tracking gains. Smooth Local has only
 been compared on matrix error; its downstream control performance remains
 untested.
 

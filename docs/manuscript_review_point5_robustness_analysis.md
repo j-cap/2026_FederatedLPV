@@ -186,8 +186,9 @@ The study evaluates controlled available-state matrix identification only.
 It adds no observer experiment, ordinary-driving calibration, real-fleet
 validation, LQI rollout, or scheduled-stability evidence. Calibration noise
 must not be described as online sensor-noise robustness of the controller.
-Point 5's experiment and assessment are complete; manuscript integration
-remains pending. Point 6 remains the subsequent editorial/formatting pass.
+Point 5's experiment and assessment are complete. The subsequent manuscript
+integration is documented in [the revision note](manuscript_review_point5_integration.md).
+Point 6 remains the editorial/formatting pass.
 
 ## Reproduction and sources
 

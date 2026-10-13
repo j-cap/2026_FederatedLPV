@@ -11,6 +11,7 @@ python paper/check_consolidation.py
 python paper/analyze_identification_records.py
 python paper/check_review_integration.py
 python paper/check_local_baseline_integration.py
+python paper/check_robustness_integration.py
 make -C paper
 ```
 
@@ -44,14 +45,19 @@ Review point 4 clarifies simulator-centered, independently reset calibration
 records and the absolute-state scheduled-LQI implementation, including
 augmentation, prefilter, limiting, conditional integration, and the scope of
 the frozen-speed stability check. See [the point 4 revision note](../docs/manuscript_review_point4_workflow.md).
-Review points 5--6 remain open.
-The focused point 5 coverage/calibration robustness experiment is complete:
+Review point 5 is integrated through a focused coverage/calibration robustness
+protocol, Table IV, and a results subsection with explicit failure boundaries.
+The abstract and conclusion qualify the benefit by pooled coverage and
+calibration quality. Review point 6 remains open.
+The focused experiment is complete:
 all 70 jobs across ten paired fleets pass the saved-model audit and frozen-table
 reconciliation. See [the analysis and manuscript implications](../docs/manuscript_review_point5_robustness_analysis.md)
 and [the original protocol and Windows commands](../docs/manuscript_review_point5_robustness_protocol.md).
 It identifies fleet-wide coverage failure and loss of the grouping advantage
-under weaker calibration signal-to-noise. Point 5 numerical integration remains
-pending; the manuscript retains its previously frozen evidence.
+under weaker calibration signal-to-noise. The fresh validation cohort is reported
+separately from the original primary results. `check_robustness_integration.py`
+verifies the frozen execution/audit/analysis chain and all 35 manuscript numbers.
+Use `--write` only to regenerate `robustness_numbers.tex` from that evidence.
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
 
