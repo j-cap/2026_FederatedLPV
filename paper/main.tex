@@ -67,7 +67,10 @@ recovery and sample-complexity guarantees \cite{toso2023clusteredsysid}.
 IC-SYSID adds incremental cluster formation and stability promotion,
 including a vehicle-fleet study \cite{kececi2025clustercraft}.
 Our previous vehicle study uses uncertainty-aware grouping for controller
-design \cite{weber2026ifac}.
+design \cite{weber2026ifac}. Here the central question is whether sharing
+can identify an LPV map when each client lacks scheduling directions, rather
+than how uncertainty in locally estimated dynamics informs grouping for
+controller design.
 
 \begin{figure*}[t]
 \centering
@@ -89,14 +92,18 @@ Here each client's fixed speed support leaves its LPV scheduling design
 deficient. Repeating transitions at those speeds reduces noise but cannot
 identify the missing coefficient directions. Compatible pooling can supply
 them, conditional on group coverage, while within-group variation remains.
-With common physical-state coordinates, we specialize alternating group
-assignment and estimation to LPV matrix regression. The cited recovery
-guarantees do not establish recovery
-for our fixed deficient scheduling supports and approximate shared maps.
+The unresolved issue is whether assignment from partial-speed targets can
+produce groups that are both sufficiently compatible and collectively
+informative across the speed interval. With common physical-state coordinates,
+we specialize the established alternating assignment and estimation structure
+to LPV matrix regression. The cited recovery guarantees do not establish
+recovery for our fixed deficient scheduling supports and approximate shared
+maps. Our contribution is the LPV formulation and controlled evidence for
+this joint limitation; Proposition~1 states the conditional rank requirement,
+while the experiments assess its satisfaction and the remaining pooling bias.
 Figure~\ref{fig:overview} summarizes the procedure.
 
-The contribution is a distributed LPV regression procedure and controlled study
-of joint coverage and heterogeneity. First, blocked-speed validation
+The study has three components. First, blocked-speed validation
 separates representation error from information deficiency. Second, clients
 fit group maps through additive statistics and assignment scores without
 full local coefficient maps or family labels, followed by a group-rank audit.
@@ -367,6 +374,20 @@ Zero-mean independent Gaussian perturbation
 standard deviations are approximately $0.25^\circ$ for $\beta$, $2^\circ$/s
 for $r$, and $0.30^\circ$ for steering. Added next-state noise has
 standard deviations $0.01^\circ$ and $0.03^\circ$/s.
+
+A prospective application is instrumented commissioning or proving-ground
+calibration: hold selected speeds near steady cornering, estimate the mean
+state and steering centers from settled measurements, and apply small steering
+perturbations while recording synchronized speed, steering, yaw rate, and
+sideslip. Sideslip would require a reference measurement or a separately
+validated estimator. Samples around each center would supply local regression
+pairs; clients would then exchange the statistics in Section~III and receive
+their assigned maps. This is a proposed workflow, not a tested acquisition
+procedure. Real maneuvers cannot arbitrarily reset sideslip and yaw rate as
+in the simulator; their correlated regressors, achievable excitation, and
+center estimation require validation. Section~\ref{sec:robustness-protocol}
+perturbs measurements and centers within the reset-record benchmark, but does
+not validate observer errors or sequential driving data.
 
 The four local speed blocks are $\{10,12,14\}$, $\{16,18,20\}$,
 $\{22,24,26\}$, and $\{28,30\}$ m/s. Globally balanced random allocation
