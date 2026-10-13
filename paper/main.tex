@@ -11,6 +11,7 @@ pdfauthor={Jakob Weber et al.},pdfkeywords={federated identification, LPV system
 \input{local_baseline_numbers}
 \input{robustness_numbers}
 \input{smooth_lqi_numbers}
+\input{diagnostic_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
@@ -104,16 +105,13 @@ this joint limitation; Proposition~1 states the conditional rank requirement,
 while the experiments assess its satisfaction and the remaining pooling bias.
 Figure~\ref{fig:overview} summarizes the procedure.
 
-The study has three components. First, blocked-speed validation
-separates representation error from information deficiency. Second, clients
-fit group maps through additive statistics and assignment scores without
-full local coefficient maps or family labels, followed by a group-rank audit.
-Third, paired fleet comparisons separate coverage and compatibility benefits
-at recipient-unobserved grid speeds. Centralized--federated agreement verifies
-implementation. Tests with speed-scheduled linear-quadratic-integral (LQI)
-control check downstream usability on nonlinear vehicles.
-Fresh paired stress tests examine the limits imposed by deficient pooled
-coverage and calibration quality.
+Blocked-speed validation separates representation error from missing
+information. Additive statistics and local scores implement grouped regression
+without full local coefficient maps or family labels; centralized agreement
+checks implementation. Paired fleet comparisons and group-rank audits assess
+coverage and compatibility, while fresh stress tests bound their benefit.
+Speed-scheduled linear-quadratic-integral (LQI) control tests downstream
+usability on nonlinear vehicles.
 
 \section{Identification Problem}
 \subsection{Available states and incomplete speed coverage}
@@ -376,19 +374,15 @@ standard deviations are approximately $0.25^\circ$ for $\beta$, $2^\circ$/s
 for $r$, and $0.30^\circ$ for steering. Added next-state noise has
 standard deviations $0.01^\circ$ and $0.03^\circ$/s.
 
-A prospective application is instrumented commissioning or proving-ground
-calibration: hold selected speeds near steady cornering, estimate the mean
-state and steering centers from settled measurements, and apply small steering
-perturbations while recording synchronized speed, steering, yaw rate, and
-sideslip. Sideslip would require a reference measurement or a separately
-validated estimator. Samples around each center would supply local regression
-pairs; clients would then exchange the statistics in Section~III and receive
-their assigned maps. This is a proposed workflow, not a tested acquisition
-procedure. Real maneuvers cannot arbitrarily reset sideslip and yaw rate as
-in the simulator; their correlated regressors, achievable excitation, and
-center estimation require validation. Section~\ref{sec:robustness-protocol}
-perturbs measurements and centers within the reset-record benchmark, but does
-not validate observer errors or sequential driving data.
+A prospective workflow is instrumented commissioning: hold selected speeds
+near steady cornering, estimate state/steering centers from settled data,
+and apply small steering perturbations with synchronized speed, steering,
+yaw-rate, and sideslip measurements. Sideslip requires a reference sensor or
+validated estimator. Local regression pairs supply the shared statistics.
+This acquisition procedure remains untested: real maneuvers cannot reset
+states arbitrarily, and correlated regressors, achievable excitation, and
+center estimation require validation. The sensitivity tests perturb the
+reset-record benchmark, not sequential driving or observer errors.
 
 The four local speed blocks are $\{10,12,14\}$, $\{16,18,20\}$,
 $\{22,24,26\}$, and $\{28,30\}$ m/s. Globally balanced random allocation
@@ -415,7 +409,12 @@ Full-envelope matrix error is evaluated on the common speed grid:
 Here $\mathcal V_{\rm grid}=\{10,12,\ldots,30\}$ m/s and $s$ indexes fleets.
 The metric uses the stated physical coordinates without entry
 normalization. It is coordinate dependent and does not directly measure
-tracking performance.
+tracking performance. A post-hoc sensitivity check averages
+$\sqrt{\frac16\sum_{j=1}^{6}[(\widehat m_{ij}(v)-m^\star_{ij}(v))/d_j]^2}$
+over the same pairs. Each fixed $d_j$ is the RMS reference entry across
+saved development fleets 321--330 and all eleven speeds; evaluation data do
+not select scales. This balances entry magnitudes without defining a
+control-weighted norm. Entry diagnostics use mean absolute error (MAE).
 Observed/unobserved-speed summaries average only their respective
 client-speed pairs within each fleet. Reported errors average $E_s$
 over ten independent fleets. For method $M$ and baseline $B$, reported
@@ -445,12 +444,10 @@ The centered-ridge normal equations imply
  \label{eq:prior-correction}
 \end{equation}
 where $N_i$ has orthonormal rows spanning $\ker\Phi_i$ and
-$\epsilon=10^{-12}$. If $R_i=0$ and $\epsilon=0$, then $\Delta_i=0$
-for every $\rho_i>0$. The three-function local design has full row rank
-at two or three distinct speeds and can therefore interpolate these
-targets. The implemented ridge terms yield near-interpolation instead.
-The richer fit preserves unsupported directions of the same prior,
-apart from numerical shrinkage; extra basis functions add no local data.
+$\epsilon=10^{-12}$. If $R_i=0$ and $\epsilon=0$, then $\Delta_i=0$ for every $\rho_i>0$.
+The three-function design interpolates two or three distinct-speed targets;
+ridge gives near-interpolation. The richer fit therefore retains the prior's
+unsupported directions apart from numerical shrinkage.
 
 To test sharing against a distinct local prior, Smooth Local penalizes
 function curvature with $L=7$:
@@ -568,6 +565,15 @@ $[\SmoothLocalUnseenLow,\SmoothLocalUnseenHigh]\%$, respectively.
 Both endpoints improve in all ten fleets. Figure~\ref{fig:coverage} shows
 the remaining unobserved-speed gap. Other local priors remain untested.
 
+The fixed-scale diagnostic retains mean paired gains over Global of
+$\DiagFullGain\%$ full-envelope and $\DiagUnseenGain\%$ unobserved,
+with pointwise fleet-bootstrap intervals
+$[\DiagFullLow,\DiagFullHigh]\%$ and
+$[\DiagUnseenLow,\DiagUnseenHigh]\%$. Entry-wise improvement is not
+uniform: unobserved $B_1$ MAE increases by $\DiagBOneLoss\%$ on average
+and deteriorates in every fleet; the $A_{12}$ gain interval includes zero.
+This reuses primary fits and does not independently confirm them.
+
 \begin{table}[t]
 \centering
 \caption{Mean matrix error [\%] across ten primary fleets with label-free grouping.
@@ -605,6 +611,15 @@ condition for this benchmark. The reported conditioning concerns the
 scheduling design, rather than its Gram or the full dynamical-identification
 information matrix. Full rank neither removes within-group bias nor
 guarantees physical-family recovery.
+
+Retrospective family diagnostics clarify this distinction. In all eight
+$K=2$ fleets, heavy and handling clients occupy separate groups, while
+nominal clients split between them. Labels remain withheld from learning.
+All $\DiagNominalWorse$ clients with larger unobserved error than Global
+are nominal; their family mean worsens in each $K=2$ fleet. Thus compatible
+sharing is an aggregate regression compromise with sufficient coverage,
+rather than three-family recovery or uniform recipient benefit. These
+patterns do not establish why BIC selects two groups.
 
 \subsection{Coverage and calibration robustness}
 \label{sec:robustness-results}
@@ -779,33 +794,27 @@ hashes; individual RMSE differences reach $\SmoothReplayDifference$ degrees/s.
 Table~\ref{tab:control} retains executed results. Sensitive failed responses
 limit precise tail-error interpretation; feasibility is the main finding.
 \section{Discussion and Conclusion}
-Complementary speed blocks supply directions absent from local regressions,
-while learned grouping reduces pooling error. On the primary fleets,
-grouped fitting improves full-envelope identification over Restricted Local,
-Smooth Local, and Global. The distributed implementation reproduces
-centralized fitting. Recipient-only fits remain more accurate at observed
-speeds, and some clients deteriorate relative to Global. The benefit is
-aggregate access across the speed interval, rather than uniform client
-improvement or recovery of the generating physical families.
+Complementary speed blocks supply missing local directions, while grouping
+reduces aggregate pooling error relative to Global. The primary advantage
+persists under development-scaled entry weighting, but does not extend to
+every entry or recipient. Heavy and handling clients benefit while many
+nominal clients deteriorate; learned groups need not recover physical families.
+Centralized agreement verifies the distributed implementation.
 
 \balance
-The robustness study bounds this benefit. Minimum group size does not
-ensure scheduling rank, and a Global fallback cannot restore information
-absent from the fleet; the fixed Smooth Local prior outperforms grouping in
-that condition. In the tested lower-signal-to-noise conditions, selection
-reduces to Global. Measurement and centering perturbations extend
-the controlled calibration study, while ordinary driving, state-estimator
-errors, real fleets, and frozen-library transfer remain unvalidated.
-Group selection is heuristic: full rank is empirical, and exhaustive search
-incurs measurable communication.
+The robustness study bounds the benefit: minimum group size does not ensure
+rank, and Global fallback cannot restore fleet-wide missing information.
+Smooth Local wins in that deficient condition; weaker calibration signal-to-noise
+can collapse grouping to Global. Full selected-group rank is empirical,
+selection is heuristic, and exhaustive search incurs measurable communication.
+Ordinary driving, observer errors, real fleets, and frozen-library transfer
+remain unvalidated.
 
-Compatible federated regression therefore supplies useful LPV maps across
-the speed interval when pooled coverage and calibration quality support it.
-Nonlinear scheduled-LQI tests under the original calibration assumptions
-support usability with modest gains over Global. The tested Smooth Local
-prior improves matrix error but yields infeasible responses for some clients
-under the same frozen LQI protocol, showing that identification accuracy
-alone does not establish controller suitability.
+The scheduled-LQI tests support usability with modest gains over Global.
+The tested Smooth Local prior yields infeasible responses for some clients
+under the frozen protocol, illustrating that matrix accuracy alone does not
+establish controller suitability. Compatible sharing is useful when pooled
+coverage and calibration quality support it, with explicit recipient tradeoffs.
 
 \begin{thebibliography}{9}
 \bibitem{toth2010lpv}

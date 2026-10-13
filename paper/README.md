@@ -91,3 +91,13 @@ Run `python paper/check_smooth_lqi_integration.py` to verify the nine generated
 claims and their execution/audit hashes. `--write` regenerates the numbers and
 integration lock without fitting or simulating. See
 [the analysis](../docs/paper_smooth_local_lqi_analysis.md) for the full audit scope.
+
+The matrix-error and learned-group diagnostics are integrated in Sections IV-B,
+V-B, V-C, and the conclusion. Fixed development-RMS scales define the alternative
+metric; entry-wise B1 deterioration and nominal-recipient losses qualify the
+aggregate gains. Neither diagnostic adds independent confirmation or changes
+fitting. Detailed cross-tabs remain in the linked analysis notes:
+[metric sensitivity](../docs/paper_matrix_error_diagnostic.md) and
+[group interpretation](../docs/paper_learned_group_analysis.md).
+`python paper/check_diagnostic_integration.py` verifies eight generated claims
+against locked outputs; `--write` regenerates the numerical include and lock.
