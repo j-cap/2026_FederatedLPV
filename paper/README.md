@@ -101,3 +101,14 @@ fitting. Detailed cross-tabs remain in the linked analysis notes:
 [group interpretation](../docs/paper_learned_group_analysis.md).
 `python paper/check_diagnostic_integration.py` verifies eight generated claims
 against locked outputs; `--write` regenerates the numerical include and lock.
+
+Presentation pass: the abstract is shortened, Table IV explicitly defines n1,
+and Figure 3 v4 adds linear 0--10% detail views without removing the full-range
+logarithmic curves. Generate with
+`python paper/plot_local_baseline_focus.py --generate`; v3 and its provenance
+remain intact. The source defaults to an anonymous review copy with empty PDF
+author metadata and neutral self-citation wording. Set `\reviewcopyfalse` only
+after completing the actual author list and affiliations and reviewing metadata.
+The official IV 2027 pages checked on 13 October 2026 did not supply complete
+author instructions; anonymity is prepared following IV 2026 guidance and must
+be checked against the eventual IV 2027 instructions before submission.

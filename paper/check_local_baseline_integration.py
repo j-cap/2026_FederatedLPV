@@ -36,7 +36,12 @@ def main():
     if figure["audit_sha256"] != digest(OUT / f"{PREFIX}_audit.json") or figure["generator_sha256"] != digest(ROOT / "paper/plot_local_baseline.py"):
         raise ValueError("Smooth Local coverage figure provenance differs")
     verify_hashes(figure["output_sha256"])
-    if "paper_identification_coverage_v3.pdf" not in tex:
+    if "paper_identification_coverage_v4.pdf" in tex:
+        focus = load(OUT / f"{PREFIX}_focus_figure_manifest.json")
+        if focus["audit_sha256"] != digest(OUT / f"{PREFIX}_audit.json") or focus["generator_sha256"] != digest(ROOT / "paper/plot_local_baseline_focus.py"):
+            raise ValueError("Focused coverage figure provenance differs")
+        verify_hashes(focus["output_sha256"])
+    elif "paper_identification_coverage_v3.pdf" not in tex:
         raise ValueError("Updated coverage figure missing")
     print(json.dumps(dict(status="verified", primary_fleets=10, clients=300,
                           numerical_claims=len(numbers), operation="read_only_no_fits_or_simulations")))

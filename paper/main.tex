@@ -3,7 +3,7 @@
 \usepackage{balance}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={Federated Full-Envelope LPV Identification from Incomplete Local Coverage},
-pdfauthor={Jakob Weber et al.},pdfkeywords={federated identification, LPV systems, incomplete speed coverage}}
+pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete speed coverage}}
 \graphicspath{{../results/figures/}}
 \input{evidence_numbers}
 \input{region_numbers}
@@ -17,33 +17,37 @@ pdfauthor={Jakob Weber et al.},pdfkeywords={federated identification, LPV system
 \newtheorem{proposition}{Proposition}
 
 \title{Federated Full-Envelope LPV Identification\\from Incomplete Local Coverage}
+% Anonymous review copy; set \reviewcopyfalse only after completing author metadata.
+\newif\ifreviewcopy
+\reviewcopytrue
+\ifreviewcopy
+\author{}
+\else
 \author{\IEEEauthorblockN{Jakob Weber et al.}
-\IEEEauthorblockA{Working draft -- 13 October 2026}}
+\IEEEauthorblockA{Author list and affiliations to be completed}}
+\fi
 \begin{document}
 \maketitle
 \begin{abstract}
-Individual vehicles may supply calibration data from only a narrow speed
-region, although the fleet collectively covers the operating interval.
-Pooling those records can recover missing scheduling information but also
-mix incompatible vehicle dynamics. We investigate compatible federated
-identification of linear-parameter-varying (LPV) maps under this joint
-coverage and heterogeneity limitation. With available lateral states,
-clients estimate local matrices and exchange additive regression statistics
-and assignment scores to learn shared group maps. A nonlinear vehicle
-benchmark separates scheduling-rank deficiency from model mismatch and
-finite-data error. Across ten label-free fleets, grouped fitting reduces
-mean paired full-envelope matrix error by \SmoothLocalFullGain\% relative to
-development-tuned Smooth Local and \IdentGlobalGain\% relative to Global. At locally
-unobserved speeds, mean error is \PrimaryFedUnseenError\%, compared with
-\SmoothLocalUnseenError\% for Smooth Local and \PrimaryGlobalUnseenError\% for Global.
-The distributed implementation reproduces centralized grouped fitting.
-Separate speed-scheduled linear-quadratic-integral (LQI) tests provide
-modest supporting tracking gains.
-The primary setting is controlled equilibrium-centered calibration with
-available states, exact current regressors, and noisy next-state targets.
-Fresh robustness tests show that fleet-wide coverage deficiency favors the
-local smoothness prior, while reduced calibration signal-to-noise can
-eliminate the grouping gain over Global.
+Vehicles may supply calibration data from narrow speed regions while the
+fleet collectively covers a wider interval. Pooling can recover missing
+scheduling information but mix incompatible dynamics. We study federated
+linear-parameter-varying (LPV) identification under these joint limitations.
+Clients exchange additive regression statistics and assignment scores to learn
+shared group maps. Across ten nonlinear vehicle fleets with family labels
+withheld, grouped fitting reduces mean paired full-envelope matrix error by
+\SmoothLocalFullGain\% relative to development-tuned Smooth Local and
+\IdentGlobalGain\% relative to Global. Mean error at locally unobserved speeds
+is \PrimaryFedUnseenError\%, versus \SmoothLocalUnseenError\% and
+\PrimaryGlobalUnseenError\%, respectively. The distributed fit reproduces
+centralized grouping. Benefits persist under alternative entry scaling but
+are not uniform across entries or clients. The benchmark uses controlled
+equilibrium-centered calibration with available states, exact current
+regressors, and noisy next-state targets. Fresh stress tests expose fleet-wide
+coverage failure and loss of grouping gains at lower calibration signal-to-noise.
+Speed-scheduled linear-quadratic-integral (LQI) tests show modest gains over
+Global; the tested Smooth Local prior yields infeasible responses for some
+clients under the frozen controller protocol.
 \end{abstract}
 \begin{IEEEkeywords}
 federated identification, LPV systems, incomplete operating coverage,
@@ -68,8 +72,8 @@ with identical dynamics within each true cluster, providing conditional
 recovery and sample-complexity guarantees \cite{toso2023clusteredsysid}.
 IC-SYSID adds incremental cluster formation and stability promotion,
 including a vehicle-fleet study \cite{kececi2025clustercraft}.
-Our previous vehicle study uses uncertainty-aware grouping for controller
-design \cite{weber2026ifac}. Here the central question is whether sharing
+The vehicle study in \cite{weber2026ifac} uses uncertainty-aware grouping for controller
+design. Here the central question is whether sharing
 can identify an LPV map when each client lacks scheduling directions, rather
 than how uncertainty in locally estimated dynamics informs grouping for
 controller design.
@@ -325,7 +329,7 @@ are distinct checks; full rank does not remove within-group bias.}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.95\textwidth]{paper_identification_coverage_v3.pdf}
+\includegraphics[width=.95\textwidth]{paper_identification_coverage_v4.pdf}
 \caption{Primary matrix error by local speed block, with family labels withheld.
 Light shading marks each observed block; short green marks identify its
 observed grid speeds. Curves average clients within block and fleet,
@@ -638,7 +642,7 @@ This observed pooling response is not a rank guarantee from BIC.
 \begin{table}[t]
 \centering
 \caption{Robustness study: mean full-grid matrix error [\%] across
-ten paired fleets. $n_1$ counts fleets selecting $K=1$; the others select
+ten paired fleets. $n_1$ is the number of fleets selecting one group ($K=1$); the others select
 $K=2$. Smooth denotes the frozen Smooth Local prior.}
 \label{tab:robustness}
 \small
