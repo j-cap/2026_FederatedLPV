@@ -40,7 +40,11 @@ near-equivalence explicit and motivates the distinct local-prior test.
 The centered-ridge correction and nullspace equations distinguish ideal
 equality from the implemented finite-ridge case; the comparison reuses the
 completed Smooth Local supplement. See [the point 3 revision note](../docs/manuscript_review_point3_prior_equivalence.md).
-Review points 4--6 remain open.
+Review point 4 clarifies simulator-centered, independently reset calibration
+records and the absolute-state scheduled-LQI implementation, including
+augmentation, prefilter, limiting, conditional integration, and the scope of
+the frozen-speed stability check. See [the point 4 revision note](../docs/manuscript_review_point4_workflow.md).
+Review points 5--6 remain open.
 
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
 

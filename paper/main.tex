@@ -108,7 +108,10 @@ approximately
  \label{eq:transition}
 \end{equation}
 where $A_i,B_i$ are discrete-time matrices and $e_{i,k}$ includes nonlinear
-approximation error and next-state observation noise. Define
+approximation error and next-state observation noise. Here
+$\Delta x=x-x_i^\star(v)$ and $\Delta u=u-u_i^\star(v)$ are deviations
+from the prescribed cornering equilibrium; the calibration workflow is
+specified in Section~\ref{sec:calibration}. Define
 $m_i(v)=[A_{11},A_{12},A_{21},A_{22},B_1,B_2]$.
 A group $g_i$, unknown during fitting, approximates the client map as
 \begin{equation}
@@ -148,10 +151,10 @@ receive noise. These estimates, with their speeds, are the group-regression
 targets. Vehicle parameters, exact evaluation matrices, and family labels
 do not enter that fitting or assignment interface.
 
-The generator computes each centering equilibrium from simulator
-parameters. Thus available states alone do not imply identification from
-ordinary driving records. A controlled experiment could instead measure
-an operating-point center, but that alternative is not validated here.
+The benchmark supplies centering equilibria from simulator parameters.
+Measured operating-point centers could replace them in a controlled
+experiment, but that alternative and ordinary-driving identification are
+not validated here.
 The same clients contribute calibration records and receive the maps.
 Evaluation at additional speeds tests operating-condition generalization;
 fresh fleets repeat the whole procedure rather than testing a frozen
@@ -251,6 +254,7 @@ or differential privacy is implemented.
 
 \section{Benchmark and Evaluation}
 \subsection{Nonlinear vehicles and calibration records}
+\label{sec:calibration}
 The plant is a two-state single-track model with nonlinear tanh tires:
 \begin{align}
  \dot\beta&=(F_f+F_r)/(mv)-r,\\
@@ -283,13 +287,29 @@ Handling & 1425 & 2250 & 72000 & 88000\\
 \footnotesize Stiffnesses in N/rad.
 \end{table}
 
-Calibration follows curvature $0.005$ m$^{-1}$ and uses RK4 integration
-with sampling time 0.01 s. Zero-mean independent Gaussian perturbation
+Calibration follows curvature $\kappa_0=0.005$ m$^{-1}$. At each observed
+speed, the simulator sets $r_i^\star=v\kappa_0$ and solves for
+$\beta_i^\star,u_i^\star$ with $\dot\beta=\dot r=0$, using that client's
+plant parameters. Each of 36 records starts independently from
+$x_i^\star+\Delta x_j$, holds steering $u_i^\star+\Delta u_j$ and speed
+fixed for one RK4 step of $T_s=0.01$ s, and supplies
+\begin{equation}
+ \begin{aligned}
+ x_{j,+}&=\mathcal F_i^{\rm RK4}
+ (x_i^\star+\Delta x_j,u_i^\star+\Delta u_j;v),\\
+ \widetilde{\Delta x}_{j,+}&=x_{j,+}-x_i^\star+\nu_j.
+ \end{aligned}
+ \label{eq:calibration-record}
+\end{equation}
+The rows $[\Delta x_j^\top,\Delta u_j]$ and
+$\widetilde{\Delta x}_{j,+}^\top$ form $Z$ and $X_+$ in
+\eqref{eq:local}; the three-column regressor is checked for full rank.
+These records are independently reset transitions, not consecutive driving
+samples. Only next-state targets receive noise $\nu_j$.
+Zero-mean independent Gaussian perturbation
 standard deviations are approximately $0.25^\circ$ for $\beta$, $2^\circ$/s
 for $r$, and $0.30^\circ$ for steering. Added next-state noise has
 standard deviations $0.01^\circ$ and $0.03^\circ$/s.
-These are independently initialized one-step records, not successive
-samples from a driving trajectory.
 
 The four local speed blocks are $\{10,12,14\}$, $\{16,18,20\}$,
 $\{22,24,26\}$, and $\{28,30\}$ m/s. Globally balanced random allocation
@@ -525,14 +545,49 @@ labels alone do not establish information coverage.
 \section{Supporting LQI Validation}
 Ten separate confirmation fleets (seeds 411--420) refit the maps and
 apply speed-scheduled LQI to nonlinear 12 s maneuvers with available
-physical-state feedback. At the eleven grid speeds, discrete Riccati
-synthesis uses $Q=\operatorname{diag}(25,50,1000)$ for the two states and
-yaw-error integral, with steering weight $R=0.15$.
-Gains and reference prefilters are linearly interpolated in speed.
+noise-free physical-state feedback. Each fleet repeats the partial-speed
+calibration above; maps remain fixed during tracking. ExactLPV is a
+recipient-specific $L=7$ fit to exact Jacobians on the eleven-speed grid.
+At each grid node, the method's fitted $\widehat A,\widehat B$ define
+\begin{equation}
+ A_{\rm a}=\begin{bmatrix}\widehat A&0\\T_sc_r&1\end{bmatrix},\quad
+ B_{\rm a}=\begin{bmatrix}\widehat B\\0\end{bmatrix},\quad c_r=[0,1].
+ \label{eq:lqi-augmentation}
+\end{equation}
+Discrete Riccati synthesis uses $Q=\operatorname{diag}(25,50,1000)$ for
+$[\beta,r,\xi]^\top$, with yaw-error integral $\xi$, and steering weight
+$R=0.15$. The yaw-reference
+prefilter is $F=w+K_xh$, where
+$(I-\widehat A)h-\widehat Bw=0$ and $c_rh=1$; $K_x$ denotes the first
+two entries of the LQI gain. For Local at unobserved grid nodes, synthesis
+evaluates its matrix map at the nearest observed speed. All methods then
+linearly interpolate gains and prefilters on the common grid.
 Weights were selected using only ExactLPV performance on development
 seeds 381--385, subject to feasibility and saturation checks. A weaker
 maneuver pilot on seeds 391--400 was discarded before the final confirmation.
 Neither grouped-versus-Global results nor confirmation fleets select weights.
+
+With $r_k^{\rm ref}=a_{y,k}^{\rm req}/v_k$, the runtime law is
+\begin{equation}
+ \begin{aligned}
+ u_k^\circ&=-K(v_k)[\beta_k,r_k,\xi_k]^\top+F(v_k)r_k^{\rm ref},\\
+ \xi_{k+1}^{\rm cand}&=\operatorname{clip}_{[-0.6,0.6]}
+ \{\xi_k+T_s(r_k-r_k^{\rm ref})\}.
+ \end{aligned}
+ \label{eq:lqi-runtime}
+\end{equation}
+Steering is rate-limited relative to $u_{k-1}$, then amplitude-limited.
+The integral candidate is accepted when the command is effectively
+unsaturated or the integral increment counteracts limiting; otherwise
+$\xi_{k+1}=\xi_k$. The integral bound is in radians. Each maneuver starts
+with $x_0=0$, $\xi_0=0$, and $u_{-1}=0$; RK4 holds the applied steering
+and current speed fixed within each sample.
+
+Feedback acts on absolute states, with reference feedforward from the
+homogeneous fitted matrices. Calibration equilibrium offsets are not used
+online. The maps describe one cornering curve, whereas the maneuvers vary
+the requested turn; tracking therefore tests empirical usability beyond
+that curve, rather than exact equilibrium-offset compensation.
 
 The moderate maneuver smoothly varies speed $11\to29\to15$ m/s and
 uses an enveloped two-frequency lateral-acceleration demand with scale
@@ -540,9 +595,10 @@ uses an enveloped two-frequency lateral-acceleration demand with scale
 $29\to12\to28$ m/s and uses alternating Gaussian demands centered at
 3.0/6.0/9.2 s, widths 0.40/0.48/0.55 s, and amplitudes
 $7/-7.7/5.6$ m/s$^2$. Yaw reference is requested acceleration divided
-by speed. Steering limits are $12^\circ$ and $120^\circ$/s, with
-conditional integration, integral clipping at 0.6, and a $6^\circ$
-sideslip feasibility bound. These remain fixed across methods.
+by speed. Steering limits are $12^\circ$ and $120^\circ$/s, with a
+$6^\circ$ sideslip feasibility bound. These remain fixed across methods.
+Yaw RMSE uses the complete maneuver, then averages clients within fleet
+and the ten fleet means.
 
 \begin{table}[t]
 \centering
@@ -562,6 +618,7 @@ ExactLPV reference & \TrackExactModerate & \TrackExactHard\\
 \end{tabular}
 \end{table}
 
+\balance
 Mean paired tracking gains are \ControlLocalModerate\%/\ControlLocalHard\%
 against Local and \ControlGlobalModerate\%/\ControlGlobalHard\% against
 Global for moderate/hard demands. Global-relative intervals are
@@ -569,9 +626,12 @@ $[\ControlGlobalModerateLow,\ControlGlobalModerateHigh]\%$ and
 $[\ControlGlobalHardLow,\ControlGlobalHardHigh]\%$.
 Absolute mean improvements are \ControlAbsoluteModerate/\ControlAbsoluteHard~degrees/s,
 so the control evidence supports usability with modest practical headroom.
-All federated trajectories satisfy the tested constraints. Maximum
-frozen-point spectral radius is \ControlRadius, which is not a scheduled
-or nonlinear stability certificate. Four fleets select one group, making
+All federated trajectories satisfy the tested constraints. The maximum
+frozen-point spectral radius is \ControlRadius, evaluated on 81 speeds
+using the interpolated gain and ExactLPV reference augmentation
+\eqref{eq:lqi-augmentation}. This unsaturated diagnostic on the calibration
+curve is not a scheduled or nonlinear stability certificate.
+Four fleets select one group, making
 federated and Global controllers identical there.
 
 \section{Discussion and Conclusion}
@@ -610,7 +670,6 @@ F.~Ferranti and Y.~Rolain, ``A local identification method for linear
 parameter-varying systems based on interpolation of state-space matrices
 and least-squares approximation,'' \emph{Mech. Syst. Signal Process.},
 vol.~82, pp.~478--489, 2017, doi: 10.1016/j.ymssp.2016.05.037.
-\balance
 \bibitem{mcmahan2017fedavg}
 H.~B. McMahan et al., ``Communication-efficient learning of deep networks
 from decentralized data,'' in \emph{Proc. AISTATS}, 2017, pp.~1273--1282.
