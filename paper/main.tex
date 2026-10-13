@@ -6,6 +6,7 @@
 \input{evidence_numbers}
 \input{region_numbers}
 \input{review_evidence_numbers}
+\input{local_baseline_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
@@ -26,13 +27,12 @@ clients identify local matrices and exchange additive regression statistics
 and assignment scores to learn shared group maps. A nonlinear vehicle
 benchmark separates scheduling-rank deficiency from model mismatch and
 finite-data error. Across ten label-free fleets, grouped fitting reduces
-mean paired full-envelope matrix error by \IdentLocalGain\% relative to
-restricted Local and \IdentGlobalGain\% relative to Global. At locally
+mean paired full-envelope matrix error by \SmoothLocalFullGain\% relative to
+development-tuned Smooth Local and \IdentGlobalGain\% relative to Global. At locally
 unobserved speeds, mean error is \PrimaryFedUnseenError\%, compared with
-\PrimaryLocalUnseenError\% for Local and \PrimaryGlobalUnseenError\% for Global.
+\SmoothLocalUnseenError\% for Smooth Local and \PrimaryGlobalUnseenError\% for Global.
 The distributed implementation reproduces centralized grouped fitting.
-The richer locally regularized comparator retains essentially the same
-error as restricted Local, and all \ReviewGroups\ selected groups have full-rank scheduling designs.
+All \ReviewGroups\ selected groups have full-rank scheduling designs.
 Separate scheduled-LQI tests provide modest supporting tracking gains.
 The validated setting is controlled equilibrium-centered calibration with
 available states, exact current regressors, and noisy next-state targets.
@@ -317,13 +317,14 @@ are distinct checks; full rank does not remove within-group bias.}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.95\textwidth]{paper_identification_coverage_v2.pdf}
+\includegraphics[width=.95\textwidth]{paper_identification_coverage_v3.pdf}
 \caption{Primary label-free matrix error by local speed block.
 Light shading marks each observed block; short green marks identify its
 observed grid speeds. Curves average clients within block and fleet,
 then across ten fleets; bands are pointwise 95\% fleet-bootstrap intervals
-from 20,000 draws. The logarithmic axis retains Local extrapolation
-failure. These curves and Fig.~\ref{fig:fleet-client} reuse the primary
+from 20,000 draws. The logarithmic axis retains Restricted Local extrapolation
+failure. Smooth Local uses a development-selected curvature penalty and
+the same frozen recipient targets. These curves and Fig.~\ref{fig:fleet-client} reuse the primary
 records, providing no additional independent confirmation.}
 \label{fig:coverage}
 \end{figure*}
@@ -344,7 +345,7 @@ tolerance. The 300 client instances are nested within ten fleets.}
 \subsection{Endpoints, averaging, and baselines}
 Reference matrices $m_i^\star(v)$ are numerical continuous-time Jacobians
 at the prescribed equilibrium, discretized by an augmented matrix
-exponential. They are used for development representation selection and
+exponential. They are used for development representation and local-penalty selection and
 evaluation, not finite-data group fitting. The primary relative error is
 \begin{equation}
 \begin{aligned}
@@ -368,12 +369,30 @@ fleet units 20,000 times.
 Restricted Local uses $L=3$, ridge $10^{-8}$, and each client's records.
 Global and both grouped methods use $L=7$ and the same fleet records.
 These baselines separate complementary coverage, compatibility selection,
-and distributed implementation. Regularized Local uses $L=7$ with ridge
+and distributed implementation. Prior-centered Local uses $L=7$ with ridge
 toward its own $L=3$ fit expressed in the richer basis. Leave-one-speed-out
 validation selects the penalty from
 $\{10^{-6},10^{-4},10^{-2},1,10^2\}$; clients with only two speeds use
-the fixed middle candidate $10^{-2}$. No records are shared for this comparator.
-Its matched check and the group-information audit reuse the original ten
+the fixed middle candidate $10^{-2}$. This diagnostic retains the restricted
+prior in local null directions, apart from numerical shrinkage.
+
+Smooth Local instead penalizes function curvature in the same $L=7$ span:
+\begin{equation}
+ \widehat\Theta_i^{\rm S}=\arg\min_\Theta
+ \frac{\|Y_i-\Phi_i\Theta\|_F^2}{n_i}
+ +\alpha\|Q_2\Theta\|_F^2+\eta\|\Theta\|_F^2.
+ \label{eq:smooth-local}
+\end{equation}
+Here $\|Q_2\Theta\|_F^2$ uses 401-point trapezoidal quadrature for
+$\tfrac12\int_{-1}^1\|d^2[\phi(v(z))^\top\Theta]/dz^2\|_2^2\,dz$;
+$\eta=10^{-16}$ is numerical ridge. Affine functions are unpenalized;
+there is no $L=3$ coefficient prior. A common
+$\alpha$ is selected from $\{10^{-6},10^{-4},10^{-2},1,10^2,10^4,10^6\}$
+on development fleets 321--330 using unobserved-speed matrix error.
+The largest penalty within one fleet standard error of the best mean is
+chosen: $10^6$. Reference Jacobians serve this offline tuning;
+recipient fitting uses only its own noisy targets.
+This matched check and the group-information audit reuse the original ten
 fleets and calibration protocol, with reconstructed parent errors verified
 against saved client-speed results. They add no independent confirmation.
 A full-coverage recipient reference outperforms family pooling at
@@ -394,8 +413,9 @@ supply missing directions, conditional on the learned partition.
 With finite transitions and known compatibility, oracle-family pooling
 achieves \OracleUnseenError\% unobserved-speed error, versus
 \LocalUnseenError\% for Local and \GlobalUnseenError\% for Global on
-separate development fleets. The richer locally regularized comparator
-does not improve on Local there. These oracle results motivate the
+separate development fleets. The prior-centered diagnostic changes Local
+negligibly there; this does not test a distinct extrapolation prior.
+These oracle results motivate the
 mechanism; the primary evaluation below withholds labels.
 
 \subsection{Primary label-free results}
@@ -404,8 +424,8 @@ and unobserved regions. Mean paired gains over Local and Global are
 \IdentLocalGain\% and \IdentGlobalGain\%, respectively.
 The Global-relative 95\% interval is $[\IdentGlobalLow,\IdentGlobalHigh]\%$,
 with improvement in eight of ten fleets. Two groups are selected in eight
-fleets and one in two. Restricted Local is most accurate at its own
-observed speeds, whereas sharing substantially reduces its unsupported
+fleets and one in two. Recipient-only fits are more accurate at their own
+observed speeds, whereas sharing substantially reduces Restricted Local's unsupported
 extrapolation error. Grouped sharing additionally reduces Global's pooling
 error. Figure~\ref{fig:coverage} locates these changes relative to each
 client block. Figure~\ref{fig:fleet-client}(a) shows the paired fleet
@@ -416,28 +436,34 @@ Figure~\ref{fig:fleet-client}(b) shows this tradeoff. Its 300 client
 instances are nested within ten fleets and are descriptive, rather than
 independent replicates for confidence intervals.
 
-The richer locally regularized fit has negligible effect on Local's
-full-envelope error at the reported precision. At unobserved speeds,
-it reduces mean error by only \ReviewUnseenLocalChange~percentage points.
-Grouped fitting improves full-envelope error over Regularized Local by
-\ReviewFullGain\%, with a 95\% paired fleet-bootstrap interval of
-$[\ReviewFullLow,\ReviewFullHigh]\%$. The corresponding unobserved-speed
-gain is \ReviewUnseenGain\%, interval
-$[\ReviewUnseenLow,\ReviewUnseenHigh]\%$, with wins in all ten fleets
-for both endpoints. This supports sharing over the specified local
-alternative; it does not exclude other estimators or stronger physical priors.
+Prior-centered Local changes unobserved-speed error by only
+\ReviewUnseenLocalChange~percentage points. Its prior's observed-target
+relative residual has median \PriorResidualMedian\% and maximum
+\PriorResidualMax\% across 300 clients. Small residuals drive small
+corrections, while unsupported directions retain the prior. This diagnostic
+provides little independent evidence about local regularization.
+
+Smooth Local substantially reduces Local's extrapolation error and has the
+lowest observed-speed error (Table~\ref{tab:id}). Grouped fitting still
+improves full-envelope error by \SmoothLocalFullGain\%, with paired
+fleet-bootstrap interval $[\SmoothLocalFullLow,\SmoothLocalFullHigh]\%$,
+and unobserved-speed error by \SmoothLocalUnseenGain\%, interval
+$[\SmoothLocalUnseenLow,\SmoothLocalUnseenHigh]\%$, winning in all ten
+fleets for both endpoints. Figure~\ref{fig:coverage} shows the remaining
+unobserved-speed gap; other local priors remain untested.
 
 \begin{table}[t]
 \centering
-\caption{Mean relative matrix error [\%] across ten label-free fleets.
-Regularized Local uses $L=7$, penalized toward its own $L=3$ fit.}
+\caption{Mean matrix error [\%] across ten label-free fleets.
+The two $L=7$ local fits use distinct priors.}
 \label{tab:id}
 \begin{tabular}{lrrr}
 \toprule
 Method & Full & Observed & Unobserved\\
 \midrule
 Restricted Local & \IdentLocalError & \PrimaryLocalSeenError & \PrimaryLocalUnseenError\\
-Regularized Local & \ReviewLocalFullError & \ReviewLocalSeenError & \ReviewLocalUnseenError\\
+Prior-centered Local & \ReviewLocalFullError & \ReviewLocalSeenError & \ReviewLocalUnseenError\\
+Smooth Local & \SmoothLocalFullError & \SmoothLocalSeenError & \SmoothLocalUnseenError\\
 Global & \IdentGlobalError & \PrimaryGlobalSeenError & \PrimaryGlobalUnseenError\\
 Centralized groups & \IdentCentralError & \PrimaryFedSeenError & \PrimaryFedUnseenError\\
 Federated groups & \IdentFedError & \PrimaryFedSeenError & \PrimaryFedUnseenError\\
@@ -521,13 +547,13 @@ frozen-point spectral radius is \ControlRadius, which is not a scheduled
 or nonlinear stability certificate. Four fleets select one group, making
 federated and Global controllers identical there.
 
-\balance
 \section{Discussion and Conclusion}
 Complementary speed blocks supply directions absent from local regressions,
 while compatibility selection reduces pooling error. Grouped fitting
-improves full-envelope identification over both local comparators and
+improves full-envelope identification over Restricted Local, the distinct
+Smooth Local comparator, and
 Global, and federation reproduces centralized fitting on matched records.
-The figures also expose the tradeoff: Local is more accurate at observed
+The figures also expose the tradeoff: recipient-only fits are more accurate at observed
 speeds, and some clients deteriorate relative to Global. The benefit is
 aggregate access across the speed interval, rather than uniform client
 improvement or recovery of the generating physical families.
@@ -540,7 +566,9 @@ not guarantee it, and exhaustive search incurs measurable communication.
 
 Compatible federated regression therefore supplies useful LPV maps across
 the speed interval under the stated assumptions. Nonlinear scheduled-LQI
-tests support usability with modest tracking gains.
+tests support usability with modest tracking gains. Smooth Local has only
+been compared on matrix error; its downstream control performance remains
+untested.
 
 \begin{thebibliography}{9}
 \bibitem{toth2010lpv}
@@ -555,6 +583,7 @@ F.~Ferranti and Y.~Rolain, ``A local identification method for linear
 parameter-varying systems based on interpolation of state-space matrices
 and least-squares approximation,'' \emph{Mech. Syst. Signal Process.},
 vol.~82, pp.~478--489, 2017, doi: 10.1016/j.ymssp.2016.05.037.
+\balance
 \bibitem{mcmahan2017fedavg}
 H.~B. McMahan et al., ``Communication-efficient learning of deep networks
 from decentralized data,'' in \emph{Proc. AISTATS}, 2017, pp.~1273--1282.

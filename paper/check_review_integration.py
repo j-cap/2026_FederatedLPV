@@ -99,8 +99,12 @@ def main():
            "maximum stacked scheduling design condition")
     tex = (ROOT / "paper/main.tex").read_text()
     used = set(re.findall(r"\\(Review[A-Za-z]+)", tex))
-    if used != set(macros):
-        raise ValueError(f"Review macro mismatch: {used.symmetric_difference(macros)}")
+    # All historical values above remain verified. The old local-comparator
+    # gain/CI macros need not be emphasized after its diagnostic role is clear.
+    required = {"ReviewLocalFullError", "ReviewLocalSeenError", "ReviewLocalUnseenError",
+                "ReviewUnseenLocalChange", "ReviewGroups", "ReviewConditionMin", "ReviewConditionMax"}
+    if not required <= used or not used <= set(macros):
+        raise ValueError(f"Review macro mismatch: missing={required-used}, unknown={used-set(macros)}")
     text = re.sub(r"\s+", " ", tex)
     if any(p in text for p in ["has not yet been evaluated in the primary", "remain to be checked by a matched", "remaining matched checks concern"]):
         raise ValueError("Stale pending-evidence statement")
