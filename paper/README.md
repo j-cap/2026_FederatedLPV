@@ -81,3 +81,13 @@ information, fleet/client, and revised speed-error panels from frozen records.
 Figure 3 now includes Smooth Local in a separate v3 export, generated with
 `python paper/plot_local_baseline.py --generate`. The historical v2 figure and
 its locks are preserved.
+
+The frozen Smooth Local LQI supplement is integrated in Table V and Section VI.
+The table pairs executed tracking RMSEs with sideslip-violation counts; the text
+reports frozen-point instability, descriptive client medians, and the numerical
+replay limitation. No prior or controller retuning was performed. The conclusion
+distinguishes matrix accuracy from controller suitability for the tested prior.
+Run `python paper/check_smooth_lqi_integration.py` to verify the nine generated
+claims and their execution/audit hashes. `--write` regenerates the numbers and
+integration lock without fitting or simulating. See
+[the analysis](../docs/paper_smooth_local_lqi_analysis.md) for the full audit scope.

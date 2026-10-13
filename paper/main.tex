@@ -10,6 +10,7 @@ pdfauthor={Jakob Weber et al.},pdfkeywords={federated identification, LPV system
 \input{review_evidence_numbers}
 \input{local_baseline_numbers}
 \input{robustness_numbers}
+\input{smooth_lqi_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
@@ -688,6 +689,9 @@ Weights were selected using only ExactLPV performance on development
 seeds 381--385, subject to feasibility and saturation checks. A weaker
 maneuver pilot on seeds 391--400 was discarded before the final confirmation.
 Neither grouped-versus-Global results nor confirmation fleets select weights.
+Smooth Local additionally reuses these fleets and calibration targets with
+frozen $\alpha=10^6$, evaluating its map at all grid nodes. No weights, penalties,
+or fallbacks are retuned; this adds a comparator, not an independent cohort.
 
 With $r_k^{\rm ref}=a_{y,k}^{\rm req}/v_k$, the runtime law is
 \begin{equation}
@@ -725,17 +729,19 @@ and the ten fleet means.
 \begin{table}[t]
 \centering
 \caption{Supporting yaw tracking RMSE [degrees/s], averaged across ten
-confirmation fleets. Outside its observed block, Restricted Local uses the
-nearest-observed-speed controller.}
+confirmation fleets. Violations count clients exceeding the $6^\circ$ sideslip
+bound (moderate/hard), out of 300 each. Smooth Local means include failed
+responses. Restricted Local uses the nearest observed speed outside its block.}
 \label{tab:control}
-\begin{tabular}{lrr}
+\begin{tabular}{lrrc}
 \toprule
-Method & Moderate & Hard\\
+Method & Moderate & Hard & Violations\\
 \midrule
-Restricted Local & \TrackLocalModerate & \TrackLocalHard\\
-Global & \TrackGlobalModerate & \TrackGlobalHard\\
-Federated groups & \TrackFedModerate & \TrackFedHard\\
-ExactLPV reference & \TrackExactModerate & \TrackExactHard\\
+Restricted Local & \TrackLocalModerate & \TrackLocalHard & 0/0\\
+Smooth Local & \SmoothTrackModerate & \SmoothTrackHard & \SmoothFailedModerate/\SmoothFailedHard\\
+Global & \TrackGlobalModerate & \TrackGlobalHard & 0/0\\
+Federated groups & \TrackFedModerate & \TrackFedHard & 0/0\\
+ExactLPV reference & \TrackExactModerate & \TrackExactHard & 0/0\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -756,6 +762,22 @@ curve is not a scheduled or nonlinear stability certificate.
 Four fleets select one group, making
 federated and Global controllers identical there.
 
+Smooth Local separates matrix accuracy from controller suitability. All 300
+schedules synthesize and 600 rollouts finish numerically, but
+$\SmoothUnstable/300$ clients have frozen-point radius at least one
+(maximum $\SmoothRadius$). Sideslip violations affect
+$\SmoothFailedModerate/300$ moderate and $\SmoothFailedHard/300$ hard runs.
+Severe tails dominate Table~\ref{tab:control}; client-instance median RMSEs
+are $\SmoothMedianModerate$ and $\SmoothMedianHard$ degrees/s. Excursions
+beyond the bound mark failed responses, not credible vehicle behavior.
+The tested prior does not reliably support this frozen synthesis protocol;
+other priors and separately tuned controllers remain untested.
+
+Saved-map equations, schedules, and summaries were audited. A saved-schedule
+replay of fleet 411 agrees in all 60 feasibility flags but not trajectory
+hashes; individual RMSE differences reach $\SmoothReplayDifference$ degrees/s.
+Table~\ref{tab:control} retains executed results. Sensitive failed responses
+limit precise tail-error interpretation; feasibility is the main finding.
 \section{Discussion and Conclusion}
 Complementary speed blocks supply directions absent from local regressions,
 while learned grouping reduces pooling error. On the primary fleets,
@@ -780,9 +802,10 @@ incurs measurable communication.
 Compatible federated regression therefore supplies useful LPV maps across
 the speed interval when pooled coverage and calibration quality support it.
 Nonlinear scheduled-LQI tests under the original calibration assumptions
-support usability with modest tracking gains. Smooth Local has only
-been compared on matrix error; its downstream control performance remains
-untested.
+support usability with modest gains over Global. The tested Smooth Local
+prior improves matrix error but yields infeasible responses for some clients
+under the same frozen LQI protocol, showing that identification accuracy
+alone does not establish controller suitability.
 
 \begin{thebibliography}{9}
 \bibitem{toth2010lpv}
