@@ -48,7 +48,10 @@ the frozen-speed stability check. See [the point 4 revision note](../docs/manusc
 Review point 5 is integrated through a focused coverage/calibration robustness
 protocol, Table IV, and a results subsection with explicit failure boundaries.
 The abstract and conclusion qualify the benefit by pooled coverage and
-calibration quality. Review point 6 remains open.
+calibration quality. Review point 6 is addressed by the editorial and formatting
+pass described in [the revision note](../docs/manuscript_review_point6_editorial.md).
+The author block remains a working placeholder pending the final author list
+and affiliations.
 The focused experiment is complete:
 all 70 jobs across ten paired fleets pass the saved-model audit and frozen-table
 reconciliation. See [the analysis and manuscript implications](../docs/manuscript_review_point5_robustness_analysis.md)
