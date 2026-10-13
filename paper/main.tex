@@ -12,7 +12,7 @@
 
 \title{Federated Full-Envelope LPV Identification\\from Incomplete Local Coverage}
 \author{\IEEEauthorblockN{Jakob Weber et al.}
-\IEEEauthorblockA{Working draft -- 12 October 2026}}
+\IEEEauthorblockA{Working draft -- 13 October 2026}}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -43,26 +43,24 @@ heterogeneous vehicles
 \end{IEEEkeywords}
 
 \section{Introduction}
-Speed-dependent lateral dynamics and persistent vehicle differences create two
-distinct identification problems. An LPV representation captures operating
-variation through a measured scheduling variable, while different vehicles
-may require different coefficient maps. A fleet-wide model can average
-incompatible dynamics, whereas independent identification requires each
-vehicle to excite enough operating conditions.
+Vehicles with speed-dependent and heterogeneous dynamics may observe only
+narrow speed regions. LPV identification then requires complementary
+scheduling information while avoiding bias from pooling incompatible dynamics.
 
-LPV identification through basis-dependent regression and scheduling
-excitation is established \cite{toth2010lpv,bamieh2002}.
-Local approaches first identify models at fixed operating points and then
-construct a scheduling-dependent map \cite{ferranti2017}.
-Here the common physical state coordinates are available, so local models
-do not require alignment of independently identified latent realizations.
-The information limitation is instead incomplete scheduling coverage:
-each client observes only a contiguous speed block. Repeating transitions
-at those same speeds reduces estimation noise but cannot supply missing
-basis directions. Complementary fleet coverage can supply them, provided
-that the combined clients have sufficiently compatible dynamics.
-Figure~\ref{fig:overview} summarizes this coverage limitation and the
-client--server identification procedure.
+Basis-dependent LPV identification requires scheduling excitation
+\cite{toth2010lpv,bamieh2002}. Local approaches identify fixed-operating-point
+models before constructing a scheduling-dependent map \cite{ferranti2017}.
+Federated learning retains records locally \cite{mcmahan2017fedavg}.
+For heterogeneous systems, FedSysID quantifies the tradeoff between
+collaboration and model bias \cite{wang2023fedsysid}. IFCA alternates client
+assignment and cluster-model updates \cite{ghosh2020ifca}.
+Clustered SysID applies alternating assignment and estimation to LTI systems
+with identical dynamics within each true cluster, providing conditional
+recovery and sample-complexity guarantees \cite{toso2023clusteredsysid}.
+IC-SYSID adds incremental cluster formation and stability promotion,
+including a vehicle-fleet study \cite{kececi2025clustercraft}.
+Our previous vehicle study uses uncertainty-aware grouping for controller
+design \cite{weber2026ifac}.
 
 \begin{figure*}[t]
 \centering
@@ -80,28 +78,24 @@ prescribed cornering curve; LQI provides a supporting usability check.}
 \label{fig:overview}
 \end{figure*}
 
-Federated learning exchanges computed information while retaining records
-locally \cite{mcmahan2017fedavg}. Clustered learning addresses persistent
-client heterogeneity by learning several models \cite{ghosh2020ifca}.
-Our earlier vehicle-identification work studies uncertainty-aware grouping
-for controller design \cite{weber2026ifac}. The present question is whether
-clients whose scheduling regressions are individually underdetermined can
-jointly identify group LPV maps across the speed interval. Its primary
-endpoint is recovery across incomplete operating coverage, with control
-as a downstream check. Additive regression and clustering are established
-components rather than independent novelty claims.
+Here each client's fixed speed support leaves its LPV scheduling design
+deficient. Repeating transitions at those speeds reduces noise but cannot
+identify the missing coefficient directions. Compatible pooling can supply
+them, conditional on group coverage, while within-group variation remains.
+The problem couples scheduling-information deficiency with heterogeneity
+bias. With common physical states, we specialize the established alternating
+framework to LPV matrix regression. Its guarantees do not establish recovery
+for our fixed deficient scheduling supports and approximate shared maps.
+Figure~\ref{fig:overview} summarizes the procedure.
 
-The contribution is a controlled study and distributed construction for
-this joint information limitation. First, blocked-speed basis
-selection distinguishes missing scheduling information from a physical
-representation that already extrapolates adequately. Second, clients
-participate in hard-assignment group regression through local statistics
-and scores, without identifying full local coefficient maps or supplying
-family labels. Third, paired fleet evaluation separates full-envelope,
-observed-speed, and unobserved-speed error and checks the resulting models
-in nonlinear scheduled-LQI tracking. Numerical centralized--federated
-agreement verifies the implementation, not a new statistical advantage of
-federation over the same centralized records.
+The contribution is a distributed LPV construction and controlled study
+of joint coverage and heterogeneity. First, blocked-speed validation
+separates representation error from information deficiency. Second, clients
+fit group maps through additive statistics and assignment scores without
+full local coefficient maps or family labels, followed by a group-rank audit.
+Third, paired fleet comparisons separate coverage and compatibility benefits
+at recipient-unobserved grid speeds. Centralized--federated agreement verifies
+implementation. Nonlinear scheduled-LQI tests check downstream usability.
 
 \section{Identification Problem}
 \subsection{Available states and incomplete speed coverage}
@@ -309,7 +303,7 @@ and a practical relative-error floor of $10^{-4}$.
 % the results, rather than leaving deferred floats after the references.
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.98\textwidth]{paper_basis_information.pdf}
+\includegraphics[width=.95\textwidth]{paper_basis_information.pdf}
 \caption{Scheduling representation and information coverage.
 (a) Mean blocked-speed matrix error across ten development fleets;
 error bars denote one standard error. Rings mark the selected orders,
@@ -323,7 +317,7 @@ are distinct checks; full rank does not remove within-group bias.}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.98\textwidth]{paper_identification_coverage_v2.pdf}
+\includegraphics[width=.95\textwidth]{paper_identification_coverage_v2.pdf}
 \caption{Primary label-free matrix error by local speed block.
 Light shading marks each observed block; short green marks identify its
 observed grid speeds. Curves average clients within block and fleet,
@@ -336,7 +330,7 @@ records, providing no additional independent confirmation.}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.98\textwidth]{paper_fleet_client_tradeoff.pdf}
+\includegraphics[width=.95\textwidth]{paper_fleet_client_tradeoff.pdf}
 \caption{Primary fleet gains and client tradeoffs.
 (a) Paired full-envelope errors for all ten independent fleets;
 connectors join methods within each fleet, and $K=1$ marks the two ties.
@@ -515,7 +509,6 @@ ExactLPV reference & \TrackExactModerate & \TrackExactHard\\
 \end{tabular}
 \end{table}
 
-\balance
 Mean paired tracking gains are \ControlLocalModerate\%/\ControlLocalHard\%
 against Local and \ControlGlobalModerate\%/\ControlGlobalHard\% against
 Global for moderate/hard demands. Global-relative intervals are
@@ -528,6 +521,7 @@ frozen-point spectral radius is \ControlRadius, which is not a scheduled
 or nonlinear stability certificate. Four fleets select one group, making
 federated and Global controllers identical there.
 
+\balance
 \section{Discussion and Conclusion}
 Complementary speed blocks supply directions absent from local regressions,
 while compatibility selection reduces pooling error. Grouped fitting
@@ -564,9 +558,22 @@ vol.~82, pp.~478--489, 2017, doi: 10.1016/j.ymssp.2016.05.037.
 \bibitem{mcmahan2017fedavg}
 H.~B. McMahan et al., ``Communication-efficient learning of deep networks
 from decentralized data,'' in \emph{Proc. AISTATS}, 2017, pp.~1273--1282.
+\bibitem{wang2023fedsysid}
+H.~Wang, L.~F. Toso, and J.~Anderson, ``FedSysID: A federated approach to
+sample-efficient system identification,'' in \emph{Proc. L4DC},
+vol.~211, 2023, pp.~1308--1320.
 \bibitem{ghosh2020ifca}
-A.~Ghosh et al., ``An efficient framework for clustered federated learning,''
-in \emph{Advances in Neural Information Processing Systems}, 2020.
+A.~Ghosh, J.~Chung, D.~Yin, and K.~Ramchandran, ``An efficient framework
+for clustered federated learning,'' in \emph{Advances in Neural Information
+Processing Systems}, vol.~33, 2020, pp.~19586--19597.
+\bibitem{toso2023clusteredsysid}
+L.~F. Toso, H.~Wang, and J.~Anderson, ``Learning personalized models with
+clustered system identification,'' in \emph{Proc. IEEE CDC}, 2023,
+pp.~7162--7169, doi: 10.1109/CDC49753.2023.10383950.
+\bibitem{kececi2025clustercraft}
+E.~Ke\c{c}eci, M.~G\"uzelkaya, and T.~Kumbasar, ``Redefining clustered
+federated learning for system identification: The path of ClusterCraft,''
+\emph{arXiv preprint arXiv:2505.16857}, 2025.
 \bibitem{weber2026ifac}
 J.~Weber et al., ``Uncertainty-aware clustered federated identification for
 controller design: Application to lateral dynamics and yaw-rate tracking,''

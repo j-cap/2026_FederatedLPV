@@ -26,6 +26,12 @@ inputs and generates `review_evidence_numbers.tex`; it performs no fitting or
 simulation. Audit saved coefficients without fitting or rollouts using
 `python paper/audit_review_validation.py` when an independent audit is needed.
 
+IEEE IV review point 1 is addressed through explicit comparison with IFCA,
+Clustered SysID, FedSysID, and IC-SYSID, and a contribution statement focused on
+locally deficient LPV scheduling coverage. The [revision note](../docs/manuscript_review_point1_novelty.md)
+records the supported distinctions, sources, and frozen-input recovery. Review
+points 2--6 remain open.
+
 The preceding personalized cold-start manuscript and its audits are preserved in [archive/9m_cold_start](archive/9m_cold_start). They describe a different claim and method. Their quantitative headlines and assumptions do not apply to this draft. The chronological development report remains the full experimental record.
 
 The author's overview PDF is integrated as Figure 1, with an introductory
