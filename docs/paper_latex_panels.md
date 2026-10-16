@@ -43,3 +43,8 @@ PNG previews are regenerable and need not be committed. The manifest records
 PDF hashes, rendering-code hashes, verified input hashes, and scientific checks.
 For previews outside the repository, use `--output-dir PATH`; its manifest stays
 in that output directory.
+
+The manuscript now uses `subfig` with `caption=false` to preserve IEEE captions.
+Figures 2 and 4 pair two panels; Figure 3 arranges four panels in two rows.
+Run `python paper/check_latex_panels.py` to verify all referenced panel hashes
+and their frozen-input provenance without regenerating figures.

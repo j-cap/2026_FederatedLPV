@@ -1,6 +1,8 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
 \usepackage{balance}
+\usepackage[caption=false,font=footnotesize]{subfig}
+\captionsetup[subfloat]{farskip=0pt,captionskip=2pt}
 \usepackage[hidelinks]{hyperref}
 \hypersetup{pdftitle={Federated Full-Envelope LPV Identification from Incomplete Local Coverage},
 pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete speed coverage}}
@@ -316,7 +318,10 @@ Handling & 1425 & 2250 & 72000 & 88000\\
 % the results, rather than leaving deferred floats after the references.
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.95\textwidth]{paper_basis_information.pdf}
+\subfloat[Development-only basis validation\label{fig:basis-validation}]{%
+\includegraphics[width=.43\textwidth]{paper_basis_validation_panel.pdf}}\hfill
+\subfloat[Scheduling information ($L=7$)\label{fig:scheduling-information}]{%
+\includegraphics[width=.43\textwidth]{paper_scheduling_information_panel.pdf}}
 \caption{Scheduling representation and information coverage.
 (a) Mean blocked-speed matrix error across ten development fleets;
 error bars denote one standard error. Rings mark the selected orders,
@@ -330,7 +335,14 @@ are distinct checks; full rank does not remove within-group bias.}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.95\textwidth]{paper_identification_coverage_v4.pdf}
+\subfloat[Local grid: 10, 12, 14 m/s\label{fig:coverage-a}]{%
+\includegraphics[width=.42\textwidth]{paper_coverage_10_12_14_panel.pdf}}\hfill
+\subfloat[Local grid: 16, 18, 20 m/s\label{fig:coverage-b}]{%
+\includegraphics[width=.42\textwidth]{paper_coverage_16_18_20_panel.pdf}}\par
+\subfloat[Local grid: 22, 24, 26 m/s\label{fig:coverage-c}]{%
+\includegraphics[width=.42\textwidth]{paper_coverage_22_24_26_panel.pdf}}\hfill
+\subfloat[Local grid: 28, 30 m/s\label{fig:coverage-d}]{%
+\includegraphics[width=.42\textwidth]{paper_coverage_28_30_panel.pdf}}
 \caption{Primary matrix error by local speed block, with family labels withheld.
 Light shading marks each observed block; short green marks identify its
 observed grid speeds. Curves average clients within block and fleet,
@@ -343,7 +355,10 @@ scale with identical averaging and bands. Smooth Local uses the frozen curvature
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=.95\textwidth]{paper_fleet_client_tradeoff.pdf}
+\subfloat[Paired primary results\label{fig:paired-fleet}]{%
+\includegraphics[width=.43\textwidth]{paper_paired_fleet_panel.pdf}}\hfill
+\subfloat[Client tradeoff (descriptive)\label{fig:client-tradeoff}]{%
+\includegraphics[width=.43\textwidth]{paper_client_tradeoff_panel.pdf}}
 \caption{Primary fleet gains and client tradeoffs.
 (a) Paired full-envelope errors for all ten independent fleets;
 connectors join methods within each fleet, and $K=1$ marks the two ties.

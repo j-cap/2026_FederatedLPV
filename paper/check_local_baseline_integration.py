@@ -41,6 +41,9 @@ def main():
         if focus["audit_sha256"] != digest(OUT / f"{PREFIX}_audit.json") or focus["generator_sha256"] != digest(ROOT / "paper/plot_local_baseline_focus.py"):
             raise ValueError("Focused coverage figure provenance differs")
         verify_hashes(focus["output_sha256"])
+    elif "paper_coverage_10_12_14_panel.pdf" in tex:
+        from check_latex_panels import main as check_panels
+        check_panels()
     elif "paper_identification_coverage_v3.pdf" not in tex:
         raise ValueError("Updated coverage figure missing")
     print(json.dumps(dict(status="verified", primary_fleets=10, clients=300,
