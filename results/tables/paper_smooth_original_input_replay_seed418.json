@@ -1,0 +1,2444 @@
+{
+  "seed": 418,
+  "source_sha256": {
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/config/experiment_10f.json": "2a0abe3aee9f611e919cd62e7631c8473b129138a925d03f2da3322e713e50d7",
+    "code/experiments/experiment_10a_basis_coverage_audit.py": "f99bd6e9c5808c0817b59729dca92e7773127eb5f0c114a7d03562393270bff3",
+    "code/experiments/experiment_10b_oracle_complementary_gate.py": "5e66093d9c749f4b72273ad1b33ab74c76cde2f2d88ac4201f3f8eb3576063b1",
+    "code/experiments/experiment_10d_learned_compatible_groups.py": "25a646d50dc16ecb23bf7a7b158f1558d77c79ab30a9fde5bc5102be4978e9cb",
+    "code/experiments/experiment_10e_federated_latent_groups.py": "7b01fbec0299c4bc9f175c687ada9113e0b84f2bc6993166664ffd0a19589588",
+    "code/experiments/experiment_10f_control_relevance.py": "430f2fda2850db66475018e43279e2eaaca844b22980bbd37bd307f18388b42b",
+    "code/experiments/paper_review_validation.py": "9adb2ec93abe18433673be59afb30e87ff6e215df9fda2b8046c416aa7becebc",
+    "code/src/federated_lpv/__init__.py": "92b52aff502e534537be960b640e752d63eb2e79740d41ddac9e2f89a1dd2065",
+    "code/src/federated_lpv/causal_model_selection.py": "c7b86087670e15250ec4481cfcbd17df663e4fd1de997d5eb8fee0408048ca93",
+    "code/src/federated_lpv/client_mixture.py": "7d341f75bf1e9789bb2c5e436e16b6a979cce6e24a3674b1e03c9bd78e50e60f",
+    "code/src/federated_lpv/communication.py": "8da11e69eb7b774bbdbbb5144af40ef3a9920b7f5a764c9086bbc4a450f150f6",
+    "code/src/federated_lpv/control.py": "0637bab6a08714460c7f0ce01540816a3439a837ec9623192c21a476adeda9ec",
+    "code/src/federated_lpv/federated.py": "9f4415a01c0b3f4bbc23ab7d89fa59c90296f5db5cef57b3cb8c9ca88d970477",
+    "code/src/federated_lpv/federated_manifold.py": "db6c07d85912d80e3326188c454863dc5ea303dc2db5e66a35572671bd5eac4e",
+    "code/src/federated_lpv/feedback_diagnostics.py": "df8b7f175a3da99622d4b6fa320a23dba14acb1809b0b57f44bce8798531903f",
+    "code/src/federated_lpv/fleet.py": "e5a83d88e12d5fc3c33aa7cc95d264b0a607d3b1f6c338a495f7c4967130e22d",
+    "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+    "code/src/federated_lpv/local_scheduling.py": "79765f9adadd25af920b2842ff7ddcc17567e4a3ef42b2163a6d77d98d4a6a73",
+    "code/src/federated_lpv/lpv.py": "308a23d7cdb8bd1db6d09becfef5e9477283d1d7abb39dbcd465f922c253f32a",
+    "code/src/federated_lpv/multihorizon_fit.py": "704eb07913f3d4c33ee2ae797f245e926b32d64d5a4664dad9569a4034c997a5",
+    "code/src/federated_lpv/oracle.py": "250f6d9f9f0ede98c5523d84ccf9f55fb1f73748b0eae600adf0197976edf86a",
+    "code/src/federated_lpv/output_error.py": "becfd26a7696355f643632e4c6fb176b42994c6fd43c4607d98b776d29a60e60",
+    "code/src/federated_lpv/output_feedback_control.py": "e493170dbf45ecb87dc0275a3499cd20309ddfbd2550f8c4f98c2b054e639c0f",
+    "code/src/federated_lpv/output_validation.py": "6f311ac69ea04d4202a06224628ae5b7623dfef70901f66354d8fd13bd1091cc",
+    "code/src/federated_lpv/personalization.py": "7904df01bf7bf52bebf465a1a7e8193470f66a6450b5a3952b679e6d16705a9e",
+    "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+    "code/src/federated_lpv/privacy.py": "dc1de8ce1b2b0b17b7b86d9c52e37ef7a303183916a575778b78abcac63f6072",
+    "code/src/federated_lpv/uncertainty_clustering.py": "5a3d5c4b37a5bc10c5dd9e293709bb59c83150bb41d17175a57655a8b5ab466d",
+    "code/src/federated_lpv/vehicle.py": "47d3a5638171d20ce448c7d529b55a9cfb184abb17d5e83e0cb448252bc587d6",
+    "results/tables/experiment_10f_confirmation_seed411.csv.gz": "60e3ad9710d7168a45576ca39d9aa20bbe2d639aca483a799569fdbae77703e7",
+    "results/tables/experiment_10f_confirmation_seed412.csv.gz": "1969e16eb175ff466f1ba68351ffdf04b267791ae923babf5b4074bbd83616a1",
+    "results/tables/experiment_10f_confirmation_seed413.csv.gz": "537e9b457a6832d64edabd0f859a79f840e36d99791d0bf939cf1485b1c1e269",
+    "results/tables/experiment_10f_confirmation_seed414.csv.gz": "3292e2280ed4afb5ef8f553bfc4f20aac975aca9b669a01c58b466eb967be1ef",
+    "results/tables/experiment_10f_confirmation_seed415.csv.gz": "50360b483b6de28ff5483af15a3147bde3751b351bf3c8bd54596f9161336030",
+    "results/tables/experiment_10f_confirmation_seed416.csv.gz": "1a5db5ebacf7251e9bce37da0d1fb383f48e270577ecc66fb2f2fb4217aa2324",
+    "results/tables/experiment_10f_confirmation_seed417.csv.gz": "1c42bcd467898f05a96b4b8a37ea05460b5dbca192fced048d775a445b7e0486",
+    "results/tables/experiment_10f_confirmation_seed418.csv.gz": "a83eec406082733579740053c0e92fc72a34034bea705d6b080f47c24ca9636e",
+    "results/tables/experiment_10f_confirmation_seed419.csv.gz": "ff1b5b2be19b37e21774459778a72cb3f16027d703ab4915bb3f1cc528ba08fd",
+    "results/tables/experiment_10f_confirmation_seed420.csv.gz": "99f20dedb1848a9b0a94cd9913ce67090f06e3e77b8776466d28ea55da5a2593",
+    "results/tables/experiment_10f_frozen_selection.json": "e8aecf46870621e375772aaa78fb72238cb2712e0bad320c07e07b63467904db",
+    "results/tables/paper_local_smoothness_selection.json": "967c6a1fa6a8d06ae484edbdd43a7c43576e486fdd2779d08b25dbd873572b75",
+    "code/config/paper_smooth_local_lqi.json": "2beb84d0c89cfb36c25f9435cfa7e717bd5de406c336a57a2d3ef4e7890e72f7",
+    "code/experiments/paper_smooth_local_lqi.py": "d68d79b12fb0898bb16fe6059ebff244410eb772e9165e3849a11033e7b1d598",
+    "code/experiments/paper_smooth_replay_diagnosis.py": "ca579278decf454817d5338e3db17afe7233c5e3a64a68a031e37fb7dbb0f30e",
+    "results/tables/paper_smooth_local_lqi_seed411.json": "7cf844ce4e95601187308ed7db9084244aa5f4023ec820db68760e37807cbc96",
+    "results/tables/paper_smooth_local_lqi_seed412.json": "0ab53d578084e900447abdf091aac450ea4ec06af8aaaca1cb72e81454d4bee7",
+    "results/tables/paper_smooth_local_lqi_seed413.json": "7c276dcfd56cfdc4223a2cd0877d04598230e9b8bfaccc7dd051a2f3a8db45bf",
+    "results/tables/paper_smooth_local_lqi_seed414.json": "116051ec2f34456297164730c614f57d1034012d76732f8bb1732e420ce21871",
+    "results/tables/paper_smooth_local_lqi_seed415.json": "b11eb9a1c7081a41a844dbb53cc7ea237530ba6b223d719716c119c802a4aeec",
+    "results/tables/paper_smooth_local_lqi_seed416.json": "c0474370b74f3f304a8ead5c8e0237ce21b2ca4e69d7765cf4722a7f5f4cff28",
+    "results/tables/paper_smooth_local_lqi_seed417.json": "b3a8b59986238577d8e7c430c19829f84ba4a37107b79ed6624939db0c0bcb37",
+    "results/tables/paper_smooth_local_lqi_seed418.json": "443a41d4dc7fc39d3ef9a818aa9b7107d2651a926679f269d43a985b28eddae3",
+    "results/tables/paper_smooth_local_lqi_seed419.json": "5f913e1ddb1bd9fafaa5218dcb663087b5ab272ece4710cb66139bf2ffe23318",
+    "results/tables/paper_smooth_local_lqi_seed420.json": "8ce15340957face8802f7830e9bceb93550b2b1bbd4ca52915df337bcbab88c9",
+    "results/tables/paper_smooth_replay_execution_reference.json": "b7c2aac1e896ed47eb6d74f6a6769e375241b024f4f3a6681cbc293e4af50ed8",
+    "code/experiments/paper_smooth_original_input_replay.py": "3ac17184c2da48f82bfb53bd7a5bd57abedd62b73c2df0d9440b4f95f08de2fa"
+  },
+  "environment": {
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "python": "3.12.14",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3"
+    },
+    "threadpools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/numpy.libs/libscipy_openblas64_-fdde5778.so",
+        "version": "0.3.30",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "prefix": "libscipy_openblas",
+        "filepath": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/scipy.libs/libscipy_openblas-6cdc3b4a.so",
+        "version": "0.3.30",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX"
+      },
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libgomp",
+        "filepath": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/scikit_learn.libs/libgomp-e985bcbb.so.1.0.0",
+        "version": null
+      }
+    ]
+  },
+  "rows": [
+    {
+      "client": "nominal_00",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.03491068824588709,
+      "rmse": 0.03491068824588709,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "57cd632a9cfeaea1cac559ea09480ca7f47c55f2f6cea1b22a24bd71d1493923",
+        "integral": "2f4bfc50a029cf71c254c188744bda2171d1a28eb8ccffab463443df7ebbcda7",
+        "steering": "bcbbc9ae1e4c909e1480abeb0db0b827807391857362980c1fd1965b77751f2f",
+        "raw_steering": "bcbbc9ae1e4c909e1480abeb0db0b827807391857362980c1fd1965b77751f2f"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.03491068824588709,
+        "tracking_peak_deg_s": 0.0827766149629933,
+        "beta_rms_deg": 0.40483316111307793,
+        "beta_peak_deg": 1.1728956606890069,
+        "steering_rms_deg": 0.5322465296858674,
+        "steering_peak_deg": 1.2921754633997267,
+        "steering_rate_peak_deg_s": 3.282161095901263,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_00",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.16516126437023781,
+      "rmse": 0.16516126437023781,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "ad621b87f4af87aec8b52d1a3c5286e0e49018c3be7627c2ba2fc515952dc561",
+        "integral": "8dddfb189090614bddafe33deddc7e410e21df53b94eecfeab3983a1785f4dca",
+        "steering": "48fca0b8052fe22cc83a8a190a3dd9a2b59c0b7e8e49dde04e31247ff5448bd5",
+        "raw_steering": "48fca0b8052fe22cc83a8a190a3dd9a2b59c0b7e8e49dde04e31247ff5448bd5"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.16516126437023781,
+        "tracking_peak_deg_s": 0.7388630787589879,
+        "beta_rms_deg": 0.7586859331571194,
+        "beta_peak_deg": 2.2328618053662437,
+        "steering_rms_deg": 3.0155873286639006,
+        "steering_peak_deg": 11.249357635324438,
+        "steering_rate_peak_deg_s": 16.090328021817577,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_01",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 18.068499593426587,
+      "rmse": 18.068499593426587,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "e016c5ca5b97747360fe8d7ecc84fcf94e009c34d34ac2c3427024cffc24131d",
+        "integral": "4e3b89f794cee5fb8ce7c41d11bb6f2fbf0c44e0d4cfa9e7e4a037a2608bc921",
+        "steering": "23c90bcfc490ff71a395aa06e3bf40e7183f19b886d86666557f2edf85677eb3",
+        "raw_steering": "7984501ff55a5d09464dacaf133eb5867959514c70cf7c92b8a35062a81debfd"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 18.068499593426587,
+        "tracking_peak_deg_s": 53.59412629986437,
+        "beta_rms_deg": 2.160089307964229,
+        "beta_peak_deg": 8.545962337248001,
+        "steering_rms_deg": 4.810305398787167,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.1375,
+        "feasible": false
+      }
+    },
+    {
+      "client": "nominal_01",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 27.199889860498985,
+      "rmse": 27.199889860498985,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "2e18dfbcf8fb82106032df6fe99cb0c57442280065702433f15ae80df68d1aaa",
+        "integral": "3192a8f9b8c4242a6a2a9fd4261a91a153eb49df99e8a5315e09ba85919b8e65",
+        "steering": "2a9a5b2fb7a69c2f44a907663704c9473f54d02c7741907b63d32b5c98639b0b",
+        "raw_steering": "9934c35ba5b92c6ef9456a2e8dccefe806107c99faf7e73e96d86d1235bdb771"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 27.199889860498985,
+        "tracking_peak_deg_s": 77.60878132016748,
+        "beta_rms_deg": 1.5458746822835634,
+        "beta_peak_deg": 6.024221784624467,
+        "steering_rms_deg": 6.011706033644257,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.2708333333333333,
+        "feasible": false
+      }
+    },
+    {
+      "client": "nominal_02",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.042139399062801244,
+      "rmse": 0.042139399062801244,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "58cd5a07e63bef6cb3892306f1979c0ada0882ddb7ac00f1d21d1a740c7cfa24",
+        "integral": "e829aa78a0ac5ee22e831d1fb530798419131199958f237251762f4f63234bc6",
+        "steering": "6fc84d78a85b57c53d8e89e420a1426bf1be407c2952a4f1dcd0db96d4b133a9",
+        "raw_steering": "6fc84d78a85b57c53d8e89e420a1426bf1be407c2952a4f1dcd0db96d4b133a9"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.042139399062801244,
+        "tracking_peak_deg_s": 0.11650971773787587,
+        "beta_rms_deg": 0.3793474386766875,
+        "beta_peak_deg": 1.1099178437021844,
+        "steering_rms_deg": 0.5159659455265219,
+        "steering_peak_deg": 1.2542361380525602,
+        "steering_rate_peak_deg_s": 3.206169183675616,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_02",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.25694136685255875,
+      "rmse": 0.25694136685255875,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "771e0baf0c45a39cf15a70299f5ffa6a6959b34ca20c5b51d63ea2d5e438f5ae",
+        "integral": "3a34f350ff9df76bdf7a5e55b67feedad569136f064726c69937740b6bd7ddae",
+        "steering": "6083abf1ecdf18d5efdd40c802b1d9466c51c580d2a81d770f14aab9f98b5223",
+        "raw_steering": "6083abf1ecdf18d5efdd40c802b1d9466c51c580d2a81d770f14aab9f98b5223"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.25694136685255875,
+        "tracking_peak_deg_s": 0.8937089816416112,
+        "beta_rms_deg": 0.698657590774011,
+        "beta_peak_deg": 2.02519056337521,
+        "steering_rms_deg": 2.9362255636146046,
+        "steering_peak_deg": 10.847875532910416,
+        "steering_rate_peak_deg_s": 15.34766159375951,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_03",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.05315428551343875,
+      "rmse": 0.05315428551343875,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "36ffb518b48f5cadbb53165f08ee6d998621a2b4cb12e6f1d0be91dec2f6dc4e",
+        "integral": "7e0fd5a0027df04a481f777865b23b1efb57ccb534da7babc18233112737ed1c",
+        "steering": "77094f26f4bf19ef604221eba3260b462737f1b257c729bd72b408fd0aadd5e8",
+        "raw_steering": "77094f26f4bf19ef604221eba3260b462737f1b257c729bd72b408fd0aadd5e8"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.05315428551343875,
+        "tracking_peak_deg_s": 0.15172800929204985,
+        "beta_rms_deg": 0.38850670164403034,
+        "beta_peak_deg": 1.1306736581235979,
+        "steering_rms_deg": 0.5087036433029374,
+        "steering_peak_deg": 1.2287919276392265,
+        "steering_rate_peak_deg_s": 3.1549775076886295,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_03",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.1522670355252741,
+      "rmse": 0.1522670355252741,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "d1f899132304c26e74663280269372e7b147354d7a9e717602bb20b7d3b38b26",
+        "integral": "eaae28fe4bd66b6f17ef9384c6f0ca1229fc528ba9769e594986a9f6b65721a7",
+        "steering": "7c758304449002fcbabe6ad7bdb43cadb3f3a971a32239920ea42dfa6213eb53",
+        "raw_steering": "7c758304449002fcbabe6ad7bdb43cadb3f3a971a32239920ea42dfa6213eb53"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.1522670355252741,
+        "tracking_peak_deg_s": 0.6919760197953303,
+        "beta_rms_deg": 0.721393992108996,
+        "beta_peak_deg": 2.1175871272569973,
+        "steering_rms_deg": 2.93104589233125,
+        "steering_peak_deg": 10.952453232449908,
+        "steering_rate_peak_deg_s": 15.663684004327061,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_04",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 23.03871512042406,
+      "rmse": 23.03871512042406,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "13aa191238ab8c7b9bc0968b3887483c35e8f0197bc6e8f464262342f12be3d5",
+        "integral": "5b84316a33211b6fdaa22f5c1703ea7bb157139c1da527adf846c29eb0480e79",
+        "steering": "e339614f632c710b11d1d6fb5d1b5a4fd0c3b64a58870144db340e9afc013c3c",
+        "raw_steering": "ef326e9983bf28c538c50a33193da8793f7f11f72af2c273a6d3c0e6d1369ae8"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 23.03871512042406,
+        "tracking_peak_deg_s": 59.899592844400914,
+        "beta_rms_deg": 3.9164748492425514,
+        "beta_peak_deg": 13.75441099737765,
+        "steering_rms_deg": 6.151576904842218,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.3408333333333333,
+        "feasible": false
+      }
+    },
+    {
+      "client": "nominal_04",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 53.92221916426658,
+      "rmse": 53.92221916426658,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "9503ff698e551c45ce22365b011513a18d636509fee333d3b06ab20f06edebb6",
+        "integral": "8e78ac0c51d8315ac6d0a1ab6e01ed151417f391304217603ea30ca4bd0f2afc",
+        "steering": "14e0ef6646f96d6419d0e4a065c76bcf9697af3e89ccadcbe849d1f375f44f1f",
+        "raw_steering": "82a04651d08ef2a76d3b915bc876860e48c80cb9d243d7e74b47df618e5ae8ad"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 53.92221916426658,
+        "tracking_peak_deg_s": 93.91926008207504,
+        "beta_rms_deg": 123.67242531922432,
+        "beta_peak_deg": 263.6148810439422,
+        "steering_rms_deg": 11.232793288917097,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.8558333333333333,
+        "feasible": false
+      }
+    },
+    {
+      "client": "nominal_05",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.04507681077802243,
+      "rmse": 0.04507681077802243,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "d3a792ed3d08a4417411998b3be985f06c41041c2a7e8e4ba2ddc109bf3546fe",
+        "integral": "f6729b57d18139ede2e0a3ffae4a0283d895c3ac89347bf551f5c4dd187bd673",
+        "steering": "dcc1f2e2d9db3919caf35bbba366719bf8b0998855f69f7d7472676dca1abeb7",
+        "raw_steering": "dcc1f2e2d9db3919caf35bbba366719bf8b0998855f69f7d7472676dca1abeb7"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.04507681077802243,
+        "tracking_peak_deg_s": 0.12382129568320907,
+        "beta_rms_deg": 0.4114145226754983,
+        "beta_peak_deg": 1.1917856855546438,
+        "steering_rms_deg": 0.5573070363867245,
+        "steering_peak_deg": 1.358216524978843,
+        "steering_rate_peak_deg_s": 3.3993346820196146,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_05",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.27729047309269317,
+      "rmse": 0.27729047309269317,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "c44a35f3af2a1265a65b5320df93b9aa68ff77d21350c83c4d50ec8051f02cae",
+        "integral": "4ba61e926417c389cc7f79a4612de0d7db09bcccd83b11c057f7b64053a24831",
+        "steering": "799ac5dfdd460095b8385dbe828f2ab77d6e5330d5df5d4fefbf482b6ddaa935",
+        "raw_steering": "799ac5dfdd460095b8385dbe828f2ab77d6e5330d5df5d4fefbf482b6ddaa935"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.27729047309269317,
+        "tracking_peak_deg_s": 0.9952997027245698,
+        "beta_rms_deg": 0.7630827246939625,
+        "beta_peak_deg": 2.245905765770991,
+        "steering_rms_deg": 3.0838469447777377,
+        "steering_peak_deg": 11.35425584594943,
+        "steering_rate_peak_deg_s": 15.966040513509295,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_06",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.07233413481021464,
+      "rmse": 0.07233413481021464,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "0853a0211fff37ba629f226fb00f711dbcba8b803a997a3ffd3ce417fdd125e4",
+        "integral": "5a878b82dc492c0c7a587d668b6f422df46daa914f77b1a1bbc758ce0ad7564a",
+        "steering": "7d8ba4eb7df3d420e1621cd1a3188e8b85fb5c76c2c2ce0a307a476ceb33883b",
+        "raw_steering": "7d8ba4eb7df3d420e1621cd1a3188e8b85fb5c76c2c2ce0a307a476ceb33883b"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.07233413481021464,
+        "tracking_peak_deg_s": 0.22545171563494282,
+        "beta_rms_deg": 0.37428977966291466,
+        "beta_peak_deg": 1.089131502122928,
+        "steering_rms_deg": 0.5140821252925523,
+        "steering_peak_deg": 1.2379809454857722,
+        "steering_rate_peak_deg_s": 3.1218278483993114,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_06",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.1558501212664087,
+      "rmse": 0.1558501212664087,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "ca5d936734eaf70d8125f2b71361240998f86a0a6a2be1739d9e214884527f80",
+        "integral": "e743a44591f02581ea7a190af6d400f95fa1b0e38ba6381a6268fb4441a9b464",
+        "steering": "a37890871d5cc699e41435a9b943d30c8239e5dd447ecee469532c97733389e3",
+        "raw_steering": "a37890871d5cc699e41435a9b943d30c8239e5dd447ecee469532c97733389e3"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.1558501212664087,
+        "tracking_peak_deg_s": 0.7407844098957026,
+        "beta_rms_deg": 0.7013136790198979,
+        "beta_peak_deg": 2.038797898671787,
+        "steering_rms_deg": 2.967255279931285,
+        "steering_peak_deg": 11.106460685091815,
+        "steering_rate_peak_deg_s": 15.914385688806913,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_07",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.047658597493003454,
+      "rmse": 0.047658597493003454,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "c0328f6d5907adb1e18bef0356ff56eac66835dc50e2394ea7602b39ab0b35cc",
+        "integral": "8695fcbc8c90e4cc8aaae0396fa546a672fc65f3633a9b338a3e4a4dce67f1e7",
+        "steering": "203365098acbbdf23452670cc5f4d4fe6a463b9b5d5e4e78e74c0ecaaa69149a",
+        "raw_steering": "203365098acbbdf23452670cc5f4d4fe6a463b9b5d5e4e78e74c0ecaaa69149a"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.047658597493003454,
+        "tracking_peak_deg_s": 0.14821251130009772,
+        "beta_rms_deg": 0.4124700499963714,
+        "beta_peak_deg": 1.1958136144269775,
+        "steering_rms_deg": 0.5449711129095541,
+        "steering_peak_deg": 1.3267280234260044,
+        "steering_rate_peak_deg_s": 3.3736101279590454,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_07",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.1512313241766205,
+      "rmse": 0.1512313241766205,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "2af87a8c705dfc372c910d3ecd6f9156d5361f2b962a2704e38aa144650203fa",
+        "integral": "9899bafa1df2598fbbc356d2eb7ac0a9438ba6d077e85512306364ef971fa062",
+        "steering": "066e79edc9fb3a3bb6840f9acbfe966a8c7261ed452f012e1bc242bab20f03a4",
+        "raw_steering": "066e79edc9fb3a3bb6840f9acbfe966a8c7261ed452f012e1bc242bab20f03a4"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.1512313241766205,
+        "tracking_peak_deg_s": 0.6988124140057783,
+        "beta_rms_deg": 0.7668627650946315,
+        "beta_peak_deg": 2.2639009627043114,
+        "steering_rms_deg": 3.0537982215457027,
+        "steering_peak_deg": 11.357504469780428,
+        "steering_rate_peak_deg_s": 16.240774117735167,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_08",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.043602614179668174,
+      "rmse": 0.043602614179668174,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "a7c38ec7640d4c3a3c111c73bed3d73b26dd55527987ae3a42e6cacf7a852f9a",
+        "integral": "9a6caf09d3b5f771a56f0a254dc55fd16708e1153168fef1cc08490edcf70611",
+        "steering": "b0fb004b7f58950c9a49f670a2e883c4b0b8f776def5536426530f8c55813eb5",
+        "raw_steering": "b0fb004b7f58950c9a49f670a2e883c4b0b8f776def5536426530f8c55813eb5"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.043602614179668174,
+        "tracking_peak_deg_s": 0.12024399976242525,
+        "beta_rms_deg": 0.4117610809861177,
+        "beta_peak_deg": 1.191432626572279,
+        "steering_rms_deg": 0.5163025181598886,
+        "steering_peak_deg": 1.2480273556489208,
+        "steering_rate_peak_deg_s": 3.1967391270672034,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_08",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.14070487697146528,
+      "rmse": 0.14070487697146528,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "92c8d0cce6dd2c123da078cd1d259360cdaf94c536588ef6415acf89d9f442d8",
+        "integral": "10117aab0fba2eb2ad58ad18151118d094b0755ba3e9d64173a3ef3ed045efc6",
+        "steering": "3fe1cbc681b94fb629e722d980f6857e61f87bc3eae515a59c5aba49f7786f14",
+        "raw_steering": "3fe1cbc681b94fb629e722d980f6857e61f87bc3eae515a59c5aba49f7786f14"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.14070487697146528,
+        "tracking_peak_deg_s": 0.5867289160414924,
+        "beta_rms_deg": 0.7662053132179758,
+        "beta_peak_deg": 2.274176793746774,
+        "steering_rms_deg": 2.9575868818305167,
+        "steering_peak_deg": 11.037461221825305,
+        "steering_rate_peak_deg_s": 15.890403226597137,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_09",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.040852613069680604,
+      "rmse": 0.040852613069680604,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "068bc7d1a5435ab9117cace3f3857937a15cce7f244ca5a0b4da1cfded23b6c4",
+        "integral": "bd7eb827271dd070973b3c81453c3ced166c199a07e623389a723d427a8208e0",
+        "steering": "6146605b86cddf5b784ce86ef61826785b1212020dc89bfab766446fad69bcfe",
+        "raw_steering": "6146605b86cddf5b784ce86ef61826785b1212020dc89bfab766446fad69bcfe"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.040852613069680604,
+        "tracking_peak_deg_s": 0.10645515358195821,
+        "beta_rms_deg": 0.3894676863626542,
+        "beta_peak_deg": 1.1341788037410705,
+        "steering_rms_deg": 0.5346111590634284,
+        "steering_peak_deg": 1.2973924983526952,
+        "steering_rate_peak_deg_s": 3.2865340490671895,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "nominal_09",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.16485083621248234,
+      "rmse": 0.16485083621248234,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "875a485ce8562ae09a8334609fd6c3fc66ad3ee5f98ac9380a2be79afd27b3c6",
+        "integral": "3a3f1718216abc85399dfea37de2967e7e69dbc8dda706aa2c7b2f496e2d20b7",
+        "steering": "126eb5298c2f3fe663436cf5f53f582684ba66494443721b7f5f9e43577d2e2d",
+        "raw_steering": "126eb5298c2f3fe663436cf5f53f582684ba66494443721b7f5f9e43577d2e2d"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.16485083621248234,
+        "tracking_peak_deg_s": 0.7242844756198281,
+        "beta_rms_deg": 0.7226122699531281,
+        "beta_peak_deg": 2.1255590313886112,
+        "steering_rms_deg": 3.014354351398834,
+        "steering_peak_deg": 11.206736351802588,
+        "steering_rate_peak_deg_s": 16.02664530534105,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_00",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.0428430536829289,
+      "rmse": 0.0428430536829289,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "4de365951f8de9fa4b0041510c1eb34af9dc77ff17a3450a114ece0ad2428140",
+        "integral": "64225b4c7355b34a0c0bc591a3401fca477603ddfcea118e0022abec4b3dd58c",
+        "steering": "989373888b3507431d04a241b5f5576ca6d74988f66e64adcb7678e58a7ab6e8",
+        "raw_steering": "989373888b3507431d04a241b5f5576ca6d74988f66e64adcb7678e58a7ab6e8"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.0428430536829289,
+        "tracking_peak_deg_s": 0.1078444490481936,
+        "beta_rms_deg": 0.45620545716027533,
+        "beta_peak_deg": 1.3055279839974638,
+        "steering_rms_deg": 0.5425795090005093,
+        "steering_peak_deg": 1.3261705350337374,
+        "steering_rate_peak_deg_s": 3.410381779722875,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_00",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.18690069925009842,
+      "rmse": 0.18690069925009842,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "95c53b4cb02a9c16d106f31bab6f2488bd774f44a60a62638d12d6f74e5794cf",
+        "integral": "60705503618dbc9f6faac3f5269f95b1448037c483ebcff63a4aee95775890d4",
+        "steering": "e0c69bbd1970a404163534f89516e7c09280c53bb7adf84ced9524330d3e616e",
+        "raw_steering": "e0c69bbd1970a404163534f89516e7c09280c53bb7adf84ced9524330d3e616e"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.18690069925009842,
+        "tracking_peak_deg_s": 0.8037277769411322,
+        "beta_rms_deg": 0.8766969117416535,
+        "beta_peak_deg": 2.5485649650667144,
+        "steering_rms_deg": 3.0487577713535985,
+        "steering_peak_deg": 11.41777818450583,
+        "steering_rate_peak_deg_s": 16.300289045174207,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_01",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.028040208508897047,
+      "rmse": 0.028040208508897047,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "6a8c142708414bc0ee71a47698253bc7e393102ea32f21c7232ef22c0d7538d6",
+        "integral": "1e484dd7f83a808008b3e7f02f2aebf231ddf99d9e6fec7f5e0b2d15636f3db8",
+        "steering": "640a132a45379e245fc843c7e58610499be0df9098afb8dfc9805525474da5da",
+        "raw_steering": "640a132a45379e245fc843c7e58610499be0df9098afb8dfc9805525474da5da"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.028040208508897047,
+        "tracking_peak_deg_s": 0.07850274995819743,
+        "beta_rms_deg": 0.4628664712539637,
+        "beta_peak_deg": 1.3230237295917064,
+        "steering_rms_deg": 0.49913480656959913,
+        "steering_peak_deg": 1.2152749245967107,
+        "steering_rate_peak_deg_s": 3.2261589151227184,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_01",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.16152185200137634,
+      "rmse": 0.16152185200137634,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "c984f035a914d225a658486bfa6609eadd5148b8120db0482e38f05be8c9cd7a",
+        "integral": "6e74d295abbada40ec65dde73a1bec53a1acbef7f1d4b9fb89e088a53b0c3a31",
+        "steering": "108652bce8df19b5ef6cef39184c1787219f684858c628847c16269ead6d71b8",
+        "raw_steering": "108652bce8df19b5ef6cef39184c1787219f684858c628847c16269ead6d71b8"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.16152185200137634,
+        "tracking_peak_deg_s": 0.7621555269634666,
+        "beta_rms_deg": 0.8978536492544997,
+        "beta_peak_deg": 2.599742522198565,
+        "steering_rms_deg": 2.9004581173427084,
+        "steering_peak_deg": 10.954589169707281,
+        "steering_rate_peak_deg_s": 15.662161976033495,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_02",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 6.566009582646913,
+      "rmse": 6.566009582646913,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "4d8623787252e1a574a40db0be2498d0f64de60439b1568e3d675a9707a130e6",
+        "integral": "aa2bf2ccc0be00e532d4d1e03270be2dea60d2002c4a8b673525e31da3cf986b",
+        "steering": "15144fc1a678d7857dabf6ebfb25cb8d59e1bbc860beaf83ef61803ba169c190",
+        "raw_steering": "6b7bcae1600ea56da5a8ced0e5c80f41089483f6462639e9e55aaf8e8cdb853b"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 6.566009582646913,
+        "tracking_peak_deg_s": 25.739897245133005,
+        "beta_rms_deg": 1.175955017230442,
+        "beta_peak_deg": 4.1668231658337245,
+        "steering_rms_deg": 1.1510664681236122,
+        "steering_peak_deg": 5.813708552690233,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.020833333333333332,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_02",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.14916043962543957,
+      "rmse": 0.14916043962543957,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "53011ee6048dae76f397f494b93c8065d910275aa76522e0a6417b737287b622",
+        "integral": "291e62b82c3a548f590869d84863d897d0a94cddeb7f2b484e338d20bf8ccf1a",
+        "steering": "e0c7126132987cad3503078ac438499863a5f5e86ed42cf3519380d6c922c367",
+        "raw_steering": "e0c7126132987cad3503078ac438499863a5f5e86ed42cf3519380d6c922c367"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.14916043962543957,
+        "tracking_peak_deg_s": 0.6829170768772415,
+        "beta_rms_deg": 0.8510416791392383,
+        "beta_peak_deg": 2.4869406715590427,
+        "steering_rms_deg": 3.0215725201932404,
+        "steering_peak_deg": 11.32780454467676,
+        "steering_rate_peak_deg_s": 16.248453105285442,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_03",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.046657680814565144,
+      "rmse": 0.046657680814565144,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "ed3bf0daa3e534bf3f694db4c0f795b1ee6d9021bf2257bceeeeb40620f33316",
+        "integral": "c05086dd873291ec86d258bf4d467d9a03eebfd8d2e2167fdb66cb5968bbfcc2",
+        "steering": "4de5e7524408e173858fb00524bf19873b22b443f6a3191f2b35d0bec8d3b6f3",
+        "raw_steering": "4de5e7524408e173858fb00524bf19873b22b443f6a3191f2b35d0bec8d3b6f3"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.046657680814565144,
+        "tracking_peak_deg_s": 0.14621342038360863,
+        "beta_rms_deg": 0.48206253805459637,
+        "beta_peak_deg": 1.3740647658000822,
+        "steering_rms_deg": 0.5445007646179905,
+        "steering_peak_deg": 1.3329660500255427,
+        "steering_rate_peak_deg_s": 3.4541439019146587,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_03",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.11663136227669087,
+      "rmse": 0.11663136227669087,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "055944201a515dc6de66e89217caf17fd2a6caa4e88251a25f2efc7b58f926db",
+        "integral": "2a7440f8b95d885af150313728dba876072d839714cfe8117e2bb110fdb2490d",
+        "steering": "bbf3df633c6f70e54b82fee39963fe39f66528c88f414cb255693f0130fef228",
+        "raw_steering": "bbf3df633c6f70e54b82fee39963fe39f66528c88f414cb255693f0130fef228"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.11663136227669087,
+        "tracking_peak_deg_s": 0.4993700840054814,
+        "beta_rms_deg": 0.9385664901337384,
+        "beta_peak_deg": 2.708474897064059,
+        "steering_rms_deg": 3.0557883071767473,
+        "steering_peak_deg": 11.422421395365141,
+        "steering_rate_peak_deg_s": 16.46761506909086,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_04",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.03743368258458518,
+      "rmse": 0.03743368258458518,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "3a1ab28c5e34a9401aa9c627f17f8111ddb5d64aa1e8efbc22a3c60c4c07b5a6",
+        "integral": "e62cca5e57f0f0d48cf74be8c8454bd82f1d684f116b7f3fcf6872932c3caad4",
+        "steering": "9f54ca9920826bd851183e8542ab4a428a9a4ab10d3efdb81a61b8c43d1be336",
+        "raw_steering": "9f54ca9920826bd851183e8542ab4a428a9a4ab10d3efdb81a61b8c43d1be336"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.03743368258458518,
+        "tracking_peak_deg_s": 0.09334020430273265,
+        "beta_rms_deg": 0.4604609159186237,
+        "beta_peak_deg": 1.316592893419842,
+        "steering_rms_deg": 0.5244180280680991,
+        "steering_peak_deg": 1.2807880889779815,
+        "steering_rate_peak_deg_s": 3.346124907527399,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_04",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.17118928550505288,
+      "rmse": 0.17118928550505288,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "55c1074a98d9c2828679e4b9470e0d52e3d419451225d687c9ddfbda7039f934",
+        "integral": "d296981bc59566aa728cf10cdbc03c4a53d2342b7ae0849e4e22125cea4450d6",
+        "steering": "598217536b85af7e056ff805253fe5190907e5ac848cd604a4df194c2558e7d6",
+        "raw_steering": "598217536b85af7e056ff805253fe5190907e5ac848cd604a4df194c2558e7d6"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.17118928550505288,
+        "tracking_peak_deg_s": 0.7579821880508057,
+        "beta_rms_deg": 0.8882294475100593,
+        "beta_peak_deg": 2.5742239939211693,
+        "steering_rms_deg": 2.9843281871603993,
+        "steering_peak_deg": 11.224650940383475,
+        "steering_rate_peak_deg_s": 16.036659623677984,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_05",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 29.49698340623608,
+      "rmse": 29.49698340623608,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "b1d88a8d01791f8049cb48fb8a647868ba383df86331f91214427fc9a3dbcc54",
+        "integral": "e6b88ce0bbc597c57da7bfd42c639aed7b788bf9cd1b6bed33864021d30b05ce",
+        "steering": "ef5f299fc5ef09376998afe44a7e679fdf07b0451b02d6a6e67f9cfbd4cefcc2",
+        "raw_steering": "c8b82066e98dfaecc823e45321233b75de69cb561487f9ee43e9c3e3bf687a28"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 29.49698340623608,
+        "tracking_peak_deg_s": 47.44895999850323,
+        "beta_rms_deg": 56.598639807172894,
+        "beta_peak_deg": 104.68317043817508,
+        "steering_rms_deg": 9.387045445684086,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.6325,
+        "feasible": false
+      }
+    },
+    {
+      "client": "heavy_05",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 1.1678678391767532,
+      "rmse": 1.1678678391767532,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "b844623c88c101cab9117fc14b1e371aba38b8a81cc0379642c452fae0785446",
+        "integral": "b8bec0958177b1900a67ae5eca3814522c6e0d81587df2c48b5ef5fb16063f7a",
+        "steering": "3d5d74a3a904936654f3db5734e7d33e77b126d3d8b6b063efdda3e79834a457",
+        "raw_steering": "5ade8908aba1d6f393082c629adfcab0d06e9f3a751c4afe5c744d0118facff4"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 1.1678678391767532,
+        "tracking_peak_deg_s": 7.037571909291891,
+        "beta_rms_deg": 0.9222305849434036,
+        "beta_peak_deg": 2.636987963010627,
+        "steering_rms_deg": 2.9030531165577855,
+        "steering_peak_deg": 10.94433158052921,
+        "steering_rate_peak_deg_s": 119.99999999999999,
+        "saturation_fraction": 0.0016666666666666668,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_06",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.04144285601696288,
+      "rmse": 0.04144285601696288,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "72d21faab42e808e9e9ddc990b4c129c330e37cb8acec320cd7c4a7a8b29d021",
+        "integral": "482612c052015555e7a32075c7809249f394bf76b9a44731d486a7451aabf359",
+        "steering": "4b66aa1ac04a7b19d3f8b4292457b53d52784a48035dacae15baac74eb267022",
+        "raw_steering": "4b66aa1ac04a7b19d3f8b4292457b53d52784a48035dacae15baac74eb267022"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.04144285601696288,
+        "tracking_peak_deg_s": 0.11883959892731345,
+        "beta_rms_deg": 0.46452702903157933,
+        "beta_peak_deg": 1.3265380886874958,
+        "steering_rms_deg": 0.5201977422206586,
+        "steering_peak_deg": 1.2673312448176277,
+        "steering_rate_peak_deg_s": 3.3151744348102192,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_06",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.14134143862853804,
+      "rmse": 0.14134143862853804,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "52fdc229b2a4b2d194178f360fd95074c3cca33e8e1f601c1754ee5b1c82cb43",
+        "integral": "213ad8f3ba94d950c70e46f6f9e75069f830d1ac923c1bbe0936b6548f46919e",
+        "steering": "48294ff33389291364f44d13f2b30cd30609e698aa079c348ecb3fad599c0a96",
+        "raw_steering": "48294ff33389291364f44d13f2b30cd30609e698aa079c348ecb3fad599c0a96"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.14134143862853804,
+        "tracking_peak_deg_s": 0.6646914815259373,
+        "beta_rms_deg": 0.8979042023570718,
+        "beta_peak_deg": 2.60551620510592,
+        "steering_rms_deg": 2.973272611531421,
+        "steering_peak_deg": 11.190777164137229,
+        "steering_rate_peak_deg_s": 16.042338575701823,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_07",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.04551481978059231,
+      "rmse": 0.04551481978059231,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "8505ca8a9922568fa6484b1c2270f0640f8c90674199a9084d02b4ae2b76c228",
+        "integral": "f87b77300bb02c1804d0e97820cca5cb363cf05bf7405fce21ea404c0b05d415",
+        "steering": "c66003b95bd49527e3a4d77652b96fd4d0da832a329d9498bdb34ec767e58a3b",
+        "raw_steering": "c66003b95bd49527e3a4d77652b96fd4d0da832a329d9498bdb34ec767e58a3b"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.04551481978059231,
+        "tracking_peak_deg_s": 0.12082907480123876,
+        "beta_rms_deg": 0.47322177984576075,
+        "beta_peak_deg": 1.3465257250753553,
+        "steering_rms_deg": 0.49744208555896235,
+        "steering_peak_deg": 1.2096222103023002,
+        "steering_rate_peak_deg_s": 3.2397417702139184,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_07",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.15464198932582027,
+      "rmse": 0.15464198932582027,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "f0b94ce8f6991fb62491be34cbd314b8e1584606afc928df1db509d98bcb39b4",
+        "integral": "634a095260009f534f3af1c36365e226d3afb562fb8c93d2c0572e9b449685ca",
+        "steering": "9be048a9f505650466c20895713e75a2062a4b5ea1e7cd4c332fa73467b96d85",
+        "raw_steering": "9be048a9f505650466c20895713e75a2062a4b5ea1e7cd4c332fa73467b96d85"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.15464198932582027,
+        "tracking_peak_deg_s": 0.7257272845152583,
+        "beta_rms_deg": 0.9276875991897401,
+        "beta_peak_deg": 2.66826650812026,
+        "steering_rms_deg": 2.89432478795628,
+        "steering_peak_deg": 10.989703032261511,
+        "steering_rate_peak_deg_s": 15.775044036991869,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_08",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 30.97734724423199,
+      "rmse": 30.97734724423199,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "5e85f7e446b35f57d2e1e10fda44752b291356fe443469f513d2759defd45e9a",
+        "integral": "4266c8b3183c5414d824b880ddfa0c57dbecb58628d9f74c55b4e892da82f44e",
+        "steering": "6323d6f778d995fda9227b1a2c8a0ab6538190578a33c3150536c0efda77e3fe",
+        "raw_steering": "5506621f3d31ec9e939d72ec0be2b627bf3c173431d8f6ee0079516696afb75e"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 30.97734724423199,
+        "tracking_peak_deg_s": 73.21335162804496,
+        "beta_rms_deg": 26.305813434027844,
+        "beta_peak_deg": 45.85801854076044,
+        "steering_rms_deg": 9.926593700620778,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.7391666666666666,
+        "feasible": false
+      }
+    },
+    {
+      "client": "heavy_08",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 28.33328141372325,
+      "rmse": 28.33328141372325,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "6198c053e4270f54ec26f981388352adc31f31a626269a5f9355e9118878be8f",
+        "integral": "f1d51f2052cfbdfcc162573401fe01e07c20da35a93d01f73c02266035a60739",
+        "steering": "3997aa2d02a77c8f187ec978b2314be92aa50fbd5cd6005bc7426a5f88de16e8",
+        "raw_steering": "3dd2313488aef41b9b95ce24180cdc11287c30571ad2e2cdfffe085fdb25be7c"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 28.33328141372325,
+        "tracking_peak_deg_s": 65.1313402039203,
+        "beta_rms_deg": 6.824874698779367,
+        "beta_peak_deg": 23.95732810324482,
+        "steering_rms_deg": 8.134080646229602,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.5091666666666667,
+        "feasible": false
+      }
+    },
+    {
+      "client": "heavy_09",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.04023032408938633,
+      "rmse": 0.04023032408938633,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "23602dc19218f6095385999973c167f198755402babaa00f7473ef1a6509ad30",
+        "integral": "dfd75c8c92459cfd20f45f1460a7cda72956b9a69093738f9fdf18d61cc765d7",
+        "steering": "b6274e4336ac20d37386963dbd91dacc8b4f8b313a002be4433e7adeda317029",
+        "raw_steering": "b6274e4336ac20d37386963dbd91dacc8b4f8b313a002be4433e7adeda317029"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.04023032408938633,
+        "tracking_peak_deg_s": 0.11776625564172419,
+        "beta_rms_deg": 0.4889209114635347,
+        "beta_peak_deg": 1.388622421453924,
+        "steering_rms_deg": 0.47964994804535876,
+        "steering_peak_deg": 1.1684331510090629,
+        "steering_rate_peak_deg_s": 3.2317582796360034,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "heavy_09",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.12720312275060608,
+      "rmse": 0.12720312275060608,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "5391629f0eb30b75c951d8f77ccc0dd140753ab109fe0455873d2274257d6d31",
+        "integral": "ce1b083887cf8f663f0ca7f4e31e371adafe3cf353b0596a8c27600a191f1bff",
+        "steering": "834aa2742e0ed2007792a35732dc97c740719369f63b16b66751541e5046cce0",
+        "raw_steering": "834aa2742e0ed2007792a35732dc97c740719369f63b16b66751541e5046cce0"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.12720312275060608,
+        "tracking_peak_deg_s": 0.589587292333626,
+        "beta_rms_deg": 0.9641648173435254,
+        "beta_peak_deg": 2.7519424411508715,
+        "steering_rms_deg": 2.809723964623253,
+        "steering_peak_deg": 10.70843276209028,
+        "steering_rate_peak_deg_s": 15.385040982350128,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_00",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.03373861803931323,
+      "rmse": 0.03373861803931323,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "3d9fc4cf9e91d8298e1d21a74f815bf14110828209d8bb60c1cb54b52481db3e",
+        "integral": "b4dc78de0ab18b415adacaba7588c76b84b9d2c81a10aab82af1c770eeada1d4",
+        "steering": "37d8bc467ace8c577a9ce45171eb825a6812fcf41b800237bdfdee6797b65f2d",
+        "raw_steering": "37d8bc467ace8c577a9ce45171eb825a6812fcf41b800237bdfdee6797b65f2d"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.03373861803931323,
+        "tracking_peak_deg_s": 0.08939747909022956,
+        "beta_rms_deg": 0.33713684016615975,
+        "beta_peak_deg": 0.9978709283008406,
+        "steering_rms_deg": 0.6615302790715879,
+        "steering_peak_deg": 1.6231369049411406,
+        "steering_rate_peak_deg_s": 3.982218966284768,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_00",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.18601796765919762,
+      "rmse": 0.18601796765919762,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "050739d3c41aa77da2d017aaad31ac9fedd53c65338ee7e87511af3e061e4f97",
+        "integral": "22d7d8e08a51f1ea081ac9305710c420b639f89c47143f6a80fec5d7d726a6ca",
+        "steering": "bc287608aa8417861e983826c6efd3e41542cce57889e625acb5e4f7c5a6aee2",
+        "raw_steering": "f5eaa00b664cd7b68c54491cb23e39c84d661fa6911ac6958ec581510078f1d0"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.18601796765919762,
+        "tracking_peak_deg_s": 0.7627772159989028,
+        "beta_rms_deg": 0.634047187332914,
+        "beta_peak_deg": 1.7922113187628734,
+        "steering_rms_deg": 3.4073204847131793,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 20.84828917411003,
+        "saturation_fraction": 0.016666666666666666,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_01",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.06462965023459658,
+      "rmse": 0.06462965023459658,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "a6070348795da993d7cf7368d7e39ef4fd9a457d3de3c8b919da08a41c83be8a",
+        "integral": "03f62424b3fefe40672c33247729aeaac828ef141ae0e3f94ebd2bb2af1d7fa4",
+        "steering": "cfbed6d3641eafb4a97b61520715f794b2f68933d9059e64297304d1c7b0e9ea",
+        "raw_steering": "cfbed6d3641eafb4a97b61520715f794b2f68933d9059e64297304d1c7b0e9ea"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.06462965023459658,
+        "tracking_peak_deg_s": 0.20790066197568471,
+        "beta_rms_deg": 0.35169424862449217,
+        "beta_peak_deg": 1.037883779564636,
+        "steering_rms_deg": 0.6339141316299528,
+        "steering_peak_deg": 1.5582094347687783,
+        "steering_rate_peak_deg_s": 3.8270604952071037,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_01",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.502800205559071,
+      "rmse": 0.502800205559071,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "4ff26bd9f1f2ffb1321f09cd90bd9fcaf629b210afa74fdfed62dedc288c49f3",
+        "integral": "da5d65506fc8d16f4e1696b1b86b561be2641d2a5ef88150dd3255314f8309a3",
+        "steering": "aece9835121936b7746eee45b22dffb0f9d56d5fb3d1aa75faeb7d32cb24774e",
+        "raw_steering": "aece9835121936b7746eee45b22dffb0f9d56d5fb3d1aa75faeb7d32cb24774e"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.502800205559071,
+        "tracking_peak_deg_s": 1.7506550759592985,
+        "beta_rms_deg": 0.6508695154160866,
+        "beta_peak_deg": 1.8423530282488687,
+        "steering_rms_deg": 3.2973647279167486,
+        "steering_peak_deg": 11.820137423595195,
+        "steering_rate_peak_deg_s": 16.330360636541595,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_02",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 6.855462638932143,
+      "rmse": 6.855462638932143,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "cbdb66c23fc37dff0080899d740d78f0bfb8a7a57b8f87889609ec87a7ddaef5",
+        "integral": "192a0fe40a406b06447a7206b176c137906879b604fa01a1579fe50bcfa47878",
+        "steering": "c47d57c03ac12e47020c8b5c5d54f642a46c3ecd033ee7dae83e1a1f1fc3ec8c",
+        "raw_steering": "8e1dbf009460de165bf0af072b53ccd3745e292a6872217638b7d99af2fa24bb"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 6.855462638932143,
+        "tracking_peak_deg_s": 26.320860799094305,
+        "beta_rms_deg": 1.0562408042463196,
+        "beta_peak_deg": 4.0443613994803025,
+        "steering_rms_deg": 1.3063084996409726,
+        "steering_peak_deg": 6.88457428037925,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.009166666666666667,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_02",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.15794817737673195,
+      "rmse": 0.15794817737673195,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "21f708cc401bb2c3aabee7ecbcb3be5f14f2c2a1281d00ed4493a83307678a3e",
+        "integral": "4f2b573a9763206087db302c7637b033bd71a2ed8464b51057330b94dcab0efb",
+        "steering": "484d514339adff94951a788aeeac8c6072a39656227d545df85bff8552fa6fb8",
+        "raw_steering": "484d514339adff94951a788aeeac8c6072a39656227d545df85bff8552fa6fb8"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.15794817737673195,
+        "tracking_peak_deg_s": 0.7321841119192882,
+        "beta_rms_deg": 0.633771763549067,
+        "beta_peak_deg": 1.7967706866134265,
+        "steering_rms_deg": 3.219304083627377,
+        "steering_peak_deg": 11.773630298536705,
+        "steering_rate_peak_deg_s": 16.75936680455002,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_03",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 17.69322707011355,
+      "rmse": 17.69322707011355,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "a05d1481656692ae14fdb58402c823e38fd1262295e6541f37fa9e371d6e9f00",
+        "integral": "565af0a4c4b65ee2bd2a425d75f1cfc0a44871b952a1ae86b97b732a94077cf7",
+        "steering": "5d261d9409ae944ab73cc53e0dd0c4cea4090a226a590848375e63bdd8e83e67",
+        "raw_steering": "b00039cf14331531a94640b501dd952dc66c6cf7ade2f60baa7cd30dbd2dedd9"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 17.69322707011355,
+        "tracking_peak_deg_s": 52.14963899234532,
+        "beta_rms_deg": 6.474744158783398,
+        "beta_peak_deg": 20.496627166150212,
+        "steering_rms_deg": 5.613581817598639,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.22,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_03",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 12.730286090185205,
+      "rmse": 12.730286090185205,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "82bfef9d91c5704aed5d7e104b7766725216484649be3880bc4afcd6db9f5994",
+        "integral": "d182e52c3cbefe6e627464e0a223508679d9adf17da6da29b379782dbd21657d",
+        "steering": "85474bcf7c262742b84c888800824324c6d2e430fff54de0547c36307200f060",
+        "raw_steering": "032ce3c3995d17207eacf6fecd74d8140bf3d327f53f9fb0454cc922fd807321"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 12.730286090185205,
+        "tracking_peak_deg_s": 46.843967811623536,
+        "beta_rms_deg": 2.8528970884165736,
+        "beta_peak_deg": 8.331561111624952,
+        "steering_rms_deg": 5.0508531212509835,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.2608333333333333,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_04",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.05304686661934066,
+      "rmse": 0.05304686661934066,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "d9fbce01169db1655fee35f4339132fe7a0818ac051635449a3004c6c9b903f2",
+        "integral": "a61e89f1ec176ded29c780f9b0a3a9acce0483d75f79969ca0ed3ffc4659817e",
+        "steering": "7f43159372be04805cd075aa16453b1ddc1e51b51651826f6b2f7bbc9ebd6774",
+        "raw_steering": "7f43159372be04805cd075aa16453b1ddc1e51b51651826f6b2f7bbc9ebd6774"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.05304686661934066,
+        "tracking_peak_deg_s": 0.1362313206384291,
+        "beta_rms_deg": 0.3648899662896526,
+        "beta_peak_deg": 1.070031490304501,
+        "steering_rms_deg": 0.6020654189821318,
+        "steering_peak_deg": 1.4655104970400168,
+        "steering_rate_peak_deg_s": 3.6099208743116518,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_04",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.26276792624408013,
+      "rmse": 0.26276792624408013,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "dd3286fd6d5c82216b837ccaf5b8a51768b4523a5c205410ec67bc74f88eab2b",
+        "integral": "a0a8c4e07b1828c382219337550bba77b0012a6026ece4544005c43aad1a4666",
+        "steering": "5c67219deebea79cd1e76fc6fa680d1e64b83ec2ae2079f0a5efaa17a1c94cbe",
+        "raw_steering": "5c67219deebea79cd1e76fc6fa680d1e64b83ec2ae2079f0a5efaa17a1c94cbe"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.26276792624408013,
+        "tracking_peak_deg_s": 1.0800829994010637,
+        "beta_rms_deg": 0.6743980640299219,
+        "beta_peak_deg": 1.9757740438806952,
+        "steering_rms_deg": 3.2243269749131147,
+        "steering_peak_deg": 11.762738828525926,
+        "steering_rate_peak_deg_s": 16.526070395497925,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_05",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 32.1223143657411,
+      "rmse": 32.1223143657411,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "b2f2d938d2e3c21943b18e2b8f073c3f2868074870b0a08d78218bc7847ce6f0",
+        "integral": "bcd1f7e573c2ed8ca0f13a417bc4aa6cb65894bcf7a911e7650e554bf70c4c02",
+        "steering": "af5bbea278cf6004ffb341f4c77df88670347274b4c6bb761a9c4d7a9e367723",
+        "raw_steering": "3a30c4c68394c18b50b95c048675f32fa0978e536cd0a9a4e2d0b51cf1bb44bc"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 32.1223143657411,
+        "tracking_peak_deg_s": 69.6462994220857,
+        "beta_rms_deg": 44.20250515202327,
+        "beta_peak_deg": 80.50373123050356,
+        "steering_rms_deg": 9.820279695725771,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.7016666666666667,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_05",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 28.683418902926036,
+      "rmse": 28.683418902926036,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "74a5a8bd97fa43b6520fe84a9927db1d8a6158219b348eb02e3bb83bb7ea4d3a",
+        "integral": "72e5012bbf9fafbed6d8d1a91f0a4aba9544e66dcc13ba41905134b680cc4eb8",
+        "steering": "36ab25a87f19c2897ce225b43020ca925a60edf680d2a120a4e67fbb2d42d154",
+        "raw_steering": "01da8cbe4e7df6608856e6bba38c7a60af874a42b214807744bb1c9a37cb4c94"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 28.683418902926036,
+        "tracking_peak_deg_s": 68.01274228615635,
+        "beta_rms_deg": 4.141499360291398,
+        "beta_peak_deg": 15.823235468664164,
+        "steering_rms_deg": 7.934273045171368,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.5266666666666666,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_06",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.04997395312037872,
+      "rmse": 0.04997395312037872,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "eccc2f3620d05626415bf5da584b29838f4db27df929577697e252731934f36b",
+        "integral": "eec2e778d322304344e20bb8b4aca9810f71f844064650e8076561793b5a8966",
+        "steering": "ad10c2ef437e9dc0dd7b291df8a414a76d2ad06f2e9596cd93edffb5abb3257c",
+        "raw_steering": "ad10c2ef437e9dc0dd7b291df8a414a76d2ad06f2e9596cd93edffb5abb3257c"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.04997395312037872,
+        "tracking_peak_deg_s": 0.11823596445236977,
+        "beta_rms_deg": 0.3604649503410827,
+        "beta_peak_deg": 1.0585788045608544,
+        "steering_rms_deg": 0.6174493112020956,
+        "steering_peak_deg": 1.5049153210095478,
+        "steering_rate_peak_deg_s": 3.701682483493078,
+        "saturation_fraction": 0.0,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_06",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.20656614497673856,
+      "rmse": 0.20656614497673856,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "9ee0c2deff515f6e01ddba13ed25102471c83974ab2dc09e9e4c886e1d079141",
+        "integral": "90e8ba6b74ee2ca90831f67c374ddd2c85577b190864a20902740749b3d46f7e",
+        "steering": "8515b91a1a8b2eba4a9f52eda71a0fd13131233b19d1b06d341cbb3240b9f6ec",
+        "raw_steering": "3f33af772097cca5689da5e945057c73ed68261e122322b20e80e21c2516b6a3"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.20656614497673856,
+        "tracking_peak_deg_s": 0.8495633419427508,
+        "beta_rms_deg": 0.6669383364353896,
+        "beta_peak_deg": 1.955340231088703,
+        "steering_rms_deg": 3.289557767353913,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 17.306730050559207,
+        "saturation_fraction": 0.009166666666666667,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_07",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 26.945738437062854,
+      "rmse": 26.945738437062854,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "b6637a7135edabcb90de79d691b9747529767b0af2a81ab1348885fa59edb110",
+        "integral": "8a9f9de27150c0a804b59c278087de8408f82c5afb3815799c32e081f0cb0c1d",
+        "steering": "9a841a2d3cbf017f44de8a51e573bedd02ee1e785be49692297c2978cf96e308",
+        "raw_steering": "7300a04a0d2ab7338e2c45c45e495518829edcb564eb1b98a3adca0f0b3ef4b9"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 26.945738437062854,
+        "tracking_peak_deg_s": 57.72328250542276,
+        "beta_rms_deg": 7.096547340610565,
+        "beta_peak_deg": 16.322368321213702,
+        "steering_rms_deg": 8.700031016572396,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.58,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_07",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 29.14422556507554,
+      "rmse": 29.14422556507554,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "11fcf359494da0a1c9ba1f8634b43c250e4b84941c19c01f669b3c75157bd88d",
+        "integral": "2ccffa26b202cbeaa07303520f917f1cb4eaa64db1f1387a5e777dd45758dc47",
+        "steering": "77724f3e3f1c99767c84b0a17410758a58c4bf1c93ec24f0431fdac97dd803e3",
+        "raw_steering": "c669b1879b943f256ef56df837930b358652434df156ed8a7995b5d08e793afc"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 29.14422556507554,
+        "tracking_peak_deg_s": 60.54030835786666,
+        "beta_rms_deg": 4.994457872206797,
+        "beta_peak_deg": 13.9064434317604,
+        "steering_rms_deg": 8.494503262802791,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.5916666666666667,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_08",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 23.581757386397815,
+      "rmse": 23.581757386397815,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "6379d17c0babb64fe62a4234010abbdbef1827e7337f7840bef0da82a37cffc8",
+        "integral": "1d14a5b025b12662ecdde3b0e4c841eafd36822cf1fb05998f0b79d163cb7182",
+        "steering": "32512f31cc0d3927246993dd22d4874c70f4346d4ba324a8056b034df3eee449",
+        "raw_steering": "d04d6fa53df4d582e285454831c5dafcf1c6c5f15aee64add0b48ece0d9a911c"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 23.581757386397815,
+        "tracking_peak_deg_s": 58.32749655625078,
+        "beta_rms_deg": 8.847757519003448,
+        "beta_peak_deg": 20.71365541389412,
+        "steering_rms_deg": 8.38954893516941,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.5733333333333334,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_08",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": false,
+      "feasible": false,
+      "old_rmse": 22.768381097099603,
+      "rmse": 22.768381097099603,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "5449ef6df0fed36c10efd9640c1fbaac583c8c4ef55b726c69233934cf76ee67",
+        "integral": "356519c86bab986769c2bcb14b1437781b1a8a711f46a529eabb90809d58245f",
+        "steering": "8decb42e2da7465d3f8209d0f187a6ce9112941526c1df2503552f273c982b90",
+        "raw_steering": "b55e6654dc75aa2cdd73aba7b8e2c315d66721690c38e79a02af7fabf5ae3b7c"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 22.768381097099603,
+        "tracking_peak_deg_s": 54.414756537797935,
+        "beta_rms_deg": 4.914780520906406,
+        "beta_peak_deg": 16.265805592044785,
+        "steering_rms_deg": 7.322510284920838,
+        "steering_peak_deg": 12.000000000000002,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.3825,
+        "feasible": false
+      }
+    },
+    {
+      "client": "handling_09",
+      "scenario": "moderate",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.07540461361973254,
+      "rmse": 0.07540461361973254,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "101f9d54aac4183f8f413129fb8d073faba4c6faeb7d941c2f116fb4a9eb5e92",
+        "reference": "18fa0b9216f442e98a87ec1adc7da8704fc0e03cca532fc875623872251d2e40",
+        "state": "dcf5d5832edccb9d748a71385573281fdfed2df3d8ef5157f2ec05664c396c17",
+        "integral": "ee6610b2c6d6934cfb61211ed813e33ad8434944659271ddca38386d36038cf1",
+        "steering": "d7cdab5a16e724e781537d3671c95d5ef2c2f1d72c6ed7fe8774d9f198515fd0",
+        "raw_steering": "fb0fb7a0628f23d7aafeb89778efa3bd7dfbe6ae4f7506851d1b2e4dc5284fe6"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.07540461361973254,
+        "tracking_peak_deg_s": 0.23459514126911032,
+        "beta_rms_deg": 0.34822437673922263,
+        "beta_peak_deg": 1.0282417999445268,
+        "steering_rms_deg": 0.7168898795208216,
+        "steering_peak_deg": 1.6289372002249278,
+        "steering_rate_peak_deg_s": 119.99999999999999,
+        "saturation_fraction": 0.24083333333333334,
+        "feasible": true
+      }
+    },
+    {
+      "client": "handling_09",
+      "scenario": "hard",
+      "status": "complete",
+      "old_feasible": true,
+      "feasible": true,
+      "old_rmse": 0.17311474743983687,
+      "rmse": 0.17311474743983687,
+      "rmse_difference": 0.0,
+      "hash_matches": {
+        "time": true,
+        "speed": true,
+        "reference": true,
+        "state": true,
+        "integral": true,
+        "steering": true,
+        "raw_steering": true
+      },
+      "replay_hashes": {
+        "time": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0",
+        "speed": "3e2461e13d1b9b9cbfa4e7780ec648ee126bf100ebf9817b78cf1c0580b99b96",
+        "reference": "894867feb1c5f60311924ecfaa071429b60f5cfe42528f28e19568cff26c2ed2",
+        "state": "3b662c2271b32300fe7e51b94dba025c3504370fa46ac58bbfb9d681bcea1638",
+        "integral": "84e5edb789f5aaf62d4c690466d758cd915de9c6fb7a18be34100a1dadc370cf",
+        "steering": "68fbaa652ead79198a6d89fb94d21cb8bdf00e0a039b9a6ecd5faa5b6e1b485e",
+        "raw_steering": "a8072ecd2f272ac13c4db8d78262d57835434d53c8a20a5f3cc5d5f715a11917"
+      },
+      "metrics": {
+        "tracking_rmse_deg_s": 0.17311474743983687,
+        "tracking_peak_deg_s": 0.5226997533934709,
+        "beta_rms_deg": 0.6444475442513974,
+        "beta_peak_deg": 1.8266032566110042,
+        "steering_rms_deg": 3.319151222473166,
+        "steering_peak_deg": 11.897294305225325,
+        "steering_rate_peak_deg_s": 120.00000000000001,
+        "saturation_fraction": 0.10583333333333333,
+        "feasible": true
+      }
+    }
+  ],
+  "input_reference": "results/tables/paper_smooth_replay_execution_reference.json"
+}
