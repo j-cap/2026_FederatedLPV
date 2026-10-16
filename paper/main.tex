@@ -336,9 +336,8 @@ Light shading marks each observed block; short green marks identify its
 observed grid speeds. Curves average clients within block and fleet,
 then across ten fleets; bands are pointwise 95\% fleet-bootstrap intervals
 from 20,000 draws. The logarithmic axis retains Restricted Local extrapolation
-failure. Smooth Local uses a development-selected curvature penalty and
-the same recipient targets. These curves and Fig.~\ref{fig:fleet-client}
-summarize the primary cohort.}
+failure. Insets show Global, Grouped, and Smooth Local on a linear 0--10\%
+scale with identical averaging and bands. Smooth Local uses the frozen curvature prior.}
 \label{fig:coverage}
 \end{figure*}
 
@@ -414,12 +413,14 @@ Full-envelope matrix error is evaluated on the common speed grid:
 Here $\mathcal V_{\rm grid}=\{10,12,\ldots,30\}$ m/s and $s$ indexes fleets.
 The metric uses the stated physical coordinates without entry
 normalization. It is coordinate dependent and does not directly measure
-tracking performance. A post-hoc sensitivity check averages
-$\sqrt{\frac16\sum_{j=1}^{6}[(\widehat m_{ij}(v)-m^\star_{ij}(v))/d_j]^2}$
-over the same pairs. Each fixed $d_j$ is the RMS reference entry across
-saved development fleets 321--330 and all eleven speeds; evaluation data do
-not select scales. This balances entry magnitudes without defining a
-control-weighted norm. Entry diagnostics use mean absolute error (MAE).
+tracking performance. A post-hoc check averages
+\[
+ e_i^{\rm sc}(v)=\sqrt{\frac16\sum_{j=1}^{6}
+ \left(\frac{\widehat m_{ij}(v)-m^\star_{ij}(v)}{d_j}\right)^2}
+\]
+over the same pairs. Each $d_j$ is the RMS reference entry across development
+fleets 321--330 and all eleven speeds. These fixed scales balance entries,
+without defining a control-weighted norm. Entry diagnostics use mean absolute error (MAE).
 Observed/unobserved-speed summaries average only their respective
 client-speed pairs within each fleet. Reported errors average $E_s$
 over ten independent fleets. For method $M$ and baseline $B$, reported
@@ -541,17 +542,16 @@ and unobserved regions. Mean paired gains over Restricted Local and Global are
 \IdentLocalGain\% and \IdentGlobalGain\%, respectively.
 The Global-relative 95\% interval is $[\IdentGlobalLow,\IdentGlobalHigh]\%$,
 with improvement in eight of ten fleets. Two groups are selected in eight
-fleets and one in two. Recipient-only fits are more accurate at their own
-observed speeds, whereas sharing substantially reduces Restricted Local's unsupported
-extrapolation error. Grouped sharing additionally reduces Global's pooling
+fleets and one in two. Local methods have lower mean observed-speed error than grouped fitting
+under the primary metric (Table~\ref{tab:id}).
+Sharing substantially reduces Restricted Local's unsupported extrapolation error. Grouped sharing additionally reduces Global's pooling
 error. Figure~\ref{fig:coverage} locates these changes relative to each
 client block. Figure~\ref{fig:fleet-client}(a) shows the paired fleet
 errors, including the two $K=1$ ties. Aggregate improvement does not
 extend to every client: 169 clients improve, 60 are numerical ties, and
 \PrimaryUnseenWorseClients\ have larger unobserved-speed error than Global.
-Figure~\ref{fig:fleet-client}(b) shows this tradeoff. Its 300 client
-clients are nested within ten fleets and are descriptive, rather than
-independent replicates for confidence intervals.
+Figure~\ref{fig:fleet-client}(b) shows this tradeoff. The 300 simulated clients are nested within ten fleets; confidence intervals
+resample fleets, not clients.
 
 Prior-centered Local changes unobserved-speed error by only
 \ReviewUnseenLocalChange~percentage points. Its prior's observed-target
@@ -709,9 +709,9 @@ Weights were selected using only ExactLPV performance on development
 seeds 381--385, subject to feasibility and saturation checks. A weaker
 maneuver pilot on seeds 391--400 was discarded before the final confirmation.
 Neither grouped-versus-Global results nor confirmation fleets select weights.
-Smooth Local additionally reuses these fleets and calibration targets with
-frozen $\alpha=10^6$, evaluating its map at all grid nodes. No weights, penalties,
-or fallbacks are retuned; this adds a comparator, not an independent cohort.
+Smooth Local uses the same fleets and targets, frozen $\alpha=10^6$, and
+all grid nodes. The common controller protocol remains frozen; this is neither
+a separately tuned comparison nor an independent cohort.
 
 With $r_k^{\rm ref}=a_{y,k}^{\rm req}/v_k$, the runtime law is
 \begin{equation}
@@ -787,11 +787,10 @@ schedules synthesize and 600 rollouts finish numerically, but
 $\SmoothUnstable/300$ clients have frozen-point radius at least one
 (maximum $\SmoothRadius$). Sideslip violations affect
 $\SmoothFailedModerate/300$ moderate and $\SmoothFailedHard/300$ hard runs.
-Severe tails dominate Table~\ref{tab:control}; client-instance median RMSEs
-are $\SmoothMedianModerate$ and $\SmoothMedianHard$ degrees/s. Excursions
-beyond the bound mark failed responses, not credible vehicle behavior.
-The tested prior does not reliably support this frozen synthesis protocol;
-other priors and separately tuned controllers remain untested.
+Severe tails dominate Table~\ref{tab:control}; client median RMSEs are
+$\SmoothMedianModerate$ and $\SmoothMedianHard$ degrees/s. Bound violations
+mark failed responses, not credible vehicle behavior. This prior is unreliable
+under the frozen protocol; other priors and separately tuned controllers remain untested.
 
 Using archived original profiles, vehicle parameters, and saved schedules,
 all \ReplayExactCount\ Smooth Local trajectories and tracking metrics
