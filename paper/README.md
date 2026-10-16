@@ -112,3 +112,10 @@ after completing the actual author list and affiliations and reviewing metadata.
 The official IV 2027 pages checked on 13 October 2026 did not supply complete
 author instructions; anonymity is prepared following IV 2026 guidance and must
 be checked against the eventual IV 2027 instructions before submission.
+
+The original-input Smooth Local replay resolves the previous trajectory mismatch
+for the compared platforms: all 600 trajectory hashes and tracking metrics match
+when exported original profiles are used. Section VI now explains the earlier
+profile-regeneration difference and preserves Table V's executed numbers.
+`python paper/check_original_replay_integration.py` verifies the new claims;
+see [controlled replay resolution](../docs/paper_smooth_original_input_replay.md).

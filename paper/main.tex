@@ -12,6 +12,7 @@ pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete spee
 \input{robustness_numbers}
 \input{smooth_lqi_numbers}
 \input{diagnostic_numbers}
+\input{original_replay_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
@@ -792,11 +793,11 @@ beyond the bound mark failed responses, not credible vehicle behavior.
 The tested prior does not reliably support this frozen synthesis protocol;
 other priors and separately tuned controllers remain untested.
 
-Saved-map equations, schedules, and summaries were audited. A saved-schedule
-replay of fleet 411 agrees in all 60 feasibility flags but not trajectory
-hashes; individual RMSE differences reach $\SmoothReplayDifference$ degrees/s.
-Table~\ref{tab:control} retains executed results. Sensitive failed responses
-limit precise tail-error interpretation; feasibility is the main finding.
+Using archived original profiles, vehicle parameters, and saved schedules,
+all \ReplayExactCount\ Smooth Local trajectories and tracking metrics
+reproduce bitwise across the tested platforms. Regenerated profiles differed
+in speed by $\ReplaySpeedDifference\times10^{-15}$ m/s, amplifying numerical
+differences. Table~\ref{tab:control} retains the original results.
 \section{Discussion and Conclusion}
 Complementary speed blocks supply missing local directions, while grouping
 reduces aggregate pooling error relative to Global. The primary advantage
