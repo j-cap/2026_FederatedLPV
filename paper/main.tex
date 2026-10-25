@@ -1,6 +1,10 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
 \usepackage{balance}
+\usepackage{xcolor}
+% Set \revisioncolor to black after reviewing the highlighted introduction.
+\definecolor{revisionblue}{RGB}{0,70,170}
+\newcommand{\revisioncolor}{revisionblue}
 \usepackage[caption=false,font=footnotesize]{subfig}
 \captionsetup[subfloat]{farskip=0pt,captionskip=2pt}
 \usepackage[hidelinks]{hyperref}
@@ -58,28 +62,52 @@ heterogeneous vehicles
 \end{IEEEkeywords}
 
 \section{Introduction}
-Vehicles with speed-dependent and heterogeneous dynamics may observe only
-narrow speed regions. LPV identification then requires complementary
-scheduling information while avoiding bias from pooling incompatible dynamics.
+\begingroup\color{\revisioncolor}
+A vehicle calibrated over a narrow speed range may need a dynamics model
+for control over a wider range. Low-speed measurements, for example, constrain
+the local lateral response but leave high-speed behavior uncertain. More data
+at the same speeds reduce noise but cannot determine missing scheduling
+directions. The goal is to obtain a model over the wider interval without
+requiring every vehicle to supply calibration records throughout it.
 
-Basis-dependent LPV identification requires scheduling excitation
-\cite{toth2010lpv,bamieh2002}. Local approaches identify fixed-operating-point
-models before constructing a scheduling-dependent map \cite{ferranti2017}.
-Federated learning retains records locally \cite{mcmahan2017fedavg}.
-For heterogeneous systems, FedSysID quantifies the tradeoff between
-collaboration and model bias \cite{wang2023fedsysid}. IFCA alternates client
-assignment and cluster-model updates \cite{ghosh2020ifca}.
-Clustered SysID applies alternating assignment and estimation to linear
-time-invariant (LTI) systems
-with identical dynamics within each true cluster, providing conditional
-recovery and sample-complexity guarantees \cite{toso2023clusteredsysid}.
-IC-SYSID adds incremental cluster formation and stability promotion,
-including a vehicle-fleet study \cite{kececi2025clustercraft}.
-The vehicle study in \cite{weber2026ifac} uses uncertainty-aware grouping for controller
-design. Here the central question is whether sharing
-can identify an LPV map when each client lacks scheduling directions, rather
-than how uncertainty in locally estimated dynamics informs grouping for
-controller design.
+A fleet offers complementary measurements, but differences in mass, inertia,
+and tire properties make indiscriminate pooling biased. Selective sharing must
+combine complementary speed coverage with compatible dynamics, while inferring
+compatibility from partial observations. We ask whether groups learned from
+these observations improve models at locally unobserved speeds compared with
+local extrapolation and fleet-wide pooling.
+
+LPV identification provides a representation of scheduling-dependent dynamics
+\cite{toth2010lpv,bamieh2002}, including approaches that construct maps from
+local state-space estimates \cite{ferranti2017}. Federated learning allows
+collaboration while retaining records locally \cite{mcmahan2017fedavg}.
+FedSysID characterizes the tension between collaboration and heterogeneous
+system dynamics \cite{wang2023fedsysid}. IFCA alternates cluster assignment
+and model optimization \cite{ghosh2020ifca}, and Clustered SysID applies
+alternating assignment and estimation to LTI systems with identical dynamics
+within each true cluster \cite{toso2023clusteredsysid}.
+IC-SYSID adds incremental clustering and stability promotion
+\cite{kececi2025clustercraft}, while the vehicle study in
+\cite{weber2026ifac} uses uncertainty-aware grouping for controller design.
+Here the additional issue is that each client's scheduling design is
+deficient: grouping must reconcile dynamical compatibility with complementary
+operating coverage. The cited recovery guarantees do not establish recovery
+under our fixed deficient speed supports and approximate shared maps.
+
+We formulate federated LPV matrix regression in common physical-state
+coordinates. Clients exchange additive statistics of local matrix estimates
+and score group maps at their observed speeds. Alternating assignment and
+fitting yields maps over the wider interval without complete local maps or family labels.
+This specializes an established clustering structure. We contribute an LPV
+formulation and controlled evidence on when sharing supplies missing scheduling
+information, how pooling bias limits its benefit, and which recipients deteriorate.
+Proposition~1 states the conditional rank requirement. Vehicle experiments
+compare local priors and global pooling, audit group coverage, and stress
+coverage and calibration quality. LQI tests assess downstream usability.
+The scope is controlled calibration with available states. Group maps
+approximate individual dynamics, without ensuring improvement for every recipient.
+Figure~\ref{fig:overview} summarizes the procedure.
+\endgroup
 
 \begin{figure*}[t]
 \centering
@@ -96,29 +124,6 @@ The envelope is 10--30\,m/s along the prescribed cornering curve; LQI checks
 downstream usability.}
 \label{fig:overview}
 \end{figure*}
-
-Here each client's fixed speed support leaves its LPV scheduling design
-deficient. Repeating transitions at those speeds reduces noise but cannot
-identify the missing coefficient directions. Compatible pooling can supply
-them, conditional on group coverage, while within-group variation remains.
-The unresolved issue is whether assignment from partial-speed targets can
-produce groups that are both sufficiently compatible and collectively
-informative across the speed interval. With common physical-state coordinates,
-we specialize the established alternating assignment and estimation structure
-to LPV matrix regression. The cited recovery guarantees do not establish
-recovery for our fixed deficient scheduling supports and approximate shared
-maps. Our contribution is the LPV formulation and controlled evidence for
-this joint limitation; Proposition~1 states the conditional rank requirement,
-while the experiments assess its satisfaction and the remaining pooling bias.
-Figure~\ref{fig:overview} summarizes the procedure.
-
-Blocked-speed validation separates representation error from missing
-information. Additive statistics and local scores implement grouped regression
-without full local coefficient maps or family labels; centralized agreement
-checks implementation. Paired fleet comparisons and group-rank audits assess
-coverage and compatibility, while fresh stress tests bound their benefit.
-Speed-scheduled linear-quadratic-integral (LQI) control tests downstream
-usability on nonlinear vehicles.
 
 \section{Identification Problem}
 \subsection{Available states and incomplete speed coverage}
