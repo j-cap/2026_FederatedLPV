@@ -147,76 +147,103 @@ downstream usability.}
 \end{figure*}
 
 \section{Identification Problem}
-\subsection{Available states and incomplete speed coverage}
-Client $i$ has sideslip angle $\beta$, yaw rate $r$, state $x=[\beta,r]^\top$,
-steering input $u$, and
-longitudinal speed $v$. The benchmark uses radians for $\beta,u$ and rad/s
-for $r$. At a fixed cornering equilibrium, local perturbations satisfy
-approximately
+\begingroup\color{\revisioncolor}
+\subsection{Local calibration information}
+Consider a fleet of $M$ vehicles indexed by $i\in\{1,\ldots,M\}$.
+The target speed interval is $\mathcal V=[v_{\min},v_{\max}]$, where
+$0<v_{\min}<v_{\max}$. Each vehicle has state $x_i=[\beta_i,r_i]^\top\in\R^2$,
+containing sideslip angle $\beta_i$ and yaw rate $r_i$, and steering input
+$u_i\in\R$. States, steering, and speed are available during calibration.
+At a fixed speed $v$, let $x_i^\star(v)$ and $u_i^\star(v)$ denote a prescribed
+cornering equilibrium. Define deviations $\Delta x_{i,k}=x_{i,k}-x_i^\star(v)$
+and $\Delta u_{i,k}=u_{i,k}-u_i^\star(v)$, where $k$ indexes sampled transitions.
+The local discrete-time approximation is
 \begin{equation}
  \Delta x_{i,k+1}=A_i(v)\Delta x_{i,k}+B_i(v)\Delta u_{i,k}+e_{i,k},
  \label{eq:transition}
 \end{equation}
-where $A_i,B_i$ are discrete-time matrices and $e_{i,k}$ includes nonlinear
-approximation error and next-state observation noise. Here
-$\Delta x=x-x_i^\star(v)$ and $\Delta u=u-u_i^\star(v)$ are deviations
-from the prescribed cornering equilibrium; the calibration workflow is
-specified in Section~\ref{sec:calibration}. Define
-$m_i(v)=[A_{11},A_{12},A_{21},A_{22},B_1,B_2]$.
-The learned group assignment $g_i$ defines the approximation
-\begin{equation}
- m_i(v)\approx \phi(v)^\top\Theta_{g_i},\qquad
- \Theta_g\in\R^{L\times6}.
- \label{eq:map}
-\end{equation}
-Shared maps retain within-group approximation error. Each client provides matrix estimates at
-speeds in $\mathcal V_i\subset\mathcal V=[10,30]$ m/s. ``Full envelope''
-means this speed interval along the prescribed cornering curve, rather
-than an arbitrary nonlinear state/input domain.
+where $A_i(v)\in\R^{2\times2}$ and $B_i(v)\in\R^{2\times1}$ describe
+perturbation dynamics. The residual $e_{i,k}\in\R^2$ includes nonlinear
+approximation error and next-state observation noise. Let $m_i(v)\in\R^{1\times6}$ collect these matrix entries at speed $v$,
+in the order $[A_{i,11},A_{i,12},A_{i,21},A_{i,22},B_{i,1},B_{i,2}]$.
 
-\subsection{Fixed representation and local estimation}
-The scheduling span contains $L=7$ functions:
+Vehicle $i$ supplies calibration records at the finite speed set
+$\mathcal V_i=\{v_{i,1},\ldots,v_{i,n_i}\}\subset\mathcal V$, where $n_i$
+is the number of observed speeds. At each such speed, stack the rows
+$[\Delta x_{i,k}^\top,\Delta u_{i,k}]$ into $Z_i(v)$ and the corresponding
+observed next-state deviations into $X_{i,+}(v)$. For $N_i(v)$ records,
+these matrices have dimensions $N_i(v)\times3$ and $N_i(v)\times2$.
+Ordinary least squares (OLS) estimates the local matrices:
 \begin{equation}
- b(v)=[1,v^{-1},v^{-2},z,z^2,z^3,z^4]^\top,\quad z=(v-20)/10.
- \label{eq:basis}
-\end{equation}
-Let the rows of $B_{\rm ref}$ be $b(v)^\top$ on a fixed 401-point uniform
-10--30 m/s grid, with thin QR factorization $B_{\rm ref}=QR$.
-The implemented row basis is $\phi(v)^\top=b(v)^\top R^{-1}$.
-This invertible transform changes conditioning, not the represented span.
-Development-only blocked-speed validation selects $L=7$ for cornering,
-while the straight-line negative control retains $[1,v^{-1},v^{-2}]$.
-No control comparison selects the representation.
-
-At each observed speed, a client stacks 36 independent transitions.
-With rows $[\Delta x_k^\top,\Delta u_k]$ in $Z$ and next-state rows in
-$X_+$, ordinary least squares (OLS) gives
-\begin{equation}
- \widehat C=\arg\min_C\|X_+-ZC\|_F^2,\qquad
- [\widehat A,\widehat B]=\widehat C^\top.
+ \begin{aligned}
+ \widehat C_i(v)&=\arg\min_{C\in\R^{3\times2}}
+ \|X_{i,+}(v)-Z_i(v)C\|_F^2,\\
+ [\widehat A_i(v),\widehat B_i(v)]&=\widehat C_i(v)^\top.
+ \end{aligned}
  \label{eq:local}
 \end{equation}
-In the primary study, current state/input regressors are exact, and only
-next-state targets receive noise. The resulting matrix estimates and their
-speeds are the group-regression targets. Vehicle parameters, exact evaluation
-matrices, and family labels
-do not enter that fitting or assignment interface.
+Here $\|\cdot\|_F$ is the Frobenius norm. We require $\rank Z_i(v)=3$
+for a unique local OLS solution. Vectorizing the estimates in the order of
+$m_i(v)$ gives $\widetilde m_i(v)$. The local identification data are
+$\mathcal D_i=\{(v,\widetilde m_i(v)):v\in\mathcal V_i\}$.
 
-The benchmark supplies centering equilibria from simulator parameters.
-Section~\ref{sec:robustness-protocol} separately perturbs current measurements
-and assumed centers. Estimating these centers from ordinary driving remains
-unvalidated.
-The clients contributing calibration records also receive the fitted maps.
-Evaluation at additional speeds tests generalization across operating
-conditions. Each fresh fleet repeats identification and grouping; transfer
-of a fixed model library to new recipients is not evaluated.
+\subsection{Incomplete scheduling information and shared maps}
+Let $\phi(v)\in\R^L$ be a fixed vector of $L$ linearly independent scheduling functions,
+common to all vehicles. Define $\Phi_i\in\R^{n_i\times L}$ by row
+$\ell$ equal to $\phi(v_{i,\ell})^\top$, and $Y_i\in\R^{n_i\times6}$
+by row $\ell$ equal to $\widetilde m_i(v_{i,\ell})$, for
+$\ell=1,\ldots,n_i$. The setting of interest has
+\begin{equation}
+ \rank\Phi_i<L.
+ \label{eq:local-deficiency}
+\end{equation}
+Consequently, a nonzero coefficient perturbation $U_i\in\R^{L\times6}$
+can satisfy $\Phi_iU_i=0$: coefficient maps that differ by $U_i$ agree
+at every locally observed speed but can disagree elsewhere. More records
+at those speeds improve the matrix estimates without removing this scheduling
+ambiguity. Full rank of $Z_i(v)$ and full rank of $\Phi_i$ therefore address
+different requirements: local state/input excitation and speed coverage.
+
+Sharing introduces $K$ group maps, where $g_i\in\{1,\ldots,K\}$ is
+vehicle $i$'s assignment and $\Theta_g\in\R^{L\times6}$ contains the
+coefficients of group $g$. Write
+\begin{equation}
+ m_i(v)=\phi(v)^\top\Theta_{g_i}+d_i(v),
+ \label{eq:map}
+\end{equation}
+where $d_i(v)\in\R^{1\times6}$ represents basis approximation error and
+the difference between individual and shared dynamics. Complementary supports
+can remove missing scheduling directions in a pooled design. However,
+sharing also couples vehicles through a common approximation. The residual
+$d_i(v)$ expresses the resulting recipient-dependent mismatch, distinct from
+noise in the estimated targets $Y_i$.
+
+\subsection{Identification objective and scope}
+Given the distributed datasets $\mathcal D_i$, we seek a group count $K$,
+assignments $g_i$, and coefficient matrices $\Theta_g$ that provide each
+recipient with a map $\widehat m_i(v)=\phi(v)^\top\widehat\Theta_{g_i}$
+throughout $\mathcal V$. The scientific objective is to improve identification
+at locally unobserved speeds $\mathcal V\setminus\mathcal V_i$, while limiting
+the mismatch introduced by pooling heterogeneous vehicles. Those speeds
+have no local fitting targets. Section~III therefore fits observed data and
+selects groups from their residuals; the evaluation tests whether this
+procedure improves predictions outside each local support.
+
+Vehicles retain calibration records locally and exchange the statistics and
+scores defined in Section~III. Vehicle parameters, exact evaluation matrices,
+and family labels do not enter that fitting or assignment interface. The
+contributing vehicles also receive the maps. We evaluate generalization across
+speeds within each fleet, with identification repeated for each fresh fleet.
+Transfer of a fixed model library to new recipients is outside this study.
+``Full envelope'' denotes the target speed interval along the prescribed
+cornering curve. It does not denote an arbitrary nonlinear state/input domain.
+\endgroup
 
 \section{Federated Compatible Regression}
 \subsection{Additive fitting and conditional identifiability}
-Let $n_i=|\mathcal V_i|$ denote the number of observed speeds, not the number
-of transitions. Client $i$ forms $\Phi_i\in\R^{n_i\times L}$ and matrix-entry targets
-$Y_i\in\R^{n_i\times6}$. It contributes
-$G_i=\Phi_i^\top\Phi_i$ and $H_i=\Phi_i^\top Y_i$.
+\textcolor{\revisioncolor}{Using the local scheduling designs $\Phi_i$ and targets
+$Y_i$ defined in Section~II, client $i$ forms the additive statistics
+$G_i=\Phi_i^\top\Phi_i$ and $H_i=\Phi_i^\top Y_i$.}
 For a fixed partition, the group fit is
 \begin{equation}
  \widehat\Theta_g=\left(\sum_{i:g_i=g}G_i+
@@ -409,9 +436,9 @@ fixed for one fourth-order Runge--Kutta (RK4) step of $T_s=0.01$ s, and supplies
  \end{aligned}
  \label{eq:calibration-record}
 \end{equation}
-The rows $[\Delta x_j^\top,\Delta u_j]$ and
-$\widetilde{\Delta x}_{j,+}^\top$ form $Z$ and $X_+$ in
-\eqref{eq:local}; the three-column regressor is checked for full rank.
+\textcolor{\revisioncolor}{The rows $[\Delta x_j^\top,\Delta u_j]$ and
+$\widetilde{\Delta x}_{j,+}^\top$ form $Z_i(v)$ and $X_{i,+}(v)$ in
+\eqref{eq:local}; the three-column regressor is checked for full rank.}
 These records are independently reset transitions, not consecutive driving
 samples. In the primary study, only next-state targets receive noise $\nu_j$.
 Zero-mean independent Gaussian perturbation
@@ -436,6 +463,29 @@ without consulting family labels. Primary fleet seeds are 371--380.
 Development representation selection uses separate seeds 301--310,
 contiguous blocked-speed validation, a one-standard-error rule,
 and a practical relative-error floor of $10^{-4}$.
+
+\begingroup\color{\revisioncolor}
+The target interval is $\mathcal V=[10,30]$ m/s. Angles $\beta,u$ are in
+radians and yaw rate $r$ is in rad/s. The common scheduling basis uses $L=7$
+functions:
+\begin{equation}
+ b(v)=[1,v^{-1},v^{-2},z,z^2,z^3,z^4]^\top,\quad z=(v-20)/10.
+ \label{eq:basis}
+\end{equation}
+The matrix $B_{\rm ref}\in\R^{401\times7}$ has rows $b(v)^\top$ on a
+401-point uniform grid over $\mathcal V$. Its thin QR factorization is
+$B_{\rm ref}=QR$, with $Q\in\R^{401\times7}$ having orthonormal columns
+and invertible $R\in\R^{7\times7}$. We use
+$\phi(v)^\top=b(v)^\top R^{-1}$, which changes conditioning without changing
+the represented span. Development-only blocked-speed validation selects $L=7$
+for cornering; the straight-line negative control retains $[1,v^{-1},v^{-2}]$.
+Control comparisons do not select the representation.
+The primary study uses exact current state/input regressors and noisy next-state
+targets, with $N_i(v)=36$ independently reset transitions per observed speed.
+Centering equilibria are supplied from simulator parameters.
+Section~\ref{sec:robustness-protocol} perturbs current measurements and assumed
+centers. Estimating centers from ordinary driving remains unvalidated.
+\endgroup
 
 \subsection{Endpoints, averaging, and baselines}
 Reference matrices $m_i^\star(v)$ are numerical continuous-time Jacobians
