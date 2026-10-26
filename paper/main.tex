@@ -1,6 +1,7 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
 \usepackage{balance}
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage{xcolor}
 % Set \revisioncolor to black after reviewing the highlighted revisions.
 \definecolor{revisionblue}{RGB}{0,70,170}
@@ -322,28 +323,7 @@ The server standardizes each entry across clients to zero mean and unit
 variance, uses unit scale for constant entries, and applies K-means.
 This scaling is separate from $D$. No complete local LPV map is needed.
 
-\begin{table}[t]
-\color{\revisioncolor}
-\centering
-\caption{Federated group-regression procedure.}
-\label{tab:algorithm}
-\begin{minipage}{.97\columnwidth}\footnotesize
-\textbf{Inputs:} Local designs $\Phi_i$, targets $Y_i$, candidate
-$K=1,\ldots,5$, minimum group size five vehicles.\\
-\textbf{1.} Aggregate local statistics and target moments. Fit Global,
-broadcast it, and collect residual summaries.\\
-\textbf{2.} For each $K$, use one initialization for $K=1$ or twelve
-seeded K-means initializations otherwise.\\
-\textbf{3.} Alternate group-statistic solves, map broadcasts, local score
-returns, and hard assignments. Stop at unchanged assignments or 30
-iterations. Discard a restart if any group has fewer than five vehicles.\\
-\textbf{4.} Refit the final admissible partition if needed. Choose the
-lowest-BIC initialization for each $K$, then the lowest-BIC $K$.\\
-\textbf{Outputs:} Group maps and client assignments, including $K=1$.
-\end{minipage}
-\end{table}
-
-Table~\ref{tab:algorithm} summarizes the search. Define the residual sum
+Algorithm~\ref{alg:federated-lpv} summarizes the search. Define the residual sum
 $\mathrm{SSE}=\sum_{i=1}^{M}q_{i,g_i}$ and scalar target count
 $n=6\sum_i n_i$. The Bayesian information criterion (BIC) score is
 \begin{equation}
@@ -358,6 +338,54 @@ selects the restart and $K$, including global pooling at $K=1$.
 Neither global optimality nor physical-family recovery is guaranteed.
 Minimum group size does not ensure full scheduling rank, which is checked
 separately, not enforced during the search.
+
+\begin{algorithm}[t]
+\color{\revisioncolor}
+\SetAlCapFnt{\footnotesize\color{\revisioncolor}}
+\SetAlCapNameFnt{\footnotesize\color{\revisioncolor}}
+\SetKwComment{Phase}{}{}
+\SetCommentSty{textbf}
+\DontPrintSemicolon
+\caption{Federated LPV Identification with Learned Groups}
+\label{alg:federated-lpv}
+\footnotesize
+\KwIn{Local designs $\Phi_i$ and targets $Y_i$, $i=1,\ldots,M$;
+common basis and regularization $\rho$.}
+\KwOut{Selected $K$, assignments $g_i$, and maps $\widehat\Theta_g$,
+$g=1,\ldots,K$.}
+\Phase{Prepare statistics and initialization summaries}
+\textbf{Clients:} send $G_i=\Phi_i^\top\Phi_i$, $H_i=\Phi_i^\top Y_i$,
+row counts, and target entry sums and squared sums\;
+\textbf{Server:} fit Global $\widehat\Theta_0$ by~\eqref{eq:fed} with all
+vehicles; compute $D$ (Section~III-B); broadcast both\;
+\textbf{Clients:} send mean residuals $a_i$ from~\eqref{eq:initial-summary}\;
+\textbf{Server:} standardize the entries of $a_i$ across clients\;
+\Phase{Search group counts and initial assignments}
+\For{$K=1,\ldots,5$}{
+  Use one start for $K=1$ and 12 seeded starts otherwise\;
+  \For{each start}{
+    \textbf{Server:} set $g_i=1$ if $K=1$; otherwise initialize
+    by K-means on the standardized summaries\;
+    \For{$t=1,\ldots,30$}{
+      \textbf{Discard this start} if any group has fewer than five vehicles\;
+      \textbf{Clients:} send $G_i,H_i$ and current group tags\;
+      \textbf{Server:} fit each group by~\eqref{eq:fed}; broadcast all maps\;
+      \textbf{Clients:} return scores $q_{ig}$ from~\eqref{eq:score} for every group\;
+      \textbf{Server:} assign each $i$ to the lowest-scoring group,
+      choosing the lowest index in a tie\;
+      \textbf{Break} if no assignment changed\;
+    }
+    \textbf{Discard this start} if any final group has fewer than five vehicles\;
+    If the last iteration changed assignments, refit final groups
+    and recompute scores without reassignment\;
+    \textbf{Server:} compute BIC by~\eqref{eq:bic}; save this candidate\;
+  }
+  Keep the lowest-BIC candidate for this $K$, if any\;
+}
+\Phase{Select and distribute the result}
+\textbf{Server:} select the lowest-BIC candidate across $K$;
+return each vehicle's assignment and its group map\;
+\end{algorithm}
 
 \subsection{Exchanged information}
 The messages $G_i$ and $H_i$ contain $L(L+1)/2$ distinct Gram entries
@@ -936,7 +964,6 @@ every entry or recipient. Heavy and handling clients benefit while many
 nominal clients deteriorate; learned groups need not recover physical families.
 Centralized agreement verifies the distributed implementation.
 
-\balance
 The robustness study bounds the benefit: minimum group size does not ensure
 rank, and Global fallback cannot restore fleet-wide missing information.
 Smooth Local wins in that deficient condition; weaker calibration signal-to-noise
@@ -991,4 +1018,5 @@ J.~Weber et al., ``Uncertainty-aware clustered federated identification for
 controller design: Application to lateral dynamics and yaw-rate tracking,''
 accepted for publication in \emph{Proc. IFAC World Congress}, 2026.
 \end{thebibliography}
+\balance
 \end{document}

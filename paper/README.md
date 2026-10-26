@@ -17,6 +17,8 @@ make -C paper
 
 The PDF is `2026_FederatedLPV_identification_draft.pdf`. The unmodified CTAN
 IEEEtran 1.8b class is included and conference formatting is required.
+The algorithm uses the standard `algorithm2e` package
+(available on Overleaf; included in `texlive-science` on Debian/Ubuntu).
 
 The [review revision and run instructions](../docs/manuscript_review_revision.md)
 describe the resolved text issues, the existing-record region analysis, and the
