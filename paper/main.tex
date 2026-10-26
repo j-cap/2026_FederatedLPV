@@ -2,7 +2,7 @@
 \usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
 \usepackage{balance}
 \usepackage{xcolor}
-% Set \revisioncolor to black after reviewing the highlighted introduction.
+% Set \revisioncolor to black after reviewing the highlighted revisions.
 \definecolor{revisionblue}{RGB}{0,70,170}
 \newcommand{\revisioncolor}{revisionblue}
 \usepackage[caption=false,font=footnotesize]{subfig}
@@ -240,97 +240,137 @@ cornering curve. It does not denote an arbitrary nonlinear state/input domain.
 \endgroup
 
 \section{Federated Compatible Regression}
+\begingroup\color{\revisioncolor}
+Using $\Phi_i$ and $Y_i$ from Section~II, we alternate group-map fitting
+and vehicle assignment, then select the group count by penalized residual
+error. These steps use only the locally observed speeds.
+
 \subsection{Additive fitting and conditional identifiability}
-\textcolor{\revisioncolor}{Using the local scheduling designs $\Phi_i$ and targets
-$Y_i$ defined in Section~II, client $i$ forms the additive statistics
-$G_i=\Phi_i^\top\Phi_i$ and $H_i=\Phi_i^\top Y_i$.}
-For a fixed partition, the group fit is
+For a fixed partition, let $\mathcal I_g=\{i:g_i=g\}$ be the set of vehicles
+in group $g$. Its map minimizes the regularized least-squares objective
 \begin{equation}
- \widehat\Theta_g=\left(\sum_{i:g_i=g}G_i+
- (\lambda+\epsilon)I\right)^{-1}\sum_{i:g_i=g}H_i,
+ \widehat\Theta_g=\arg\min_{\Theta\in\R^{L\times6}}
+ \left\{\sum_{i\in\mathcal I_g}\|Y_i-\Phi_i\Theta\|_F^2
+       +\rho\|\Theta\|_F^2\right\},
+ \label{eq:group-objective}
+\end{equation}
+where $\rho=\lambda+\epsilon$, with ridge strength $\lambda=10^{-8}$
+and numerical diagonal adjustment $\epsilon=10^{-12}$. Each matrix target
+has equal weight; local estimation covariances are not used, including in
+the sensitivity study. Client $i$ computes
+$G_i=\Phi_i^\top\Phi_i\in\R^{L\times L}$ and
+$H_i=\Phi_i^\top Y_i\in\R^{L\times6}$. The server sums these statistics
+within each group and solves
+\begin{equation}
+ \left(\sum_{i\in\mathcal I_g}G_i+\rho I_L\right)
+ \widehat\Theta_g=\sum_{i\in\mathcal I_g}H_i,
  \label{eq:fed}
 \end{equation}
-with $\lambda=10^{-8}$ and numerical diagonal $\epsilon=10^{-12}$.
-The same unweighted ridge objective and basis are used in centralized
-and federated grouped fitting. The matrix estimates have equal weight;
-local estimation covariance is not propagated. The sensitivity study retains
-this unweighted rule.
+where $I_L$ is the $L\times L$ identity matrix. For a fixed partition,
+this gives the centralized solution in exact arithmetic without sharing
+$Y_i$. Positive regularization ensures a unique solution even with missing
+information. Identification from the data requires a separate rank condition.
 
 \begin{proposition}
 \label{prop:rank}
-For a fixed partition and exact shared-map targets
-$Y_i=\Phi_i\Theta_g$, the unregularized coefficients are unique if and
-only if the vertically stacked group design has rank $L$, equivalently
-$\rank(\sum_{i:g_i=g}G_i)=L$.
+For a fixed nonempty group $\mathcal I_g$, let $\Phi_g$ be the vertical
+stack of its local designs $\Phi_i$. The unregularized least-squares fit
+($\rho=0$) has a unique minimizer if and only if
+$\rank\Phi_g=L$, equivalently
+$\rank(\sum_{i\in\mathcal I_g}G_i)=L$.
+If, in addition, the targets satisfy $Y_i=\Phi_i\Theta_g$ for every group
+member, that minimizer equals $\Theta_g$.
 \end{proposition}
-\noindent\emph{Justification:} The aggregate Gram matrix is positive definite
-exactly when the stacked design has no nonzero null direction. Otherwise,
-adding a null-direction coefficient matrix leaves all observed predictions
-unchanged. Additivity also makes the centralized and distributed solutions
-identical under the same numerical conventions.
+\noindent\emph{Proof:} The aggregate Gram matrix is $\Phi_g^\top\Phi_g$,
+which is positive definite exactly when $\Phi_g$ has full column rank.
+Otherwise, a nonzero $U\in\R^{L\times6}$ with $\Phi_gU=0$ can be added
+to any minimizer without changing its predictions. For exact shared-map
+targets, $\Theta_g$ achieves zero residual and is therefore the unique
+minimizer in the full-rank case.
 
-This statement is conditional on a partition and model class. It neither
-establishes correct group discovery nor removes pooling bias. Ridge gives
-a numerical answer in deficient groups but does not restore information.
+Pooling can therefore resolve the missing directions in Section~II, but
+full rank does not remove the mismatch $d_i(v)$. Ridge supplies a solution,
+not missing data. The statement does not guarantee group discovery.
 
 \subsection{Assignment and model selection}
-The server derives a common entry scale from additive counts, sums, and
-squared sums of $Y_i$. For entry $j$, let $s_j$ be its pooled standard
-deviation, floored at $0.05$ times the median standard deviation, and set
-$D=\operatorname{diag}(s_1,\ldots,s_6)$. Clients return scores
+Assignment balances the six matrix entries by scaling. For entry
+$j\in\{1,\ldots,6\}$, let $\sigma_j$ be its standard deviation across
+all observed target rows, using the population divisor $\sum_i n_i$.
+The server computes these values from local row counts, entry sums, and
+squared sums. Define
+$s_j=\max\{\sigma_j,0.05\operatorname{median}(\sigma_1,\ldots,\sigma_6)\}$
+and $D=\operatorname{diag}(s_1,\ldots,s_6)$.
+These scales are positive in the evaluated fleets and fixed during each
+search. Given the broadcast maps, client $i$ returns
 \begin{equation}
  q_{ig}=\|(Y_i-\Phi_i\widehat\Theta_g)D^{-1}\|_F^2,
- \qquad g_i\leftarrow\arg\min_g q_{ig}.
+ \quad g=1,\ldots,K,
  \label{eq:score}
 \end{equation}
-Assignment ties choose the lowest group index. The common scaling balances
-entries during assignment; fitting uses entry-wise ridge regression.
-Initial groups come from K-means on
-standardized six-entry client mean residuals around the Global fit.
-The server receives those summaries, not the local matrices themselves.
+and is assigned to the lowest-scoring group, with ties choosing the lowest
+index. Fitting still uses~\eqref{eq:group-objective}.
+
+For initialization, fit all vehicles as one group to obtain the Global map
+$\widehat\Theta_0$. Client $i$ sends its six-entry mean residual
+\begin{equation}
+ a_i=\frac{1}{n_i}\sum_{\ell=1}^{n_i}
+ \left[\widetilde m_i(v_{i,\ell})-
+ \phi(v_{i,\ell})^\top\widehat\Theta_0\right].
+ \label{eq:initial-summary}
+\end{equation}
+The server standardizes each entry across clients to zero mean and unit
+variance, uses unit scale for constant entries, and applies K-means.
+This scaling is separate from $D$. No complete local LPV map is needed.
 
 \begin{table}[t]
+\color{\revisioncolor}
 \centering
 \caption{Federated group-regression procedure.}
 \label{tab:algorithm}
 \begin{minipage}{.97\columnwidth}\footnotesize
-\textbf{Client inputs:} Local speed/matrix pairs, fixed basis, candidate
-$K=1,\ldots,5$, minimum group size five.\\
+\textbf{Inputs:} Local designs $\Phi_i$, targets $Y_i$, candidate
+$K=1,\ldots,5$, minimum group size five vehicles.\\
 \textbf{1.} Aggregate local statistics and target moments. Fit Global,
 broadcast it, and collect residual summaries.\\
 \textbf{2.} For each $K$, use one initialization for $K=1$ or twelve
 seeded K-means initializations otherwise.\\
 \textbf{3.} Alternate group-statistic solves, map broadcasts, local score
 returns, and hard assignments. Stop at unchanged assignments or 30
-iterations. Discard initializations with groups smaller than five.\\
-\textbf{4.} Refit the final admissible partition if needed. Retain the
+iterations. Discard a restart if any group has fewer than five vehicles.\\
+\textbf{4.} Refit the final admissible partition if needed. Choose the
 lowest-BIC initialization for each $K$, then the lowest-BIC $K$.\\
 \textbf{Outputs:} Group maps and client assignments, including $K=1$.
 \end{minipage}
 \end{table}
 
-The BIC score uses the normalized assignment residuals:
+Table~\ref{tab:algorithm} summarizes the search. Define the residual sum
+$\mathrm{SSE}=\sum_{i=1}^{M}q_{i,g_i}$ and scalar target count
+$n=6\sum_i n_i$. The Bayesian information criterion (BIC) score is
 \begin{equation}
  \mathrm{BIC}=n\log\!\left(\max\left\{\mathrm{SSE}/n,10^{-12}\right\}\right)
  +p_K\log n,
  \label{eq:bic}
 \end{equation}
-where $\mathrm{SSE}=\sum_i q_{i,g_i}$, $n=6\sum_i n_i$, and
-$p_K=6LK+K-1$. This is a heuristic
-selection criterion for finite noisy matrix targets and within-group
-variation. It does not certify a likelihood model, global convergence, or
-physical-family recovery. Minimum group size does not imply full scheduling
-rank, so group fit and group information must be assessed separately.
+where $p_K=6LK+K-1$ counts map coefficients plus a nominal mixture-weight
+term. The procedure does not estimate mixture weights; BIC is used as a
+heuristic penalty for these noisy, heterogeneous targets. The lowest score
+selects the restart and $K$, including global pooling at $K=1$.
+Neither global optimality nor physical-family recovery is guaranteed.
+Minimum group size does not ensure full scheduling rank, which is checked
+separately, not enforced during the search.
 
-\subsection{Communication}
-For $L=7$, each local Gram has 28 distinct entries and its right-hand side
-has 42. Target moments, initialization summaries, group tags, assignment
-scores, and model broadcasts also enter the accounting. Including all
+\subsection{Exchanged information}
+The messages $G_i$ and $H_i$ contain $L(L+1)/2$ distinct Gram entries
+and $6L$ right-hand-side entries: 28 and 42 for $L=7$. Communication
+accounting also includes row counts, target moments, initialization
+summaries, group tags, scores, and model broadcasts. Including all
 candidate group counts and restarts, mean label-free traffic is \SearchTraffic~MB
 per fleet at eight bytes per scalar. This exhaustive search is not shown
-to be communication-efficient. The emulator retains raw records locally,
-but informative statistics and scores are shared. No secure aggregation
-or differential privacy is implemented.
+to be communication-efficient. Records and matrix targets stay local in
+the distributed emulator, but the shared statistics can reveal information
+about them. No secure aggregation or differential privacy is implemented.
+The benchmark next tests identification beyond locally observed speeds.
+\endgroup
 
 \section{Benchmark and Evaluation}
 \subsection{Nonlinear vehicles and calibration records}
