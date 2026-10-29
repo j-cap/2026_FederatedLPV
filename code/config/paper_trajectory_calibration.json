@@ -1,0 +1,85 @@
+{
+  "protocol_version": 1,
+  "pilot_seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "confirmation_seeds": [
+    1311,
+    1312,
+    1313,
+    1314,
+    1315,
+    1316,
+    1317,
+    1318,
+    1319,
+    1320
+  ],
+  "smoke_seed": 1300,
+  "profiles": {
+    "gentle": 0.15,
+    "standard": 0.3,
+    "strong": 0.6
+  },
+  "coverage_rng_offset": 730000,
+  "sample_time": 0.01,
+  "curvature_per_m": 0.005,
+  "settle_s": 20.0,
+  "hold_s": 4.0,
+  "center_window_s": 2.0,
+  "turn_ramp_s": 4.0,
+  "excitation_s": 20.0,
+  "taper_s": 2.0,
+  "frequencies_hz": [
+    0.2,
+    0.5,
+    0.9,
+    1.4
+  ],
+  "validation_chirp_hz": [
+    0.15,
+    1.2
+  ],
+  "max_excitation_deg": 0.8,
+  "nominal_wheelbase_m": 2.8,
+  "yaw_kp": 0.25,
+  "yaw_ki": 0.15,
+  "steering_limit_deg": 12.0,
+  "steering_rate_deg_s": 30.0,
+  "max_beta_deg": 5.0,
+  "max_ay": 6.0,
+  "state_noise_deg": [
+    0.01,
+    0.03
+  ],
+  "input_noise_deg": 0.01,
+  "regressor_scales_deg": [
+    0.25,
+    2.0,
+    0.3
+  ],
+  "settling_abs_yaw": 0.001,
+  "settling_relative_yaw": 0.01,
+  "max_quiet_drift": 0.02,
+  "max_scaled_condition": 1000.0,
+  "pilot_fraction": 0.95,
+  "pilot_clean_matrix_error": 0.05,
+  "pilot_sensor_matrix_error": 0.1,
+  "pilot_clean_rollout_nrmse": 0.25,
+  "pilot_sensor_rollout_nrmse": 0.5,
+  "prediction_horizon_s": 1.0,
+  "bootstrap_seed": 20261029,
+  "bootstrap_resamples": 20000,
+  "python_minor": "3.12",
+  "package_versions": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "threadpoolctl": "3.6.0",
+    "matplotlib": "3.10.8"
+  },
+  "scope": "Continuous simulated test-track calibration with available sideslip and prescribed fixed speed; no real-world data, observer, ordinary-driving or controller-performance claim."
+}
