@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "profiles": [
+    "gentle",
+    "standard",
+    "strong"
+  ],
+  "source_sha256": {
+    "code/experiments/paper_trajectory_calibration.py": "3810e2156c71bf9898cbd31ea373996b3995fe2e5b708b1694c31a16b7b25c4c",
+    "code/src/federated_lpv/trajectory_calibration.py": "524f2c5844ea1ca1d75d6f60911f6a00b19f55d724706fbafe31373c77c6fc50",
+    "code/config/paper_trajectory_calibration.json": "3deb11d77a992f7e6c88dda6629f0b940f39e9e91a725cda8d8091ffdd2b5dec",
+    "results/tables/paper_trajectory_calibration_selection.json": "873e9ae0dfd7d1710b1711d292b0b8e74bc393386f652264cf58ef7d7b0096fc"
+  },
+  "baseline_atol": 1e-10,
+  "baseline_rtol": 1e-09,
+  "scope": "Paired post-pilot local diagnostic. Replace only steering measurements, including the quiet input center, by the known applied steering. Preserve all state observations, physical trajectories, timing, fitting method, and source results. No federation or new selection."
+}
