@@ -1,5 +1,23 @@
 # Review point 3: local-baseline near-equivalence and one distinct prior
 
+## Current manuscript presentation (2026-10-29)
+
+Section IV now gives the prior-centered estimator, its local penalty-selection
+rule, and the exact-equality condition in a short diagnostic paragraph. The
+normal-equation and nullspace derivations remain below; Section V reports their
+existing 300-fit verification without referring to a removed manuscript equation.
+The local penalty candidates are $\{10^{-6},10^{-4},10^{-2},1,10^2\}$.
+Three-speed clients use leave-one-speed-out validation against their local
+matrix targets, rebuilding the restricted prior within each fold. Two-speed
+clients use the fixed middle candidate $10^{-2}$.
+
+This is an editorial condensation only. The code, data, coefficients, and
+audited results are unchanged. The remainder records the earlier derivation
+and validation pass; its statements about manuscript placement and pending
+LQI tests describe that earlier revision.
+
+## Original explanation and validation pass
+
 This pass strengthens the explanation and motivation of the matched baseline
 supplement already completed in `0376170`. It reuses that frozen test rather
 than counting it as another experiment or independent confirmation.
