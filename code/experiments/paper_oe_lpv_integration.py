@@ -431,7 +431,7 @@ def smoke_worker():
     with tempfile.TemporaryDirectory(prefix='oe_lpv_smoke_') as tmp:
         path = Path(tmp) / 'report.html'
         write_report([result], cfg, units, sensitivity, per_speed, comparisons, dict(status='synthetic_smoke'), path)
-        if path.read_text().count('<svg') != 3:
+        if path.read_text(encoding='utf-8').count('<svg') != 3:
             raise AssertionError('Missing report plots')
     return dict(status='smoke_passed', scientific_fleets_run=False, report_plots=3)
 

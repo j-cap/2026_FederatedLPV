@@ -104,9 +104,9 @@ def check_checkpoint_corruption_and_stale_provenance_rejected(tmp_path):
     assert integration.read_result(path, 1301, lock) == payload
     with unittest.TestCase().assertRaisesRegex(ValueError, 'Stale'):
         integration.read_result(path, 1301, {'version': 2})
-    saved = json.loads(path.read_text())
+    saved = json.loads(path.read_text(encoding='utf-8'))
     saved['payload']['seed'] = 1302
-    path.write_text(json.dumps(saved))
+    path.write_text(json.dumps(saved), encoding='utf-8')
     with unittest.TestCase().assertRaisesRegex(ValueError, 'Corrupt'):
         integration.read_result(path, 1301, lock)
 
@@ -187,7 +187,7 @@ class IntegrationTests(unittest.TestCase):
             self.assertEqual(saved, payload)
             with patch.object(integration, 'OUT', directory), patch.object(integration, 'REPORT', directory/'report.html'), patch.object(integration, 'preflight', return_value=(cfg, basis, mixture, acquisition_cfg, lock)), patch.object(integration.parent, 'tracked_unchanged', return_value=True):
                 integration.analyze()
-            report = (directory/'report.html').read_text()
+            report = (directory/'report.html').read_text(encoding='utf-8')
             self.assertEqual(report.count('<svg'), 3)
             self.assertTrue((directory/'paper_oe_lpv_integration_fleet_summary.csv').exists())
             self.assertFalse(saved['confirmation_unlocked'])
@@ -200,6 +200,19 @@ class IntegrationTests(unittest.TestCase):
         targets = [np.zeros((3, 6)) for _ in speeds]
         with self.assertRaisesRegex(ValueError, 'Degenerate target scaling'):
             integration.fit_models(speeds, targets, 1300, cfg, basis, mixture)
+
+    def test_smoke_report_with_windows_default_encoding(self):
+        original_open = Path.open
+
+        def windows_open(path, mode='r', buffering=-1, encoding=None, errors=None, newline=None):
+            if 'b' not in mode and encoding in (None, 'locale'):
+                encoding = 'cp1252'
+            return original_open(path, mode, buffering, encoding, errors, newline)
+
+        # Reproduce Windows text decoding while preserving explicit UTF-8 calls.
+        with patch.object(Path, 'open', new=windows_open):
+            result = integration.smoke_worker()
+        self.assertEqual(result['status'], 'smoke_passed')
 
     def test_checkpoint_before_analysis(self):
         with tempfile.TemporaryDirectory() as folder, patch.object(integration, 'OUT', Path(folder)), patch.object(integration, 'preflight', return_value=self.setup):
