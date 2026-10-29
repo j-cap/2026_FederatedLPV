@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "seeds": [
+    1311,
+    1312,
+    1313,
+    1314,
+    1315,
+    1316,
+    1317,
+    1318,
+    1319,
+    1320
+  ],
+  "development_commit": "cc5bf167be8f07aebf1e42d8531fb7ea78ac3b04",
+  "primary_baselines": [
+    "SmoothLocal",
+    "Global"
+  ],
+  "family_alpha": 0.05,
+  "primary_endpoint": "Equal-client mean relative Frobenius A/B error on recipient-unobserved speeds; independent paired fleet differences baseline minus Federated. Two Bonferroni 97.5% two-sided Student-t intervals, simultaneous family 95%. Both lower bounds positive and all ten valid equivalent primary fits required.",
+  "failure_policy": "No cell/fleet exclusion, replacement seeds, retuning, clipping, or global fallback. Failed fits or applied-bound/settling violations block the affected condition for the whole fleet. Report all failures; incomplete primary set cannot support confirmation.",
+  "amendment": "OE-LPV-2: authorize the ten reserved fleets with identical development acquisition and estimation. Recorded actuator limiting allowed with known applied steering, applied bounds and settling required. Historical zero-limiter gate remains failed. No filtering prerequisite.",
+  "scope": "Independent confirmation of identification and LPV sharing only; no controller-benefit claim. Clean-state fits, seven strengths, family labels and full-reference fits remain secondary diagnostics.",
+  "source_sha256": {
+    "code/experiments/paper_oe_lpv_integration.py": "7f836eec0a135c28800be6e38c17f47879acb4e0e8f8a97661016a17a5829ab6",
+    "code/config/paper_oe_lpv_integration.json": "42dbf6f69bc5c71dffea20e30f308f6656218b90f64edd7a3631be8ce3f663ac",
+    "code/src/federated_lpv/vehicle.py": "47d3a5638171d20ce448c7d529b55a9cfb184abb17d5e83e0cb448252bc587d6",
+    "code/src/federated_lpv/control.py": "0637bab6a08714460c7f0ce01540816a3439a837ec9623192c21a476adeda9ec",
+    "code/src/federated_lpv/fixed_lti_identification.py": "03bab39a3ec07308287e16adfb5606e2fa0465167e220238fc80bc75ccbd5807",
+    "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4"
+  }
+}
