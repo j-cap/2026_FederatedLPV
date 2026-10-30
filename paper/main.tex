@@ -151,95 +151,107 @@ downstream usability.}
 
 \section{Identification Problem}
 \begingroup\color{\revisioncolor}
-\subsection{Local calibration information}
-Consider a fleet of $M$ vehicles indexed by $i\in\{1,\ldots,M\}$.
-The target speed interval is $\mathcal V=[v_{\min},v_{\max}]$, where
-$0<v_{\min}<v_{\max}$. Each vehicle has state $x_i=[\beta_i,r_i]^\top\in\R^2$,
-containing sideslip angle $\beta_i$ and yaw rate $r_i$, and steering input
-$u_i\in\R$. States, steering, and speed are available during calibration.
-At a fixed speed $v$, let $x_i^\star(v)$ and $u_i^\star(v)$ denote a prescribed
-cornering equilibrium. Define deviations $\Delta x_{i,k}=x_{i,k}-x_i^\star(v)$
-and $\Delta u_{i,k}=u_{i,k}-u_i^\star(v)$, where $k$ indexes sampled transitions.
-The local discrete-time approximation is
+{\color{\secondrevisioncolor}
+\subsection{Local identification from measured trajectories}
+Consider $M$ vehicles indexed by $i\in\{1,\ldots,M\}$ and the target
+speed interval $\mathcal V=[v_{\min},v_{\max}]$, with
+$0<v_{\min}<v_{\max}$. Vehicle $i$ has state
+$x_i=[\beta_i,r_i]^\top\in\R^2$, comprising sideslip angle $\beta_i$
+and yaw rate $r_i$, and front-wheel steering input $u_i\in\R$.
+Its measurements are $y_{i,k}=x_{i,k}+\nu_{i,k}$, where
+$\nu_{i,k}\in\R^2$ is state measurement noise and $k$ indexes samples.
+Applied steering and longitudinal speed are assumed known.
+
+Vehicle $i$ supplies trajectories at the finite speed set
+$\mathcal V_i=\{v_{i,1},\ldots,v_{i,n_i}\}\subset\mathcal V$, where
+$n_i$ is the number of observed speeds. At each speed $v$, the fitting
+window contains $N_i(v)$ consecutive transitions with measured states
+$y_{i,0},\ldots,y_{i,N_i(v)}$ and applied inputs
+$u_{i,0},\ldots,u_{i,N_i(v)-1}$. Speed is constant within each trajectory.
+Section~IV specifies the maneuvers and fixed nominal acquisition controller.
+
+We identify a two-state affine model by output error (OE), comparing its
+simulated trajectory with the measurements. For one vehicle--speed pair,
+suppress $i$ and $v$ and write
 \begin{equation}
- \Delta x_{i,k+1}=A_i(v)\Delta x_{i,k}+B_i(v)\Delta u_{i,k}+e_{i,k},
+ \widehat x_{k+1}=A\widehat x_k+Bu_k+c,\qquad
+ \widehat x_0=\zeta,
  \label{eq:transition}
 \end{equation}
-where $A_i(v)\in\R^{2\times2}$ and $B_i(v)\in\R^{2\times1}$ describe
-perturbation dynamics. The residual $e_{i,k}\in\R^2$ includes nonlinear
-approximation error and next-state observation noise. Let $m_i(v)\in\R^{1\times6}$ collect these matrix entries at speed $v$,
-in the order $[A_{i,11},A_{i,12},A_{i,21},A_{i,22},B_{i,1},B_{i,2}]$.
-
-Vehicle $i$ supplies calibration records at the finite speed set
-$\mathcal V_i=\{v_{i,1},\ldots,v_{i,n_i}\}\subset\mathcal V$, where $n_i$
-is the number of observed speeds. At each such speed, stack the rows
-$[\Delta x_{i,k}^\top,\Delta u_{i,k}]$ into $Z_i(v)$ and the corresponding
-observed next-state deviations into $X_{i,+}(v)$. For $N_i(v)$ records,
-these matrices have dimensions $N_i(v)\times3$ and $N_i(v)\times2$.
-Ordinary least squares (OLS) estimates the local matrices:
+where $A\in\R^{2\times2}$, $B\in\R^{2\times1}$, $c\in\R^2$, and
+$\zeta\in\R^2$ are fitted jointly. Define
+$W=\operatorname{diag}(\sigma_\beta^{-1},\sigma_r^{-1})$, where
+$\sigma_\beta,\sigma_r>0$ are the specified state measurement noise
+standard deviations. With $N=N_i(v)$, the fitting objective is
 \begin{equation}
- \begin{aligned}
- \widehat C_i(v)&=\arg\min_{C\in\R^{3\times2}}
- \|X_{i,+}(v)-Z_i(v)C\|_F^2,\\
- [\widehat A_i(v),\widehat B_i(v)]&=\widehat C_i(v)^\top.
- \end{aligned}
+ \mathcal L(A,B,c,\zeta)=\frac{1}{2(N+1)}
+ \sum_{k=0}^{N}\|W(\widehat x_k-y_k)\|_2^2,
  \label{eq:local}
 \end{equation}
-Here $\|\cdot\|_F$ is the Frobenius norm. We require $\rank Z_i(v)=3$
-for a unique local OLS solution. Vectorizing the estimates in the order of
-$m_i(v)$ gives $\widetilde m_i(v)$. The local identification data are
-$\mathcal D_i=\{(v,\widetilde m_i(v)):v\in\mathcal V_i\}$.
+where $\|\cdot\|_2$ is the Euclidean norm and $\widehat x_k$ follows
+\eqref{eq:transition} without resetting to measured states. Four initializations,
+including the common nominal model, are optimized; the converged solution
+with the lowest training loss supplies $\widehat A_i(v),\widehat B_i(v)$.
+The offset $c$ avoids requiring a known equilibrium center. Although each
+maneuver starts at zero lateral state, $\zeta$ must describe the fitting
+window's initial state after settling.
 
+Let $A_i(v)\in\R^{2\times2}$ and $B_i(v)\in\R^{2\times1}$ denote
+the reference local perturbation matrices about the prescribed cornering
+condition. Collect their entries in $m_i(v)\in\R^{1\times6}$ in the order
+$[A_{i,11},A_{i,12},A_{i,21},A_{i,22},B_{i,1},B_{i,2}]$.
+The same ordering of the OE estimates gives $\widetilde m_i(v)$.
+These estimates can differ from $m_i(v)$ through measurement noise,
+finite-amplitude approximation, and numerical optimization.
+Only the matrix estimates enter the scheduling dataset
+$\mathcal D_i=\{(v,\widetilde m_i(v)):v\in\mathcal V_i\}$;
+the fitted offsets and initial states remain local.
+}
+
+{\color{\secondrevisioncolor}
 \subsection{Incomplete scheduling information and shared maps}
-Let $\phi(v)\in\R^L$ be a fixed vector of $L$ linearly independent scheduling functions,
-common to all vehicles. Define $\Phi_i\in\R^{n_i\times L}$ by row
-$\ell$ equal to $\phi(v_{i,\ell})^\top$, and $Y_i\in\R^{n_i\times6}$
-by row $\ell$ equal to $\widetilde m_i(v_{i,\ell})$, for
-$\ell=1,\ldots,n_i$. The setting of interest has
+Let $\phi(v)\in\R^L$ contain $L$ linearly independent scheduling functions
+shared by all vehicles. Define $\Phi_i\in\R^{n_i\times L}$ and
+$Y_i\in\R^{n_i\times6}$ with rows $\phi(v_{i,\ell})^\top$ and
+$\widetilde m_i(v_{i,\ell})$, respectively, for $\ell=1,\ldots,n_i$.
+The setting of interest has
 \begin{equation}
  \rank\Phi_i<L.
  \label{eq:local-deficiency}
 \end{equation}
-Consequently, a nonzero coefficient perturbation $U_i\in\R^{L\times6}$
-can satisfy $\Phi_iU_i=0$: coefficient maps that differ by $U_i$ agree
-at every locally observed speed but can disagree elsewhere. More records
-at those speeds improve the matrix estimates without removing this scheduling
-ambiguity. Full rank of $Z_i(v)$ and full rank of $\Phi_i$ therefore address
-different requirements: local state/input excitation and speed coverage.
+A nonzero $U_i\in\R^{L\times6}$ can then satisfy $\Phi_iU_i=0$:
+coefficient maps differing by $U_i$ agree at observed speeds but can
+predict differently elsewhere. Additional samples at the same speeds
+cannot remove this scheduling ambiguity. Local dynamical excitation and
+scheduling coverage are therefore separate requirements.
 
-Sharing introduces $K$ group maps, where $g_i\in\{1,\ldots,K\}$ is
-vehicle $i$'s assignment and $\Theta_g\in\R^{L\times6}$ contains the
-coefficients of group $g$. Write
+For $K$ shared maps, let $g_i\in\{1,\ldots,K\}$ assign vehicle $i$ to
+a group with coefficients $\Theta_{g_i}\in\R^{L\times6}$. Write
 \begin{equation}
  m_i(v)=\phi(v)^\top\Theta_{g_i}+d_i(v),
  \label{eq:map}
 \end{equation}
-where $d_i(v)\in\R^{1\times6}$ represents basis approximation error and
-the difference between individual and shared dynamics. Complementary supports
-can remove missing scheduling directions in a pooled design. However,
-sharing also couples vehicles through a common approximation. The residual
-$d_i(v)$ expresses the resulting recipient-dependent mismatch, distinct from
-noise in the estimated targets $Y_i$.
+where $d_i(v)\in\R^{1\times6}$ combines basis approximation error and
+individual departures from shared dynamics. Complementary speed supports
+can supply missing scheduling directions, but pooling introduces this
+recipient-dependent mismatch, separate from local estimation error in $Y_i$.
 
 \subsection{Identification objective and scope}
-Given the distributed datasets $\mathcal D_i$, we seek a group count $K$,
-assignments $g_i$, and coefficient matrices $\Theta_g$ that provide each
-recipient with a map $\widehat m_i(v)=\phi(v)^\top\widehat\Theta_{g_i}$
-throughout $\mathcal V$. The scientific objective is to improve identification
-at locally unobserved speeds $\mathcal V\setminus\mathcal V_i$, while limiting
-the mismatch introduced by pooling heterogeneous vehicles. Those speeds
-have no local fitting targets. Section~III therefore fits observed data and
-selects groups from their residuals; the evaluation tests whether this
-procedure improves predictions outside each local support.
+Given $\mathcal D_i$, we seek $K$, assignments $g_i$, and coefficients
+$\Theta_g$ yielding $\widehat m_i(v)=\phi(v)^\top\widehat\Theta_{g_i}$.
+Section~III learns these maps from observed targets; evaluation tests
+accuracy at locally unobserved speeds $\mathcal V\setminus\mathcal V_i$
+and the mismatch introduced by pooling.
 
-Vehicles retain calibration records locally and exchange the statistics and
-scores defined in Section~III. Vehicle parameters, exact evaluation matrices,
-and family labels do not enter that fitting or assignment interface. The
-contributing vehicles also receive the maps. We evaluate generalization across
-speeds within each fleet, with identification repeated for each fresh fleet.
-Transfer of a fixed model library to new recipients is outside this study.
-``Full envelope'' denotes the target speed interval along the prescribed
-cornering curve. It does not denote an arbitrary nonlinear state/input domain.
+Trajectories and local estimates stay on device; clients exchange the
+statistics and scores defined in Section~III. Recipient-specific parameters,
+reference matrices, and family labels enter neither local OE fitting nor
+group assignment and regression. Each fresh fleet learns maps for its
+contributing vehicles. Generalization concerns speeds, not transfer of a
+fixed library to new recipients. ``Full envelope'' denotes the speed
+interval along the prescribed cornering curve, not an arbitrary nonlinear
+state/input domain.
+}
 \endgroup
 
 \section{Federated Compatible Regression}
