@@ -255,10 +255,12 @@ state/input domain.
 \endgroup
 
 \section{Federated Compatible Regression}
-\begingroup\color{\revisioncolor}
-Using $\Phi_i$ and $Y_i$ from Section~II, we alternate group-map fitting
-and vehicle assignment, then select the group count by penalized residual
-error. These steps use only the locally observed speeds.
+\begingroup\color{\secondrevisioncolor}
+The local OE estimates in Section~II supply $Y_i$; $\Phi_i$ describes their
+observed speeds. We alternate shared LPV fitting and vehicle assignment,
+then select the group count by penalized residual error. OE offsets and
+initial states remain local; neither unobserved-speed targets nor family
+labels enter the search.
 
 \subsection{Additive fitting and conditional identifiability}
 For a fixed partition, let $\mathcal I_g=\{i:g_i=g\}$ be the set of vehicles
@@ -269,10 +271,10 @@ in group $g$. Its map minimizes the regularized least-squares objective
        +\rho\|\Theta\|_F^2\right\},
  \label{eq:group-objective}
 \end{equation}
-where $\rho=\lambda+\epsilon$, with ridge strength $\lambda=10^{-8}$
-and numerical diagonal adjustment $\epsilon=10^{-12}$. Each matrix target
-has equal weight; local estimation covariances are not used, including in
-the sensitivity study. Client $i$ computes
+where $\|\cdot\|_F$ is the Frobenius norm and $\rho=10^{-8}+10^{-12}$
+combines ridge regularization with a numerical diagonal adjustment.
+Each speed--matrix target has equal weight; OE estimation covariances
+are not used. Client $i$ computes
 $G_i=\Phi_i^\top\Phi_i\in\R^{L\times L}$ and
 $H_i=\Phi_i^\top Y_i\in\R^{L\times6}$. The server sums these statistics
 within each group and solves
@@ -282,9 +284,11 @@ within each group and solves
  \label{eq:fed}
 \end{equation}
 where $I_L$ is the $L\times L$ identity matrix. For a fixed partition,
-this gives the centralized solution in exact arithmetic without sharing
-$Y_i$. Positive regularization ensures a unique solution even with missing
-information. Identification from the data requires a separate rank condition.
+this gives the pooled ridge solution in exact arithmetic without sharing
+$Y_i$. This equivalence concerns regression for the same groups, not
+agreement between independent clustering runs. Positive regularization
+ensures a unique solution; identification from data requires a separate
+rank condition.
 
 \begin{proposition}
 \label{prop:rank}
@@ -303,27 +307,30 @@ to any minimizer without changing its predictions. For exact shared-map
 targets, $\Theta_g$ achieves zero residual and is therefore the unique
 minimizer in the full-rank case.
 
-Pooling can therefore resolve the missing directions in Section~II, but
-full rank does not remove the mismatch $d_i(v)$. Ridge supplies a solution,
-not missing data. The statement does not guarantee group discovery.
+Pooling can resolve the missing scheduling directions in Section~II.
+Full rank alone does not control conditioning, OE error, or the mismatch
+$d_i(v)$. Exact recovery requires unregularized fitting and exact shared-map
+targets, unlike the regularized fits of noisy targets used here.
 
 \subsection{Assignment and model selection}
 Assignment balances the six matrix entries by scaling. For entry
-$j\in\{1,\ldots,6\}$, let $\sigma_j$ be its standard deviation across
+$j\in\{1,\ldots,6\}$, let $\tau_j$ be its standard deviation across
 all observed target rows, using the population divisor $\sum_i n_i$.
 The server computes these values from local row counts, entry sums, and
 squared sums. Define
-$s_j=\max\{\sigma_j,0.05\operatorname{median}(\sigma_1,\ldots,\sigma_6)\}$
+$s_j=\max\{\tau_j,0.05\operatorname{median}(\tau_1,\ldots,\tau_6)\}$
 and $D=\operatorname{diag}(s_1,\ldots,s_6)$.
-These scales are positive in the evaluated fleets and fixed during each
-search. Given the broadcast maps, client $i$ returns
+Unlike the state-noise weights $W$ in OE, $D$ describes target variation
+across the fleet. Its entries are checked to be positive and fixed during
+each search. Given the broadcast maps, client $i$ returns
 \begin{equation}
  q_{ig}=\|(Y_i-\Phi_i\widehat\Theta_g)D^{-1}\|_F^2,
  \quad g=1,\ldots,K,
  \label{eq:score}
 \end{equation}
 and is assigned to the lowest-scoring group, with ties choosing the lowest
-index. Fitting still uses~\eqref{eq:group-objective}.
+index. Fitting uses the unscaled objective~\eqref{eq:group-objective};
+we do not claim that these alternating steps minimize one common objective.
 
 For initialization, fit all vehicles as one group to obtain the Global map
 $\widehat\Theta_0$. Client $i$ sends its six-entry mean residual
@@ -337,33 +344,34 @@ The server standardizes each entry across clients to zero mean and unit
 variance, uses unit scale for constant entries, and applies K-means.
 This scaling is separate from $D$. No complete local LPV map is needed.
 
-Algorithm~\ref{alg:federated-lpv} summarizes the search. Define the residual sum
+Algorithm~\ref{alg:federated-lpv} specifies the search. Define the residual sum
 $\mathrm{SSE}=\sum_{i=1}^{M}q_{i,g_i}$ and scalar target count
-$n=6\sum_i n_i$. The Bayesian information criterion (BIC) score is
+$n=6\sum_i n_i$. The Bayesian information criterion (BIC) based score is
 \begin{equation}
  \mathrm{BIC}=n\log\!\left(\max\left\{\mathrm{SSE}/n,10^{-12}\right\}\right)
  +p_K\log n,
  \label{eq:bic}
 \end{equation}
 where $p_K=6LK+K-1$ counts map coefficients plus a nominal mixture-weight
-term. The procedure does not estimate mixture weights; BIC is used as a
-heuristic penalty for these noisy, heterogeneous targets. The lowest score
-selects the restart and $K$, including global pooling at $K=1$.
-Neither global optimality nor physical-family recovery is guaranteed.
-Minimum group size does not ensure full scheduling rank, which is checked
-separately, not enforced during the search.
+term. Mixture weights are not estimated, and entries of an OE target need
+not be independent. Thus, this score is a complexity penalty rather than
+a likelihood-based guarantee. The lowest score selects the restart and
+$K$, including Global pooling at $K=1$. Neither global optimality nor
+physical-family recovery is guaranteed. Group rank and conditioning are
+diagnosed after selection; minimum group size does not ensure full rank,
+and deficient groups are not replaced by a fallback model.
 
 \begin{algorithm}[t]
-\color{\revisioncolor}
-\SetAlCapFnt{\footnotesize\color{\revisioncolor}}
-\SetAlCapNameFnt{\footnotesize\color{\revisioncolor}}
+\color{\secondrevisioncolor}
+\SetAlCapFnt{\footnotesize\color{\secondrevisioncolor}}
+\SetAlCapNameFnt{\footnotesize\color{\secondrevisioncolor}}
 \SetKwComment{Phase}{}{}
 \SetCommentSty{textbf}
 \DontPrintSemicolon
-\caption{Federated LPV Identification with Learned Groups}
+\caption{Federated Group Learning from Local OE Models}
 \label{alg:federated-lpv}
 \footnotesize
-\KwIn{Local designs $\Phi_i$ and targets $Y_i$, $i=1,\ldots,M$;
+\KwIn{Local designs $\Phi_i$ and OE matrix targets $Y_i$, $i=1,\ldots,M$;
 common basis and regularization $\rho$.}
 \KwOut{Selected $K$, assignments $g_i$, and maps $\widehat\Theta_g$,
 $g=1,\ldots,K$.}
@@ -398,20 +406,21 @@ vehicles; compute $D$ (Section~III-B); broadcast both\;
 }
 \Phase{Select and distribute the result}
 \textbf{Server:} select the lowest-BIC candidate across $K$;
-return each vehicle's assignment and its group map\;
+send assignments $g_i$; clients use their selected broadcast maps\;
 \end{algorithm}
 
 \subsection{Exchanged information}
 The messages $G_i$ and $H_i$ contain $L(L+1)/2$ distinct Gram entries
-and $6L$ right-hand-side entries: 28 and 42 for $L=7$. Communication
-accounting also includes row counts, target moments, initialization
-summaries, group tags, scores, and model broadcasts. Including all
-candidate group counts and restarts, mean label-free traffic is \SearchTraffic~MB
-per fleet at eight bytes per scalar. This exhaustive search is not shown
-to be communication-efficient. Records and matrix targets stay local in
-the distributed emulator, but the shared statistics can reveal information
-about them. No secure aggregation or differential privacy is implemented.
-The benchmark next tests identification beyond locally observed speeds.
+and $6L$ right-hand-side entries: 28 and 42 for $L=7$. Initialization
+also uses one row count, twelve target moments, and six residual-summary
+entries per client. Each assignment step uses $K$ client scores and
+broadcasts $K$ maps of $6L$ entries, with group tags and scales supplied
+as needed. These payloads do not grow with trajectory length, but all
+candidate counts and restarts require communication. We make no claim
+of communication efficiency. Trajectories and matrix targets stay local
+in the distributed emulator; shared statistics can still reveal
+information about them. No secure aggregation or differential privacy
+is implemented.
 \endgroup
 
 \begingroup\color{\revisioncolor}
