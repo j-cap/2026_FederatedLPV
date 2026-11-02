@@ -2,23 +2,46 @@
 
 The current contribution is **full-envelope identification from incomplete local operating coverage**, assuming available two-state lateral observations. The scope decision and evidence boundaries are in [the consolidation](../docs/identification_consolidation.md).
 
-`main.tex` uses the 10A-10E identification chain and 10F as supporting LQI validation. It explicitly describes controlled equilibrium-centered perturbation data, whole-envelope matrix error, client participation in fitting, modest control headroom and the absence of a general stability or privacy guarantee. It is a working draft, not a submission-ready deployment claim.
+`main.tex` now uses fixed-speed output-error (OE) identification from measured
+closed-loop trajectories and known applied steering. Sections II--V describe
+frozen compatible group regression and the ten-fleet identification confirmation.
+Section VI reuses those same frozen maps for matched LQI validation, including
+the original nominal LTI controller. It is a descriptive control extension,
+not a separate independent confirmation. All new manuscript changes are red.
 
-Build and check from the repository root:
+Generate or verify the current manuscript assets from the repository root:
 
 ```bash
-python paper/check_consolidation.py
-python paper/analyze_identification_records.py
-python paper/check_review_integration.py
-python paper/check_local_baseline_integration.py
-python paper/check_robustness_integration.py
+python paper/prepare_oe_confirmation.py
+python paper/prepare_oe_control.py
+python paper/prepare_oe_control.py --check
 make -C paper
 ```
+
+The control generator performs no simulation or model fitting. It verifies the
+audited execution checkpoints and writes `oe_control_numbers.tex` plus
+`results/tables/paper_oe_control_manuscript_manifest.json`. The six-method table
+includes every finite response and reports sideslip violations. The prose states
+paired fleet-relative reductions, small absolute gains over Global, family
+tradeoffs, noise-free feedback and the absence of a stability guarantee.
+See [the audited control analysis](../report/oe_lqi_validation_analysis.html).
+
+The abstract, introduction's implementation claim and contribution list,
+overview caption, and conclusion are aligned with the OE pipeline. Obsolete
+one-step calibration, original control cohorts, nearest-speed fallback and
+legacy robustness claims are removed from the active narrative. Historical
+numerical includes and their audits remain in the repository for provenance,
+but `main.tex` no longer inputs them.
 
 The PDF is `2026_FederatedLPV_identification_draft.pdf`. The unmodified CTAN
 IEEEtran 1.8b class is included and conference formatting is required.
 The algorithm uses the standard `algorithm2e` package
 (available on Overleaf; included in `texlive-science` on Debian/Ubuntu).
+
+## Historical manuscript checkpoints
+
+The notes and checker commands below document earlier drafts and experiment
+chains. They are not the current OE manuscript's build or acceptance checks.
 
 The [review revision and run instructions](../docs/manuscript_review_revision.md)
 describe the resolved text issues, the existing-record region analysis, and the
