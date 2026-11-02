@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "profiles": [
+    "gentle",
+    "standard",
+    "strong"
+  ],
+  "estimator": {
+    "state_noise_deg": [
+      0.01,
+      0.03
+    ],
+    "input_scale_deg": 0.3,
+    "initial_radius_max": 0.995,
+    "diagonal_starts": [
+      0.9,
+      0.98
+    ],
+    "max_nfev": 300,
+    "ftol": 1e-09,
+    "xtol": 1e-09,
+    "gtol": 1e-07
+  },
+  "source_sha256": {
+    "code/config/paper_known_steering_diagnostic.json": "6cee7db8987549025ba9eb2da2239b18a147027280a3254dbbdab636ff4879f6",
+    "code/experiments/paper_known_steering_diagnostic.py": "94626da0f9c86ceb16bca3c23063781655c753297898c271fc0042a1fff6224b",
+    "results/tables/paper_known_steering_diagnostic_analysis.json": "c980fceeed2d260dcf9b23133ff1f8befe342df788c7bf90f94fae40f850cf5a"
+  }
+}

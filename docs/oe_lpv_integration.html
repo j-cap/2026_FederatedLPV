@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OE to federated LPV — integration protocol</title>
+<style>body{margin:0;background:#edf3f7;color:#203345;font:16px/1.6 system-ui}main{max-width:1000px;margin:auto;padding:32px}section{background:white;border-radius:12px;margin:20px 0;padding:24px}h1{line-height:1.2}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:10px;border-bottom:1px solid #ddd}pre{padding:18px;background:#edf3f7;overflow:auto}code{font-size:.9em}a{color:#1767a8}</style></head><body><main>
+<h1>Test the full LPV identification method using the existing OE fits</h1>
+<p>Protocol OE-LPV-1 · development integration · no new trajectories or local optimization</p>
+<section><h2>Scientific question</h2><p>Can learned groups combine locally accurate models from complementary speed regions into better full-envelope LPV models than recipient-only or global fitting? The primary endpoint is matrix error at speeds each recipient did not observe. This tests the paper's identification contribution. A controller-performance comparison is a later step.</p>
+<p>The three development fleets (1301–1303) already provide 249 valid OE fits across 30 clients per fleet. Reuse the saved physical A and B estimates, exact client/coverage mapping and full-grid reference matrices. No raw NPZ files, trajectory regeneration, package changes or additional OE fitting are needed.</p></section>
+<section><h2>Prospective acquisition amendment</h2><p>The original fixed-LTI pilot failed its zero-limiter-activation requirement. That fact and all historical files remain unchanged. For this new integration experiment, recorded actuator limiting is permitted: the estimator received the actual applied input, and all fitting cells must satisfy the original applied steering/rate, sideslip, lateral-acceleration and settling bounds. Reject incomplete or nonfinite inputs for the whole fleet rather than dropping individual cells. Reference-error thresholds and validation tracking errors do not select the data or groups.</p>
+<p>This amendment follows the reviewed development result. It is not an independent validation of acquisition and does not retroactively convert the old failed gate into a pass. Filtering is optional future work. No smooth-driving, real-world-data, observer or LPV-control superiority claim follows from this experiment.</p></section>
+<section><h2>Frozen method and comparisons</h2><p>Use the same nominal 20 m/s LTI model, controller and acquisition implementation already run over 10–30 m/s. Primary local estimates are <code>ClosedOE4</code>, selected by training loss among the original three starts and the added nominal start. No initialization is removed. OE initial states and affine offsets remain local nuisance parameters; only the six physical A/B entries enter LPV regression.</p>
+<table><thead><tr><th>Method</th><th>Purpose</th></tr></thead><tbody>
+<tr><td>RestrictedLocal</td><td>Recipient-only fit in the original three-function span [1, 1/v, 1/v²], original ridge 10⁻⁸.</td></tr>
+<tr><td>SmoothLocal</td><td>Recipient-only seven-function fit with curvature regularization. Inherited strength 10⁶, previously chosen on separate development fleets under the old acquisition. Show all seven original candidate strengths as a sensitivity diagnostic; do not silently retune.</td></tr>
+<tr><td>Global</td><td>One pooled seven-function LPV model across the fleet.</td></tr>
+<tr><td>Federated</td><td>Original sufficient-statistic grouped regression, K=1,…,5, 12 restarts, at most 30 iterations, minimum five clients per group, ridge 10⁻⁸. Select by the original BIC-type training criterion; labels and reference matrices are unavailable to fitting.</td></tr>
+<tr><td>CentralSameGroups</td><td>Independent pooled augmented least-squares solve for the selected federated partition and the identical ridge objective. Check both coefficients and grid predictions at absolute tolerance 10⁻⁸. This does not claim independently rerun clustering gives the same partition.</td></tr>
+<tr><td>FamilyLabels</td><td>Privileged family-label diagnostic, fitted after the primary methods. Not a deployable method or guaranteed upper-performance bound.</td></tr>
+<tr><td>ExactLPV</td><td>Seven-function fit to each client's full-grid reference Jacobians. Approximation reference only; hidden matrices never select the deployable methods.</td></tr>
+</tbody></table><p>The seven-function span is the original fixed-domain QR representation of [1, 1/v, 1/v², z, z², z³, z⁴], z=(v−20)/10. Targets receive equal speed-observation weights, without adding OE covariance weighting.</p>
+<p>Repeat the scheduling comparison with <code>ClosedCleanOLS</code> targets from the same maneuvers as a secondary exact-state diagnostic. This helps distinguish noisy local estimation from coverage/grouping effects; finite-amplitude approximation error remains.</p></section>
+<section><h2>Evaluation and decisions</h2><p>Use the saved 11-speed grid from 10 to 30 m/s. For each region, first average per-speed relative Frobenius matrix errors within each client, then average clients within fleets, then average the three fleets. Report full, locally observed and locally unobserved regions. Keep all client/speed cases, including unstable fitted matrices and rank-deficient learned groups. No clipping or global fallback is introduced.</p>
+<p>Save individual A/B coefficients, matrix errors, separate A and B errors, entrywise absolute errors, spectral radii, group assignments, group ranks/coverage, family and speed-block ARI, candidate scores, and full-search communication counts. Communication is the original protocol-emulator accounting, not a new privacy or network-performance result.</p>
+<p>Show paired gains against RestrictedLocal, SmoothLocal and Global for each fleet, and the descriptive mean/range/win count. Three reused development fleets do not support a new confirmatory significance claim. Do not use a favorable result alone to unlock the untouched 1311–1320 confirmation fleets. Review baseline sensitivity and grouping first, then freeze any required new choices before confirmation.</p></section>
+<section><h2>Efficient Windows run</h2><p>From the repository root in Anaconda Prompt or CMD with conda available:</p>
+<pre>git pull --ff-only
+conda activate federated_lpv
+set OPENBLAS_NUM_THREADS=1
+set OMP_NUM_THREADS=1
+set MKL_NUM_THREADS=1
+python code\experiments\paper_oe_lpv_integration.py preflight
+python code\experiments\paper_oe_lpv_integration.py smoke
+python code\experiments\paper_oe_lpv_integration.py run --workers 3
+python code\experiments\paper_oe_lpv_integration.py status</pre>
+<p>Three workers process one fleet each, with one BLAS thread per worker. The smoke test uses a separate synthetic fixture, including report generation, and writes no scientific results. The production run only fits small scheduling regressions and clustering. Existing valid checkpoints are skipped; corrupt or stale checkpoints stop the run rather than being overwritten. If interrupted, rerun the same command. At most the unfinished fleet is repeated per interrupted worker.</p>
+<p>Save the execution checkpoint before analysis:</p>
+<pre>git add results/tables/paper_oe_lpv_integration_seed1301.json results/tables/paper_oe_lpv_integration_seed1302.json results/tables/paper_oe_lpv_integration_seed1303.json
+git commit -m "Run OE to LPV development integration"
+git push
+python code\experiments\paper_oe_lpv_integration.py analyze
+start report\oe_lpv_integration.html</pre>
+<p>Then commit the generated analysis and HTML:</p>
+<pre>git add results/tables/paper_oe_lpv_integration_analysis.json results/tables/paper_oe_lpv_integration_fleet_summary.csv results/tables/paper_oe_lpv_integration_smooth_sensitivity.csv results/tables/paper_oe_lpv_integration_speed_summary.csv results/tables/paper_oe_lpv_integration_comparisons.csv report/oe_lpv_integration.html
+git commit -m "Analyze OE to LPV development integration"
+git push</pre>
+<p>The analysis command requires unchanged committed execution files. Push completion remains part of the workflow. Hashes normalize CRLF for Windows text checkouts. The run inherits the repository's pinned Python 3.12 environment and checks upstream source/checkpoint provenance.</p></section>
+<section><h2>Reproduction</h2><p>The new stage creates no ignored scientific arrays: its inputs, fitted models and errors are all in JSON checkpoints. Rebuild the HTML and tables with <code>analyze</code>. To repeat the LPV fits, explicitly move the three integration checkpoints aside and run again; hashes prevent accidental replacement of incompatible runs. Elapsed times are informational and may differ.</p>
+<p>If independently inspecting the original full-rate acquisition is desired, the existing command <code>python code\experiments\paper_fixed_lti_identification.py restore-new --workers 3</code> verifies reconstructed arrays against their committed hashes. This has a tested reconstruction path but is not required for this experiment.</p>
+<p><a href="../code/config/paper_oe_lpv_integration.json">Frozen integration settings</a> · <a href="../report/fixed_lti_identification.html">Preceding OE audit</a></p></section>
+</main></body></html>

@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "profile": "gentle",
+  "controller": {
+    "design_speed_mps": 20.0,
+    "parameters": {
+      "mass": 1500.0,
+      "yaw_inertia": 2500.0,
+      "front_length": 1.2,
+      "rear_length": 1.6,
+      "front_stiffness": 80000.0,
+      "rear_stiffness": 80000.0
+    },
+    "q": [
+      25.0,
+      50.0,
+      1000.0
+    ],
+    "r": 0.15
+  },
+  "lateral_acceleration_reference_amplitude": 0.3,
+  "integral_limit": 0.6,
+  "decision": {
+    "minimum_accuracy_fraction": 0.95,
+    "require_all_physical": true,
+    "require_all_settling": true,
+    "failed_fits_count_as_failures": true
+  },
+  "source_sha256": {
+    "results/tables/paper_structured_oe_diagnostic_diagnosis.json": "74c47394e00fb6fa18c2806075e428e42f845d5ed34ca315b2980976eeecf948",
+    "code/src/federated_lpv/vehicle.py": "47d3a5638171d20ce448c7d529b55a9cfb184abb17d5e83e0cb448252bc587d6",
+    "code/src/federated_lpv/control.py": "0637bab6a08714460c7f0ce01540816a3439a837ec9623192c21a476adeda9ec"
+  },
+  "controller_frozen": {
+    "a": [
+      [
+        0.9474916327854614,
+        -0.008925505522501119
+      ],
+      [
+        0.12068289157184614,
+        0.9374347251544742
+      ]
+    ],
+    "b": [
+      0.02421498980169266,
+      0.37353709052160383
+    ],
+    "gain": [
+      0.31864642321226677,
+      2.574641729236667,
+      11.4657949255831
+    ],
+    "prefilter": 2.7424938393631053,
+    "design_speed_mps": 20.0
+  }
+}
