@@ -1,0 +1,52 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Frozen OE–LPV control validation</title>
+<style>body{font:17px/1.6 system-ui,sans-serif;color:#172938;background:#f4f6f8;margin:0}main{max-width:980px;margin:auto;padding:40px 30px 70px}h1{font-size:2.2rem;line-height:1.2}h2{margin-top:2.2em}p,li{max-width:88ch}section{background:white;padding:22px 28px;border-radius:10px;margin:22px 0;border:1px solid #d7e1e8}pre{background:#122c40;color:#f3f8fb;padding:20px;overflow:auto;font:14px/1.6 Consolas,monospace;border-radius:6px}code{font-family:Consolas,monospace}table{border-collapse:collapse;width:100%;font-size:15px}th,td{padding:10px;text-align:left;border-bottom:1px solid #d7e1e8;vertical-align:top}th{background:#edf4f7}.note{border-left:4px solid #148b82;padding-left:18px}.tag{color:#00766b;text-transform:uppercase;font-size:13px;letter-spacing:.1em}a{color:#075e9a}</style>
+<main><p class="tag">Frozen execution protocol · version 1</p><h1>Do OE-derived LPV models improve matched LQI control?</h1>
+<p>This experiment connects the new identification results to the nonlinear control example. It uses the ten saved identification-confirmation fleets (1311–1320), all 30 vehicles per fleet, six controllers and two common maneuvers: <strong>3,600 trajectories</strong>. The scientific trajectories are to be run locally. No outcomes are asserted here.</p>
+<p class="note">These fleets have already been examined for identification accuracy. This is a supporting control comparison, not a new independent control confirmation. No tuning, additional acquisition, OE fitting, clustering, seed replacement or model repair is performed.</p>
+<section><h2>1. Controllers and matching</h2><table><thead><tr><th>Method</th><th>Controller model</th><th>Role</th></tr></thead><tbody>
+<tr><td>NominalLTI</td><td>Exactly the saved nominal model, LQI gain and prefilter at 20 m/s, constant across the speed range.</td><td>Existing acquisition controller.</td></tr>
+<tr><td>RestrictedLocal</td><td>Each recipient’s saved three-function model, evaluated throughout 10–30 m/s.</td><td>Restricted local baseline; no nearest-observed-speed fallback.</td></tr>
+<tr><td>SmoothLocal</td><td>Each recipient’s saved seven-function model with the frozen smoothness strength 10<sup>6</sup>.</td><td>Main local comparison.</td></tr>
+<tr><td>Global</td><td>Saved pooled seven-function model.</td><td>Shared model without groups.</td></tr>
+<tr><td>Federated</td><td>Saved group model selected by the recipient’s frozen assignment.</td><td>Paper method.</td></tr>
+<tr><td>ExactLPV</td><td>Saved seven-function fit to each vehicle’s full reference grid.</td><td>Privileged diagnostic, not a guaranteed lower bound.</td></tr>
+</tbody></table>
+<p>Only the <code>ClosedOE4</code> condition is used. All methods use <strong>Q = diag(25, 50, 1000), R = 0.15</strong>, the acquisition controller’s weights. These are fixed before this experiment, not selected from its performance. They differ from the historical control test’s integral weight of 100.</p>
+<p>The augmented state is [β, r, ξ], with ξ integrating r − r<sub>ref</sub>. The requested steering is −K[β, r, ξ] + F r<sub>ref</sub>; F is the model’s steady yaw-rate prefilter. All scheduled methods use LQI synthesis at 10, 12, …, 30 m/s and linear interpolation of K and F. The homogeneous A/B maps are used; OE nuisance offsets and fitted trajectory initial states are not inserted as deployment corrections.</p>
+<p>Only saved model matrices enter controller synthesis. Vehicle parameters and ExactLPV references enter plant simulation and separate diagnostics. NominalLTI keeps its saved gain and prefilter exactly after a numerical consistency check.</p></section>
+<section><h2>2. Common maneuvers and simulation</h2>
+<p>The two 12-second reference profiles are inherited from <code>experiment_10f_control_relevance.py</code> and frozen as numeric arrays in <code>code/config/paper_oe_lqi_profiles.npz</code>. All methods and clients see exactly the same arrays. Requested yaw rate is r<sub>ref</sub> = vκ, with requested lateral acceleration v²κ.</p>
+<table><tr><th>Maneuver</th><th>Prescribed speed</th><th>Lateral-acceleration reference</th></tr><tr><td>Moderate</td><td>Smooth cosine transitions 11 → 29 → 15 m/s.</td><td>4 sin²(πt/12)[0.72 sin(2π·0.35t) + 0.28 sin(2π·0.72t + 0.4)] m/s².</td></tr><tr><td>Hard</td><td>Smooth cosine transitions 29 → 12 → 28 m/s.</td><td>7[exp(−½((t−3)/0.40)²) − 1.10 exp(−½((t−6)/0.48)²) + 0.80 exp(−½((t−9.2)/0.55)²)] m/s².</td></tr></table>
+<p>Each run starts from β = r = ξ = steering = 0. The saved nonlinear tanh-tire bicycle plant is integrated by RK4 at 0.01 s, holding speed and applied steering constant within each step. Speed is prescribed; this is not a longitudinal-dynamics or full path-tracking validation. True-state feedback is noise-free to isolate the consequences of models learned from noisy identification data. No observer or sensor-robustness claim follows from this test.</p>
+<p>All controllers share steering limits ±12°, rate limits 120°/s, and an integral limit of ±0.6 rad. The rate limit is inherited from the historical control stress test; acquisition used 30°/s. Rate limiting is applied before amplitude clipping. Conditional integration blocks an integral change that would worsen requested-versus-applied steering saturation. Sideslip exceeding 6° marks a finite trajectory infeasible but does not stop it.</p></section>
+<section><h2>3. Outcomes and failure handling</h2>
+<ul><li>A failed synthesis node makes that method/client schedule unavailable for both maneuvers. Every node and its reason remain in the checkpoint. No fallback controller is substituted.</li>
+<li>Full finite trajectories report yaw-rate RMSE and peak error, sideslip, steering effort, steering-rate effort, steering total variation, peak lateral acceleration, and limiter fractions.</li>
+<li>Finite infeasible trajectories keep their full tracking metrics. Numerical failures keep their finite prefix and have null full-duration metrics; they are not assigned zero error or silently discarded.</li>
+<li>Steering limiting is reported separately from feasibility. The sideslip and applied actuator bounds define feasibility; settling is not a requirement for these continuously varying references.</li>
+<li>Frozen-speed spectral radii on 81 speeds are computed using the saved full-reference LPV map. They are diagnostics only: they neither gate rollouts nor certify stability of the nonlinear, varying-speed system.</li></ul>
+<p>After results are committed, report failures, feasibility and limiting before tracking improvements. Summarize finite cases equally by client, then fleet; give availability counts and paired fleet differences against NominalLTI, SmoothLocal and Global. Incomplete pairs must be identified explicitly. This protocol does not support confirmatory p-values or claims based on selectively excluding failed controllers.</p></section>
+<section><h2>4. Run locally — Windows CMD</h2><p>Use the existing pinned <code>federated_lpv</code> environment. Preflight verifies frozen code, profiles, ten input checkpoints, shapes and package versions without designing controllers for the scientific fleets. Smoke uses only a nominal technical fixture in a spawned process and checks UTF-8 persistence and exact trajectory restoration.</p>
+<pre>git pull --ff-only origin main
+conda activate federated_lpv
+set OPENBLAS_NUM_THREADS=1
+set OMP_NUM_THREADS=1
+set MKL_NUM_THREADS=1
+python code\experiments\paper_oe_lqi_validation.py preflight
+python code\experiments\paper_oe_lqi_validation.py smoke
+python code\experiments\paper_oe_lqi_validation.py run --workers 5
+python code\experiments\paper_oe_lqi_validation.py status</pre>
+<p>The runner parallelizes by fleet and limits BLAS to one thread per worker. Progress prints after every saved client. Repeating <code>run --workers 5</code> resumes incomplete fleets and skips completed ones. Each complete fleet has 30 client records and 360 cases. All ten fleets together must show 300 clients and 3,600 cases; “execution_complete” means every case was recorded, not that every controller succeeded.</p>
+<p>An exclusive lock prevents overlapping run/restore jobs. After a hard crash, first stop all workers from that job. Only then, if the stale lock remains, remove <code>results\data\paper_oe_lqi_validation\execution.lock</code> and rerun the command. Do not remove a live job’s lock.</p>
+<p>The numeric package versions are checked against <code>environment.yml</code>. If preflight finds a mismatch, update that environment using <code>conda env update -f environment.yml --prune</code>, then rerun preflight. It also requires Python 3.12.</p></section>
+<section><h2>5. Commit the execution checkpoint before analysis</h2>
+<pre>git add results/tables/paper_oe_lqi_validation_seed*.json
+git diff --cached --stat
+git commit -m "Run frozen OE-LPV matched LQI validation on ten fleets"
+git push origin main</pre>
+<p>The ten JSON checkpoints include frozen coefficients, assignments, plant parameters, actual schedules, synthesis diagnostics, outcome metrics, array hashes, protocol and provenance. Trajectory NPZ files live under the ignored <code>results/data/paper_oe_lqi_validation/</code> folder. They need not be committed. Do not stage unrelated editor files.</p>
+<p>After the push, provide the result status for analysis. We can then generate a separate HTML report and decide what Section VI can claim. No manuscript results are replaced before this assessment.</p></section>
+<section><h2>6. Restore ignored trajectories</h2>
+<pre>python code\experiments\paper_oe_lqi_validation.py restore --workers 5</pre>
+<p>Restore uses saved controller schedules, parameters and frozen profile arrays; it performs no fitting or synthesis. Existing arrays are checked; missing arrays are reconstructed and saved only when all committed hashes and metrics match. JSON checkpoints remain unchanged. Use the original numerical environment; cross-platform numerical differences may prevent exact reconstruction and will be reported rather than accepted silently. Preserve original raw files until analysis is complete.</p></section>
+</main></html>
