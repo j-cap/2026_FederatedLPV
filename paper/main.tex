@@ -936,29 +936,31 @@ provide no nonlinear or varying-speed stability guarantee.
 \balance
 \section{Discussion and Conclusion}
 \begingroup\color{\secondrevisioncolor}
-Federated group regression combines incomplete local speed coverage while
-limiting the bias of global pooling. With trajectory-based local OE fits,
-the independent identification confirmation supports lower aggregate
-unobserved-speed error than both frozen baselines. Benefits do not extend
-to every recipient, and learned groups need not recover physical families.
-Agreement with a pooled solve for fixed assignments verifies the distributed
-regression, not the grouping search or its optimality.
+This work addressed LPV identification when individual vehicles observe
+only narrow speed regions. Local output-error fitting and federated group
+regression combine complementary observations without exchanging trajectories
+or requiring complete local LPV models. Vehicles are grouped using their observed dynamics without requiring
+physical family labels.
 
-Accurate local estimates, group coverage, and reliable extrapolation are
-distinct requirements. The secondary clean-state and known-family fits
-show that improved targets or physical grouping alone can still leave
-poorly conditioned or deficient group designs. Full rank of the primary
-selected groups is empirical; neither minimum group size nor BIC guarantees
-it. Ordinary driving data, observer errors, new-vehicle transfer, and real
-fleets remain unvalidated.
+Across ten independent simulated fleets, the method reduced mean matrix
+error at locally unobserved speeds to \OEFederatedUnseen\%, compared with
+\OESmoothLocalUnseen\% for Smooth Local and \OEGlobalUnseen\% for Global.
+Supporting LQI tests reused the frozen maps and satisfied the tested
+constraints in all 600 federated rollouts. Fleet-level tracking improved
+consistently over the fixed nominal controller, while gains over Global
+were modest and did not extend to every recipient. Thus, the evidence
+supports selective sharing for full-envelope identification, with separate
+assessment of its control consequences.
 
-The frozen OE-derived maps also support feasible scheduled control, with
-consistent fleet-level tracking gains over the fixed nominal controller.
-The additional gains over Global are modest and recipient dependent.
-Both local priors produce failed control responses for some vehicles under
-the common design. Together, the identification and control results support
-compatible sharing when pooled coverage is informative, while requiring
-separate checks of recipient accuracy and closed-loop behavior.
+The results also identify the limits of this approach. Group selection
+does not guarantee sufficient coverage or conditioning, and aggregate
+accuracy does not ensure better control for each vehicle. The study uses
+simulated identification trajectories and noise-free state feedback in
+control. All recipients contribute to fitting; transfer to previously unseen
+vehicles remains untested. Future work should evaluate the method with measured
+vehicle data and observer-based feedback, and develop recipient-level checks
+that detect harmful transfer
+before a shared map is used for control.
 \endgroup
 
 \begin{thebibliography}{9}
