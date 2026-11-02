@@ -22,6 +22,7 @@ pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete spee
 \input{smooth_lqi_numbers}
 \input{diagnostic_numbers}
 \input{original_replay_numbers}
+\input{oe_confirmation_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
@@ -483,51 +484,51 @@ Handling & 1425 & 2250 & 72000 & 88000\\
 \subfloat[Development-only basis validation\label{fig:basis-validation}]{%
 \includegraphics[width=.43\textwidth]{paper_basis_validation_panel.pdf}}\hfill
 \subfloat[Scheduling information ($L=7$)\label{fig:scheduling-information}]{%
-\includegraphics[width=.43\textwidth]{paper_scheduling_information_panel.pdf}}
-\caption{Scheduling representation and information coverage.
-(a) Mean blocked-speed matrix error across ten development fleets;
+\includegraphics[width=.43\textwidth]{paper_oe_scheduling_information_panel.pdf}}
+\caption{\textcolor{\secondrevisioncolor}{Scheduling representation and information coverage.
+(a) Earlier blocked-speed matrix error across ten development fleets;
 error bars denote one standard error. Rings mark the selected orders,
 and the dotted line is the 0.01\% practical selection floor.
-(b) Filled cells mark observed grid speeds for the seven-function basis.
-The development union and all 18 audited primary groups have rank seven,
-unlike individual clients. Development union and learned-group coverage
-are distinct checks; full rank does not remove within-group bias.}
+(b) Filled cells mark observed grid speeds. The 30 primary OE groups have
+two coverage patterns, both with rank seven. The brown row is a secondary
+clean-state group in confirmation fleet 5 with rank six. Full rank does
+not remove within-group mismatch or guarantee extrapolation accuracy.}}
 \label{fig:basis-information}
 \end{figure*}
 
 \begin{figure*}[t]
 \centering
 \subfloat[Local grid: 10, 12, 14 m/s\label{fig:coverage-a}]{%
-\includegraphics[width=.42\textwidth]{paper_coverage_10_12_14_panel.pdf}}\hfill
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_10_12_14_panel.pdf}}\hfill
 \subfloat[Local grid: 16, 18, 20 m/s\label{fig:coverage-b}]{%
-\includegraphics[width=.42\textwidth]{paper_coverage_16_18_20_panel.pdf}}\par
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_16_18_20_panel.pdf}}\par
 \subfloat[Local grid: 22, 24, 26 m/s\label{fig:coverage-c}]{%
-\includegraphics[width=.42\textwidth]{paper_coverage_22_24_26_panel.pdf}}\hfill
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_22_24_26_panel.pdf}}\hfill
 \subfloat[Local grid: 28, 30 m/s\label{fig:coverage-d}]{%
-\includegraphics[width=.42\textwidth]{paper_coverage_28_30_panel.pdf}}
-\caption{Primary matrix error by local speed block, with family labels withheld.
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_28_30_panel.pdf}}
+\caption{\textcolor{\secondrevisioncolor}{OE confirmation matrix error by local speed block.
 Light shading marks each observed block; short green marks identify its
 observed grid speeds. Curves average clients within block and fleet,
 then across ten fleets; bands are pointwise 95\% fleet-bootstrap intervals
-from 20,000 draws. The logarithmic axis retains Restricted Local extrapolation
-failure. Insets show Global, Grouped, and Smooth Local on a linear 0--10\%
-scale with identical averaging and bands. Smooth Local uses the frozen curvature prior.}
+from 20,000 draws, used descriptively. Insets show Global, Grouped, and
+Smooth Local on a linear 0--10\% scale with identical averaging and bands.
+Smooth Local uses the frozen curvature penalty. These bands are distinct
+from the adjusted paired intervals for the primary endpoint.}}
 \label{fig:coverage}
 \end{figure*}
 
 \begin{figure*}[t]
 \centering
 \subfloat[Paired primary results\label{fig:paired-fleet}]{%
-\includegraphics[width=.43\textwidth]{paper_paired_fleet_panel.pdf}}\hfill
+\includegraphics[width=.43\textwidth]{paper_oe_paired_fleet_panel.pdf}}\hfill
 \subfloat[Client tradeoff (descriptive)\label{fig:client-tradeoff}]{%
-\includegraphics[width=.43\textwidth]{paper_client_tradeoff_panel.pdf}}
-\caption{Primary fleet gains and client tradeoffs.
-(a) Paired full-envelope errors for all ten independent fleets;
-connectors join methods within each fleet, and $K=1$ marks the two ties.
-(b) Descriptive empirical cumulative distribution of client mean
-unobserved-speed error changes (Grouped minus Global) in percentage points;
-negative values indicate improvement. Ties use a $10^{-12}$ dimensionless-error
-tolerance. The 300 simulated clients are nested within ten fleets.}
+\includegraphics[width=.43\textwidth]{paper_oe_client_tradeoff_panel.pdf}}
+\caption{\textcolor{\secondrevisioncolor}{OE confirmation fleet gains and client tradeoffs.
+(a) Paired unobserved-speed errors; connectors join methods within each
+independent fleet. (b) Empirical cumulative distributions of client mean
+unobserved-speed error changes (Grouped minus baseline) in percentage
+points. Negative values indicate improvement. Client comparisons are
+descriptive; the 300 clients are nested within ten fleets.}}
 \label{fig:fleet-client}
 \end{figure*}
 
@@ -670,176 +671,140 @@ The experiment tests identification, not learned-controller improvement.
 \endgroup
 
 \section{Identification Results}
-\subsection{Why complementary coverage is needed}
-At curvature 0.005 m$^{-1}$, development blocked-speed matrix error falls
-from \BasisLowError\% at $L=3$ to \BasisHighError\% at $L=7$.
-Figure~\ref{fig:basis-information}(a) contrasts this basis requirement
-with the straight-line case, which retains order three. For seven
-coefficients, the local blocks have ranks three, three, three, and two;
-the development union has rank seven and condition \UnionCondition~
-(Fig.~\ref{fig:basis-information}(b)). Complementary coverage can therefore
-supply missing directions, conditional on the learned partition.
+\begingroup\color{\secondrevisioncolor}
+\subsection{Local fits and complementary coverage}
+All 830 local OE fits are valid, and all acquisition runs satisfy the
+applied-bound and settling checks. Local matrix error has median
+\OELocalMedian\% and 95th percentile \OELocalPninetyfive\%.
+The steering limiter is active during \OELimiterPercent\% of validation
+samples on average; these results therefore concern known applied inputs,
+including limited inputs, rather than unsaturated acquisition.
 
-With finite transitions and known compatibility, oracle-family pooling
-achieves \OracleUnseenError\% unobserved-speed error, versus
-\LocalUnseenError\% for Restricted Local and \GlobalUnseenError\% for Global on
-separate development fleets. The prior-centered diagnostic changes Restricted Local negligibly there.
-These oracle results motivate the
-mechanism; the primary evaluation below withholds labels.
-\textcolor{\revisioncolor}{A full-coverage recipient reference outperforms
-family pooling at approximately equal transition budget, bounding the
-benefit to missing local access rather than superiority at equal recipient
-information.}
+Accurate local matrices do not resolve missing speed information.
+The earlier development study selects seven basis functions for cornering,
+compared with three for straight driving (Fig.~\ref{fig:basis-information}(a)).
+The local speed blocks have scheduling ranks three, three, three, and two,
+whereas their fleet union has rank seven. Figure~\ref{fig:basis-information}(b)
+separates this local deficiency from the coverage of learned groups.
 
-\subsection{Primary label-free results}
-Table~\ref{tab:id} separates the full-envelope endpoint from its observed
-and unobserved regions. Mean paired gains over Restricted Local and Global are
-\IdentLocalGain\% and \IdentGlobalGain\%, respectively.
-The Global-relative 95\% interval is $[\IdentGlobalLow,\IdentGlobalHigh]\%$,
-with improvement in eight of ten fleets. Two groups are selected in eight
-fleets and one in two. Local methods have lower mean observed-speed error than grouped fitting
-under the primary metric (Table~\ref{tab:id}).
-Sharing substantially reduces Restricted Local's unsupported extrapolation error. Grouped sharing additionally reduces Global's pooling
-error. Figure~\ref{fig:coverage} locates these changes relative to each
-client block. Figure~\ref{fig:fleet-client}(a) shows the paired fleet
-errors, including the two $K=1$ ties. Aggregate improvement does not
-extend to every client: 169 clients improve, 60 are numerical ties, and
-\PrimaryUnseenWorseClients\ have larger unobserved-speed error than Global.
-Figure~\ref{fig:fleet-client}(b) shows this tradeoff. The 300 simulated clients are nested within ten fleets; confidence intervals
-resample fleets, not clients.
-
-Prior-centered Local changes unobserved-speed error by only
-\ReviewUnseenLocalChange~percentage points. Its prior's observed-target
-relative residual has median \PriorResidualMedian\% and maximum
-\PriorResidualMax\% across 300 clients. \textcolor{\revisioncolor}{The
-near-interpolation mechanism in Section~\ref{sec:baselines} explains this
-agreement; correction and nullspace identities were verified for all 300
-saved fits.}
-
-Smooth Local reduces Restricted Local's extrapolation error and has the
-lowest observed-speed error (Table~\ref{tab:id}). Against Smooth Local,
-grouped fitting gives mean paired gains of \SmoothLocalFullGain\% in
-full-envelope error and \SmoothLocalUnseenGain\% in unobserved-speed error.
-The 95\% fleet-bootstrap intervals are
-$[\SmoothLocalFullLow,\SmoothLocalFullHigh]\%$ and
-$[\SmoothLocalUnseenLow,\SmoothLocalUnseenHigh]\%$, respectively.
-Both endpoints improve in all ten fleets. Figure~\ref{fig:coverage} shows
-the remaining unobserved-speed gap. Other local priors remain untested.
-
-The fixed-scale diagnostic retains mean paired gains over Global of
-$\DiagFullGain\%$ full-envelope and $\DiagUnseenGain\%$ unobserved,
-with pointwise fleet-bootstrap intervals
-$[\DiagFullLow,\DiagFullHigh]\%$ and
-$[\DiagUnseenLow,\DiagUnseenHigh]\%$. Entry-wise improvement is not
-uniform: unobserved $B_1$ MAE increases by $\DiagBOneLoss\%$ on average
-and deteriorates in every fleet; the $A_{12}$ gain interval includes zero.
-This reuses primary fits and does not independently confirm them.
+\subsection{Independent confirmation of sharing gains}
+Table~\ref{tab:id} reports mean errors with the equal-client and equal-fleet
+weighting in Section~IV. Grouped fitting reduces unobserved-speed error
+to \OEFederatedUnseen\%, compared with \OESmoothLocalUnseen\% for
+Smooth Local and \OEGlobalUnseen\% for Global. The paired absolute
+reductions are \OESmoothLocalDifference~percentage points against Smooth
+Local, with adjusted interval $[\OESmoothLocalLow,\OESmoothLocalHigh]$,
+and \OEGlobalDifference~points against Global,
+$[\OEGlobalLow,\OEGlobalHigh]$. Both lower bounds are positive, all
+ten fleets are valid, and all equivalence checks pass, satisfying the
+prespecified confirmation criterion. The corresponding mean paired
+percentage gains are \OESmoothLocalGain\% and \OEGlobalGain\%.
 
 \begin{table}[t]
+\color{\secondrevisioncolor}
 \centering
-\caption{Mean matrix error [\%] across ten primary fleets with label-free grouping.
-Prior-centered Local retains the restricted prior; Smooth Local tests
-function curvature.}
+\caption{\textcolor{\secondrevisioncolor}{OE confirmation: mean relative matrix error [\%] across ten
+independent fleets. Unobserved speed is the primary endpoint.}}
 \label{tab:id}
 \begin{tabular}{lrrr}
 \toprule
-Method & Full & Observed & Unobserved\\
+Method & Full grid & Observed & Unobserved\\
 \midrule
-Restricted Local & \IdentLocalError & \PrimaryLocalSeenError & \PrimaryLocalUnseenError\\
-Prior-centered Local & \ReviewLocalFullError & \ReviewLocalSeenError & \ReviewLocalUnseenError\\
-Smooth Local & \SmoothLocalFullError & \SmoothLocalSeenError & \SmoothLocalUnseenError\\
-Global & \IdentGlobalError & \PrimaryGlobalSeenError & \PrimaryGlobalUnseenError\\
-Centralized groups & \IdentCentralError & \PrimaryFedSeenError & \PrimaryFedUnseenError\\
-Federated groups & \IdentFedError & \PrimaryFedSeenError & \PrimaryFedUnseenError\\
+Restricted Local & \OERestrictedLocalFull & \OERestrictedLocalSeen & \OERestrictedLocalUnseen\\
+Smooth Local & \OESmoothLocalFull & \OESmoothLocalSeen & \OESmoothLocalUnseen\\
+Global & \OEGlobalFull & \OEGlobalSeen & \OEGlobalUnseen\\
+Federated groups & \OEFederatedFull & \OEFederatedSeen & \OEFederatedUnseen\\
 \bottomrule
 \end{tabular}
 \end{table}
 
+Local methods fit observed speeds more closely, but grouped sharing
+improves prediction outside those blocks (Fig.~\ref{fig:coverage}).
+Figure~\ref{fig:fleet-client}(a) shows improvement against both primary
+baselines in every fleet. Benefits are not uniform across recipients:
+\OEGlobalBetter/300 clients improve over Global and
+\OESmoothLocalBetter/300 over Smooth Local, with
+\OEGlobalWorse\ and \OESmoothLocalWorse\ worsening, respectively.
+There are no numerical ties at tolerance $10^{-12}$ in dimensionless
+error. Figure~\ref{fig:fleet-client}(b) shows the distributions of these
+changes. Client counts are descriptive because clients share learned maps
+and are nested within fleets.
 
-Federated and centralized protocols select identical partitions and group
-counts in all 20 fleet/protocol jobs, including the separate family-stratified
-coverage reference. Maximum coefficient discrepancy is
-$\CoefficientError\times10^{-14}$ and maximum BIC discrepancy is
-$\BicError\times10^{-9}$. This verifies the implementation under matched inputs.
+The independent pooled solve for the same assignments differs from the
+federated fit by at most $\OECoefficientDelta$ in coefficients and
+$\OEPredictionDelta$ in grid predictions. This verifies fixed-partition
+regression equivalence, not agreement between independent grouping searches.
 
-\subsection{Scheduling information in selected groups}
-All \ReviewGroups\ primary selected groups contain observations at all eleven
-grid speeds and have scheduling-design rank seven. Their stacked design
-condition numbers range from \ReviewConditionMin\ to \ReviewConditionMax\
-in the fixed QR basis, as summarized in Fig.~\ref{fig:basis-information}(b).
-The learned partitions satisfy Proposition~\ref{prop:rank}'s scheduling
-condition for this benchmark. The reported conditioning concerns the
-scheduling design, rather than its Gram or the full dynamical-identification
-information matrix. Full rank neither removes within-group bias nor
-guarantees physical-family recovery.
+\subsection{What the learned groups capture}
+Every confirmation fleet selects $K=3$. All 30 group designs have rank
+seven, with condition numbers between \OEGroupConditionMin\ and
+\OEGroupConditionMax\ in the fixed QR basis. Twenty-nine groups contain
+all eleven grid speeds. The remaining group lacks observations at
+22--26 m/s but has observations on both sides; its mean unobserved-speed
+error is \OEPartialGroupUnseen\%. Thus full scheduling rank does not
+require observing every grid point. These are properties of the selected
+designs, not guarantees supplied by minimum group size or BIC.
 
-Retrospective family diagnostics clarify this distinction. In all eight
-$K=2$ fleets, heavy and handling clients occupy separate groups, while
-nominal clients split between them. Labels remain withheld from learning.
-All $\DiagNominalWorse$ clients with larger unobserved error than Global
-are nominal; their family mean worsens in each $K=2$ fleet. Thus compatible
-sharing is an aggregate regression compromise with sufficient coverage,
-rather than three-family recovery or uniform recipient benefit. These
-patterns do not establish why BIC selects two groups.
+Family labels, inspected only afterward, give adjusted Rand indices from
+\OEFamilyARIMin\ to 1. Exact family recovery occurs in
+\OEExactFamilies\ of ten fleets. The other partitions mix physical
+families despite selecting three groups. The benefit therefore concerns
+sharing among vehicles selected from their observed dynamics, rather than
+reliable recovery of the generating vehicle classes.
 
-\subsection{Coverage and calibration robustness}
-\label{sec:robustness-results}
-Table~\ref{tab:robustness} reports the robustness cohort separately from the primary
-fleets. Restricting heavy-family coverage leaves its ten-client OracleFamily
-design at rank three, despite exceeding the minimum size of five. Its
-family-specific full-grid error rises from \RobustHeavyRefOracle\% to
-\RobustHeavyGroupOracle\%. Thus client count and known compatibility do
-not ensure scheduling information. The fleet and all selected learned groups
-remain rank seven. Each heavy-client group includes clients from other
-families. Federated fitting retains a mean paired
-\RobustGroupGlobalGain\% gain over Global, interval
-$[\RobustGroupGlobalLow,\RobustGroupGlobalHigh]\%$.
-This observed pooling response is not a rank guarantee from BIC.
+\subsection{Sensitivity and limits of the result}
+Across the seven prespecified Smooth Local penalties, grouped fitting
+improves every fleet--penalty comparison (70/70). The best aggregate
+confirmation penalty, $10^{-2}$, gives \OEBestSmoothError\% unseen error,
+compared with \OESmoothLocalUnseen\% for the frozen $10^6$ penalty.
+The mean paired gain against this retrospectively best setting remains
+\OEBestSmoothGain\%. This sensitivity check does not replace the frozen
+baseline or constitute another independent confirmation.
 
 \begin{table}[t]
+\color{\secondrevisioncolor}
 \centering
-\caption{Robustness study: mean full-grid matrix error [\%] across
-ten paired fleets. $n_1$ is the number of fleets selecting one group ($K=1$); the others select
-$K=2$. Smooth denotes the frozen Smooth Local prior.}
-\label{tab:robustness}
-\small
-\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{lrrrr}
+\caption{\textcolor{\secondrevisioncolor}{Primary OE diagnostics. $A$ and $B$ columns are mean relative
+errors [\%] at unobserved speeds. The last column counts matrices with
+spectral radius at least one over all 3300 client--grid pairs.}}
+\label{tab:oe-components}
+\begin{tabular}{lrrr}
 \toprule
-Condition & Federated & Global & Smooth & $n_1$\\
+Method & $A$ error & $B$ error & Unstable\\
 \midrule
-Reference & \RobustRefFed & \RobustRefGlobal & \RobustRefSmooth & \RobustRefKOne\\
-Family restriction & \RobustGroupFed & \RobustGroupGlobal & \RobustGroupSmooth & \RobustGroupKOne\\
-Fleet restriction & \RobustFleetFed & \RobustFleetGlobal & \RobustFleetSmooth & \RobustFleetKOne\\
-Half excitation & \RobustWeakFed & \RobustWeakGlobal & \RobustWeakSmooth & \RobustWeakKOne\\
-Double target noise & \RobustNoiseFed & \RobustNoiseGlobal & \RobustNoiseSmooth & \RobustNoiseKOne\\
-Noisy regressors & \RobustRegressorFed & \RobustRegressorGlobal & \RobustRegressorSmooth & \RobustRegressorKOne\\
-Biased centers & \RobustBiasFed & \RobustBiasGlobal & \RobustBiasSmooth & \RobustBiasKOne\\
+Restricted Local & \OERestrictedLocalA & \OERestrictedLocalB & \OERestrictedLocalUnstable\\
+Smooth Local & \OESmoothLocalA & \OESmoothLocalB & \OESmoothLocalUnstable\\
+Global & \OEGlobalA & \OEGlobalB & \OEGlobalUnstable\\
+Federated groups & \OEFederatedA & \OEFederatedB & \OEFederatedUnstable\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Fleet-wide restriction instead gives rank six for Global and every selected
-or oracle-family group. Federated error reaches \RobustFleetFed\%, versus
-\RobustFleetSmooth\% for Smooth Local. On the five speeds absent from the
-entire fleet (22--30 m/s), their errors are \RobustFleetFedOutside\% and
-\RobustFleetSmoothOutside\%. The Global fallback is itself deficient and
-cannot supply the missing direction. Smoothness provides useful extrapolation
-in this condition, without restoring identifiability. An isolated deficient
-selected group with full-rank Global does not occur in this study; rescue
-of that case by the fallback is therefore not demonstrated.
+Table~\ref{tab:oe-components} shows lower errors for both $A$ and $B$;
+the improvement is not confined to the combined matrix metric. Aggregate
+absolute error also falls for each of the six entries against both primary
+baselines. All grouped frozen-speed matrices have spectral radius below
+one, with maximum \OEMaximumRho. This check neither certifies stability
+under varying speed nor establishes closed-loop performance.
 
-Weaker excitation and doubled target noise select $K=1$ in all ten fleets,
-making Federated identical to Global. Both reduce calibration
-signal-to-noise and give similar errors under the paired perturbations.
-Noisy regressors and biased centers also reduce the selected group count;
-their paired gain intervals over Global include zero. Sharing remains more
-accurate than Smooth Local in all four calibration conditions, but a grouping
-advantage over Global is not established there. All local transition designs
-retain rank three, and selected scheduling designs remain rank seven in these
-conditions: calibration sensitivity and scheduling deficiency are distinct
-limits. These are controlled identification tests, not online sensor-noise
-or tracking-robustness validation.
+Clean-state OLS reduces median local matrix error to
+\OECleanLocalMedian\%, but more accurate local targets do not ensure a
+better group partition. In one fleet, a selected five-client group covers
+only 10--20 m/s and has rank six (Fig.~\ref{fig:basis-information}(b)).
+Its unobserved-speed error is \OEDeficientGroupUnseen\%, raising the
+fleet mean to \OECleanFailureUnseen\%. No fallback is applied.
+Changing the local targets also changes the assignments, so this outcome
+does not establish that measurement noise helps identification.
+
+Known-family pooling is likewise not an accuracy bound. Two fleets have
+mean unseen errors of \OEFamilyWorst\% and \OEFamilySecondWorst\%
+when a physical family lacks observations at 10--14 m/s. These family
+designs remain full rank but have condition numbers above 3000.
+Together, these diagnostics distinguish accurate local estimation,
+sufficient group coverage, and reliable extrapolation. They expose
+failure modes without establishing robustness to other noise levels,
+coverage distributions, or real driving data.
+\endgroup
 
 \section{Supporting LQI Validation}
 Ten separate confirmation fleets (seeds 411--420) refit the maps and
