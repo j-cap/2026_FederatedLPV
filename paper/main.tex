@@ -1,13 +1,13 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
 \usepackage{balance}
+\usepackage{needspace}
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage{xcolor}
-% Set \revisioncolor to black after reviewing the highlighted revisions.
+% Revision wrappers are preserved for source history; the review copy is black.
 \definecolor{revisionblue}{RGB}{0,70,170}
-\newcommand{\revisioncolor}{revisionblue}
-% Second-pass corrections; set to black after review.
-\newcommand{\secondrevisioncolor}{red}
+\newcommand{\revisioncolor}{black}
+\newcommand{\secondrevisioncolor}{black}
 \usepackage[caption=false,font=footnotesize]{subfig}
 \captionsetup[subfloat]{farskip=0pt,captionskip=2pt}
 \usepackage[hidelinks]{hyperref}
@@ -34,26 +34,25 @@ pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete spee
 \maketitle
 \begin{abstract}
 \begingroup\color{\secondrevisioncolor}
-Vehicles may supply identification data from narrow speed regions while the
-fleet collectively covers a wider interval. Pooling can supply missing
-scheduling information but mix incompatible dynamics. We study federated
-linear-parameter-varying (LPV) identification under these joint limitations.
-Clients estimate fixed-speed models by output-error fitting of measured
-state trajectories and known applied steering, then exchange additive
-regression statistics and assignment scores to learn shared group maps.
-Across ten independent nonlinear vehicle fleets with family labels withheld,
+Vehicle identification data may cover only narrow speed regions, leaving
+full-envelope linear-parameter-varying (LPV) models undetermined locally.
+Fleet collaboration can supply missing scheduling information, but pooling
+vehicles with different dynamics introduces bias. We address this tradeoff
+through federated group regression. Clients estimate fixed-speed models
+from measured trajectories and known applied steering by output-error (OE)
+fitting.
+Additive statistics and local assignment scores then support learning shared
+LPV maps without exchanging trajectories or requiring complete local maps.
+Across ten independent simulated nonlinear vehicle fleets with family labels withheld,
 mean matrix error at locally unobserved speeds is \OEFederatedUnseen\%,
 compared with \OESmoothLocalUnseen\% for Smooth Local and
-\OEGlobalUnseen\% for Global. Both prespecified paired comparisons support
-an aggregate improvement, although some recipients deteriorate. The
-distributed regression agrees with a pooled solve for the same assignments.
-Coverage diagnostics show that accurate local estimates alone do not ensure
-reliable group extrapolation. Supporting scheduled linear-quadratic-integral
-(LQI) tests reuse the frozen maps and satisfy the tested constraints in all
-federated rollouts. Tracking gains over the fixed nominal controller are
-consistent across fleets; gains over Global are modest and nonuniform.
-The evidence concerns simulated maneuvers with available states, not
-observer robustness or a general stability guarantee.
+\OEGlobalUnseen\% for Global, with positive adjusted paired confidence intervals
+for both improvements. Diagnostics show that accurate local estimates alone
+do not ensure sufficient group coverage or reliable extrapolation.
+Supporting linear-quadratic-integral (LQI) tests reuse the frozen maps and
+satisfy the tested constraints in all federated rollouts under noise-free
+state feedback. Tracking improves consistently over the fixed nominal
+controller, while gains over Global are modest and recipient-dependent.
 \endgroup
 \end{abstract}
 \begin{IEEEkeywords}
@@ -87,9 +86,8 @@ sharing that supplies missing operating information without overwhelming a
 recipient's dynamics with incompatible data. Crucially, the partners must be
 chosen from partial observations, before complete local models are available.
 
-We address this need through federated LPV identification. Vehicles retain
-calibration records locally, exchange additive statistics, and evaluate candidate
-group maps at their observed speeds. Alternating assignment and regression
+We address this need through federated LPV identification. Vehicles keep trajectories locally, exchange additive statistics, and
+evaluate candidate group maps at their observed speeds. Alternating assignment and regression
 learns shared maps over the wider interval. The central question is whether
 groups inferred from partial data can provide both complementary coverage
 and a useful approximation of their recipients' dynamics.
@@ -117,15 +115,13 @@ and make the following contributions:
 \item We formulate LPV identification from incomplete local speed coverage in
 common physical-state coordinates. A conditional rank statement distinguishes
 information supplied by pooling from extrapolation imposed by a local prior.
-\item We implement label-free group regression using additive statistics and
-local assignment scores, without requiring complete local LPV maps. {\color{\secondrevisioncolor}Agreement
-with a pooled regression for the same assignments verifies the distributed
-implementation.}
-\item We establish controlled vehicle-fleet evidence for the coverage--bias
-tradeoff through comparisons with local priors and global pooling, learned-group
-{\color{\secondrevisioncolor}and recipient audits, and diagnostics of estimation error and group coverage.
-Supporting LQI tests reuse the frozen OE-derived maps to assess tracking,
-constraint satisfaction, and recipient tradeoffs under a common controller design.}
+\item We develop a label-free federated procedure that learns shared LPV maps
+from local OE estimates and partial speed support. Additive statistics and
+local assignment scores allow grouping without complete local LPV maps.
+\item We evaluate selective sharing against local priors and global pooling
+on ten independent vehicle fleets. Coverage and recipient diagnostics explain
+the scope of the identification gains, while LQI tests with the frozen maps
+distinguish aggregate model accuracy from recipient-level control performance.
 \end{enumerate}
 Sections~II and III present the identification problem and federated regression.
 Section~IV describes the benchmark. Sections~V and VI report identification
@@ -151,6 +147,11 @@ downstream usability.}
 
 \section{Identification Problem}
 \begingroup\color{\revisioncolor}
+Identification has two stages: estimating dynamics from local trajectories
+at observed speeds and constructing an LPV map over the intended interval.
+The second stage requires scheduling information that an individual vehicle
+may lack, motivating fleet sharing.
+
 {\color{\secondrevisioncolor}
 \subsection{Local identification from measured trajectories}
 Consider $M$ vehicles indexed by $i\in\{1,\ldots,M\}$ and the target
@@ -162,13 +163,11 @@ Its measurements are $y_{i,k}=x_{i,k}+\nu_{i,k}$, where
 $\nu_{i,k}\in\R^2$ is state measurement noise and $k$ indexes samples.
 Applied steering and longitudinal speed are assumed known.
 
-Vehicle $i$ supplies trajectories at the finite speed set
-$\mathcal V_i=\{v_{i,1},\ldots,v_{i,n_i}\}\subset\mathcal V$, where
-$n_i$ is the number of observed speeds. At each speed $v$, the fitting
-window contains $N_i(v)$ consecutive transitions with measured states
+Vehicle $i$ supplies fixed-speed trajectories at $n_i$ observed speeds
+$\mathcal V_i=\{v_{i,1},\ldots,v_{i,n_i}\}\subset\mathcal V$.
+At speed $v$, its $N_i(v)$ fitting transitions comprise measured states
 $y_{i,0},\ldots,y_{i,N_i(v)}$ and applied inputs
-$u_{i,0},\ldots,u_{i,N_i(v)-1}$. Speed is constant within each trajectory.
-Section~IV specifies the maneuvers and fixed nominal acquisition controller.
+$u_{i,0},\ldots,u_{i,N_i(v)-1}$. Section~IV specifies their acquisition.
 
 We identify a two-state affine model by output error (OE), comparing its
 simulated trajectory with the measurements. For one vehicle--speed pair,
@@ -189,9 +188,9 @@ standard deviations. With $N=N_i(v)$, the fitting objective is
  \label{eq:local}
 \end{equation}
 where $\|\cdot\|_2$ is the Euclidean norm and $\widehat x_k$ follows
-\eqref{eq:transition} without resetting to measured states. Four initializations,
-including the common nominal model, are optimized; the converged solution
-with the lowest training loss supplies $\widehat A_i(v),\widehat B_i(v)$.
+\eqref{eq:transition} without resetting to measured states. Minimizing
+\eqref{eq:local} supplies $\widehat A_i(v),\widehat B_i(v)$ using the
+multistart procedure in Section~IV.
 The offset $c$ avoids requiring a known equilibrium center. Although each
 maneuver starts at zero lateral state, $\zeta$ must describe the fitting
 window's initial state after settling.
@@ -243,24 +242,22 @@ Section~III learns these maps from observed targets; evaluation tests
 accuracy at locally unobserved speeds $\mathcal V\setminus\mathcal V_i$
 and the mismatch introduced by pooling.
 
-Trajectories and local estimates stay on device; clients exchange the
-statistics and scores defined in Section~III. Recipient-specific parameters,
-reference matrices, and family labels enter neither local OE fitting nor
-group assignment and regression. Each fresh fleet learns maps for its
-contributing vehicles. Generalization concerns speeds, not transfer of a
-fixed library to new recipients. ``Full envelope'' denotes the speed
-interval along the prescribed cornering curve, not an arbitrary nonlinear
-state/input domain.
+Clients exchange only the statistics and scores defined in Section~III.
+Recipient-specific parameters, reference matrices, and family labels are
+excluded from fitting and grouping. Each fleet learns maps for its
+contributing vehicles, so generalization concerns unobserved speeds.
+``Full envelope'' denotes the speed interval along the prescribed cornering
+curve, not an arbitrary nonlinear state/input domain.
 }
 \endgroup
 
 \section{Federated Compatible Regression}
 \begingroup\color{\secondrevisioncolor}
-The local OE estimates in Section~II supply $Y_i$; $\Phi_i$ describes their
-observed speeds. We alternate shared LPV fitting and vehicle assignment,
-then select the group count by penalized residual error. OE offsets and
-initial states remain local; neither unobserved-speed targets nor family
-labels enter the search.
+Using the local targets $Y_i$ and designs $\Phi_i$ from Section~II,
+we alternate fitting shared maps and assigning vehicles by agreement at
+observed speeds. Penalized residual error selects the group count.
+This chooses sharing partners from partial observations; group coverage
+is assessed afterward rather than enforced.
 
 \subsection{Additive fitting and conditional identifiability}
 For a fixed partition, let $\mathcal I_g=\{i:g_i=g\}$ be the set of vehicles
@@ -285,10 +282,9 @@ within each group and solves
 \end{equation}
 where $I_L$ is the $L\times L$ identity matrix. For a fixed partition,
 this gives the pooled ridge solution in exact arithmetic without sharing
-$Y_i$. This equivalence concerns regression for the same groups, not
-agreement between independent clustering runs. Positive regularization
-ensures a unique solution; identification from data requires a separate
-rank condition.
+$Y_i$. Positive regularization ensures a unique solution, but it does not
+establish that the data determine all scheduling directions. The following
+standard least-squares rank condition makes this distinction explicit.
 
 \begin{proposition}
 \label{prop:rank}
@@ -307,13 +303,14 @@ to any minimizer without changing its predictions. For exact shared-map
 targets, $\Theta_g$ achieves zero residual and is therefore the unique
 minimizer in the full-rank case.
 
-Pooling can resolve the missing scheduling directions in Section~II.
-Full rank alone does not control conditioning, OE error, or the mismatch
-$d_i(v)$. Exact recovery requires unregularized fitting and exact shared-map
-targets, unlike the regularized fits of noisy targets used here.
+The condition shows how pooling can resolve the missing scheduling
+directions in Section~II. In the present regularized fits, however,
+conditioning, OE error, and the mismatch $d_i(v)$ also affect prediction
+accuracy. Group selection must therefore be evaluated beyond rank alone.
 
 \subsection{Assignment and model selection}
-Assignment balances the six matrix entries by scaling. For entry
+Assignment compares how well each candidate map describes a vehicle's
+observed dynamics. Scaling balances the six matrix entries. For entry
 $j\in\{1,\ldots,6\}$, let $\tau_j$ be its standard deviation across
 all observed target rows, using the population divisor $\sum_i n_i$.
 The server computes these values from local row counts, entry sums, and
@@ -354,12 +351,11 @@ $n=6\sum_i n_i$. The Bayesian information criterion (BIC) based score is
 \end{equation}
 where $p_K=6LK+K-1$ counts map coefficients plus a nominal mixture-weight
 term. Mixture weights are not estimated, and entries of an OE target need
-not be independent. Thus, this score is a complexity penalty rather than
-a likelihood-based guarantee. The lowest score selects the restart and
-$K$, including Global pooling at $K=1$. Neither global optimality nor
-physical-family recovery is guaranteed. Group rank and conditioning are
-diagnosed after selection; minimum group size does not ensure full rank,
-and deficient groups are not replaced by a fallback model.
+not be independent. We therefore use this as a heuristic complexity penalty.
+The lowest score selects the restart and $K$, including Global pooling at
+$K=1$, without a guarantee of global optimality or physical-family recovery.
+Minimum group size does not ensure full rank, and deficient groups are
+not replaced by a fallback model.
 
 \begin{algorithm}[t]
 \color{\secondrevisioncolor}
@@ -410,31 +406,28 @@ send assignments $g_i$; clients use their selected broadcast maps\;
 \end{algorithm}
 
 \subsection{Exchanged information}
-The messages $G_i$ and $H_i$ contain $L(L+1)/2$ distinct Gram entries
-and $6L$ right-hand-side entries: 28 and 42 for $L=7$. Initialization
-also uses one row count, twelve target moments, and six residual-summary
-entries per client. Each assignment step uses $K$ client scores and
-broadcasts $K$ maps of $6L$ entries, with group tags and scales supplied
-as needed. These payloads do not grow with trajectory length, but all
-candidate counts and restarts require communication. We make no claim
-of communication efficiency. Trajectories and matrix targets stay local
-in the distributed emulator; shared statistics can still reveal
-information about them. No secure aggregation or differential privacy
-is implemented.
+For $L=7$, $G_i$ has 28 distinct entries and $H_i$ has 42.
+Initialization adds counts, target moments, and residual summaries;
+assignment uses $K$ scores per client and broadcasts $K$ maps of $6L$
+entries. These messages are independent of trajectory length, although
+candidate counts and restarts determine total communication. Trajectories
+and targets stay local in the distributed emulator. Shared statistics can
+still reveal information; secure aggregation and differential privacy
+are not implemented.
 \endgroup
 
 \begingroup\color{\secondrevisioncolor}
 \section{Benchmark and Evaluation}
-Local fitting, global pooling, and learned groups use identical OE targets.
-Acquisition, estimators, and comparisons are fixed after three pilot fleets
-and tested on ten independent confirmation fleets.
+The benchmark compares selective sharing with local extrapolation and
+global pooling at unobserved speeds. Identical OE targets isolate the
+sharing comparison from local estimation. The protocol is fixed after three pilot fleets and tested on ten independent confirmation fleets.
+Secondary diagnostics examine sensitivity to the local prior and limitations
+from group coverage.
 
 \subsection{Vehicle fleet and local speed coverage}
-The plant is a single-track model with state $x=[\beta,r]^\top$, where
-$\beta$ is the vehicle sideslip angle at the center of mass and $r$ is
-the yaw rate. The input $u$ is the front-wheel steering angle, and the
-longitudinal speed $v$ is held constant during each trajectory.
-The dynamics include nonlinear tire forces:
+The single-track plant uses the sideslip--yaw state $x=[\beta,r]^\top$
+and steering input $u$ from Section~II, with sideslip measured at the
+center of mass. At fixed longitudinal speed $v$, its nonlinear dynamics are
 \begin{align}
  \dot\beta&=(F_f+F_r)/(mv)-r,\\
  \dot r&=(l_fF_f-l_rF_r)/I_z,\\
@@ -476,8 +469,7 @@ Handling & 1425 & 2250 & 72000 & 88000\\
 \footnotesize Stiffnesses in N/rad.
 \end{table}
 
-% Declare wide figures early enough for IEEEtran to place them alongside
-% the results, rather than leaving deferred floats after the references.
+% Queue the wide figure one page before its discussion.
 \begin{figure*}[t]
 \centering
 \subfloat[Development-only basis validation\label{fig:basis-validation}]{%
@@ -493,42 +485,6 @@ two coverage patterns, both with rank seven. The brown row is a secondary
 clean-state group in confirmation fleet 5 with rank six. Full rank does
 not remove within-group mismatch or guarantee extrapolation accuracy.}}
 \label{fig:basis-information}
-\end{figure*}
-
-\begin{figure*}[t]
-\centering
-\subfloat[Local grid: 10, 12, 14 m/s\label{fig:coverage-a}]{%
-\includegraphics[width=.42\textwidth]{paper_oe_coverage_10_12_14_panel.pdf}}\hfill
-\subfloat[Local grid: 16, 18, 20 m/s\label{fig:coverage-b}]{%
-\includegraphics[width=.42\textwidth]{paper_oe_coverage_16_18_20_panel.pdf}}\par
-\subfloat[Local grid: 22, 24, 26 m/s\label{fig:coverage-c}]{%
-\includegraphics[width=.42\textwidth]{paper_oe_coverage_22_24_26_panel.pdf}}\hfill
-\subfloat[Local grid: 28, 30 m/s\label{fig:coverage-d}]{%
-\includegraphics[width=.42\textwidth]{paper_oe_coverage_28_30_panel.pdf}}
-\caption{\textcolor{\secondrevisioncolor}{OE confirmation matrix error by local speed block.
-Light shading marks each observed block; short green marks identify its
-observed grid speeds. Curves average clients within block and fleet,
-then across ten fleets; bands are pointwise 95\% fleet-bootstrap intervals
-from 20,000 draws, used descriptively. Insets show Global, Grouped, and
-Smooth Local on a linear 0--10\% scale with identical averaging and bands.
-Smooth Local uses the frozen curvature penalty. These bands are distinct
-from the adjusted paired intervals for the primary endpoint.}}
-\label{fig:coverage}
-\end{figure*}
-
-\begin{figure*}[t]
-\centering
-\subfloat[Paired primary results\label{fig:paired-fleet}]{%
-\includegraphics[width=.43\textwidth]{paper_oe_paired_fleet_panel.pdf}}\hfill
-\subfloat[Client tradeoff (descriptive)\label{fig:client-tradeoff}]{%
-\includegraphics[width=.43\textwidth]{paper_oe_client_tradeoff_panel.pdf}}
-\caption{\textcolor{\secondrevisioncolor}{OE confirmation fleet gains and client tradeoffs.
-(a) Paired unobserved-speed errors; connectors join methods within each
-independent fleet. (b) Empirical cumulative distributions of client mean
-unobserved-speed error changes (Grouped minus baseline) in percentage
-points. Negative values indicate improvement. Client comparisons are
-descriptive; the 300 clients are nested within ten fleets.}}
-\label{fig:fleet-client}
 \end{figure*}
 
 \subsection{Trajectory acquisition and local OE fitting}
@@ -564,11 +520,12 @@ $0.03^\circ$/s for $r$. Feedback uses these noisy states; OE uses the same
 states and known applied steering, without input measurement noise.
 Fourth-order Runge--Kutta integrates the plant continuously within each maneuver.
 
-OE uses trust-region least squares with analytic sensitivities and 300
+OE uses trust-region least squares with analytic sensitivities and up to 300
 function evaluations per start: affine OLS (initial
 spectral radius capped at 0.995), $A=0.9I_2$, $A=0.98I_2$, and the nominal
-model. Fitted matrices have no stability constraint. Validation assesses
-prediction and acquisition feasibility, not start or map selection.
+model. The converged solution with the lowest training loss supplies the
+local matrix target, without a stability constraint. The separate validation
+maneuver assesses prediction and acquisition feasibility.
 The study assumes sideslip sensing and uses simulated trajectories.
 
 \subsection{LPV representation and comparison methods}
@@ -584,15 +541,13 @@ invertible $R\in\R^{7\times7}$. We use $\phi(v)^\top=b(v)^\top R^{-1}$ to improv
 conditioning without changing the span.
 Earlier development-only blocked-speed validation of reference matrices
 selected $L=7$ for cornering with a one-standard-error rule and error floor
-$10^{-4}$, and $[1,v^{-1},v^{-2}]$ for straight driving.
+$10^{-4}$, and $[1,v^{-1},v^{-2}]$ for straight driving
+(Fig.~\ref{fig:basis-information}(a)).
 
-Restricted Local fits these three functions to each client's targets with
-ridge $10^{-8}$. Global pools the fleet targets with $L=7$, while learned
-groups follow Section~III. Independent pooled augmented least squares
-checks Global and the same learned groups: maximum absolute coefficient
-and grid-prediction differences must not exceed $10^{-8}$.
-Smooth Local tests whether sharing adds value beyond a different local
-prior, using $L=7$ and the curvature-penalized fit
+Restricted Local imposes a low-order prior, fitting the three straight-driving
+functions to each client's targets with ridge $10^{-8}$. Global pools
+all targets with $L=7$, while learned groups follow Section~III.
+Smooth Local tests whether sharing adds value beyond a smoothness prior, using $L=7$ and the curvature-penalized fit
 \begin{equation}
  \begin{aligned}
  \widehat\Theta_i^{\rm S}=\arg\min_\Theta\Bigl\{&
@@ -601,15 +556,37 @@ prior, using $L=7$ and the curvature-penalized fit
  \end{aligned}
  \label{eq:smooth-local}
 \end{equation}
-Here $Q_2\in\R^{401\times7}$ factors the 401-point trapezoidal approximation
+Here $Q_2\in\R^{401\times7}$ factors the trapezoidal approximation
 of $\tfrac12\int_{-1}^1\|d^2[\phi(v(z))^\top\Theta]/dz^2\|_2^2\,dz$,
 where $v(z)=20+10z$, and $\eta=10^{-16}$ is numerical ridge.
 Affine functions in $z$ remain unpenalized; the prior does not restore data rank.
 Earlier development selected $\alpha$ from
 $\{10^{-6},10^{-4},10^{-2},1,10^2,10^4,10^6\}$ using unobserved-speed
 matrix error. The largest penalty within one standard error of the best
-fleet mean was $10^6$, approaching an affine speed map. OE confirmation
-inherits this penalty; all seven strengths form a secondary sensitivity check.
+fleet mean was $10^6$, approaching an affine speed map. Confirmation uses
+this fixed penalty; all seven strengths form a secondary sensitivity check.
+
+% Queue the wide figure one page before its discussion.
+\begin{figure*}[t]
+\centering
+\subfloat[Local grid: 10, 12, 14 m/s\label{fig:coverage-a}]{%
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_10_12_14_panel.pdf}}\hfill
+\subfloat[Local grid: 16, 18, 20 m/s\label{fig:coverage-b}]{%
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_16_18_20_panel.pdf}}\par
+\subfloat[Local grid: 22, 24, 26 m/s\label{fig:coverage-c}]{%
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_22_24_26_panel.pdf}}\hfill
+\subfloat[Local grid: 28, 30 m/s\label{fig:coverage-d}]{%
+\includegraphics[width=.42\textwidth]{paper_oe_coverage_28_30_panel.pdf}}
+\caption{\textcolor{\secondrevisioncolor}{OE confirmation matrix error by local speed block.
+Light shading marks each observed block; short green marks identify its
+observed grid speeds. Curves average clients within block and fleet,
+then across ten fleets; bands are pointwise 95\% fleet-bootstrap intervals
+from 20,000 draws, used descriptively. Insets show Global, Grouped, and
+Smooth Local on a linear 0--10\% scale with identical averaging and bands.
+Smooth Local uses the frozen curvature penalty. These bands are distinct
+from the adjusted paired intervals for the primary endpoint.}}
+\label{fig:coverage}
+\end{figure*}
 
 \subsection{Evaluation metrics and statistical protocol}
 Reference matrix vectors $m_i^\star(v)$ come from numerical continuous-time
@@ -631,9 +608,10 @@ where $\mathcal U_i=\mathcal V_{\rm grid}\setminus\mathcal V_i$ and
 $s$ indexes fleets ($M=30$). Speeds are averaged within clients, clients
 equally within fleets, and fleets equally across the experiment.
 Observed-speed and full-grid errors replace $\mathcal U_i$ by
-$\mathcal V_i$ and $\mathcal V_{\rm grid}$, respectively. The matrix
-metric depends on state units; separate relative $A$ and $B$ errors and
-entrywise absolute errors aid interpretation. None measures tracking quality.
+$\mathcal V_i$ and $\mathcal V_{\rm grid}$, respectively. Separate relative
+$A$ and $B$ errors and entrywise absolute errors check whether the gains
+extend beyond the combined, state-unit-dependent metric. Tracking quality
+is evaluated separately in Section~VI.
 
 For each primary baseline $b\in\{\text{Smooth Local},\text{Global}\}$,
 the paired difference is $\Delta_s^{(b)}=100(E_s^{{\rm U},b}
@@ -641,51 +619,73 @@ the paired difference is $\Delta_s^{(b)}=100(E_s^{{\rm U},b}
 97.5\% two-sided Student-$t$ intervals give simultaneous 95\% family
 confidence under the paired-$t$ assumptions, with fleets as sampling units.
 Confirmation requires both lower bounds above zero, ten valid fleet fits,
-and all equivalence checks passing. Inference with ten fleets is approximate;
-paired differences and win counts are reported. Percentage gains
+and all equivalence checks passing. Inference with ten fleets is approximate.
+Percentage gains
 $100(1-E_s^{{\rm U},{\rm Fed}}/E_s^{{\rm U},b})$ are averaged over fleets
 and reported descriptively.
 
+% Queue the wide figure one page before its discussion.
+\begin{figure*}[t]
+\centering
+\subfloat[Paired primary results\label{fig:paired-fleet}]{%
+\includegraphics[width=.43\textwidth]{paper_oe_paired_fleet_panel.pdf}}\hfill
+\subfloat[Client tradeoff (descriptive)\label{fig:client-tradeoff}]{%
+\includegraphics[width=.43\textwidth]{paper_oe_client_tradeoff_panel.pdf}}
+\caption{\textcolor{\secondrevisioncolor}{OE confirmation fleet gains and client tradeoffs.
+(a) Paired unobserved-speed errors; connectors join methods within each
+independent fleet. (b) Empirical cumulative distributions of client mean
+unobserved-speed error changes (Grouped minus baseline) in percentage
+points. Negative values indicate improvement. Client comparisons are
+descriptive; the 300 clients are nested within ten fleets.}}
+\label{fig:fleet-client}
+\end{figure*}
+
 \subsection{Validity checks and secondary diagnostics}
 \label{sec:robustness-protocol}
-Both training and validation maneuvers must satisfy steering limits,
+Acquisition validity is checked before comparing maps. Both training and
+validation maneuvers must satisfy steering limits,
 $|\beta|\leq5^\circ$, $|a_y|\leq6$ m/s$^2$, and settling checks during
 the last 2 s before fitting, where $a_y=v(\dot\beta+r)$ is lateral
 acceleration. Settling requires mean yaw error at most
 $\max\{10^{-3}\,\mathrm{rad/s},0.01v\kappa_0\}$ and absolute fitted slopes
 of $\beta/(0.25^\circ)$ and $r/(2^\circ/\mathrm{s})$ at most
-$0.02\,\mathrm{s}^{-1}$. Recorded actuator limiting is allowed because OE uses the
-applied input; unsaturated or smooth steering is not required. A failed
+$0.02\,\mathrm{s}^{-1}$. Actuator limiting is allowed because OE uses the
+applied input. A failed
 fit, bound, or settling check blocks that condition for the entire fleet.
-No cells or fleets are excluded or replaced; fitted maps receive no
-stability projection or Global fallback.
+No cells or fleets are excluded or replaced, and no stability projection
+or Global fallback is used. Independent pooled augmented least squares
+must agree with Global and fixed-partition federated regression within
+$10^{-8}$ in coefficients and grid predictions.
 
-Secondary fits use OLS targets from noise-free simulator states and applied
-inputs of the same noisy-feedback trajectories, centered by preceding
-quiet-window means. Known-family pooling and full-grid reference fits use
-privileged information. Group coverage, rank, conditioning, and spectral
-radii diagnose information loss and unstable frozen-speed models. These
-checks reuse confirmation fleets without changing the primary method.
-This protocol tests identification. Section~VI separately evaluates control
-using the same frozen maps and fleets.
+Secondary diagnostics test whether accurate local targets or known vehicle
+classes suffice for extrapolation. Clean-state OLS uses noise-free simulator
+states and applied inputs from the same noisy-feedback trajectories, centered
+by preceding quiet-window means. Known-family pooling uses privileged labels.
+Coverage, rank, conditioning, and spectral radii diagnose failures on the
+same fleets without changing the primary method.
 \endgroup
 
+% Keep the heading with its opening argument when wide figures float above it.
+\Needspace{6\baselineskip}
 \section{Identification Results}
 \begingroup\color{\secondrevisioncolor}
+The results establish the unobserved-speed gains, then examine the selected
+groups and the conditions that limit sharing.
+
 \subsection{Local fits and complementary coverage}
 All 830 local OE fits are valid, and all acquisition runs satisfy the
 applied-bound and settling checks. Local matrix error has median
 \OELocalMedian\% and 95th percentile \OELocalPninetyfive\%.
 The steering limiter is active during \OELimiterPercent\% of validation
-samples on average; these results therefore concern known applied inputs,
-including limited inputs, rather than unsaturated acquisition.
+samples on average, consistent with fitting the known applied input.
+The independent pooled solve for the same assignments agrees with the
+federated regression to within $\OECoefficientDelta$ in coefficients and
+$\OEPredictionDelta$ in grid predictions.
 
 Accurate local matrices do not resolve missing speed information.
-The earlier development study selects seven basis functions for cornering,
-compared with three for straight driving (Fig.~\ref{fig:basis-information}(a)).
-The local speed blocks have scheduling ranks three, three, three, and two,
-whereas their fleet union has rank seven. Figure~\ref{fig:basis-information}(b)
-separates this local deficiency from the coverage of learned groups.
+For the selected seven-function basis, the local blocks have ranks three,
+three, three, and two, whereas their union has rank seven.
+Figure~\ref{fig:basis-information} relates the basis choice to this coverage gap.
 
 \subsection{Independent confirmation of sharing gains}
 Table~\ref{tab:id} reports mean errors with the equal-client and equal-fleet
@@ -725,25 +725,21 @@ baselines in every fleet. Benefits are not uniform across recipients:
 \OEGlobalBetter/300 clients improve over Global and
 \OESmoothLocalBetter/300 over Smooth Local, with
 \OEGlobalWorse\ and \OESmoothLocalWorse\ worsening, respectively.
-There are no numerical ties at tolerance $10^{-12}$ in dimensionless
-error. Figure~\ref{fig:fleet-client}(b) shows the distributions of these
-changes. Client counts are descriptive because clients share learned maps
-and are nested within fleets.
-
-The independent pooled solve for the same assignments differs from the
-federated fit by at most $\OECoefficientDelta$ in coefficients and
-$\OEPredictionDelta$ in grid predictions. This verifies fixed-partition
-regression equivalence, not agreement between independent grouping searches.
+Figure~\ref{fig:fleet-client}(b) shows these descriptive client-level
+changes. Thus sharing improves prediction beyond local speed support
+on average, while some recipients are less accurately represented by their
+shared map.
 
 \subsection{What the learned groups capture}
+The selected groups supply the scheduling directions missing locally.
 Every confirmation fleet selects $K=3$. All 30 group designs have rank
 seven, with condition numbers between \OEGroupConditionMin\ and
 \OEGroupConditionMax\ in the fixed QR basis. Twenty-nine groups contain
 all eleven grid speeds. The remaining group lacks observations at
 22--26 m/s but has observations on both sides; its mean unobserved-speed
-error is \OEPartialGroupUnseen\%. Thus full scheduling rank does not
-require observing every grid point. These are properties of the selected
-designs, not guarantees supplied by minimum group size or BIC.
+error is \OEPartialGroupUnseen\%. Hence complementary observations can
+supply full scheduling rank without covering every grid point.
+This coverage emerged in the selected partitions; it was not enforced.
 
 Family labels, inspected only afterward, give adjusted Rand indices from
 \OEFamilyARIMin\ to 1. Exact family recovery occurs in
@@ -752,14 +748,14 @@ families despite selecting three groups. The benefit therefore concerns
 sharing among vehicles selected from their observed dynamics, rather than
 reliable recovery of the generating vehicle classes.
 
-\subsection{Sensitivity and limits of the result}
-Across the seven prespecified Smooth Local penalties, grouped fitting
-improves every fleet--penalty comparison (70/70). The best aggregate
+\subsection{Sensitivity to the local prior and error metric}
+Grouped fitting improves every fleet--penalty comparison across the seven
+prespecified Smooth Local penalties (70/70). The best aggregate
 confirmation penalty, $10^{-2}$, gives \OEBestSmoothError\% unseen error,
 compared with \OESmoothLocalUnseen\% for the frozen $10^6$ penalty.
 The mean paired gain against this retrospectively best setting remains
-\OEBestSmoothGain\%. This sensitivity check does not replace the frozen
-baseline or constitute another independent confirmation.
+\OEBestSmoothGain\%. Thus the gain persists under the retrospectively best tested prior;
+this remains a sensitivity check on the same fleets.
 
 \begin{table}[t]
 \color{\secondrevisioncolor}
@@ -783,46 +779,43 @@ Federated groups & \OEFederatedA & \OEFederatedB & \OEFederatedUnstable\\
 Table~\ref{tab:oe-components} shows lower errors for both $A$ and $B$;
 the improvement is not confined to the combined matrix metric. Aggregate
 absolute error also falls for each of the six entries against both primary
-baselines. All grouped frozen-speed matrices have spectral radius below
-one, with maximum \OEMaximumRho. This check neither certifies stability
-under varying speed nor establishes closed-loop performance.
+baselines. All grouped frozen-speed matrices also have spectral radius below one,
+with maximum \OEMaximumRho. Closed-loop consequences are tested in Section~VI.
 
-Clean-state OLS reduces median local matrix error to
-\OECleanLocalMedian\%, but more accurate local targets do not ensure a
-better group partition. In one fleet, a selected five-client group covers
+\subsection{Coverage and conditioning limit extrapolation}
+Lower local error does not by itself ensure useful sharing. Clean-state
+OLS reduces median local matrix error to \OECleanLocalMedian\%, yet
+can yield deficient groups. In one fleet, a selected five-client group covers
 only 10--20 m/s and has rank six (Fig.~\ref{fig:basis-information}(b)).
 Its unobserved-speed error is \OEDeficientGroupUnseen\%, raising the
-fleet mean to \OECleanFailureUnseen\%. No fallback is applied.
-Changing the local targets also changes the assignments, so this outcome
-does not establish that measurement noise helps identification.
+fleet mean to \OECleanFailureUnseen\%.
+Because the targets and assignments both change, this outcome illustrates
+a coverage failure without isolating the effect of measurement noise.
 
 Known-family pooling is likewise not an accuracy bound. Two fleets have
 mean unseen errors of \OEFamilyWorst\% and \OEFamilySecondWorst\%
-when a physical family lacks observations at 10--14 m/s. These family
-designs remain full rank but have condition numbers above 3000.
-Together, these diagnostics distinguish accurate local estimation,
-sufficient group coverage, and reliable extrapolation. They expose
-failure modes without establishing robustness to other noise levels,
-coverage distributions, or real driving data.
+when a physical family lacks observations at 10--14 m/s. These family designs remain full rank but have
+condition numbers above
+3000. Physical similarity therefore need not supply a well-conditioned
+design over the intended interval. Together, the diagnostics show why
+local fit accuracy, group rank, and conditioning must be assessed separately
+when interpreting the benefit of sharing.
 \endgroup
 
 \section{Supporting LQI Validation}
 \begingroup\color{\secondrevisioncolor}
-We next test whether the OE-derived maps support useful nonlinear tracking
-under a common controller design. All models and assignments from the ten
-confirmation fleets in Section~V remain fixed. This is a supporting control
-comparison on those same 300 vehicles, not a new independent confirmation.
-No identification, grouping, or controller-weight selection is repeated.
+We test whether the learned maps improve tracking under a common controller
+design, reusing the frozen maps and 300 vehicles from Section~V without
+retuning. Nominal LTI tests improvement over the acquisition controller;
+Global tests the additional value of selective sharing. These are supporting
+comparisons on the same confirmation fleets.
 
 \subsection{Common controller design}
-The comparison includes Restricted Local, Smooth Local, Global, and
-federated group maps. Nominal LTI uses exactly the fixed 20-m/s gain and
-prefilter that generated the identification trajectories in
-Section~\ref{sec:calibration}. ExactLPV is a privileged recipient-specific
-$L=7$ fit to the full reference matrix grid, not a guaranteed performance bound.
-All scheduled methods evaluate their saved maps at 10, 12, \ldots, 30 m/s.
-In particular, Restricted Local extrapolates its three-function map beyond
-its observed block without a nearest-speed fallback.
+The four identification methods and a privileged recipient-specific
+ExactLPV fit ($L=7$) to the full reference grid supply scheduled controllers.
+ExactLPV is a reference, not a performance bound. Nominal LTI uses the
+unchanged 20-m/s acquisition gain and prefilter. Scheduled methods evaluate
+their maps at 10, 12, \ldots, 30 m/s, including locally unobserved speeds.
 
 At each grid node, the fitted $\widehat A,\widehat B$ define
 \begin{equation}
@@ -831,13 +824,13 @@ At each grid node, the fitted $\widehat A,\widehat B$ define
  \label{eq:lqi-augmentation}
 \end{equation}
 The augmented state is $[\beta,r,\xi]^\top$, where $\xi$ integrates
-yaw-rate error. Discrete Riccati synthesis uses the acquisition weights
-$Q=\operatorname{diag}(25,50,1000)$ and $R_u=0.15$ for every method.
+yaw-rate error. Discrete Riccati synthesis uses the common acquisition
+weights from Section~\ref{sec:calibration}.
 For unit yaw reference, the equilibrium state $h\in\R^2$ and input
 $w\in\R$ solve $(I-\widehat A)h-\widehat Bw=0$ and $c_rh=1$.
 The prefilter is $F=w+K_xh$, where $K_x$ contains the first two gain
 entries. Gains $K$ and prefilters $F$ are linearly interpolated between
-grid nodes; Nominal LTI remains constant across speed.
+grid nodes.
 
 For yaw reference $r_k^{\rm ref}$, the runtime law is
 \begin{equation}
@@ -848,18 +841,17 @@ For yaw reference $r_k^{\rm ref}$, the runtime law is
  \end{aligned}
  \label{eq:lqi-runtime}
 \end{equation}
-Steering is first rate-limited relative to $u_{k-1}$, then amplitude-limited.
-The integral candidate is accepted when the command is unsaturated or the
-increment counteracts limiting; otherwise $\xi_{k+1}=\xi_k$. The integral
-bound is in radians. Feedback uses noise-free physical states, isolating
-the effect of models learned from noisy identification data. Homogeneous
-$A,B$ maps supply feedback and the prefilter; fitted OE offsets and initial
-states are not used online.
+Steering is rate-limited relative to $u_{k-1}$, then amplitude-limited.
+Conditional anti-windup accepts $\xi_{k+1}^{\rm cand}$ only when the command
+is unsaturated or the increment counteracts limiting; the integral bound
+is in radians. Noise-free state feedback isolates the consequences of the
+learned maps. Only $A,B$ enter control, not the OE offsets or initial states.
 
 \subsection{Tracking protocol}
-Each nonlinear maneuver lasts 12 s and starts at $x_0=0$, $\xi_0=0$,
-and $u_{-1}=0$. RK4 integration holds applied steering and prescribed
-speed fixed within each $T_s=0.01$ s step. The moderate maneuver varies
+Two 12-s nonlinear maneuvers test tracking across speed and turn demand.
+Both start at $x_0=0$, $\xi_0=0$, and $u_{-1}=0$, with RK4 integration
+and steering and speed fixed within each $T_s=0.01$ s step.
+The moderate maneuver varies
 speed smoothly as $11\to29\to15$ m/s and uses an enveloped two-frequency
 lateral-acceleration demand with scale 4 m/s$^2$ and frequencies 0.35 and
 0.72 Hz. The hard maneuver varies speed as $29\to12\to28$ m/s and uses
@@ -878,14 +870,12 @@ control.
 
 \subsection{Tracking results and recipient tradeoffs}
 All 1800 schedules synthesize and all 3600 rollouts finish numerically.
-Table~\ref{tab:control} reports tracking errors together with sideslip
-violations. Nominal LTI, Global, Federated, and ExactLPV satisfy the tested
-constraints in every rollout. Restricted Local and Smooth Local have
-substantial tracking tails, including infeasible responses. Extreme sideslip
-in those responses lies outside credible vehicle operation. Their large
-means therefore describe failures of the tested control design, not realistic
-driving performance; satisfying the bounds alone also does not ensure small
-tracking error.
+Table~\ref{tab:control} pairs tracking error with feasibility: successful
+synthesis on a fitted model need not yield useful nonlinear control.
+Nominal LTI, Global, Federated, and ExactLPV satisfy the tested constraints
+throughout. The local methods have substantial tracking tails and infeasible
+responses. Their extreme sideslip exceeds credible vehicle operation, so
+the large means describe control failures rather than realistic driving.
 
 \begin{table}[t]
 \color{\secondrevisioncolor}
@@ -916,21 +906,26 @@ Against Global, the reductions are \OECtrlGlobalModerateGain\% and
 \OECtrlGlobalHardGain\%, with gains in
 \OECtrlGlobalModerateFleetWins/10 and \OECtrlGlobalHardFleetWins/10 fleets.
 The corresponding absolute gains are \OECtrlGlobalModerateAbsolute\ and
-\OECtrlGlobalHardAbsolute~degrees/s. Percent reductions are averaged across paired fleets and reported
-descriptively. Steering effort is similar to Global; the hard maneuver uses
-slightly more steering-rate RMS and limiter activity.
+\OECtrlGlobalHardAbsolute~degrees/s. Thus the additional gain from
+grouping is smaller than the gain over the
+nominal controller. Steering effort is similar to Global, with slightly
+more steering-rate RMS and limiting in the hard maneuver.
 
 Aggregate improvement is not uniform across recipients. All 100 heavy-family
 clients improve over Global in both maneuvers, while all 100 handling-family
-clients worsen. Thus, lower aggregate identification error does not imply
-better tracking for every vehicle.
+clients worsen. This systematic recipient tradeoff shows why fleet-level
+matrix accuracy alone is insufficient to judge the control benefit.
+
+Frozen-speed diagnostics help interpret the local-controller failures.
 The maximum federated frozen-point closed-loop radius is
 \OECtrlFedRadius, evaluated on 81 speeds with the saved ExactLPV map and
 interpolated gains. Restricted Local and Smooth Local have radii at least
 one for \OECtrlRestrictedUnstable/300 and \OECtrlSmoothUnstable/300
 schedules, respectively, despite successful own-model synthesis.
-These diagnostics concern unsaturated frozen-speed approximations and
-provide no nonlinear or varying-speed stability guarantee.
+These unsaturated frozen-speed diagnostics provide no nonlinear or
+varying-speed stability guarantee. The tests support useful tracking with
+shared maps, while showing the need
+for recipient-specific control assessment.
 \endgroup
 
 \balance

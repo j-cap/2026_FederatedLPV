@@ -7,7 +7,9 @@ closed-loop trajectories and known applied steering. Sections II--V describe
 frozen compatible group regression and the ten-fleet identification confirmation.
 Section VI reuses those same frozen maps for matched LQI validation, including
 the original nominal LTI controller. It is a descriptive control extension,
-not a separate independent confirmation. All new manuscript changes are red.
+not a separate independent confirmation. The editorial pass organizes the evidence around incomplete coverage, selective
+sharing, and recipient-level control consequences. Revision colors now render
+in standard black.
 
 Generate or verify the current manuscript assets from the repository root:
 
