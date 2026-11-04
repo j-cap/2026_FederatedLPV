@@ -1,0 +1,660 @@
+{
+  "version": 1,
+  "sources": {
+    "results/tables/paper_oe_lqi_validation_analysis.json": "ecab51f15936dc3260bc333c4c8efaa102bac28f533ecc37cb830f75e3accc64",
+    "code/config/paper_oe_lqi_validation.json": "7e2c46befe899034f8932f47ba945a8a099ae6107d1b532895249624205cd774",
+    "code/config/paper_oe_control_timeseries.json": "7e8c912bfd3da3298b7f84c6697127b01a09b02151ad2bde35c240265debe789",
+    "paper/prepare_oe_control_timeseries.py": "ff6bbe6f020ee06344d7ddcdeb8350066bfb53e8020189503a6561a36f88870a",
+    "code/experiments/paper_oe_lqi_validation.py": "238db9f49cddac7a71d31e9205641870d0db4985a144010207923249bc459216",
+    "code/experiments/experiment_10a_basis_coverage_audit.py": "f99bd6e9c5808c0817b59729dca92e7773127eb5f0c114a7d03562393270bff3",
+    "code/experiments/experiment_10f_control_relevance.py": "430f2fda2850db66475018e43279e2eaaca844b22980bbd37bd307f18388b42b",
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/config/experiment_10f.json": "2a0abe3aee9f611e919cd62e7631c8473b129138a925d03f2da3322e713e50d7",
+    "code/config/paper_fixed_lti_identification.json": "285edfccb19dd1ea8132e6d603a7a639c63b67032ece036a9e5734929ac5f324",
+    "code/config/paper_oe_lqi_profiles.npz": "5ce56d3264fb738cc7cc853d97b737eccde58e1e217b228a298d4123ef127ce5",
+    "environment.yml": "5351902815fba32d54541d3b322832df72a8f0d9633a58a5b0e10b563c099d91",
+    "code/src/federated_lpv/__init__.py": "92b52aff502e534537be960b640e752d63eb2e79740d41ddac9e2f89a1dd2065",
+    "code/src/federated_lpv/causal_model_selection.py": "c7b86087670e15250ec4481cfcbd17df663e4fd1de997d5eb8fee0408048ca93",
+    "code/src/federated_lpv/client_mixture.py": "7d341f75bf1e9789bb2c5e436e16b6a979cce6e24a3674b1e03c9bd78e50e60f",
+    "code/src/federated_lpv/communication.py": "8da11e69eb7b774bbdbbb5144af40ef3a9920b7f5a764c9086bbc4a450f150f6",
+    "code/src/federated_lpv/control.py": "0637bab6a08714460c7f0ce01540816a3439a837ec9623192c21a476adeda9ec",
+    "code/src/federated_lpv/federated.py": "9f4415a01c0b3f4bbc23ab7d89fa59c90296f5db5cef57b3cb8c9ca88d970477",
+    "code/src/federated_lpv/federated_manifold.py": "db6c07d85912d80e3326188c454863dc5ea303dc2db5e66a35572671bd5eac4e",
+    "code/src/federated_lpv/feedback_diagnostics.py": "df8b7f175a3da99622d4b6fa320a23dba14acb1809b0b57f44bce8798531903f",
+    "code/src/federated_lpv/fixed_lti_identification.py": "03bab39a3ec07308287e16adfb5606e2fa0465167e220238fc80bc75ccbd5807",
+    "code/src/federated_lpv/fleet.py": "e5a83d88e12d5fc3c33aa7cc95d264b0a607d3b1f6c338a495f7c4967130e22d",
+    "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+    "code/src/federated_lpv/local_scheduling.py": "79765f9adadd25af920b2842ff7ddcc17567e4a3ef42b2163a6d77d98d4a6a73",
+    "code/src/federated_lpv/lpv.py": "308a23d7cdb8bd1db6d09becfef5e9477283d1d7abb39dbcd465f922c253f32a",
+    "code/src/federated_lpv/multihorizon_fit.py": "704eb07913f3d4c33ee2ae797f245e926b32d64d5a4664dad9569a4034c997a5",
+    "code/src/federated_lpv/oe_lqi_validation.py": "98042f568b81e628156814b69833f7fbce442e376e376aa61ad011f0a9d4318a",
+    "code/src/federated_lpv/oracle.py": "250f6d9f9f0ede98c5523d84ccf9f55fb1f73748b0eae600adf0197976edf86a",
+    "code/src/federated_lpv/output_error.py": "becfd26a7696355f643632e4c6fb176b42994c6fd43c4607d98b776d29a60e60",
+    "code/src/federated_lpv/output_feedback_control.py": "e493170dbf45ecb87dc0275a3499cd20309ddfbd2550f8c4f98c2b054e639c0f",
+    "code/src/federated_lpv/output_validation.py": "6f311ac69ea04d4202a06224628ae5b7623dfef70901f66354d8fd13bd1091cc",
+    "code/src/federated_lpv/personalization.py": "7904df01bf7bf52bebf465a1a7e8193470f66a6450b5a3952b679e6d16705a9e",
+    "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+    "code/src/federated_lpv/privacy.py": "dc1de8ce1b2b0b17b7b86d9c52e37ef7a303183916a575778b78abcac63f6072",
+    "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+    "code/src/federated_lpv/trajectory_calibration.py": "524f2c5844ea1ca1d75d6f60911f6a00b19f55d724706fbafe31373c77c6fc50",
+    "code/src/federated_lpv/uncertainty_clustering.py": "5a3d5c4b37a5bc10c5dd9e293709bb59c83150bb41d17175a57655a8b5ab466d",
+    "code/src/federated_lpv/vehicle.py": "47d3a5638171d20ce448c7d529b55a9cfb184abb17d5e83e0cb448252bc587d6",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1311.json": "12a81348935263ae36302c88b18a0bc0b4c69a6970cde9a371e6383366d0f920",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1312.json": "11ecb3eb5cb7f0c83db2f2b716a39568b488ff9c4b33ada6b71b8d2663921236",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1313.json": "50e2200999d1d5ae0e5937ffad767136be503a18103d34d0f5d9bf8f27bdddb3",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1314.json": "c736635d6affb3ea3f007523ba24272b269b11d7ae255077cf5aa479410cc6eb",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1315.json": "4833e8001bc4c77dce1dc31121de84492c0433ba0a456d6a5a099a0365e50545",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1316.json": "6a7b26991313a7d950c6341fc3c67b0ac98c1fd4178ed64ea057d4e0ce797acf",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1317.json": "66fef02788daa9bf7c2d6e72f13925edbb8ebd60bbb13a7f9f28c088c647a87d",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1318.json": "f467c923dfce88d492c0ceb70a159b76eb65f8d8050d2a38b7594addc569b148",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1319.json": "ded6ef85d74435cd2bef84e2353f111d00e410b4d4dcd450c3bbe9125d3c0169",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1320.json": "46d67a7ebb49751c97215c1506e3e7d279cd1545be3682bd01a7176a9fcd7cb0",
+    "results/tables/paper_oe_lqi_validation_seed1311.json": "980b88b2f77cb62774479a6e1b858537a8d9b1b0a4e2476eb0cdb5bae44a1732",
+    "results/tables/paper_oe_lqi_validation_seed1312.json": "0858062727871c7c46ef2ad86f2057c1de3d5b8ff111f2020b122ef7140f0029",
+    "results/tables/paper_oe_lqi_validation_seed1313.json": "97f71d1c02c5032219484a762ee453a133761521b908fb13bfd558c333ce3d57",
+    "results/tables/paper_oe_lqi_validation_seed1314.json": "82f2536e0297ea2676611fc31d75ec4264cbedc61a53cae5e46aa3aa57445f27",
+    "results/tables/paper_oe_lqi_validation_seed1315.json": "5b3edcf10d09c789d50c7d05e959525be7746570385ac09d6ec1d607f920c98a",
+    "results/tables/paper_oe_lqi_validation_seed1316.json": "c389ecf4e4373513793b49f67dcf1a4253b02717244c27ca50d49db6240e5fbf",
+    "results/tables/paper_oe_lqi_validation_seed1317.json": "fcd38b129cf96396e6da03f7a80bc8fbe959c3f543b4917fd45fa7dcff89f693",
+    "results/tables/paper_oe_lqi_validation_seed1318.json": "ca6b297d665af355facd60bc200cd27d651014f6a6a37da3b4ef957b91e94bbe",
+    "results/tables/paper_oe_lqi_validation_seed1319.json": "bfffe4af0e7828ba877bc59e2e55b2d87a8f7b3b7d2fb17f8d6dfaebdfa2e114",
+    "results/tables/paper_oe_lqi_validation_seed1320.json": "777ece3529e2278faa27cf3f725f0e7cf7b84efac0a6338233b1cf5d5536dc41",
+    "code/experiments/paper_oe_transient_benchmark.py": "37c47fa88dce41425ccb502045fdfe2f74c2295c2f0e6a9016332868128ff8fb",
+    "code/config/paper_oe_transient_benchmark.json": "ca9e1aa86ec7399d558092c896bd7cf1c1bb8853a54e295c0c703333f827b4e9"
+  },
+  "runtime": {
+    "python": "3.12",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "matplotlib": "3.10.8",
+  "specification": {
+    "version": 1,
+    "seeds": [
+      1311,
+      1312,
+      1313,
+      1314,
+      1315,
+      1316,
+      1317,
+      1318,
+      1319,
+      1320
+    ],
+    "methods": [
+      "NominalLTI",
+      "RestrictedLocal",
+      "SmoothLocal",
+      "Global",
+      "Federated",
+      "ExactLPV"
+    ],
+    "display_methods": [
+      "NominalLTI",
+      "Global",
+      "Federated"
+    ],
+    "sample_time": 0.01,
+    "duration_s": 12.0,
+    "active_interval_s": [
+      2.0,
+      10.0
+    ],
+    "nominal_lateral_peak_mps2": 2.5,
+    "speeds_mps": [
+      13,
+      21,
+      29
+    ],
+    "selection": {
+      "seed": 1319,
+      "clients": {
+        "heavy": "heavy_05",
+        "handling": "handling_07"
+      }
+    },
+    "reference": "a_ref=2.5*sin(2*pi*(t-2)/8)^3 for 2<t<10 seconds, otherwise zero. r_ref=a_ref/v; curvature_ref=a_ref/v^2. These are nominal demand signals, not actual acceleration bounds.",
+    "rationale": "Smooth C2 left-right transient with two seconds of straight running before and after. Common nominal lateral demand and timing across three fixed speeds. Interior odd speeds are unobserved by every client and interpolate saved even-speed gains. Parameters chosen before running this benchmark, not to favor a controller.",
+    "standard_scope": "ISO 7401:2011 inspires transient-response evaluation, but prescribes steering input. This modified yaw-reference tracking test is not ISO-compliant and does not assess lane-change corridor clearance, ESC certification, or real-world vehicle validation.",
+    "reuse": "Reuse all six saved schedules, identical limits, anti-windup and noise-free feedback. No fitting, synthesis, retuning, fallback or replacement. ExactLPV is privileged. Reuse all ten analyzed confirmation fleets; no fresh independent confirmation claim.",
+    "analysis": "Count synthesis/numerical failures and finite feasibility before conditional means. Include finite infeasible trajectories. Report full and active-interval RMSE, tail error, sideslip, actual lateral acceleration, steering and limiting. Means weight fleet means equally; paired differences require 30 finite clients in both methods and disclose availability. Keep previously selected recipients fixed.",
+    "sources": [
+      "https://www.iso.org/standard/54144.html"
+    ],
+    "source_sha256": {
+      "code/experiments/paper_oe_transient_benchmark.py": "37c47fa88dce41425ccb502045fdfe2f74c2295c2f0e6a9016332868128ff8fb",
+      "paper/prepare_oe_control_timeseries.py": "ff6bbe6f020ee06344d7ddcdeb8350066bfb53e8020189503a6561a36f88870a"
+    }
+  },
+  "selection": {
+    "component_order": [
+      "moderate/NominalLTI",
+      "moderate/Global",
+      "moderate/Federated",
+      "hard/NominalLTI",
+      "hard/Global",
+      "hard/Federated"
+    ],
+    "units": "degrees/s",
+    "fleet": {
+      "selected_id": 1319,
+      "median": [
+        0.05386807379103691,
+        0.04438048307451076,
+        0.040442240131943176,
+        0.20285243803401048,
+        0.15335825071816883,
+        0.15130434463200093
+      ],
+      "population_std": [
+        0.000395819513539399,
+        0.001212077385066909,
+        0.0010992642599859045,
+        0.0008324133099732398,
+        0.003352256406375141,
+        0.0018019591703524282
+      ],
+      "active_components": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "candidates": [
+        {
+          "id": 1319,
+          "distance": 0.9794765967421016,
+          "vector": [
+            0.053835125676939516,
+            0.044448338039006385,
+            0.04119518390282977,
+            0.2028880796993529,
+            0.1524135558215278,
+            0.15016625068531048
+          ]
+        },
+        {
+          "id": 1316,
+          "distance": 1.7209916520718125,
+          "vector": [
+            0.053817435656550026,
+            0.04539086796131665,
+            0.03997518692557598,
+            0.20187270092607182,
+            0.15058933144749964,
+            0.15139433237300712
+          ]
+        },
+        {
+          "id": 1311,
+          "distance": 1.8994561869493036,
+          "vector": [
+            0.05436071930683247,
+            0.04350125510024957,
+            0.0402745595265551,
+            0.20281679636866806,
+            0.15430294561480987,
+            0.1491509139563745
+          ]
+        },
+        {
+          "id": 1315,
+          "distance": 1.905932277523959,
+          "vector": [
+            0.05351372043254463,
+            0.04431262811001513,
+            0.041514219146826604,
+            0.20229980853705362,
+            0.15436273064970019,
+            0.1533953027129474
+          ]
+        },
+        {
+          "id": 1320,
+          "distance": 1.9695797294041208,
+          "vector": [
+            0.0541649149999853,
+            0.04620274148439106,
+            0.0414294782211041,
+            0.20299671115271511,
+            0.15179497036631698,
+            0.15121435689099474
+          ]
+        },
+        {
+          "id": 1314,
+          "distance": 2.2451785071166004,
+          "vector": [
+            0.05360321535023071,
+            0.043181236684225195,
+            0.040517363388123936,
+            0.20330488170041908,
+            0.1572482786390588,
+            0.15383188681320742
+          ]
+        },
+        {
+          "id": 1317,
+          "distance": 2.36748709864203,
+          "vector": [
+            0.054515486552182774,
+            0.04388120631741399,
+            0.040367116875762415,
+            0.201648824142928,
+            0.1554673307282902,
+            0.1503700670430166
+          ]
+        },
+        {
+          "id": 1313,
+          "distance": 2.544142500865576,
+          "vector": [
+            0.05390102190513431,
+            0.043923633033071986,
+            0.04024630064711579,
+            0.20399479125329706,
+            0.15955488124909,
+            0.15309876138826378
+          ]
+        },
+        {
+          "id": 1312,
+          "distance": 3.55588623581695,
+          "vector": [
+            0.054813542717842126,
+            0.044555367916418696,
+            0.039936921334083365,
+            0.2011030844243841,
+            0.14867375491907914,
+            0.15235095767930956
+          ]
+        },
+        {
+          "id": 1318,
+          "distance": 4.500413426256807,
+          "vector": [
+            0.053826770078528964,
+            0.04729121209984897,
+            0.043783251569092345,
+            0.20326212103384272,
+            0.14893625861774262,
+            0.14805271376097606
+          ]
+        }
+      ]
+    },
+    "cases": [
+      {
+        "seed": 1319,
+        "family": "heavy",
+        "index": 15,
+        "client": "heavy_05",
+        "observed_speeds": [
+          16.0,
+          18.0,
+          20.0
+        ],
+        "ranking": {
+          "selected_id": 15,
+          "median": [
+            0.0660459750699075,
+            0.054169668860116836,
+            0.041235084721021525,
+            0.20598747323793298,
+            0.1712970656844518,
+            0.14855675914595645
+          ],
+          "population_std": [
+            0.0030545515013585952,
+            0.002359418882194282,
+            0.0015672364410001748,
+            0.0041133407871561875,
+            0.003935258848700897,
+            0.003100019072568793
+          ],
+          "active_components": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "candidates": [
+            {
+              "id": 15,
+              "distance": 0.5583034356663624,
+              "vector": [
+                0.06688124373034855,
+                0.05495906096003776,
+                0.041475407036357145,
+                0.20539000026758042,
+                0.1723116089104993,
+                0.14892241649050442
+              ]
+            },
+            {
+              "id": 12,
+              "distance": 0.5586083386374603,
+              "vector": [
+                0.06600779700056486,
+                0.053938940914572055,
+                0.040994762405685906,
+                0.20447578452090884,
+                0.17028252245840428,
+                0.14769496146450128
+              ]
+            },
+            {
+              "id": 14,
+              "distance": 1.9160090268811911,
+              "vector": [
+                0.06608415313925015,
+                0.05440039680566162,
+                0.04157638413307662,
+                0.21089633514757677,
+                0.17471641811608732,
+                0.15226999845746594
+              ]
+            },
+            {
+              "id": 16,
+              "distance": 1.9405763966035154,
+              "vector": [
+                0.06775104062470931,
+                0.05528270577644204,
+                0.041539186281658036,
+                0.19984672418102106,
+                0.16967205383887157,
+                0.14579299515912147
+              ]
+            },
+            {
+              "id": 17,
+              "distance": 1.9592286899528013,
+              "vector": [
+                0.0685535023432858,
+                0.0562473268269605,
+                0.04254176663068134,
+                0.20658494620828552,
+                0.17512110336722722,
+                0.1512031382436079
+              ]
+            },
+            {
+              "id": 19,
+              "distance": 2.339755817986787,
+              "vector": [
+                0.06374157915076814,
+                0.052838917059093354,
+                0.04050223425114485,
+                0.2131388124259704,
+                0.17328845955673303,
+                0.15179303357333887
+              ]
+            },
+            {
+              "id": 18,
+              "distance": 2.9662214824646083,
+              "vector": [
+                0.06118495256952429,
+                0.05067852771759057,
+                0.03899530679936472,
+                0.21105718704192153,
+                0.16851128599691634,
+                0.1481911018014085
+              ]
+            },
+            {
+              "id": 11,
+              "distance": 2.9765343861147167,
+              "vector": [
+                0.07050561017021437,
+                0.05762108711613443,
+                0.04351563933630773,
+                0.2045118220179136,
+                0.17612379730387245,
+                0.151394211179556
+              ]
+            },
+            {
+              "id": 10,
+              "distance": 3.6052455807397714,
+              "vector": [
+                0.06299517173246706,
+                0.051426963112018914,
+                0.039005000080546796,
+                0.20091691564744305,
+                0.16405877188044235,
+                0.14257650301341174
+              ]
+            },
+            {
+              "id": 13,
+              "distance": 3.6751526225047333,
+              "vector": [
+                0.06066234518028968,
+                0.04993960046143357,
+                0.038357001885913386,
+                0.20713900407063332,
+                0.16514653622659914,
+                0.14503231355792806
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "seed": 1319,
+        "family": "handling",
+        "index": 27,
+        "client": "handling_07",
+        "observed_speeds": [
+          16.0,
+          18.0,
+          20.0
+        ],
+        "ranking": {
+          "selected_id": 27,
+          "median": [
+            0.04044631144295716,
+            0.03543505209613554,
+            0.04022568070166053,
+            0.21388501200405322,
+            0.14072041587274198,
+            0.15794843694398708
+          ],
+          "population_std": [
+            0.0010611984242739527,
+            0.0008478731062112433,
+            0.0022340900316984713,
+            0.006148651055091099,
+            0.005839836184050971,
+            0.006277216949628107
+          ],
+          "active_components": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "candidates": [
+            {
+              "id": 27,
+              "distance": 0.5802791067145435,
+              "vector": [
+                0.04063606951903469,
+                0.03552134221529276,
+                0.040268205695522676,
+                0.21587933575516138,
+                0.1431506044773126,
+                0.15873378930467927
+              ]
+            },
+            {
+              "id": 23,
+              "distance": 0.5811302911908067,
+              "vector": [
+                0.040193717821056865,
+                0.035214452098367335,
+                0.040051995934455034,
+                0.21523123546695713,
+                0.14294099491040826,
+                0.15871190761258155
+              ]
+            },
+            {
+              "id": 21,
+              "distance": 0.8672866371391955,
+              "vector": [
+                0.04025655336687964,
+                0.03534876197697832,
+                0.04014710208535232,
+                0.21627930656487596,
+                0.14447321641461713,
+                0.16033065057791943
+              ]
+            },
+            {
+              "id": 26,
+              "distance": 1.3331872520455696,
+              "vector": [
+                0.04115846041973786,
+                0.03584769155614863,
+                0.041388112796390056,
+                0.2160070927638952,
+                0.14434671161138243,
+                0.1614701417880069
+              ]
+            },
+            {
+              "id": 24,
+              "distance": 2.3050845758120584,
+              "vector": [
+                0.03923082119551544,
+                0.03415186535862121,
+                0.03931077216379061,
+                0.2125387885411493,
+                0.13604838787252813,
+                0.15214289911195522
+              ]
+            },
+            {
+              "id": 29,
+              "distance": 2.348917780751469,
+              "vector": [
+                0.04086890543370122,
+                0.03605382139216874,
+                0.04018315570779838,
+                0.22030334274144422,
+                0.14985717238276755,
+                0.16507354815612046
+              ]
+            },
+            {
+              "id": 25,
+              "distance": 3.0376185108843945,
+              "vector": [
+                0.04240693187908842,
+                0.03574775250811947,
+                0.04505018419074631,
+                0.20820004491933758,
+                0.13849983683507566,
+                0.15718496627539263
+              ]
+            },
+            {
+              "id": 22,
+              "distance": 3.5949059927584526,
+              "vector": [
+                0.04017675009096313,
+                0.033808301401768714,
+                0.043019836648541004,
+                0.20306752128182035,
+                0.1313536606401253,
+                0.14919264515301706
+              ]
+            },
+            {
+              "id": 28,
+              "distance": 3.8079397802333212,
+              "vector": [
+                0.040124126255575154,
+                0.03366749875692324,
+                0.0428139555147252,
+                0.20225894319688148,
+                0.1308130025847406,
+                0.14849783570064398
+              ]
+            },
+            {
+              "id": 20,
+              "distance": 4.0008475156926755,
+              "vector": [
+                0.04293274890538661,
+                0.035755624038880794,
+                0.036475499559446185,
+                0.20401807328582003,
+                0.13689674508971209,
+                0.1445552401185552
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "cases": 5400,
+  "exact_selected_replays": 18,
+  "outcomes": {
+    "complete": 5400
+  },
+  "checkpoints": {
+    "results/tables/paper_oe_transient_benchmark_seed1311.json": "cfc40618f207b765f83d351a3d640106616fa1fc3f13cb29a31b8faa1b37e52d",
+    "results/tables/paper_oe_transient_benchmark_seed1312.json": "6938e06d233c44fede60bb078cd56b9e250dec60f5b91e5b811a8a003ae305ea",
+    "results/tables/paper_oe_transient_benchmark_seed1313.json": "b500d496a2053b358bac1d3440630e675dbc9f76da819ac55e22b91754f6c3ff",
+    "results/tables/paper_oe_transient_benchmark_seed1314.json": "e5ab588dd5b55f6059a0d7ff65b7fdf81c16851edf25b53ebe5aebb5d6529fad",
+    "results/tables/paper_oe_transient_benchmark_seed1315.json": "bf8544ffa511bf609f5b9ca7a64ff9eb46ff6bd26cdf14641d8f1432f4a79062",
+    "results/tables/paper_oe_transient_benchmark_seed1316.json": "25b703436978b4568e242397caf2800aa158457d62c02e73ab2a3139fa2bf266",
+    "results/tables/paper_oe_transient_benchmark_seed1317.json": "91147af486822bcefa7b096338c56a475ba226a3e456fdc33ddc33ac8d02094c",
+    "results/tables/paper_oe_transient_benchmark_seed1318.json": "a55957b4f96653805e6ea8c53094677e3dcff3c596a2fda909bdf490366f900e",
+    "results/tables/paper_oe_transient_benchmark_seed1319.json": "49c41a1a85e1d50f0a94f42182405ec6cccb89e60361b1c35c90547eee690ff1",
+    "results/tables/paper_oe_transient_benchmark_seed1320.json": "9ad3df83afe696e49ccd9c8510a3f817acf5c59b185e9b4f8e900144b30154a8"
+  },
+  "outputs": {
+    "results/tables/paper_oe_transient_benchmark_metrics.csv": "51d6e1bf3bbccdbee6d516af5824f2ea271d80c4d72432ce69a7de56310b44e2",
+    "results/tables/paper_oe_transient_benchmark_fleets.csv": "4563a878076bafc58667a4974548cadfa8d5b9f841f362caeb1c105218010cfe",
+    "results/tables/paper_oe_transient_benchmark_summary.csv": "8ac1e6ccc6c41fb1ea661e31d9abba42eaf55c07a3d3ea71305ff44e347dcf8c",
+    "results/tables/paper_oe_transient_benchmark_paired.csv": "98c934ca05c12bc48f8eb17ee381b46fbc3ca9065f4e11e19e00a3ce4d27d1a1",
+    "results/tables/paper_oe_transient_benchmark_traces.csv": "79a47c609962ddd0b887b92f567feae27e0458980210f56bf213215a82a9d999",
+    "results/figures/paper_oe_transient_benchmark_heavy_v13_response_panel.pdf": "401e879f8ffcb889e146eb710c4f4f8107e75af73259d03d21f1b005645fad25",
+    "results/figures/paper_oe_transient_benchmark_heavy_v13_error_panel.pdf": "574f75d1978b641bf47bd13fb51e15c2636948d2eeadbc978577a010d1e496ae",
+    "results/figures/paper_oe_transient_benchmark_heavy_v13_steering_panel.pdf": "e2d290081022c92e1a95c9eb14fe47c59c9dc92ac506c31356370c4028f5c39e",
+    "results/figures/paper_oe_transient_benchmark_heavy_v21_response_panel.pdf": "d6cfe185f1e7b42fb87f988ef7304ea67c8bc3ef7e52c8139d1b6ee1ca677fff",
+    "results/figures/paper_oe_transient_benchmark_heavy_v21_error_panel.pdf": "c5591b8a59de7b9dceac3147224de818e49a4c4a35d7a5ee2a4462227b325fc4",
+    "results/figures/paper_oe_transient_benchmark_heavy_v21_steering_panel.pdf": "39bb49a2576529ca1232ba4b537f16e474148bdb17777851664905196cb74364",
+    "results/figures/paper_oe_transient_benchmark_heavy_v29_response_panel.pdf": "73a62ed352b69cfcfef1788454dc40c4bb2b80c604d7fb6daa554e6058a38f71",
+    "results/figures/paper_oe_transient_benchmark_heavy_v29_error_panel.pdf": "89463ca0190520944a9a65b42d330203998fdff199335c497a5dff116043b409",
+    "results/figures/paper_oe_transient_benchmark_heavy_v29_steering_panel.pdf": "22f0c69d10d934469817813928f5e470b63a2e11385a5a50c4c0d83181673279",
+    "results/figures/paper_oe_transient_benchmark_handling_v13_response_panel.pdf": "2e80f1362fa20e34697aa5b9fad9793ccfc8852d3d242a741cfa2095c317ab95",
+    "results/figures/paper_oe_transient_benchmark_handling_v13_error_panel.pdf": "ba7b985366af2a4a5f9d3af579f0cec5f64139271494715e4a627cb24cada204",
+    "results/figures/paper_oe_transient_benchmark_handling_v13_steering_panel.pdf": "63d54c017da693797799d26ed23722b1f82dae735c43147e63a9b68111ac9e20",
+    "results/figures/paper_oe_transient_benchmark_handling_v21_response_panel.pdf": "e3ce009a68e0a12d161d308e2c7b14f8c98182175c53915a6ded50479d64df0a",
+    "results/figures/paper_oe_transient_benchmark_handling_v21_error_panel.pdf": "d3903b365b89ebba613d45f695a060f770b987e408f402122cafb27a8e80c5dc",
+    "results/figures/paper_oe_transient_benchmark_handling_v21_steering_panel.pdf": "7799d060b7769768e05b1ef5d78a54fb9cf7f36438a159dd64287aafe84a582d",
+    "results/figures/paper_oe_transient_benchmark_handling_v29_response_panel.pdf": "6980de0906bac68fac656b0f97d005ed53f054f1d7cf24a8282b5fb0e416991a",
+    "results/figures/paper_oe_transient_benchmark_handling_v29_error_panel.pdf": "fb3fec4abbe8a0e626b9c5523eabbce947f6d38640abb6464f78c8b8fb91bd5c",
+    "results/figures/paper_oe_transient_benchmark_handling_v29_steering_panel.pdf": "5bbd10f4c4c0495b338845e8b4e8179f868bc408596e1323c79a45692c988389",
+    "results/figures/paper_oe_transient_benchmark_legend.pdf": "08ff3f1229f0b116051427f611d27caf79557d463464f841a1c49514d6d7f959",
+    "report/paper_oe_transient_benchmark.html": "5477452104340739f3379aa4738dc68066e3bfc9f6974b418ca555737fa744d3"
+  }
+}
