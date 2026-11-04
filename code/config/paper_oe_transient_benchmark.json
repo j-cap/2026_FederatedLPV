@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "seeds": [
+    1311,
+    1312,
+    1313,
+    1314,
+    1315,
+    1316,
+    1317,
+    1318,
+    1319,
+    1320
+  ],
+  "methods": [
+    "NominalLTI",
+    "RestrictedLocal",
+    "SmoothLocal",
+    "Global",
+    "Federated",
+    "ExactLPV"
+  ],
+  "display_methods": [
+    "NominalLTI",
+    "Global",
+    "Federated"
+  ],
+  "sample_time": 0.01,
+  "duration_s": 12.0,
+  "active_interval_s": [
+    2.0,
+    10.0
+  ],
+  "nominal_lateral_peak_mps2": 2.5,
+  "speeds_mps": [
+    13,
+    21,
+    29
+  ],
+  "selection": {
+    "seed": 1319,
+    "clients": {
+      "heavy": "heavy_05",
+      "handling": "handling_07"
+    }
+  },
+  "reference": "a_ref=2.5*sin(2*pi*(t-2)/8)^3 for 2<t<10 seconds, otherwise zero. r_ref=a_ref/v; curvature_ref=a_ref/v^2. These are nominal demand signals, not actual acceleration bounds.",
+  "rationale": "Smooth C2 left-right transient with two seconds of straight running before and after. Common nominal lateral demand and timing across three fixed speeds. Interior odd speeds are unobserved by every client and interpolate saved even-speed gains. Parameters chosen before running this benchmark, not to favor a controller.",
+  "standard_scope": "ISO 7401:2011 inspires transient-response evaluation, but prescribes steering input. This modified yaw-reference tracking test is not ISO-compliant and does not assess lane-change corridor clearance, ESC certification, or real-world vehicle validation.",
+  "reuse": "Reuse all six saved schedules, identical limits, anti-windup and noise-free feedback. No fitting, synthesis, retuning, fallback or replacement. ExactLPV is privileged. Reuse all ten analyzed confirmation fleets; no fresh independent confirmation claim.",
+  "analysis": "Count synthesis/numerical failures and finite feasibility before conditional means. Include finite infeasible trajectories. Report full and active-interval RMSE, tail error, sideslip, actual lateral acceleration, steering and limiting. Means weight fleet means equally; paired differences require 30 finite clients in both methods and disclose availability. Keep previously selected recipients fixed.",
+  "sources": [
+    "https://www.iso.org/standard/54144.html"
+  ],
+  "source_sha256": {
+    "code/experiments/paper_oe_transient_benchmark.py": "37c47fa88dce41425ccb502045fdfe2f74c2295c2f0e6a9016332868128ff8fb",
+    "paper/prepare_oe_control_timeseries.py": "ff6bbe6f020ee06344d7ddcdeb8350066bfb53e8020189503a6561a36f88870a"
+  }
+}

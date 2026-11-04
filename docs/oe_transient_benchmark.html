@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Fixed-speed transient benchmark: execution</title>
+<style>body{font:16px/1.55 system-ui;max-width:1000px;margin:35px auto;padding:0 20px;color:#17232d}pre{background:#eef2f5;padding:16px;overflow:auto}table{border-collapse:collapse}td,th{padding:8px 16px;border-bottom:1px solid #ddd;text-align:left}code{font-size:.9em}</style>
+<h1>Fixed-speed transient yaw-rate tracking</h1>
+<p>This separate supporting evaluation uses all 300 vehicles from the ten existing confirmation fleets and all six saved controller schedules. It changes neither identification nor the existing variable-speed stress tests. The main figure candidates keep fleet 1319, heavy_05 and handling_07; no selection uses the new outcomes.</p>
+<h2>Frozen protocol</h2><table><tr><th>Item</th><th>Definition</th></tr>
+<tr><td>Speeds</td><td>Three separate constant-speed runs: 13, 21, 29 m/s. All are unobserved local identification speeds; existing schedules are interpolated without synthesis.</td></tr>
+<tr><td>Time</td><td>12 s at 0.01 s; zero reference during 0–2 s and 10–12 s.</td></tr>
+<tr><td>Demand</td><td>During 2–10 s: a_ref(t) = 2.5 sin³(2π(t−2)/8) m/s². Outside: zero. This has continuous first and second derivatives at the joins. Set r_ref=a_ref/v and κ_ref=a_ref/v².</td></tr>
+<tr><td>Interpretation</td><td>Nominal lateral demand, not a bound on actual lateral acceleration. Actual acceleration, sideslip, steering amplitude/rate and limiter activity are recorded.</td></tr>
+<tr><td>Controller/plant</td><td>Saved nominal LTI and five LPV schedules, unchanged weights and limits, zero initial lateral states and integral, noise-free state feedback, tanh-tire bicycle, fixed speed, static axle loads, RK4.</td></tr>
+<tr><td>Scope</td><td>ISO-7401-inspired transient tracking adaptation, not an ISO-compliant test. ISO 7401 prescribes steering input; this evaluation prescribes yaw rate. No corridor tracking, ESC certification, real-world validation or scheduling-transition claim.</td></tr>
+<tr><td>Consistency</td><td>Constant speed removes the longitudinal acceleration demand and the variable-speed sideslip-coordinate coupling from this benchmark. It does not validate the simplified tire/vehicle model experimentally.</td></tr>
+<tr><td>Budget</td><td>300 vehicles × 6 methods × 3 speeds = 5400 rollouts. No fitting, gain tuning or replacement after failures.</td></tr></table>
+<p>The waveform, amplitude, timing, speeds and displayed cases were fixed before examining the new fleet outcomes. This is supporting evaluation on reused fleets, not a new independent confirmation campaign. Background: <a href="https://www.iso.org/standard/54144.html">ISO 7401:2011</a>.</p>
+<h2>1. Update and check (Windows CMD)</h2><pre>conda activate federated_lpv
+git pull --ff-only origin main
+set OPENBLAS_NUM_THREADS=1
+set OMP_NUM_THREADS=1
+python code\experiments\paper_oe_transient_benchmark.py preflight
+python code\experiments\paper_oe_transient_benchmark.py smoke</pre>
+<p>Preflight verifies the original numerical environment, original source/result hashes, all six saved schedules and the fixed selection. Smoke runs a nominal technical fixture at three speeds, checks exact reconstruction and renders 18 separate panels plus one shared legend in a temporary directory. It does not inspect fleet outcomes or produce paper results.</p>
+<h2>2. Execute and checkpoint</h2><pre>python code\experiments\paper_oe_transient_benchmark.py run --workers 5
+git add results/tables/paper_oe_transient_benchmark_seed*.json
+git commit -m "Run frozen fixed-speed transient control benchmark"
+git push origin main</pre>
+<p>One worker per fleet; numerical thread count is limited inside each worker. Each completed vehicle is saved atomically. Rerun the same command to resume: complete vehicles are skipped only after provenance checks. Failed synthesis, numerical failures and finite constraint violations remain in the output. A crash can leave results/data/paper_oe_transient_benchmark/execution.lock; remove that lock only after confirming that no worker is still running. Do not remove checkpoints to hide failures.</p>
+<h2>3. Generate and verify figures</h2><pre>python code\experiments\paper_oe_transient_benchmark.py analyze
+python code\experiments\paper_oe_transient_benchmark.py check
+start report\paper_oe_transient_benchmark.html
+git add results/tables/paper_oe_transient_benchmark_*.csv results/tables/paper_oe_transient_benchmark_manifest.json
+git add results/figures/paper_oe_transient_benchmark_*.pdf report/paper_oe_transient_benchmark.html
+git commit -m "Render and audit fixed-speed transient benchmark"
+git push origin main</pre>
+<p>Analyze requires all ten complete checkpoints and exactly reconstructs the 18 displayed trajectories before exporting. It reports all six methods in the tables, even though the selected response figures compare Nominal LTI, Global and Federated. No smoothing, resampling, inset selection or outcome-based reselection is applied. Check verifies checkpoint and output hashes without simulations.</p>
+<h2>Outputs and interpretation</h2><ul>
+<li><b>19 vector PDFs:</b> response (including reference), tracking error, and steering for each of two recipients at three speeds, plus a shared legend. Each data panel is 3.48 × 1.65 inches, with 8 pt labels and 7 pt ticks, no embedded titles or panel letters. LaTeX composition is deferred until review.</li>
+<li><b>Self-contained HTML:</b> all panels as inline SVGs; fleet and family summaries, paired fleet differences, definitions and scope. The three columns correspond to speeds, not portions of one changing-speed run.</li>
+<li><b>CSV tables:</b> all 5400 outcome rows; fleet/family means; summaries; paired differences; selected full-resolution traces including sideslip and actual lateral acceleration. The final input sample is empty because no input interval follows the terminal state.</li>
+<li><b>Failure accounting:</b> finite infeasible trajectories remain in tracking averages. Numerical/synthesis failures have no full-duration metrics. Means condition on finite trajectories and weight available fleet means equally. Paired differences require all 30 finite clients for both methods and disclose the number of available fleets. No hypothesis-test claim.</li>
+<li><b>Fairness:</b> full-duration and active-interval RMSE are both reported, avoiding hidden dilution by straight-running intervals. Per-run peaks remain available in the metrics CSV; averages of peaks are not fleet-wide maxima.</li>
+</ul>
+<h2>Reconstruct ignored raw arrays</h2><pre>python code\experiments\paper_oe_transient_benchmark.py restore
+python code\experiments\paper_oe_transient_benchmark.py restore --all</pre>
+<p>The first command restores only the 18 selected trajectories; --all restores every available trajectory. Saved schedules and references reproduce committed outcome dictionaries and array hashes exactly before writing. Existing raw files must also match. Checkpoints and summaries are never modified. Raw NPZ files and PNG previews are ignored by git; the JSON checkpoints and PDFs/HTML/CSV are the durable outputs.</p>
+<p>For an isolated execution, pass the same <code>--output-dir PATH</code> to run, analyze, restore and check. The directory receives results/ and report/ subdirectories. These commands never overwrite the previous stress-test outputs or manuscript.</p>
+</html>
