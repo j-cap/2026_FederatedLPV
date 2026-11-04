@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "seed": 1319,
+  "clients": {
+    "heavy": "heavy_05",
+    "handling": "handling_07"
+  },
+  "speeds_mps": [
+    13,
+    21,
+    29
+  ],
+  "methods": [
+    "NominalLTI",
+    "Global",
+    "Federated"
+  ],
+  "panel_width_in": 2.3,
+  "figure_width_in": 7.16,
+  "row_heights_in": {
+    "reference": 0.82,
+    "heavy": 0.98,
+    "handling": 1.26
+  },
+  "source_manifest": "results/tables/paper_oe_transient_benchmark_manifest.json",
+  "source_manifest_sha256": "b942249fdf47d3c7e331442f966cbc8b44ae4c9fe10f43815556d17585ac4894",
+  "selection": "Preserve both previously selected recipients, all three predefined speeds and all three displayed controllers. No new outcome-based selection.",
+  "scope": "Publication presentation from committed full-resolution traces; no simulation, tuning, resampling or modification of original results."
+}

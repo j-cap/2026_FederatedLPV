@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "sources": {
+    "paper/oe_transient_figure_spec.json": "1c0d6bf93e9f421bcca599431c2f9769404f6438415e7d94f24987c86c7b9cf3",
+    "paper/prepare_oe_transient_figure.py": "eac4e2ba2825da50d64b4f6051e5ed06d724c5bce647f7c5b6398028ae1bc580",
+    "results/tables/paper_oe_transient_benchmark_manifest.json": "b942249fdf47d3c7e331442f966cbc8b44ae4c9fe10f43815556d17585ac4894",
+    "results/tables/paper_oe_transient_benchmark_traces.csv": "79a47c609962ddd0b887b92f567feae27e0458980210f56bf213215a82a9d999",
+    "results/tables/paper_oe_transient_benchmark_metrics.csv": "51d6e1bf3bbccdbee6d516af5824f2ea271d80c4d72432ce69a7de56310b44e2"
+  },
+  "specification": {
+    "version": 1,
+    "seed": 1319,
+    "clients": {
+      "heavy": "heavy_05",
+      "handling": "handling_07"
+    },
+    "speeds_mps": [
+      13,
+      21,
+      29
+    ],
+    "methods": [
+      "NominalLTI",
+      "Global",
+      "Federated"
+    ],
+    "panel_width_in": 2.3,
+    "figure_width_in": 7.16,
+    "row_heights_in": {
+      "reference": 0.82,
+      "heavy": 0.98,
+      "handling": 1.26
+    },
+    "source_manifest": "results/tables/paper_oe_transient_benchmark_manifest.json",
+    "source_manifest_sha256": "b942249fdf47d3c7e331442f966cbc8b44ae4c9fe10f43815556d17585ac4894",
+    "selection": "Preserve both previously selected recipients, all three predefined speeds and all three displayed controllers. No new outcome-based selection.",
+    "scope": "Publication presentation from committed full-resolution traces; no simulation, tuning, resampling or modification of original results."
+  },
+  "trace_checks": [
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 13,
+      "method": "NominalLTI",
+      "tracking_rmse_deg_s": 0.041929718062332935,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 13,
+      "method": "Global",
+      "tracking_rmse_deg_s": 0.024175889333630123,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 13,
+      "method": "Federated",
+      "tracking_rmse_deg_s": 0.02075017240724317,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 21,
+      "method": "NominalLTI",
+      "tracking_rmse_deg_s": 0.016221238283909194,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 21,
+      "method": "Global",
+      "tracking_rmse_deg_s": 0.01787802004140038,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 21,
+      "method": "Federated",
+      "tracking_rmse_deg_s": 0.012102367119526345,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 29,
+      "method": "NominalLTI",
+      "tracking_rmse_deg_s": 0.017306377714992247,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 29,
+      "method": "Global",
+      "tracking_rmse_deg_s": 0.011029539698303824,
+      "feasible": true
+    },
+    {
+      "family": "heavy",
+      "client": "heavy_05",
+      "speed_mps": 29,
+      "method": "Federated",
+      "tracking_rmse_deg_s": 0.007128035214636549,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 13,
+      "method": "NominalLTI",
+      "tracking_rmse_deg_s": 0.05551784859794543,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 13,
+      "method": "Global",
+      "tracking_rmse_deg_s": 0.02121932010347124,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 13,
+      "method": "Federated",
+      "tracking_rmse_deg_s": 0.020143426809766843,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 21,
+      "method": "NominalLTI",
+      "tracking_rmse_deg_s": 0.015269078883897998,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 21,
+      "method": "Global",
+      "tracking_rmse_deg_s": 0.013043780136540159,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 21,
+      "method": "Federated",
+      "tracking_rmse_deg_s": 0.011699325468737686,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 29,
+      "method": "NominalLTI",
+      "tracking_rmse_deg_s": 0.006306062238654205,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 29,
+      "method": "Global",
+      "tracking_rmse_deg_s": 0.0075510965961290135,
+      "feasible": true
+    },
+    {
+      "family": "handling",
+      "client": "handling_07",
+      "speed_mps": 29,
+      "method": "Federated",
+      "tracking_rmse_deg_s": 0.006322181029372539,
+      "feasible": true
+    }
+  ],
+  "limits": {
+    "error_limits_deg_s": [
+      -0.12,
+      0.12
+    ],
+    "reference_limits_deg_s": [
+      -12.0,
+      12.0
+    ]
+  },
+  "renderer": {
+    "matplotlib": "3.10.8"
+  },
+  "outputs": {
+    "results/figures/paper_oe_transient_compact_v13_reference_panel.pdf": "b371c2b333b951685853d66dc6664077ffca21e96d58457c2dbc3f494098b0fc",
+    "results/figures/paper_oe_transient_compact_v13_heavy_panel.pdf": "6bcf947cc46e90c2d8f2feb4709f4f902755b0c10138c446d3908eb405cf66e6",
+    "results/figures/paper_oe_transient_compact_v13_handling_panel.pdf": "b2014548e665ff3156dac4b7c0b23bccf3b99856d4f5b8a76b62612cfb317f55",
+    "results/figures/paper_oe_transient_compact_v21_reference_panel.pdf": "15d09ed595b263ef6124338014132230cc23c4aa93b04d46d8f2f8dc6abe7669",
+    "results/figures/paper_oe_transient_compact_v21_heavy_panel.pdf": "1647d2f0dc7ae686aa3bed2d515b14b39b6fec890bb1e9430e9b55a8cfd68a72",
+    "results/figures/paper_oe_transient_compact_v21_handling_panel.pdf": "1454aa8bb47aceeed51742fefeaa7428b8a9a86dace31bd746aaaa2bb7ffa413",
+    "results/figures/paper_oe_transient_compact_v29_reference_panel.pdf": "0410dcbe4173de9b2b826de20963c442d2378d3f903d8b09d50c1b43ed4fe953",
+    "results/figures/paper_oe_transient_compact_v29_heavy_panel.pdf": "cca4ad634eb78f88c44454f75d477d1b276c8fdcdb106b41ac83591ec522ff40",
+    "results/figures/paper_oe_transient_compact_v29_handling_panel.pdf": "6b45ac3c2a795c633f414f6f8bf91329ff18191e59f979e7483b80da0ea65b91",
+    "results/figures/paper_oe_transient_compact_legend.pdf": "22bf390411504e2604eb7cb5d89ae5a3ca3063b4290552062d0eb7b6f30cc3e5",
+    "paper/figures/oe_transient_figure.tex": "49466cf960fb8563f6dc676375b9d257ee7ea4256b8b4873635d9df58bf3eea3",
+    "paper/oe_transient_figure_preview.tex": "0f9a4331309130359bf80e0b2befecf863a391ab4b4f40d8cdd05bf50458252c",
+    "report/paper_oe_transient_compact.html": "1e8333f1679a70e3247d983a068b835e81ece5d029659a3ffa5611f015cf523e",
+    "results/figures/paper_oe_transient_compact_preview.pdf": "869bcf0fc39fc05e3a537d44e6a319a6d2d5ba6990cb9e0b54e723c6a35bdbf0"
+  }
+}
