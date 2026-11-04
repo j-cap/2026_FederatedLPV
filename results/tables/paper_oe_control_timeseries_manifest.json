@@ -1,0 +1,1180 @@
+{
+  "version": 1,
+  "specification": {
+    "version": 1,
+    "methods": [
+      "NominalLTI",
+      "Global",
+      "Federated"
+    ],
+    "selection_scenarios": [
+      "moderate",
+      "hard"
+    ],
+    "display_scenario": "hard",
+    "families": [
+      "heavy",
+      "handling"
+    ],
+    "selection": "Euclidean distance to the component-wise median of six RMSE components, divided by population standard deviation in each component. Fleet vectors average all 30 clients. Within the selected fleet, select independently within each specified family using its ten client vectors. Components are scenario-major, method-minor. Omit numerically constant components (spread <= 64*machine_epsilon*max(1,abs(median))). Exact distance ties use the lowest seed or client index. Do not select on improvement or inspect traces before selection.",
+    "replay": "Reuse saved schedules and stored profiles. Require exact agreement of all array hashes and the complete outcome dictionary with the committed checkpoint. No fitting, synthesis, tuning, smoothing, resampling, or fallback. Abort before exporting on mismatch.",
+    "scope": "Illustrative outcome-based representative examples from the reused confirmation fleets, not random cases, an independent validation, or an estimate of fleet-average trajectories. Families intentionally illustrate previously reported recipient tradeoffs; selection does not require improvement or deterioration.",
+    "anchors": {
+      "results/tables/paper_oe_lqi_validation_analysis.json": "ecab51f15936dc3260bc333c4c8efaa102bac28f533ecc37cb830f75e3accc64",
+      "code/config/paper_oe_lqi_validation.json": "7e2c46befe899034f8932f47ba945a8a099ae6107d1b532895249624205cd774"
+    },
+    "expected_selection": {
+      "seed": 1319,
+      "clients": {
+        "heavy": "heavy_05",
+        "handling": "handling_07"
+      }
+    }
+  },
+  "selection": {
+    "component_order": [
+      "moderate/NominalLTI",
+      "moderate/Global",
+      "moderate/Federated",
+      "hard/NominalLTI",
+      "hard/Global",
+      "hard/Federated"
+    ],
+    "units": "degrees/s",
+    "fleet": {
+      "selected_id": 1319,
+      "median": [
+        0.05386807379103691,
+        0.04438048307451076,
+        0.040442240131943176,
+        0.20285243803401048,
+        0.15335825071816883,
+        0.15130434463200093
+      ],
+      "population_std": [
+        0.000395819513539399,
+        0.001212077385066909,
+        0.0010992642599859045,
+        0.0008324133099732398,
+        0.003352256406375141,
+        0.0018019591703524282
+      ],
+      "active_components": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "candidates": [
+        {
+          "id": 1319,
+          "distance": 0.9794765967421016,
+          "vector": [
+            0.053835125676939516,
+            0.044448338039006385,
+            0.04119518390282977,
+            0.2028880796993529,
+            0.1524135558215278,
+            0.15016625068531048
+          ]
+        },
+        {
+          "id": 1316,
+          "distance": 1.7209916520718125,
+          "vector": [
+            0.053817435656550026,
+            0.04539086796131665,
+            0.03997518692557598,
+            0.20187270092607182,
+            0.15058933144749964,
+            0.15139433237300712
+          ]
+        },
+        {
+          "id": 1311,
+          "distance": 1.8994561869493036,
+          "vector": [
+            0.05436071930683247,
+            0.04350125510024957,
+            0.0402745595265551,
+            0.20281679636866806,
+            0.15430294561480987,
+            0.1491509139563745
+          ]
+        },
+        {
+          "id": 1315,
+          "distance": 1.905932277523959,
+          "vector": [
+            0.05351372043254463,
+            0.04431262811001513,
+            0.041514219146826604,
+            0.20229980853705362,
+            0.15436273064970019,
+            0.1533953027129474
+          ]
+        },
+        {
+          "id": 1320,
+          "distance": 1.9695797294041208,
+          "vector": [
+            0.0541649149999853,
+            0.04620274148439106,
+            0.0414294782211041,
+            0.20299671115271511,
+            0.15179497036631698,
+            0.15121435689099474
+          ]
+        },
+        {
+          "id": 1314,
+          "distance": 2.2451785071166004,
+          "vector": [
+            0.05360321535023071,
+            0.043181236684225195,
+            0.040517363388123936,
+            0.20330488170041908,
+            0.1572482786390588,
+            0.15383188681320742
+          ]
+        },
+        {
+          "id": 1317,
+          "distance": 2.36748709864203,
+          "vector": [
+            0.054515486552182774,
+            0.04388120631741399,
+            0.040367116875762415,
+            0.201648824142928,
+            0.1554673307282902,
+            0.1503700670430166
+          ]
+        },
+        {
+          "id": 1313,
+          "distance": 2.544142500865576,
+          "vector": [
+            0.05390102190513431,
+            0.043923633033071986,
+            0.04024630064711579,
+            0.20399479125329706,
+            0.15955488124909,
+            0.15309876138826378
+          ]
+        },
+        {
+          "id": 1312,
+          "distance": 3.55588623581695,
+          "vector": [
+            0.054813542717842126,
+            0.044555367916418696,
+            0.039936921334083365,
+            0.2011030844243841,
+            0.14867375491907914,
+            0.15235095767930956
+          ]
+        },
+        {
+          "id": 1318,
+          "distance": 4.500413426256807,
+          "vector": [
+            0.053826770078528964,
+            0.04729121209984897,
+            0.043783251569092345,
+            0.20326212103384272,
+            0.14893625861774262,
+            0.14805271376097606
+          ]
+        }
+      ]
+    },
+    "cases": [
+      {
+        "seed": 1319,
+        "family": "heavy",
+        "index": 15,
+        "client": "heavy_05",
+        "observed_speeds": [
+          16.0,
+          18.0,
+          20.0
+        ],
+        "ranking": {
+          "selected_id": 15,
+          "median": [
+            0.0660459750699075,
+            0.054169668860116836,
+            0.041235084721021525,
+            0.20598747323793298,
+            0.1712970656844518,
+            0.14855675914595645
+          ],
+          "population_std": [
+            0.0030545515013585952,
+            0.002359418882194282,
+            0.0015672364410001748,
+            0.0041133407871561875,
+            0.003935258848700897,
+            0.003100019072568793
+          ],
+          "active_components": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "candidates": [
+            {
+              "id": 15,
+              "distance": 0.5583034356663624,
+              "vector": [
+                0.06688124373034855,
+                0.05495906096003776,
+                0.041475407036357145,
+                0.20539000026758042,
+                0.1723116089104993,
+                0.14892241649050442
+              ]
+            },
+            {
+              "id": 12,
+              "distance": 0.5586083386374603,
+              "vector": [
+                0.06600779700056486,
+                0.053938940914572055,
+                0.040994762405685906,
+                0.20447578452090884,
+                0.17028252245840428,
+                0.14769496146450128
+              ]
+            },
+            {
+              "id": 14,
+              "distance": 1.9160090268811911,
+              "vector": [
+                0.06608415313925015,
+                0.05440039680566162,
+                0.04157638413307662,
+                0.21089633514757677,
+                0.17471641811608732,
+                0.15226999845746594
+              ]
+            },
+            {
+              "id": 16,
+              "distance": 1.9405763966035154,
+              "vector": [
+                0.06775104062470931,
+                0.05528270577644204,
+                0.041539186281658036,
+                0.19984672418102106,
+                0.16967205383887157,
+                0.14579299515912147
+              ]
+            },
+            {
+              "id": 17,
+              "distance": 1.9592286899528013,
+              "vector": [
+                0.0685535023432858,
+                0.0562473268269605,
+                0.04254176663068134,
+                0.20658494620828552,
+                0.17512110336722722,
+                0.1512031382436079
+              ]
+            },
+            {
+              "id": 19,
+              "distance": 2.339755817986787,
+              "vector": [
+                0.06374157915076814,
+                0.052838917059093354,
+                0.04050223425114485,
+                0.2131388124259704,
+                0.17328845955673303,
+                0.15179303357333887
+              ]
+            },
+            {
+              "id": 18,
+              "distance": 2.9662214824646083,
+              "vector": [
+                0.06118495256952429,
+                0.05067852771759057,
+                0.03899530679936472,
+                0.21105718704192153,
+                0.16851128599691634,
+                0.1481911018014085
+              ]
+            },
+            {
+              "id": 11,
+              "distance": 2.9765343861147167,
+              "vector": [
+                0.07050561017021437,
+                0.05762108711613443,
+                0.04351563933630773,
+                0.2045118220179136,
+                0.17612379730387245,
+                0.151394211179556
+              ]
+            },
+            {
+              "id": 10,
+              "distance": 3.6052455807397714,
+              "vector": [
+                0.06299517173246706,
+                0.051426963112018914,
+                0.039005000080546796,
+                0.20091691564744305,
+                0.16405877188044235,
+                0.14257650301341174
+              ]
+            },
+            {
+              "id": 13,
+              "distance": 3.6751526225047333,
+              "vector": [
+                0.06066234518028968,
+                0.04993960046143357,
+                0.038357001885913386,
+                0.20713900407063332,
+                0.16514653622659914,
+                0.14503231355792806
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "seed": 1319,
+        "family": "handling",
+        "index": 27,
+        "client": "handling_07",
+        "observed_speeds": [
+          16.0,
+          18.0,
+          20.0
+        ],
+        "ranking": {
+          "selected_id": 27,
+          "median": [
+            0.04044631144295716,
+            0.03543505209613554,
+            0.04022568070166053,
+            0.21388501200405322,
+            0.14072041587274198,
+            0.15794843694398708
+          ],
+          "population_std": [
+            0.0010611984242739527,
+            0.0008478731062112433,
+            0.0022340900316984713,
+            0.006148651055091099,
+            0.005839836184050971,
+            0.006277216949628107
+          ],
+          "active_components": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "candidates": [
+            {
+              "id": 27,
+              "distance": 0.5802791067145435,
+              "vector": [
+                0.04063606951903469,
+                0.03552134221529276,
+                0.040268205695522676,
+                0.21587933575516138,
+                0.1431506044773126,
+                0.15873378930467927
+              ]
+            },
+            {
+              "id": 23,
+              "distance": 0.5811302911908067,
+              "vector": [
+                0.040193717821056865,
+                0.035214452098367335,
+                0.040051995934455034,
+                0.21523123546695713,
+                0.14294099491040826,
+                0.15871190761258155
+              ]
+            },
+            {
+              "id": 21,
+              "distance": 0.8672866371391955,
+              "vector": [
+                0.04025655336687964,
+                0.03534876197697832,
+                0.04014710208535232,
+                0.21627930656487596,
+                0.14447321641461713,
+                0.16033065057791943
+              ]
+            },
+            {
+              "id": 26,
+              "distance": 1.3331872520455696,
+              "vector": [
+                0.04115846041973786,
+                0.03584769155614863,
+                0.041388112796390056,
+                0.2160070927638952,
+                0.14434671161138243,
+                0.1614701417880069
+              ]
+            },
+            {
+              "id": 24,
+              "distance": 2.3050845758120584,
+              "vector": [
+                0.03923082119551544,
+                0.03415186535862121,
+                0.03931077216379061,
+                0.2125387885411493,
+                0.13604838787252813,
+                0.15214289911195522
+              ]
+            },
+            {
+              "id": 29,
+              "distance": 2.348917780751469,
+              "vector": [
+                0.04086890543370122,
+                0.03605382139216874,
+                0.04018315570779838,
+                0.22030334274144422,
+                0.14985717238276755,
+                0.16507354815612046
+              ]
+            },
+            {
+              "id": 25,
+              "distance": 3.0376185108843945,
+              "vector": [
+                0.04240693187908842,
+                0.03574775250811947,
+                0.04505018419074631,
+                0.20820004491933758,
+                0.13849983683507566,
+                0.15718496627539263
+              ]
+            },
+            {
+              "id": 22,
+              "distance": 3.5949059927584526,
+              "vector": [
+                0.04017675009096313,
+                0.033808301401768714,
+                0.043019836648541004,
+                0.20306752128182035,
+                0.1313536606401253,
+                0.14919264515301706
+              ]
+            },
+            {
+              "id": 28,
+              "distance": 3.8079397802333212,
+              "vector": [
+                0.040124126255575154,
+                0.03366749875692324,
+                0.0428139555147252,
+                0.20225894319688148,
+                0.1308130025847406,
+                0.14849783570064398
+              ]
+            },
+            {
+              "id": 20,
+              "distance": 4.0008475156926755,
+              "vector": [
+                0.04293274890538661,
+                0.035755624038880794,
+                0.036475499559446185,
+                0.20401807328582003,
+                0.13689674508971209,
+                0.1445552401185552
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "sources": {
+    "results/tables/paper_oe_lqi_validation_analysis.json": "ecab51f15936dc3260bc333c4c8efaa102bac28f533ecc37cb830f75e3accc64",
+    "code/config/paper_oe_lqi_validation.json": "7e2c46befe899034f8932f47ba945a8a099ae6107d1b532895249624205cd774",
+    "code/config/paper_oe_control_timeseries.json": "7e8c912bfd3da3298b7f84c6697127b01a09b02151ad2bde35c240265debe789",
+    "paper/prepare_oe_control_timeseries.py": "e40b55c35ce21fe983daa6469046ce3e42923b969d8de28dd8d8625f1f03df7f",
+    "code/experiments/paper_oe_lqi_validation.py": "238db9f49cddac7a71d31e9205641870d0db4985a144010207923249bc459216",
+    "code/experiments/experiment_10a_basis_coverage_audit.py": "f99bd6e9c5808c0817b59729dca92e7773127eb5f0c114a7d03562393270bff3",
+    "code/experiments/experiment_10f_control_relevance.py": "430f2fda2850db66475018e43279e2eaaca844b22980bbd37bd307f18388b42b",
+    "code/config/experiment_10a.json": "bd525f8a4915e4d2d6e53e2e0453ad2c3f8a7240afdb6faa96b15a73be81c82a",
+    "code/config/experiment_10f.json": "2a0abe3aee9f611e919cd62e7631c8473b129138a925d03f2da3322e713e50d7",
+    "code/config/paper_fixed_lti_identification.json": "285edfccb19dd1ea8132e6d603a7a639c63b67032ece036a9e5734929ac5f324",
+    "code/config/paper_oe_lqi_profiles.npz": "5ce56d3264fb738cc7cc853d97b737eccde58e1e217b228a298d4123ef127ce5",
+    "environment.yml": "5351902815fba32d54541d3b322832df72a8f0d9633a58a5b0e10b563c099d91",
+    "code/src/federated_lpv/__init__.py": "92b52aff502e534537be960b640e752d63eb2e79740d41ddac9e2f89a1dd2065",
+    "code/src/federated_lpv/causal_model_selection.py": "c7b86087670e15250ec4481cfcbd17df663e4fd1de997d5eb8fee0408048ca93",
+    "code/src/federated_lpv/client_mixture.py": "7d341f75bf1e9789bb2c5e436e16b6a979cce6e24a3674b1e03c9bd78e50e60f",
+    "code/src/federated_lpv/communication.py": "8da11e69eb7b774bbdbbb5144af40ef3a9920b7f5a764c9086bbc4a450f150f6",
+    "code/src/federated_lpv/control.py": "0637bab6a08714460c7f0ce01540816a3439a837ec9623192c21a476adeda9ec",
+    "code/src/federated_lpv/federated.py": "9f4415a01c0b3f4bbc23ab7d89fa59c90296f5db5cef57b3cb8c9ca88d970477",
+    "code/src/federated_lpv/federated_manifold.py": "db6c07d85912d80e3326188c454863dc5ea303dc2db5e66a35572671bd5eac4e",
+    "code/src/federated_lpv/feedback_diagnostics.py": "df8b7f175a3da99622d4b6fa320a23dba14acb1809b0b57f44bce8798531903f",
+    "code/src/federated_lpv/fixed_lti_identification.py": "03bab39a3ec07308287e16adfb5606e2fa0465167e220238fc80bc75ccbd5807",
+    "code/src/federated_lpv/fleet.py": "e5a83d88e12d5fc3c33aa7cc95d264b0a607d3b1f6c338a495f7c4967130e22d",
+    "code/src/federated_lpv/innovation_likelihood.py": "db4dca4ee248de1d10a4cfaec029297aae3d82fc276857c723239d806a5a854f",
+    "code/src/federated_lpv/local_scheduling.py": "79765f9adadd25af920b2842ff7ddcc17567e4a3ef42b2163a6d77d98d4a6a73",
+    "code/src/federated_lpv/lpv.py": "308a23d7cdb8bd1db6d09becfef5e9477283d1d7abb39dbcd465f922c253f32a",
+    "code/src/federated_lpv/multihorizon_fit.py": "704eb07913f3d4c33ee2ae797f245e926b32d64d5a4664dad9569a4034c997a5",
+    "code/src/federated_lpv/oe_lqi_validation.py": "98042f568b81e628156814b69833f7fbce442e376e376aa61ad011f0a9d4318a",
+    "code/src/federated_lpv/oracle.py": "250f6d9f9f0ede98c5523d84ccf9f55fb1f73748b0eae600adf0197976edf86a",
+    "code/src/federated_lpv/output_error.py": "becfd26a7696355f643632e4c6fb176b42994c6fd43c4607d98b776d29a60e60",
+    "code/src/federated_lpv/output_feedback_control.py": "e493170dbf45ecb87dc0275a3499cd20309ddfbd2550f8c4f98c2b054e639c0f",
+    "code/src/federated_lpv/output_validation.py": "6f311ac69ea04d4202a06224628ae5b7623dfef70901f66354d8fd13bd1091cc",
+    "code/src/federated_lpv/personalization.py": "7904df01bf7bf52bebf465a1a7e8193470f66a6450b5a3952b679e6d16705a9e",
+    "code/src/federated_lpv/physical_coupled_fit.py": "05d5f35c0e20741cbc272684d85273e8c1f3e3d0fd60cb80335478e90b990bb4",
+    "code/src/federated_lpv/privacy.py": "dc1de8ce1b2b0b17b7b86d9c52e37ef7a303183916a575778b78abcac63f6072",
+    "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+    "code/src/federated_lpv/trajectory_calibration.py": "524f2c5844ea1ca1d75d6f60911f6a00b19f55d724706fbafe31373c77c6fc50",
+    "code/src/federated_lpv/uncertainty_clustering.py": "5a3d5c4b37a5bc10c5dd9e293709bb59c83150bb41d17175a57655a8b5ab466d",
+    "code/src/federated_lpv/vehicle.py": "47d3a5638171d20ce448c7d529b55a9cfb184abb17d5e83e0cb448252bc587d6",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1311.json": "12a81348935263ae36302c88b18a0bc0b4c69a6970cde9a371e6383366d0f920",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1312.json": "11ecb3eb5cb7f0c83db2f2b716a39568b488ff9c4b33ada6b71b8d2663921236",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1313.json": "50e2200999d1d5ae0e5937ffad767136be503a18103d34d0f5d9bf8f27bdddb3",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1314.json": "c736635d6affb3ea3f007523ba24272b269b11d7ae255077cf5aa479410cc6eb",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1315.json": "4833e8001bc4c77dce1dc31121de84492c0433ba0a456d6a5a099a0365e50545",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1316.json": "6a7b26991313a7d950c6341fc3c67b0ac98c1fd4178ed64ea057d4e0ce797acf",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1317.json": "66fef02788daa9bf7c2d6e72f13925edbb8ebd60bbb13a7f9f28c088c647a87d",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1318.json": "f467c923dfce88d492c0ceb70a159b76eb65f8d8050d2a38b7594addc569b148",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1319.json": "ded6ef85d74435cd2bef84e2353f111d00e410b4d4dcd450c3bbe9125d3c0169",
+    "results/tables/paper_oe_lpv_confirmation_result_seed1320.json": "46d67a7ebb49751c97215c1506e3e7d279cd1545be3682bd01a7176a9fcd7cb0",
+    "results/tables/paper_oe_lqi_validation_seed1311.json": "980b88b2f77cb62774479a6e1b858537a8d9b1b0a4e2476eb0cdb5bae44a1732",
+    "results/tables/paper_oe_lqi_validation_seed1312.json": "0858062727871c7c46ef2ad86f2057c1de3d5b8ff111f2020b122ef7140f0029",
+    "results/tables/paper_oe_lqi_validation_seed1313.json": "97f71d1c02c5032219484a762ee453a133761521b908fb13bfd558c333ce3d57",
+    "results/tables/paper_oe_lqi_validation_seed1314.json": "82f2536e0297ea2676611fc31d75ec4264cbedc61a53cae5e46aa3aa57445f27",
+    "results/tables/paper_oe_lqi_validation_seed1315.json": "5b3edcf10d09c789d50c7d05e959525be7746570385ac09d6ec1d607f920c98a",
+    "results/tables/paper_oe_lqi_validation_seed1316.json": "c389ecf4e4373513793b49f67dcf1a4253b02717244c27ca50d49db6240e5fbf",
+    "results/tables/paper_oe_lqi_validation_seed1317.json": "fcd38b129cf96396e6da03f7a80bc8fbe959c3f543b4917fd45fa7dcff89f693",
+    "results/tables/paper_oe_lqi_validation_seed1318.json": "ca6b297d665af355facd60bc200cd27d651014f6a6a37da3b4ef957b91e94bbe",
+    "results/tables/paper_oe_lqi_validation_seed1319.json": "bfffe4af0e7828ba877bc59e2e55b2d87a8f7b3b7d2fb17f8d6dfaebdfa2e114",
+    "results/tables/paper_oe_lqi_validation_seed1320.json": "777ece3529e2278faa27cf3f725f0e7cf7b84efac0a6338233b1cf5d5536dc41"
+  },
+  "replay": [
+    {
+      "seed": 1319,
+      "client": "heavy_05",
+      "family": "heavy",
+      "method": "NominalLTI",
+      "outcome": {
+        "status": "complete",
+        "feasible": true,
+        "metrics": {
+          "tracking_rmse_deg_s": 0.20539000026758042,
+          "tracking_peak_deg_s": 0.7793998094908394,
+          "beta_rms_deg": 0.9449724556403821,
+          "beta_peak_deg": 2.719658963969589,
+          "steering_rms_deg": 2.9519620131490547,
+          "steering_peak_deg": 11.068686528788456,
+          "steering_rate_rms_deg_s": 4.96031355368029,
+          "steering_rate_peak_deg_s": 15.748498048442903,
+          "steering_total_variation_deg": 36.42933070521794,
+          "lateral_acceleration_peak_mps2": 6.901372394770907,
+          "limiter_fraction": 0.0,
+          "angle_limiter_fraction": 0.0,
+          "rate_limiter_fraction": 0.0,
+          "beta_violation_samples": 0
+        },
+        "completed_steps": 1200
+      },
+      "arrays": {
+        "time": {
+          "shape": [
+            1201
+          ],
+          "sha256": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0"
+        },
+        "speed": {
+          "shape": [
+            1201
+          ],
+          "sha256": "f5640c5ba4532dfe57a9d0abdde1b53fcd0972c0cce87d37d6e3114bc4652456"
+        },
+        "reference": {
+          "shape": [
+            1201
+          ],
+          "sha256": "62f59fc949ddc9d0e9f7c434a6a1a787edfadbe3f9a6135837b128a60f0e356c"
+        },
+        "state": {
+          "shape": [
+            1201,
+            2
+          ],
+          "sha256": "3293a26b0f90155c68d4923c8f1777d8619f0d267146d86d3e50959611bf8e86"
+        },
+        "integral": {
+          "shape": [
+            1201
+          ],
+          "sha256": "5a512a89b9bfbc7a56d4bd1802ae5c000ff6770e036e56c588b23aa0d439b8f6"
+        },
+        "steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "0177b306554c9dbc241c4a3f557c10d4f305e538005a53e815997c0cc6bee99c"
+        },
+        "requested_steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "0177b306554c9dbc241c4a3f557c10d4f305e538005a53e815997c0cc6bee99c"
+        },
+        "lateral_acceleration": {
+          "shape": [
+            1200
+          ],
+          "sha256": "7d4196dd572819084ea508c1661d53c6c11754f5a520e85bf20a854cd7724855"
+        },
+        "limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        },
+        "angle_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        },
+        "rate_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        }
+      },
+      "exact_match": true
+    },
+    {
+      "seed": 1319,
+      "client": "heavy_05",
+      "family": "heavy",
+      "method": "Global",
+      "outcome": {
+        "status": "complete",
+        "feasible": true,
+        "metrics": {
+          "tracking_rmse_deg_s": 0.1723116089104993,
+          "tracking_peak_deg_s": 0.7713842182065133,
+          "beta_rms_deg": 0.947579537101257,
+          "beta_peak_deg": 2.729127520799593,
+          "steering_rms_deg": 2.965880431819606,
+          "steering_peak_deg": 11.192900797121004,
+          "steering_rate_rms_deg_s": 5.02468095158366,
+          "steering_rate_peak_deg_s": 16.02792466587956,
+          "steering_total_variation_deg": 36.69470307552762,
+          "lateral_acceleration_peak_mps2": 6.939006742575698,
+          "limiter_fraction": 0.0,
+          "angle_limiter_fraction": 0.0,
+          "rate_limiter_fraction": 0.0,
+          "beta_violation_samples": 0
+        },
+        "completed_steps": 1200
+      },
+      "arrays": {
+        "time": {
+          "shape": [
+            1201
+          ],
+          "sha256": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0"
+        },
+        "speed": {
+          "shape": [
+            1201
+          ],
+          "sha256": "f5640c5ba4532dfe57a9d0abdde1b53fcd0972c0cce87d37d6e3114bc4652456"
+        },
+        "reference": {
+          "shape": [
+            1201
+          ],
+          "sha256": "62f59fc949ddc9d0e9f7c434a6a1a787edfadbe3f9a6135837b128a60f0e356c"
+        },
+        "state": {
+          "shape": [
+            1201,
+            2
+          ],
+          "sha256": "618bd1cc10b593a1ef6d3c09799bf1d850a55e1af9e6ba69f1739200df17f352"
+        },
+        "integral": {
+          "shape": [
+            1201
+          ],
+          "sha256": "bcfb34ab9ef3cfebf6a2fd1ab3805a96931872b7903c12999c6c8d031af6ebdd"
+        },
+        "steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "5494a4deda0e6b21357deabaf16a1b06c57adbfa87f37d0972585bb6354edbda"
+        },
+        "requested_steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "5494a4deda0e6b21357deabaf16a1b06c57adbfa87f37d0972585bb6354edbda"
+        },
+        "lateral_acceleration": {
+          "shape": [
+            1200
+          ],
+          "sha256": "47338dd888d70ba1b8092024366263076eef0892c95c7860adee7bc521d22800"
+        },
+        "limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        },
+        "angle_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        },
+        "rate_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        }
+      },
+      "exact_match": true
+    },
+    {
+      "seed": 1319,
+      "client": "heavy_05",
+      "family": "heavy",
+      "method": "Federated",
+      "outcome": {
+        "status": "complete",
+        "feasible": true,
+        "metrics": {
+          "tracking_rmse_deg_s": 0.14892241649050442,
+          "tracking_peak_deg_s": 0.6896112677956272,
+          "beta_rms_deg": 0.9438965819706828,
+          "beta_peak_deg": 2.7125057939387602,
+          "steering_rms_deg": 2.9606437134067183,
+          "steering_peak_deg": 11.159761382569421,
+          "steering_rate_rms_deg_s": 5.001239852419126,
+          "steering_rate_peak_deg_s": 15.997158011596333,
+          "steering_total_variation_deg": 36.56652311388112,
+          "lateral_acceleration_peak_mps2": 6.9269804265933,
+          "limiter_fraction": 0.0,
+          "angle_limiter_fraction": 0.0,
+          "rate_limiter_fraction": 0.0,
+          "beta_violation_samples": 0
+        },
+        "completed_steps": 1200
+      },
+      "arrays": {
+        "time": {
+          "shape": [
+            1201
+          ],
+          "sha256": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0"
+        },
+        "speed": {
+          "shape": [
+            1201
+          ],
+          "sha256": "f5640c5ba4532dfe57a9d0abdde1b53fcd0972c0cce87d37d6e3114bc4652456"
+        },
+        "reference": {
+          "shape": [
+            1201
+          ],
+          "sha256": "62f59fc949ddc9d0e9f7c434a6a1a787edfadbe3f9a6135837b128a60f0e356c"
+        },
+        "state": {
+          "shape": [
+            1201,
+            2
+          ],
+          "sha256": "26351d18d9b2d20d7d67d2153f25528a2491d79829c63d27601e501ef1e5ad9d"
+        },
+        "integral": {
+          "shape": [
+            1201
+          ],
+          "sha256": "01788a0589204450cdc516a7194d7074b1cebaa481557d1446ae547aa43645b6"
+        },
+        "steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "aa11b3b414924e662fb179aa81329f2bab6fd92e22ce06cba3d8c3ef1527796d"
+        },
+        "requested_steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "aa11b3b414924e662fb179aa81329f2bab6fd92e22ce06cba3d8c3ef1527796d"
+        },
+        "lateral_acceleration": {
+          "shape": [
+            1200
+          ],
+          "sha256": "cfdabc28894fca38475d034cf271bffa63089fc69a801628ba12d6080b92dc7c"
+        },
+        "limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        },
+        "angle_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        },
+        "rate_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        }
+      },
+      "exact_match": true
+    },
+    {
+      "seed": 1319,
+      "client": "handling_07",
+      "family": "handling",
+      "method": "NominalLTI",
+      "outcome": {
+        "status": "complete",
+        "feasible": true,
+        "metrics": {
+          "tracking_rmse_deg_s": 0.21587933575516138,
+          "tracking_peak_deg_s": 0.7574159523388434,
+          "beta_rms_deg": 0.6083808420032569,
+          "beta_peak_deg": 1.6167605153871156,
+          "steering_rms_deg": 3.3866299228726824,
+          "steering_peak_deg": 12.000000000000002,
+          "steering_rate_rms_deg_s": 5.486740260535184,
+          "steering_rate_peak_deg_s": 17.36535019845982,
+          "steering_total_variation_deg": 41.47408343263886,
+          "lateral_acceleration_peak_mps2": 7.1790553776611175,
+          "limiter_fraction": 0.01,
+          "angle_limiter_fraction": 0.01,
+          "rate_limiter_fraction": 0.0,
+          "beta_violation_samples": 0
+        },
+        "completed_steps": 1200
+      },
+      "arrays": {
+        "time": {
+          "shape": [
+            1201
+          ],
+          "sha256": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0"
+        },
+        "speed": {
+          "shape": [
+            1201
+          ],
+          "sha256": "f5640c5ba4532dfe57a9d0abdde1b53fcd0972c0cce87d37d6e3114bc4652456"
+        },
+        "reference": {
+          "shape": [
+            1201
+          ],
+          "sha256": "62f59fc949ddc9d0e9f7c434a6a1a787edfadbe3f9a6135837b128a60f0e356c"
+        },
+        "state": {
+          "shape": [
+            1201,
+            2
+          ],
+          "sha256": "9ecd56bb26c8799293d6eae368b8ccf326cc745a8e03be95e840ee39742cb162"
+        },
+        "integral": {
+          "shape": [
+            1201
+          ],
+          "sha256": "6c00aa2ef7d4cde5084323938c87c12f622a22e8c2a7fbf948e627f28993daa1"
+        },
+        "steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "a5cd274715abcc94c112a21e096faf67c1584bb4c37fbaa71d618a251f711d9f"
+        },
+        "requested_steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "789cc37e300f8d2764e3e6b2169f1cca587d65ce451dcf4ed5cea88a99ece138"
+        },
+        "lateral_acceleration": {
+          "shape": [
+            1200
+          ],
+          "sha256": "0b1dc706dccf485fc1880887f5ce6787d79fb0aaccd0651203751780bcb36a74"
+        },
+        "limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "336388e466b212743712c1d4eed919eca2debe9da89f10850ed2af1b6b323081"
+        },
+        "angle_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "336388e466b212743712c1d4eed919eca2debe9da89f10850ed2af1b6b323081"
+        },
+        "rate_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        }
+      },
+      "exact_match": true
+    },
+    {
+      "seed": 1319,
+      "client": "handling_07",
+      "family": "handling",
+      "method": "Global",
+      "outcome": {
+        "status": "complete",
+        "feasible": true,
+        "metrics": {
+          "tracking_rmse_deg_s": 0.1431506044773126,
+          "tracking_peak_deg_s": 0.6678287815613109,
+          "beta_rms_deg": 0.6083011401025435,
+          "beta_peak_deg": 1.623164153804441,
+          "steering_rms_deg": 3.405260166815599,
+          "steering_peak_deg": 12.000000000000002,
+          "steering_rate_rms_deg_s": 5.640291914163759,
+          "steering_rate_peak_deg_s": 28.507342385110192,
+          "steering_total_variation_deg": 41.49546090463167,
+          "lateral_acceleration_peak_mps2": 7.305200590719162,
+          "limiter_fraction": 0.018333333333333333,
+          "angle_limiter_fraction": 0.018333333333333333,
+          "rate_limiter_fraction": 0.0,
+          "beta_violation_samples": 0
+        },
+        "completed_steps": 1200
+      },
+      "arrays": {
+        "time": {
+          "shape": [
+            1201
+          ],
+          "sha256": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0"
+        },
+        "speed": {
+          "shape": [
+            1201
+          ],
+          "sha256": "f5640c5ba4532dfe57a9d0abdde1b53fcd0972c0cce87d37d6e3114bc4652456"
+        },
+        "reference": {
+          "shape": [
+            1201
+          ],
+          "sha256": "62f59fc949ddc9d0e9f7c434a6a1a787edfadbe3f9a6135837b128a60f0e356c"
+        },
+        "state": {
+          "shape": [
+            1201,
+            2
+          ],
+          "sha256": "579a75909b3e2821154fce06ed9e246c675ffc80d2f52aab9d5a5abf6f1c2823"
+        },
+        "integral": {
+          "shape": [
+            1201
+          ],
+          "sha256": "2e99854f1d0a06c9aa6d5565f992de256c224739f0e2c7ef8832783729002089"
+        },
+        "steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "3d8516de82d2acc96b51275a529efeae432b20f9d4d78ee09f016abad5c087f7"
+        },
+        "requested_steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "d814d38d081a19992e40e451ac7872bdda14e60eac591cfc7fb86fd535a9158f"
+        },
+        "lateral_acceleration": {
+          "shape": [
+            1200
+          ],
+          "sha256": "2253463b05c2310be8fb4519d701330346de6c89e2a27c09ff21916c9b47fcf7"
+        },
+        "limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "659b68bcc9443cbcd1ddf27ca5ddb1d43a2ec1da37d9f244fd7c397740c68bb0"
+        },
+        "angle_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "659b68bcc9443cbcd1ddf27ca5ddb1d43a2ec1da37d9f244fd7c397740c68bb0"
+        },
+        "rate_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e9a15a094703faaea3fdf53af7e04da21717008ab4bb228799712b2fced03c65"
+        }
+      },
+      "exact_match": true
+    },
+    {
+      "seed": 1319,
+      "client": "handling_07",
+      "family": "handling",
+      "method": "Federated",
+      "outcome": {
+        "status": "complete",
+        "feasible": true,
+        "metrics": {
+          "tracking_rmse_deg_s": 0.15873378930467927,
+          "tracking_peak_deg_s": 0.8628067660819292,
+          "beta_rms_deg": 0.609627633384772,
+          "beta_peak_deg": 1.63247239147319,
+          "steering_rms_deg": 3.4142778312693665,
+          "steering_peak_deg": 12.000000000000002,
+          "steering_rate_rms_deg_s": 5.715854768811578,
+          "steering_rate_peak_deg_s": 34.208444495662334,
+          "steering_total_variation_deg": 41.55258120498632,
+          "lateral_acceleration_peak_mps2": 7.340250758521526,
+          "limiter_fraction": 0.020833333333333332,
+          "angle_limiter_fraction": 0.020833333333333332,
+          "rate_limiter_fraction": 0.006666666666666667,
+          "beta_violation_samples": 0
+        },
+        "completed_steps": 1200
+      },
+      "arrays": {
+        "time": {
+          "shape": [
+            1201
+          ],
+          "sha256": "54159643ed2e3529e32a8e63a41ffb02fa47dcb66863fa4e26fc0aafcb9e19b0"
+        },
+        "speed": {
+          "shape": [
+            1201
+          ],
+          "sha256": "f5640c5ba4532dfe57a9d0abdde1b53fcd0972c0cce87d37d6e3114bc4652456"
+        },
+        "reference": {
+          "shape": [
+            1201
+          ],
+          "sha256": "62f59fc949ddc9d0e9f7c434a6a1a787edfadbe3f9a6135837b128a60f0e356c"
+        },
+        "state": {
+          "shape": [
+            1201,
+            2
+          ],
+          "sha256": "651b52a0c45aea33378c093488757102d88ecf01b174c2f4e017a9f0e79b16ac"
+        },
+        "integral": {
+          "shape": [
+            1201
+          ],
+          "sha256": "53b877c73589ec2c2cfe8d9aee0456b30b795c86127d00a7ceea1225e56fdbff"
+        },
+        "steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "abe8f2b13e4ec2f6dcdae56520d57d4e05c2c0285899fde782c8a0926b0dc480"
+        },
+        "requested_steering": {
+          "shape": [
+            1200
+          ],
+          "sha256": "557ef9c6511eb6faea8dea54da9d4e17bd5ee53a6ad09133f39819ef96ed5971"
+        },
+        "lateral_acceleration": {
+          "shape": [
+            1200
+          ],
+          "sha256": "2840afab05301bff7fbe7211fb4231e20db9be74eec19ba9a0cb306205e49ae7"
+        },
+        "limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "149d58a2849059760d881ddc29d2ddaef70144c4a8f24e397bac4acf5f819a05"
+        },
+        "angle_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "149d58a2849059760d881ddc29d2ddaef70144c4a8f24e397bac4acf5f819a05"
+        },
+        "rate_limited": {
+          "shape": [
+            1200
+          ],
+          "sha256": "e12c0f5d092a24a446b4cabddb077b80546d3bd065029038c1e92909a5304fb0"
+        }
+      },
+      "exact_match": true
+    }
+  ],
+  "runtime": {
+    "python": "3.12",
+    "packages": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "pandas": "2.2.3",
+      "threadpoolctl": "3.6.0"
+    }
+  },
+  "matplotlib": "3.10.8",
+  "outputs": {
+    "results/figures/paper_oe_control_timeseries_speed_panel.pdf": "8fd8f61fa8ec7995e3cce0acc350c6765765034084b38bbf60f616cf44b05194",
+    "results/figures/paper_oe_control_timeseries_reference_panel.pdf": "98c8020a2a66e9cfcb49acadd6d001a14000d84baa4e47e220bbe5aaad10c7d5",
+    "results/figures/paper_oe_control_timeseries_heavy_error_panel.pdf": "24de72d416974030c07fb45982b776015c3580b07a9ed6b00c93833ac9d39ab3",
+    "results/figures/paper_oe_control_timeseries_heavy_steering_panel.pdf": "7da24071de3739182a76dd15a6375a991619dc8f0704395ea261f376c7422f1f",
+    "results/figures/paper_oe_control_timeseries_handling_error_panel.pdf": "f921997bf1266d74f02a294ad8409144c1a5752500be65836a4f7d345dc472c3",
+    "results/figures/paper_oe_control_timeseries_handling_steering_panel.pdf": "4aaa79fbe5a9e68e01813b7f7d8d8226dafce8f5b79c98a8ee063000adf45432",
+    "report/paper_oe_control_timeseries.html": "63bc50b09faf8cd3332648d9282f260b63821e137b25894c2810619afec8897a",
+    "results/tables/paper_oe_control_timeseries_traces.csv": "36e65799c015a85cd8f0931ed0d8ed78a446c81bb134eccab4328eb1cd7ac768"
+  }
+}
