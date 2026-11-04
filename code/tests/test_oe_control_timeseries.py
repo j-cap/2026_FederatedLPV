@@ -85,10 +85,13 @@ def test_layout_has_shared_axes_unclipped_labels_and_separate_panels(tmp_path):
     cfg, spec, profile, traces = fixture()
     panels = plot.make_panels(profile, traces, cfg, spec)
     assert len(panels) == 6
+    np.testing.assert_array_equal(panels['reference'][1].get_yticks(), [-40, -20, 0, 20])
     for signal in ['error', 'steering']:
         assert panels['heavy_'+signal][1].get_ylim() == panels['handling_'+signal][1].get_ylim()
     for fig, ax in panels.values():
         assert ax.get_title() == ''
+        assert ax.get_legend() is None
+        assert fig.get_figwidth() == 3.48
         fig.canvas.draw(); renderer = fig.canvas.get_renderer()
         boxes = [ax.get_tightbbox(renderer), ax.yaxis.label.get_window_extent(renderer),
                  ax.xaxis.label.get_window_extent(renderer)]
@@ -96,10 +99,20 @@ def test_layout_has_shared_axes_unclipped_labels_and_separate_panels(tmp_path):
             assert bbox.x0 >= -1 and bbox.y0 >= -1
             assert bbox.x1 <= fig.bbox.width+1 and bbox.y1 <= fig.bbox.height+1
         plot.plt.close(fig)
+    legend = plot.make_legend(spec)
+    legend.canvas.draw()
+    assert [t.get_text() for t in legend.legends[0].get_texts()] == [plot.LABELS[m] for m in spec['methods']]
+    bounds = legend.legends[0].get_window_extent(legend.canvas.get_renderer())
+    assert 0 <= bounds.x0 < bounds.x1 <= legend.bbox.width
+    assert 0 <= bounds.y0 < bounds.y1 <= legend.bbox.height
+    plot.plt.close(legend)
     selection = dict(cases=[dict(seed=0, client=f'{f}_fixture', family=f) for f in spec['families']])
     outputs = plot.render(profile, traces, cfg, spec, selection, [], tmp_path, tmp_path/'preview.html')
-    assert len([p for p in outputs if p.suffix == '.pdf']) == 6
-    assert (tmp_path/'preview.html').read_text(encoding='utf-8').count('<svg') == 6
+    assert len([p for p in outputs if p.suffix == '.pdf']) == 7
+    assert (tmp_path/f'{plot.PREFIX}_legend.pdf').is_file()
+    assert (tmp_path/'preview.html').read_text(encoding='utf-8').count('<svg') == 7
+    assert 'Heavy recipient' in (tmp_path/'preview.html').read_text(encoding='utf-8')
+    assert 'Handling recipient' in (tmp_path/'preview.html').read_text(encoding='utf-8')
     csv_path = tmp_path/'traces.csv'
     plot.write_traces(csv_path, traces, selection, spec)
     import csv

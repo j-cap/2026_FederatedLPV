@@ -46,7 +46,8 @@ Run `python paper/prepare_oe_control_timeseries.py --preflight`, then
 `--generate` and `--check`. The script selects the frozen representative
 heavy and handling cases using both maneuvers and all three comparison methods,
 then exactly replays six saved hard-maneuver trajectories. It exports six separate
-vector PDF panels, a trace CSV, provenance manifest, and an offline preview at
+vector PDF panels plus one shared-legend PDF, a trace CSV, provenance manifest,
+and an offline preview at
 `report/paper_oe_control_timeseries.html`. No manuscript integration or model
 changes occur. See [the selection protocol and Windows commands](../docs/oe_control_timeseries.html).
 

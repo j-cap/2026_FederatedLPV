@@ -158,20 +158,26 @@ def style():
 
 
 def make_panels(profile, traces, cfg, spec):
-    """Six independent panels; reference widths equal the two-column figure width."""
+    """Six column-width panels; reference signals form a compact shared top row."""
     style(); panels = {}
-    def panel(name, ylabel, wide=False):
-        fig = plt.figure(figsize=(7.16, 1.05) if wide else (3.48, 1.85))
-        ax = fig.add_axes([.095, .35, .89, .60] if wide else [.19, .24, .79, .60])
+    def panel(name, ylabel, reference=False):
+        fig = plt.figure(figsize=(3.48, 1.35 if reference else 1.65))
+        ax = fig.add_axes([.19, .31, .79, .63] if reference else [.19, .25, .79, .69])
         ax.set(xlabel='Time [s]', ylabel=ylabel, xlim=(profile['time'][0], profile['time'][-1]))
         ax.set_xticks(np.arange(0, cfg['duration_s'] + .1, 2))
         ax.grid(axis='both', color='#dddddd', linewidth=.45)
         ax.set_axisbelow(True); ax.spines[['top', 'right']].set_visible(False)
         panels[name] = (fig, ax)
         return ax
-    panel('speed', 'Prescribed\nspeed [m/s]', True).plot(profile['time'], profile['speed'], color='#222222')
-    panel('reference', 'Yaw-rate ref.\n[deg/s]', True).plot(
-        profile['time'], np.rad2deg(profile['reference']), color='#222222')
+    speed = panel('speed', 'Prescribed\nspeed [m/s]', True)
+    speed.plot(profile['time'], profile['speed'], color='#222222')
+    speed.set(ylim=(10, 30), yticks=[10, 20, 30])
+    reference = panel('reference', 'Yaw-rate ref.\n[deg/s]', True)
+    reference.plot(profile['time'], np.rad2deg(profile['reference']), color='#222222')
+    # Explicit physical-unit ticks; never silently clip a changed profile.
+    demand = np.rad2deg(profile['reference'])
+    reference.set(ylim=(min(-42., float(demand.min())-2.), max(22., float(demand.max())+2.)),
+                  yticks=[-40, -20, 0, 20])
     peak = max(float(np.max(abs(np.rad2deg(a['state'][:, 1] - a['reference']))))
                for family in traces.values() for a in family.values())
     error_limit = max(1e-6, 1.08 * peak)
@@ -189,10 +195,18 @@ def make_panels(profile, traces, cfg, spec):
             error.plot(a['time'], np.rad2deg(a['state'][:, 1] - a['reference']), **opts)
             # Applied input is held on [t_k,t_{k+1}); extend the last value to final time.
             steering.step(a['time'], np.rad2deg(np.r_[a['steering'], a['steering'][-1]]), where='post', **opts)
-        for ax in [error, steering]:
-            ax.legend(loc='lower center', bbox_to_anchor=(.5, 1.02), ncol=3, frameon=False,
-                      handlelength=2., columnspacing=.85, borderaxespad=0)
     return panels
+
+
+def make_legend(spec):
+    """Independent vector strip, included once by the final LaTeX composition."""
+    from matplotlib.lines import Line2D
+    fig = plt.figure(figsize=(7.16, .30))
+    handles = [Line2D([], [], color=COLORS[m], linestyle=STYLES[m], label=LABELS[m])
+               for m in spec['methods']]
+    fig.legend(handles=handles, loc='center', ncol=3, frameon=False,
+               fontsize=8, handlelength=2.6, columnspacing=2.0)
+    return fig
 
 
 def write_traces(path, traces, selection, spec):
@@ -215,8 +229,10 @@ def write_traces(path, traces, selection, spec):
 def render(profile, traces, cfg, spec, selection, checks, figures, report):
     panels = make_panels(profile, traces, cfg, spec); files = []; svgs = {}
     figures.mkdir(parents=True, exist_ok=True); report.parent.mkdir(parents=True, exist_ok=True)
-    for name, (fig, ax) in panels.items():
-        stem = f'{PREFIX}_{name}_panel'
+    exports = {name: fig for name, (fig, ax) in panels.items()}
+    exports['legend'] = make_legend(spec)
+    for name, fig in exports.items():
+        stem = f'{PREFIX}_legend' if name == 'legend' else f'{PREFIX}_{name}_panel'
         for suffix in ['pdf', 'png']:
             path = figures / f'{stem}.{suffix}'
             kwargs = dict(metadata={'CreationDate': None, 'ModDate': None}) if suffix == 'pdf' else dict(dpi=300)
@@ -224,22 +240,27 @@ def render(profile, traces, cfg, spec, selection, checks, figures, report):
         buf = io.StringIO(); fig.savefig(buf, format='svg', metadata={'Date': None})
         svgs[name] = buf.getvalue()[buf.getvalue().index('<svg'):]
         plt.close(fig)
-    cards = []
-    for key in ['speed', 'reference', 'heavy_error', 'handling_error', 'heavy_steering', 'handling_steering']:
-        title = {'speed': 'Prescribed longitudinal speed', 'reference': 'Yaw-rate demand'}.get(key, key.replace('_', ' ').title())
-        cards.append(f'<section class="{"wide" if key in ["speed", "reference"] else ""}"><h2>{title}</h2>{svgs[key]}</section>')
+    cards = [f'<section><h2>{title}</h2>{svgs[key]}</section>' for key, title in
+             [('speed', 'Shared prescribed speed'), ('reference', 'Shared yaw-rate reference')]]
+    cards.append(f'<section class="wide shared-legend" aria-label="Controller legend">{svgs["legend"]}</section>')
+    for family in spec['families']:
+        case = next(c for c in selection['cases'] if c['family'] == family)
+        cards.append(f'<h2 class="recipient">{family.title()} recipient '
+                     f'<small>{html.escape(case["client"])}</small></h2>')
+    for key in ['heavy_error', 'handling_error', 'heavy_steering', 'handling_steering']:
+        cards.append(f'<section aria-label="{key.replace("_", " ")}">{svgs[key]}</section>')
     case_text = '; '.join(f"{c['family']}: fleet {c['seed']}, {c['client']}" for c in selection['cases'])
     rows = ''.join('<tr>' + ''.join(f'<td>{html.escape(str(v))}</td>' for v in
         [c['family'], LABELS[c['method']], f"{c['outcome']['metrics']['tracking_rmse_deg_s']:.6f}",
          f"{c['outcome']['metrics']['limiter_fraction']:.4f}", c['exact_match']]) + '</tr>' for c in checks)
     content = f'''<!doctype html><html lang="en"><meta charset="utf-8"><title>Closed-loop time-series draft</title>
 <style>body{{font:16px/1.5 system-ui;max-width:1150px;margin:32px auto;padding:0 20px;color:#17232d}}
-.grid{{display:grid;grid-template-columns:1fr 1fr;gap:18px}}.wide{{grid-column:1/-1}}svg{{width:100%;height:auto}}
-h2{{font-size:16px;margin:0}}section{{min-width:0}}td,th{{padding:6px 14px;border-bottom:1px solid #ddd;text-align:left}}
+.grid{{display:grid;grid-template-columns:1fr 1fr;column-gap:18px;row-gap:6px}}.wide{{grid-column:1/-1}}svg{{width:100%;height:auto}}
+h2{{font-size:16px;margin:0}}.recipient{{text-align:center}}small{{display:block;font-size:12px;font-weight:normal}}section{{min-width:0}}td,th{{padding:6px 14px;border-bottom:1px solid #ddd;text-align:left}}
 @media(max-width:700px){{.grid{{display:block}}section{{margin:20px 0}}}}</style>
-<h1>Closed-loop behavior: first figure draft</h1><p>{html.escape(case_text)}. Displayed maneuver: hard.</p>
+<h1>Closed-loop behavior: compact figure draft</h1><p>{html.escape(case_text)}. Displayed maneuver: hard.</p>
 <p>Outcome-based representative examples selected using both maneuvers and all three methods.
-The shared references appear once. Errors use r − r_ref; dotted steering lines mark ±12° limits.
+The shared references appear side by side above one controller legend. Errors use r − r_ref; dotted steering lines mark ±12° limits.
 Both recipients use identical axes. No smoothing or time-window selection is applied.</p>
 <div class="grid">{''.join(cards)}</div><h2>Saved-case metrics and replay verification</h2>
 <table><tr><th>Family</th><th>Method</th><th>Yaw RMSE [deg/s]</th><th>Limiter fraction</th><th>Exact replay</th></tr>{rows}</table>
@@ -274,12 +295,13 @@ def main():
         return
     if args.check:
         manifest = run.load(manifest_path)
+        require(manifest.get('version') == 2, 'Regenerate the compact layout and shared legend')
         require(manifest['sources'] == sources and manifest['selection'] == selection, 'Stale source/selection manifest')
         require(len(manifest['replay']) == 6 and all(c['exact_match'] for c in manifest['replay']), 'Incomplete replay audit')
         for name, expected in manifest['outputs'].items():
             path = (Path(args.output_dir).resolve() if args.output_dir else ROOT) / name
             require(run.file_hash(path) == expected, f'Missing or changed output: {name}')
-        print(json.dumps(dict(status='verified', panels=6, replay_cases=0)))
+        print(json.dumps(dict(status='verified', panels=6, shared_legends=1, replay_cases=0)))
         return
     profile, traces, checks = replay(spec, cfg, payloads, selection)
     # No exports occur until all six trajectories and outcomes match exactly.
@@ -289,9 +311,9 @@ def main():
     base = Path(args.output_dir).resolve() if args.output_dir else ROOT
     # PNG previews are regenerable and ignored by git; verify portable PDF/HTML/CSV outputs.
     outputs = {p.relative_to(base).as_posix(): run.file_hash(p) for p in files if p.suffix != '.png'}
-    write_json(manifest_path, dict(version=1, specification=spec, selection=selection, sources=sources,
+    write_json(manifest_path, dict(version=2, specification=spec, selection=selection, sources=sources,
         replay=checks, runtime=run.runtime(), matplotlib=importlib.metadata.version('matplotlib'), outputs=outputs))
-    print(json.dumps(dict(status='generated', panels=6, replay_cases=6, exact_replays=6,
+    print(json.dumps(dict(status='generated', panels=6, shared_legends=1, replay_cases=6, exact_replays=6,
                          report=str(report), manifest=str(manifest_path)), indent=2))
 
 
