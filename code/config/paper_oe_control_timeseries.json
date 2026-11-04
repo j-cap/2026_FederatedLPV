@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "methods": [
+    "NominalLTI",
+    "Global",
+    "Federated"
+  ],
+  "selection_scenarios": [
+    "moderate",
+    "hard"
+  ],
+  "display_scenario": "hard",
+  "families": [
+    "heavy",
+    "handling"
+  ],
+  "selection": "Euclidean distance to the component-wise median of six RMSE components, divided by population standard deviation in each component. Fleet vectors average all 30 clients. Within the selected fleet, select independently within each specified family using its ten client vectors. Components are scenario-major, method-minor. Omit numerically constant components (spread <= 64*machine_epsilon*max(1,abs(median))). Exact distance ties use the lowest seed or client index. Do not select on improvement or inspect traces before selection.",
+  "replay": "Reuse saved schedules and stored profiles. Require exact agreement of all array hashes and the complete outcome dictionary with the committed checkpoint. No fitting, synthesis, tuning, smoothing, resampling, or fallback. Abort before exporting on mismatch.",
+  "scope": "Illustrative outcome-based representative examples from the reused confirmation fleets, not random cases, an independent validation, or an estimate of fleet-average trajectories. Families intentionally illustrate previously reported recipient tradeoffs; selection does not require improvement or deterioration.",
+  "anchors": {
+    "results/tables/paper_oe_lqi_validation_analysis.json": "ecab51f15936dc3260bc333c4c8efaa102bac28f533ecc37cb830f75e3accc64",
+    "code/config/paper_oe_lqi_validation.json": "7e2c46befe899034f8932f47ba945a8a099ae6107d1b532895249624205cd774"
+  },
+  "expected_selection": {
+    "seed": 1319,
+    "clients": {
+      "heavy": "heavy_05",
+      "handling": "handling_07"
+    }
+  }
+}

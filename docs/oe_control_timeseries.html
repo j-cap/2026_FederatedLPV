@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>OE control time-series figure protocol</title>
+<style>body{font:16px/1.55 system-ui;max-width:1000px;margin:40px auto;padding:0 24px;color:#17232d}h1,h2{line-height:1.2}pre{background:#f1f4f6;padding:16px;overflow:auto}table{border-collapse:collapse;width:100%}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:left}code{font-size:.9em}.note{border-left:4px solid #167a9e;padding:10px 18px;background:#f0f7fa}</style>
+<h1>Closed-loop time-series figure: frozen first-draft protocol</h1>
+<p>Purpose: illustrate tracking through speed and turn-demand changes, steering activity, and the previously reported recipient tradeoff. This is a replay of saved cases, not new identification, tuning, independent validation, or a claim of large absolute tracking gains.</p>
+<h2>Selection fixed before viewing trajectories</h2>
+<ol><li>For each of the ten fleets, build six mean yaw-RMSE components: moderate and hard maneuvers, each with Nominal LTI, Global, and Federated. Each mean uses all 30 clients.</li>
+<li>Compute the component-wise median and population standard deviation across fleet vectors. Select the smallest Euclidean distance to the median after scaling each component by its standard deviation.</li>
+<li>Within that fleet, apply the same rule separately to the ten heavy and ten handling clients, using all six RMSE components. No requirement on Federated improvement is applied.</li>
+<li>Numerically constant components are omitted when their spread is at most 64 machine epsilons times max(1, absolute median). Exact distance ties choose the lowest seed or client index.</li></ol>
+<p>The resulting selection is <strong>fleet 1319, heavy_05 (index 15), and handling_07 (index 27)</strong>. It is checked against the fixed configuration. Display the <strong>hard maneuver</strong>; both maneuvers enter selection. Families are intentionally chosen to illustrate the already established tradeoff, so these are outcome-based representative examples, not random or fleet-average trajectories. All candidate distances are saved for review.</p>
+<h2>Panels and intended LaTeX arrangement</h2>
+<table><tr><th>Panel suffix</th><th>Content</th><th>Intended position</th></tr>
+<tr><td>speed</td><td>Prescribed speed [m/s]</td><td>Full width, top</td></tr>
+<tr><td>reference</td><td>Reference yaw rate [deg/s]</td><td>Full width, second row</td></tr>
+<tr><td>heavy_error / handling_error</td><td>Actual minus reference yaw rate [deg/s]</td><td>Left / right, third row</td></tr>
+<tr><td>heavy_steering / handling_steering</td><td>Applied steering [deg]</td><td>Left / right, fourth row</td></tr></table>
+<p>All six filenames begin <code>paper_oe_control_timeseries_</code> and end <code>_panel.pdf</code>. Separate vector PDFs have no embedded titles or panel letters; LaTeX will supply those after review. Reference panels are 7.16 inches wide and recipient panels 3.48 inches wide. Fonts use the current manuscript's serif style, 8-point labels and 7-point ticks. PNG previews are 300 dpi. Colors and line styles distinguish the three methods in color and grayscale.</p>
+<p>Both recipients have identical error and steering axes. The error range includes every sample of all six traces, with a small margin; no zoom window, smoothing, or resampling is used. Applied steering is a zero-order-hold step plot. Dotted lines show ±12° amplitude limits, and the full limiting range is visible. The yaw error convention is r − r_ref. Longitudinal speed is prescribed, not tracked by a longitudinal controller.</p>
+<h2>Replay and provenance</h2>
+<p>Preflight checks the original numerical runtime, frozen source hashes, stored checkpoint hashes, protocol, and selection. Generation reuses the saved gains/prefilters, plant parameters, and stored maneuver profiles for only two recipients × three methods. Each complete outcome dictionary and every trajectory-array hash must match the saved checkpoint exactly before any figure is exported. There is no tolerance fallback, controller redesign, or modification of historical results. A mismatch stops the script for diagnosis.</p>
+<p>The manifest records the rule, all candidate rankings, input and generator hashes, replay checks, runtime, and output hashes. A CSV contains the selected traces in physical units. Its terminal steering cell is empty because no input interval follows the last state. The HTML preview embeds all six SVG panels and case RMSEs and works offline.</p>
+<h2>Run locally in Windows CMD</h2>
+<pre>conda activate federated_lpv
+git pull --ff-only origin main
+python paper\prepare_oe_control_timeseries.py --preflight
+python paper\prepare_oe_control_timeseries.py --generate
+python paper\prepare_oe_control_timeseries.py --check
+start "" report\paper_oe_control_timeseries.html</pre>
+<p>The existing environment supplies all dependencies; the script limits numerical threads internally. No worker flag or full experiment rerun is needed. If the numerical environment differs, use the versions in <code>environment.yml</code>. Existing raw arrays are not required.</p>
+<p>For an isolated preview, add <code>--output-dir PATH</code> to generate/check. All files then go to that directory. The default output paths are <code>results/figures/</code>, <code>results/tables/</code>, and <code>report/</code>. PNGs are regenerable and ignored by git. The check verifies the six PDFs, CSV, and HTML against the manifest without replaying.</p>
+<h2>Commit the first draft</h2>
+<pre>git add results/figures/paper_oe_control_timeseries_*_panel.pdf
+git add results/tables/paper_oe_control_timeseries_manifest.json results/tables/paper_oe_control_timeseries_traces.csv
+git add report/paper_oe_control_timeseries.html
+git diff --cached --stat
+git commit -m "Generate representative OE closed-loop time-series panels"
+git push origin main</pre>
+<p class="note">Review the plot readability and caption framing after generation. Keep the selected recipients and maneuver fixed while improving typography or layout. The manuscript is not modified by this script.</p>
+<h2>Developer checks</h2><pre>python -m pytest code/tests/test_oe_control_timeseries.py -q</pre>
+<p>Tests cover deterministic selection, scaling and constant components, incomplete-case rejection, selection without favorable outcomes, strict replay drift detection, unclipped panel labels, shared axes, six independent exports, and terminal input handling. Rendering tests use synthetic fixtures, not the selected scientific cases.</p>
+</html>
