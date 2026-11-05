@@ -1,6 +1,5 @@
 \documentclass[conference]{IEEEtran}
 \usepackage{amsmath,amssymb,booktabs,graphicx,microtype}
-\usepackage{balance}
 \usepackage{needspace}
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage{xcolor}
@@ -16,6 +15,7 @@ pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete spee
 \graphicspath{{../results/figures/}}
 \input{oe_confirmation_numbers}
 \input{oe_control_numbers}
+\input{oe_transient_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
 \newtheorem{proposition}{Proposition}
@@ -669,9 +669,6 @@ same fleets without changing the primary method.
 \Needspace{6\baselineskip}
 \section{Identification Results}
 \begingroup\color{\secondrevisioncolor}
-The results establish the unobserved-speed gains, then examine the selected
-groups and the conditions that limit sharing.
-
 \subsection{Local fits and complementary coverage}
 All 830 local OE fits are valid, and all acquisition runs satisfy the
 applied-bound and settling checks. Local matrix error has median
@@ -726,9 +723,7 @@ baselines in every fleet. Benefits are not uniform across recipients:
 \OESmoothLocalBetter/300 over Smooth Local, with
 \OEGlobalWorse\ and \OESmoothLocalWorse\ worsening, respectively.
 Figure~\ref{fig:fleet-client}(b) shows these descriptive client-level
-changes. Thus sharing improves prediction beyond local speed support
-on average, while some recipients are less accurately represented by their
-shared map.
+changes: aggregate gains coexist with poorer representation of some recipients.
 
 \subsection{What the learned groups capture}
 The selected groups supply the scheduling directions missing locally.
@@ -754,8 +749,7 @@ prespecified Smooth Local penalties (70/70). The best aggregate
 confirmation penalty, $10^{-2}$, gives \OEBestSmoothError\% unseen error,
 compared with \OESmoothLocalUnseen\% for the frozen $10^6$ penalty.
 The mean paired gain against this retrospectively best setting remains
-\OEBestSmoothGain\%. Thus the gain persists under the retrospectively best tested prior;
-this remains a sensitivity check on the same fleets.
+\OEBestSmoothGain\%. This retrospective sensitivity check reuses the same fleets.
 
 \begin{table}[t]
 \color{\secondrevisioncolor}
@@ -776,10 +770,8 @@ Federated groups & \OEFederatedA & \OEFederatedB & \OEFederatedUnstable\\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:oe-components} shows lower errors for both $A$ and $B$;
-the improvement is not confined to the combined matrix metric. Aggregate
-absolute error also falls for each of the six entries against both primary
-baselines. All grouped frozen-speed matrices also have spectral radius below one,
+Errors fall for both $A$ and $B$ (Table~\ref{tab:oe-components}) and,
+in aggregate absolute terms, for each entry against both primary baselines. All grouped frozen-speed matrices also have spectral radius below one,
 with maximum \OEMaximumRho. Closed-loop consequences are tested in Section~VI.
 
 \subsection{Coverage and conditioning limit extrapolation}
@@ -797,25 +789,24 @@ mean unseen errors of \OEFamilyWorst\% and \OEFamilySecondWorst\%
 when a physical family lacks observations at 10--14 m/s. These family designs remain full rank but have
 condition numbers above
 3000. Physical similarity therefore need not supply a well-conditioned
-design over the intended interval. Together, the diagnostics show why
-local fit accuracy, group rank, and conditioning must be assessed separately
-when interpreting the benefit of sharing.
+design over the intended interval. Local fit accuracy, group rank, and conditioning therefore require
+separate assessment.
 \endgroup
+
+% Queue the two-column tracking figure before its discussion.
+\input{figures/oe_transient_figure}
 
 \section{Supporting LQI Validation}
 \begingroup\color{\secondrevisioncolor}
-We test whether the learned maps improve tracking under a common controller
-design, reusing the frozen maps and 300 vehicles from Section~V without
-retuning. Nominal LTI tests improvement over the acquisition controller;
-Global tests the additional value of selective sharing. These are supporting
-comparisons on the same confirmation fleets.
+We test yaw-rate tracking at locally unobserved speeds using the frozen
+maps and 300 confirmation vehicles, without retuning. Nominal LTI tests
+improvement over the acquisition controller; Global tests selective sharing.
 
 \subsection{Common controller design}
 The four identification methods and a privileged recipient-specific
-ExactLPV fit ($L=7$) to the full reference grid supply scheduled controllers.
-ExactLPV is a reference, not a performance bound. Nominal LTI uses the
-unchanged 20-m/s acquisition gain and prefilter. Scheduled methods evaluate
-their maps at 10, 12, \ldots, 30 m/s, including locally unobserved speeds.
+ExactLPV fit ($L=7$) to the full reference grid supply scheduled controllers
+at 10, 12, \ldots, 30 m/s. ExactLPV is a reference, not a performance bound.
+Nominal LTI keeps the 20-m/s acquisition gain and prefilter.
 
 At each grid node, the fitted $\widehat A,\widehat B$ define
 \begin{equation}
@@ -843,119 +834,101 @@ For yaw reference $r_k^{\rm ref}$, the runtime law is
 \end{equation}
 Steering is rate-limited relative to $u_{k-1}$, then amplitude-limited.
 Conditional anti-windup accepts $\xi_{k+1}^{\rm cand}$ only when the command
-is unsaturated or the increment counteracts limiting; the integral bound
-is in radians. Noise-free state feedback isolates the consequences of the
-learned maps. Only $A,B$ enter control, not the OE offsets or initial states.
+is unsaturated or the increment counteracts limiting; the bound is in radians.
+Feedback is noise-free. Only $A,B$ enter control, not OE offsets or initial states.
 
-\subsection{Tracking protocol}
-Two 12-s nonlinear maneuvers test tracking across speed and turn demand.
-Both start at $x_0=0$, $\xi_0=0$, and $u_{-1}=0$, with RK4 integration
-and steering and speed fixed within each $T_s=0.01$ s step.
-The moderate maneuver varies
-speed smoothly as $11\to29\to15$ m/s and uses an enveloped two-frequency
-lateral-acceleration demand with scale 4 m/s$^2$ and frequencies 0.35 and
-0.72 Hz. The hard maneuver varies speed as $29\to12\to28$ m/s and uses
-Gaussian demands centered at $3.0,6.0,9.2$ s, with widths
-$0.40,0.48,0.55$ s and amplitudes $7,-7.7,5.6$ m/s$^2$, respectively.
-Yaw reference is requested acceleration divided by speed.
-
-All methods share steering limits of $12^\circ$ and $120^\circ$/s and a
-$6^\circ$ sideslip bound. The control test thus permits a higher steering
-rate than the $30^\circ$/s acquisition limit. Limiter activation is recorded
-separately from violations of applied-input or sideslip bounds. Finite
-infeasible responses remain in the complete-maneuver yaw RMSE, averaged
-first over clients and then fleets. The changing turn demand tests usability beyond the identification
-cornering condition, without validating full path tracking or observer-based
-control.
-
-\subsection{Tracking results and recipient tradeoffs}
-All 1800 schedules synthesize and all 3600 rollouts finish numerically.
-Table~\ref{tab:control} pairs tracking error with feasibility: successful
-synthesis on a fitted model need not yield useful nonlinear control.
-Nominal LTI, Global, Federated, and ExactLPV satisfy the tested constraints
-throughout. The local methods have substantial tracking tails and infeasible
-responses. Their extreme sideslip exceeds credible vehicle operation, so
-the large means describe control failures rather than realistic driving.
+\subsection{Tracking at unobserved speeds}
+Separate 12-s runs at $v=13,21,29$ m/s test interpolation between synthesis
+nodes at speeds unobserved locally by every vehicle. Each starts at
+$x_0=0$, $\xi_0=0$, $u_{-1}=0$, with reference (time $t$ in seconds)
+\begin{equation}
+ r^{\rm ref}(t)=\frac{2.5}{v}\sin^3\!\left(\frac{\pi(t-2)}{4}\right),
+ \qquad 2\leq t\leq10,
+ \label{eq:transient-reference}
+\end{equation}
+and zero otherwise, giving peak nominal lateral demand $2.5$ m/s$^2$.
+RK4 uses $T_s=0.01$ s with steering held within each step.
+Common bounds are $12^\circ$ steering, $120^\circ$/s steering rate, and
+$6^\circ$ sideslip; limiting and violations are recorded separately.
+Full-duration yaw RMSE includes finite infeasible responses, averaged
+first over clients and then fleets.
 
 \begin{table}[t]
-\color{\secondrevisioncolor}
 \centering
-\caption{\textcolor{\secondrevisioncolor}{OE-based supporting control: mean yaw-rate RMSE
-[degrees/s] over ten reused fleets. Violations count clients exceeding
-$6^\circ$ sideslip (moderate/hard), out of 300 each. All finite responses,
-including infeasible ones, contribute to the means.}}
+\caption{Fixed-speed tracking: mean yaw-rate RMSE [deg/s] over ten reused
+fleets. Parentheses count constraint-violating runs out of 300 per speed.
+All finite runs contribute to the means.}
 \label{tab:control}
-\begin{tabular}{lrrc}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lrrr}
 \toprule
-Method & Moderate & Hard & Violations\\
+Method & 13 m/s & 21 m/s & 29 m/s\\
 \midrule
-Nominal LTI & \OECtrlNominalModerate & \OECtrlNominalHard & \OECtrlNominalModerateViolations/\OECtrlNominalHardViolations\\
-Restricted Local & \OECtrlRestrictedModerate & \OECtrlRestrictedHard & \OECtrlRestrictedModerateViolations/\OECtrlRestrictedHardViolations\\
-Smooth Local & \OECtrlSmoothModerate & \OECtrlSmoothHard & \OECtrlSmoothModerateViolations/\OECtrlSmoothHardViolations\\
-Global & \OECtrlGlobalModerate & \OECtrlGlobalHard & \OECtrlGlobalModerateViolations/\OECtrlGlobalHardViolations\\
-Federated groups & \OECtrlFedModerate & \OECtrlFedHard & \OECtrlFedModerateViolations/\OECtrlFedHardViolations\\
-ExactLPV reference & \OECtrlExactModerate & \OECtrlExactHard & \OECtrlExactModerateViolations/\OECtrlExactHardViolations\\
+Nominal LTI & \OETransientNominalLow\ (\OETransientNominalLowViolations) & \OETransientNominalMid\ (\OETransientNominalMidViolations) & \OETransientNominalHigh\ (\OETransientNominalHighViolations)\\
+Restricted Local & \OETransientRestrictedLow\ (\OETransientRestrictedLowViolations) & \OETransientRestrictedMid\ (\OETransientRestrictedMidViolations) & \OETransientRestrictedHigh\ (\OETransientRestrictedHighViolations)\\
+Smooth Local & \OETransientSmoothLow\ (\OETransientSmoothLowViolations) & \OETransientSmoothMid\ (\OETransientSmoothMidViolations) & \OETransientSmoothHigh\ (\OETransientSmoothHighViolations)\\
+Global & \OETransientGlobalLow\ (\OETransientGlobalLowViolations) & \OETransientGlobalMid\ (\OETransientGlobalMidViolations) & \OETransientGlobalHigh\ (\OETransientGlobalHighViolations)\\
+Federated groups & \OETransientFedLow\ (\OETransientFedLowViolations) & \OETransientFedMid\ (\OETransientFedMidViolations) & \OETransientFedHigh\ (\OETransientFedHighViolations)\\
+ExactLPV reference & \OETransientExactLow\ (\OETransientExactLowViolations) & \OETransientExactMid\ (\OETransientExactMidViolations) & \OETransientExactHigh\ (\OETransientExactHighViolations)\\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Mean paired fleet-relative RMSE reductions against Nominal LTI are
-\OECtrlNominalModerateGain\% and \OECtrlNominalHardGain\% for the
-moderate and hard maneuvers, with improvements in all ten fleets.
-Against Global, the reductions are \OECtrlGlobalModerateGain\% and
-\OECtrlGlobalHardGain\%, with gains in
-\OECtrlGlobalModerateFleetWins/10 and \OECtrlGlobalHardFleetWins/10 fleets.
-The corresponding absolute gains are \OECtrlGlobalModerateAbsolute\ and
-\OECtrlGlobalHardAbsolute~degrees/s. Thus the additional gain from
-grouping is smaller than the gain over the
-nominal controller. Steering effort is similar to Global, with slightly
-more steering-rate RMS and limiting in the hard maneuver.
+All 1800 schedules synthesize and all 5400 rollouts finish numerically.
+Nominal LTI, Global, Federated, and ExactLPV satisfy the bounds without
+limiting; their actual lateral acceleration and steering remain below
+\OETransientPeakAccelerationBound~m/s$^2$ and
+\OETransientPeakSteeringBound$^\circ$, respectively.
+Federated approaches ExactLPV and improves mean tracking over Nominal LTI
+at every speed (Table~\ref{tab:control}). Gains over Global are small in
+absolute terms, \OETransientGlobalLowAbsolute--\OETransientGlobalHighAbsolute~deg/s,
+and occur in \OETransientGlobalLowFleetWins/10 fleets at 13 m/s and all ten
+at 21 and 29 m/s.
 
-Aggregate improvement is not uniform across recipients. All 100 heavy-family
-clients improve over Global in both maneuvers, while all 100 handling-family
-clients worsen. This systematic recipient tradeoff shows why fleet-level
-matrix accuracy alone is insufficient to judge the control benefit.
+Figure~\ref{fig:oe-transient} illustrates two recipients fixed before this
+evaluation. Heavy-family vehicles benefit most consistently; the handling-family
+mean slightly favors Global at 13 and 29 m/s. Restricted Local and Smooth
+Local violate bounds in \OETransientRestrictedTotalViolations/900 and
+\OETransientSmoothTotalViolations/900 runs. Large means reflect a subset of control failures beyond credible vehicle
+operation. Successful synthesis alone does not ensure useful control
+outside local speed support.
 
-Frozen-speed diagnostics help interpret the local-controller failures.
-The maximum federated frozen-point closed-loop radius is
-\OECtrlFedRadius, evaluated on 81 speeds with the saved ExactLPV map and
-interpolated gains. Restricted Local and Smooth Local have radii at least
-one for \OECtrlRestrictedUnstable/300 and \OECtrlSmoothUnstable/300
-schedules, respectively, despite successful own-model synthesis.
-These unsaturated frozen-speed diagnostics provide no nonlinear or
-varying-speed stability guarantee. The tests support useful tracking with
-shared maps, while showing the need
-for recipient-specific control assessment.
+\subsection{Variable-speed stress tests and scope}
+Two supporting 12-s tests prescribe $11\to29\to15$ and $29\to12\to28$ m/s,
+with peak nominal lateral demand up to $7.7$ m/s$^2$. All 3600 rollouts
+finish; Federated meets the bounds in all 600. Mean paired fleet-relative
+gains over Nominal LTI are \OECtrlNominalModerateGain\% and
+\OECtrlNominalHardGain\%, versus \OECtrlGlobalModerateGain\% and
+\OECtrlGlobalHardGain\% over Global. Specifically in these stress tests,
+all 100 heavy-family clients improve over Global and all 100 handling-family
+clients worsen, indicating maneuver-dependent recipient tradeoffs.
+
+Prescribed-speed tests do not establish complete maneuver feasibility:
+longitudinal tire forces, braking load transfer, and combined slip are
+omitted. Nor do they establish nonlinear or varying-speed stability.
+Deployment needs recipient-level assessment, including estimation and
+path-tracking effects absent here.
 \endgroup
 
-\balance
 \section{Discussion and Conclusion}
 \begingroup\color{\secondrevisioncolor}
-This work addressed LPV identification when individual vehicles observe
-only narrow speed regions. Local output-error fitting and federated group
-regression combine complementary observations without exchanging trajectories
-or requiring complete local LPV models. Vehicles are grouped using their observed dynamics without requiring
-physical family labels.
-
-Across ten independent simulated fleets, the method reduced mean matrix
-error at locally unobserved speeds to \OEFederatedUnseen\%, compared with
+Local output-error fitting and federated group regression combine
+complementary speed observations without exchanging trajectories,
+requiring complete local LPV models, or using physical family labels.
+Across ten independent simulated fleets, mean matrix error at locally
+unobserved speeds falls to \OEFederatedUnseen\%, versus
 \OESmoothLocalUnseen\% for Smooth Local and \OEGlobalUnseen\% for Global.
-Supporting LQI tests reused the frozen maps and satisfied the tested
-constraints in all 600 federated rollouts. Fleet-level tracking improved
-consistently over the fixed nominal controller, while gains over Global
-were modest and did not extend to every recipient. Thus, the evidence
-supports selective sharing for full-envelope identification, with separate
-assessment of its control consequences.
+Supporting LQI tests satisfy the tested constraints in all 1500 federated
+rollouts. Tracking improves over the fixed nominal controller; gains over
+Global are modest in absolute terms and depend on the recipient and maneuver.
 
-The results also identify the limits of this approach. Group selection
-does not guarantee sufficient coverage or conditioning, and aggregate
-accuracy does not ensure better control for each vehicle. The study uses
-simulated identification trajectories and noise-free state feedback in
-control. All recipients contribute to fitting; transfer to previously unseen
-vehicles remains untested. Future work should evaluate the method with measured
-vehicle data and observer-based feedback, and develop recipient-level checks
-that detect harmful transfer
-before a shared map is used for control.
+Selective sharing thus improves full-envelope identification, but group
+selection guarantees neither adequate coverage nor better control for
+every recipient. All vehicles contribute to fitting, so transfer to new
+vehicles remains untested. Future work should assess measured vehicle
+data and observer-based feedback, and develop recipient-level checks for
+harmful transfer before deployment.
 \endgroup
 
 \begin{thebibliography}{9}
