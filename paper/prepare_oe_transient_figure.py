@@ -28,14 +28,14 @@ from matplotlib.lines import Line2D
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT/'paper/oe_transient_figure_spec.json'
 PREFIX = 'paper_oe_transient_compact'
-LABELS = {'NominalLTI':'Nominal LTI', 'Global':'Global', 'Federated':'Federated'}
+LABELS = {'NominalLTI':'Nominal LTI', 'Global':'Global', 'Federated':'Grouped FL'}
 COLORS = {'NominalLTI':'#666666', 'Global':'#de7e24', 'Federated':'#167a9e'}
 STYLES = {'NominalLTI':'--', 'Global':'-.', 'Federated':'-'}
 CAPTION = (r'Fixed-speed yaw-rate tracking at three speeds unobserved in local identification. '
            r'Top: reference $r_{\mathrm{ref}}$. Middle and bottom: errors '
            r'$e_r=r-r_{\mathrm{ref}}$ for the same fixed heavy and handling recipients, respectively. '
            r'All six error panels use identical limits. The reference has the same nominal '
-           r'lateral-acceleration demand at each speed. These individual examples complement the fleet-level comparison.')
+           r'lateral-acceleration demand at each speed.')
 
 
 def require(condition, message):
@@ -160,14 +160,14 @@ def make_panels(spec,refs,traces):
             panels[f'v{speed}_{row}'] = fig
     legend = plt.figure(figsize=(spec['figure_width_in'],.25))
     handles = [Line2D([],[],color=COLORS[m],linestyle=STYLES[m],linewidth=1.05,label=LABELS[m]) for m in spec['methods']]
-    legend.legend(handles=handles,loc='center',ncol=3,frameon=False,fontsize=8,handlelength=2.8,columnspacing=2.4)
+    legend.legend(handles=handles,loc='center',ncol=3,frameon=False,prop={'style':'italic','size':8},handlelength=2.8,columnspacing=2.4)
     panels['legend']=legend
     return panels,dict(error_limits_deg_s=[-error_lim,error_lim],reference_limits_deg_s=[-ref_lim,ref_lim])
 
 
 def latex_fragment(spec):
     lines=[r'% Generated from frozen traces; keep titles and panel letters in LaTeX.',
-           r'\begin{figure*}[t]',r'\centering']
+           r'\providecommand{\TransientCaptionRevision}[1]{#1}',r'\begin{figure*}[t]',r'\centering']
     for i,v in enumerate(spec['speeds_mps']):
         lines += [rf'\subfloat[$v={v}\,\mathrm{{m/s}}$\label{{fig:oe-transient-v{v}}}]{{%',
                   rf'\begin{{minipage}}[t]{{{spec["panel_width_in"]:.2f}in}}',r'\centering']
@@ -175,7 +175,7 @@ def latex_fragment(spec):
             lines.append(rf'\includegraphics[width=\linewidth]{{{PREFIX}_v{v}_{row}_panel.pdf}}\par\nointerlineskip')
         lines += [r'\end{minipage}}'+(r'\hfill' if i<2 else '')]
     lines += [r'\par\vspace{1pt}',rf'\includegraphics[width=\textwidth]{{{PREFIX}_legend.pdf}}',
-              r'\caption{'+CAPTION+'}',r'\label{fig:oe-transient}',r'\end{figure*}']
+              r'\caption{\TransientCaptionRevision{'+CAPTION+'}}',r'\label{fig:oe-transient}',r'\end{figure*}']
     return '\n'.join(lines)+'\n'
 
 
@@ -227,7 +227,7 @@ All six error axes are identical. No smoothing, time-window selection, normaliza
 <div class="figure"><div class="grid">{heads}{''.join(cells)}</div><div class="legend">{svgs['legend']}</div>
 <p class="caption"><b>Figure preview.</b> Fixed-speed yaw-rate tracking at three speeds unobserved in local identification.
 Top: reference. Middle and bottom: e_r = r − r_ref for the fixed heavy and handling recipients.
-The nominal lateral demand is identical across speeds. These individual examples complement the fleet-level comparison.</p></div>
+The nominal lateral demand is identical across speeds.</p></div>
 <p>The full response can be read as r = r_ref + e_r. Separate error axes reveal small differences without hiding the reference scale.
 The trials have zero longitudinal acceleration. Steering traces remain in the full benchmark report because they add little visual separation here.</p>
 <p>Recipients: fleet {spec['seed']}, heavy_05 and handling_07. They were fixed before this benchmark; no reselection was made.
@@ -237,8 +237,8 @@ Noise-free state feedback and the existing nonlinear tanh-tire plant are used.</
 <details><summary>Selected-case full-duration RMSE [deg/s]</summary>{pd.DataFrame(checks).to_html(index=False,float_format=lambda v:f'{v:.6f}')}</details>
 <h2>LaTeX integration</h2><p>The nine data PDFs and shared legend are separate files. Panel letters and speed labels come from LaTeX.
 The figure uses 2.30-inch panels at native size (8 pt axis labels, 7 pt ticks), with a total two-column width of approximately 7.16 inches.</p>
-<p>When integrating the figure, add <code>\\input{{figures/oe_transient_figure}}</code> to paper/main.tex.
-The file uses the manuscript's existing graphicspath and subfig package. The manuscript has not been changed.</p>
+<p>The manuscript includes <code>\\input{{figures/oe_transient_figure}}</code> to paper/main.tex.
+The file uses the manuscript's existing graphicspath and subfig package. Its caption revision color is controlled by the manuscript.</p>
 <p>Regenerate with <code>python paper\\prepare_oe_transient_figure.py --generate</code>, then verify with
 <code>python paper\\prepare_oe_transient_figure.py --check</code>. Add <code>--compile-preview</code> to generate when a LaTeX installation is available.</p>
 <p>Input checks use the committed trace/metric/checkpoint hashes and recompute displayed RMSE from the trace CSV.

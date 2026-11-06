@@ -1,6 +1,13 @@
-# Active manuscript: full-envelope LPV identification
+# Active manuscript: federated LPV identification from limited local speed ranges
 
-The current contribution is **full-envelope identification from incomplete local operating coverage**, assuming available two-state lateral observations. The scope decision and evidence boundaries are in [the consolidation](../docs/identification_consolidation.md).
+The November 6 editorial pass is marked in dark green. Revised paragraphs,
+headings, equations, and method-label formatting use `revisiongreen`, `\rev`,
+`\bs`, and `\method` in `main.tex`. Earlier revision layers remain black.
+For a clean copy, change the RGB definition of `revisiongreen` to `{0,0,0}`.
+Numerical solver, QR normalization, curvature quadrature, and trajectory-check
+details moved to `implementation_details.tex`; the experiment protocol is unchanged.
+The paper now has separate Discussion and Conclusion sections. The method label
+is *Grouped FL* and the privileged control comparator is *Reference LPV*.
 
 `main.tex` now uses fixed-speed output-error (OE) identification from measured
 closed-loop trajectories and known applied steering. Sections II--V describe
@@ -8,8 +15,7 @@ frozen compatible group regression and the ten-fleet identification confirmation
 Section VI reuses those same frozen maps for matched LQI validation, including
 the original nominal LTI controller. It is a descriptive control extension,
 not a separate independent confirmation. The editorial pass organizes the evidence around incomplete coverage, selective
-sharing, and recipient-level control consequences. Revision colors now render
-in standard black.
+sharing, and recipient-level control consequences. Current editorial revisions are green; unchanged text remains black.
 
 Generate or verify the current manuscript assets from the repository root:
 

@@ -24,7 +24,7 @@ TABLES = ROOT / 'results/tables'
 FIGURES = ROOT / 'results/figures'
 PREFIX = 'paper_oe_lpv_confirmation'
 METHODS = ['RestrictedLocal', 'SmoothLocal', 'Global', 'Federated']
-LABELS = dict(zip(METHODS, ['Restricted Local', 'Smooth Local', 'Global', 'Grouped']))
+LABELS = dict(zip(METHODS, ['Restricted Local', 'Smooth Local', 'Global', 'Grouped FL']))
 COLORS = dict(zip(METHODS, ['#777777', '#8b4c96', '#de7e24', '#167a9e']))
 STYLES = dict(zip(METHODS, ['--', ':', '-.', '-']))
 BLOCKS = [[10, 12, 14], [16, 18, 20], [22, 24, 26], [28, 30]]
@@ -237,7 +237,7 @@ def figures(results, diagnosis, summary):
         inset.set(xlim=(10,30),ylim=(0,10),xticks=[10,20,30],yticks=[0,5,10])
         inset.tick_params(labelsize=6,pad=1)
         for v in observed: ax.plot(v,.12,'|',color='#467942',markersize=5)
-        if block==0: ax.legend(loc='upper left',frameon=False,fontsize=6)
+        if block==0: ax.legend(loc='upper left',frameon=False,prop={'style':'italic','size':6})
         files.append(save(fig,'paper_oe_coverage_'+'_'.join(map(str,observed))+'_panel'))
     fig,ax = plt.subplots(figsize=(3.48,2.65),layout='constrained')
     x=np.arange(1,11)
@@ -245,8 +245,8 @@ def figures(results, diagnosis, summary):
         ax.plot([x[j]]*3,[summary[m]['unseen'][j] for m in ['Global','SmoothLocal','Federated']],color='#bbbbbb',linewidth=.8,zorder=1)
     for m,marker in [('Global','o'),('SmoothLocal','^'),('Federated','s')]:
         ax.plot(x,summary[m]['unseen'],linestyle='none',marker=marker,color=COLORS[m],markersize=4,label=LABELS[m])
-    ax.set(xlabel='Independent confirmation fleet',ylabel='Unobserved-speed error [%]',xticks=x,ylim=(0,6))
-    ax.grid(axis='y',alpha=.18);ax.legend(loc='upper center',ncol=3,frameon=False)
+    ax.set(xlabel='Independent evaluation fleet',ylabel='Unobserved-speed error [%]',xticks=x,ylim=(0,6))
+    ax.grid(axis='y',alpha=.18);ax.legend(loc='upper center',ncol=3,frameon=False,prop={'style':'italic','size':6.5})
     files.append(save(fig,'paper_oe_paired_fleet_panel'))
     fig,ax = plt.subplots(figsize=(3.48,2.65),layout='constrained')
     for method in ['Global','SmoothLocal']:
@@ -255,8 +255,8 @@ def figures(results, diagnosis, summary):
         label=f"vs {LABELS[method]} ({summary[method]['client_counts']['better']}/300 better)"
         ax.step(values,np.arange(1,len(values)+1)/len(values),where='post',color=COLORS[method],label=label)
     ax.axvline(0,color='#666666',linestyle='--',linewidth=.8)
-    ax.set(xlabel='Grouped minus baseline [percentage points]',ylabel='Fraction of clients',ylim=(0,1.02))
-    ax.grid(axis='y',alpha=.18);ax.legend(loc='lower right',frameon=False)
+    ax.set(xlabel='Grouped FL minus baseline [percentage points]',ylabel='Fraction of clients',ylim=(0,1.02))
+    ax.grid(axis='y',alpha=.18);ax.legend(loc='lower right',frameon=False,prop={'style':'italic','size':6.5})
     files.append(save(fig,'paper_oe_client_tradeoff_panel'))
     fig,ax = plt.subplots(figsize=(3.48,2.65),layout='constrained')
     groups=[g for g in diagnosis['groups'] if g['target_condition']=='ClosedOE4']

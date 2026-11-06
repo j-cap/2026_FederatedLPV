@@ -3147,31 +3147,31 @@ z
   </g>
   <g id="legend_1">
    <g id="line2d_1">
-    <path d="M 136.49625 8.4075 
-L 147.69625 8.4075 
-L 158.89625 8.4075 
+    <path d="M 132.89625 8.4075 
+L 144.09625 8.4075 
+L 155.29625 8.4075 
 " style="fill: none; stroke-dasharray: 3.885,1.68; stroke-dashoffset: 0; stroke: #666666; stroke-width: 1.05"/>
    </g>
    <g id="text_1">
-    <text style="font-size: 8px; font-family: 'DejaVu Serif', serif; text-anchor: start" x="165.29625" y="11.2075" transform="rotate(-0 165.29625 11.2075)">Nominal LTI</text>
+    <text style="font-style: italic; font-size: 8px; font-family: 'DejaVu Serif', serif; text-anchor: start" x="161.69625" y="11.2075" transform="rotate(-0 161.69625 11.2075)">Nominal LTI</text>
    </g>
    <g id="line2d_2">
-    <path d="M 234.64 8.4075 
-L 245.84 8.4075 
-L 257.04 8.4075 
+    <path d="M 231.04 8.4075 
+L 242.24 8.4075 
+L 253.44 8.4075 
 " style="fill: none; stroke-dasharray: 6.72,1.68,1.05,1.68; stroke-dashoffset: 0; stroke: #de7e24; stroke-width: 1.05"/>
    </g>
    <g id="text_2">
-    <text style="font-size: 8px; font-family: 'DejaVu Serif', serif; text-anchor: start" x="263.44" y="11.2075" transform="rotate(-0 263.44 11.2075)">Global</text>
+    <text style="font-style: italic; font-size: 8px; font-family: 'DejaVu Serif', serif; text-anchor: start" x="259.84" y="11.2075" transform="rotate(-0 259.84 11.2075)">Global</text>
    </g>
    <g id="line2d_3">
-    <path d="M 308.85625 8.4075 
-L 320.05625 8.4075 
-L 331.25625 8.4075 
+    <path d="M 305.25625 8.4075 
+L 316.45625 8.4075 
+L 327.65625 8.4075 
 " style="fill: none; stroke: #167a9e; stroke-width: 1.05; stroke-linecap: square"/>
    </g>
    <g id="text_3">
-    <text style="font-size: 8px; font-family: 'DejaVu Serif', serif; text-anchor: start" x="337.65625" y="11.2075" transform="rotate(-0 337.65625 11.2075)">Federated</text>
+    <text style="font-style: italic; font-size: 8px; font-family: 'DejaVu Serif', serif; text-anchor: start" x="334.05625" y="11.2075" transform="rotate(-0 334.05625 11.2075)">Grouped FL</text>
    </g>
   </g>
  </g>
@@ -3179,7 +3179,7 @@ L 331.25625 8.4075
 </div>
 <p class="caption"><b>Figure preview.</b> Fixed-speed yaw-rate tracking at three speeds unobserved in local identification.
 Top: reference. Middle and bottom: e_r = r − r_ref for the fixed heavy and handling recipients.
-The nominal lateral demand is identical across speeds. These individual examples complement the fleet-level comparison.</p></div>
+The nominal lateral demand is identical across speeds.</p></div>
 <p>The full response can be read as r = r_ref + e_r. Separate error axes reveal small differences without hiding the reference scale.
 The trials have zero longitudinal acceleration. Steering traces remain in the full benchmark report because they add little visual separation here.</p>
 <p>Recipients: fleet 1319, heavy_05 and handling_07. They were fixed before this benchmark; no reselection was made.
@@ -3346,8 +3346,8 @@ Noise-free state feedback and the existing nonlinear tanh-tire plant are used.</
 </table></details>
 <h2>LaTeX integration</h2><p>The nine data PDFs and shared legend are separate files. Panel letters and speed labels come from LaTeX.
 The figure uses 2.30-inch panels at native size (8 pt axis labels, 7 pt ticks), with a total two-column width of approximately 7.16 inches.</p>
-<p>When integrating the figure, add <code>\input{figures/oe_transient_figure}</code> to paper/main.tex.
-The file uses the manuscript's existing graphicspath and subfig package. The manuscript has not been changed.</p>
+<p>The manuscript includes <code>\input{figures/oe_transient_figure}</code> to paper/main.tex.
+The file uses the manuscript's existing graphicspath and subfig package. Its caption revision color is controlled by the manuscript.</p>
 <p>Regenerate with <code>python paper\prepare_oe_transient_figure.py --generate</code>, then verify with
 <code>python paper\prepare_oe_transient_figure.py --check</code>. Add <code>--compile-preview</code> to generate when a LaTeX installation is available.</p>
 <p>Input checks use the committed trace/metric/checkpoint hashes and recompute displayed RMSE from the trace CSV.

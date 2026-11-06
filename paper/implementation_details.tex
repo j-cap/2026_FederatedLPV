@@ -1,0 +1,120 @@
+\documentclass[10pt]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Implementation Notes for Federated LPV Identification}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+These notes accompany the manuscript and record numerical settings omitted
+from its main explanation. They do not change the estimators, simulated
+trajectories, search budgets, or evaluation results.
+
+\section{Local output-error estimation}
+The 44-s identification maneuver uses a four-second cosine ramp within the
+initial 20-s settling interval, a four-second hold, and a final 20-s
+identification segment. At $T_s=0.01$ s, only the final segment supplies the
+2000 transitions used by OE. Both training and validation use noisy full-state
+measurements, while identification uses known applied steering.
+
+The affine model estimates the four entries of $\boldsymbol A$, two entries
+of $\boldsymbol B$, the two-component offset, and the initial state.
+Trust-region least squares uses analytic sensitivities and at most 300
+function evaluations per start. Four initializations are compared: an affine
+OLS estimate with initial spectral radius capped at 0.995,
+$\boldsymbol A=0.9\boldsymbol I_2$, $\boldsymbol A=0.98\boldsymbol I_2$,
+and the nominal 20-m/s model. The cap applies only to initialization.
+No stability projection is imposed on the final OE estimate. The converged
+solution with the lowest training loss is selected.
+
+Trajectory checks require steering amplitude and rate bounds,
+$|\beta|\leq5^\circ$, and $|a_y|\leq6$ m/s$^2$. During the final 2 s before
+identification, the absolute difference between mean yaw rate and its reference must not exceed
+$\max\{10^{-3}\,\mathrm{rad/s},0.01v\kappa_0\}$.
+The absolute fitted slopes of $\beta/(0.25^\circ)$ and
+$r/(2^\circ/\mathrm{s})$ must not exceed $0.02\,\mathrm{s}^{-1}$.
+Limiter activation is allowed because the actual applied input is recorded.
+A failed local fit or trajectory check invalidates the fleet condition;
+no individual vehicles are removed or replaced.
+
+\section{Basis normalization and smoothness penalty}
+The raw basis is
+\[
+\boldsymbol b(v)=[1,v^{-1},v^{-2},z,z^2,z^3,z^4]^\top,
+\qquad z=(v-20)/10.
+\]
+Stacking its rows on 401 equally spaced speeds from 10 to 30 m/s gives
+$\boldsymbol B_{\rm ref}=\boldsymbol Q\boldsymbol R$ by reduced QR,
+where $\boldsymbol Q\in\mathbb R^{401\times7}$ has orthonormal columns.
+The common basis satisfies
+$\boldsymbol\phi(v)^\top=\boldsymbol b(v)^\top\boldsymbol R^{-1}$.
+The 401 nodes are numerical normalization and quadrature points, not
+additional identification observations. Normalization preserves the function
+span, but coefficient ridge penalties and reported condition numbers refer
+to these normalized coordinates.
+
+For Smooth Local, $\boldsymbol Q_2\in\mathbb R^{401\times7}$ factors the
+trapezoidal approximation of
+\[
+\frac12\int_{-1}^{1}
+\left\|\frac{d^2}{dz^2}
+  [\boldsymbol\phi(20+10z)^\top\boldsymbol\Theta]\right\|_2^2\,dz.
+\]
+Affine functions in $z$ are unpenalized. The objective combines mean local
+squared error, this curvature penalty with weight $\alpha$, and numerical
+ridge $\eta=10^{-16}$. Development compared
+$\alpha\in\{10^{-6},10^{-4},10^{-2},1,10^2,10^4,10^6\}$ and selected the
+largest penalty within one standard error of the best fleet mean,
+$\alpha=10^6$. Evaluation retains that setting, with all seven penalties
+reported separately as sensitivity checks.
+
+\section{Group regression and numerical equivalence}
+The group search uses $K=1,\ldots,5$, one start for $K=1$, twelve seeded
+K-means starts otherwise, at most 30 assignment iterations, and at least
+five vehicles per group. Unchanged assignments stop iteration early.
+Ties choose the lowest group index. A final changed assignment is followed
+by a regression refit and score calculation without another reassignment.
+The ridge term is $\rho=10^{-8}+10^{-12}$, including the numerical diagonal
+adjustment. Assignment scores use entry scaling; regression does not.
+Consequently, the procedure has no common-objective descent guarantee.
+
+Assignment scales use the population standard deviations $\tau_j$ of target
+entries over all observed vehicle--speed rows. Define
+$s_j=\max\{\tau_j,0.05\operatorname{median}(\tau_1,\ldots,\tau_6)\}$
+and $\boldsymbol D=\operatorname{diag}(s_1,\ldots,s_6)$.
+The server computes moments using the population divisor $\sum_i n_i$,
+checks all scales are positive, and fixes them for the search. K-means
+initialization instead standardizes each mean-residual entry across clients
+to zero mean and unit variance, using unit scale for constant entries.
+
+For fixed group assignments, a separate centralized augmented least-squares
+solve uses exactly the same targets, basis, and ridge. Coefficients and
+speed-grid predictions must agree with the summed-statistics solution
+within $10^{-8}$. This tests regression equivalence for the same partition,
+not equality of independently selected groupings. The prespecified primary
+comparison also requires all ten fleets to pass fit and trajectory checks,
+and both adjusted confidence-interval lower bounds to exceed zero.
+
+If $\boldsymbol\Phi_g$ stacks a group's design matrices, unregularized
+regression has a unique minimizer precisely when
+$\operatorname{rank}\boldsymbol\Phi_g=L$. This follows because
+$\boldsymbol\Phi_g^\top\boldsymbol\Phi_g$ is positive definite exactly
+under full column rank. Otherwise a nonzero coefficient perturbation in
+the nullspace leaves all observed predictions unchanged. With exact targets
+from a common coefficient matrix, full rank also gives exact recovery of
+that matrix. Neither this conditional statement nor ridge regularization
+proves that the assignment procedure finds informative groups.
+
+\section{Control and reproducibility}
+Controller synthesis uses the learned dynamic matrices and the common LQI
+weights. OE offsets and initial states are not scheduled. Control evaluation
+uses noise-free state feedback, a 12-degree steering bound, a 120-degree/s
+rate bound, and a 6-degree sideslip bound. The identification controller's
+rate bound is instead 30 degrees/s.
+The complete variable-speed protocol and six-method results are recorded in
+\texttt{docs/oe\_lqi\_validation.html} and
+\texttt{report/oe\_lqi\_validation\_analysis.html}.
+The independent evaluation configuration and local-estimation code are in
+\texttt{code/config/paper\_oe\_lpv\_confirmation.json} and
+\texttt{code/src/federated\_lpv/fixed\_lti\_identification.py}.
+\end{document}
