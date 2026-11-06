@@ -4,7 +4,7 @@
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e}
 \usepackage{xcolor}
 % Revision wrappers are preserved for source history; the review copy is black.
-\definecolor{revisionblue}{RGB}{0,70,170}
+\definecolor{revisionblue}{RGB}{0,0,0}
 \newcommand{\revisioncolor}{black}
 \newcommand{\secondrevisioncolor}{black}
 \usepackage[caption=false,font=footnotesize]{subfig}
@@ -18,14 +18,12 @@ pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete spee
 \input{oe_transient_numbers}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rank}}
-% Phrase-level review against commit 577667b (before the November 6 editorial pass).
-% Green marks added/reworded text and changed mathematical expressions.
-% Global bold/italic notation changes are black to keep the review readable.
-% Set both revisiongreen and revisionred to black after review for a clean copy.
-\definecolor{revisiongreen}{RGB}{0,115,55}
+% Clean reading copy for feedback: all revision colors are black.
+% Revision wrappers remain in the source; reviewed text and notation are unchanged.
+\definecolor{revisiongreen}{RGB}{0,0,0}
 \newcommand{\rev}[1]{\textcolor{revisiongreen}{#1}}
-% Follow-up reader comments: only this pass's additions/rewording are red.
-\definecolor{revisionred}{RGB}{190,0,0}
+% Follow-up revision layer, also disabled for the clean copy.
+\definecolor{revisionred}{RGB}{0,0,0}
 \newcommand{\revred}[1]{\textcolor{revisionred}{#1}}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\method}[1]{\textit{#1}}

@@ -1,16 +1,9 @@
 # Active manuscript: federated LPV identification for heterogeneous vehicles with limited local speed coverage
 
-The November 6 editorial pass uses selective dark-green markup against commit
-`577667b`, the draft before that pass. Added or reworded phrases and changed
-mathematical expressions are green; unchanged wording is black. Global bold
-vector/matrix notation (`\bs`) and italic method names (`\method`) are black
-so that typography changes do not obscure the substantive revisions. Deleted
-text is not displayed. Earlier revision layers remain black.
-The follow-up reader comments are marked in red using `\revred`, while earlier
-green markup is preserved outside the edited passages. Moved and condensed
-explanations are red at their new locations. For a clean copy after review,
-change both `revisiongreen` and `revisionred` to `{0,0,0}` (also in the
-implementation notes).
+The reviewed draft is a clean reading copy for feedback. All revision colors
+are black in both `main.tex` and `implementation_details.tex`; the source
+wrappers remain, and the manuscript text is unchanged. The green/red review
+copy remains available in commit `55b3081`. Plot colors are unchanged.
 Numerical solver, QR normalization, curvature quadrature, and trajectory-check
 details moved to `implementation_details.tex`; the experiment protocol is unchanged.
 The paper now has separate Discussion and Conclusion sections. The method label
@@ -22,7 +15,7 @@ frozen compatible group regression and the ten-fleet identification confirmation
 Section VI reuses those same frozen maps for matched LQI validation, including
 the original nominal LTI controller. It is a descriptive control extension,
 not a separate independent confirmation. The editorial pass organizes the evidence around incomplete coverage, selective
-sharing, and recipient-level control consequences. Current editorial revisions are green; unchanged text remains black.
+sharing, and recipient-level control consequences. All manuscript revision markup is rendered in black.
 
 Generate or verify the current manuscript assets from the repository root:
 
