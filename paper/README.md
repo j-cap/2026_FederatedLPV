@@ -1,8 +1,11 @@
 # Active manuscript: federated LPV identification from limited local speed ranges
 
-The November 6 editorial pass is marked in dark green. Revised paragraphs,
-headings, equations, and method-label formatting use `revisiongreen`, `\rev`,
-`\bs`, and `\method` in `main.tex`. Earlier revision layers remain black.
+The November 6 editorial pass uses selective dark-green markup against commit
+`577667b`, the draft before that pass. Added or reworded phrases and changed
+mathematical expressions are green; unchanged wording is black. Global bold
+vector/matrix notation (`\bs`) and italic method names (`\method`) are black
+so that typography changes do not obscure the substantive revisions. Deleted
+text is not displayed. Earlier revision layers remain black.
 For a clean copy, change the RGB definition of `revisiongreen` to `{0,0,0}`.
 Numerical solver, QR normalization, curvature quadrature, and trajectory-check
 details moved to `implementation_details.tex`; the experiment protocol is unchanged.
