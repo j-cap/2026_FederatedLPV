@@ -1,6 +1,8 @@
 \documentclass[10pt]{article}
 \usepackage[margin=25mm]{geometry}
 \usepackage{amsmath,amssymb,hyperref}
+\usepackage{xcolor}
+\definecolor{revisionred}{RGB}{190,0,0}
 \title{Implementation Notes for Federated LPV Identification}
 \author{}
 \date{}
@@ -38,6 +40,8 @@ A failed local fit or trajectory check invalidates the fleet condition;
 no individual vehicles are removed or replaced.
 
 \section{Basis normalization and smoothness penalty}
+\textcolor{revisionred}{Development-stage blocked-speed validation selected the
+basis using a one-standard-error rule with a relative-error floor of $10^{-4}$.}
 The raw basis is
 \[
 \boldsymbol b(v)=[1,v^{-1},v^{-2},z,z^2,z^3,z^4]^\top,

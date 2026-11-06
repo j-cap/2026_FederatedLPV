@@ -1,4 +1,4 @@
-# Active manuscript: federated LPV identification from limited local speed ranges
+# Active manuscript: federated LPV identification for heterogeneous vehicles with limited local speed coverage
 
 The November 6 editorial pass uses selective dark-green markup against commit
 `577667b`, the draft before that pass. Added or reworded phrases and changed
@@ -6,7 +6,11 @@ mathematical expressions are green; unchanged wording is black. Global bold
 vector/matrix notation (`\bs`) and italic method names (`\method`) are black
 so that typography changes do not obscure the substantive revisions. Deleted
 text is not displayed. Earlier revision layers remain black.
-For a clean copy, change the RGB definition of `revisiongreen` to `{0,0,0}`.
+The follow-up reader comments are marked in red using `\revred`, while earlier
+green markup is preserved outside the edited passages. Moved and condensed
+explanations are red at their new locations. For a clean copy after review,
+change both `revisiongreen` and `revisionred` to `{0,0,0}` (also in the
+implementation notes).
 Numerical solver, QR normalization, curvature quadrature, and trajectory-check
 details moved to `implementation_details.tex`; the experiment protocol is unchanged.
 The paper now has separate Discussion and Conclusion sections. The method label
