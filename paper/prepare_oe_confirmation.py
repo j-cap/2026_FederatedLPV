@@ -222,20 +222,15 @@ def figures(results, diagnosis, summary):
     for block, observed in enumerate(BLOCKS):
         fig, ax = plt.subplots(figsize=(3.48,2.25),layout='constrained')
         ax.axvspan(min(observed)-.35,max(observed)+.35,color='#dbe9d4',alpha=.7,linewidth=0)
-        inset = ax.inset_axes([.53,.55,.44,.42])
-        inset.axvspan(min(observed)-.35,max(observed)+.35,color='#dbe9d4',alpha=.7,linewidth=0)
         for method in METHODS:
             values = np.array([np.mean([e['matrix'] for c,e in zip(r['clients'],r['conditions']['ClosedOE4']['errors'][method]) if c['speeds']==observed],axis=0) for r in results])*100
             assert values.shape == (10,11)
             mean = values.mean(axis=0)
             low,high = np.quantile(values[draws].mean(axis=1),[.025,.975],axis=0)
-            for target in [ax]+([] if method=='RestrictedLocal' else [inset]):
-                target.plot(grid,mean,color=COLORS[method],linestyle=STYLES[method],label=LABELS[method])
-                target.fill_between(grid,low,high,color=COLORS[method],alpha=.12,linewidth=0)
+            ax.plot(grid,mean,color=COLORS[method],linestyle=STYLES[method],label=LABELS[method])
+            ax.fill_between(grid,low,high,color=COLORS[method],alpha=.12,linewidth=0)
         ax.set(xlabel='Speed [m/s]',ylabel='Relative matrix error [%]',xlim=(10,30),yscale='log',ylim=(.1,300),xticks=[10,15,20,25,30])
         ax.grid(axis='y',alpha=.18)
-        inset.set(xlim=(10,30),ylim=(0,10),xticks=[10,20,30],yticks=[0,5,10])
-        inset.tick_params(labelsize=6,pad=1)
         for v in observed: ax.plot(v,.12,'|',color='#467942',markersize=5)
         if block==0: ax.legend(loc='upper left',frameon=False,prop={'style':'italic','size':6})
         files.append(save(fig,'paper_oe_coverage_'+'_'.join(map(str,observed))+'_panel'))
@@ -292,6 +287,7 @@ def main():
         source_sha256=SOURCES,output_sha256={p.relative_to(ROOT).as_posix():digest(p) for p in files},
         conventions=dict(endpoint='equal-speed within client, equal-client within fleet, equal-fleet',
                          coverage_bands='pointwise percentile bootstrap over 10 fleets, 20000 paired draws, seed 20261102; descriptive',
+                         coverage_axes='single logarithmic axis per panel, 0.1--300 percent; no insets',
                          panels='separate PDFs, no embedded panel letters or titles',fleet_labels='1..10 map to frozen seeds 1311..1320'),summary=summary)
     (TABLES/'paper_oe_manuscript_manifest.json').write_text(json.dumps(manifest,indent=2,allow_nan=False)+'\n',encoding='utf-8',newline='\n')
     print(json.dumps(dict(status='verified_and_generated',fleets=len(results),local_fits=len(cells),panels=7,summary=summary),indent=2))
