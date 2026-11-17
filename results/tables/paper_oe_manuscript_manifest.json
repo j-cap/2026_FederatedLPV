@@ -1,6 +1,6 @@
 {
   "operation": "verified_saved_results_only_no_fitting_or_simulation",
-  "generator_sha256": "872bb08d5a72ae0a068a1682da766f78e94175f2f89b11ede238d808b1e898fd",
+  "generator_sha256": "8c0dd80b2fee8db104398510d6b4d7901b8a1c7eef134ab99cf7d845008d1e31",
   "source_sha256": {
     "results/tables/paper_oe_lpv_confirmation_analysis.json": "dc0bc126cb730a6b7e29f2d1932f7b7fe020c47915a6f7ec927e9e4824ce7974",
     "results/tables/paper_oe_lpv_confirmation_diagnosis.json": "59b2d3c88c938bf8ad65e820e7b748acd827c0d2899e526efe1679c86424a92c",
@@ -31,10 +31,10 @@
     "results/tables/paper_oe_lpv_confirmation_acquisition_seed1320.json": "dce7e875d416091c610e9ba8eb468662dc2e3ab69ff270cea3ac0bc85c3bf0a9"
   },
   "output_sha256": {
-    "results/figures/paper_oe_coverage_10_12_14_panel.pdf": "ca7567f5ebcdefc41ccddd5c7565c42939ffc228fdd7bf387d518fe09883ec39",
-    "results/figures/paper_oe_coverage_16_18_20_panel.pdf": "8efb5e77da3c1bd1deab44c48eff3e290eea157ab1631165d3b7dca88146b115",
-    "results/figures/paper_oe_coverage_22_24_26_panel.pdf": "7ce4099a1aaf9625a7e83e081214c5fdd4deb041820ce45d08f134ed39806672",
-    "results/figures/paper_oe_coverage_28_30_panel.pdf": "85c783603696e8e2b5f839609488abb789daf2f0787ad932cac37dbf806bae65",
+    "results/figures/paper_oe_coverage_10_12_14_panel.pdf": "760e0d639592d4ed80a2a77958ccad4216fcfc6b86ca7cc54045ed886a958de2",
+    "results/figures/paper_oe_coverage_16_18_20_panel.pdf": "faceaa720ecbe4aa6fd2ae39ca0f3727783962efc4de44c87a042038c6c86a58",
+    "results/figures/paper_oe_coverage_22_24_26_panel.pdf": "7729c2a995fb4ff1317004013173fe0de0df156e091124ff1b514a877001ed5f",
+    "results/figures/paper_oe_coverage_28_30_panel.pdf": "5e0d8c97374e865cd2a75e986ca8c86f044be21868e8463a89ff3e0eb941b107",
     "results/figures/paper_oe_paired_fleet_panel.pdf": "b9402a2f8b4d76a1aa696b666d7add751c16684fa95b129a5429d285509fff4d",
     "results/figures/paper_oe_client_tradeoff_panel.pdf": "67b6db7a668231b5e3f3658a87f4c33f656a9900b2c0f3c36ed4aeef3920de1a",
     "results/figures/paper_oe_scheduling_information_panel.pdf": "4a659a344b8ba03bec74b15811ad7feb55d4b7874a6591068327bee93130d71c",
@@ -43,6 +43,7 @@
   "conventions": {
     "endpoint": "equal-speed within client, equal-client within fleet, equal-fleet",
     "coverage_bands": "pointwise percentile bootstrap over 10 fleets, 20000 paired draws, seed 20261102; descriptive",
+    "coverage_axes": "single logarithmic axis per panel, 0.1--300 percent; no insets",
     "panels": "separate PDFs, no embedded panel letters or titles",
     "fleet_labels": "1..10 map to frozen seeds 1311..1320"
   },
