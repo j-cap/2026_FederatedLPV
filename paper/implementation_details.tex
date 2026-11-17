@@ -3,6 +3,8 @@
 \usepackage{amsmath,amssymb,hyperref}
 \usepackage{xcolor}
 \definecolor{revisionred}{RGB}{0,0,0}
+\definecolor{focusedrevision}{RGB}{190,0,0}
+\newcommand{\focusrev}[1]{\textcolor{focusedrevision}{#1}}
 \title{Implementation Notes for Federated LPV Identification}
 \author{}
 \date{}
@@ -11,6 +13,19 @@
 These notes accompany the manuscript and record numerical settings omitted
 from its main explanation. They do not change the estimators, simulated
 trajectories, search budgets, or evaluation results.
+
+\section{\focusrev{Development and evaluation cohorts}}
+\focusrev{The development stages use distinct fleets. Basis selection in
+\nolinkurl{code/config/experiment_10a.json} uses seeds 301--310 and reference
+Jacobians for blocked-speed validation. Smoothness selection in
+\nolinkurl{code/config/paper_local_smoothness.json} uses seeds 321--330 under
+the earlier data-collection protocol, before the OE pipeline. Its selected
+penalty is inherited without retuning. The OE pipeline is developed on
+seeds 1301--1303; the final identification evaluation uses previously reserved
+seeds 1311--1320. Thus the ten basis-development fleets in Figure~2(a) are
+neither the three OE pilot fleets nor the ten evaluation fleets. Development
+reference matrices support basis and penalty selection; evaluation reference
+matrices do not enter fitting or grouping.}
 
 \section{Local output-error estimation}
 The 44-s identification maneuver uses a four-second cosine ramp within the
@@ -79,8 +94,7 @@ five vehicles per group. Unchanged assignments stop iteration early.
 Ties choose the lowest group index. A final changed assignment is followed
 by a regression refit and score calculation without another reassignment.
 The ridge term is $\rho=10^{-8}+10^{-12}$, including the numerical diagonal
-adjustment. Assignment scores use entry scaling; regression does not.
-Consequently, the procedure has no common-objective descent guarantee.
+adjustment.
 
 Assignment scales use the population standard deviations $\tau_j$ of target
 entries over all observed vehicle--speed rows. Define
@@ -90,6 +104,34 @@ The server computes moments using the population divisor $\sum_i n_i$,
 checks all scales are positive, and fixes them for the search. K-means
 initialization instead standardizes each mean-residual entry across clients
 to zero mean and unit variance, using unit scale for constant entries.
+
+\begingroup\color{focusedrevision}
+For fixed group count $K$ and positive diagonal scaling matrix
+$\boldsymbol D$, define
+\[
+ \mathcal J(\{g_i\},\{\boldsymbol\Theta_g\})=
+ \sum_i\|(\boldsymbol Y_i-\boldsymbol\Phi_i\boldsymbol\Theta_{g_i})
+                  \boldsymbol D^{-1}\|_F^2
+ +\rho\sum_{g=1}^{K}\|\boldsymbol\Theta_g\boldsymbol D^{-1}\|_F^2.
+\]
+For a fixed partition, each group's normal equations are
+\[
+ \left[\left(\sum_{i\in\mathcal I_g}\boldsymbol G_i+\rho\boldsymbol I\right)
+ \boldsymbol\Theta_g-\sum_{i\in\mathcal I_g}\boldsymbol H_i\right]
+ \boldsymbol D^{-2}=\boldsymbol 0.
+\]
+Since $\boldsymbol D$ is invertible, these give the same regression solution
+as the unscaled residual and unscaled ridge objective. With coefficients
+fixed, lowest-score assignment minimizes the residual term over the labels;
+the penalty is independent of those labels. Consequently, both exact updates
+are nonincreasing in $\mathcal J$. The implementation discards starts whose
+assignments violate the minimum group size; it does not solve a constrained
+assignment problem. The final refit after the iteration limit also minimizes
+$\mathcal J$ for the final labels. This fixed-$K$ property does not establish
+global optimality, adequate coverage, or convergence of the finite-budget
+search to a stationary partition. The BIC-based selection across candidates
+remains a heuristic and is not a descent step for $\mathcal J$.
+\endgroup
 
 For fixed group assignments, a separate centralized augmented least-squares
 solve uses exactly the same targets, basis, and ridge. Coefficients and
@@ -110,8 +152,19 @@ that matrix. Neither this conditional statement nor ridge regularization
 proves that the assignment procedure finds informative groups.
 
 \section{Control and reproducibility}
-Controller synthesis uses the learned dynamic matrices and the common LQI
-weights. OE offsets and initial states are not scheduled. Control evaluation
+\focusrev{Controller synthesis uses the homogeneous design model
+$\boldsymbol x_{k+1}=\widehat{\boldsymbol A}\boldsymbol x_k+
+\widehat{\boldsymbol B}u_k$ and common LQI weights fixed before the OE pilot.
+The weights are inherited from the preceding LQI setup rather than optimized
+on the OE pilot or evaluation outcomes. OE offsets and initial states are not
+scheduled. The prefilter gives zero-integral equilibrium for this homogeneous
+model. An equilibrium of an affine model would instead require
+$(\boldsymbol I-\widehat{\boldsymbol A})\boldsymbol x_{\rm eq}
+-\widehat{\boldsymbol B}u_{\rm eq}=\widehat{\boldsymbol c}$.
+The implemented controller acts on the physical states $[\beta,r]^\top$,
+without an identified trim schedule. The nonlinear tracking experiments
+evaluate this design choice; the homogeneous equilibrium calculation does not
+establish exact nonlinear trim or stability.} Control evaluation
 uses noise-free state feedback, a 12-degree steering bound, a 120-degree/s
 rate bound, and a 6-degree sideslip bound. The identification controller's
 rate bound is instead 30 degrees/s.

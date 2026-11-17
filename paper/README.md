@@ -1,9 +1,14 @@
 # Active manuscript: federated LPV identification for heterogeneous vehicles with limited local speed coverage
 
-The reviewed draft is a clean reading copy for feedback. All revision colors
-are black in both `main.tex` and `implementation_details.tex`; the source
-wrappers remain, and the manuscript text is unchanged. The green/red review
-copy remains available in commit `55b3081`. Plot colors are unchanged.
+The current draft marks only the focused November review corrections in red
+using `\focusrev` and the `focusedrevision` color. Earlier revision wrappers
+remain black. The clean supervisor copy is preserved in commit `963fd01`;
+the older green/red review copy remains in `55b3081`. Figures are unchanged.
+The corrections explain the fixed-group-count descent objective, distinguish
+the homogeneous controller-design model from affine OE identification, and
+separate development cohorts from evaluation. The full derivation and numerical
+definitions accompany the paper in `implementation_details.pdf`, built by the
+same Makefile. Submit or share these notes alongside the manuscript.
 Numerical solver, QR normalization, curvature quadrature, and trajectory-check
 details moved to `implementation_details.tex`; the experiment protocol is unchanged.
 The paper now has separate Discussion and Conclusion sections. The method label
@@ -15,7 +20,7 @@ frozen compatible group regression and the ten-fleet identification confirmation
 Section VI reuses those same frozen maps for matched LQI validation, including
 the original nominal LTI controller. It is a descriptive control extension,
 not a separate independent confirmation. The editorial pass organizes the evidence around incomplete coverage, selective
-sharing, and recipient-level control consequences. All manuscript revision markup is rendered in black.
+sharing, and recipient-level control consequences.
 
 Generate or verify the current manuscript assets from the repository root:
 

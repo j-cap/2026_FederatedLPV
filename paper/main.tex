@@ -25,6 +25,9 @@ pdfauthor={},pdfkeywords={federated identification, LPV systems, incomplete spee
 % Follow-up revision layer, also disabled for the clean copy.
 \definecolor{revisionred}{RGB}{0,0,0}
 \newcommand{\revred}[1]{\textcolor{revisionred}{#1}}
+% Only the focused November review corrections are highlighted.
+\definecolor{focusedrevision}{RGB}{190,0,0}
+\newcommand{\focusrev}[1]{\textcolor{focusedrevision}{#1}}
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \newcommand{\method}[1]{\textit{#1}}
 \newcommand{\RestrictedLocal}{\method{Restricted Local}}
@@ -316,12 +319,11 @@ solution even without full rank, but does not add information. Conditioning,
 local estimation} error, and \rev{within-group} mismatch also affect prediction accuracy.
 
 \subsection{\rev{Vehicle assignment} and \rev{group-count} selection}
-Assignment compares each candidate \rev{model with} a vehicle's observed dynamics.
-\rev{A positive diagonal matrix $\bs{D}\in\R^{6\times6}$} balances the six
-entries \rev{using their fleet-wide} standard \rev{deviations, with a small common
-floor. It is computed} from local target \rev{moments} and fixed during \rev{the} search.
-\rev{Unlike} the \rev{OE weights $\bs{W}$, it describes variation across vehicles.
-After receiving the current group coefficients}, client $i$ returns
+\focusrev{Assignment compares models at observed speeds using a fixed positive
+diagonal scale $\bs{D}\in\R^{6\times6}$. Its entries are fleet-wide target
+standard deviations with a common floor, computed from local moments.
+Unlike the OE weights $\bs{W}$, $\bs{D}$ describes variation across vehicles.
+Client $i$ returns}
 \begingroup\color{revisiongreen}
 \begin{equation}
  q_{ig}=\|(\bs{Y}_i-\bs{\Phi}_i\widehat{\bs{\Theta}}_g)
@@ -330,9 +332,12 @@ After receiving the current group coefficients}, client $i$ returns
 \end{equation}
 \endgroup
 \rev{The lowest score determines its assignment}, with ties \rev{resolved by} the
-lowest \rev{group} index. \rev{Regression} uses unscaled \rev{errors whereas assignment
-uses scaled errors. The} alternating \rev{procedure is therefore heuristic,
-without a common-objective descent guarantee}.
+lowest \rev{group} index. \focusrev{For fixed $K$ and $\bs{D}$, both exact updates
+are nonincreasing in $\mathcal J=\sum_i q_{i,g_i}
++\rho\sum_g\|\bs{\Theta}_g\bs{D}^{-1}\|_F^2$, with scores evaluated
+at the current coefficients. Scaling each output column's residual and
+ridge penalty equally leaves~\eqref{eq:fed} unchanged. This does not
+guarantee global optimality or informative coverage.}
 
 \rev{Initialization first fits} one \rev{model to} all vehicles, \rev{denoted} \GlobalModel{},
 \rev{with coefficients $\widehat{\bs{\Theta}}_0$}. Client $i$ sends its mean residual
@@ -409,22 +414,22 @@ iteration limit $T_{\max}$; minimum group size $M_{\min}$}.}
 \end{algorithm}
 
 \subsection{\rev{Information exchanged}}
-\rev{Clients send $\bs{G}_i\in\R^{L\times L}$ and
-$\bs{H}_i\in\R^{L\times6}$}: 28 distinct \rev{symmetric} entries and 42 \rev{entries,
-respectively, for $L=7$}. Initialization adds target moments and \rev{residuals.
-Assignment exchanges} $K$ scores per client and $K$ \rev{models} of $6L$ \rev{coefficients.
-Message size is} independent of trajectory length, \rev{while} total communication
-\rev{depends on the search budget}. Trajectories and targets \rev{remain} local in the
-emulator, \rev{but shared} statistics \rev{provide no formal} privacy \rev{guarantee}.
+\focusrev{Clients send $\bs{G}_i\in\R^{L\times L}$ and
+$\bs{H}_i\in\R^{L\times6}$ (28 distinct symmetric and 42 entries for $L=7$),
+plus initialization moments and residuals. Assignment exchanges $K$ scores
+per client and $K$ models of $6L$ coefficients. Message size is independent
+of trajectory length; total communication depends on the search budget.
+Trajectories remain local, but statistics provide no formal privacy guarantee.}
 \endgroup
 
 \begingroup
 \section{Benchmark and Evaluation}
-\rev{We test whether} selective sharing \rev{improves identification} at \rev{locally}
-unobserved speeds. \rev{Every comparison method receives the same local} OE
-\rev{estimates, so differences reflect} sharing \rev{and extrapolation rather than
-different} local \rev{estimators. Settings were} fixed after \rev{development on} three
-pilot fleets and \rev{then applied to} ten \rev{independently generated evaluation} fleets.
+\focusrev{All methods use the same local OE estimates, isolating the effects
+of sharing and extrapolation.}
+\focusrev{Ten earlier development fleets selected the basis; a separate set
+tuned smoothness. After three OE pilot fleets, the pipeline was fixed for ten
+independent evaluation fleets. Numerical definitions and cohort details are
+given in the accompanying implementation notes.}
 
 \subsection{Vehicle fleet and local speed coverage}
 The \rev{nonlinear} single-track plant \rev{has} state $\bs{x}=[\beta,r]^\top$,
@@ -495,7 +500,7 @@ not remove within-group mismatch or guarantee extrapolation accuracy.}}
 \rev{At each} observed speed, a 44-s maneuver \rev{starts} at $\beta=r=0$.
 \rev{One nominal} LTI model, linearized at straight driving and 20 m/s \rev{using
 the Nominal parameter center}, supplies \rev{an} LQI \rev{controller} for all vehicles
-and speeds. The \rev{state--integral} weights \rev{are}
+and speeds. The \rev{state--integral} weights\focusrev{, fixed before the OE pilot, are}
 $\bs{Q}=\operatorname{diag}(25,50,1000)$ and \rev{the} steering \rev{weight is}
 $R_u=0.15$. \rev{The integral of} measured yaw-rate error is \rev{bounded by}
 $\pm0.6$ rad with conditional anti-windup. \rev{Steering} is limited to
@@ -574,8 +579,8 @@ using the \rev{same seven-function basis but only the recipient's own observatio
 Here \rev{$\bs{Q}_2$ implements} the \rev{integrated squared second derivative} of
 \rev{the matrix functions with respect to normalized speed $z$.
 It penalizes curvature while leaving affine functions unpenalized};
-$\eta=10^{-16}$ is numerical ridge. \rev{Development selected
-$\alpha=10^6$ as} the largest penalty within one standard error of the best
+$\eta=10^{-16}$ is numerical ridge. \focusrev{Earlier development under the
+previous data-collection protocol selected $\alpha=10^6$ as} the largest penalty within one standard error of the best
 mean \rev{unobserved-speed error. All seven tested values
 $\{10^{-6},10^{-4},10^{-2},1,10^2,10^4,10^6\}$ are also evaluated in a
 sensitivity analysis, without changing the primary setting}.
@@ -678,7 +683,8 @@ maneuvers} satisfy the \rev{trajectory} and settling checks.
 Local matrix error has median \OELocalMedian\% and 95th percentile
 \OELocalPninetyfive\%. The steering \rev{limits introduced in
 Section~\ref{sec:calibration} are} active during \OELimiterPercent\% of
-validation samples on average. \rev{The estimator uses} the \rev{resulting} applied input.
+validation samples on average. \focusrev{OE uses identification data only,
+with the recorded applied steering.}
 \revred{A separate centralized solve with the same group assignments checks the
 federated regression against a tolerance of $10^{-8}$. The two calculations agree}
 within $\OECoefficientDelta$ in coefficients and $\OEPredictionDelta$ in predictions.
@@ -824,7 +830,9 @@ recipient's} full reference grid. \rev{It provides} a \rev{comparison}, not a pe
 bound. \NominalLTI{} keeps the \rev{original} 20-m/s gain and prefilter.
 \rev{Scheduled methods synthesize gains} at 10, 12, \ldots, 30 m/s.
 
-At each node, the \rev{identified dynamic matrices} define
+\focusrev{At each node, synthesis uses the homogeneous design model
+$\bs{x}_{k+1}=\widehat{\bs{A}}\bs{x}_k+\widehat{\bs{B}}u_k$,
+omitting the local OE offsets. Its yaw-error augmentation is}
 \begingroup\color{revisiongreen}
 \begin{equation}
  \bs{A}_{\rm a}=\begin{bmatrix}\widehat{\bs{A}}&\bs{0}\\T_s\bs{c}_r&1\end{bmatrix},
@@ -836,7 +844,7 @@ At each node, the \rev{identified dynamic matrices} define
 Discrete Riccati synthesis uses the \rev{weights from Section~\ref{sec:calibration}
 and yields $\bs{K}=[\bs{K}_x,k_\xi]\in\R^{1\times3}$ for} state
 $[\beta,r,\xi]^\top$, where $\xi$ integrates yaw-rate error.
-\rev{For zero-integral equilibrium of} the \rev{fitted model at} unit yaw reference, \rev{solve}
+\rev{For zero-integral equilibrium of} the \focusrev{design model at} unit yaw reference, \rev{solve}
 \begingroup\color{revisiongreen}
 \begin{equation}
  (\bs{I}_2-\widehat{\bs{A}})\bs{h}-\widehat{\bs{B}}w=\bs{0},
@@ -845,10 +853,9 @@ $[\beta,r,\xi]^\top$, where $\xi$ integrates yaw-rate error.
 \end{equation}
 \endgroup
 \rev{with} $\bs{h}\in\R^2$ and \rev{scalar $w$. Then $\bs{x}_{\rm eq}=\bs{h}\bar r$} and \rev{$u_{\rm eq}=w\bar r$
-satisfy} the \rev{model and feedback law at constant reference $\bar r$ and $\xi=0$}.
+satisfy} the \focusrev{design model} \rev{and feedback law at constant reference $\bar r$ and $\xi=0$}.
+\focusrev{This is not a trim calculation for the affine OE model or nonlinear plant.}
 Gains $\bs{K}$ and \rev{scalar} prefilters $F$ are linearly interpolated between nodes.
-\rev{Synthesis uses the dynamic matrices, while OE} offsets and initial states
-remain \rev{parameters of the local identification problems}.
 
 For \rev{yaw-rate} reference $r_k^{\rm ref}$, the \rev{command and candidate integral are}
 \begin{equation}
