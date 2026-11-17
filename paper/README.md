@@ -46,8 +46,12 @@ terminology, and distinguish rank assessment after grouping from an enforced
 constraint. Vectors and matrices use bold mathematical notation. Shapes,
 connections, colors, and font settings are preserved; only the rank note's
 text area is taller, centered at its original position, to fit two lines.
-The updated source still needs a fresh draw.io PDF export to
-`results/figures/paper_method_overview.pdf` before manuscript integration.
+The revised source is exported to
+`results/figures/paper_method_overview.pdf` and integrated into the compiled
+manuscript. The diagrams.net PDF export uses mathematical typesetting,
+100% zoom, Crop with a 2-point border, no grid or shadows, and no embedded
+editable source. The PDF contains vector graphics and no raster images;
+the editable source remains the `.drawio` file above.
 
 The control generator performs no simulation or model fitting. It verifies the
 audited execution checkpoints and writes `oe_control_numbers.tex` plus
