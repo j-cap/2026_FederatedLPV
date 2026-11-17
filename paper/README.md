@@ -37,8 +37,8 @@ insets. Panel sizes, curves, uncertainty bands, observed-speed shading, and
 markers are unchanged. Running the command above verifies the frozen inputs
 and regenerates all seven identification panels, the numerical include, and
 `results/tables/paper_oe_manuscript_manifest.json`; it runs no simulations.
-The inset sentence in the Figure 3 caption will be removed when the regenerated
-panels are integrated. Figure 1 is deferred to the next figure pass.
+The regenerated panels are integrated and the obsolete inset sentence has
+been removed from the Figure 3 caption. Figure 1 is deferred to the next figure pass.
 
 The control generator performs no simulation or model fitting. It verifies the
 audited execution checkpoints and writes `oe_control_numbers.tex` plus
