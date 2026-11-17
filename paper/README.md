@@ -38,7 +38,16 @@ markers are unchanged. Running the command above verifies the frozen inputs
 and regenerates all seven identification panels, the numerical include, and
 `results/tables/paper_oe_manuscript_manifest.json`; it runs no simulations.
 The regenerated panels are integrated and the obsolete inset sentence has
-been removed from the Figure 3 caption. Figure 1 is deferred to the next figure pass.
+been removed from the Figure 3 caption.
+
+Figure 1's editable source is `federated_lpv_overview.drawio`. Its labels now
+identify OE estimation, measured states and applied steering, use model
+terminology, and distinguish rank assessment after grouping from an enforced
+constraint. Vectors and matrices use bold mathematical notation. Shapes,
+connections, colors, and font settings are preserved; only the rank note's
+text area is taller, centered at its original position, to fit two lines.
+The updated source still needs a fresh draw.io PDF export to
+`results/figures/paper_method_overview.pdf` before manuscript integration.
 
 The control generator performs no simulation or model fitting. It verifies the
 audited execution checkpoints and writes `oe_control_numbers.tex` plus

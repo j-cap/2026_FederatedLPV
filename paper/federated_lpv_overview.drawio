@@ -364,13 +364,13 @@
         <mxCell id="group_coverage_title" value="Illustrative learned groups" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=1;" parent="panel_a" vertex="1">
           <mxGeometry x="27" y="437.40000000000003" width="211.5" height="23.400000000000002" as="geometry" />
         </mxCell>
-        <mxCell id="group_rank_note" value="Full rank required" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;" parent="panel_a" vertex="1">
-          <mxGeometry x="252" y="438.3" width="136.8" height="21.6" as="geometry" />
+        <mxCell id="group_rank_note" value="Rank assessed&lt;br&gt;after grouping" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;" parent="panel_a" vertex="1">
+          <mxGeometry x="252" y="432.9" width="136.8" height="32.4" as="geometry" />
         </mxCell>
         <mxCell id="group_strip_1" value="" style="rounded=1;arcSize=21.88;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#edf4fa;strokeColor=#edf4fa;strokeWidth=1;shadow=0;" parent="panel_a" vertex="1">
           <mxGeometry x="105.3" y="475.2" width="288.90000000000003" height="28.8" as="geometry" />
         </mxCell>
-        <mxCell id="group_name_1" value="Group map 1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#236b9a;fontStyle=0;" parent="panel_a" vertex="1">
+        <mxCell id="group_name_1" value="Group 1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#236b9a;fontStyle=0;" parent="panel_a" vertex="1">
           <mxGeometry x="22.5" y="477" width="85.5" height="25.2" as="geometry" />
         </mxCell>
         <mxCell id="group_line_1" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#236b9a;strokeWidth=1.8;endArrow=none;endFill=1;endSize=8;startArrow=none;" parent="panel_a" edge="1">
@@ -415,7 +415,7 @@
         <mxCell id="group_strip_2" value="" style="rounded=1;arcSize=21.88;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#fff0e3;strokeColor=#fff0e3;strokeWidth=1;shadow=0;" parent="panel_a" vertex="1">
           <mxGeometry x="105.3" y="511.2" width="288.90000000000003" height="28.8" as="geometry" />
         </mxCell>
-        <mxCell id="group_name_2" value="Group map 2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#cf741c;fontStyle=0;" parent="panel_a" vertex="1">
+        <mxCell id="group_name_2" value="Group 2" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#cf741c;fontStyle=0;" parent="panel_a" vertex="1">
           <mxGeometry x="22.5" y="513" width="85.5" height="25.2" as="geometry" />
         </mxCell>
         <mxCell id="group_line_2" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#cf741c;strokeWidth=1.8;endArrow=none;endFill=1;endSize=8;startArrow=none;" parent="panel_a" edge="1">
@@ -586,7 +586,7 @@
         <mxCell id="server_fit" value="" style="rounded=1;arcSize=13.73;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#fffaf5;strokeColor=#d99559;strokeWidth=1;shadow=0;" parent="server" vertex="1">
           <mxGeometry x="18" y="174.6" width="153" height="45.9" as="geometry" />
         </mxCell>
-        <mxCell id="fit_header" value="Fit group LPV maps" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="server" vertex="1">
+        <mxCell id="fit_header" value="Fit group models" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="server" vertex="1">
           <mxGeometry x="19.8" y="183.6" width="149.4" height="28.8" as="geometry" />
         </mxCell>
         <mxCell id="server_assign" value="" style="rounded=1;arcSize=13.46;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#fffaf5;strokeColor=#d99559;strokeWidth=1;shadow=0;" parent="server" vertex="1">
@@ -643,22 +643,22 @@
         <mxCell id="local_records" value="" style="rounded=1;arcSize=7.14;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#b7bfc6;strokeWidth=1;shadow=0;" parent="client" vertex="1">
           <mxGeometry x="13.5" y="76.5" width="134.1" height="88.2" as="geometry" />
         </mxCell>
-        <mxCell id="records_header" value="Local calibration&lt;br&gt;records" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
+        <mxCell id="records_header" value="Identification&lt;br&gt;data" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
           <mxGeometry x="19.8" y="81.9" width="121.5" height="32.4" as="geometry" />
         </mxCell>
-        <mxCell id="records_state" value="$$x=[\beta,r]^\top$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
+        <mxCell id="records_state" value="$$\boldsymbol{y}=\boldsymbol{x}+\boldsymbol{\nu}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
           <mxGeometry x="21.599999999999998" y="99.60000000000001" width="119.7" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="records_input" value="$$\mathrm{Steering}\ u,\ \mathrm{speed}\ v$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
+        <mxCell id="records_input" value="$$\mathrm{Applied}\ u,\ \mathrm{speed}\ v$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
           <mxGeometry x="21.15" y="130.50000000000003" width="119.7" height="42" as="geometry" />
         </mxCell>
         <mxCell id="matrix_estimates" value="" style="rounded=1;arcSize=9.46;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#b7bfc6;strokeWidth=1;shadow=0;" parent="client" vertex="1">
           <mxGeometry x="13.5" y="183.6" width="134.1" height="66.60000000000001" as="geometry" />
         </mxCell>
-        <mxCell id="matrix_header" value="Local matrix&lt;br&gt;estimates" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
+        <mxCell id="matrix_header" value="Local OE&lt;br&gt;identification" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
           <mxGeometry x="19.8" y="188.1" width="121.5" height="33.300000000000004" as="geometry" />
         </mxCell>
-        <mxCell id="matrix_math" value="$$\widehat A_i(v),\ \widehat B_i(v)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
+        <mxCell id="matrix_math" value="$$\widehat{\boldsymbol{A}}_i(v),\ \widehat{\boldsymbol{B}}_i(v)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
           <mxGeometry x="20.7" y="205" width="121.5" height="42" as="geometry" />
         </mxCell>
         <mxCell id="local_statistics" value="" style="rounded=1;arcSize=7.45;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#b7bfc6;strokeWidth=1;shadow=0;" parent="client" vertex="1">
@@ -667,16 +667,16 @@
         <mxCell id="statistics_header" value="Local statistics" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
           <mxGeometry x="19.8" y="266.40000000000003" width="121.5" height="21.6" as="geometry" />
         </mxCell>
-        <mxCell id="gram_math" value="$$G_i=\Phi_i^\top\Phi_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
+        <mxCell id="gram_math" value="$$\boldsymbol{G}_i=\boldsymbol{\Phi}_i^\top\boldsymbol{\Phi}_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
           <mxGeometry x="21.150000000000002" y="277.5" width="121.5" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="rhs_math" value="$$H_i=\Phi_i^\top Y_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
+        <mxCell id="rhs_math" value="$$\boldsymbol{H}_i=\boldsymbol{\Phi}_i^\top\boldsymbol{Y}_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
           <mxGeometry x="19.35" y="300.5" width="121.5" height="42" as="geometry" />
         </mxCell>
         <mxCell id="local_scores" value="" style="rounded=1;arcSize=9.33;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#ffffff;strokeColor=#b7bfc6;strokeWidth=1;shadow=0;" parent="client" vertex="1">
           <mxGeometry x="13.5" y="378" width="134.1" height="67.5" as="geometry" />
         </mxCell>
-        <mxCell id="scores_header" value="Score candidate&lt;br&gt;maps" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
+        <mxCell id="scores_header" value="Score candidate&lt;br&gt;models" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
           <mxGeometry x="19.8" y="381.6" width="121.5" height="32.4" as="geometry" />
         </mxCell>
         <mxCell id="scores_math" value="$$q_{ig}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
@@ -688,13 +688,13 @@
         <mxCell id="client_use_map" value="" style="rounded=1;arcSize=12.73;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#f0f8ed;strokeColor=#91b285;strokeWidth=1;shadow=0;" parent="client" vertex="1">
           <mxGeometry x="13.5" y="482.40000000000003" width="134.1" height="49.5" as="geometry" />
         </mxCell>
-        <mxCell id="use_map_header" value="Use assigned map" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
+        <mxCell id="use_map_header" value="Use group model" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=1;" parent="client" vertex="1">
           <mxGeometry x="16.2" y="486.90000000000003" width="128.70000000000002" height="22.5" as="geometry" />
         </mxCell>
-        <mxCell id="use_map_math" value="$$\widehat m_i(v)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
+        <mxCell id="use_map_math" value="$$\widehat{\boldsymbol{m}}_i(v)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="client" vertex="1">
           <mxGeometry x="20.7" y="489.90000000000003" width="121.5" height="42" as="geometry" />
         </mxCell>
-        <mxCell id="panel_b_title" value="(b) Federated group regression" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=20;fontColor=#111827;fontStyle=1;" parent="panel_b" vertex="1">
+        <mxCell id="panel_b_title" value="(b) Grouped FL identification" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=20;fontColor=#111827;fontStyle=1;" parent="panel_b" vertex="1">
           <mxGeometry x="9" y="7.2" width="580.5" height="28.8" as="geometry" />
         </mxCell>
         <mxCell id="records_to_matrices" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#236b9a;strokeWidth=1.5;endArrow=block;endFill=1;endSize=8;startArrow=none;exitX=0.50000000;exitY=1.00000000;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.50000000;entryY=0.00000000;entryDx=0;entryDy=0;entryPerimeter=0;" parent="panel_b" source="local_records" target="matrix_estimates" edge="1">
@@ -723,13 +723,13 @@
         <mxCell id="assigned_group_map" value="" style="rounded=1;arcSize=8.54;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#eef7ea;strokeColor=#91b285;strokeWidth=1;shadow=0;" parent="panel_b" vertex="1">
           <mxGeometry x="355.5" y="487.8" width="243" height="73.8" as="geometry" />
         </mxCell>
-        <mxCell id="assigned_map_header" value="Assigned group map" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=1;" parent="panel_b" vertex="1">
+        <mxCell id="assigned_map_header" value="Assigned group model" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=1;" parent="panel_b" vertex="1">
           <mxGeometry x="366.3" y="493.2" width="221.4" height="23.400000000000002" as="geometry" />
         </mxCell>
         <mxCell id="assigned_map_interval" value="Over 10-30 m/s" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;" parent="panel_b" vertex="1">
           <mxGeometry x="366.3" y="516.6" width="221.4" height="18" as="geometry" />
         </mxCell>
-        <mxCell id="assigned_map_math" value="$$\widehat m_i(v)=\phi(v)^\top\widehat\Theta_{g_i}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="panel_b" vertex="1">
+        <mxCell id="assigned_map_math" value="$$\widehat{\boldsymbol{m}}_i(v)=\boldsymbol{\phi}(v)^\top\widehat{\boldsymbol{\Theta}}_{g_i}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="panel_b" vertex="1">
           <mxGeometry x="366.3" y="514.8" width="221.4" height="42" as="geometry" />
         </mxCell>
         <mxCell id="selection_to_output" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#77818a;strokeWidth=1.5;endArrow=block;endFill=1;endSize=8;startArrow=none;exitX=0.50000000;exitY=1.00000000;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.46296296;entryY=0.00000000;entryDx=0;entryDy=0;entryPerimeter=0;" parent="panel_b" source="server_select_k" target="assigned_group_map" edge="1">
@@ -738,7 +738,7 @@
         <mxCell id="supporting_lqi" value="" style="rounded=1;arcSize=20.00;absoluteArcSize=1;html=1;whiteSpace=wrap;fillColor=#f7f3fb;strokeColor=#aa98bc;strokeWidth=1;shadow=0;" parent="panel_b" vertex="1">
           <mxGeometry x="369" y="577.8000000000001" width="216" height="31.5" as="geometry" />
         </mxCell>
-        <mxCell id="supporting_lqi_label" value="Supporting LQI validation" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=0;" parent="panel_b" vertex="1">
+        <mxCell id="supporting_lqi_label" value="Closed-loop yaw-rate tracking" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#111827;fontStyle=0;" parent="panel_b" vertex="1">
           <mxGeometry x="377.1" y="582.3000000000001" width="199.8" height="22.5" as="geometry" />
         </mxCell>
         <mxCell id="output_to_lqi" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#77818a;strokeWidth=1.5;endArrow=block;endFill=1;endSize=8;startArrow=none;dashed=1;dashPattern=4 3;exitX=0.50000000;exitY=1.00000000;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.50000000;entryY=0.00000000;entryDx=0;entryDy=0;entryPerimeter=0;" parent="panel_b" source="assigned_group_map" target="supporting_lqi" edge="1">
@@ -752,7 +752,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="uplink_math" value="$$G_i,\ H_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="panel_b" vertex="1">
+        <mxCell id="uplink_math" value="$$\boldsymbol{G}_i,\ \boldsymbol{H}_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#111827;fontStyle=0;overflow=width;" parent="panel_b" vertex="1">
           <mxGeometry x="209.70000000000002" y="100" width="149.4" height="42" as="geometry" />
         </mxCell>
         <mxCell id="uplink_summary_label" value="Summary statistics" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;" parent="panel_b" vertex="1">
@@ -769,7 +769,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="broadcast_label" value="Candidate&lt;br&gt;group maps" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;" parent="panel_b" vertex="1">
+        <mxCell id="broadcast_label" value="Candidate&lt;br&gt;group models" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=14;fontColor=#111827;fontStyle=0;" parent="panel_b" vertex="1">
           <mxGeometry x="234.9" y="262.8" width="111.60000000000001" height="38.7" as="geometry" />
         </mxCell>
         <mxCell id="score_return" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#236b9a;strokeWidth=1.8;endArrow=block;endFill=1;endSize=8;startArrow=none;exitX=1.00000000;exitY=0.76000000;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.00000000;entryY=0.50000000;entryDx=0;entryDy=0;entryPerimeter=0;" parent="panel_b" source="local_scores" target="server_assign" edge="1">
