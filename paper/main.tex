@@ -319,11 +319,11 @@ solution even without full rank, but does not add information. Conditioning,
 local estimation} error, and \rev{within-group} mismatch also affect prediction accuracy.
 
 \subsection{\rev{Vehicle assignment} and \rev{group-count} selection}
-\focusrev{Assignment compares models at observed speeds using a fixed positive
-diagonal scale $\bs{D}\in\R^{6\times6}$. Its entries are fleet-wide target
-standard deviations with a common floor, computed from local moments.
-Unlike the OE weights $\bs{W}$, $\bs{D}$ describes variation across vehicles.
-Client $i$ returns}
+\focusrev{Assignment errors are normalized using a common positive diagonal
+matrix $\bs{D}\in\R^{6\times6}$. Its entries are the standard deviations
+of the six matrix targets over all observed vehicle--speed pairs, subject
+to a common lower bound. The server computes $\bs{D}$ once from aggregated
+local moments and keeps it fixed throughout grouping. Client $i$ returns}
 \begingroup\color{revisiongreen}
 \begin{equation}
  q_{ig}=\|(\bs{Y}_i-\bs{\Phi}_i\widehat{\bs{\Theta}}_g)
@@ -415,8 +415,9 @@ iteration limit $T_{\max}$; minimum group size $M_{\min}$}.}
 
 \subsection{\rev{Information exchanged}}
 \focusrev{Clients send $\bs{G}_i\in\R^{L\times L}$ and
-$\bs{H}_i\in\R^{L\times6}$ (28 distinct symmetric and 42 entries for $L=7$),
-plus initialization moments and residuals. Assignment exchanges $K$ scores
+$\bs{H}_i\in\R^{L\times6}$, plus initialization moments and residuals.
+For $L=7$, the symmetric matrix $\bs{G}_i$ has $L(L+1)/2=28$ distinct
+entries, while $\bs{H}_i$ contains $6L=42$ entries. Assignment exchanges $K$ scores
 per client and $K$ models of $6L$ coefficients. Message size is independent
 of trajectory length.
 The total communication depends on the search budget.
