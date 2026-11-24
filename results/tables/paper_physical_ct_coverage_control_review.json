@@ -1,0 +1,25 @@
+{
+  "status": "completed_coverage_control_audit",
+  "fit_conditions": 588,
+  "control_cases": 1764,
+  "controller_nodes_checked": 6468,
+  "new_rollouts_in_checkpoints": 1431,
+  "reused_case_records": 333,
+  "limited_cases": 2,
+  "origin_unstable_cases": 2,
+  "adjacent_pair_mean_gap_deg_s": 0.0003230970874637212,
+  "adjacent_pair_unstable_case_contribution_deg_s": 0.0003246409559407099,
+  "adjacent_pair_gap_fraction_from_unstable_cases": 1.0047783422905725,
+  "checkpoint_sha256": {
+    "results/tables/paper_physical_ct_coverage_seed1301.json": "d7746d12d063a432bfa1df04b609e4092974720cdf892a50639b7d4d2b6bea4c",
+    "results/tables/paper_physical_ct_coverage_control_seed1301.json": "edb368c06722d06576970bde0fa9e8b520074981a430e28474e82e5b9c9a9b07",
+    "results/tables/paper_physical_ct_coverage_seed1302.json": "bff90c7f603458a43e14fc3ba9d38d677ad6687f7918d3b518778fee2d21e84e",
+    "results/tables/paper_physical_ct_coverage_control_seed1302.json": "25fa101a3adb50c927c21e1bc48bf8f73f1eb80c48a2ef5062cd8d5b2ccca3c8",
+    "results/tables/paper_physical_ct_coverage_seed1303.json": "d0a62e819b999326d0c1109757e7d5673516a29aee701b8348373ae4310d3085",
+    "results/tables/paper_physical_ct_coverage_control_seed1303.json": "6434b46626ad516b1bd1456abd734ee81658060eb361182bd0715fcca80b5bc8"
+  },
+  "script_sha256": "4d996ff3d80bc4073ca5d7929a5ba5c216044d28791943755e288f3f2cad34c2",
+  "prior_identification_audit_sha256": "cf53fc300de6a05ed8f3a6b999b5f980894a0f32e0c319c536d8594e2fbdbb6a",
+  "origin_jacobian_helper_sha256": "6d1c27f758a18b395ca7d39f38420a700a6f96cdcc468d447c5417556e884a25",
+  "scope": "Three reused pilot fleets; no new fitting, tuning, acquisition or nonlinear rollouts. Origin Jacobian uses the simulator RK4 derivative with inactive limits; no nonlinear stability guarantee. Stored rollout metrics audited but not recomputed from unavailable raw trajectories. Original identification checkpoints match the earlier grid/equivalence audit; cropped raw-data hashes remain unrecomputed."
+}
