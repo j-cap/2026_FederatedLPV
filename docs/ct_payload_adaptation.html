@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Centered payload adaptation — first decisive test</title>
+<style>body{font:16px/1.6 system-ui;color:#173044;background:#eef3f6}main{max-width:1100px;margin:auto;padding:28px}section{background:white;padding:24px;margin:20px 0;border-radius:10px}table{border-collapse:collapse;width:100%}th,td{padding:9px;text-align:left;border-bottom:1px solid #ddd}pre{white-space:pre-wrap;background:#eef3f6;padding:18px}code{font-family:monospace}</style><main>
+<h1>Does loading leave useful room for faster adaptation?</h1>
+<p>This experiment screens the opportunity for a later fleet-derived prior. It does not perform federated learning. The first question is whether a physically consistent loading change matters for control; the second is whether strong local identification resolves it after the first informative curve.</p>
+<section><h2>Frozen experiment</h2>
+<table><tr><th>Item</th><th>Choice</th></tr>
+<tr><td>Vehicles</td><td>Pilot fleet 1301, clients nominal_00–02, heavy_00–02, handling_00–02: first three of each family, selected before this experiment</td></tr>
+<tr><td>Previous model</td><td>Saved yaw-only CT fit and its saved LQI schedule for each vehicle</td></tr>
+<tr><td>Loading cases</td><td>10%, 20%, 30% added mass; 27 cases total</td></tr>
+<tr><td>Payload geometry</td><td>Centered at the previous CG, known yaw radius of gyration 1 m; fixed l_f=1.2 m and l_r=1.6 m</td></tr>
+<tr><td>Unchanged plant quantities</td><td>Front/rear tire stiffness, geometry, road friction μ=0.9, tanh tire law</td></tr>
+<tr><td>Loading timing</td><td>Before straight-running initialization; no mass discontinuity during a maneuver</td></tr>
+<tr><td>Acquisition</td><td>40 s at 20 m/s, four 8-second left–right curves starting at 0/10/20/30 s; nominal peak lateral demand 1.5 m/s²; no dither</td></tr>
+<tr><td>Acquisition feedback</td><td>Unchanged pre-change controller and pre-change straight-running Kalman observer, evaluated at 20 m/s</td></tr>
+<tr><td>Measurements</td><td>Yaw-rate noise SD 0.03°/s; applied steering and prescribed speed known; no sideslip measurement or true-state feedback</td></tr>
+<tr><td>Prefix lengths</td><td>4, 8, 16, 32, 40 s from the known zero initial state; 135 scalar fits</td></tr>
+<tr><td>Test conditions</td><td>Existing 12-second left–right reference at 13, 21, 29 m/s; 567 new evaluation rollouts</td></tr>
+</table>
+<p>The three payload levels are repeated conditions on each of nine vehicles. This is not a 27-vehicle sample or a fresh confirmation fleet. The payload settings are controlled simulation assumptions, not a universal loading model. Real tire load dependence and CG movement are outside this first diagnostic.</p>
+<p>The saved pre-change fits were obtained earlier from data acquired using full-state feedback. New post-change acquisition in this experiment is yaw-only observer-based feedback. The current test does not retroactively change how the earlier models were obtained.</p></section>
+<section><h2>Physical model and strongest simple local estimator</h2>
+<pre>λ = added mass / pre-change mass
+m+ = m− (1+λ)
+Iz+ = Iz− + λ m− ρp²
+
+p1 = Cf/m,  p2 = Cr/m,  p3 = m/Iz
+p1+ = p1− / (1+λ)
+p2+ = p2− / (1+λ)
+p3+ = p3− (1+λ) / (1+λ p3− ρp²)
+μ+ = μ−</pre>
+<p>The estimator knows the loading relation and payload radius. It estimates only λ in [0,0.5]. It does not receive the actual loading level, true plant parameters, sideslip, observer state estimates, future samples, or held-out reference responses. The upper bound is wider than the three simulated loading amounts. Pre-change parameter errors, including friction-estimate error, remain in all candidate models.</p>
+<p>Because acquisition contains changing curvature, fitting uses the nonlinear continuous-time tanh bicycle equations rather than the old affine fixed-curvature OE approximation. Forces are expressed per unit mass, so the four existing physical ratios suffice. The model is propagated by RK4 at 0.01 s with the known applied steering held through each step. Physical initial sideslip and yaw are zero. No initial-state fitting, affine offset or sample-mean centering is performed.</p>
+<pre>J_T(λ) = mean over k=0,...,N(T) of
+         [(predicted_yaw[k; λ] − measured_yaw[k]) / rad(0.03)]²</pre>
+<p>A 41-point grid over [0,0.5] is evaluated in a vectorized rollout. Every sampled interior local minimum is refined by bounded scalar optimization; both physical bounds remain candidates. Selection uses training loss only. All grid losses, optimizer attempts and boundary flags are saved. A flat unresolved objective is reported as uninformative, not as a successful zero-load estimate. The saved yaw-sensitivity norm is descriptive and is not a calibrated confidence interval under model mismatch.</p>
+<p>Each prefix is copied before fitting. At T seconds there are T/0.01 applied inputs and one additional yaw sample. Thus the 4-second fit uses 400 inputs and 401 measurements. There is no 20-second settling segment silently excluded from the acquisition budget.</p></section>
+<section><h2>Comparators and fair control evaluation</h2>
+<table><tr><th>Method</th><th>Post-change information</th><th>Meaning</th></tr>
+<tr><td>Previous</td><td>No update</td><td>Performance of the existing identified controller/observer after loading</td></tr>
+<tr><td>KnownChange</td><td>True loading fraction applied to the same imperfect pre-change model</td><td>Benefit available from knowing this change, without also correcting previous identification errors</td></tr>
+<tr><td>Local4 … Local40</td><td>Scalar estimate from the corresponding yaw/input prefix</td><td>How quickly local identification recovers performance</td></tr></table>
+<p>KnownChange is not an exact-plant oracle and not a guaranteed lower bound. A fitted λ may compensate for pre-existing model errors and outperform it. Keep signed differences instead of clipping them or forcing a percentage improvement.</p>
+<p>Controller schedules use the inherited speed nodes, LQI weights Q=diag(25,50,1000), R=0.15 and prefilter convention. Updated schedules use the transformed physical ratios with the inherited cornering curvature 0.005/m. Observers use the corresponding straight-running physical models at the actual fixed test speed. All observers use the same Q/R/P0 and update timing as the previous observer pilot. The online integrator uses measured yaw; prediction uses applied steering.</p>
+<p>Within a vehicle/loading/speed case, every method uses exactly the same sensor-noise realization. Acquisition and evaluation noise use different seed namespaces. Limits are 12° steering, 120°/s steering rate and 6° sideslip in evaluation. Acquisition uses 30°/s, 5° sideslip and reports a 6 m/s² acceleration check. The reference demand is not itself a bound on actual acceleration.</p>
+<p>Previous and KnownChange are evaluated once per case/speed. Five local models add 15 runs, giving 21 per loading case and 567 overall. Baselines are reused only in analysis. Each evaluation starts from straight running with a fixed post-prefix model. This is not an online-adapting controller experiment and does not measure the accumulated control benefit of applying updates during the acquisition drive.</p></section>
+<section><h2>Windows commands</h2>
+<pre>conda activate federated_lpv
+git pull --ff-only origin main
+python code\experiments\paper_ct_payload_adaptation.py preflight
+python code\experiments\paper_ct_payload_adaptation.py smoke
+python code\experiments\paper_ct_payload_adaptation.py run --workers 3
+python code\experiments\paper_ct_payload_adaptation.py status</pre>
+<p>The runner sets OPENBLAS_NUM_THREADS, OMP_NUM_THREADS and MKL_NUM_THREADS to one before NumPy is imported. No separate set commands or new environment are required. Worker processes use Windows-compatible spawn; up to nine workers are allowed. The smoke command checks synthetic scalar recovery, a synthetic observed-control rollout, and UTF-8/NPZ checkpoint roundtrips. It does not execute a scientific loading case.</p>
+<p>The run saves acquisition, each fit and each evaluation separately into a hash-protected per-loading-case JSON. Repeating the same run command resumes. Original acquisition arrays are compressed under results/data and ignored by git. No old raw identification trajectories are needed. A lock prevents simultaneous execution commands; remove a stale lock only after confirming no workers remain.</p>
+<h3>Commit the execution results before analysis</h3>
+<pre>git add results/tables/paper_ct_payload_adaptation_*_load*.json
+git commit -m "Run centered payload adaptation diagnostic"
+git push origin main</pre>
+<h3>Then create the HTML report and push the analysis</h3>
+<pre>python code\experiments\paper_ct_payload_adaptation.py analyze
+start report\ct_payload_adaptation.html
+git add results/tables/paper_ct_payload_adaptation_*.csv results/tables/paper_ct_payload_adaptation_analysis.json report/ct_payload_adaptation.html
+git commit -m "Analyze centered payload adaptation diagnostic"
+git push origin main</pre></section>
+<section><h2>What to inspect and when to stop</h2>
+<p>First inspect acquisition feasibility, fitting failures, boundary estimates, controller synthesis failures, unstable local Jacobians and control limits. Full-duration finite violations stay in means. Missing full-duration metrics invalidate full aggregates rather than silently dropping failures. Average speeds, loading levels and vehicles equally.</p>
+<p>The main plot shows yaw tracking RMSE, sideslip-estimation RMSE and steering-rate RMS against identification time, with the two fixed reference lines. The loading estimates and objective grids explain the result. All comparisons use absolute units as well as signed differences. Relative gap closure is undefined when Previous does not have positive headroom over KnownChange.</p>
+<p>For transparency, the report includes fixed descriptive tracking-error tolerances 0.005/0.01/0.02°/s. It reports the first tested prefix after which all later tested prefixes remain within that tolerance of KnownChange at all three speeds, with both methods complete and feasible. These values are not automotive acceptance standards or an automatic success gate. Inspect estimation and control effort as well.</p>
+<table><tr><th>Observation</th><th>Decision</th></tr>
+<tr><td>Previous and KnownChange differ little in practical terms</td><td>Stop this scenario: adaptation has little control value</td></tr>
+<tr><td>Adaptation helps, but local fitting closes the gap after the first informative curve</td><td>Fleet priors have a narrow opportunity; require a stronger deployment argument before adding them</td></tr>
+<tr><td>A substantial local-versus-known-change gap persists over several informative curves</td><td>Next test a donor-derived prior, using the same target data and a strong fixed engineering-prior comparator</td></tr></table>
+<p>No method in this diagnostic learns a fleet prior. It establishes whether that next experiment is motivated.</p></section>
+<section><h2>Restore or inspect full trajectories</h2>
+<pre>python code\experiments\paper_ct_payload_adaptation.py restore
+python code\experiments\paper_ct_payload_adaptation.py restore --client nominal_00 --loading-percent 20
+python code\experiments\paper_ct_payload_adaptation.py replay --client nominal_00 --loading-percent 20 --method Local40 --speed 21</pre>
+<p>Restore verifies existing acquisition arrays or reconstructs missing ones from committed inputs. Replay reconstructs a selected evaluation. Both require the saved canonical array hash to match exactly and preserve scientific checkpoints on mismatch. Use the original numerical platform for exact recovery: tiny differences between Windows and another platform can change byte hashes despite numerical agreement. A mismatch is never silently accepted as an original trajectory.</p>
+<p>The report needs only committed JSON, not raw arrays. It embeds prespecified decimated previews for nominal_00 at 20% loading, plus aggregate tables and plots. Full-rate data determine all metrics.</p></section>
+</main></html>
