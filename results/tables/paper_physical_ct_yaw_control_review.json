@@ -1,0 +1,22 @@
+{
+  "status": "matched_yaw_control_audit_complete",
+  "new_rollouts": 270,
+  "reused_rollouts": 270,
+  "schedules": 180,
+  "node_matrices_checked": 1980,
+  "complete_cases": 540,
+  "feasible_cases": 540,
+  "limited_cases": 0,
+  "origin_unstable_cases": 0,
+  "relative_mean_rmse_change_pct": -0.15551329015807128,
+  "checkpoint_sha256": {
+    "results/tables/paper_physical_ct_yaw_only_seed1301.json": "a56f8380b03737294b7d2f5286ff5c1c6285a73e987ecc4754fe27965303e560",
+    "results/tables/paper_physical_ct_yaw_only_control_seed1301.json": "db58ee43bd1e11728d5cb0e1193250f932cd27289ff3eddb55efcfd96c10df2e",
+    "results/tables/paper_physical_ct_yaw_only_seed1302.json": "5a2f184738cbb775033c1e175d9263d546e753a392c0591ef982813b08ce0804",
+    "results/tables/paper_physical_ct_yaw_only_control_seed1302.json": "5821bf06fdf221f98fe944473ec947636e34a39e1c255d47b42a6b5cf51d7530",
+    "results/tables/paper_physical_ct_yaw_only_seed1303.json": "becd1b042b1187826559d0a2f39240fbe19badd054c36e164ccc588b2c887124",
+    "results/tables/paper_physical_ct_yaw_only_control_seed1303.json": "4108b419c6ba238a93063eed84bd87bcdcf7582c41ecba5890366e0a5e526519"
+  },
+  "analysis_sha256": "2b07681fbcc7d652b1a040e3ea92e54c60af2b1460576530235e2629ba204871",
+  "scope": "Three reused pilot fleets; true noise-free state feedback for both methods. No observer, retuning or new identification. Full-state results reused exactly. Jacobians concern straight-running equilibria and inactive limits, not nonlinear stability guarantees."
+}

@@ -1964,7 +1964,45 @@ z
     </tr>
   </tbody>
 </table></div><p>For both methods, dynamics are fixed at their training estimates. Only affine nuisance quantities are estimated from the first 2 s (201 yaw samples) of the separate validation fitting window. The following 18 s (1,800 samples) are predicted without measurement updates and scored. No suffix measurements affect centering or initialization. True yaw is used solely for an additional noise-free evaluation score; measured-yaw RMSE is also reported. No true sideslip enters prediction.</p><p>These validation maneuvers occur at the observed identification speeds. Extrapolation to unobserved speeds is assessed by model diagnostics and optional control, not by claiming an unseen-speed validation trajectory.</p></section>
-<section><h2>Optional unchanged state-feedback control</h2><p>Not run. Identification can be reviewed first.</p><p>Common LQI rules, limits and 13/21/29 m/s maneuver. Full-state CT rollouts are reused, yaw-only CT models get 270 new rollouts. True state feedback isolates learned-model quality; no observer is introduced. Feasibility only checks bounds. Limiter activity, steering-rate RMS and the true-plant origin spectral radius are reported separately; local Jacobian stability is not a nonlinear guarantee.</p></section>
+<section><h2>Optional unchanged state-feedback control</h2><div class="scroll"><table class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>method</th>
+      <th>tracking_rmse_deg_s</th>
+      <th>limiter_fraction</th>
+      <th>steering_rate_rms_deg_s</th>
+      <th>cases</th>
+      <th>complete</th>
+      <th>feasible</th>
+      <th>limited</th>
+      <th>origin_unstable</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FullStateCT</td>
+      <td>0.0128319</td>
+      <td>0</td>
+      <td>0.820845</td>
+      <td>270</td>
+      <td>270</td>
+      <td>270</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>YawOnlyCT</td>
+      <td>0.012812</td>
+      <td>0</td>
+      <td>0.820827</td>
+      <td>270</td>
+      <td>270</td>
+      <td>270</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table></div><p>Common LQI rules, limits and 13/21/29 m/s maneuver. Full-state CT rollouts are reused, yaw-only CT models get 270 new rollouts. True state feedback isolates learned-model quality; no observer is introduced. Feasibility only checks bounds. Limiter activity, steering-rate RMS and the true-plant origin spectral radius are reported separately; local Jacobian stability is not a nonlinear guarantee.</p></section>
 <section><h2>Convergence and sensitivity</h2><div class="scroll"><table class="dataframe">
   <thead>
     <tr style="text-align: right;">
