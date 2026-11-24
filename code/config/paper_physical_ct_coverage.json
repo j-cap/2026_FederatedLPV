@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "conditions": [
+    "full",
+    "single",
+    "adjacent_pair",
+    "multi_20s"
+  ],
+  "transitions_per_original_segment": 2000,
+  "total_budget_transitions": 2000,
+  "equivalent_mu_grid_points": 41,
+  "single_speed_family": "Exact stiffness/friction equivalence at the observed speed; bounds respected; diagnostic only, never used to select the estimator.",
+  "equal_budget_rule": "Distribute 2000 transitions across original speeds using quotient/remainder in ascending speed order; take each central contiguous window. No duplication or concatenation across speeds.",
+  "evaluation": "Original unobserved grid speeds are the common primary evaluation set across conditions; all-grid and actually-unobserved error also recorded. Control always uses 13,21,29 m/s.",
+  "selection": "All observed single speeds and all adjacent pairs; pair identical to full is reused rather than refitted. Average variants within vehicle before vehicle and fleet means; report every variant and worst variant separately.",
+  "scope": "Small diagnostic on all three reused pilot fleets. Current plant, estimator, common bounds and four starts unchanged. No sharing, new acquisition, model repair or ten-fleet extension.",
+  "source_sha256": {
+    "code/config/paper_physical_ct_oe.json": "d35a771dd8dcf5ce8059ff8cb6dcf1d2e044dcb7c1cee7a9298f3f0a82ad0565",
+    "code/experiments/paper_physical_ct_oe.py": "3576f88e535ea8835137e9612e840d75e38f406995826385a10d0c0386a71a13",
+    "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+    "code/config/paper_physical_ct_control.json": "44cbffcd769c07e7eab461fc76494310ed6678155c911abecc6c488ff606c522",
+    "code/experiments/paper_physical_ct_control.py": "d20b778e0b2f6661dbd389f3a04640774b8ab14bfc67433aa6085ade7bccbe12",
+    "code/experiments/paper_oe_transient_benchmark.py": "37c47fa88dce41425ccb502045fdfe2f74c2295c2f0e6a9016332868128ff8fb",
+    "code/src/federated_lpv/oe_lqi_validation.py": "98042f568b81e628156814b69833f7fbce442e376e376aa61ad011f0a9d4318a",
+    "results/tables/paper_physical_ct_oe_seed1301.json": "6e56c32d2908a6f198555f3c269941c15a2ccfa69116faae5b4c53c248dd605e",
+    "results/tables/paper_physical_ct_oe_control_seed1301.json": "84067f48daac3b3d0be0efb48be1e626e8611ef4892ef6d761d127828d858e5c",
+    "results/tables/paper_physical_ct_oe_seed1302.json": "5c418d3d6f0261d698d5d41b9aab10a72e0f6a47e36553f8ae6b1ae9916217e3",
+    "results/tables/paper_physical_ct_oe_control_seed1302.json": "25dd1a5498a7353b1c22bbf7acc484f1b4ac9610a01cc7ac0fab15a8abbba858",
+    "results/tables/paper_physical_ct_oe_seed1303.json": "ac11162980c24530cd848a51599db3bc9ff9aa5095e4c1fe588f76a3edb9a88d",
+    "results/tables/paper_physical_ct_oe_control_seed1303.json": "8cb7ef9dddf3194d7a046cf467ce0a3a9521d438a95a84677475e9a0e732af3b"
+  }
+}
