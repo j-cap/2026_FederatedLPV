@@ -1,0 +1,71 @@
+{
+  "status": "audited",
+  "seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "clients": 90,
+  "training_pairs_verified": 249,
+  "prediction_grid_pairs_verified": 4950,
+  "attempts": 360,
+  "converged_attempts": 360,
+  "checkpoint_sha256": {
+    "results/tables/paper_physical_ct_oe_seed1301.json": "6e56c32d2908a6f198555f3c269941c15a2ccfa69116faae5b4c53c248dd605e",
+    "results/tables/paper_fixed_lti_identification_seed1301.json": "34e03845fb46d8c348d164a989658575c734ee62685580e592e1cc309e5f46f6",
+    "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+    "results/tables/paper_physical_ct_oe_seed1302.json": "5c418d3d6f0261d698d5d41b9aab10a72e0f6a47e36553f8ae6b1ae9916217e3",
+    "results/tables/paper_fixed_lti_identification_seed1302.json": "b20d74e7d848ceb529bb99f59e5e71bc940b2a629f4ffeb785fcecb45e88d67d",
+    "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+    "results/tables/paper_physical_ct_oe_seed1303.json": "ac11162980c24530cd848a51599db3bc9ff9aa5095e4c1fe588f76a3edb9a88d",
+    "results/tables/paper_fixed_lti_identification_seed1303.json": "bff1441dbedb78cc1216dd6950be3b9e6cc55b30e9b57e635053c99a470c5411",
+    "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1",
+    "results/tables/paper_physical_ct_oe_pilot_summary.csv": "ef5977316ff2b0731424597f16e19dea6f6a81d35d21a692234caff6f7a4c7e3",
+    "results/tables/paper_physical_ct_oe_pilot_grid_errors.csv": "ca482de856889cf819a6e23c7bee2fad4f39bb885397868889c8cdeeaa3025bc"
+  },
+  "analysis_script_sha256": "7941c280426dc954faa61edc06e9627536f2cfc5ab317407bf9f60b217ce0620",
+  "all_joint_ranks_four": true,
+  "all_single_speed_ranks_three": true,
+  "weakest_direction_mu_clients": 90,
+  "bound_hits": 1,
+  "maximum_start_loss_spread": 5.040412531798211e-14,
+  "maximum_start_parameter_relative_spread": 1.124974861655807e-05,
+  "mean_unseen_matrix_pct": {
+    "Federated": 2.2660863271107714,
+    "Global": 4.5004544062722385,
+    "PhysicalCTLocal": 0.38590618949680666,
+    "RestrictedLocal": 20.87246374194428,
+    "SmoothLocal": 4.1685936582446494
+  },
+  "relative_reduction_vs_federated": 0.8297036680024314,
+  "client_wins": {
+    "RestrictedLocal": 90,
+    "SmoothLocal": 90,
+    "Global": 90,
+    "Federated": 87
+  },
+  "ct_client_error_quantiles_pct": {
+    "0.5": 0.24553069769171,
+    "0.9": 0.8110962193120491,
+    "0.95": 1.2280048455165369,
+    "1.0": 2.1032408101615996
+  },
+  "validation_cell_wins": 239,
+  "validation_cells": 249,
+  "validation_cell_means": {
+    "physical_ct_affine_nrmse": 0.0014450251817791407,
+    "original_oe_affine_nrmse": 0.002118233703377498
+  },
+  "validation_equal_client_fleet_means": {
+    "physical_ct_affine_nrmse": 0.0015172790416214455,
+    "original_oe_affine_nrmse": 0.0021781082959562753
+  },
+  "control_results_present": false,
+  "limitations": [
+    "Three previously inspected pilot fleets; no fresh independent confirmation.",
+    "Known correct tanh-tire structure, common known geometry, prescribed curvature and noisy full-state measurements.",
+    "Saved validation scores checked for provenance and baseline consistency; raw validation trajectories unavailable here, so not replayed.",
+    "Sensitivity is local and descriptive; full numerical rank does not imply precise friction recovery.",
+    "No new closed-loop evaluation or yaw-only identification in this audit."
+  ]
+}
