@@ -1,0 +1,38 @@
+{
+  "payload": {
+    "status": "audit_complete",
+    "checked_cases": 1350,
+    "matched_noise_hash_checks": 1350,
+    "unique_observer_designs": 541,
+    "reconstructed_preview_cases": 15,
+    "exact_reconstructed_trace_hash_matches": 0,
+    "max_replayed_metric_abs_difference": 2.0605739337042905e-13,
+    "max_replayed_preview_abs_difference": 9.325873406851315e-15,
+    "numerical_replay_tolerance": {
+      "rtol": 1e-10,
+      "atol": 1e-10
+    },
+    "checkpoint_sha256": {
+      "results/tables/paper_physical_ct_observer_seed1301.json": "a2f9a12081c1d13d0534a04a821daa71276dd51b6b16f4a6ea94a46985dfad44",
+      "results/tables/paper_physical_ct_observer_seed1302.json": "bc3585703723ab30a8f87c0ef27b8597286e2c9f6433ce01307f6b0a4e6f8fbc",
+      "results/tables/paper_physical_ct_observer_seed1303.json": "2ab6dd1b91e2fdc66ea074fc10896d3a4e6299968e685c799135ea86bac7165e"
+    },
+    "protocol_sha256": "d1332ac60d72533d2ae8d977ebf43bd49e8c769045bcc3903fa9396dc87ed0bd",
+    "audit_script_sha256": "9fd28734086ba21a8f7fe65ce74fb6d5431cc8e2baecb10c1572f5ac4ac6627e",
+    "runtime": {
+      "python": "3.12",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      }
+    },
+    "original_results_modified": false,
+    "refits": 0,
+    "new_scientific_cases": 0,
+    "replay_scope": "15 prespecified cases reconstructed numerically; full-resolution originals are not available here. Raw exact-hash replay remains strict. No original checkpoint/hash was replaced."
+  },
+  "payload_sha256": "d8e8effb56118296c8725eeb52283c7cecee9a1e71afad9750c0cc333da64440"
+}
