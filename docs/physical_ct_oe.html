@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Four-parameter continuous-time OE — experiment protocol</title>
+<style>body{font:16px/1.6 system-ui;background:#eef3f6;color:#173247;margin:0}main{max-width:1050px;padding:36px;margin:auto}section{padding:24px;background:white;border-radius:10px;margin:20px 0}h1,h2{line-height:1.2}table{width:100%;border-collapse:collapse}th,td{padding:10px;text-align:left;border-bottom:1px solid #d8e1e8}pre{white-space:pre-wrap;background:#132b40;color:#f1f5f9;padding:18px;border-radius:6px;overflow:auto}code{font-size:.9em}.equation{font:17px/1.8 monospace;overflow:auto}</style>
+<main><h1>Does analytical vehicle structure remove the need for sharing?</h1>
+<p>Prospective diagnostic prompted by Markus Gurtner’s November 24 review. The manuscript and all historical results stay unchanged. This is a reanalysis of existing data, not fresh independent confirmation.</p>
+<section><h2>Question and controlled comparison</h2>
+<p>The existing model has 42 scheduling coefficients per group. The proposed local model uses four dynamic parameters per vehicle, jointly fitted over its existing two or three observed speeds. Compare it with the frozen Restricted Local, Smooth Local, Global, and Federated models. This tests whether the claimed local information deficit depends on a needlessly flexible representation.</p>
+<table><tr><th>Fixed</th><th>Changed</th></tr><tr><td>Vehicles, coverage, input/measurement arrays, 20-s training segments, sampling interval, noisy full-state measurements, known applied steering</td><td>The dynamic parameterization and joint across-speed estimation</td></tr><tr><td>Each trajectory has a free affine offset and initial state; training loss selects the fit</td><td>Four shared physical dynamic parameters replace independent local A/B estimates followed by flexible LPV regression</td></tr><tr><td>Validation and reference matrices are excluded from fitting</td><td>Known geometry and the analytical tanh-tire structure are stronger model assumptions, explicitly disclosed</td></tr></table></section>
+<section><h2>Analytical model</h2>
+<div class="equation">p₁ = C<sub>f</sub>/m, &nbsp; p₂ = C<sub>r</sub>/m, &nbsp; p₃ = m/I<sub>z</sub>, &nbsp; μ unknown<br>
+k = l<sub>r</sub>p₂ − l<sub>f</sub>p₁, &nbsp; q = l<sub>f</sub>²p₁ + l<sub>r</sub>²p₂<br>
+s(v) = 1 − (κv²/(μg))²<br>
+A₁₁ = −s(p₁+p₂)/v, &nbsp; A₁₂ = −1 + sk/v²<br>
+A₂₁ = sp₃k, &nbsp; A₂₂ = −sp₃q/v<br>
+B₁ = sp₁/v, &nbsp; B₂ = sl<sub>f</sub>p₁p₃</div>
+<p>Known geometry is l<sub>f</sub>=1.2 m, l<sub>r</sub>=1.6 m; κ=0.005 m⁻¹. For tanh tires the slope is C[1−(F/(μF<sub>z</sub>))²]. Steady force/moment balance and static axle loads give F/(μF<sub>z</sub>)=κv²/(μg) on both axles. This is the analytical local Jacobian at steady cornering, not an exact model of finite-amplitude nonlinear trajectories.</p>
+<p>The common simulator friction is 0.9, used only for evaluation of parameter recovery. It is not fixed in fitting. Bounds are p₁,p₂∈[10,150], p₃∈[0.2,1.2], μ∈[0.5,1.5]. The friction lower bound permits the specified equilibrium over the target interval; the critical value at 30 m/s is about 0.459. Bounds are assumptions, and bound hits are reported. No stability clipping or fallback is applied.</p>
+<p>At one speed only sp₁, sp₂ and p₃ determine the matrices. Unknown friction cannot generally be separated from stiffness ratios there. Multiple speeds can remove this structural ambiguity, but practical sensitivity may remain weak. The tests explicitly verify rank three at one speed and rank four in a suitable two-speed synthetic example.</p></section>
+<section><h2>Estimator and efficiency</h2>
+<p>Exact zero-order-hold discretization uses T<sub>s</sub>=0.01 s. Residuals are simulated full-state deviations divided by the original measurement-noise standard deviations (0.01° and 0.03°/s). No numerical differentiation of measured states is used.</p>
+<p>The nonlinear optimizer sees only four log parameters. At each trial, four free nuisance quantities per trajectory (two discrete affine offsets and two initial states) are solved by weighted linear least squares. This variable projection is equivalent to jointly minimizing over those nuisance quantities. Centering is numerical only and imposes no equilibrium prior. Matrix-exponential Fréchet derivatives and the full projected-residual Jacobian accelerate fitting.</p>
+<p>Four deterministic starts are fixed in the JSON protocol. The first is the common nominal parameter vector; the others vary stiffness ratios, inertia ratio and friction. Starts do not use existing fitted models, recipient parameters, family labels or evaluation accuracy. Selection is the lowest training loss among converged starts. Every attempt, termination status, bound flag, sensitivity and fitted nuisance quantity is saved.</p></section>
+<section><h2>Stages and output</h2>
+<table><tr><th>Command</th><th>Purpose</th></tr>
+<tr><td>preflight</td><td>Check locked source files, old checkpoints, environment, fleet sizes and known geometry. Count missing raw arrays; perform no fitting.</td></tr>
+<tr><td>smoke</td><td>Exercise Windows-compatible spawned execution, synthetic noiseless parameter recovery, information rank and UTF-8 JSON checkpoint roundtrip. No scientific result files.</td></tr>
+<tr><td>restore</td><td>Reconstruct only original ignored trajectories, verify every original array hash, then save. Existing valid arrays are reused. Historical JSON files are never changed.</td></tr>
+<tr><td>run</td><td>Fit all clients in the selected cohort; save each completed client and resume on rerun. Failed starts/fits are recorded, not excluded.</td></tr>
+<tr><td>status</td><td>Verify current checkpoint provenance and report progress.</td></tr>
+<tr><td>analyze</td><td>Require all fleet checkpoints; produce CSV/JSON summaries and an offline HTML report with two SVG figures.</td></tr>
+<tr><td>control</td><td>After identification, optionally synthesize all six methods under the same LQI settings and evaluate the existing 13/21/29 m/s transient. Save each client.</td></tr></table>
+<p>Default: pilot seeds 1301–1303, 90 clients, 249 original speed datasets. Optional later: <code>--cohort evaluation</code>, seeds 1311–1320, 300 clients and 830 datasets. These are previously inspected fleets, so subsequent results must not be called new independent confirmation. Do not run the evaluation cohort automatically before inspecting the pilot.</p>
+<p>Workers operate on separate fleets, each with one BLAS thread. Three workers use all pilot fleets; up to ten can be used later. Avoid concurrent restore/run commands for the same cohort. If a process is interrupted, stop all workers before removing a stale lock in <code>results/data/paper_physical_ct_oe/</code>.</p></section>
+<section><h2>Windows CMD: first run</h2>
+<pre>conda activate federated_lpv
+git pull --ff-only origin main
+set OPENBLAS_NUM_THREADS=1
+set OMP_NUM_THREADS=1
+set MKL_NUM_THREADS=1
+python code\experiments\paper_physical_ct_oe.py preflight
+python code\experiments\paper_physical_ct_oe.py smoke
+python code\experiments\paper_physical_ct_oe.py run --workers 3 --restore-missing</pre>
+<p><code>--restore-missing</code> uses committed reconstruction inputs when arrays are absent. Restoration is accepted only if hashes match exactly, including the training measurements and applied inputs. Floating-point differences across platforms can prevent exact reconstruction even when scalar diagnostics agree. In that case use the original machine/environment or copy its original NPZ files; do not delete hash checks or overwrite historical manifests.</p>
+<p>A separate restoration command is also available:</p>
+<pre>python code\experiments\paper_physical_ct_oe.py restore --workers 3</pre>
+<p>Checkpoint execution results before analysis:</p>
+<pre>git add results/tables/paper_physical_ct_oe_seed*.json
+git commit -m "Run physical continuous-time OE pilot"
+git push origin main
+python code\experiments\paper_physical_ct_oe.py analyze
+start report\physical_ct_oe_pilot.html
+git add results/tables/paper_physical_ct_oe_pilot_*.csv results/tables/paper_physical_ct_oe_pilot_*.json report/physical_ct_oe_pilot.html
+git commit -m "Summarize physical continuous-time OE pilot"
+git push origin main</pre>
+<p>If interrupted, rerun the same run command after clearing only a verified stale lock. Configuration, source, input and environment hashes prevent stale results from being silently reused. No raw arrays need to be committed.</p></section>
+<section><h2>What to inspect</h2>
+<ol><li>Convergence and bounds first. A failed client leaves the whole fleet mean unavailable for that method. There are no survivor-only primary means.</li>
+<li>Historical unseen-speed relative matrix error, using exactly the previous reference matrices and equal-vehicle/equal-fleet aggregation.</li>
+<li>Relative A and B errors; identity-free increment error normalized by [A−I,B]; absolute matched discrete-pole RMS; separate sideslip and yaw pulse-response errors. The increment metric still depends on coordinates and is not claimed as a universal control metric.</li>
+<li>Observed-speed chirp validation using training-derived affine offsets, original state scales and true initialization per one-second window. This is an identification diagnostic, not an observer test.</li>
+<li>Fitted physical parameters, truth-relative errors (evaluation only), projected sensitivity singular values, weakest log-parameter direction, column correlations and single-speed versus joint information.</li>
+<li>Optional closed-loop tracking, constraints and failures under the existing benchmark. Noise-free state feedback remains unchanged; no claim about production sideslip sensing.</li></ol>
+<p>Pulse comparisons are local linear model responses to 0.3° steering for 0.2 s over a 2.01-s horizon. They do not require a new nonlinear calibration trajectory. Pole errors match the two eigenvalues over both permutations. No continuous-time matrix logarithm is used to manufacture physical parameters for the unstructured baselines.</p>
+<p>Success would challenge the necessity of our flexible representation for this plant. Failure would require diagnosing finite-amplitude mismatch, weak information, parameter bounds or numerical issues before concluding that federation is needed. Neither outcome is filtered from the report.</p></section>
+<section><h2>Optional control stage after pilot inspection</h2>
+<pre>python code\experiments\paper_physical_ct_oe.py control --workers 3
+git add results/tables/paper_physical_ct_oe_control_seed*.json
+git commit -m "Evaluate physical OE pilot closed-loop tracking"
+git push origin main
+python code\experiments\paper_physical_ct_oe.py analyze</pre>
+<p>Control uses Nominal LTI, Restricted Local, Smooth Local, Global, Federated and PhysicalCTLocal, with unchanged weights, gain grid, actuator limits and anti-windup. It performs 90×6×3=1620 pilot rollouts. It does not refit models or tune controllers. Commit and push the refreshed report/summaries using the analysis commands above.</p></section></main></html>

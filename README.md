@@ -778,3 +778,32 @@ miscalibration and heuristic bounds remain unresolved. The full suite passes
 142 tests; independent source/data/selection/forecast checks and scoped lint
 pass. Confirmation remains sealed; no new state, control or communication
 benefit is claimed.
+
+## Analytical continuous-time OE diagnostic (Markus review, November 2026)
+
+The isolated runner `code/experiments/paper_physical_ct_oe.py` tests whether a
+four-parameter analytical vehicle model can identify each vehicle across speed
+from its existing local trajectories. It estimates `Cf/m`, `Cr/m`, `m/Iz` and
+friction jointly across the observed speeds, using known common geometry and
+exact ZOH discretization. Affine offsets and initial states stay free per
+trajectory. It does not modify the frozen method, results or manuscript.
+
+Read [the experiment protocol](docs/physical_ct_oe.html) for the derivation,
+assumptions, diagnostics, checkpoint policy and optional closed-loop stage.
+Windows CMD, with `federated_lpv` active:
+
+```bat
+python code\experiments\paper_physical_ct_oe.py preflight
+python code\experiments\paper_physical_ct_oe.py smoke
+python code\experiments\paper_physical_ct_oe.py run --workers 3 --restore-missing
+```
+
+Default is the three existing pilot fleets (90 joint fits). Save and push
+`results/tables/paper_physical_ct_oe_seed*.json` after execution, then use
+`analyze` to create `report/physical_ct_oe_pilot.html` and CSV/JSON summaries.
+Raw trajectories are hash-verified against their original committed manifests;
+restoration requires the original numerical environment and may require the
+original machine for bit-exact floating-point reproduction. `status` checks
+resume progress. Optional `control` runs the existing transient benchmark;
+`--cohort evaluation` selects the ten existing evaluation fleets only after
+pilot inspection. These reused data do not constitute new independent confirmation.
