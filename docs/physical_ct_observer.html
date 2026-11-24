@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Physical CT observer/control pilot — protocol and commands</title>
+<style>body{font:16px/1.6 system-ui;color:#173044;background:#eef3f6}main{max-width:1050px;margin:auto;padding:30px}section{background:white;padding:24px;margin:20px 0;border-radius:10px}table{border-collapse:collapse;width:100%}th,td{padding:10px;text-align:left;border-bottom:1px solid #ddd}pre{background:#eef3f6;padding:18px;overflow:auto}code{font-family:monospace}</style><main>
+<h1>Yaw-only observer and control pilot</h1>
+<p>Question: does the local physical model remain useful when the controller must estimate sideslip from yaw rate and known applied steering?</p>
+<section><h2>Comparison fixed before execution</h2>
+<table><tr><th>Configuration</th><th>Controller</th><th>Observer</th></tr>
+<tr><td>Nominal/Nominal</td><td>Saved nominal 20 m/s LQI</td><td>Fixed nominal 20 m/s model</td></tr>
+<tr><td>FullStateCT/Nominal</td><td>Saved full-state CT LQI</td><td>Fixed nominal 20 m/s model</td></tr>
+<tr><td>FullStateCT/Matched</td><td>Same full-state CT LQI</td><td>Full-state CT physical parameters</td></tr>
+<tr><td>YawOnlyCT/Nominal</td><td>Saved yaw-only CT LQI</td><td>Fixed nominal 20 m/s model</td></tr>
+<tr><td>YawOnlyCT/Matched</td><td>Same yaw-only CT LQI</td><td>Yaw-only CT physical parameters</td></tr></table>
+<p>Three reused pilot fleets (1301–1303), 30 vehicles per fleet, speeds 13, 21 and 29 m/s: 1350 new 12-second rollouts. The reference, nonlinear tanh-tire plant, controller gains, prefilters, limits and anti-windup are inherited. No new fitting, optimizer runs, fleet changes or covariance search. The true state enters only the simulated yaw sensor, physical plant and evaluation.</p>
+<p>The common nominal combination is also the intended starting architecture for future data acquisition. This run assesses control using existing fits. Those fits still come from full-state-feedback acquisition; even YawOnlyCT removed sideslip only from the identification loss. New observer-based acquisition and refitting must follow separately before claiming a completely yaw-only workflow. FullStateCT has privileged training measurements; neither comparator is a newly developed federated estimator.</p></section>
+<section><h2>Observer and coordinate convention</h2>
+<p>Physical state x=[β,r], measured output y=r+noise, C=[0,1]. Exact-ZOH observer matrices are evaluated at straight-running trim (curvature zero) and the actual fixed speed for matched observers. The nominal observer stays at 20 m/s throughout. Reconstructing from the physical parameters gives a defined sideslip coordinate; OE offsets and latent initial states are never inserted. Friction does not enter this straight-running linearization. The saved controller schedules continue to use the original cornering-model gains, isolating the observer change.</p>
+<pre>Innovation:       ν[k] = y[k] − C x̂[k|k−1]
+Correction:       x̂[k|k] = x̂[k|k−1] + L[k] ν[k]
+Control request:  δreq[k] = −Kx x̂[k|k] − Ki ξ[k] + F rref[k]
+Applied steering: δ[k] = angle_limit(rate_limit(δreq[k]))
+Prediction:       x̂[k+1|k] = Ao x̂[k|k] + Bo δ[k]
+Integral:         ξ[k+1] uses y[k]−rref[k] with inherited anti-windup</pre>
+<p>The covariance recursion uses the Joseph correction and Q addition in the prediction. Initial physical and estimated states are known zero, with P0=0. The first correction gain is therefore zero. The yaw sensor has standard deviation 0.03°/s, independent over samples. A deterministic seed based on fleet, vehicle index and speed gives identical noise across all five methods; it is independent of model choice.</p>
+<p>R=rad(0.03)². Q=diag(rad(0.002)²,rad(0.01)²) per 0.01-second step. The units of these two standard deviations are degrees of sideslip and degrees/second of yaw rate, respectively. This fixed engineering allowance represents possible model discrepancy. It is not a fitted stochastic plant model; no process noise is injected. Q, R, P0 and the update timing are common, with no test-based or per-vehicle tuning. One noise realization per case is a pilot design, not a comprehensive noise-robustness study.</p>
+<p>Observer synthesis records observability rank, scaled two-step observability conditioning, steady gain and observer-error spectral radius. A stable unobservable hidden mode is allowed when the pair is detectable. Conditioning uses fixed state scales of 0.25° and 2°/s. The coupled true-plant/controller/observer Jacobian uses states [x,x̂prior,ξ], inactive limits and the steady observer gain. It is checked against nonlinear finite differences in the tests. Its spectral radius is a local diagnostic, not a guarantee for the nonlinear rollout or finite-time observer transient.</p></section>
+<section><h2>Run locally in Windows CMD</h2>
+<pre>conda activate federated_lpv
+git pull --ff-only origin main
+python code\experiments\paper_physical_ct_observer.py preflight
+python code\experiments\paper_physical_ct_observer.py smoke
+python code\experiments\paper_physical_ct_observer.py run --workers 3
+python code\experiments\paper_physical_ct_observer.py status</pre>
+<p>The runner sets OPENBLAS_NUM_THREADS, OMP_NUM_THREADS and MKL_NUM_THREADS to one before importing NumPy. No separate environment-variable commands are needed. It uses Windows-compatible spawn workers, one fleet per worker. No ignored acquisition arrays are required. The smoke command checks only a synthetic nominal vehicle at 10, 20 and 30 m/s; it writes no scientific results.</p>
+<p>Each complete vehicle (15 cases) is saved atomically. Rerun the same run command to resume; only the current unsaved vehicle is repeated. Checkpoints use UTF-8, unique temporary files, integrity hashes and bounded retries for Windows replacement locks. An execution lock prevents concurrent writers. After a hard kill, remove a stale lock only after verifying no workers remain; the error message gives its path. Do not edit the protocol or numerical files during a run.</p>
+<h3>Push the completed execution checkpoint first</h3>
+<pre>git add results/tables/paper_physical_ct_observer_seed*.json
+git commit -m "Run paired physical CT observer-control pilot"
+git push origin main</pre>
+<h3>Then render and inspect the analysis</h3>
+<pre>python code\experiments\paper_physical_ct_observer.py analyze
+start report\physical_ct_observer.html
+git add results/tables/paper_physical_ct_observer_*.csv results/tables/paper_physical_ct_observer_analysis.json report/physical_ct_observer.html
+git commit -m "Analyze physical CT observer-control pilot"
+git push origin main</pre></section>
+<section><h2>Analysis and reproducibility</h2>
+<p>Report synthesis/numerical failures and constraint violations first. Full-duration finite violations remain in means. Any missing full-duration metric invalidates the corresponding fleet and overall mean: no survivor-only summary. Weight speeds equally within a vehicle, vehicles equally within a fleet, and fleets equally overall. Paired fleet differences isolate changing the controller under a nominal observer, then changing the observer with the controller fixed. These three reused fleets support descriptive comparisons, not new confirmation tests.</p>
+<p>Metrics include yaw tracking RMSE/peak, sideslip estimation RMSE/peak, yaw estimation RMSE, steering rate RMS/peak, steering activity, sideslip bounds, limiter activation and actual lateral acceleration. Innovation statistics are descriptive because Q is a discrepancy allowance and the plant is nonlinear. Historical true-state-feedback tracking is not a strict observer-only comparison because sensor noise also changes.</p>
+<p>The HTML includes fleet/speed comparisons and time traces for clients nominal_00, heavy_00 and handling_00 from fleet 1301 at 21 m/s, selected before execution. Embedded plots contain every fifth sample; metrics use all 1201 state samples and 1200 inputs. Full trajectories are reconstructible from the committed inputs and noise seeds. A canonical array hash is saved for each case.</p>
+<pre>python code\experiments\paper_physical_ct_observer.py replay --seed 1301 --client nominal_00 --speed 21 --method "YawOnlyCT/Matched"</pre>
+<p>This reconstructs one trajectory, requires its original runtime/provenance and exact array/metric match, then saves a compressed NPZ under results/data/paper_physical_ct_observer. It never changes the scientific checkpoint. If a different platform or numerical stack prevents exact reproduction, the command reports the mismatch rather than silently replacing the original. Raw NPZ trajectories remain ignored by git.</p>
+<p>Check the signal traces before interpreting very small tracking differences or high-frequency steering. If observation works adequately, the next experiment is new data acquisition under the common nominal observer/controller, followed by yaw-only OE. If it does not, diagnose observability, model mismatch and timing before expanding the study.</p></section>
+</main></html>
