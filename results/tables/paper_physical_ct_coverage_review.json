@@ -1,0 +1,61 @@
+{
+  "status": "identification_audit_complete",
+  "fit_conditions": 588,
+  "new_fit_conditions": 477,
+  "converged_conditions": 588,
+  "uncropped_input_hash_pairs_verified": 816,
+  "cropped_input_hash_pairs_recorded_but_not_recomputed": 249,
+  "sampled_equivalent_models_checked": 10416,
+  "control_status": [
+    {
+      "seed": 1301,
+      "status": "running",
+      "saved_conditions": 1,
+      "planned_conditions": 196,
+      "new_rollouts_recorded": 0
+    },
+    {
+      "seed": 1302,
+      "status": "running",
+      "saved_conditions": 1,
+      "planned_conditions": 196,
+      "new_rollouts_recorded": 0
+    },
+    {
+      "seed": 1303,
+      "status": "running",
+      "saved_conditions": 1,
+      "planned_conditions": 196,
+      "new_rollouts_recorded": 0
+    }
+  ],
+  "control_complete": false,
+  "source_sha256": {
+    "results/tables/paper_physical_ct_coverage_seed1301.json": "d7746d12d063a432bfa1df04b609e4092974720cdf892a50639b7d4d2b6bea4c",
+    "results/tables/paper_physical_ct_oe_seed1301.json": "6e56c32d2908a6f198555f3c269941c15a2ccfa69116faae5b4c53c248dd605e",
+    "results/tables/paper_fixed_lti_identification_seed1301.json": "34e03845fb46d8c348d164a989658575c734ee62685580e592e1cc309e5f46f6",
+    "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+    "results/tables/paper_physical_ct_coverage_control_seed1301.json": "f9e00515b151c7b315b12096ef27cb7d823931561ee2291cdd8d74de4982d7ef",
+    "results/tables/paper_physical_ct_coverage_seed1302.json": "bff90c7f603458a43e14fc3ba9d38d677ad6687f7918d3b518778fee2d21e84e",
+    "results/tables/paper_physical_ct_oe_seed1302.json": "5c418d3d6f0261d698d5d41b9aab10a72e0f6a47e36553f8ae6b1ae9916217e3",
+    "results/tables/paper_fixed_lti_identification_seed1302.json": "b20d74e7d848ceb529bb99f59e5e71bc940b2a629f4ffeb785fcecb45e88d67d",
+    "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+    "results/tables/paper_physical_ct_coverage_control_seed1302.json": "b8c513eadc5338ce1d79345453aa93c1f3a467736231da9667793cd42a609b88",
+    "results/tables/paper_physical_ct_coverage_seed1303.json": "d0a62e819b999326d0c1109757e7d5673516a29aee701b8348373ae4310d3085",
+    "results/tables/paper_physical_ct_oe_seed1303.json": "ac11162980c24530cd848a51599db3bc9ff9aa5095e4c1fe588f76a3edb9a88d",
+    "results/tables/paper_fixed_lti_identification_seed1303.json": "bff1441dbedb78cc1216dd6950be3b9e6cc55b30e9b57e635053c99a470c5411",
+    "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1",
+    "results/tables/paper_physical_ct_coverage_control_seed1303.json": "21f557416ef7a76038cf3976c54511b300a2075c40dadd45bf0a0b64c72b1a58"
+  },
+  "analysis_sha256": "a03735087666fb214560ef761f76281a8b2e09310ad521fd33b4278fb5611d45",
+  "compatibility_adapter": {
+    "file": "code/experiments/paper_physical_ct_coverage_resume.py",
+    "sha256": "a84e99e24bc97f38bdcdddd6ddd98673542c0bd588a9135601460c2e67564fdc",
+    "frozen_runner_sha256": "0576e0251e801e00c54ee3c9dff4fbefef4720ff0fb75975f5c3300f16822726",
+    "changes": [
+      "compare provenance with portable path separators; all hashes and runtime still checked",
+      "convert saved grid matrices to float array before unchanged controller synthesis"
+    ]
+  },
+  "note": "Identification-only snapshot. No new nonlinear rollouts or identification. Cropped raw-data hashes cannot be recomputed without original arrays. Single-speed models remain structurally non-identifiable. No matched federation comparison."
+}
