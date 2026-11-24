@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "estimator": {
+    "geometry_m": [
+      1.2,
+      1.6
+    ],
+    "curvature_per_m": 0.005,
+    "sample_time": 0.01,
+    "domain_max_speed_mps": 30.0,
+    "state_noise_deg": [
+      0.01,
+      0.03
+    ],
+    "bounds": [
+      [
+        10.0,
+        150.0
+      ],
+      [
+        10.0,
+        150.0
+      ],
+      [
+        0.2,
+        1.2
+      ],
+      [
+        0.5,
+        1.5
+      ]
+    ],
+    "starts": [
+      [
+        53.333333333333336,
+        53.333333333333336,
+        0.6,
+        0.9
+      ],
+      [
+        40.0,
+        65.0,
+        0.45,
+        0.65
+      ],
+      [
+        65.0,
+        40.0,
+        0.8,
+        1.2
+      ],
+      [
+        65.0,
+        65.0,
+        0.6,
+        0.9
+      ]
+    ],
+    "max_nfev": 300,
+    "ftol": 1e-09,
+    "xtol": 1e-09,
+    "gtol": 1e-07,
+    "nuisance_rcond": 1e-12
+  },
+  "validation_warmup_transitions": 200,
+  "diagnostic_scales_deg": [
+    0.25,
+    2.0,
+    0.3
+  ],
+  "scope": "Identification-only sensing ablation on three reused pilot fleets. Original full speed blocks. Acquisition still uses noisy full-state feedback; optional control still uses noise-free true-state feedback. No observer, new acquisition, fleet changes or shared estimator.",
+  "nuisance": "Fix latent initial beta to zero as a gauge; free two-dimensional affine offsets and initial yaw preserve the old projected yaw response class. SVD pseudoinverse at relative cutoff 1e-12.",
+  "validation": "Fixed trained dynamics. Fit nuisance from first 201 measured yaw samples/200 applied inputs of separate 20-s validation segment. Free-run and score samples 201..2000 (1800 samples). Same rule for both methods. No true initial state or suffix-based centering.",
+  "selection": "Same four starts and bounds; lowest converged yaw training loss. No test or validation-based selection.",
+  "source_sha256": {
+    "code/config/paper_physical_ct_oe.json": "d35a771dd8dcf5ce8059ff8cb6dcf1d2e044dcb7c1cee7a9298f3f0a82ad0565",
+    "code/experiments/paper_physical_ct_oe.py": "3576f88e535ea8835137e9612e840d75e38f406995826385a10d0c0386a71a13",
+    "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+    "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+    "code/experiments/paper_physical_ct_coverage_resume.py": "4decb6ac732161cd58811ce730bd034b61c8f58b3ced9dcce4fd0ddd8731151f",
+    "code/experiments/analyze_physical_ct_control_pilot.py": "6d1c27f758a18b395ca7d39f38420a700a6f96cdcc468d447c5417556e884a25",
+    "code/src/federated_lpv/oe_lqi_validation.py": "98042f568b81e628156814b69833f7fbce442e376e376aa61ad011f0a9d4318a",
+    "code/config/paper_oe_transient_benchmark.json": "ca9e1aa86ec7399d558092c896bd7cf1c1bb8853a54e295c0c703333f827b4e9",
+    "code/experiments/paper_oe_transient_benchmark.py": "37c47fa88dce41425ccb502045fdfe2f74c2295c2f0e6a9016332868128ff8fb",
+    "results/tables/paper_fixed_lti_identification_seed1301.json": "34e03845fb46d8c348d164a989658575c734ee62685580e592e1cc309e5f46f6",
+    "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+    "results/tables/paper_physical_ct_oe_seed1301.json": "6e56c32d2908a6f198555f3c269941c15a2ccfa69116faae5b4c53c248dd605e",
+    "results/tables/paper_physical_ct_oe_control_seed1301.json": "84067f48daac3b3d0be0efb48be1e626e8611ef4892ef6d761d127828d858e5c",
+    "results/tables/paper_fixed_lti_identification_seed1302.json": "b20d74e7d848ceb529bb99f59e5e71bc940b2a629f4ffeb785fcecb45e88d67d",
+    "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+    "results/tables/paper_physical_ct_oe_seed1302.json": "5c418d3d6f0261d698d5d41b9aab10a72e0f6a47e36553f8ae6b1ae9916217e3",
+    "results/tables/paper_physical_ct_oe_control_seed1302.json": "25dd1a5498a7353b1c22bbf7acc484f1b4ac9610a01cc7ac0fab15a8abbba858",
+    "results/tables/paper_fixed_lti_identification_seed1303.json": "bff1441dbedb78cc1216dd6950be3b9e6cc55b30e9b57e635053c99a470c5411",
+    "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1",
+    "results/tables/paper_physical_ct_oe_seed1303.json": "ac11162980c24530cd848a51599db3bc9ff9aa5095e4c1fe588f76a3edb9a88d",
+    "results/tables/paper_physical_ct_oe_control_seed1303.json": "8cb7ef9dddf3194d7a046cf467ce0a3a9521d438a95a84677475e9a0e732af3b"
+  }
+}

@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Yaw-only identification diagnostic</title>
+<style>body{font:16px/1.6 system-ui;background:#edf2f5;color:#193142}main{max-width:1080px;margin:auto;padding:30px}section{background:white;padding:24px;border-radius:10px;margin:20px 0}pre{background:#edf2f5;padding:16px;overflow:auto}table{border-collapse:collapse;width:100%}th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}</style><main>
+<h1>Isolate identification without measured sideslip</h1>
+<section><h2>Question and fixed comparison</h2><p>Does removing the sideslip measurement from the structured continuous-time OE objective materially impair local model identification? Fit one joint model for each of the original 90 pilot vehicles (seeds 1301–1303), using its original 2–3 speeds and 40–60 s of data. Reuse the 90 committed full-state-trained physical CT fits. Keep the tanh plant, vehicle parameters, geometry, acquisition controller, noise, known applied steering, parameterization, bounds, four initial guesses and optimizer tolerances unchanged. No new sharing method or coverage restriction.</p>
+<p>The estimator receives only a one-dimensional measured-yaw array, applied steering and fixed speed for each segment. No measured/true sideslip, true vehicle parameters, family labels or holdout data cross the fitting boundary. All starts are saved and selection uses only converged yaw training losses. The numerical sideslip coordinate scale is fixed at the old noise scale; it is not a sideslip observation.</p>
+<p><strong>This is an identification sensing ablation, not a sensor-free operating workflow.</strong> Existing recordings were acquired under a controller using noisy full-state measurements. The optional later LQI diagnostic uses noise-free true state feedback. An observer and new acquisition are deliberately deferred.</p></section>
+<section><h2>Hidden state and nuisance quantities</h2><p>At each fixed speed simulate x[k+1] = A(theta)x[k] + B(theta)u[k] + c, yhat[k] = [0,1]x[k]. The old free initial state and two-component offset contain one exact yaw-only redundancy. For d = [beta_initial,0], the change x' = x − d leaves yaw unchanged and changes the offset to c' = c + (A − I)d. Fixing the hidden initial sideslip to zero therefore removes only this redundancy; it is not an assumption about the true vehicle state.</p>
+<p>Variable projection solves for the two offsets and initial yaw. An SVD with relative cutoff 10^-12 handles any additional rank deficiency. The exact projected-residual Jacobian is used on constant-rank regions. Save nuisance ranks, all four physical parameter sensitivities, per-speed sensitivities, near-bound flags and all optimization attempts. A converged fit is not an identifiability certificate. The hidden affine sideslip offset is not uniquely recovered.</p></section>
+<section><h2>Evaluation fixed before execution</h2><table><tr><th>Question</th><th>Evaluation</th></tr>
+<tr><td>Model extrapolation</td><td>Same original-unobserved 10–30 m/s grid for each paired vehicle. Combined matrix error, identity-free increment error, scaled increment error, separate A/B errors, six absolute entry errors, pole and pulse diagnostics.</td></tr>
+<tr><td>Sensor-only prediction</td><td>Separate existing validation maneuver at each observed speed. Freeze fitted dynamics. Estimate nuisance from its first 2 s (201 measured yaw samples, 200 inputs), then free-run for the remaining 18 s (1,800 scored samples). Apply the identical initialization rule to full-state-trained and yaw-trained models. Report measured-yaw RMSE and evaluation-only true-yaw RMSE. Never use the suffix for centering or initialization.</td></tr>
+<tr><td>Control usefulness (optional next stage)</td><td>Unchanged LQI and 13/21/29 m/s maneuver. Reuse 270 original full-state CT runs; execute 270 yaw-only-model runs. Report tracking, feasibility, limiter activity, steering-rate RMS and true-plant origin spectral radius. No observer.</td></tr>
+<tr><td>Failure accounting</td><td>Preserve all 90 vehicles. Failed fits/predictions invalidate complete means; never silently average only successful cases. Average speeds within vehicles, vehicles within fleets, then fleets equally. Three reused pilot fleets support descriptive comparisons.</td></tr></table>
+<p>Scaled increment uses the pre-existing physical scales beta=0.25°, yaw rate=2°/s, input=0.3°. For S=diag(s_beta,s_r), scale the increment block as [S^-1(A−I)S, S^-1 B s_u]. These scales are fixed, not chosen from result distributions. All matrix metrics remain diagnostic, not substitutes for response and control evaluation.</p></section>
+<section><h2>1. Run identification (Windows CMD)</h2><pre>git pull --ff-only origin main
+conda activate federated_lpv
+python code\experiments\paper_physical_ct_yaw_only.py preflight
+python code\experiments\paper_physical_ct_yaw_only.py smoke
+python code\experiments\paper_physical_ct_yaw_only.py run --workers 3 --restore-missing</pre>
+<p>The runner sets BLAS/OpenMP/MKL thread limits internally. Three processes fit one fleet each. It checkpoints every vehicle using unique temporary files and bounded retry for Windows file locks. Rerun the same command to resume. Existing baseline checkpoints and scientific results are never replaced.</p>
+<p>Original ignored trajectory arrays are required. Missing arrays can be regenerated with the original acquisition code, seeds and controller. Their committed array and input hashes must match exactly; no mismatch is accepted. Run reconstruction on the original machine/environment. The flag above restores only missing arrays. Alternatively restore them first with:</p><pre>python code\experiments\paper_physical_ct_yaw_only.py restore --workers 3</pre>
+<p>A preflight count of missing arrays is informational. If a hash mismatch occurs, keep the original saved arrays or reconstruct on their original platform; do not weaken the hash check. File-lock retries preserve the previous checkpoint and retain a complete pending file on persistent failure. A stale execution lock should only be removed after confirming no workers remain.</p></section>
+<section><h2>2. Commit execution results, then analyze</h2><pre>git add results/tables/paper_physical_ct_yaw_only_seed*.json
+git commit -m "Run yaw-only physical CT identification pilot"
+git push origin main
+
+python code\experiments\paper_physical_ct_yaw_only.py analyze
+start report\physical_ct_yaw_only.html
+
+git add results/tables/paper_physical_ct_yaw_only_*.csv results/tables/paper_physical_ct_yaw_only_analysis.json report/physical_ct_yaw_only.html
+git commit -m "Analyze yaw-only physical CT identification pilot"
+git push origin main</pre>
+<p>The HTML contains paired model/prediction plots, fleet-weighted metrics, convergence and sensitivity diagnostics. No independent confirmation cohort is unlocked. Review the identification result before deciding whether to use the optional control stage.</p></section>
+<section><h2>3. Optional unchanged-control diagnostic, after identification review</h2><pre>python code\experiments\paper_physical_ct_yaw_only.py control --workers 3
+
+git add results/tables/paper_physical_ct_yaw_only_control_seed*.json
+git commit -m "Run yaw-only model state-feedback control diagnostic"
+git push origin main
+
+python code\experiments\paper_physical_ct_yaw_only.py analyze
+start report\physical_ct_yaw_only.html
+
+git add results/tables/paper_physical_ct_yaw_only_*.csv results/tables/paper_physical_ct_yaw_only_analysis.json report/physical_ct_yaw_only.html
+git commit -m "Analyze yaw-only model control diagnostic"
+git push origin main</pre>
+<p>Once any control checkpoint exists, combined analysis requires all control fleets to finish. The controller receives true states in both methods. This tests the effect of the identified dynamics; it cannot establish practical output-feedback performance.</p></section>
+<section><h2>Checks before handoff</h2><p>Regression tests cover analytical projection derivatives, equivalence to the redundant four-nuisance yaw response, noiseless joint recovery, single-speed ambiguity, rank-deficient nuisance projection, rejection of sideslip inputs, invariance to changes in sideslip channels, validation-suffix independence, and failed-fit accounting/report generation. The smoke command uses a spawned worker and synthetic data, checks parameter recovery and UTF-8 checkpoint round-trip, and writes no scientific results.</p></section></main></html>
