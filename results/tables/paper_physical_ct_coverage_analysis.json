@@ -1,0 +1,27 @@
+{
+  "status": "analysis_complete",
+  "control_included": true,
+  "condition_records": 588,
+  "control_cases": 1764,
+  "checkpoint_sha256": {
+    "results\\tables\\paper_physical_ct_coverage_seed1301.json": "d7746d12d063a432bfa1df04b609e4092974720cdf892a50639b7d4d2b6bea4c",
+    "results\\tables\\paper_physical_ct_coverage_control_seed1301.json": "edb368c06722d06576970bde0fa9e8b520074981a430e28474e82e5b9c9a9b07",
+    "results\\tables\\paper_physical_ct_coverage_seed1302.json": "bff90c7f603458a43e14fc3ba9d38d677ad6687f7918d3b518778fee2d21e84e",
+    "results\\tables\\paper_physical_ct_coverage_control_seed1302.json": "25fa101a3adb50c927c21e1bc48bf8f73f1eb80c48a2ef5062cd8d5b2ccca3c8",
+    "results\\tables\\paper_physical_ct_coverage_seed1303.json": "d0a62e819b999326d0c1109757e7d5673516a29aee701b8348373ae4310d3085",
+    "results\\tables\\paper_physical_ct_coverage_control_seed1303.json": "6434b46626ad516b1bd1456abd734ee81658060eb361182bd0715fcca80b5bc8"
+  },
+  "script_sha256": "0576e0251e801e00c54ee3c9dff4fbefef4720ff0fb75975f5c3300f16822726",
+  "protocol_sha256": "80ae840c5bdd0edd9dfb24666b7e6e6003a23b1717818330a788f676060f3a75",
+  "note": "All variants preserved. Strict means invalidate a complete mean if any contributing fit/rollout failed. Equal variants within vehicle, vehicles within fleet, fleets overall. No independent confirmation.",
+  "analysis_adapter": {
+    "file": "code/experiments/paper_physical_ct_coverage_resume.py",
+    "sha256": "4decb6ac732161cd58811ce730bd034b61c8f58b3ced9dcce4fd0ddd8731151f",
+    "frozen_runner_sha256": "0576e0251e801e00c54ee3c9dff4fbefef4720ff0fb75975f5c3300f16822726",
+    "changes": [
+      "compare provenance with portable path separators; all hashes and runtime still checked",
+      "convert saved grid matrices to float array before unchanged controller synthesis",
+      "unique checkpoint temporary files and bounded retry of Windows replacement locks"
+    ]
+  }
+}
