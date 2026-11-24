@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "seeds": [
+    1301,
+    1302,
+    1303
+  ],
+  "methods": [
+    "NominalLTI",
+    "RestrictedLocal",
+    "SmoothLocal",
+    "Global",
+    "Federated",
+    "PhysicalCTLocal"
+  ],
+  "comparators": [
+    "NominalLTI",
+    "RestrictedLocal",
+    "SmoothLocal",
+    "Global",
+    "Federated"
+  ],
+  "speeds_mps": [
+    13,
+    21,
+    29
+  ],
+  "scope": "Closed-loop comparison only; no refitting, retuning, new acquisition or automatic extension to ten fleets.",
+  "source_sha256": {
+    "code/config/paper_physical_ct_oe.json": "d35a771dd8dcf5ce8059ff8cb6dcf1d2e044dcb7c1cee7a9298f3f0a82ad0565",
+    "code/experiments/paper_physical_ct_oe.py": "3576f88e535ea8835137e9612e840d75e38f406995826385a10d0c0386a71a13",
+    "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+    "code/config/paper_oe_lqi_validation.json": "7e2c46befe899034f8932f47ba945a8a099ae6107d1b532895249624205cd774",
+    "code/config/paper_oe_transient_benchmark.json": "ca9e1aa86ec7399d558092c896bd7cf1c1bb8853a54e295c0c703333f827b4e9",
+    "results/tables/paper_physical_ct_oe_seed1301.json": "6e56c32d2908a6f198555f3c269941c15a2ccfa69116faae5b4c53c248dd605e",
+    "results/tables/paper_physical_ct_oe_seed1302.json": "5c418d3d6f0261d698d5d41b9aab10a72e0f6a47e36553f8ae6b1ae9916217e3",
+    "results/tables/paper_physical_ct_oe_seed1303.json": "ac11162980c24530cd848a51599db3bc9ff9aa5095e4c1fe588f76a3edb9a88d"
+  }
+}

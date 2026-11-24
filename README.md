@@ -807,3 +807,24 @@ original machine for bit-exact floating-point reproduction. `status` checks
 resume progress. Optional `control` runs the existing transient benchmark;
 `--cohort evaluation` selects the ten existing evaluation fleets only after
 pilot inspection. These reused data do not constitute new independent confirmation.
+
+### Structured CT pilot: matched closed-loop stage
+
+The completed 90-vehicle identification pilot can now be checked with the fixed
+six-method, three-speed control comparison (1620 cases). No refitting or raw
+calibration trajectories are required. The dedicated wrapper validates the saved
+fits and complete case sets, while reusing the existing simulation implementation.
+See [the closed-loop handoff](docs/physical_ct_control.html) for checkpoint and
+push commands, constraints and interpretation.
+
+```bat
+python code\experiments\paper_physical_ct_control.py preflight
+python code\experiments\paper_physical_ct_control.py smoke
+python code\experiments\paper_physical_ct_control.py run --workers 3
+```
+
+Commit/push `results/tables/paper_physical_ct_oe_control_seed*.json` when execution
+finishes. Then run `python code\experiments\paper_physical_ct_control.py analyze`
+and open `report/physical_ct_control_pilot.html`. Analysis requires all three
+fleets and keeps finite infeasible runs in tracking means. This stage does not
+automatically extend to the ten evaluation fleets or change the manuscript.

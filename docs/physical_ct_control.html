@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Structured CT pilot — closed-loop handoff</title>
+<style>body{font:16px/1.6 system-ui;background:#eef3f6;color:#173044}main{max-width:1000px;margin:auto;padding:30px}section{background:white;border-radius:10px;padding:24px;margin:20px 0}pre{background:#142d42;color:#f2f5f8;padding:18px;border-radius:6px;white-space:pre-wrap}table{border-collapse:collapse;width:100%}td,th{padding:8px;border-bottom:1px solid #dce3e9;text-align:left}</style><main>
+<h1>Closed-loop comparison of the completed structured CT pilot</h1>
+<p>The identification pilot is complete. This stage tests whether its improved matrix estimates benefit yaw-rate tracking. The three pilot fleets remain the only cohort; no model estimation or controller tuning occurs.</p>
+<section><h2>Fixed comparison</h2><table>
+<tr><th>Item</th><th>Setting</th></tr>
+<tr><td>Vehicles</td><td>90 existing recipients, seeds 1301–1303</td></tr>
+<tr><td>Methods</td><td>Nominal LTI, Restricted Local, Smooth Local, Global, Federated, PhysicalCTLocal</td></tr>
+<tr><td>Cases</td><td>90 × 6 × 3 = 1620 rollouts</td></tr>
+<tr><td>Maneuver</td><td>Existing 12-s smooth left-right yaw reference; active from 2 to 10 s; peak nominal lateral demand 2.5 m/s²</td></tr>
+<tr><td>Test speeds</td><td>Constant 13, 21 and 29 m/s, unobserved locally by every recipient</td></tr>
+<tr><td>Synthesis</td><td>Existing LQI weights Q=diag(25,50,1000), R=0.15; gains/prefilters at 10,12,…,30 m/s, linearly interpolated. Nominal LTI uses the original saved constant gain/prefilter.</td></tr>
+<tr><td>Limits</td><td>12° steering, 120°/s steering rate, 6° sideslip, integral ±0.6 rad and existing conditional anti-windup</td></tr>
+<tr><td>Feedback / initialization</td><td>Noise-free full-state feedback; state, integral and previous steering initialized at zero</td></tr>
+<tr><td>Models</td><td>Saved A/B predictions only; no affine OE offsets, initial states, refitting, clipping or fallback</td></tr>
+</table><p>These are the inherited control limits, not the lower steering-rate limit used during data acquisition. Lateral acceleration is reported but is not an additional feasibility gate in this benchmark. The structured model was identified around prescribed steady cornering and is applied to this varying-yaw maneuver without adaptation.</p></section>
+<section><h2>Windows CMD: run locally</h2>
+<pre>conda activate federated_lpv
+git pull --ff-only origin main
+set OPENBLAS_NUM_THREADS=1
+set OMP_NUM_THREADS=1
+set MKL_NUM_THREADS=1
+python code\experiments\paper_physical_ct_control.py preflight
+python code\experiments\paper_physical_ct_control.py smoke
+python code\experiments\paper_physical_ct_control.py run --workers 3</pre>
+<p>Preflight checks the fixed experiment inputs and all 90 converged identification fits. Smoke runs the nominal synthetic vehicle at three speeds in a spawned worker and checks checkpoint serialization. It writes no scientific result files.</p>
+<p>The run delegates to the existing control implementation and saves after each vehicle, preserving all methods and speeds together. Repeating the command resumes. No calibration NPZ files are required. Existing results from the earlier optional control command are reused only after validation. Do not run both commands simultaneously.</p>
+<pre>python code\experiments\paper_physical_ct_control.py status</pre>
+<p>After an interrupted process, first stop all remaining workers. Only then remove a stale <code>results/data/paper_physical_ct_oe/pilot_control.lock</code> if it blocks resumption.</p></section>
+<section><h2>Checkpoint before analysis</h2>
+<pre>git add results/tables/paper_physical_ct_oe_control_seed*.json
+git commit -m "Run structured CT pilot closed-loop comparison"
+git push origin main</pre>
+<p>The result names deliberately remain compatible with the original runner. They include fitted schedules and all rollout outcomes. Failed synthesis or numerical simulation is a recorded result and is never replaced.</p></section>
+<section><h2>Create and publish the focused HTML report</h2>
+<pre>python code\experiments\paper_physical_ct_control.py analyze
+start report\physical_ct_control_pilot.html
+git add results/tables/paper_physical_ct_control_*.csv results/tables/paper_physical_ct_control_analysis.json report/physical_ct_control_pilot.html
+git commit -m "Summarize structured CT pilot closed-loop comparison"
+git push origin main</pre>
+<p>The focused report requires all 1620 cases. It presents synthesis/numerical failures and feasibility first, then tracking RMSE, peaks, sideslip, steering effort/rate, actual lateral acceleration and limiter activity. It includes fleet and speed summaries and paired absolute tracking differences.</p>
+<p>Aggregation is equal speeds within vehicle, equal vehicles within fleet, then equal fleets. Finite infeasible runs remain in the means. Any unavailable full-duration error makes the corresponding full fleet mean unavailable. There are no survivor-only victories, replacement seeds, retuning or significance claims from three reused fleets.</p></section>
+<section><h2>Decision after the run</h2><p>Compare PhysicalCTLocal with Federated, Global and Nominal LTI in absolute tracking units and under the same constraints. A small absolute tracking difference is reported as such, even if a relative percentage looks large. Inspect the low-speed identification block and its uncertain friction estimates. Closed-loop gains would strengthen the structured baseline; a lack of gains would reveal limited controller sensitivity rather than erase the identification finding.</p><p>The next experiment and manuscript changes are deliberately left for the joint review of these results.</p></section></main></html>
