@@ -1,0 +1,355 @@
+{
+  "payload": {
+    "seed": 1303,
+    "status": "running",
+    "provenance": {
+      "sources": {
+        "code\\config\\paper_physical_ct_coverage.json": "80ae840c5bdd0edd9dfb24666b7e6e6003a23b1717818330a788f676060f3a75",
+        "code\\experiments\\paper_physical_ct_coverage.py": "0576e0251e801e00c54ee3c9dff4fbefef4720ff0fb75975f5c3300f16822726",
+        "results\\tables\\paper_physical_ct_coverage_seed1303.json": "d0a62e819b999326d0c1109757e7d5673516a29aee701b8348373ae4310d3085"
+      },
+      "frozen": {
+        "code/config/paper_physical_ct_oe.json": "d35a771dd8dcf5ce8059ff8cb6dcf1d2e044dcb7c1cee7a9298f3f0a82ad0565",
+        "code/experiments/paper_physical_ct_oe.py": "3576f88e535ea8835137e9612e840d75e38f406995826385a10d0c0386a71a13",
+        "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+        "code/config/paper_physical_ct_control.json": "44cbffcd769c07e7eab461fc76494310ed6678155c911abecc6c488ff606c522",
+        "code/experiments/paper_physical_ct_control.py": "d20b778e0b2f6661dbd389f3a04640774b8ab14bfc67433aa6085ade7bccbe12",
+        "code/experiments/paper_oe_transient_benchmark.py": "37c47fa88dce41425ccb502045fdfe2f74c2295c2f0e6a9016332868128ff8fb",
+        "code/src/federated_lpv/oe_lqi_validation.py": "98042f568b81e628156814b69833f7fbce442e376e376aa61ad011f0a9d4318a",
+        "results/tables/paper_physical_ct_oe_seed1301.json": "6e56c32d2908a6f198555f3c269941c15a2ccfa69116faae5b4c53c248dd605e",
+        "results/tables/paper_physical_ct_oe_control_seed1301.json": "84067f48daac3b3d0be0efb48be1e626e8611ef4892ef6d761d127828d858e5c",
+        "results/tables/paper_physical_ct_oe_seed1302.json": "5c418d3d6f0261d698d5d41b9aab10a72e0f6a47e36553f8ae6b1ae9916217e3",
+        "results/tables/paper_physical_ct_oe_control_seed1302.json": "25dd1a5498a7353b1c22bbf7acc484f1b4ac9610a01cc7ac0fab15a8abbba858",
+        "results/tables/paper_physical_ct_oe_seed1303.json": "ac11162980c24530cd848a51599db3bc9ff9aa5095e4c1fe588f76a3edb9a88d",
+        "results/tables/paper_physical_ct_oe_control_seed1303.json": "8cb7ef9dddf3194d7a046cf467ce0a3a9521d438a95a84677475e9a0e732af3b"
+      },
+      "runtime": {
+        "python": "3.12",
+        "packages": {
+          "numpy": "2.3.5",
+          "scipy": "1.17.0",
+          "pandas": "2.2.3",
+          "scikit-learn": "1.8.0",
+          "threadpoolctl": "3.6.0"
+        }
+      }
+    },
+    "records": [
+      {
+        "spec": {
+          "id": "client00_full_22_24_26",
+          "index": 0,
+          "kind": "full",
+          "windows": [
+            {
+              "speed": 22.0,
+              "start": 0,
+              "n": 2000
+            },
+            {
+              "speed": 24.0,
+              "start": 0,
+              "n": 2000
+            },
+            {
+              "speed": 26.0,
+              "start": 0,
+              "n": 2000
+            }
+          ],
+          "reuse": "full"
+        },
+        "client": "nominal_00",
+        "schedule": {
+          "status": "designed",
+          "nodes": [
+            {
+              "speed": 10.0,
+              "matrix": [
+                0.9018227848409085,
+                -0.006972968751084278,
+                0.11976579335650381,
+                0.8799817661505909,
+                0.047070855800525585,
+                0.3579756612887549
+              ],
+              "status": "designed",
+              "gain": [
+                0.4243591494091442,
+                2.5116051186385726,
+                11.920277357165297
+              ],
+              "prefilter": 2.8538171163345956,
+              "design_rho": 0.9563161644614586
+            },
+            {
+              "speed": 12.0,
+              "matrix": [
+                0.9176588907175852,
+                -0.007719449967726162,
+                0.12167602018666158,
+                0.8991677439790103,
+                0.03906414118623961,
+                0.35991645157326013
+              ],
+              "status": "designed",
+              "gain": [
+                0.3975468199217641,
+                2.5564103136966714,
+                11.869623321538715
+              ],
+              "prefilter": 2.83857225255422,
+              "design_rho": 0.9562534231403099
+            },
+            {
+              "speed": 14.0,
+              "matrix": [
+                0.9293092179586355,
+                -0.00820358077518795,
+                0.12265766549938822,
+                0.9133317942027529,
+                0.033196778638636106,
+                0.36009928231644744
+              ],
+              "status": "designed",
+              "gain": [
+                0.3771903949887297,
+                2.597023488956926,
+                11.869832639386177
+              ],
+              "prefilter": 2.8376067705784145,
+              "design_rho": 0.956233780369823
+            },
+            {
+              "speed": 16.0,
+              "matrix": [
+                0.9383442363274807,
+                -0.008540324633334059,
+                0.1228304692671091,
+                0.9243442947549643,
+                0.028665603463366555,
+                0.3585356788523466
+              ],
+              "status": "designed",
+              "gain": [
+                0.3609295564103356,
+                2.6400877150319806,
+                11.922903137192355
+              ],
+              "prefilter": 2.8504614565020856,
+              "design_rho": 0.9562479728918749
+            },
+            {
+              "speed": 18.0,
+              "matrix": [
+                0.9456654311789002,
+                -0.00878790588578963,
+                0.12219692244695454,
+                0.93328522555579,
+                0.02501272529852437,
+                0.35504348518643686
+              ],
+              "status": "designed",
+              "gain": [
+                0.3472876051175236,
+                2.691048422135446,
+                12.037248789386302
+              ],
+              "prefilter": 2.8787521672608993,
+              "design_rho": 0.9563031970114868
+            },
+            {
+              "speed": 20.0,
+              "matrix": [
+                0.9518306166146877,
+                -0.008978568801973296,
+                0.12068987777410871,
+                0.9408258472130023,
+                0.021956930149121475,
+                0.34931659093929784
+              ],
+              "status": "designed",
+              "gain": [
+                0.3352331636132372,
+                2.755386967525833,
+                12.227149233171813
+              ],
+              "prefilter": 2.9257554195956947,
+              "design_rho": 0.9564376378342301
+            },
+            {
+              "speed": 22.0,
+              "matrix": [
+                0.9572063469563074,
+                -0.009131458970098247,
+                0.11819465949024915,
+                0.9474088470545313,
+                0.019315116305208692,
+                0.3409569274620065
+              ],
+              "status": "designed",
+              "gain": [
+                0.3239467269368515,
+                2.8395073498650185,
+                12.513838021834003
+              ],
+              "prefilter": 2.996576114522407,
+              "design_rho": 0.9568199080247931
+            },
+            {
+              "speed": 24.0,
+              "matrix": [
+                0.9620459059243486,
+                -0.009258603967774373,
+                0.11456008834363456,
+                0.95334103786285,
+                0.016962261275838005,
+                0.3294902946300335
+              ],
+              "status": "designed",
+              "gain": [
+                0.3126686055724489,
+                2.9517286695184874,
+                12.928320647345386
+              ],
+              "prefilter": 3.098813897504058,
+              "design_rho": 0.9583945151945734
+            },
+            {
+              "speed": 26.0,
+              "matrix": [
+                0.9665320838516838,
+                -0.009367924244981408,
+                0.10960417581993456,
+                0.9588444295187157,
+                0.014809539645072069,
+                0.3143744991121605
+              ],
+              "status": "designed",
+              "gain": [
+                0.3005636447229701,
+                3.103773100316936,
+                13.516839821947103
+              ],
+              "prefilter": 3.243931639607648,
+              "design_rho": 0.9623078120811243
+            },
+            {
+              "speed": 28.0,
+              "matrix": [
+                0.970802000449131,
+                -0.009464851324136409,
+                0.10311701905971296,
+                0.9640859737611428,
+                0.0127916645902789,
+                0.2950034949341449
+              ],
+              "status": "designed",
+              "gain": [
+                0.28654840079470717,
+                3.3133689029171207,
+                14.351241494088134
+              ],
+              "prefilter": 3.4499053551669587,
+              "design_rho": 0.9669110218168345
+            },
+            {
+              "speed": 30.0,
+              "matrix": [
+                0.9749621990353395,
+                -0.009553245775453457,
+                0.09486209730722374,
+                0.9691957087818093,
+                0.010859213978407684,
+                0.27070926320843086
+              ],
+              "status": "designed",
+              "gain": [
+                0.26899784971346397,
+                3.6092834737850583,
+                15.549497724629664
+              ],
+              "prefilter": 3.7465546270737096,
+              "design_rho": 0.9715727517352554
+            }
+          ]
+        },
+        "rows": [
+          {
+            "speed": 13,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.020552487155247084,
+                "tracking_peak_deg_s": 0.047176937217929156,
+                "beta_rms_deg": 0.0894860996374715,
+                "beta_peak_deg": 0.21474632724870588,
+                "steering_rms_deg": 1.2886890702808182,
+                "steering_peak_deg": 2.838137882554274,
+                "steering_rate_rms_deg_s": 1.372574016302364,
+                "steering_rate_peak_deg_s": 2.6030597649366323,
+                "steering_total_variation_deg": 11.374032650854497,
+                "lateral_acceleration_peak_mps2": 2.459003448461636,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          },
+          {
+            "speed": 21,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.011609325408472817,
+                "tracking_peak_deg_s": 0.026581875672134114,
+                "beta_rms_deg": 0.3125135685565041,
+                "beta_peak_deg": 0.6889374304603566,
+                "steering_rms_deg": 0.6108291552456621,
+                "steering_peak_deg": 1.3396388868982891,
+                "steering_rate_rms_deg_s": 0.6426723575278076,
+                "steering_rate_peak_deg_s": 1.216596553058767,
+                "steering_total_variation_deg": 5.358561714369336,
+                "lateral_acceleration_peak_mps2": 2.3957252276047485,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          },
+          {
+            "speed": 29,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.006273995819874559,
+                "tracking_peak_deg_s": 0.0141760627434799,
+                "beta_rms_deg": 0.4161229611447282,
+                "beta_peak_deg": 0.9027639846404164,
+                "steering_rms_deg": 0.4055094175258329,
+                "steering_peak_deg": 0.8789204462098034,
+                "steering_rate_rms_deg_s": 0.4140011648356233,
+                "steering_rate_peak_deg_s": 0.7831513829682992,
+                "steering_total_variation_deg": 3.515670727395753,
+                "lateral_acceleration_peak_mps2": 2.337300821338604,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "payload_sha256": "a406c3b24e544fd93273a7604ca2ef5f3cd43e0f53beb065145b5ca531d3782b"
+}
