@@ -1,0 +1,15 @@
+{
+  "status": "analysis_complete",
+  "fit_count": 90,
+  "converged": 90,
+  "control_cases": 0,
+  "checkpoint_sha256": {
+    "results/tables/paper_physical_ct_yaw_only_seed1301.json": "a56f8380b03737294b7d2f5286ff5c1c6285a73e987ecc4754fe27965303e560",
+    "results/tables/paper_physical_ct_yaw_only_seed1302.json": "5a2f184738cbb775033c1e175d9263d546e753a392c0591ef982813b08ce0804",
+    "results/tables/paper_physical_ct_yaw_only_seed1303.json": "becd1b042b1187826559d0a2f39240fbe19badd054c36e164ccc588b2c887124"
+  },
+  "analysis_sha256": "7b4e3a3f7572db9a087efeb7dca8df0df74d1c318537c84db3d8ee683abacb2f",
+  "protocol_sha256": "5d9ca4c85085813fdb42e54657442e28f721816e30570d65e328aff4d79f533c",
+  "scope": "Identification-only sensing ablation on three reused pilot fleets. Original full speed blocks. Acquisition still uses noisy full-state feedback; optional control still uses noise-free true-state feedback. No observer, new acquisition, fleet changes or shared estimator.",
+  "aggregation": "Strict means: speeds within vehicle, vehicles within fleet, fleets equally. Failures invalidate complete means; no complete-case filtering."
+}
