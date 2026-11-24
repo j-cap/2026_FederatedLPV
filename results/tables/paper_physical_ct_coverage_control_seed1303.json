@@ -1,7 +1,7 @@
 {
   "payload": {
     "seed": 1303,
-    "status": "running",
+    "status": "execution_complete",
     "provenance": {
       "sources": {
         "code\\config\\paper_physical_ct_coverage.json": "80ae840c5bdd0edd9dfb24666b7e6e6003a23b1717818330a788f676060f3a75",
@@ -59790,17 +59790,653 @@
             }
           }
         ]
+      },
+      {
+        "spec": {
+          "id": "client29_adjacent_pair_18_20",
+          "index": 29,
+          "kind": "adjacent_pair",
+          "windows": [
+            {
+              "speed": 18.0,
+              "start": 0,
+              "n": 2000
+            },
+            {
+              "speed": 20.0,
+              "start": 0,
+              "n": 2000
+            }
+          ],
+          "reuse": null
+        },
+        "client": "handling_09",
+        "schedule": {
+          "status": "designed",
+          "nodes": [
+            {
+              "speed": 10.0,
+              "matrix": [
+                0.8948765885100733,
+                -0.005903261010759417,
+                0.18508043700933288,
+                0.8656879464081075,
+                0.04734735193141441,
+                0.37047591114723355
+              ],
+              "status": "designed",
+              "gain": [
+                0.589771082796571,
+                2.3920099481132704,
+                11.537336676580304
+              ],
+              "prefilter": 2.762437173725419,
+              "design_rho": 0.9563431235975541
+            },
+            {
+              "speed": 12.0,
+              "matrix": [
+                0.9116649261334148,
+                -0.00694409266370963,
+                0.18848517669114326,
+                0.8868935958366038,
+                0.03929706337668791,
+                0.3728506543263286
+              ],
+              "status": "designed",
+              "gain": [
+                0.5674886536133114,
+                2.438352033004383,
+                11.476649358847373
+              ],
+              "prefilter": 2.74455797693584,
+              "design_rho": 0.9562759741748688
+            },
+            {
+              "speed": 14.0,
+              "matrix": [
+                0.9240136835928429,
+                -0.007613995054973557,
+                0.19041569367450964,
+                0.902563644961483,
+                0.0334085251374574,
+                0.373465829470088
+              ],
+              "status": "designed",
+              "gain": [
+                0.5503824457060088,
+                2.478794715661143,
+                11.46386099070649
+              ],
+              "prefilter": 2.7401725043360723,
+              "design_rho": 0.9562486532159071
+            },
+            {
+              "speed": 16.0,
+              "matrix": [
+                0.9335764745086769,
+                -0.008075937889555766,
+                0.19111025511520327,
+                0.9147392295764513,
+                0.028872985809076355,
+                0.3723926258346354
+              ],
+              "status": "designed",
+              "gain": [
+                0.5366228538409578,
+                2.5197638012277217,
+                11.498705360472934
+              ],
+              "prefilter": 2.748295212086854,
+              "design_rho": 0.9562486625977821
+            },
+            {
+              "speed": 18.0,
+              "matrix": [
+                0.9413040226975471,
+                -0.008412262470969501,
+                0.19061589819478778,
+                0.9246031183014287,
+                0.02522986395166325,
+                0.36950063265508853
+              ],
+              "status": "designed",
+              "gain": [
+                0.5250464579818566,
+                2.5662735339519624,
+                11.586972484496856
+              ],
+              "prefilter": 2.7699067981948486,
+              "design_rho": 0.956274576952797
+            },
+            {
+              "speed": 20.0,
+              "matrix": [
+                0.9477849645297083,
+                -0.008668413622915259,
+                0.18886824881616662,
+                0.9328919596065512,
+                0.02219668146964054,
+                0.3645337090521348
+              ],
+              "status": "designed",
+              "gain": [
+                0.5148340852436835,
+                2.6231093042082523,
+                11.739517047944517
+              ],
+              "prefilter": 2.807437659330785,
+              "design_rho": 0.9563360201301712
+            },
+            {
+              "speed": 22.0,
+              "matrix": [
+                0.9534060066394412,
+                -0.008871260069770643,
+                0.18572883286743466,
+                0.94009196153318,
+                0.01958983840457573,
+                0.35714495211805336
+              ],
+              "status": "designed",
+              "gain": [
+                0.5053357230318686,
+                2.69559659737125,
+                11.972737431649211
+              ],
+              "prefilter": 2.8647842594945065,
+              "design_rho": 0.9564674454871008
+            },
+            {
+              "speed": 24.0,
+              "matrix": [
+                0.9584340689880697,
+                -0.009037595154035934,
+                0.18100385510015288,
+                0.9465400135551878,
+                0.017284253304743712,
+                0.34691412341227484
+              ],
+              "status": "designed",
+              "gain": [
+                0.4959570557362095,
+                2.790362216597829,
+                12.31036987533503
+              ],
+              "prefilter": 2.9477143809661053,
+              "design_rho": 0.9568015233770302
+            },
+            {
+              "speed": 26.0,
+              "matrix": [
+                0.9630614218316873,
+                -0.009178411215053108,
+                0.17445406204047406,
+                0.9524795837142987,
+                0.015191307881819532,
+                0.33335674405861
+              ],
+              "status": "designed",
+              "gain": [
+                0.48606249080348424,
+                2.916375953953065,
+                12.787071112349
+              ],
+              "prefilter": 3.0647487216860703,
+              "design_rho": 0.9580324281706265
+            },
+            {
+              "speed": 28.0,
+              "matrix": [
+                0.9674319150436872,
+                -0.009301193141086779,
+                0.16579993763012074,
+                0.9580933594902716,
+                0.013246091500380516,
+                0.3159288757441493
+              ],
+              "status": "designed",
+              "gain": [
+                0.4748592439457556,
+                3.08665917716065,
+                13.455073692379493
+              ],
+              "prefilter": 3.2288387681593553,
+              "design_rho": 0.9616047575448416
+            },
+            {
+              "speed": 30.0,
+              "matrix": [
+                0.9716569453705786,
+                -0.009411216972517534,
+                0.15472425576609022,
+                0.9635232009312681,
+                0.011399670631480847,
+                0.29402948308757404
+              ],
+              "status": "designed",
+              "gain": [
+                0.4612142198461791,
+                3.3214036987167277,
+                14.396827840603866
+              ],
+              "prefilter": 3.460599606967067,
+              "design_rho": 0.9663007111757138
+            }
+          ]
+        },
+        "rows": [
+          {
+            "speed": 13,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.020265902138003444,
+                "tracking_peak_deg_s": 0.046533638001433876,
+                "beta_rms_deg": 0.14797476696494807,
+                "beta_peak_deg": 0.33346322472255974,
+                "steering_rms_deg": 1.345634021572647,
+                "steering_peak_deg": 2.962173546376826,
+                "steering_rate_rms_deg_s": 1.4315022395493646,
+                "steering_rate_peak_deg_s": 2.7121351065293178,
+                "steering_total_variation_deg": 11.867538803546,
+                "lateral_acceleration_peak_mps2": 2.4745471272669564,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          },
+          {
+            "speed": 21,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.011706077235369207,
+                "tracking_peak_deg_s": 0.026830675395625128,
+                "beta_rms_deg": 0.24157825886482714,
+                "beta_peak_deg": 0.5354046093633595,
+                "steering_rms_deg": 0.6679068764023819,
+                "steering_peak_deg": 1.4637167931903297,
+                "steering_rate_rms_deg_s": 0.7016332172991155,
+                "steering_rate_peak_deg_s": 1.324998395466345,
+                "steering_total_variation_deg": 5.854934484762143,
+                "lateral_acceleration_peak_mps2": 2.4197241672445897,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          },
+          {
+            "speed": 29,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.006727136341371857,
+                "tracking_peak_deg_s": 0.015293550868713621,
+                "beta_rms_deg": 0.3477561058137551,
+                "beta_peak_deg": 0.7583624253973118,
+                "steering_rms_deg": 0.4628659115239208,
+                "steering_peak_deg": 1.0034745654158672,
+                "steering_rate_rms_deg_s": 0.47322198781574015,
+                "steering_rate_peak_deg_s": 0.8906978624385747,
+                "steering_total_variation_deg": 4.013896710047442,
+                "lateral_acceleration_peak_mps2": 2.371097258932555,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          }
+        ]
+      },
+      {
+        "spec": {
+          "id": "client29_multi_20s_16_18_20",
+          "index": 29,
+          "kind": "multi_20s",
+          "windows": [
+            {
+              "speed": 16.0,
+              "start": 666,
+              "n": 667
+            },
+            {
+              "speed": 18.0,
+              "start": 666,
+              "n": 667
+            },
+            {
+              "speed": 20.0,
+              "start": 667,
+              "n": 666
+            }
+          ],
+          "reuse": null
+        },
+        "client": "handling_09",
+        "schedule": {
+          "status": "designed",
+          "nodes": [
+            {
+              "speed": 10.0,
+              "matrix": [
+                0.8955768288146173,
+                -0.005923528534637873,
+                0.18430052697850996,
+                0.8665440411490911,
+                0.04700662806113223,
+                0.3678796628023608
+              ],
+              "status": "designed",
+              "gain": [
+                0.5915043147561257,
+                2.410528602972868,
+                11.615592038979305
+              ],
+              "prefilter": 2.781171672419189,
+              "design_rho": 0.9563419430083155
+            },
+            {
+              "speed": 12.0,
+              "matrix": [
+                0.9121691451925054,
+                -0.006956863456499495,
+                0.1878430012303597,
+                0.8875101183547248,
+                0.03905253905476957,
+                0.37059051210095617
+              ],
+              "status": "designed",
+              "gain": [
+                0.5689309723824773,
+                2.45429313431661,
+                11.543922585299729
+              ],
+              "prefilter": 2.760659103436692,
+              "design_rho": 0.9562751680482908
+            },
+            {
+              "speed": 14.0,
+              "matrix": [
+                0.9243212928255473,
+                -0.007620393409032853,
+                0.19005681312058748,
+                0.902935883468889,
+                0.03325685466793386,
+                0.37181957557832174
+              ],
+              "status": "designed",
+              "gain": [
+                0.5516474509967972,
+                2.4903369415773047,
+                11.51264106381328
+              ],
+              "prefilter": 2.751852344213719,
+              "design_rho": 0.9562483076836014
+            },
+            {
+              "speed": 16.0,
+              "matrix": [
+                0.9336704642451996,
+                -0.00807632233361985,
+                0.19122614361648488,
+                0.9148431034573146,
+                0.02881872216021944,
+                0.37172964260580404
+              ],
+              "status": "designed",
+              "gain": [
+                0.5378265876941569,
+                2.5243585321518824,
+                11.518412120317398
+              ],
+              "prefilter": 2.753016198785553,
+              "design_rho": 0.9562486689541922
+            },
+            {
+              "speed": 18.0,
+              "matrix": [
+                0.941155304480675,
+                -0.008406544163828796,
+                0.1914545275176794,
+                0.9243998853226537,
+                0.025282925670701683,
+                0.3702999303549259
+              ],
+              "status": "designed",
+              "gain": [
+                0.5263308320320383,
+                2.560402737123321,
+                11.562966653527239
+              ],
+              "prefilter": 2.764142030888633,
+              "design_rho": 0.9562741429281156
+            },
+            {
+              "speed": 20.0,
+              "matrix": [
+                0.9473546465995953,
+                -0.008656214768548038,
+                0.19074397364257872,
+                0.9323307359900249,
+                0.02237099229168939,
+                0.367401006310381
+              ],
+              "status": "designed",
+              "gain": [
+                0.5163901787286738,
+                2.6019328425627295,
+                11.651640729003825
+              ],
+              "prefilter": 2.7863128002365514,
+              "design_rho": 0.9563319735026274
+            },
+            {
+              "speed": 22.0,
+              "matrix": [
+                0.9526466462809937,
+                -0.0088519978992511,
+                0.18903213308118735,
+                0.9391111209782278,
+                0.01990253202990879,
+                0.3628294838535198
+              ],
+              "status": "designed",
+              "gain": [
+                0.5074341449886921,
+                2.652406192528248,
+                11.793047453352342
+              ],
+              "prefilter": 2.8215178752591017,
+              "design_rho": 0.9564470157808878
+            },
+            {
+              "speed": 24.0,
+              "matrix": [
+                0.9572903744499369,
+                -0.009010528660887971,
+                0.1862112328459022,
+                0.9450679659540989,
+                0.017755174128666576,
+                0.3563255119973174
+              ],
+              "status": "designed",
+              "gain": [
+                0.49899415466490277,
+                2.7156993930500133,
+                11.999474730011055
+              ],
+              "prefilter": 2.8727088651442623,
+              "design_rho": 0.9566999529689733
+            },
+            {
+              "speed": 26.0,
+              "matrix": [
+                0.9614706352505279,
+                -0.009142667986586066,
+                0.18213829100666196,
+                0.9504351846716214,
+                0.015842677551769647,
+                0.34758213930473525
+              ],
+              "status": "designed",
+              "gain": [
+                0.4906370854830119,
+                2.796550326540548,
+                12.287980985565978
+              ],
+              "prefilter": 2.944055279719186,
+              "design_rho": 0.9574208864766274
+            },
+            {
+              "speed": 28.0,
+              "matrix": [
+                0.965323996862587,
+                -0.009255784899828774,
+                0.1766408230769795,
+                0.9553860834340336,
+                0.014102273824423167,
+                0.3362505172788085
+              ],
+              "status": "designed",
+              "gain": [
+                0.4819081663709068,
+                2.9011490761605576,
+                12.68242344807401
+              ],
+              "prefilter": 3.041448190220229,
+              "design_rho": 0.9596401960513673
+            },
+            {
+              "speed": 30.0,
+              "matrix": [
+                0.9689546260121227,
+                -0.009355048344403889,
+                0.16952005153922595,
+                0.9600531509013809,
+                0.012486997741477037,
+                0.32194281931648777
+              ],
+              "status": "designed",
+              "gain": [
+                0.47226631128152835,
+                3.0380513029463914,
+                13.216989187105787
+              ],
+              "prefilter": 3.173395575487389,
+              "design_rho": 0.9632872342376025
+            }
+          ]
+        },
+        "rows": [
+          {
+            "speed": 13,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.02017236973901413,
+                "tracking_peak_deg_s": 0.046319145950835396,
+                "beta_rms_deg": 0.1479734605593064,
+                "beta_peak_deg": 0.33345838959737056,
+                "steering_rms_deg": 1.3456216150937494,
+                "steering_peak_deg": 2.9621292313651084,
+                "steering_rate_rms_deg_s": 1.431468457309897,
+                "steering_rate_peak_deg_s": 2.71207589093745,
+                "steering_total_variation_deg": 11.867305666520807,
+                "lateral_acceleration_peak_mps2": 2.474511445191208,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          },
+          {
+            "speed": 21,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.011858354797490603,
+                "tracking_peak_deg_s": 0.027179359099664065,
+                "beta_rms_deg": 0.24158645961921435,
+                "beta_peak_deg": 0.5354332513806133,
+                "steering_rms_deg": 0.6679273860397016,
+                "steering_peak_deg": 1.4637892440841052,
+                "steering_rate_rms_deg_s": 0.7016876569338341,
+                "steering_rate_peak_deg_s": 1.3250975320234317,
+                "steering_total_variation_deg": 5.855227037352293,
+                "lateral_acceleration_peak_mps2": 2.4198374047656768,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          },
+          {
+            "speed": 29,
+            "outcome": {
+              "status": "complete",
+              "feasible": true,
+              "metrics": {
+                "tracking_rmse_deg_s": 0.0072990876881083595,
+                "tracking_peak_deg_s": 0.01663148177225052,
+                "beta_rms_deg": 0.3478034459701564,
+                "beta_peak_deg": 0.7585278595287402,
+                "steering_rms_deg": 0.4629254444983736,
+                "steering_peak_deg": 1.003684380008158,
+                "steering_rate_rms_deg_s": 0.4733747092817832,
+                "steering_rate_peak_deg_s": 0.8909719302652825,
+                "steering_total_variation_deg": 4.014736151120193,
+                "lateral_acceleration_peak_mps2": 2.3715671682731627,
+                "limiter_fraction": 0.0,
+                "angle_limiter_fraction": 0.0,
+                "rate_limiter_fraction": 0.0,
+                "beta_violation_samples": 0
+              },
+              "completed_steps": 1200
+            }
+          }
+        ]
       }
     ],
     "execution_adapter": {
       "file": "code/experiments/paper_physical_ct_coverage_resume.py",
-      "sha256": "a84e99e24bc97f38bdcdddd6ddd98673542c0bd588a9135601460c2e67564fdc",
+      "sha256": "4decb6ac732161cd58811ce730bd034b61c8f58b3ced9dcce4fd0ddd8731151f",
       "frozen_runner_sha256": "0576e0251e801e00c54ee3c9dff4fbefef4720ff0fb75975f5c3300f16822726",
       "changes": [
         "compare provenance with portable path separators; all hashes and runtime still checked",
-        "convert saved grid matrices to float array before unchanged controller synthesis"
+        "convert saved grid matrices to float array before unchanged controller synthesis",
+        "unique checkpoint temporary files and bounded retry of Windows replacement locks"
       ]
+    },
+    "adapter_migration": {
+      "previous": {
+        "file": "code/experiments/paper_physical_ct_coverage_resume.py",
+        "sha256": "a84e99e24bc97f38bdcdddd6ddd98673542c0bd588a9135601460c2e67564fdc",
+        "frozen_runner_sha256": "0576e0251e801e00c54ee3c9dff4fbefef4720ff0fb75975f5c3300f16822726",
+        "changes": [
+          "compare provenance with portable path separators; all hashes and runtime still checked",
+          "convert saved grid matrices to float array before unchanged controller synthesis"
+        ]
+      },
+      "saved_conditions": 194
     }
   },
-  "payload_sha256": "1e05d1d0827acd7ac027d81353a2c3eeb36a913183b32f880b0b74b6e931c4ea"
+  "payload_sha256": "1e63cb1047f4ad374040822745fc88791804aadf8218cb3d2990a8372f624fc1"
 }
