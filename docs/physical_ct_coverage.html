@@ -1,6 +1,7 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Local CT coverage diagnostic — protocol and run guide</title>
 <style>body{font:16px/1.6 system-ui;background:#edf2f5;color:#193142;margin:0}main{max-width:1100px;margin:auto;padding:32px}section{background:white;padding:25px;border-radius:10px;margin:20px 0}h1,h2{line-height:1.25}table{border-collapse:collapse;width:100%}td,th{text-align:left;padding:10px;border-bottom:1px solid #dce3e9}pre{background:#142f41;color:#f0f7fb;padding:18px;overflow:auto;border-radius:6px;font-size:13px}code{font-size:14px}.note{border-left:4px solid #b47c17;padding-left:16px}</style><main>
 <h1>Does narrower local coverage impair a useful physical model?</h1>
+<p class="note">Compatibility repair: use <code>paper_physical_ct_coverage_resume.py</code> for status, control and combined analysis. It preserves completed fits and source hashes, compares Windows/Linux path separators portably, and converts serialized model lists to arrays at controller synthesis. Existing partial control checkpoints resume without refitting.</p>
 <p>A diagnostic on the same 90 pilot vehicles, with the same nonlinear tanh plant and four-parameter continuous-time output-error estimator. No shared models, new vehicle populations, new acquisition or controller retuning.</p>
 <section><h2>Frozen comparisons</h2><table><tr><th>Condition</th><th>Data per vehicle/variant</th><th>Purpose</th></tr>
 <tr><td>Full</td><td>Original 2–3 speeds, 20 s each (40–60 s)</td><td>Reuse the existing structured local CT fit and closed-loop result.</td></tr>
@@ -22,15 +23,15 @@ python code\experiments\paper_physical_ct_coverage.py run --workers 3 --restore-
 <p>The runner limits numerical-library threads internally. No repeated OPENBLAS/OMP/MKL commands are needed. Each fleet runs in a separate Windows-compatible spawned worker; every completed condition is saved atomically, so rerunning the command resumes.</p>
 <p>The original ignored acquisition arrays are needed. Existing arrays are checked against the original committed hashes. <code>--restore-missing</code> reconstructs missing arrays and checks those hashes before fitting. To restore them separately:</p><pre>python code\experiments\paper_physical_ct_coverage.py restore --workers 3</pre>
 <p>Use the original machine/numerical environment when restoring. If reconstruction differs from the committed hashes, the runner stops; use the original arrays or restore in the original environment. It never relaxes the hashes or replaces the frozen results.</p>
-<pre>python code\experiments\paper_physical_ct_coverage.py status
+<pre>python code\experiments\paper_physical_ct_coverage_resume.py status
 git add results/tables/paper_physical_ct_coverage_seed*.json
 git commit -m "Run local CT coverage identification diagnostic"
 git push origin main</pre></section>
-<section><h2>2. Run and checkpoint the control comparison</h2><p>After the identification checkpoint is committed and pushed:</p><pre>python code\experiments\paper_physical_ct_coverage.py control --workers 3
+<section><h2>2. Run and checkpoint the control comparison</h2><p>After the identification checkpoint is committed and pushed:</p><pre>python code\experiments\paper_physical_ct_coverage_resume.py control --workers 3
 git add results/tables/paper_physical_ct_coverage_control_seed*.json
 git commit -m "Run matched control for local CT coverage diagnostic"
 git push origin main</pre><p>Control reuses the saved fitted models and needs no raw acquisition arrays. It resumes condition by condition.</p></section>
-<section><h2>3. Generate and commit the report</h2><pre>python code\experiments\paper_physical_ct_coverage.py analyze
+<section><h2>3. Generate and commit the report</h2><pre>python code\experiments\paper_physical_ct_coverage_resume.py analyze
 start report\physical_ct_coverage.html
 git add results/tables/paper_physical_ct_coverage_*.csv results/tables/paper_physical_ct_coverage_analysis.json report/physical_ct_coverage.html
 git commit -m "Analyze local CT coverage and tracking diagnostic"
