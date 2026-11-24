@@ -1,0 +1,21 @@
+{
+  "status": "yaw_only_identification_review_complete",
+  "fit_conditions": 90,
+  "converged_starts": 360,
+  "model_grid_points_checked": 1980,
+  "paired_validation_segments": 249,
+  "control_cases": 0,
+  "original_training_input_and_full_measurement_hash_pairs_verified": 249,
+  "yaw_hashes_recorded_not_recomputed": 249,
+  "validation_metrics_recomputed_from_raw": false,
+  "validation_nuisance_ranks": [
+    3
+  ],
+  "checkpoint_sha256": {
+    "results/tables/paper_physical_ct_yaw_only_seed1301.json": "a56f8380b03737294b7d2f5286ff5c1c6285a73e987ecc4754fe27965303e560",
+    "results/tables/paper_physical_ct_yaw_only_seed1302.json": "5a2f184738cbb775033c1e175d9263d546e753a392c0591ef982813b08ce0804",
+    "results/tables/paper_physical_ct_yaw_only_seed1303.json": "becd1b042b1187826559d0a2f39240fbe19badd054c36e164ccc588b2c887124"
+  },
+  "script_sha256": "80c91a7b86913499b9820d99c873244ceb593634f5c9f39e5e5b351cc4490a13",
+  "note": "No fitting, retuning, raw reconstruction or nonlinear rollouts. Recomputed all model metrics and original summary CSVs. Validation RMSEs checked for completeness/provenance/paired inputs but not recomputed without original arrays. Acquisition still used sideslip feedback; no output-feedback deployment claim."
+}
