@@ -1,0 +1,42 @@
+{
+  "payload": {
+    "status": "audit_passed",
+    "source_files": {
+      "results/tables/paper_federated_relaxation_continue_seed1303.json": "9d5b48eafa87bad0fd14088f1bfdf8fc6b2fde5c5bc7ab17e0973744f90f7bd8",
+      "results/tables/paper_federated_relaxation_continue_paired.csv": "83428fb917415af74ebaa06975fc440e429638da754a7a3c1cdca189fc77eeec",
+      "results/tables/paper_federated_relaxation_continue_seed1301.json": "64faaad31c8e5324d735c1d4d24cd19629c53e6c58e0648e1b18a718acdff884",
+      "results/tables/paper_federated_relaxation_continue_seed1302.json": "82bf858a751451bec16099916ec98e8b423027de54949c64386c49223d87d418",
+      "results/tables/paper_federated_relaxation_continue_cases.csv": "c7a29eb82bddd1bf613618f21bf9c6a9eeaf398501034c209eeef43267598ac0",
+      "results/tables/paper_federated_relaxation_continue_summary.csv": "9f1c04c69d299dc1e13239d564ed1233363288b3389b1c6e30e89bbac4ba3673",
+      "results/tables/paper_federated_relaxation_continue_optimization.csv": "ee4c39bd56330ce47931173f09577b64c1819e96232d744ca0aacd2e0f3be861",
+      "results/tables/paper_federated_relaxation_continue_analysis.json": "ef47c39cd092c0ad576fed706ebe1268b082ce3eede506e97460786cc36baed7",
+      "report/federated_relaxation_continue.html": "550efc5b908d157d4beb53072135a5034f1bcb4745e838734bbd5d3fba259eda"
+    },
+    "source_checkpoints": {
+      "results/tables/paper_federated_relaxation_coverage_seed1301.json": "5e393a83067bd5ea03b2fa549878cb53e827b33b72701ff7efd9bac0b36b4437",
+      "results/tables/paper_federated_relaxation_coverage_seed1302.json": "9997f1b5d3b893f832e859e10b88d8db91ae03f92a717fd3a875ae043bc57b85",
+      "results/tables/paper_federated_relaxation_coverage_seed1303.json": "c9108b4dd1154ce32435bca596db43fe1a5846d85ef11a2ebc046c7557f285b3"
+    },
+    "cases": 1512,
+    "personalized_cases": 108,
+    "all_fleets_converged": true,
+    "new_fits": 0,
+    "new_test_conditions": 0,
+    "replayed_saved_cases": 4,
+    "exact_replayed_traces": 0,
+    "peer_case_wins_vs_nominal": 62,
+    "peer_vehicle_wins_vs_nominal": 15,
+    "numerical_replay_max_metric_difference": 2.949029909160572e-17,
+    "audit_runtime": {
+      "python": "3.12",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "pandas": "2.2.3",
+        "threadpoolctl": "3.6.0",
+        "scikit-learn": "1.8.0"
+      }
+    }
+  },
+  "payload_sha256": "f3dd1970b01827d95b4e8dd517787c53e4ed332c4f86e45038707b8286fca4e0"
+}
