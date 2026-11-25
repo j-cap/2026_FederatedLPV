@@ -1,0 +1,51 @@
+{
+  "payload": {
+    "status": "audit_passed",
+    "source_hashes": {
+      "results/tables/paper_federated_relaxation_peers_cases.csv": "2cef82bc4540bd561051efe6b3c979b26405d6d49a3f16f493e95e6524026977",
+      "results/tables/paper_federated_relaxation_peers_optimization.csv": "c193eddfb582ab52c31b1417014f1a9e481a28f2d0e158f4dcd622b0ab257228",
+      "results/tables/paper_federated_relaxation_peers_summary.csv": "bd9ec47ef46def5fab8b3880147af1f9f4e69df9a66fdd936fbe3f3f71a30714",
+      "results/tables/paper_federated_relaxation_peers_analysis.json": "588fa04435eed729656696fcf0429b8f3fb9fc8b34971ee038a1241caafb2a8f",
+      "results/tables/paper_federated_relaxation_peers_seed1302.json": "516a0f21d9ed351c72378b9c8d0b93e62d1efc16989bd08a1f534c7d57acdf33",
+      "results/tables/paper_federated_relaxation_peers_paired.csv": "e554ffc838426797a133e0e080d14e60a6141f8c79663a6d4f72337550423927",
+      "results/tables/paper_federated_relaxation_peers_seed1301.json": "fff094c69e62f20d54ca71dddb9508ba459cf78d48c9953bc084acf016877842",
+      "results/tables/paper_federated_relaxation_peers_acquisition.csv": "27d3ef58bf82264bf8406b1adcfd644efd77cac7015c21d93be132fbe8dc6e7d",
+      "results/tables/paper_federated_relaxation_peers_seed1303.json": "61c60f43f77e9ae5768d42077e4a66c952dba50885ba70aea5b7aeeb10277fc9",
+      "report/federated_relaxation_peers.html": "c7d4fd2a56b32627f0e0e10819f83433afb084c017d686b676bef42471373b36"
+    },
+    "source_checkpoints": {
+      "results/tables/paper_federated_relaxation_coverage_seed1301.json": "5e393a83067bd5ea03b2fa549878cb53e827b33b72701ff7efd9bac0b36b4437",
+      "results/tables/paper_federated_relaxation_continue_seed1301.json": "64faaad31c8e5324d735c1d4d24cd19629c53e6c58e0648e1b18a718acdff884",
+      "results/tables/paper_federated_relaxation_coverage_seed1302.json": "9997f1b5d3b893f832e859e10b88d8db91ae03f92a717fd3a875ae043bc57b85",
+      "results/tables/paper_federated_relaxation_continue_seed1302.json": "82bf858a751451bec16099916ec98e8b423027de54949c64386c49223d87d418",
+      "results/tables/paper_federated_relaxation_coverage_seed1303.json": "c9108b4dd1154ce32435bca596db43fe1a5846d85ef11a2ebc046c7557f285b3",
+      "results/tables/paper_federated_relaxation_continue_seed1303.json": "9d5b48eafa87bad0fd14088f1bfdf8fc6b2fde5c5bc7ab17e0973744f90f7bd8"
+    },
+    "new_fits": 0,
+    "new_test_conditions": 0,
+    "converged_same_speed": 7,
+    "same_speed_conditions": 9,
+    "total_comparison_rows": 1512,
+    "same_speed_reduction_vs_local_pct": 47.21114232440149,
+    "complementary_reduction_vs_same_pct": 4.300105653392183,
+    "absolute_peer_speed_gain_deg_s": 0.00017744721306370888,
+    "same_speed_fraction_of_complementary_absolute_gain_vs_local": 0.9541243872376063,
+    "complementary_case_wins_vs_same": 53,
+    "peer_cases": 108,
+    "complementary_vehicle_wins_vs_same": 15,
+    "vehicles": 27,
+    "replayed_saved_traces": 6,
+    "exact_replayed_traces": 0,
+    "audit_runtime": {
+      "python": "3.12",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "pandas": "2.2.3",
+        "threadpoolctl": "3.6.0",
+        "scikit-learn": "1.8.0"
+      }
+    }
+  },
+  "payload_sha256": "d7b2187c0042e213a7784c2b4164b29bd1aaff663c23fd97743d99b7a62868b6"
+}
