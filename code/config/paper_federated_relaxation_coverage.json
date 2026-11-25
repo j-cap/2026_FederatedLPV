@@ -1,0 +1,708 @@
+{
+  "version": 1,
+  "fleets": [
+    {
+      "seed": 1301,
+      "clients": [
+        {
+          "source_client": "heavy_02",
+          "family": "heavy",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            48.32306793002709,
+            48.85657475781119,
+            0.5790624917313004,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_00"
+        },
+        {
+          "source_client": "handling_01",
+          "family": "handling",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            49.699733248306785,
+            61.71314730911889,
+            0.632222981587146,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_01"
+        },
+        {
+          "source_client": "handling_02",
+          "family": "handling",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            49.57165223393112,
+            64.05276168966395,
+            0.6248543179216851,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_02"
+        },
+        {
+          "source_client": "heavy_00",
+          "family": "heavy",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            49.875239168552575,
+            47.0031802804665,
+            0.5938671499505128,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_03"
+        },
+        {
+          "source_client": "heavy_01",
+          "family": "heavy",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            48.26427862468124,
+            43.78623542943599,
+            0.5732144496546914,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_04"
+        },
+        {
+          "source_client": "nominal_01",
+          "family": "nominal",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            56.19644129656956,
+            55.96304324878974,
+            0.5772999949624884,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_05"
+        },
+        {
+          "source_client": "nominal_00",
+          "family": "nominal",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            52.91526168768603,
+            52.04473309678716,
+            0.5757234702184099,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_06"
+        },
+        {
+          "source_client": "handling_00",
+          "family": "handling",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            52.500685985609486,
+            58.76696316323406,
+            0.6325161861919785,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_07"
+        },
+        {
+          "source_client": "nominal_02",
+          "family": "nominal",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            52.80646851244299,
+            52.450057141437846,
+            0.606206819735962,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_08"
+        }
+      ]
+    },
+    {
+      "seed": 1302,
+      "clients": [
+        {
+          "source_client": "handling_00",
+          "family": "handling",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            52.565695572915466,
+            62.33692801616768,
+            0.6208169428289034,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_00"
+        },
+        {
+          "source_client": "handling_01",
+          "family": "handling",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            50.91654703698503,
+            63.53994821665021,
+            0.6412674516131505,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_01"
+        },
+        {
+          "source_client": "nominal_00",
+          "family": "nominal",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            51.893233666295295,
+            53.67481473177799,
+            0.594913590476817,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_02"
+        },
+        {
+          "source_client": "handling_02",
+          "family": "handling",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            50.93488001384732,
+            61.29110478221069,
+            0.6299554921836678,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_03"
+        },
+        {
+          "source_client": "nominal_01",
+          "family": "nominal",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            50.82543131854347,
+            50.91019220368926,
+            0.6150505019430375,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_04"
+        },
+        {
+          "source_client": "heavy_00",
+          "family": "heavy",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            46.60826673529842,
+            45.77816524429717,
+            0.5997933673719356,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_05"
+        },
+        {
+          "source_client": "heavy_02",
+          "family": "heavy",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            51.3132733062101,
+            47.9742414247514,
+            0.556605855286757,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_06"
+        },
+        {
+          "source_client": "nominal_02",
+          "family": "nominal",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            57.156203099943646,
+            52.76148426737717,
+            0.591781652208768,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_07"
+        },
+        {
+          "source_client": "heavy_01",
+          "family": "heavy",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            50.79136457013328,
+            46.73696823066483,
+            0.5777509272079802,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_08"
+        }
+      ]
+    },
+    {
+      "seed": 1303,
+      "clients": [
+        {
+          "source_client": "handling_01",
+          "family": "handling",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            49.68119600857963,
+            62.23825180262336,
+            0.6617211688443667,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_00"
+        },
+        {
+          "source_client": "handling_00",
+          "family": "handling",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            52.02794606488217,
+            64.30418963173138,
+            0.6268306994937843,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_01"
+        },
+        {
+          "source_client": "handling_02",
+          "family": "handling",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            51.56165103043657,
+            61.742974823458525,
+            0.6232949467553088,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_02"
+        },
+        {
+          "source_client": "nominal_02",
+          "family": "nominal",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            52.68576226750007,
+            51.630695950123545,
+            0.6068248471466569,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_03"
+        },
+        {
+          "source_client": "nominal_01",
+          "family": "nominal",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            52.52239244382375,
+            52.909981189279314,
+            0.5994057773848432,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_04"
+        },
+        {
+          "source_client": "nominal_00",
+          "family": "nominal",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            50.73939638433933,
+            51.706759938093974,
+            0.6160072955208624,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_05"
+        },
+        {
+          "source_client": "heavy_01",
+          "family": "heavy",
+          "training_speed": 13,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            48.77152578173038,
+            45.801882741949214,
+            0.5623080779689258,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_06"
+        },
+        {
+          "source_client": "heavy_00",
+          "family": "heavy",
+          "training_speed": 21,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            50.069640541571445,
+            48.387698166379096,
+            0.5699767214259368,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_07"
+        },
+        {
+          "source_client": "heavy_02",
+          "family": "heavy",
+          "training_speed": 29,
+          "geometry_m": [
+            1.2,
+            1.6
+          ],
+          "physical_parameters": [
+            49.58631100493014,
+            46.5174463055244,
+            0.585876658910207,
+            0.9,
+            0.4,
+            0.7
+          ],
+          "client": "vehicle_08"
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+    "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+    "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1"
+  },
+  "sample_time": 0.01,
+  "integration_max_step": 0.001,
+  "duration_s": 12.0,
+  "taper_s": 1.0,
+  "steering_peak_deg": 0.35,
+  "yaw_noise_std_deg_s": 0.03,
+  "noise_namespace": 26112541,
+  "fleet_training_speeds": [
+    13,
+    21,
+    29
+  ],
+  "evaluation_speeds": [
+    9,
+    13,
+    17,
+    21,
+    25,
+    29,
+    33
+  ],
+  "inputs": {
+    "training": {
+      "frequencies_hz": [
+        0.35,
+        0.7,
+        1.2
+      ],
+      "weights": [
+        1.0,
+        0.6,
+        0.35
+      ],
+      "phases_rad": [
+        0.0,
+        1.0,
+        2.0
+      ]
+    },
+    "slow": {
+      "frequencies_hz": [
+        0.16,
+        0.42
+      ],
+      "weights": [
+        1,
+        0.15
+      ],
+      "phases_rad": [
+        0.5,
+        1.4
+      ]
+    },
+    "broadband": {
+      "frequencies_hz": [
+        0.45,
+        0.85,
+        1.35
+      ],
+      "weights": [
+        1,
+        0.6,
+        0.35
+      ],
+      "phases_rad": [
+        0.7,
+        1.8,
+        0.4
+      ]
+    }
+  },
+  "nominal_parameters": [
+    53.3333333333,
+    53.3333333333,
+    0.6,
+    0.9,
+    0.6,
+    0.6
+  ],
+  "starts": [
+    [
+      53.3333333333,
+      53.3333333333,
+      0.6,
+      0.9,
+      0.6,
+      0.6
+    ],
+    [
+      45.0,
+      60.0,
+      0.5,
+      0.65,
+      0.3,
+      1.0
+    ],
+    [
+      65.0,
+      43.0,
+      0.75,
+      1.2,
+      1.0,
+      0.3
+    ]
+  ],
+  "methods": [
+    "LocalOE",
+    "NominalPrior",
+    "Global",
+    "FedPersonal",
+    "FedGroups",
+    "Exact"
+  ],
+  "fit": {
+    "bounds": [
+      [
+        20,
+        100
+      ],
+      [
+        20,
+        100
+      ],
+      [
+        0.25,
+        1.2
+      ],
+      [
+        0.4,
+        1.5
+      ],
+      [
+        0.15,
+        1.5
+      ],
+      [
+        0.15,
+        1.5
+      ]
+    ],
+    "max_nfev": 100,
+    "ftol": 1e-08,
+    "xtol": 1e-08,
+    "gtol": 1e-07
+  },
+  "sharing": {
+    "weights": [
+      10.0,
+      10.0,
+      10.0,
+      0.0,
+      4.0,
+      4.0
+    ],
+    "lambda_value": 1.0,
+    "groups": 3,
+    "group_initialization_seeds": [
+      17,
+      43
+    ],
+    "personal_max_rounds": 8,
+    "local_round_max_nfev": 25,
+    "personal_relative_tolerance": 1e-06,
+    "personal_step_tolerance": 0.001,
+    "global_max_steps": 50,
+    "global_max_log_step": 0.3,
+    "global_line_search": [
+      1.0,
+      0.5,
+      0.25,
+      0.125,
+      0.0625,
+      0.03125
+    ],
+    "global_gradient_tolerance": 1e-05,
+    "global_relative_tolerance": 1e-08,
+    "global_step_tolerance": 1e-05
+  },
+  "operating_bounds": {
+    "beta_peak_deg": 5.0,
+    "ay_peak_mps2": 6.0,
+    "steering_rate_peak_deg_s": 30.0
+  },
+  "scope": [
+    "Exploratory three-fleet pilot, nine existing vehicle realizations per fleet; no control runs.",
+    "Each family has one vehicle at each training speed. Family labels/true parameters are evaluation-only; opaque IDs and randomized order enter learning.",
+    "Exactly one 12 s broadband record per vehicle; full duration is retained. Common zero-state initialization and yaw-only nonlinear OE.",
+    "All methods use the same fixed parameter bounds and no previous identified coefficients.",
+    "All six local parameters are free. Sharing and grouping omit mu (weight zero); global common-model baseline estimates one shared mu.",
+    "Regularization is sum normalized squared yaw residuals plus weighted squared log-parameter deviation. Log prior scales .1 for CT ratios, .25 for lengths are fixed engineering choices, not estimated from test vehicles.",
+    "Constant relaxation lengths .4/.7 m are shared across this simulated population, as in the preceding pilot; this is a favorable transfer assumption, not evidence for different tires.",
+    "K=3 is a fixed pilot choice. Two training-only initialization attempts; no family labels, test-based K selection or test-based lambda selection.",
+    "FedPersonal and FedGroups use exact nonlinear local proximal solves and alternating parameter/center/assignment updates. This is a single-machine emulation of data-local messages, not a network deployment or privacy guarantee.",
+    "Global uses summed local Gauss-Newton information and scalar loss messages, with common physical parameters.",
+    "Finite budget-exhausted federation models remain visible with explicit convergence flags; no silent fallback. Local OE requires a converged multistart solution.",
+    "Evaluation uses disjoint frequencies/phases. Peer-observed, fleet-interpolation and fleet-extrapolation regions are reported separately; extrapolation is never assumed to improve."
+  ]
+}
