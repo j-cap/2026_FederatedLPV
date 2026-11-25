@@ -1,0 +1,46 @@
+{
+  "payload": {
+    "status": "analysis_complete",
+    "provenance": {
+      "files": {
+        "code/config/paper_tire_relaxation_pilot.json": "eea4e923570d7cc40d0388daf17f43ef556b545ac1235306aed06ac16d747550",
+        "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5",
+        "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+        "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+        "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+        "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+        "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4"
+      },
+      "source": {
+        "code/config/paper_tire_relaxation_gate.json": "876dae95c10e9efc2674d8de3af8ba088e5298efdffb920da2789be96dea45d6",
+        "results/tables/paper_tire_relaxation_gate_nominal_00_v13_broadband.json": "2a5f1e62b2b9f04af5e0e6db7d8b6404a549cb37666f60c4842377c48dc19014",
+        "results/tables/paper_tire_relaxation_gate_nominal_00_v21_broadband.json": "86118aa9cca34e04a169864e1f990b4350f79f8ef0f65d1282968ab563c40301",
+        "results/tables/paper_tire_relaxation_gate_nominal_00_v29_broadband.json": "94ff56938bcb0a999e48b510e7d96da0b57c075b793b8f5c8105b4873b951dd4",
+        "results/tables/paper_tire_relaxation_gate_heavy_00_v13_broadband.json": "c1ebd494b8db9a7eb0691bfd36b48ce406a908d1eb5fb420d79a3f31061d22d0",
+        "results/tables/paper_tire_relaxation_gate_heavy_00_v21_broadband.json": "1df4544552ad35dc30d7559711855f7f747ddfe2877080b5ec9117ac18fb84c2",
+        "results/tables/paper_tire_relaxation_gate_heavy_00_v29_broadband.json": "c9cbf30db6a4d3b1e730e471ae038137c70bb42ec6acb6f37f7ac25f7aaaf806",
+        "results/tables/paper_tire_relaxation_gate_handling_00_v13_broadband.json": "faf76d241abd7df0d1efd108cb1c8a0bd2d86d1081817f33150aacee24c739ff",
+        "results/tables/paper_tire_relaxation_gate_handling_00_v21_broadband.json": "214684b1815242ef55f289ae2918a49de43a62925f6b7d9b3a20fbcd428b847a",
+        "results/tables/paper_tire_relaxation_gate_handling_00_v29_broadband.json": "fd29d33aabeccc550638434cb956ed9bcc03e5ed549e973e6b678e7b50c3eb89"
+      },
+      "runtime": {
+        "python": "3.12",
+        "packages": {
+          "numpy": "2.3.5",
+          "scipy": "1.17.0",
+          "pandas": "2.2.3",
+          "threadpoolctl": "3.6.0"
+        }
+      }
+    },
+    "checkpoint_sha256": {
+      "paper_tire_relaxation_pilot_nominal_00.json": "1887bb2e07fa327ec1e8f806a8ddc2df28e4494d3161bee538561b44b0657082",
+      "paper_tire_relaxation_pilot_heavy_00.json": "5ba24d29289d3c69887b98d211d77c87f8ed597f7b1d0da118bafc636f43505a",
+      "paper_tire_relaxation_pilot_handling_00.json": "3191ff245476683abe9604349cf4a363675e6dee8c447d9a872b153033113977"
+    },
+    "prediction_cases": 180,
+    "control_cases": 180,
+    "scientific_pass": null
+  },
+  "payload_sha256": "170df27f677b39f7042e9354b72f82b9267c57b0f188f5f8f770a827e39b6924"
+}
