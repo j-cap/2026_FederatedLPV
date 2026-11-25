@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finish the outstanding SameSpeed fits</title><style>body{font:16px/1.65 system-ui;background:#edf2f5;color:#173348}main{max-width:1000px;margin:auto;padding:28px}section{background:white;padding:24px;margin:20px 0;border-radius:10px}h1,h2{line-height:1.25}pre{background:#173548;color:white;padding:18px;overflow:auto}table{border-collapse:collapse;width:100%}td,th{padding:9px;border-bottom:1px solid #ddd;text-align:left}</style><main>
+<h1>Finish two fits, then consolidate</h1>
+<p>Numerical closure of the matched peer-speed experiment. Only the 13 m/s SameSpeed conditions in fleets 1301 and 1302 are resumed. No new training data, initialization, baseline, hyperparameter or test condition is introduced.</p>
+<section><h2>Frozen scope</h2><table><tr><th>Item</th><th>Action</th></tr>
+<tr><td>Start</td><td>Exact saved round-30 parameters, center, history and communication counter</td></tr>
+<tr><td>Stop</td><td>Original convergence criteria, with an emergency cap of 100 total rounds (at most 70 additional)</td></tr>
+<tr><td>Local solver</td><td>Original per-update budget and tolerances; no initial local OE refits</td></tr>
+<tr><td>Data</td><td>Reuse the original nine 13 m/s records per affected fleet, checking their saved hashes</td></tr>
+<tr><td>Evaluation</td><td>Only six affected targets: 7 speeds × 2 probes × 6 targets = 84 predictions</td></tr>
+<tr><td>Reuse</td><td>Seven completed SameSpeed conditions, all complementary fits, and all target-local and nominal-prior results</td></tr>
+<tr><td>Storage</td><td>Separate finish checkpoints; original files remain unchanged</td></tr></table>
+<p>The cap is a safeguard, not a prescribed execution length. The original criteria remain: stable assignments, relative objective change below 10⁻⁶, maximum log-parameter movement below 10⁻³, and converged client solves. Stop immediately when all pass. A run reaching 100 rounds remains explicitly budget-exhausted. Test performance never determines the stopping round.</p>
+<p>The server center update and exact nonlinear local solver are reused from the original implementation. The preserved history is checked against the original checkpoint on resumption. A failed local update stops the affected continuation with its checkpoint preserved; there is no replacement model.</p></section>
+<section><h2>Efficient execution and recovery</h2><p>Two workers process the two fleets concurrently, with internal numerical thread limits. Save each client update, completed round and evaluation case. Repeating the run command skips completed work and resumes an interrupted round. There is no new checkpoint or computation for fleet 1303.</p>
+<p>Use the original machine and Conda environment. Load saved SameSpeed raw records when available; otherwise reconstruct them and require exact numerical-byte hash agreement. The same checks apply to the original test traces. A mismatch stops execution, preserving the inputs. No original trajectory file is rewritten.</p>
+<p>Only one finish runner may be active. After a forced termination, remove <code>results\data\paper_federated_relaxation_peers_finish\run.lock</code> only after checking that no finish worker remains active.</p></section>
+<section><h2>Run locally</h2><pre>git pull --ff-only origin main
+python code\experiments\paper_federated_relaxation_peers_finish.py preflight
+python code\experiments\paper_federated_relaxation_peers_finish.py smoke
+python code\experiments\paper_federated_relaxation_peers_finish.py run --workers 2</pre>
+<p>The smoke test uses temporary synthetic records; it does not advance the two scientific fits. Progress:</p><pre>python code\experiments\paper_federated_relaxation_peers_finish.py status</pre></section>
+<section><h2>Commit execution results, then render the comparison</h2><pre>git add results/tables/paper_federated_relaxation_peers_finish_seed1301.json results/tables/paper_federated_relaxation_peers_finish_seed1302.json
+git commit -m "Finish the two outstanding same-speed fits"
+git push origin main</pre>
+<p>Build the full comparison using the two updated fits plus the unchanged results:</p><pre>python code\experiments\paper_federated_relaxation_peers_finish.py analyze
+start report\federated_relaxation_peers_finish.html</pre>
+<p>Commit the analysis separately:</p><pre>git add report/federated_relaxation_peers_finish.html results/tables/paper_federated_relaxation_peers_finish_*.csv results/tables/paper_federated_relaxation_peers_finish_analysis.json
+git commit -m "Summarize final matched peer-speed convergence check"
+git push origin main</pre></section>
+<section><h2>What to consolidate afterward</h2><p>First establish whether all nine SameSpeed fits now meet the original stopping criteria. Then compare the final complementary-speed advantage with the previous result, by fleet and target speed. Keep the nominal-prior baseline visible and distinguish its benefit from learned regularization and complementary coverage.</p>
+<p>The report provides all nine optimization statuses, before/after SameSpeed predictions, the complementary condition and local baselines. It assigns no scientific pass. This is the same development experiment; it adds neither independent confirmation nor closed-loop evidence. The next discussion is consolidation, not automatic preparation of another experiment.</p></section>
+<section><h2>Restore ignored updated traces</h2><pre>python code\experiments\paper_federated_relaxation_peers_finish.py restore --seed 1301</pre><p>Restoration performs no fitting, checks saved hashes, and leaves committed checkpoints unchanged. Exact reconstruction requires the original numerical platform or original input arrays.</p></section></main></html>
