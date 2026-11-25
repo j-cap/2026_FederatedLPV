@@ -1,0 +1,142 @@
+{
+  "version": 1,
+  "clients": [
+    {
+      "client": "nominal_00",
+      "geometry_m": [
+        1.2,
+        1.6
+      ],
+      "physical_ratios": [
+        52.91526168768603,
+        52.04473309678716,
+        0.5757234702184099,
+        0.9
+      ],
+      "previous_estimated_ratios": [
+        50.42597885513776,
+        48.934739376979934,
+        0.6048331191112656,
+        1.0147950586155225
+      ]
+    },
+    {
+      "client": "heavy_00",
+      "geometry_m": [
+        1.2,
+        1.6
+      ],
+      "physical_ratios": [
+        49.875239168552575,
+        47.0031802804665,
+        0.5938671499505128,
+        0.9
+      ],
+      "previous_estimated_ratios": [
+        49.60607760790433,
+        46.874799556638244,
+        0.5955874521384512,
+        1.1444125804520207
+      ]
+    },
+    {
+      "client": "handling_00",
+      "geometry_m": [
+        1.2,
+        1.6
+      ],
+      "physical_ratios": [
+        52.500685985609486,
+        58.76696316323406,
+        0.6325161861919785,
+        0.9
+      ],
+      "previous_estimated_ratios": [
+        52.00947192927193,
+        58.0775602082813,
+        0.638800850851983,
+        0.8505972270605701
+      ]
+    }
+  ],
+  "source_sha256": {
+    "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+    "results/tables/paper_physical_ct_yaw_only_seed1301.json": "a56f8380b03737294b7d2f5286ff5c1c6285a73e987ecc4754fe27965303e560"
+  },
+  "speeds_mps": [
+    13,
+    21,
+    29
+  ],
+  "relaxation_lengths_m": [
+    0.4,
+    0.7
+  ],
+  "sample_time": 0.01,
+  "integration_max_step": 0.001,
+  "duration_s": 12.0,
+  "steering_peak_deg": 0.35,
+  "taper_s": 1.0,
+  "inputs": {
+    "slow": {
+      "frequencies_hz": [
+        0.125,
+        0.375
+      ],
+      "weights": [
+        1.0,
+        0.15
+      ],
+      "phases_rad": [
+        0.0,
+        0.0
+      ]
+    },
+    "broadband": {
+      "frequencies_hz": [
+        0.35,
+        0.7,
+        1.2
+      ],
+      "weights": [
+        1.0,
+        0.6,
+        0.35
+      ],
+      "phases_rad": [
+        0.0,
+        1.0,
+        2.0
+      ]
+    }
+  },
+  "yaw_noise_std_deg_s": 0.03,
+  "noise_seed": 26112501,
+  "grid_bounds_m": [
+    0.15,
+    1.5
+  ],
+  "grid_points": 17,
+  "state_scales": [
+    0.008726646259971648,
+    0.03490658503988659,
+    2.0,
+    2.0
+  ],
+  "observability_horizon_s": 2.0,
+  "svd_rcond": 1e-09,
+  "operating_bounds": {
+    "beta_peak_deg": 5.0,
+    "ay_peak_mps2": 6.0,
+    "steering_rate_peak_deg_s": 30.0
+  },
+  "notes": [
+    "Matched synthetic distinguishability screen; no controller synthesis or federation.",
+    "True ratios fixed is an optimistic conditional diagnostic. Estimated-ratio surfaces expose pre-change model error.",
+    "Nuisance-projected sensitivities are local, not globally profiled fits or structural-identifiability proofs.",
+    "Constant axle relaxation lengths are simulation assumptions; chosen within reported 0.3\u20130.9 m tire-test range, not calibrated to these vehicles.",
+    "Open-loop prescribed steering probes; not ordinary-driving or closed-loop identification data.",
+    "All initial states zero in generated data; uncertainty in initial states examined separately."
+  ],
+  "reference_url": "https://doi.org/10.3390/s22176380"
+}
