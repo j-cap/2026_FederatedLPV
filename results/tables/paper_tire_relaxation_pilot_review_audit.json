@@ -1,0 +1,35 @@
+{
+  "payload": {
+    "status": "audit_complete",
+    "original_hashes": {
+      "results/tables/paper_tire_relaxation_pilot_nominal_00.json": "1887bb2e07fa327ec1e8f806a8ddc2df28e4494d3161bee538561b44b0657082",
+      "results/tables/paper_tire_relaxation_pilot_heavy_00.json": "5ba24d29289d3c69887b98d211d77c87f8ed597f7b1d0da118bafc636f43505a",
+      "results/tables/paper_tire_relaxation_pilot_handling_00.json": "3191ff245476683abe9604349cf4a363675e6dee8c447d9a872b153033113977",
+      "results/tables/paper_tire_relaxation_pilot_control.csv": "7687cf5fe518d0b8618956653debe13a52b95dc01230dc37d63fbcd26764af0b",
+      "results/tables/paper_tire_relaxation_pilot_summary.csv": "351a6f2b4efaa53c046ebf9b74ea4d85dbda124b2fad2123f33d2e551279d2d1",
+      "results/tables/paper_tire_relaxation_pilot_prediction.csv": "fe57f194ed9d8c668675da60551aa53d3953cc42b2bcecc2dbd0e3898c15e000",
+      "results/tables/paper_tire_relaxation_pilot_profiles.csv": "3bd27cfd4bc4d456bea69b50bca5cdfe4646e658cce7a5f0903c2088001a08af",
+      "results/tables/paper_tire_relaxation_pilot_control_diagnostics.csv": "53e1edc1d61538b9655e45b2c1e4a74a1ba11a349af0f7cd22fe2753205a2106",
+      "results/tables/paper_tire_relaxation_pilot_fits.csv": "8852e5f9872eae7f560e65c16002389ee9714104dd1db5ecdaf8168ee4977a63",
+      "results/tables/paper_tire_relaxation_pilot_analysis.json": "c074bf17e68efa33ac007e757651ca6f97e2c5757e2b3d986b25fddd69659716",
+      "report/tire_relaxation_pilot.html": "aa72a3e8a9bd18bde815dfa76e0610edbc329eecfa0e163e228fbedd808666c6"
+    },
+    "review_script_sha256": "28ceac8ce45c3fa4fa04b1e67fa798a0bc7408dd9c50019b2ef6414b54592255",
+    "replayed_traces": 369,
+    "exact_trace_matches": 0,
+    "checked_fit_and_profile_objectives": 45,
+    "max_objective_mse_difference": 2.220446049250313e-15,
+    "max_metric_difference": 1.2647660696529783e-12,
+    "max_preview_difference": 1.2989609388114332e-14,
+    "new_scientific_cases": 0,
+    "refits": 0,
+    "controller_retuning": false,
+    "original_artifacts_modified": false,
+    "comparison_tolerance": {
+      "rtol": 1e-08,
+      "atol": 1e-09
+    },
+    "additional_analysis": "Steady linearized reference/noise transfer of saved controllers; no noise-ablation experiment"
+  },
+  "payload_sha256": "6ed1f60ca010ba573ed27b35b957f87847fa13abc38cd1c90e95da9b033ca872"
+}
