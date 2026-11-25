@@ -1,0 +1,73 @@
+{
+  "payload": {
+    "status": "audit_complete",
+    "control_rows": 567,
+    "fits": 135,
+    "loading_cases": 27,
+    "replayed_acquisitions": 27,
+    "replayed_prespecified_control_previews": 7,
+    "checked_control_noise_hashes": 567,
+    "exact_control_noise_hash_matches": 560,
+    "additional_control_replays_after_noise_hash_difference": 7,
+    "verified_training_grid_values": 5535,
+    "verified_selected_training_losses": 135,
+    "max_training_loss_abs_difference": 2.8421709430404007e-13,
+    "exact_trace_hash_matches": 0,
+    "max_replay_metric_abs_difference": 6.359357485052897e-13,
+    "max_replay_preview_abs_difference": 9.769962616701378e-15,
+    "replay_tolerance": {
+      "rtol": 1e-10,
+      "atol": 1e-10
+    },
+    "loss_tolerance": {
+      "rtol": 1e-09,
+      "atol": 1e-09
+    },
+    "original_checkpoints_modified": false,
+    "refits": 0,
+    "new_scientific_cases": 0,
+    "checkpoint_sha256": {
+      "results/tables/paper_ct_payload_adaptation_nominal_00_load10.json": "4099ec5d8d3f8ef3f5f9d597d46f4d2cb675725ab055b8a568ba5e8b59711f9f",
+      "results/tables/paper_ct_payload_adaptation_nominal_00_load20.json": "0e240df35bb73d5c878ca6b4fc2fdcafce1dc287dda3e693a191915f93f11438",
+      "results/tables/paper_ct_payload_adaptation_nominal_00_load30.json": "00fee6be661b192f7d3de413c58b4cf715bc0f21d87adb8b09d78c0b1b998e73",
+      "results/tables/paper_ct_payload_adaptation_nominal_01_load10.json": "e87860f17b55c45ed98c177e49f92112922d0e508ef6a8cb1eeafe25dba0aad3",
+      "results/tables/paper_ct_payload_adaptation_nominal_01_load20.json": "c5002cbce59592a3577c7968437b171b0e8ac8e40bdf9eb27e7f0b283ac24a30",
+      "results/tables/paper_ct_payload_adaptation_nominal_01_load30.json": "d9c8efe4bdf5cc7104c588b5fc451792df76c0d16dcdd402c1d7220d69808974",
+      "results/tables/paper_ct_payload_adaptation_nominal_02_load10.json": "16e4c4c2b2e2a854006e836d6683c79d0bcc21c14fc64700f721bdc64af26b69",
+      "results/tables/paper_ct_payload_adaptation_nominal_02_load20.json": "7123a1480a56274ef42f0fb6d662240ed27c2d85db9ee67059bb45405ceebb89",
+      "results/tables/paper_ct_payload_adaptation_nominal_02_load30.json": "9aa99f39ecb5f6bb9afd649ca9e9115a42c89e1c4075e969f1ac49aa99860613",
+      "results/tables/paper_ct_payload_adaptation_heavy_00_load10.json": "9bf0f6e96e90a96739678c2b9b77f8f589addc3a8d640998197a41638a1c2283",
+      "results/tables/paper_ct_payload_adaptation_heavy_00_load20.json": "06821566b42ef5264fab8958e0388201a5a218215429607541b41577fc87cc8b",
+      "results/tables/paper_ct_payload_adaptation_heavy_00_load30.json": "9f3ae58e28b106876f7ae28354be5ddd8e71b3bf86c28620388f1c91b7ddce44",
+      "results/tables/paper_ct_payload_adaptation_heavy_01_load10.json": "7a8b331482d457f4ae7949985db874c0dbd0a2194eb5e117964cc59dae8955db",
+      "results/tables/paper_ct_payload_adaptation_heavy_01_load20.json": "a42d7a75dc0364a6bf2f21eb6a1b68e784769fa8e61cd75ac19e1a1d96ee6306",
+      "results/tables/paper_ct_payload_adaptation_heavy_01_load30.json": "202486dcdf4cabef9ebe7e8e78d0a64166f7646bc914cf33b567b851c79bcd3e",
+      "results/tables/paper_ct_payload_adaptation_heavy_02_load10.json": "b4778eb0321ccb8ed6abc157a8c364bf3cc4014f46607dfc543ef16333158d49",
+      "results/tables/paper_ct_payload_adaptation_heavy_02_load20.json": "059b98a60d5b6fa55918b7332d7e8f326f07d7223e30ffa75b55fc1e5539c55e",
+      "results/tables/paper_ct_payload_adaptation_heavy_02_load30.json": "e83426cbec4f7ac007cf1afdb0460fe89430216d650657d3715ef2cead230ba7",
+      "results/tables/paper_ct_payload_adaptation_handling_00_load10.json": "985e8003703984ecbd6b15050b82835ad436e3eefdcce4dc6281c65669abc0f9",
+      "results/tables/paper_ct_payload_adaptation_handling_00_load20.json": "5794e6209f7f670112029b1724aa638aa433bd1ee5463040ce68253520925504",
+      "results/tables/paper_ct_payload_adaptation_handling_00_load30.json": "a5595e97030cb24521ae165555df5fa392b6b9df7429caaaae598ac3ee7e97ea",
+      "results/tables/paper_ct_payload_adaptation_handling_01_load10.json": "6ec14d9afa12bb343accec1f923efba30e2aed292b9a4a7ddeda14244a544c4a",
+      "results/tables/paper_ct_payload_adaptation_handling_01_load20.json": "adc8d42ba0ea3e849b25879ab720ff7b8ac3faeef411442dbbd820b4cbaa5659",
+      "results/tables/paper_ct_payload_adaptation_handling_01_load30.json": "31059155fb3c39228fa3f03a8255c8b3e03c025973da26c1e10cbcaac30f7de7",
+      "results/tables/paper_ct_payload_adaptation_handling_02_load10.json": "b5142390e2b07ceac9dd4a02f0a82d84063bde55e9b7067540b30b05be5185fd",
+      "results/tables/paper_ct_payload_adaptation_handling_02_load20.json": "02a55097c15740394eb7bc2c206d9b8d2336bb322a0566199c2a3c7433c9924c",
+      "results/tables/paper_ct_payload_adaptation_handling_02_load30.json": "1c5b024d96d2868b9995aee7ce8629eefa42aebc91bc2f099e52253eff5bdd9d"
+    },
+    "protocol_sha256": "007c098c34edd8fbc433afc321f2b514349b0df3b40ca46f3219f17dfe0329f9",
+    "audit_script_sha256": "7c0e1917406fe07978b490a303255e2d1c93a8e741f456f30719a53fa419d562",
+    "runtime": {
+      "python": "3.12",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      }
+    },
+    "note": "Reconstructed numerical replays, not recovered full-resolution originals. Original hashes remain unchanged. No inferential independence is assigned to repeated loading levels or speeds."
+  },
+  "payload_sha256": "11315fba5c8de5da4bc701a07c09562a7a054998363816bbaef86b4818f0d5d2"
+}
