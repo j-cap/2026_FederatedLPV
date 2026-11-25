@@ -1,0 +1,2058 @@
+{
+  "payload": {
+    "seed": 1303,
+    "status": "execution_complete",
+    "provenance": {
+      "base": {
+        "files": {
+          "code/config/paper_federated_relaxation_coverage.json": "298c5d1a8b986f8933b4a30cd7c98b344d1502a46ff3bde9a08da5858fad6295",
+          "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
+          "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
+          "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+          "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+          "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+          "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+          "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+          "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5"
+        },
+        "source": {
+          "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+          "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+          "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1"
+        },
+        "runtime": {
+          "python": "3.12",
+          "packages": {
+            "numpy": "2.3.5",
+            "scipy": "1.17.0",
+            "pandas": "2.2.3",
+            "threadpoolctl": "3.6.0",
+            "scikit-learn": "1.8.0"
+          }
+        }
+      },
+      "sources": {
+        "results/tables/paper_federated_relaxation_coverage_seed1301.json": "5e393a83067bd5ea03b2fa549878cb53e827b33b72701ff7efd9bac0b36b4437",
+        "results/tables/paper_federated_relaxation_coverage_seed1302.json": "9997f1b5d3b893f832e859e10b88d8db91ae03f92a717fd3a875ae043bc57b85",
+        "results/tables/paper_federated_relaxation_coverage_seed1303.json": "c9108b4dd1154ce32435bca596db43fe1a5846d85ef11a2ebc046c7557f285b3"
+      },
+      "files": {
+        "code/config/paper_federated_relaxation_continue.json": "475dd9753ff95b181fb4b23279ba002360e2755c3467604571c7a58caf624068",
+        "code/experiments/paper_federated_relaxation_continue.py": "105a796ab8e5ab44a0ad03c42f60fcc8c2b0049dc3f4da3250bbdf43498469b0"
+      }
+    },
+    "source_round": 5,
+    "source_communication_float64": 639,
+    "optimization": {
+      "log_parameters": [
+        [
+          3.9012004400705775,
+          4.123216684706604,
+          -0.40664961083115114,
+          -0.7253007368011234,
+          -0.9405485821362533,
+          -0.3641239181305983
+        ],
+        [
+          3.9502523132233924,
+          4.1627613462935,
+          -0.46464063632549235,
+          -0.830492692027352,
+          -0.9212666362859939,
+          -0.37473554539087534
+        ],
+        [
+          3.948637465593843,
+          4.125947053921803,
+          -0.46744544317574727,
+          0.40546510810816433,
+          -0.9549196945166474,
+          -0.42492608057741105
+        ],
+        [
+          3.9646925594741393,
+          3.9435999780449276,
+          -0.49566094102087643,
+          -0.9069047359069237,
+          -0.9246313097750274,
+          -0.3765996404897113
+        ],
+        [
+          3.990929502538819,
+          4.005584307304078,
+          -0.5507109497449038,
+          -0.44156360229231695,
+          -1.046667273844626,
+          -0.3051157759731998
+        ],
+        [
+          3.932402062900287,
+          3.953800553364734,
+          -0.5067931701433097,
+          0.40546510810816433,
+          -1.0339817235914917,
+          -0.3562545357719132
+        ],
+        [
+          3.946795138690311,
+          3.8904137711199342,
+          -0.6360663937144392,
+          0.40546510810816433,
+          -0.9434172378110826,
+          -0.3294484761094137
+        ],
+        [
+          3.937576411637216,
+          3.908108768017885,
+          -0.58956634427858,
+          0.40546510810816433,
+          -1.0182343386856452,
+          -0.3712838605450873
+        ],
+        [
+          3.9180231102002567,
+          3.8556717967777883,
+          -0.5532472563416834,
+          0.40546510810816433,
+          -1.029477541287043,
+          -0.36793844518352137
+        ]
+      ],
+      "centers": [
+        [
+          3.9433898893698722,
+          3.9965671399501392,
+          -0.5189756383973537,
+          -0.09743735849854379,
+          -0.9792382597704233,
+          -0.3633806975746368
+        ]
+      ],
+      "assignments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "round": 5,
+      "history": [
+        {
+          "round": 1,
+          "objective": 10861.052473807522,
+          "data_sse": 10845.704166198246,
+          "penalty": 15.348307609276452,
+          "max_log_step": 0.4309741950581494,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.003191281870683643,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00019552868744073448,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 8,
+              "optimality": 0.00026384323112204684,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.0001878835682333946,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.000999139989677939,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 6,
+              "optimality": 0.0028702093230639843,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.00023635221596618371,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 1.8235314324418017e-06,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0004814759956991852,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "objective": 10861.032749628024,
+          "data_sse": 10845.663394548308,
+          "penalty": 15.369355079715953,
+          "max_log_step": 0.005237853560752015,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004798480342531284,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 6.342376174920574e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.01118372429591503,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008216687792090942,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.006919893681180982,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.005090006887442128,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00040367019584460514,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.6107896688740614e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006491026509086638,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "objective": 10861.026305867246,
+          "data_sse": 10845.639539319756,
+          "penalty": 15.386766547490542,
+          "max_log_step": 0.0029843966697957747,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0026083609339160986,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 3.219665837621078e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0026719159331081103,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000447035502254127,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004069550913667507,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002987545039590322,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00023002850194444292,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 4.8251385144913786e-06,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00036547307131067194,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "objective": 10861.024186176335,
+          "data_sse": 10845.626490852486,
+          "penalty": 15.39769532384841,
+          "max_log_step": 0.0017206155847774296,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014974418609311178,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.02518106650746e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009807229374158598,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00024515568735103844,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002367194708661278,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017403316560854222,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00012921213217002335,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.387961422688947e-06,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002048939881511066,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "objective": 10861.023488632602,
+          "data_sse": 10845.619270862193,
+          "penalty": 15.404217770409105,
+          "max_log_step": 0.0009878499811031283,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008588502771572321,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.2280102652942608e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00047298569183288036,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00013705166642195233,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001366277637815919,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010098102868605957,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 7.324603313760756e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 8.186108041965899e-07,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00011583733246517615,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ],
+      "status": "converged",
+      "pending": {},
+      "communication_float64": 639
+    },
+    "evaluation": {
+      "vehicle_00_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0002542359299765199,
+          "measured_yaw_rmse_deg_s": 0.03020655746736443,
+          "beta_rmse_deg": 0.00030027716933974665
+        },
+        "reused": true,
+        "source_trace_sha256": "c7ca93becac04e4f2002822e5301f5cab7bfc2be1121d89695541d61e70c2ff0"
+      },
+      "vehicle_00_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010742558328785507,
+          "measured_yaw_rmse_deg_s": 0.03070545538784881,
+          "beta_rmse_deg": 0.00025326417793547246
+        },
+        "reused": true,
+        "source_trace_sha256": "4581985ff9250a1bcf3d075e3336733b0698982c9e2fddc981834587fb8a41d0"
+      },
+      "vehicle_00_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00042853519729147473,
+          "measured_yaw_rmse_deg_s": 0.03020586544548572,
+          "beta_rmse_deg": 0.000578140157846648
+        },
+        "reused": true,
+        "source_trace_sha256": "0eaed1a97023786d74b177a94c3c212a989b839b6e60f6d50c27616e1b4e534e"
+      },
+      "vehicle_00_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011349154133574414,
+          "measured_yaw_rmse_deg_s": 0.03152065579768452,
+          "beta_rmse_deg": 0.00038619059330248176
+        },
+        "reused": true,
+        "source_trace_sha256": "5c2f434e097cc53ac71770ddc2290859e3ea8fb0c027a54cb0b723b2171ba9b0"
+      },
+      "vehicle_00_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0006514976750476015,
+          "measured_yaw_rmse_deg_s": 0.03167347161643329,
+          "beta_rmse_deg": 0.0009184123804164685
+        },
+        "reused": true,
+        "source_trace_sha256": "4010e17a856051ca17f9e927f6e3bb79d1ba615c12e8577d52810f197179d62f"
+      },
+      "vehicle_00_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0012572401886251513,
+          "measured_yaw_rmse_deg_s": 0.03004163207262573,
+          "beta_rmse_deg": 0.0005696707721943934
+        },
+        "reused": true,
+        "source_trace_sha256": "955f9d18360495be720208dae9935c8c7c5023ee89337d1a142034c2db808bd5"
+      },
+      "vehicle_00_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0009891530993874748,
+          "measured_yaw_rmse_deg_s": 0.030088394472012402,
+          "beta_rmse_deg": 0.0012887285423573555
+        },
+        "reused": true,
+        "source_trace_sha256": "ed21b2940476ee40c969e561bcc47f0e53d228a0e861aad81c0b45e2cce287e4"
+      },
+      "vehicle_00_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0016101929135754907,
+          "measured_yaw_rmse_deg_s": 0.03019402973608956,
+          "beta_rmse_deg": 0.0008011922457889414
+        },
+        "reused": true,
+        "source_trace_sha256": "50115beb69ed5ecd98e33d100899921a067da0c045d6a61248a6cf281e03b8e1"
+      },
+      "vehicle_00_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0014711537559456813,
+          "measured_yaw_rmse_deg_s": 0.030562929058096197,
+          "beta_rmse_deg": 0.0016549924785948468
+        },
+        "reused": true,
+        "source_trace_sha256": "afad3b3b72107e0232b051c89efc14949a318f3ddb20afde468fc8ce8c208359"
+      },
+      "vehicle_00_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0023224481726795716,
+          "measured_yaw_rmse_deg_s": 0.029805543639401525,
+          "beta_rmse_deg": 0.0010891560536397693
+        },
+        "reused": true,
+        "source_trace_sha256": "64678c26592e25b6b96185c035f9af49def6ccac0fdf242c956eefd235b0d5bb"
+      },
+      "vehicle_00_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002049063283783205,
+          "measured_yaw_rmse_deg_s": 0.029700044716816823,
+          "beta_rmse_deg": 0.0019925545370124372
+        },
+        "reused": true,
+        "source_trace_sha256": "7611bd709c9294603f1a572f43881c3b97912be6ca6b86603d2c06303c8d99ff"
+      },
+      "vehicle_00_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003437160408246939,
+          "measured_yaw_rmse_deg_s": 0.03060256324278798,
+          "beta_rmse_deg": 0.001443300384593582
+        },
+        "reused": true,
+        "source_trace_sha256": "ebc6ed023b682433a589b2a4f1748719310e836272733702b302ca0936251f9a"
+      },
+      "vehicle_00_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0026547487953854465,
+          "measured_yaw_rmse_deg_s": 0.029918200454731297,
+          "beta_rmse_deg": 0.0022894897868833046
+        },
+        "reused": true,
+        "source_trace_sha256": "6453738b5187f951efdf73aad380690f84f9d675277efd52f85f18897d79da2c"
+      },
+      "vehicle_00_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004965299157298744,
+          "measured_yaw_rmse_deg_s": 0.030215801501926397,
+          "beta_rmse_deg": 0.0018719680216429308
+        },
+        "reused": true,
+        "source_trace_sha256": "769c3f4d1a8496710b5e53d5193d6d44a1ef9a19dfd5be05130075c98df63085"
+      },
+      "vehicle_01_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00023923785491953333,
+          "measured_yaw_rmse_deg_s": 0.028499371860763147,
+          "beta_rmse_deg": 6.846969121064014e-05
+        },
+        "reused": true,
+        "source_trace_sha256": "429348e8b6860cff87c6cb95bc4aeb416133be96dd54fefd2b2ebd486b1041b0"
+      },
+      "vehicle_01_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.000615577277664208,
+          "measured_yaw_rmse_deg_s": 0.028924683885692797,
+          "beta_rmse_deg": 0.00010897760331619306
+        },
+        "reused": true,
+        "source_trace_sha256": "c0f0e5a8ff23564b1d03a1a261dea0ae6fb1db020bd5ca3b124989fbfd99a7ea"
+      },
+      "vehicle_01_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0005961796769295245,
+          "measured_yaw_rmse_deg_s": 0.031154601812924267,
+          "beta_rmse_deg": 0.0001357335872761488
+        },
+        "reused": true,
+        "source_trace_sha256": "a9abab760b8742cd26e33550a501c45aa9a6a835fc4775e5ed44c3e6aadd2eb6"
+      },
+      "vehicle_01_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0009626728265285347,
+          "measured_yaw_rmse_deg_s": 0.0303267086241975,
+          "beta_rmse_deg": 0.00013510448604439902
+        },
+        "reused": true,
+        "source_trace_sha256": "6c9e7efcd67f3419b7a42ce13cfa9ced85b23d2bd6bd9cc3d09fcfc6544e7ec9"
+      },
+      "vehicle_01_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011944200955977971,
+          "measured_yaw_rmse_deg_s": 0.02929526911034832,
+          "beta_rmse_deg": 0.0002455475510454077
+        },
+        "reused": true,
+        "source_trace_sha256": "3ce9b1bf4f6123351af854ac685bdf6d65328ac832d3d151e6e16d2daa61000b"
+      },
+      "vehicle_01_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0012689156946188794,
+          "measured_yaw_rmse_deg_s": 0.03082253202285805,
+          "beta_rmse_deg": 0.0001731296719215343
+        },
+        "reused": true,
+        "source_trace_sha256": "17b040d7a57b148f38c2a13ec002166de79a1042677ddc92bacca7fc33201cf6"
+      },
+      "vehicle_01_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002031744486693765,
+          "measured_yaw_rmse_deg_s": 0.03014425974898804,
+          "beta_rmse_deg": 0.0003958981513018528
+        },
+        "reused": true,
+        "source_trace_sha256": "2ee93fef09103fae562826c3f8cad188eb4de55d6399727447ba7c3793cdb95c"
+      },
+      "vehicle_01_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0015355518647433058,
+          "measured_yaw_rmse_deg_s": 0.029554130952734542,
+          "beta_rmse_deg": 0.00024542031724644395
+        },
+        "reused": true,
+        "source_trace_sha256": "a43bae555788a17a0faad37b00bedf9b0fee68d41c79e6ac44e76d89f3d5a66a"
+      },
+      "vehicle_01_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003029115217896884,
+          "measured_yaw_rmse_deg_s": 0.030490727748421573,
+          "beta_rmse_deg": 0.0005660577927010038
+        },
+        "reused": true,
+        "source_trace_sha256": "bf9ebd750fbb237e170c41d12325810f040572b10cca3c74c1224576400ef9c4"
+      },
+      "vehicle_01_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0018605629656109326,
+          "measured_yaw_rmse_deg_s": 0.02979800148535098,
+          "beta_rmse_deg": 0.0003861179000672513
+        },
+        "reused": true,
+        "source_trace_sha256": "78591633087a7f7a6ea1267f6c98c0604abe9481359bd2089d0e2a5995dff2c5"
+      },
+      "vehicle_01_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004073293447498965,
+          "measured_yaw_rmse_deg_s": 0.02970102339828553,
+          "beta_rmse_deg": 0.0007338150648319736
+        },
+        "reused": true,
+        "source_trace_sha256": "34e59889beb36f83cdf9bc238f6bb683740fb2f232daf5e658972893f183c44c"
+      },
+      "vehicle_01_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0024498058966900865,
+          "measured_yaw_rmse_deg_s": 0.029810345199292935,
+          "beta_rmse_deg": 0.0006212668965907635
+        },
+        "reused": true,
+        "source_trace_sha256": "34b3dde56247bcc531485bc391c2dc99e800fe15bc81f0545a5694e26636d8b3"
+      },
+      "vehicle_01_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0050653045396396555,
+          "measured_yaw_rmse_deg_s": 0.03127069165817308,
+          "beta_rmse_deg": 0.0008854671374201298
+        },
+        "reused": true,
+        "source_trace_sha256": "357ff1d4aff559f8f693c0d2184bf45dd2b9f51563ea5209c45ee63446dc30f6"
+      },
+      "vehicle_01_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0035069562059251613,
+          "measured_yaw_rmse_deg_s": 0.02960003611576709,
+          "beta_rmse_deg": 0.0009657797706004466
+        },
+        "reused": true,
+        "source_trace_sha256": "3bf3b1b69bd0d5cfa23d4254701748a2fc2d35e8c7ff5ab8c356205fd8be0e79"
+      },
+      "vehicle_02_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0006432684570337616,
+          "measured_yaw_rmse_deg_s": 0.0300223912191397,
+          "beta_rmse_deg": 0.0002961813292164262
+        },
+        "reused": true,
+        "source_trace_sha256": "7b793f4b168a4e04f91420be7e2a913a2cb4d47c2879952bccf5808e7c73d95f"
+      },
+      "vehicle_02_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0018106629193066033,
+          "measured_yaw_rmse_deg_s": 0.03047918515423111,
+          "beta_rmse_deg": 0.000688614428159655
+        },
+        "reused": true,
+        "source_trace_sha256": "039666cda5c34fffe328ce4a593466cc32886efca43bb441f4f60d1820084387"
+      },
+      "vehicle_02_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0016004717963690699,
+          "measured_yaw_rmse_deg_s": 0.03029005435362322,
+          "beta_rmse_deg": 0.0003926067145404695
+        },
+        "reused": true,
+        "source_trace_sha256": "d35bd12673279eb17cece833efb3346e5536544f1c179d9d8f07caa28e21e000"
+      },
+      "vehicle_02_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0023125262829182644,
+          "measured_yaw_rmse_deg_s": 0.029198317212266622,
+          "beta_rmse_deg": 0.0007135246122415906
+        },
+        "reused": true,
+        "source_trace_sha256": "d02b433452e7f05f0aecfb5a8a69a4654f663087725c00b16cc16161816b56bb"
+      },
+      "vehicle_02_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0028303711921411024,
+          "measured_yaw_rmse_deg_s": 0.030704526618851938,
+          "beta_rmse_deg": 0.00042494745873623466
+        },
+        "reused": true,
+        "source_trace_sha256": "de6e0b670ffc2100be4bbe743ece13f25d7c0a5a00eddc88409017727898aab4"
+      },
+      "vehicle_02_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0028928118296397518,
+          "measured_yaw_rmse_deg_s": 0.029338249823729547,
+          "beta_rmse_deg": 0.0007575279880064837
+        },
+        "reused": true,
+        "source_trace_sha256": "5a5da587ab4d26fe69be9326d0068e963371c878d319828bb4399127b17d0c49"
+      },
+      "vehicle_02_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004108658121359243,
+          "measured_yaw_rmse_deg_s": 0.030377162277233846,
+          "beta_rmse_deg": 0.0004025683113650115
+        },
+        "reused": true,
+        "source_trace_sha256": "c29652cf09d2e87d5665a779a5b6b16fd2ff059b2d7319415d1f09df3213c136"
+      },
+      "vehicle_02_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0035063454550825473,
+          "measured_yaw_rmse_deg_s": 0.02979099441870507,
+          "beta_rmse_deg": 0.0008091186715483213
+        },
+        "reused": true,
+        "source_trace_sha256": "483d1d6228807cf83c9d680c816bcf5295cf4801e1ed5f8a08249b3329d07280"
+      },
+      "vehicle_02_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005278509657960906,
+          "measured_yaw_rmse_deg_s": 0.03106869195430085,
+          "beta_rmse_deg": 0.00036562492449594057
+        },
+        "reused": true,
+        "source_trace_sha256": "ee98947a4348ef6a7296b85c3438682e5936bced3fe094755dc5cd68e051bf53"
+      },
+      "vehicle_02_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004125239019715758,
+          "measured_yaw_rmse_deg_s": 0.031495993868393066,
+          "beta_rmse_deg": 0.0008710320346109711
+        },
+        "reused": true,
+        "source_trace_sha256": "dfae5dd354dab84cc001ff7b97251ba55e702ce50791ea4cdf593da81787a6ff"
+      },
+      "vehicle_02_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.006260126223575384,
+          "measured_yaw_rmse_deg_s": 0.03019851280881679,
+          "beta_rmse_deg": 0.00036995622473553173
+        },
+        "reused": true,
+        "source_trace_sha256": "bba28302e7cc7531100336902789efd00f32e83153b774393521b0877df06c7f"
+      },
+      "vehicle_02_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004746968583479927,
+          "measured_yaw_rmse_deg_s": 0.030642651954736557,
+          "beta_rmse_deg": 0.0009480817141454261
+        },
+        "reused": true,
+        "source_trace_sha256": "5d5571f47e120d9bb19c66f6639159ee5516502af613d5a53ed067efb9716fe1"
+      },
+      "vehicle_02_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.007030780559796455,
+          "measured_yaw_rmse_deg_s": 0.031177941822715678,
+          "beta_rmse_deg": 0.0004444801183901455
+        },
+        "reused": true,
+        "source_trace_sha256": "32e79e05a2c6a0f9b3ab029482e3074b23ab9b334d64a788a60f3fe383e6e661"
+      },
+      "vehicle_02_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005386592110646688,
+          "measured_yaw_rmse_deg_s": 0.030085236611337045,
+          "beta_rmse_deg": 0.0010444086393772247
+        },
+        "reused": true,
+        "source_trace_sha256": "ce6b3b624517e6da9bec1969fef40c76f38d8cd9fa73d70261c5c4693d4c3ffd"
+      },
+      "vehicle_03_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00011241346690566,
+          "measured_yaw_rmse_deg_s": 0.029652997480381534,
+          "beta_rmse_deg": 5.948452121071286e-05
+        },
+        "reused": true,
+        "source_trace_sha256": "1cf9621da0d8ce34626dd9bfb617c8a3593fa1c5100e9a5facfe2b4f457bfb97"
+      },
+      "vehicle_03_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0008442038495388067,
+          "measured_yaw_rmse_deg_s": 0.02987850975371228,
+          "beta_rmse_deg": 0.0001706976379379804
+        },
+        "reused": true,
+        "source_trace_sha256": "ce2e96f2b4392e4ed3c1e8feb87b8e82f4578209e54d1a7054e914ecd374e64b"
+      },
+      "vehicle_03_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00023468175822215375,
+          "measured_yaw_rmse_deg_s": 0.02989709817044683,
+          "beta_rmse_deg": 0.00015890187002638706
+        },
+        "reused": true,
+        "source_trace_sha256": "fdd1e05b7753b977348465b01e09be478423283b399a4e0a255bc0d0524993f2"
+      },
+      "vehicle_03_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010404166675173012,
+          "measured_yaw_rmse_deg_s": 0.02854630153318563,
+          "beta_rmse_deg": 0.00017220592983455165
+        },
+        "reused": true,
+        "source_trace_sha256": "dc979f842e30ec2349771c8b502168b69e5fb10e4800e3841b06341d7c709424"
+      },
+      "vehicle_03_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0004201038395601077,
+          "measured_yaw_rmse_deg_s": 0.029751663148252293,
+          "beta_rmse_deg": 0.0004823325380154237
+        },
+        "reused": true,
+        "source_trace_sha256": "9827eb651673a2f06bb06b73f23aaabb735a379dca681d981f6b72a015762345"
+      },
+      "vehicle_03_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011862176806212705,
+          "measured_yaw_rmse_deg_s": 0.030404007073957816,
+          "beta_rmse_deg": 0.0002248019690591589
+        },
+        "reused": true,
+        "source_trace_sha256": "29a39467a3bba888c1d9a91ff47a6b44ce96c3e0b9034c201249e457b457aa9c"
+      },
+      "vehicle_03_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.000878324827637955,
+          "measured_yaw_rmse_deg_s": 0.02964895407877062,
+          "beta_rmse_deg": 0.0011168106259985791
+        },
+        "reused": true,
+        "source_trace_sha256": "85eb85ace08aa0b4a4786a732693e9a80722ffa69a644eeefe171df8348e7dc9"
+      },
+      "vehicle_03_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.001644323557056265,
+          "measured_yaw_rmse_deg_s": 0.03056453045412562,
+          "beta_rmse_deg": 0.0004421977582265755
+        },
+        "reused": true,
+        "source_trace_sha256": "adaed9a35534db848cdc597798e8e4ebce7969100ef4b4e7abb8f5ee74e8b6b7"
+      },
+      "vehicle_03_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.001803022994388035,
+          "measured_yaw_rmse_deg_s": 0.03008773338702448,
+          "beta_rmse_deg": 0.0020915583649924086
+        },
+        "reused": true,
+        "source_trace_sha256": "c360084b93b0bb47005d5cab1cbb1b80e8e81205c223c927beb6cb772655e214"
+      },
+      "vehicle_03_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0029309846860398362,
+          "measured_yaw_rmse_deg_s": 0.030752016303194376,
+          "beta_rmse_deg": 0.0009014443405593422
+        },
+        "reused": true,
+        "source_trace_sha256": "902c324f8dcde88440c98bffc47f9bcfdf606e1a4dec47f9bf8d8bbded2a534a"
+      },
+      "vehicle_03_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003201340240895481,
+          "measured_yaw_rmse_deg_s": 0.03043429721465602,
+          "beta_rmse_deg": 0.0033810863328520456
+        },
+        "reused": true,
+        "source_trace_sha256": "b4734b3cca137d081cd03889d2b3d0713bc2957372cb8255810b73acd1046458"
+      },
+      "vehicle_03_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005292871421490865,
+          "measured_yaw_rmse_deg_s": 0.02930873504198844,
+          "beta_rmse_deg": 0.001660009563945939
+        },
+        "reused": true,
+        "source_trace_sha256": "5fdf6e15c76587f7b12398fded248093f4c337a8cec124d9d3bdbb812240901b"
+      },
+      "vehicle_03_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004999597034696186,
+          "measured_yaw_rmse_deg_s": 0.03097767690893875,
+          "beta_rmse_deg": 0.004929973020947564
+        },
+        "reused": true,
+        "source_trace_sha256": "455287743e1c152b0f1170f9eaa3aa706886cb99d6c41fd76f23e4cf45220c59"
+      },
+      "vehicle_03_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.008875965445573395,
+          "measured_yaw_rmse_deg_s": 0.032223970890784014,
+          "beta_rmse_deg": 0.002781962283136864
+        },
+        "reused": true,
+        "source_trace_sha256": "2dc5785ec71e89fcfb65bf8cc3d07f0aa8ca96c5d2845ca228439a108483c15b"
+      },
+      "vehicle_04_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0012821029286960168,
+          "measured_yaw_rmse_deg_s": 0.02899241105175646,
+          "beta_rmse_deg": 0.0017034426542966372
+        },
+        "reused": true,
+        "source_trace_sha256": "3e5d3154684194850e9f595642556da23e50c58a88c4f4ddfd519f09880efb12"
+      },
+      "vehicle_04_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00428424286651563,
+          "measured_yaw_rmse_deg_s": 0.030622045504934716,
+          "beta_rmse_deg": 0.0011529597877115467
+        },
+        "reused": true,
+        "source_trace_sha256": "a97c8e3a53e116e502e708fd4e6d11ab689471d50c03701283bb5752afc5b862"
+      },
+      "vehicle_04_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002003128969525216,
+          "measured_yaw_rmse_deg_s": 0.030942498059656216,
+          "beta_rmse_deg": 0.0031815029323227755
+        },
+        "reused": true,
+        "source_trace_sha256": "7e6508ec0a814c7d664bb7bcbd1dc1e5aa340bab9e5b5e88b656bfda312bf847"
+      },
+      "vehicle_04_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004392998706717226,
+          "measured_yaw_rmse_deg_s": 0.030079108739813707,
+          "beta_rmse_deg": 0.001780432741224562
+        },
+        "reused": true,
+        "source_trace_sha256": "994c9be6c6faaa497e0d20cebebc5a3daa22e959c6775fe5f4709c46c039b2c5"
+      },
+      "vehicle_04_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0025181821960606515,
+          "measured_yaw_rmse_deg_s": 0.029438844070616994,
+          "beta_rmse_deg": 0.00475854746793407
+        },
+        "reused": true,
+        "source_trace_sha256": "a708aaea6e64cbbc321a80b421e578307f38e9d389ae5f6f7b23fd3c514857a5"
+      },
+      "vehicle_04_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004342118247599431,
+          "measured_yaw_rmse_deg_s": 0.030722778974854727,
+          "beta_rmse_deg": 0.0025371931721929622
+        },
+        "reused": true,
+        "source_trace_sha256": "d6ef3c05c02cf477ab34a24c9adb9ed4256f3a3ccdab8213fe8d9484d66c28c2"
+      },
+      "vehicle_04_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002751516341313382,
+          "measured_yaw_rmse_deg_s": 0.03036249912583244,
+          "beta_rmse_deg": 0.006259082237755979
+        },
+        "reused": true,
+        "source_trace_sha256": "c5ee5412969fc1f4b8c5d0451eacf01fe9bc55ea2ad4946c05638283820195b1"
+      },
+      "vehicle_04_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004089904231117001,
+          "measured_yaw_rmse_deg_s": 0.030884010921579108,
+          "beta_rmse_deg": 0.003247909332478144
+        },
+        "reused": true,
+        "source_trace_sha256": "dece6da125ec292c8f1073ff6cf3a0eca66aac13b14c86c180552d7c5db96377"
+      },
+      "vehicle_04_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0027810701407387063,
+          "measured_yaw_rmse_deg_s": 0.030888176982152113,
+          "beta_rmse_deg": 0.007594209840864557
+        },
+        "reused": true,
+        "source_trace_sha256": "3ff05e6dd385f20f37e2cd24d5dca7302244041b88967a644ee570327eec9641"
+      },
+      "vehicle_04_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0036580347897989147,
+          "measured_yaw_rmse_deg_s": 0.030422556511335012,
+          "beta_rmse_deg": 0.0038939809323503037
+        },
+        "reused": true,
+        "source_trace_sha256": "751c89af5c89e40861c9392ab66c115116552796ea0fc1281a6f737575cce9ba"
+      },
+      "vehicle_04_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002801402248939282,
+          "measured_yaw_rmse_deg_s": 0.029364094721440824,
+          "beta_rmse_deg": 0.008738100359114202
+        },
+        "reused": true,
+        "source_trace_sha256": "f506f9781bd9a57515dbd2a7f62747eeb6ad98d15d8c437e7c724d47e9bf5fd0"
+      },
+      "vehicle_04_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0031713711774506038,
+          "measured_yaw_rmse_deg_s": 0.03018359293998562,
+          "beta_rmse_deg": 0.004476834377752972
+        },
+        "reused": true,
+        "source_trace_sha256": "7ba3f4c878c6b9b02e8e5ea1770fcd4e2fb0c59d63bf288b4563e68c033fe154"
+      },
+      "vehicle_04_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0030345153681901674,
+          "measured_yaw_rmse_deg_s": 0.03054164556337332,
+          "beta_rmse_deg": 0.009699448146811035
+        },
+        "reused": true,
+        "source_trace_sha256": "c42b8b7956ca4f1f56872c9e0222f0196bb7e86917b03fe9134322cbbd301c35"
+      },
+      "vehicle_04_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0028589320149087177,
+          "measured_yaw_rmse_deg_s": 0.02979194004081508,
+          "beta_rmse_deg": 0.004998373072933846
+        },
+        "reused": true,
+        "source_trace_sha256": "73309efdcf78779754634e1eed47b435de079e8e86dd0cc20ecbf0a830fd21f6"
+      },
+      "vehicle_05_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00045358001246271985,
+          "measured_yaw_rmse_deg_s": 0.030345506822065237,
+          "beta_rmse_deg": 0.0004161548492380048
+        },
+        "reused": true,
+        "source_trace_sha256": "38294ca0d3db669a820d1ba7b3994728c6e9d41795ca0feac600cf4d36517db9"
+      },
+      "vehicle_05_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002754039056640432,
+          "measured_yaw_rmse_deg_s": 0.02992783766775447,
+          "beta_rmse_deg": 0.0006595308951670365
+        },
+        "reused": true,
+        "source_trace_sha256": "e95235acd87b5cb4a33fb418c77e61976dad7a455e64721e447a5b0817765ded"
+      },
+      "vehicle_05_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0004720671604553834,
+          "measured_yaw_rmse_deg_s": 0.030058638280627666,
+          "beta_rmse_deg": 0.0007652407131423577
+        },
+        "reused": true,
+        "source_trace_sha256": "480f8bea115df253166080c2cedeaa2a163ae15a41ad78b18e98f0673b8b61de"
+      },
+      "vehicle_05_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0021307651163478473,
+          "measured_yaw_rmse_deg_s": 0.030939606689184333,
+          "beta_rmse_deg": 0.0006073965295740189
+        },
+        "reused": true,
+        "source_trace_sha256": "f9a228286e6369b40395b3cf6e4df17c142c7b497bd0c40a0e83a7a71c67dd09"
+      },
+      "vehicle_05_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00042476924598191195,
+          "measured_yaw_rmse_deg_s": 0.03050693708541786,
+          "beta_rmse_deg": 0.0011868870790391328
+        },
+        "reused": true,
+        "source_trace_sha256": "7b87a58afdf6aef08d7909bbaf6d957d2ca64f91d5e1bc3609989c9033156609"
+      },
+      "vehicle_05_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0020372570871582943,
+          "measured_yaw_rmse_deg_s": 0.030280972295866997,
+          "beta_rmse_deg": 0.0007506769809172547
+        },
+        "reused": true,
+        "source_trace_sha256": "c558c3debc394ccb448157b452b593ff93a925f964842cc9966c26354751b94a"
+      },
+      "vehicle_05_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00034728012469308826,
+          "measured_yaw_rmse_deg_s": 0.029837645883440508,
+          "beta_rmse_deg": 0.0016503647745385601
+        },
+        "reused": true,
+        "source_trace_sha256": "5fb34555cb5b77d7ba6c44b04a6da97d07368cf0b8aff15e3a7eb4b1422b7109"
+      },
+      "vehicle_05_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0025974946020382327,
+          "measured_yaw_rmse_deg_s": 0.02985927240016704,
+          "beta_rmse_deg": 0.0009266283410390019
+        },
+        "reused": true,
+        "source_trace_sha256": "11397010fdf3fce80901b3b67fb5d543ce6d5912cdb59b6520dddd7e24e7ec87"
+      },
+      "vehicle_05_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.000380564904900411,
+          "measured_yaw_rmse_deg_s": 0.03031706193509645,
+          "beta_rmse_deg": 0.0021324398023388393
+        },
+        "reused": true,
+        "source_trace_sha256": "6982ea184e841e0af103a3eb5daa78f71ce255fbdc9b976b38517bc10a378841"
+      },
+      "vehicle_05_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0034212968857701234,
+          "measured_yaw_rmse_deg_s": 0.030016681288742155,
+          "beta_rmse_deg": 0.001109844277055639
+        },
+        "reused": true,
+        "source_trace_sha256": "0366efc1136c10c4759c3d1e2cded5a68c648b5f252b4e9bc1c42a1b5ed97471"
+      },
+      "vehicle_05_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0006317434853554232,
+          "measured_yaw_rmse_deg_s": 0.030350356449127664,
+          "beta_rmse_deg": 0.0026138705447478956
+        },
+        "reused": true,
+        "source_trace_sha256": "2ad2f4396c8eea83d4b901a4ee484f1585243a8297bef4f24d8240bbd4709d80"
+      },
+      "vehicle_05_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00427034842875432,
+          "measured_yaw_rmse_deg_s": 0.030179828114769297,
+          "beta_rmse_deg": 0.0013021720848366645
+        },
+        "reused": true,
+        "source_trace_sha256": "d9a00807b1060fbb5b4ce421fd570934ea56222ba90581fde4c65061331aec49"
+      },
+      "vehicle_05_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010124600314129991,
+          "measured_yaw_rmse_deg_s": 0.029706520246094603,
+          "beta_rmse_deg": 0.003079984661322606
+        },
+        "reused": true,
+        "source_trace_sha256": "ed7223dcb40aa7594f1515ebff37913930559b9c8d9846f8ad24c0b19ce35d30"
+      },
+      "vehicle_05_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00505347041136918,
+          "measured_yaw_rmse_deg_s": 0.030976259196158252,
+          "beta_rmse_deg": 0.0015079009103243573
+        },
+        "reused": true,
+        "source_trace_sha256": "6d0d18cdf69352710b60707e27f766102b8a38ce0a995fa21f38a4ce10ac37dd"
+      },
+      "vehicle_06_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0014224296913293252,
+          "measured_yaw_rmse_deg_s": 0.028422393406191328,
+          "beta_rmse_deg": 0.00361262833464834
+        },
+        "reused": true,
+        "source_trace_sha256": "cb07cf47821d4b58da051edf852595dd539199e1c4f8b0686446f7d0911bcab5"
+      },
+      "vehicle_06_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011618157168138796,
+          "measured_yaw_rmse_deg_s": 0.02913166749247211,
+          "beta_rmse_deg": 0.0026130451589430675
+        },
+        "reused": true,
+        "source_trace_sha256": "ec1efcbc812fd4d78477e32a4bfb7c2625f38a1b3e43f82370737b52287fd607"
+      },
+      "vehicle_06_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003529668453332819,
+          "measured_yaw_rmse_deg_s": 0.030485656602595886,
+          "beta_rmse_deg": 0.006710329077089348
+        },
+        "reused": true,
+        "source_trace_sha256": "701e4ebda27552ed7409e2c0720c26467ee1dcf946761efea56d2d43ee1d4c1e"
+      },
+      "vehicle_06_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0017264812411150075,
+          "measured_yaw_rmse_deg_s": 0.02999403101162614,
+          "beta_rmse_deg": 0.003992970982624723
+        },
+        "reused": true,
+        "source_trace_sha256": "cbfef93f8c0ee335559aa10775fda7535b4c77912d1cfbaeb31699ea5aebf377"
+      },
+      "vehicle_06_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00653124371081365,
+          "measured_yaw_rmse_deg_s": 0.03115312632658529,
+          "beta_rmse_deg": 0.01007230489139872
+        },
+        "reused": true,
+        "source_trace_sha256": "6fe07ec5e029c7a51841fce4dc7a5a566cc013d1b482038509470b71097adf2e"
+      },
+      "vehicle_06_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0024086384827101495,
+          "measured_yaw_rmse_deg_s": 0.030099148828801454,
+          "beta_rmse_deg": 0.005493493878957661
+        },
+        "reused": true,
+        "source_trace_sha256": "cca71929462fa25e261763ebff33af58266428bf481b893440e6116dd972cc78"
+      },
+      "vehicle_06_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.01009807322951411,
+          "measured_yaw_rmse_deg_s": 0.03140363711230996,
+          "beta_rmse_deg": 0.013371068920832624
+        },
+        "reused": true,
+        "source_trace_sha256": "d208fbf66d3166c6f039b451d5255381a2617584f3ad6c5e472b0c9a9b10215e"
+      },
+      "vehicle_06_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0034595030694570587,
+          "measured_yaw_rmse_deg_s": 0.029210573158483754,
+          "beta_rmse_deg": 0.006993794507400284
+        },
+        "reused": true,
+        "source_trace_sha256": "449e4f22fb48534105a5dab64b47e307ce7765dd2c6b68b4acf48538b1c12a86"
+      },
+      "vehicle_06_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.013876514089547024,
+          "measured_yaw_rmse_deg_s": 0.032683980047519545,
+          "beta_rmse_deg": 0.01643306336320191
+        },
+        "reused": true,
+        "source_trace_sha256": "640825beab3e3e7a0abab551e66ef4f806c68721b8167a05c41818a61ec95dd8"
+      },
+      "vehicle_06_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005000541141880152,
+          "measured_yaw_rmse_deg_s": 0.030581743906157092,
+          "beta_rmse_deg": 0.008489473298653587
+        },
+        "reused": true,
+        "source_trace_sha256": "c33f23c917aef0aa4c855c60a210af88723812767ffd085964e77554ab4790b4"
+      },
+      "vehicle_06_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.017589457439165075,
+          "measured_yaw_rmse_deg_s": 0.0348776559458649,
+          "beta_rmse_deg": 0.01919376090066535
+        },
+        "reused": true,
+        "source_trace_sha256": "ead24bd3c454b0e3c4c505809e5aebbcce0f6498dcabd821662e56e7d0881c7e"
+      },
+      "vehicle_06_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.007047864925301397,
+          "measured_yaw_rmse_deg_s": 0.031617140353853046,
+          "beta_rmse_deg": 0.010005882210012416
+        },
+        "reused": true,
+        "source_trace_sha256": "98a6c802b3bfffd6aeae074f8be9dc9f5add59935ce425957d4f6089d2abbd4e"
+      },
+      "vehicle_06_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.021060509229623502,
+          "measured_yaw_rmse_deg_s": 0.03680309339233802,
+          "beta_rmse_deg": 0.021650262913848327
+        },
+        "reused": true,
+        "source_trace_sha256": "26ab5621f8ed7c4fe9d1f2182103aacbf93d6f4174033497d219a2629c088966"
+      },
+      "vehicle_06_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.009593370702618379,
+          "measured_yaw_rmse_deg_s": 0.030410517358005908,
+          "beta_rmse_deg": 0.011572309643069031
+        },
+        "reused": true,
+        "source_trace_sha256": "2bcbb57d57c3ca2b4c73645b9bb8039fa271dfd98539351d6e8458b4e4befaad"
+      },
+      "vehicle_07_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0006129506764862162,
+          "measured_yaw_rmse_deg_s": 0.02985342158211356,
+          "beta_rmse_deg": 0.0015151689938460557
+        },
+        "reused": true,
+        "source_trace_sha256": "e66af9abccf8bde9500ca24fedbe67ed49997cd7340cd61148167f18ca845c00"
+      },
+      "vehicle_07_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0036210577791593625,
+          "measured_yaw_rmse_deg_s": 0.030279364417710262,
+          "beta_rmse_deg": 0.0012872452485627516
+        },
+        "reused": true,
+        "source_trace_sha256": "165d2fff999d9b65ade443b1d5cb86e9502a047c9a971a8344ee24a7f5761b38"
+      },
+      "vehicle_07_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0009719865468421027,
+          "measured_yaw_rmse_deg_s": 0.03008121094511016,
+          "beta_rmse_deg": 0.0028299691456208933
+        },
+        "reused": true,
+        "source_trace_sha256": "32c2e49ff5421c57cd6121c028b22759f21603889e97985f429fcd174807c7a0"
+      },
+      "vehicle_07_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0034329092024943165,
+          "measured_yaw_rmse_deg_s": 0.030651458108913874,
+          "beta_rmse_deg": 0.0018339503424598797
+        },
+        "reused": true,
+        "source_trace_sha256": "372c9118652e5fff44c4944afb6995ae05dc04e38a6d68116bdfe72e62785956"
+      },
+      "vehicle_07_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0015304141545348772,
+          "measured_yaw_rmse_deg_s": 0.030527540522705298,
+          "beta_rmse_deg": 0.004303606735122898
+        },
+        "reused": true,
+        "source_trace_sha256": "e0231ccaf0a0170de7e8fd6d5cfdc4e8f50aba1e5d8e69a8c34a563f7a4273e5"
+      },
+      "vehicle_07_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003193727033878733,
+          "measured_yaw_rmse_deg_s": 0.030953906377331624,
+          "beta_rmse_deg": 0.0025199658223253314
+        },
+        "reused": true,
+        "source_trace_sha256": "dbc78ca14616ed028e0a31fa4e7be5a8060c89c38332180a219de4b2fb4437f6"
+      },
+      "vehicle_07_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002294499309093492,
+          "measured_yaw_rmse_deg_s": 0.030441159187271048,
+          "beta_rmse_deg": 0.005812962454617862
+        },
+        "reused": true,
+        "source_trace_sha256": "80deaf9f61cf1ed2392d77d6ee05e4a864d8729cc74d3d4c92859754e9e5bb03"
+      },
+      "vehicle_07_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003170643022496262,
+          "measured_yaw_rmse_deg_s": 0.029884031249562404,
+          "beta_rmse_deg": 0.003227885696880315
+        },
+        "reused": true,
+        "source_trace_sha256": "1eb6f33a675eb7805af640b0e5d000022d2f260f4eba5288fb28b4f2c06fd975"
+      },
+      "vehicle_07_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003225217504841172,
+          "measured_yaw_rmse_deg_s": 0.029768695615760767,
+          "beta_rmse_deg": 0.007287024471152554
+        },
+        "reused": true,
+        "source_trace_sha256": "f51caafe3d949f3a99df49b4f26c0e92fac1006bcb1a661311942302e0fcaeaf"
+      },
+      "vehicle_07_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00357678411697349,
+          "measured_yaw_rmse_deg_s": 0.030661373990527926,
+          "beta_rmse_deg": 0.003957603063557554
+        },
+        "reused": true,
+        "source_trace_sha256": "879c891b33267ad064e796d4e83ea6cfc5afe82b8ca45f5c789b4f9d54001726"
+      },
+      "vehicle_07_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004274129275375938,
+          "measured_yaw_rmse_deg_s": 0.028654470551873118,
+          "beta_rmse_deg": 0.00868987975471494
+        },
+        "reused": true,
+        "source_trace_sha256": "5fabe528ddcc8c4c7a5c14401ef685bac1452fac1efa47b7a5ed54842e794ea6"
+      },
+      "vehicle_07_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004523255856077968,
+          "measured_yaw_rmse_deg_s": 0.03097656841152986,
+          "beta_rmse_deg": 0.004728369732994683
+        },
+        "reused": true,
+        "source_trace_sha256": "1a05e707aa67e808264923776ce6e3cf06b1a04d3ddbf3505086e835ecde160b"
+      },
+      "vehicle_07_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005399438787601558,
+          "measured_yaw_rmse_deg_s": 0.02938135934310675,
+          "beta_rmse_deg": 0.010006265907863956
+        },
+        "reused": true,
+        "source_trace_sha256": "309c3f5bb8ff1b1f6255f69ea600891a94bb4e23c760baf45c41fec8f76b186b"
+      },
+      "vehicle_07_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005996124798044607,
+          "measured_yaw_rmse_deg_s": 0.03139678677955902,
+          "beta_rmse_deg": 0.005561065580798892
+        },
+        "reused": true,
+        "source_trace_sha256": "172e3c23c0c13a4d54f49158a2b97c478a2c7f0cf6027f7fe7e466280080827f"
+      },
+      "vehicle_08_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0007341588217619067,
+          "measured_yaw_rmse_deg_s": 0.028963939212116242,
+          "beta_rmse_deg": 0.0009011239163413538
+        },
+        "reused": true,
+        "source_trace_sha256": "ff01d2e94d52d355a70276f6b877eca52afaeb77451626fa09477a365af38a97"
+      },
+      "vehicle_08_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003906172471001448,
+          "measured_yaw_rmse_deg_s": 0.030337690577656062,
+          "beta_rmse_deg": 0.000849782864770124
+        },
+        "reused": true,
+        "source_trace_sha256": "74b4e6768b07e13291023dc2dc1380df6b37618d77b786d0f78cad0767f4511e"
+      },
+      "vehicle_08_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011945202403471514,
+          "measured_yaw_rmse_deg_s": 0.029915301647292687,
+          "beta_rmse_deg": 0.0016563649907849688
+        },
+        "reused": true,
+        "source_trace_sha256": "d8c86ec0b28e10cd1d949e19840250645df4ba3ffc4399d326aa4e4cfe4c14e0"
+      },
+      "vehicle_08_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0035202694422722695,
+          "measured_yaw_rmse_deg_s": 0.029873227398551496,
+          "beta_rmse_deg": 0.0010684933451704183
+        },
+        "reused": true,
+        "source_trace_sha256": "e31d1e71fe0c1098649c0ce9d5fb0bf6c79bf426ca1336fb8f26371179b9a119"
+      },
+      "vehicle_08_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0018420113101271776,
+          "measured_yaw_rmse_deg_s": 0.029705143596282093,
+          "beta_rmse_deg": 0.0024963072084691366
+        },
+        "reused": true,
+        "source_trace_sha256": "1a6a79b47f28a471cf5c5a36dee1f26b68ba40e680b822807c7a7d0ba1531228"
+      },
+      "vehicle_08_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0030506757926800714,
+          "measured_yaw_rmse_deg_s": 0.029935063691344313,
+          "beta_rmse_deg": 0.0014122264034240515
+        },
+        "reused": true,
+        "source_trace_sha256": "9fba19da2e5c2a52ea6fd0c92107d6fc96f22ec5b6ad4e414f1dac126e084c7a"
+      },
+      "vehicle_08_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002637073959041756,
+          "measured_yaw_rmse_deg_s": 0.030063486134386246,
+          "beta_rmse_deg": 0.0033529583041880867
+        },
+        "reused": true,
+        "source_trace_sha256": "5a696f21efa23f5a4e6d9aebd810ad7ffed53f9fe51180c5e4bdbbeccff0982e"
+      },
+      "vehicle_08_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0026285168752453987,
+          "measured_yaw_rmse_deg_s": 0.029207758318452345,
+          "beta_rmse_deg": 0.0017489621334204103
+        },
+        "reused": true,
+        "source_trace_sha256": "024da7ab065ad37fe6b04b65744abf767b29cca4b627c02df8d5f5775b8442d1"
+      },
+      "vehicle_08_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003517474352530624,
+          "measured_yaw_rmse_deg_s": 0.029609237401383822,
+          "beta_rmse_deg": 0.00419335971877181
+        },
+        "reused": true,
+        "source_trace_sha256": "2842e96dab9eea3605c30c5d1867b8e54535252be4137852d5dc5489164aad9a"
+      },
+      "vehicle_08_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0022676931245611165,
+          "measured_yaw_rmse_deg_s": 0.031108990824514654,
+          "beta_rmse_deg": 0.002079636094755629
+        },
+        "reused": true,
+        "source_trace_sha256": "6a56b15e64a976fb2eb8c2d1bcbdcdc6a4e964aed1cc72d49eff884c01cd8866"
+      },
+      "vehicle_08_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004425337341584705,
+          "measured_yaw_rmse_deg_s": 0.030408557245129406,
+          "beta_rmse_deg": 0.005005100156893744
+        },
+        "reused": true,
+        "source_trace_sha256": "f57e1eafd4dce42a3459cc02fb29c49204ea03ff05b281b14bfbd3ac020fab6c"
+      },
+      "vehicle_08_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0019911439434558394,
+          "measured_yaw_rmse_deg_s": 0.029635997513472477,
+          "beta_rmse_deg": 0.0024235442992699397
+        },
+        "reused": true,
+        "source_trace_sha256": "5c4b19b9dfc4024fd28b7a6bf44aef71535863558a1e955ef8b09997125b21c7"
+      },
+      "vehicle_08_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00531738986983909,
+          "measured_yaw_rmse_deg_s": 0.030025677088356472,
+          "beta_rmse_deg": 0.005785712745050231
+        },
+        "reused": true,
+        "source_trace_sha256": "49d596580ba651d2c9d23446ad93288bac98e9ffa82e04c4cb3d35dd6ada2a4a"
+      },
+      "vehicle_08_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0019090621658954168,
+          "measured_yaw_rmse_deg_s": 0.02954942146162981,
+          "beta_rmse_deg": 0.0028013083597367757
+        },
+        "reused": true,
+        "source_trace_sha256": "be08caa64ffd20720666f7e0fa6342c91fe1a3ed12afa90b395d67c25083bc29"
+      }
+    }
+  },
+  "payload_sha256": "462818f71fca07ce0c56dc42a6e9defd0d39364dfd69f8cd832ec0ac92ad04ae"
+}

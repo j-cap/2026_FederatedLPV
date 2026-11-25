@@ -1,0 +1,2700 @@
+{
+  "payload": {
+    "seed": 1302,
+    "status": "execution_complete",
+    "provenance": {
+      "base": {
+        "files": {
+          "code/config/paper_federated_relaxation_coverage.json": "298c5d1a8b986f8933b4a30cd7c98b344d1502a46ff3bde9a08da5858fad6295",
+          "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
+          "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
+          "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+          "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+          "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+          "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+          "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+          "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5"
+        },
+        "source": {
+          "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+          "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+          "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1"
+        },
+        "runtime": {
+          "python": "3.12",
+          "packages": {
+            "numpy": "2.3.5",
+            "scipy": "1.17.0",
+            "pandas": "2.2.3",
+            "threadpoolctl": "3.6.0",
+            "scikit-learn": "1.8.0"
+          }
+        }
+      },
+      "sources": {
+        "results/tables/paper_federated_relaxation_coverage_seed1301.json": "5e393a83067bd5ea03b2fa549878cb53e827b33b72701ff7efd9bac0b36b4437",
+        "results/tables/paper_federated_relaxation_coverage_seed1302.json": "9997f1b5d3b893f832e859e10b88d8db91ae03f92a717fd3a875ae043bc57b85",
+        "results/tables/paper_federated_relaxation_coverage_seed1303.json": "c9108b4dd1154ce32435bca596db43fe1a5846d85ef11a2ebc046c7557f285b3"
+      },
+      "files": {
+        "code/config/paper_federated_relaxation_continue.json": "475dd9753ff95b181fb4b23279ba002360e2755c3467604571c7a58caf624068",
+        "code/experiments/paper_federated_relaxation_continue.py": "105a796ab8e5ab44a0ad03c42f60fcc8c2b0049dc3f4da3250bbdf43498469b0"
+      }
+    },
+    "source_round": 8,
+    "source_communication_float64": 990,
+    "optimization": {
+      "log_parameters": [
+        [
+          3.9505948812338496,
+          4.114183766625108,
+          -0.45426309934429715,
+          -0.37518873054374313,
+          -0.9022635431088286,
+          -0.4149799595230736
+        ],
+        [
+          3.933426925047608,
+          4.156783722256507,
+          -0.4551575623646876,
+          -0.3641025440977066,
+          -0.9565355382047709,
+          -0.32759948407933376
+        ],
+        [
+          3.95862527215187,
+          3.9975030414941695,
+          -0.5367308096391616,
+          -0.4962892445747219,
+          -1.0315542353311777,
+          -0.3623226326145685
+        ],
+        [
+          3.9281073512475375,
+          4.1131859054025295,
+          -0.4765487219520343,
+          0.40546510810816433,
+          -0.947285453143568,
+          -0.3222943587091593
+        ],
+        [
+          3.9800065834759764,
+          3.9958056054224667,
+          -0.5640142969884038,
+          0.17919188323065544,
+          -1.1149894194600085,
+          -0.2813916403489448
+        ],
+        [
+          3.8618483914093233,
+          3.8489913536337172,
+          -0.5419264130557484,
+          -0.2954416827957304,
+          -1.0582057985506659,
+          -0.3382576117896652
+        ],
+        [
+          3.9605292516382624,
+          3.8975932899887398,
+          -0.6082550372884316,
+          -0.9162907318741549,
+          -0.9938759424640018,
+          -0.3590244809327372
+        ],
+        [
+          4.052178709340347,
+          3.9753641122613863,
+          -0.5142766268981608,
+          0.40546510810816433,
+          -0.8804342282664053,
+          -0.38315930227570594
+        ],
+        [
+          3.9872549416281027,
+          3.9169986188267485,
+          -0.6144530086130162,
+          -0.9162907318741549,
+          -0.9648172735604574,
+          -0.3301249598116845
+        ]
+      ],
+      "centers": [
+        [
+          3.956952478574765,
+          4.001823268434596,
+          -0.5295139529048823,
+          -0.263720174034803,
+          -0.9833290480099871,
+          -0.3465727144538748
+        ]
+      ],
+      "assignments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "round": 9,
+      "history": [
+        {
+          "round": 1,
+          "objective": 10697.655015979448,
+          "data_sse": 10681.005821973782,
+          "penalty": 16.64919400566608,
+          "max_log_step": 0.791201809376478,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.00041427791929958557,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0015411269264298546,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00015248365710898061,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00012990828703998597,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0012372683237325643,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0008589144730256524,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 6,
+              "optimality": 0.0015710522897010599,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 7,
+              "optimality": 0.00020004818132366876,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.0004350987418970541,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "objective": 10696.410556216884,
+          "data_sse": 10680.822419199834,
+          "penalty": 15.588137017049581,
+          "max_log_step": 0.030643455914648454,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 6.652684496061852e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0003428005489247571,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 2.2385382755673483e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0013499234937528989,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0006327847095611213,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00011797787138594876,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.005877981827778153,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0012639694318320532,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00042039446569788345,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "objective": 10696.039468714609,
+          "data_sse": 10680.765679309481,
+          "penalty": 15.273789405128758,
+          "max_log_step": 0.020178808601639897,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 2.469638203591996e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00022378978864895239,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009592399346490437,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00048319048892226616,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0008777384438667143,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012908985078902901,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.002152488259841085,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00041518765615699443,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00010871684951044262,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "objective": 10695.921281655477,
+          "data_sse": 10680.772605378597,
+          "penalty": 15.148676276880575,
+          "max_log_step": 0.012346596232576834,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 7.300277528003973e-06,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004552138760038671,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003866974007848455,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0002427453782228397,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0006583433666223723,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008179724352241323,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0010020462130118975,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0001677922653012846,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 4.659273782209055e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "objective": 10695.883510974127,
+          "data_sse": 10680.791978708581,
+          "penalty": 15.091532265544815,
+          "max_log_step": 0.007073942844948111,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000177221165156143,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002521045961940803,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00015651831184000214,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004108531892453188,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.009920875607634817,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005404956634340496,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.008169874215982264,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.005203970509174939,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008074825480934836,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "objective": 10695.87139514283,
+          "data_sse": 10680.80853722146,
+          "penalty": 15.062857921371121,
+          "max_log_step": 0.00398394371879407,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 8.2334351896842e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014021037981087308,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 6.855897592802237e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0023184515955542574,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00603785646019537,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003309002641562984,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004791744997372893,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0029977160350977868,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004560478933576053,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "objective": 10695.86750704429,
+          "data_sse": 10680.819693561723,
+          "penalty": 15.047813482567062,
+          "max_log_step": 0.0022512308516215995,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 4.147044415534266e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007862979567754038,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 3.2626985075469846e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013103922600276362,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0035493270418047373,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00019560780194046029,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0027634795813215474,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001714099910326814,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002575504218239074,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "objective": 10695.86625898705,
+          "data_sse": 10680.826585826673,
+          "penalty": 15.03967316037559,
+          "max_log_step": 0.0012734264515459337,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.1915736757273062e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004428996114106445,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.6524121876801392e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007419996355575526,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0020523762856992697,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00011345920274565054,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015809153818399958,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009763712162693885,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00014555082974391682,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 9,
+          "objective": 10695.865858256726,
+          "data_sse": 10680.830643989406,
+          "penalty": 15.035214267319303,
+          "max_log_step": 0.0007208469199975198,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.1921480538559155e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002501167726155367,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.005119388509717334,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00042035614632780663,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011762095272915291,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0032980446683455555,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009004988781444964,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005548897007313112,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 8.233234301672971e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ],
+      "status": "converged",
+      "pending": {},
+      "communication_float64": 1107
+    },
+    "evaluation": {
+      "vehicle_00_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00022673354545771988,
+          "measured_yaw_rmse_deg_s": 0.03000796113141712,
+          "beta_rmse_deg": 0.0006929002755305368
+        },
+        "reused": false,
+        "trace_sha256": "b47475a1ae1a5407eb1911d1a286250417c82196bd9863025c5c8d24d85cec0c",
+        "source_trace_sha256": "24723ac1b59dea777177bdd8b39ee5cd240af9cb461d12bc105edda093f17bd7"
+      },
+      "vehicle_00_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010747494230729196,
+          "measured_yaw_rmse_deg_s": 0.030117029443498745,
+          "beta_rmse_deg": 0.0004057300567921589
+        },
+        "reused": false,
+        "trace_sha256": "f4a77ddba390030df2aa87140ca0bafbd48cef8d5205a2c943f194dcd78a19b3",
+        "source_trace_sha256": "cef721bee522cae4c613ba8f3a8917d20c2f9c0ddb85b2580fa2ee9ee5fcfbce"
+      },
+      "vehicle_00_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0002430933696433267,
+          "measured_yaw_rmse_deg_s": 0.02919607229061163,
+          "beta_rmse_deg": 0.0013086119485159386
+        },
+        "reused": false,
+        "trace_sha256": "028680543695549db6e3b3a1a1c3b97cc75e708d82d6378d5b47f478c8befd46",
+        "source_trace_sha256": "03f416ff33e3b1a56cbc0eaaed7dcf51e0c8d5c3719135018eb1d15f55ee97f1"
+      },
+      "vehicle_00_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0013582617097661408,
+          "measured_yaw_rmse_deg_s": 0.031201931592278607,
+          "beta_rmse_deg": 0.0007398066262792649
+        },
+        "reused": false,
+        "trace_sha256": "e711465142f0b315622a43e2963d1dc51d8de5964d2aad6f0981a619f5c52e4a",
+        "source_trace_sha256": "466bd78017108fbf73543d3d61bbbbc2029524cd433df40b9a3dfbc45e218002"
+      },
+      "vehicle_00_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0001357948962116193,
+          "measured_yaw_rmse_deg_s": 0.030462179141118102,
+          "beta_rmse_deg": 0.001987832275560458
+        },
+        "reused": false,
+        "trace_sha256": "620f0316bb0bdde933e8d057f4c2019f89e0377ad6d66d5bbc7c5455e937f78a",
+        "source_trace_sha256": "d5f44275665bf130043218eb07611c71a35b2712376a3c552354e7c26182f924"
+      },
+      "vehicle_00_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.001501735172535483,
+          "measured_yaw_rmse_deg_s": 0.0298693150440265,
+          "beta_rmse_deg": 0.001084397990084796
+        },
+        "reused": false,
+        "trace_sha256": "8453c25d8d5454e27f8711de72b383b2e63b07e67c91491c37fb697c6a0fa30e",
+        "source_trace_sha256": "f0565d92a6f91b4dd9b56719d47dfc69f5c6684b05a7f46c2698d5ea44284a76"
+      },
+      "vehicle_00_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0003200757655491641,
+          "measured_yaw_rmse_deg_s": 0.030189984465135634,
+          "beta_rmse_deg": 0.0026685761184837755
+        },
+        "reused": false,
+        "trace_sha256": "b230dfee0b6919adfe73ea52b992beea07d4b0b3ef46769d49192afd9829c22a",
+        "source_trace_sha256": "eb6b95c3f72e3f46ccd1c67157e32198dcdc17338e0a3178ea3cd00bb35b0686"
+      },
+      "vehicle_00_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0016390254876549272,
+          "measured_yaw_rmse_deg_s": 0.029662607933259835,
+          "beta_rmse_deg": 0.0014361059002978831
+        },
+        "reused": false,
+        "trace_sha256": "2eb76364157621ab3528f1d7eb16af0b262abd025a77d6c8f989811dbc48d433",
+        "source_trace_sha256": "e2e693142b8a125985dfd5f811b27dec62b9abe768156ed3692f350353307a5a"
+      },
+      "vehicle_00_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0007783298966625301,
+          "measured_yaw_rmse_deg_s": 0.030220847964665058,
+          "beta_rmse_deg": 0.0033115235336782954
+        },
+        "reused": false,
+        "trace_sha256": "c112adb791259d3ab3fdb5820bc93a9c013a9c528da4b4e3d729a6c48ca4b4c6",
+        "source_trace_sha256": "567853036f167c0e4d6569b8ba58290383d697ef1fe374c0b593ab4ba1fde812"
+      },
+      "vehicle_00_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0019646703252476174,
+          "measured_yaw_rmse_deg_s": 0.030398119297920193,
+          "beta_rmse_deg": 0.001800414454655591
+        },
+        "reused": false,
+        "trace_sha256": "8dfabe84554ad43357664d68834af94694a39de20499e3d7d334574018249485",
+        "source_trace_sha256": "ae84edd47335e326da4b50295d3f9763a92110846aca8867ad827336bef09bc8"
+      },
+      "vehicle_00_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0013378921361369453,
+          "measured_yaw_rmse_deg_s": 0.030623729065168637,
+          "beta_rmse_deg": 0.003895623729111466
+        },
+        "reused": false,
+        "trace_sha256": "16a5385fd6a13163dd9be028721adc09f542af858b39c4fd2a140ee7637485e8",
+        "source_trace_sha256": "e40bb483b0dcec6ebb653b91b2c630e73eab6e9d53bdec702376f021b8f3746a"
+      },
+      "vehicle_00_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002598543988400503,
+          "measured_yaw_rmse_deg_s": 0.02972010894116203,
+          "beta_rmse_deg": 0.002182758785965096
+        },
+        "reused": false,
+        "trace_sha256": "d0bcd06b7948fdd21d07620505fd02678e87b30dd479ef559f459b282577d835",
+        "source_trace_sha256": "5be6c3753a74eaed34e98b81e4bac289adb49e66904d1d774aa09a875d30420b"
+      },
+      "vehicle_00_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0019463374591688438,
+          "measured_yaw_rmse_deg_s": 0.029286302853684176,
+          "beta_rmse_deg": 0.0044130789770393045
+        },
+        "reused": false,
+        "trace_sha256": "0a973b890f59c43c8c6aae9c81f522ef88f9affa6787432c9383a8d595374c43",
+        "source_trace_sha256": "652a3beae6723da008dcc745ccf78f14a453fa103d75468d23a580fbb4faf21c"
+      },
+      "vehicle_00_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0035348266445687153,
+          "measured_yaw_rmse_deg_s": 0.029876827108362387,
+          "beta_rmse_deg": 0.002586887551088958
+        },
+        "reused": false,
+        "trace_sha256": "9862c28d5dd0a18495d95d3c5abb7b2288600c64f91f558050346fb054bf7aa8",
+        "source_trace_sha256": "c7e011d86bc0e2035967ceeb407b183960aa5d90e8aa0668103d979a0f9dfdce"
+      },
+      "vehicle_01_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0003456682772597598,
+          "measured_yaw_rmse_deg_s": 0.030065518813078847,
+          "beta_rmse_deg": 0.00017777701277195252
+        },
+        "reused": false,
+        "trace_sha256": "3ce40c0900ee85abb9d6ab12a301a4bca3751248f819bd1e6119699dfaa2a2a9",
+        "source_trace_sha256": "7224785403605a962928087c7b4fdd83bc32e1b0aa2d532eb6c6ed73767025ff"
+      },
+      "vehicle_01_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0013701231813076165,
+          "measured_yaw_rmse_deg_s": 0.02861048816695696,
+          "beta_rmse_deg": 0.00016342360017452336
+        },
+        "reused": false,
+        "trace_sha256": "5c197efda3488bd1e83c979b8a76c3ac7695aacc2093e643cede054b54e9c828",
+        "source_trace_sha256": "3f40176e7f1b3bde95fb342f3dcd5a3c0a3b0cd640b1a1984fad7881d57bb0a7"
+      },
+      "vehicle_01_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00048153217706588177,
+          "measured_yaw_rmse_deg_s": 0.030343694110356093,
+          "beta_rmse_deg": 0.00032605000160176433
+        },
+        "reused": false,
+        "trace_sha256": "5ff8d5b9ede408149c298942f107256ce76fc932ffe8d0187b1b7154b257832d",
+        "source_trace_sha256": "85f1b05129e098482bc6902f8044af66780f669c20cccf1211b5ff8478b0a747"
+      },
+      "vehicle_01_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0013410308887573561,
+          "measured_yaw_rmse_deg_s": 0.029826378320506677,
+          "beta_rmse_deg": 0.0002006010805291099
+        },
+        "reused": false,
+        "trace_sha256": "b38f8e0a878a820d5dca3e4f44ee5713b492573a5d029f8967f0d1f1063e0ef7",
+        "source_trace_sha256": "41d03ad1b06d8c67cd0053b0704aa80fd688d6c9a71c85079eef9a9c30323467"
+      },
+      "vehicle_01_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0005310494585537689,
+          "measured_yaw_rmse_deg_s": 0.030709553865967354,
+          "beta_rmse_deg": 0.00046601605803652457
+        },
+        "reused": false,
+        "trace_sha256": "5819b02b28e66b6761c564542bf50aeb6deb6768a83aec35e24a0367cbba0dfa",
+        "source_trace_sha256": "e25461518bc7d03bbcd2cddb236432cfdf60f1b7e147da588518956bd9df7588"
+      },
+      "vehicle_01_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0013563543824671672,
+          "measured_yaw_rmse_deg_s": 0.030385733284616915,
+          "beta_rmse_deg": 0.00027053566289530893
+        },
+        "reused": false,
+        "trace_sha256": "e486ed9d79cb95c4a05d0003dcc2485139a78c798150ef4066beb6dd8bccaf64",
+        "source_trace_sha256": "943756728f5c1740f417afc768a1c3ad7933b172c0022c265c7d9eb3f4e96400"
+      },
+      "vehicle_01_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0005073258223391907,
+          "measured_yaw_rmse_deg_s": 0.02929952657882309,
+          "beta_rmse_deg": 0.0005826684027981367
+        },
+        "reused": false,
+        "trace_sha256": "678b85041b0767a490647d426befe141657b64d5b78d4892889fe295914db627",
+        "source_trace_sha256": "da3176bc9a9ec8aff46488a7f80313d74a95a8c39b8777723219c323f9e6f8ad"
+      },
+      "vehicle_01_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.001484106793423152,
+          "measured_yaw_rmse_deg_s": 0.03161011744837387,
+          "beta_rmse_deg": 0.0003253622302363061
+        },
+        "reused": false,
+        "trace_sha256": "058b2a8159bc142669d7d0acddbb3617805b7a0685b764bfabeb041c161a24af",
+        "source_trace_sha256": "bd58cd97a2e44eb69c4e30f29218aa15024c3f698db800c5a5fa907212e3e49c"
+      },
+      "vehicle_01_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00047682634445577387,
+          "measured_yaw_rmse_deg_s": 0.03032862336926306,
+          "beta_rmse_deg": 0.000675429892588909
+        },
+        "reused": false,
+        "trace_sha256": "e5179c85ad2fe499fe8c3d3115bec36734e9b71cecdca05854ed2690cb18f072",
+        "source_trace_sha256": "71c0925aecd64de3468c2498149ae9807181be502d68e54208644e383df3ff56"
+      },
+      "vehicle_01_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0017454437292579615,
+          "measured_yaw_rmse_deg_s": 0.03056336913848643,
+          "beta_rmse_deg": 0.00036777551843409273
+        },
+        "reused": false,
+        "trace_sha256": "d7eb62bbfe9f265e5c7e85f391b33de6e9981397da9ab72e5b8200ae5e0147c9",
+        "source_trace_sha256": "fbb298cf37cc01975815280b0e9917f573898968069f12a5f38a4acab22689f7"
+      },
+      "vehicle_01_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0005163338725546906,
+          "measured_yaw_rmse_deg_s": 0.030227864488208963,
+          "beta_rmse_deg": 0.0007491555093262803
+        },
+        "reused": false,
+        "trace_sha256": "35454bb4a24f8285b3a90bc4c7b26253cd2c8d333d9203ccd1efb2d7ab694160",
+        "source_trace_sha256": "3c0f13b8b10a4e43cba53076657c2c81a8329e7ae92ace835878638ee81e2f07"
+      },
+      "vehicle_01_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002136527124522468,
+          "measured_yaw_rmse_deg_s": 0.029801921011203655,
+          "beta_rmse_deg": 0.00040564881258668505
+        },
+        "reused": false,
+        "trace_sha256": "bca4b7bca2feed5c25ff6505ea10086f385545a628933c2798fa31824e1eddeb",
+        "source_trace_sha256": "b4299b155c69744a45cbc7dcf1252c9abf0162dd730b2124263d819b0a3035f3"
+      },
+      "vehicle_01_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0006376160203239519,
+          "measured_yaw_rmse_deg_s": 0.029719937817644496,
+          "beta_rmse_deg": 0.0008090411098740174
+        },
+        "reused": false,
+        "trace_sha256": "b6f3f0801bdf5fba6e5fbe7bbb8752803e464aecb4eb79993a5d52fbd34ba6e9",
+        "source_trace_sha256": "152e78786ec7dba4f6636a45519659ddaf3f59a441f31415609245cfdb0b6c00"
+      },
+      "vehicle_01_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0026495924842882476,
+          "measured_yaw_rmse_deg_s": 0.030324661602344316,
+          "beta_rmse_deg": 0.0004496155430935243
+        },
+        "reused": false,
+        "trace_sha256": "1c13f2195c8600437a046ddf09e8d939cf8b64b4a82e711c080292e068d3be5b",
+        "source_trace_sha256": "fb5fd0a3e9fa7239a5ace6f7488c06bd72cd6e2e32c6758b00ee22e3514a52d7"
+      },
+      "vehicle_02_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0007590579638705933,
+          "measured_yaw_rmse_deg_s": 0.029571943849749864,
+          "beta_rmse_deg": 0.0006497184748239672
+        },
+        "reused": false,
+        "trace_sha256": "155cd381fa1f796e85903fd940a21538fcf8f9c8fdb233d720e3d50b09098043",
+        "source_trace_sha256": "62866ee13fc13515d682fe5d8b3aa3bc264ee2204ab0cc501ab82f54df6ad50f"
+      },
+      "vehicle_02_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0036807713173897753,
+          "measured_yaw_rmse_deg_s": 0.030290227467200694,
+          "beta_rmse_deg": 0.0006933732729910445
+        },
+        "reused": false,
+        "trace_sha256": "e7722a36b9b898f128a66f6804bcca902c7b8fdbada66fa7a7ced4e1723c419c",
+        "source_trace_sha256": "d1ded75ff9673dec223fa57f91485968d5f53406c1685149fa10980a8a60dfcd"
+      },
+      "vehicle_02_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011230698271328372,
+          "measured_yaw_rmse_deg_s": 0.030829229628376878,
+          "beta_rmse_deg": 0.0012164875938828553
+        },
+        "reused": false,
+        "trace_sha256": "be7204d0e28c21a2e18213315d820ea08d2ac09255931f6662049000843641df",
+        "source_trace_sha256": "68564610b45b8618006b9c8ac370936ebb1d1e0f870c0c62bb5d1aca6657c7c5"
+      },
+      "vehicle_02_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0034709760310497402,
+          "measured_yaw_rmse_deg_s": 0.029729857046449,
+          "beta_rmse_deg": 0.0008076305894120708
+        },
+        "reused": false,
+        "trace_sha256": "4f8713502b8082d4d6511bca9a3421c23500d24fc0c279900056b886d919eaa4",
+        "source_trace_sha256": "84c076f1a4de851e0aa70c63db7bcb0fb8a53beaa8ac7032d330dfea741d4804"
+      },
+      "vehicle_02_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0015301471851684463,
+          "measured_yaw_rmse_deg_s": 0.030117672826293393,
+          "beta_rmse_deg": 0.0018529156140775105
+        },
+        "reused": false,
+        "trace_sha256": "bebce4ebc7b6d086cf354f4e2cf853bd24c469000354762457c4e432a5526197",
+        "source_trace_sha256": "2bdeb7fd102c99b83d8442a9fc3ea77d685990f4bc2f6aaa576dcbb86de3a1a9"
+      },
+      "vehicle_02_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003193530615945995,
+          "measured_yaw_rmse_deg_s": 0.03031194420877327,
+          "beta_rmse_deg": 0.001109786971047178
+        },
+        "reused": false,
+        "trace_sha256": "ba6b8c0f902127bb5a4729b37719b5aa920f979e7f7f70563b527c887c4e41a2",
+        "source_trace_sha256": "3241e54be0235803aa1b2bbc7f310b308eeb3edf54a93c38aa681106ef5588ec"
+      },
+      "vehicle_02_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002085157439723286,
+          "measured_yaw_rmse_deg_s": 0.029463812671101933,
+          "beta_rmse_deg": 0.002487021705402775
+        },
+        "reused": false,
+        "trace_sha256": "518a11bf81f92d21415a8e7d0a45a763834b0a39ac0d3868145dc20cda457d78",
+        "source_trace_sha256": "78f82fd4233691cd5842218263f5d392948c7eeed74613b551f59f2605b207d3"
+      },
+      "vehicle_02_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0029881940706799276,
+          "measured_yaw_rmse_deg_s": 0.03098518053076322,
+          "beta_rmse_deg": 0.0014136232664600768
+        },
+        "reused": false,
+        "trace_sha256": "77422c866eef5af4f8988acf17dd25b9c6dd3b7552d73e2208613401c387fa2c",
+        "source_trace_sha256": "2d7e476932f68d3e7743a4574a033ee2698d13f437064569e59b368031ec6e49"
+      },
+      "vehicle_02_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0028580564647274925,
+          "measured_yaw_rmse_deg_s": 0.029785465820570595,
+          "beta_rmse_deg": 0.0030782500299425903
+        },
+        "reused": false,
+        "trace_sha256": "520a0a81a5809b8298777637980943d1699a229ee7e74dd5608bbaedee51c49d",
+        "source_trace_sha256": "280e93c7a4368a23f457b96a90ae23e5bf59f9fc2672bc225905282f703345ff"
+      },
+      "vehicle_02_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002921362375671516,
+          "measured_yaw_rmse_deg_s": 0.02989629903677063,
+          "beta_rmse_deg": 0.001687630981028347
+        },
+        "reused": false,
+        "trace_sha256": "9b3cc4201d437f7ca38bff099bc60f7508fd84bd0d6526a03276301b259ef420",
+        "source_trace_sha256": "416e34bc98748d4de03492bf0aadb888174d5877592469789aea6d928db13f3f"
+      },
+      "vehicle_02_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0038067335886766266,
+          "measured_yaw_rmse_deg_s": 0.030143977218808612,
+          "beta_rmse_deg": 0.003610686569945522
+        },
+        "reused": false,
+        "trace_sha256": "3fe210869945b12242e39848fdbedb3944fa61e2a234f7f58cfaebeef778f74c",
+        "source_trace_sha256": "0411acca497c6ba3e03b577a0b60553033c0ae2fb945b61e7b54127545363afe"
+      },
+      "vehicle_02_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0030417090137012034,
+          "measured_yaw_rmse_deg_s": 0.03047987884996546,
+          "beta_rmse_deg": 0.0019228816174980752
+        },
+        "reused": false,
+        "trace_sha256": "aabc2e5245600c6c85fa4218cdb785c04a1e9616c0b77ecb9fc045295b78e9cb",
+        "source_trace_sha256": "7ac7b17c446dcb89432f204c867f5f36bcd4dd05c405eb9bd559681bb97405cb"
+      },
+      "vehicle_02_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004835824202197445,
+          "measured_yaw_rmse_deg_s": 0.030327220580337558,
+          "beta_rmse_deg": 0.0040824645917346206
+        },
+        "reused": false,
+        "trace_sha256": "9a41c1eac2c979f1345efc15276b35f2cf6daca8edf59c80201462efc63d5381",
+        "source_trace_sha256": "bcf94fa52e03b016ba121b04fe4bd1a7241006507c3bc40f59cefd7fd0161495"
+      },
+      "vehicle_02_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0033802222908538965,
+          "measured_yaw_rmse_deg_s": 0.03055425348390618,
+          "beta_rmse_deg": 0.002114434646645457
+        },
+        "reused": false,
+        "trace_sha256": "45bd0a79f69b4232881a21b1f1f659844d1126676b2abe98bbfdb58f3dbb2e5e",
+        "source_trace_sha256": "277c0d913a3902fbf69e92bfca226b6539936d3c068bfbe2fc1947b81a090542"
+      },
+      "vehicle_03_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00018740920225378968,
+          "measured_yaw_rmse_deg_s": 0.031041464269883044,
+          "beta_rmse_deg": 0.0001355830562789743
+        },
+        "reused": false,
+        "trace_sha256": "496cdec6c01ae4c19ab560e5812063e552f593aa10943c6d0f908231b74bbc9c",
+        "source_trace_sha256": "9004b68827c6d1afb1abc72a27650288f759a7e02d9f1ea8e806d3f3dca0ef23"
+      },
+      "vehicle_03_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00039256867564572626,
+          "measured_yaw_rmse_deg_s": 0.02996516212019834,
+          "beta_rmse_deg": 0.00035383933009442266
+        },
+        "reused": false,
+        "trace_sha256": "98115fd185d2c03a6da0819415f1ffd1281ba84ba6aa4396db8e4bc32932d348",
+        "source_trace_sha256": "2091f5f1c7274b3f21fde5bc551ddb47a935cdc30d3371e6e9162f8d04c31feb"
+      },
+      "vehicle_03_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00034289731901354664,
+          "measured_yaw_rmse_deg_s": 0.02977505465347688,
+          "beta_rmse_deg": 0.00020055210860295465
+        },
+        "reused": false,
+        "trace_sha256": "9bdddda54492598b9c373cdb02b67cb2abceaf93f3475f4baa2ac1f47328c0f5",
+        "source_trace_sha256": "355d8f27b5663aef3104259e22acc875b7d394d0e12a5db7e134a819c81c781f"
+      },
+      "vehicle_03_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010912009998734805,
+          "measured_yaw_rmse_deg_s": 0.030479691260326822,
+          "beta_rmse_deg": 0.0003774144678842088
+        },
+        "reused": false,
+        "trace_sha256": "19b14b71963d81a466b1dec5ef0eebae542cf0320fe46173a41a98be6580e404",
+        "source_trace_sha256": "f9f682e81567c9724a207b043c72e03604d0ea45a81f4f7557933ce100c77fd9"
+      },
+      "vehicle_03_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0005040888141136163,
+          "measured_yaw_rmse_deg_s": 0.02933223608727683,
+          "beta_rmse_deg": 0.00024475492333880214
+        },
+        "reused": false,
+        "trace_sha256": "a86635b23093b068bf781ec2dd42a98a19f72d4b8e08fe3468a17a652839a0c0",
+        "source_trace_sha256": "2a3cd96954557798b18e48d92863248c4d7708c3e76ae667b9da48b0a5bb7ea5"
+      },
+      "vehicle_03_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0021200190408618346,
+          "measured_yaw_rmse_deg_s": 0.030449448817978068,
+          "beta_rmse_deg": 0.00043759770220237325
+        },
+        "reused": false,
+        "trace_sha256": "225f3eaddf9e289b1ca653f0ea51fec8074a0b3d690c7073843f31df4dad71e8",
+        "source_trace_sha256": "100fca9194b8d501f234965866e0e4053a3f937c289c3eaec39c4934ccba1a9d"
+      },
+      "vehicle_03_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0006362797223689131,
+          "measured_yaw_rmse_deg_s": 0.02947684373354786,
+          "beta_rmse_deg": 0.00026344143573846853
+        },
+        "reused": false,
+        "trace_sha256": "2301962a0030094a2a0e975df2c1e83bb281575778446b1949c708ce459559a1",
+        "source_trace_sha256": "ccc383e7add3588e5d496406eb4ca8543ff757b497f4cf1b2c25a2ac6bdb7ebe"
+      },
+      "vehicle_03_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00321415789015527,
+          "measured_yaw_rmse_deg_s": 0.028655475142633058,
+          "beta_rmse_deg": 0.0005511194378015608
+        },
+        "reused": false,
+        "trace_sha256": "eaaa4dd8fac5ce151936122dc50ea15602ae63a6feed3af5ffc3046009b1c1c5",
+        "source_trace_sha256": "4cd76df18b6e23d7424f8f258bf2b34539e02543214411aaa30529da693746b9"
+      },
+      "vehicle_03_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0007395718698463721,
+          "measured_yaw_rmse_deg_s": 0.029741971058231866,
+          "beta_rmse_deg": 0.00026365140780628776
+        },
+        "reused": false,
+        "trace_sha256": "9ea4c5d682ee684c04a7f92a7f8902f38f8823784a538a4b17e4cd669e8a9dbc",
+        "source_trace_sha256": "883ac97957222f35441596d58ccc7623710103c988db52008ff2bfbaed5f6172"
+      },
+      "vehicle_03_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004320830708352143,
+          "measured_yaw_rmse_deg_s": 0.02971120956122338,
+          "beta_rmse_deg": 0.0007047181556535305
+        },
+        "reused": false,
+        "trace_sha256": "5f43a7abe1180cd0064a7ae0fc468646c9588b2cdd4993e8287813aca6d69424",
+        "source_trace_sha256": "555ecf5dfefbb7df7b15d28fa137762e1dda52730677765c3899e91f3ef9a3a6"
+      },
+      "vehicle_03_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0008349963056833448,
+          "measured_yaw_rmse_deg_s": 0.029652631621838996,
+          "beta_rmse_deg": 0.0002558144020699663
+        },
+        "reused": false,
+        "trace_sha256": "3aa54ba4204106b26e33ea1236ecc8cb81c15482961c1ed922b0425a4f1011d7",
+        "source_trace_sha256": "a55dc7226912b3cd3eb60ca67bf6e6fcc0621df72f1feb396fcf8a5e0a3c69fd"
+      },
+      "vehicle_03_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00543034727436747,
+          "measured_yaw_rmse_deg_s": 0.02999022596879828,
+          "beta_rmse_deg": 0.0008822175054930407
+        },
+        "reused": false,
+        "trace_sha256": "b84138392a063cc83424f7b1fe8058e002e697be12a1875c9fbfe71c8fe15f05",
+        "source_trace_sha256": "d79fdbac59e1530d8ea4f2b2f56b1a7c99dc556be2791e50fb733657e4bf0264"
+      },
+      "vehicle_03_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0009421497385863894,
+          "measured_yaw_rmse_deg_s": 0.03021386988079943,
+          "beta_rmse_deg": 0.0002485348828933147
+        },
+        "reused": false,
+        "trace_sha256": "9cb5768136fa90e51e33bff600e58e8c955dfc599ed41dbcc58a091b862c2a81",
+        "source_trace_sha256": "71408077d4e9621314b784aadfb2712c0bc3fca2eb7b77a6ebc7c5c2f96c9a23"
+      },
+      "vehicle_03_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.006545175493290496,
+          "measured_yaw_rmse_deg_s": 0.030808677546575913,
+          "beta_rmse_deg": 0.001073513537384246
+        },
+        "reused": false,
+        "trace_sha256": "358c647eaa18120821e23055b54789becc503aec7e6e38c3787a2fbab5e5b8da",
+        "source_trace_sha256": "75ed496ee250aa45e97a2196d561566c2c1b14593b093185207a72d149c1c9d5"
+      },
+      "vehicle_04_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0012203128757795915,
+          "measured_yaw_rmse_deg_s": 0.030995526572917823,
+          "beta_rmse_deg": 0.0030930659414835013
+        },
+        "reused": false,
+        "trace_sha256": "f52c3c90e92a70fb3092bd6724a27f62525652d950fa5a12cfba7adcb988c70c",
+        "source_trace_sha256": "d733f3d1e37b28e60ae187b29f764638b6635814bbc3be14afcf28b5487fafcb"
+      },
+      "vehicle_04_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004205239511166522,
+          "measured_yaw_rmse_deg_s": 0.03072187258199138,
+          "beta_rmse_deg": 0.002173371309799201
+        },
+        "reused": false,
+        "trace_sha256": "4e42ffe273247c78bf82414b4eaba00c387b35b7947358bef54fb967faba79e4",
+        "source_trace_sha256": "bec94c28a3d745f0b1cf3c7fd7bb69f5f5aad9f16bb54ab428f98b770f56a7cd"
+      },
+      "vehicle_04_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0017983530650174159,
+          "measured_yaw_rmse_deg_s": 0.03031355451068596,
+          "beta_rmse_deg": 0.00583352560234662
+        },
+        "reused": false,
+        "trace_sha256": "c790d95ddf71ddaed511bcb80b00d71ded85446efae4a01f737df2f8c9c04e5e",
+        "source_trace_sha256": "f0c9350c9d050981820f2807112980db1242dfa7c8907013ccaca27b33b9fad1"
+      },
+      "vehicle_04_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0032514371700965126,
+          "measured_yaw_rmse_deg_s": 0.02999328722370856,
+          "beta_rmse_deg": 0.0033624101819067086
+        },
+        "reused": false,
+        "trace_sha256": "4c95e99f647307d44cf3af6acdf1e11f9ffb89ecc3c0a741feea0a98ac6552ff",
+        "source_trace_sha256": "42348afe35555b6056a1e0b2fa482424b956a4ec525680c6023a650b94212b5c"
+      },
+      "vehicle_04_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0023723148427468536,
+          "measured_yaw_rmse_deg_s": 0.030396378353364315,
+          "beta_rmse_deg": 0.008865698939371506
+        },
+        "reused": false,
+        "trace_sha256": "22f6b26f4489382fc011b25a95c5d44ec9cfe190317da58b0709fe3e5743d64c",
+        "source_trace_sha256": "bd59536190b5c1ba29587ae2a262ae75ed01f5cda70f066ee41de33104b33af6"
+      },
+      "vehicle_04_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002348853880680501,
+          "measured_yaw_rmse_deg_s": 0.03028619532930906,
+          "beta_rmse_deg": 0.004780276750570333
+        },
+        "reused": false,
+        "trace_sha256": "a01ae5724716899e9b288ba200f92efe3bb9bb7d26c87d6b0a8025a5a01967b3",
+        "source_trace_sha256": "1e337f6b074fa73c94034cd78d594423c784097a58bb6348928618dfd00ca16a"
+      },
+      "vehicle_04_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003183452370068349,
+          "measured_yaw_rmse_deg_s": 0.029825831428971838,
+          "beta_rmse_deg": 0.011909976941641986
+        },
+        "reused": false,
+        "trace_sha256": "3aee25ff82dce9513a3adfa7942c225337ad12e7426ea5aa4026705de8c62de7",
+        "source_trace_sha256": "46b279a7e2f8461dc7b6106d0a3db6de98ac3a794706595460afd46a22089d29"
+      },
+      "vehicle_04_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0018195170834416259,
+          "measured_yaw_rmse_deg_s": 0.028904270296472405,
+          "beta_rmse_deg": 0.0061852501915693565
+        },
+        "reused": false,
+        "trace_sha256": "0313ad3bf412dc3dbe2fe085cc334295b0b86c7be541cdaa8c85eeba95680165",
+        "source_trace_sha256": "cae5faf0713c23bb49bfd176e6dc1c485429cc9d224f5be79de0f442cc32b310"
+      },
+      "vehicle_04_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004451575974982402,
+          "measured_yaw_rmse_deg_s": 0.029912167445949652,
+          "beta_rmse_deg": 0.01480501287460016
+        },
+        "reused": false,
+        "trace_sha256": "cf2e4128cae684bae866d1218dad6efd7815eca030d9f6d6eaf1c6772915514d",
+        "source_trace_sha256": "2989f2f0fcb0d7e3d698843b6aa27bfa5086277ecec63a26220c5aa8c147c74f"
+      },
+      "vehicle_04_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0025628642041476716,
+          "measured_yaw_rmse_deg_s": 0.028768531732861067,
+          "beta_rmse_deg": 0.007570693531532344
+        },
+        "reused": false,
+        "trace_sha256": "ee4348de3e940809e5af37d6177a3bbcefe9bdecebe1fd702619159b4b741fb3",
+        "source_trace_sha256": "edeab2c8b07f2fb83aa097b852459675ae8fedef722b0869016db4c236719d50"
+      },
+      "vehicle_04_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.006168747812346073,
+          "measured_yaw_rmse_deg_s": 0.02921753455003177,
+          "beta_rmse_deg": 0.01747395691003877
+        },
+        "reused": false,
+        "trace_sha256": "e3363b820b5de14267c7185082c854eca2f93d4ef32d128d8c2521525eee66a2",
+        "source_trace_sha256": "e85d44f69666b80bc9f6b7d8dd95bf553c18f746c92ebe5b771555e79371bb8c"
+      },
+      "vehicle_04_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0045354515845145126,
+          "measured_yaw_rmse_deg_s": 0.031018179456430327,
+          "beta_rmse_deg": 0.008963813537622121
+        },
+        "reused": false,
+        "trace_sha256": "c9931f80c97d8e95d320d0ce56919b3736e6b27e67a4ddf6926a6e12a2a25024",
+        "source_trace_sha256": "ce7cb47eb77de41346790cfbd758d8cbef34efffa21598dbe1c506fcb1a976cc"
+      },
+      "vehicle_04_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.008204517594142697,
+          "measured_yaw_rmse_deg_s": 0.03155901710464822,
+          "beta_rmse_deg": 0.01989108161114804
+        },
+        "reused": false,
+        "trace_sha256": "affe8ab7651be394d86c3626ad0e41ed08e717babba7bec9cf195fdd0539631e",
+        "source_trace_sha256": "654cbb45b6013af2ffdbe93ca602f29b83d0546de51d443cfb2a89a3cbe7e0fa"
+      },
+      "vehicle_04_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.007241937976515002,
+          "measured_yaw_rmse_deg_s": 0.03129093690285668,
+          "beta_rmse_deg": 0.010391716160064353
+        },
+        "reused": false,
+        "trace_sha256": "fa73c0d73e04e20496b634901b3ef92aebd34281e9986ea645cc18872f12a3b1",
+        "source_trace_sha256": "9bf075faa4a4bae0ddfe18c5548fad573181d89d9273c5857c5cc3b1dc56c470"
+      },
+      "vehicle_05_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010232999105824453,
+          "measured_yaw_rmse_deg_s": 0.02940348918649038,
+          "beta_rmse_deg": 0.0013391451724975392
+        },
+        "reused": false,
+        "trace_sha256": "272e702481e909ddf345b1eac1e8c4a85e7035d702b98448475c845196d4ceab",
+        "source_trace_sha256": "e22b2b51e28dcde6f632fda58f4082b7435ecd30028e031c08d6e8edf700c212"
+      },
+      "vehicle_05_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004189677418980298,
+          "measured_yaw_rmse_deg_s": 0.03037473338827982,
+          "beta_rmse_deg": 0.0010111389941330005
+        },
+        "reused": false,
+        "trace_sha256": "8f5fb5bb23eea1b15efc4502631f58b88856de023c81a8e67b2b9af2debb4374",
+        "source_trace_sha256": "2a3495bd6b75c8a32b3b9b191ffded0e322a7ce410ac98e4a622872231f74d2f"
+      },
+      "vehicle_05_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0014113235176976193,
+          "measured_yaw_rmse_deg_s": 0.031061464633843454,
+          "beta_rmse_deg": 0.002491747232806221
+        },
+        "reused": false,
+        "trace_sha256": "82889b9020c2b74c7d58362fb3d38568e5544e3faad9029c06dc8c7219bbd5dd",
+        "source_trace_sha256": "f68f5ccf518f6528ff1313845a1d2ec1442d3587f4e2a8514e34e90007aac3de"
+      },
+      "vehicle_05_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0036124994876911565,
+          "measured_yaw_rmse_deg_s": 0.029592775164225954,
+          "beta_rmse_deg": 0.0013927832089030085
+        },
+        "reused": false,
+        "trace_sha256": "474d1a02a0aa6de059a932cca27070d6a7bd563c0d46bae3874a9074f47edf9c",
+        "source_trace_sha256": "4dcefff8771dd1482f44cc70d53b470a9ee266a5e7916e670dc0f4023d5ddc8f"
+      },
+      "vehicle_05_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0015624061226295418,
+          "measured_yaw_rmse_deg_s": 0.029699865007382274,
+          "beta_rmse_deg": 0.0037382939960044037
+        },
+        "reused": false,
+        "trace_sha256": "ba854cc35a612016f196aa980f9fbacd3f0aa48744aab80d85223311e0925516",
+        "source_trace_sha256": "aa0649c602b733e4f8165d39a19a361c0cd698f35fd5588fc588719327475415"
+      },
+      "vehicle_05_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0030616402139194,
+          "measured_yaw_rmse_deg_s": 0.030494368316165775,
+          "beta_rmse_deg": 0.0019232194157551906
+        },
+        "reused": false,
+        "trace_sha256": "714eb216ebc8e8e34f0354234c1e9aa5d23c075dd785d33f5664fdd2ec41327e",
+        "source_trace_sha256": "e603179b627f9f4f1e3d458d98bf96f8509ae4542f7cc589a948ad9d0422d9b0"
+      },
+      "vehicle_05_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00142677572320924,
+          "measured_yaw_rmse_deg_s": 0.030650489266226946,
+          "beta_rmse_deg": 0.004950535839602577
+        },
+        "reused": false,
+        "trace_sha256": "b5fa052383e3e84f6c0c0bf77ca7ff412624015cac4cc42764295d91a7a0ecb4",
+        "source_trace_sha256": "7fa2ce54576701430643db4257ece93b77836637ed7c95d508b4ca1dfedeb800"
+      },
+      "vehicle_05_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0025557832519980247,
+          "measured_yaw_rmse_deg_s": 0.030581494818475247,
+          "beta_rmse_deg": 0.0024221755001766435
+        },
+        "reused": false,
+        "trace_sha256": "e5984bb3e5869a97dfdcbc237edb4af543abd13f8847306d099fda632f8f3b94",
+        "source_trace_sha256": "6af570d6b431ec44ce2f8263957a60501f592dfeaa364382f3f44d35bc7a79f8"
+      },
+      "vehicle_05_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011153788852493332,
+          "measured_yaw_rmse_deg_s": 0.030150808010590748,
+          "beta_rmse_deg": 0.006062219395336946
+        },
+        "reused": false,
+        "trace_sha256": "c433dd7405b162bea3037aa6c3239ea528381c435a93b63f60fb0f0b8cb3bdc8",
+        "source_trace_sha256": "9d0cdceff276a6075b279c3ffa54bbbf9bfa6b8906ed1324ba7d5f4decd4d4fa"
+      },
+      "vehicle_05_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0021318934385665105,
+          "measured_yaw_rmse_deg_s": 0.031251043073780925,
+          "beta_rmse_deg": 0.0028814936419474177
+        },
+        "reused": false,
+        "trace_sha256": "a43ac95851c8855cd4683cb68b5079db87e8da225c1ed437453c0053c5c3d51b",
+        "source_trace_sha256": "13eaa7609b24fa1056dbb541044f458f7047955cc967b8e9aba0bca334a522fc"
+      },
+      "vehicle_05_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010095498012509996,
+          "measured_yaw_rmse_deg_s": 0.03027984003722812,
+          "beta_rmse_deg": 0.007049588317959344
+        },
+        "reused": false,
+        "trace_sha256": "b0648df340242285a0166a92e1a4a12db40338dcd131a19ac1a5565c2d89506a",
+        "source_trace_sha256": "52ad9752a7ec897412cb51b4737597ac28f2d1e02006baf4253d67f1dd046282"
+      },
+      "vehicle_05_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0019502519249795776,
+          "measured_yaw_rmse_deg_s": 0.029087166526858863,
+          "beta_rmse_deg": 0.0033104488355507216
+        },
+        "reused": false,
+        "trace_sha256": "3524009ded71f7f7b601e299ad41d09e784d5b3bace52a0ea008b715caffa5a3",
+        "source_trace_sha256": "5e7d4d5fd1ec3117f363813c097a8901ef66c272a752a19b9672b6759f27d583"
+      },
+      "vehicle_05_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0015009540161478707,
+          "measured_yaw_rmse_deg_s": 0.031214574245931215,
+          "beta_rmse_deg": 0.007912015888782879
+        },
+        "reused": false,
+        "trace_sha256": "4fd8dd2baa870cc9dfb677eced259458e7bc8213e4a93b4eef53c3846ff4d0d2",
+        "source_trace_sha256": "f84e5837704975aa24490e0fab8adb77c8b65ff756e02b2ec4391e6ffe3963f9"
+      },
+      "vehicle_05_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0021961757684409323,
+          "measured_yaw_rmse_deg_s": 0.029979979028688555,
+          "beta_rmse_deg": 0.0037160470080450925
+        },
+        "reused": false,
+        "trace_sha256": "242a6caa6c8d7cfa34e9663835a544c8e5a7f5acac840a0b3e6ff6ed668a3c58",
+        "source_trace_sha256": "8b16611665bb44657e34b8b51374e01b29a72109b34425d798465cd644cb40bb"
+      },
+      "vehicle_06_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0006609521170908646,
+          "measured_yaw_rmse_deg_s": 0.030982345918149443,
+          "beta_rmse_deg": 0.0013925756343469177
+        },
+        "reused": false,
+        "trace_sha256": "1b4a95c780e64e45e03e48974bd44fe4120ceff32b89f4ced4d65bc47869c6f6",
+        "source_trace_sha256": "79465b56fae2e2b3b51f84349d19785c17534946f3078fc7cd9f9d6220d290e6"
+      },
+      "vehicle_06_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0031023849677713055,
+          "measured_yaw_rmse_deg_s": 0.029628949900635932,
+          "beta_rmse_deg": 0.0010670170823722696
+        },
+        "reused": false,
+        "trace_sha256": "8306b63a24761457cb77f84f55ed78bd5a5b85b194fee41f9fb8bd4277012e4d",
+        "source_trace_sha256": "5dea9943a05244520ed2f9052053421991416c150e1063a311459ecbe7688555"
+      },
+      "vehicle_06_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0008726140244085927,
+          "measured_yaw_rmse_deg_s": 0.030824098015628805,
+          "beta_rmse_deg": 0.0025605165381850136
+        },
+        "reused": false,
+        "trace_sha256": "55ff8fc6f1b8f7974a088e1fd1b1994d630b9f6b3d4facb573e60ace8006f585",
+        "source_trace_sha256": "36b0926b0b5cf04af6045aef954e3ed335e9c9c6d92c32c5e6869aadab113460"
+      },
+      "vehicle_06_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003077662351038866,
+          "measured_yaw_rmse_deg_s": 0.03131374145590936,
+          "beta_rmse_deg": 0.0015829415637034622
+        },
+        "reused": false,
+        "trace_sha256": "4a1179d5e09e33e772d06d3ba1f1389956f0650bbf9f7b6beaf5ce49c96d722b",
+        "source_trace_sha256": "88947d2d77ba656a7cce288894f06846c2c18248a7b4fd78a23dc462c38a907c"
+      },
+      "vehicle_06_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0008279440164494449,
+          "measured_yaw_rmse_deg_s": 0.030340491667383947,
+          "beta_rmse_deg": 0.0037043962385554983
+        },
+        "reused": false,
+        "trace_sha256": "996ada8f64d15c5ee1dd3c1425d9e93ec7bfe163de399a6bf37875c3f95b431b",
+        "source_trace_sha256": "53fd7dc3725d336905192e411f92b2e090f1c89d09bd285ceccb1610c2e2ff09"
+      },
+      "vehicle_06_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0028539043034104088,
+          "measured_yaw_rmse_deg_s": 0.029651322034710447,
+          "beta_rmse_deg": 0.0021461590055655085
+        },
+        "reused": false,
+        "trace_sha256": "e9bb14c83769864686803b17e8e259cda3e7095f0df6fd731440b31164d8440f",
+        "source_trace_sha256": "437a7a53a7404f5eac6e9a56dd3bd53f40662d6e5f0abca328bfc17f3bcc9cd6"
+      },
+      "vehicle_06_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010533108177585542,
+          "measured_yaw_rmse_deg_s": 0.029637659835329407,
+          "beta_rmse_deg": 0.004572016954041963
+        },
+        "reused": false,
+        "trace_sha256": "bf66e1705410b2fad507c905a4057361db2f5d1ccd56326a01f8aa2f492e1cb9",
+        "source_trace_sha256": "c6cfe0ec225a38a630da3a5ea443d8b20902c5be2182fb8386dfaf645b02b7a6"
+      },
+      "vehicle_06_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0025187889194366077,
+          "measured_yaw_rmse_deg_s": 0.029163335972177636,
+          "beta_rmse_deg": 0.0025997840159257845
+        },
+        "reused": false,
+        "trace_sha256": "f10614b87cd934acded662ab554c3e74f24bce837604bb31a7ca07dbb97c06e7",
+        "source_trace_sha256": "720b5677fcc0c791d697ff5615546cd650981a92668e1a4049861f5b988d3ceb"
+      },
+      "vehicle_06_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0023596959410854285,
+          "measured_yaw_rmse_deg_s": 0.029718992116775353,
+          "beta_rmse_deg": 0.005018218495828048
+        },
+        "reused": false,
+        "trace_sha256": "e96db5bb3c0a39a468d1b6f38d65085481881f911fffe19fdca2923e1133baf9",
+        "source_trace_sha256": "eb39b531db9cdb2560eb49b96dda92c6247b1c0bbfea362595744309e6922f93"
+      },
+      "vehicle_06_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002417578957843303,
+          "measured_yaw_rmse_deg_s": 0.030119176666278936,
+          "beta_rmse_deg": 0.002883775255756651
+        },
+        "reused": false,
+        "trace_sha256": "20ec8315f6cdef07355eb3d63652ea82856b614b9d8b4e55454051142836c122",
+        "source_trace_sha256": "9f37f1ed31f080d1a49a2b1ead8698b01a9ba15065efa3e5f80554d92ba9e32a"
+      },
+      "vehicle_06_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004427550346274228,
+          "measured_yaw_rmse_deg_s": 0.02981141228122102,
+          "beta_rmse_deg": 0.005038715298365041
+        },
+        "reused": false,
+        "trace_sha256": "8d05bed7a128ab6c3d219ecbae42ffb39eecf1617af027c01a7e2f647867d778",
+        "source_trace_sha256": "4391365d9608d1adfa7bec85192140d5ba5b37ff207c5160be75a3014ca49632"
+      },
+      "vehicle_06_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003372093468965323,
+          "measured_yaw_rmse_deg_s": 0.029780607324728356,
+          "beta_rmse_deg": 0.002975230576467085
+        },
+        "reused": false,
+        "trace_sha256": "6e43462aa81b27c08d272568c5d014fab90af9ef9e8e7bff01ededce61c266f0",
+        "source_trace_sha256": "82ecea529ed78e0f02d7d7af302b9054ecd67dddada647a4edf8bfce51540079"
+      },
+      "vehicle_06_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.006997933891999622,
+          "measured_yaw_rmse_deg_s": 0.031149611656760823,
+          "beta_rmse_deg": 0.004801201132330478
+        },
+        "reused": false,
+        "trace_sha256": "e926f83ca4f3d6ab63bdfb49beb4dfd9a7ca7c75eafb69792f0c912df7ce769d",
+        "source_trace_sha256": "10375ebcf9d3b2ab98c32bac8b816499dbfb8380233431ace833744a62a98db4"
+      },
+      "vehicle_06_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005723775043665625,
+          "measured_yaw_rmse_deg_s": 0.030146046732571406,
+          "beta_rmse_deg": 0.0029039666345481428
+        },
+        "reused": false,
+        "trace_sha256": "d65e4291133263e23a46ffdc013e73f647949b1dd5b3d8729a0a5255910c58c7",
+        "source_trace_sha256": "d0237e4b609a675bc1887af8c1ccda266be2ccc94a5e132bc4adfaac351981d3"
+      },
+      "vehicle_07_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0002751596384485627,
+          "measured_yaw_rmse_deg_s": 0.030857732802135895,
+          "beta_rmse_deg": 0.000454880442461869
+        },
+        "reused": false,
+        "trace_sha256": "1185d333eb32f457e0f76648b9d869805a7f9febc5c542ff53d72ecb084d0f0d",
+        "source_trace_sha256": "66cdb2bc08f7bb72a65f3d86654669a2c6e6e9939adea186f40d6c874a6cbc46"
+      },
+      "vehicle_07_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0007429935239465722,
+          "measured_yaw_rmse_deg_s": 0.028637279105511153,
+          "beta_rmse_deg": 0.0006061978278983817
+        },
+        "reused": false,
+        "trace_sha256": "35803979141aa582f77d6c17b959be43444ba6d8e28ffcfbd56a34e7f9c43509",
+        "source_trace_sha256": "2b11fc23acac9596773b2a1afc42cb80dc488ef4bbac0641da59be362e72dbaf"
+      },
+      "vehicle_07_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0008079451621902621,
+          "measured_yaw_rmse_deg_s": 0.030057714824915056,
+          "beta_rmse_deg": 0.0009236877454567334
+        },
+        "reused": false,
+        "trace_sha256": "162a93abd970795323cd1a8c0b7072bd60e17b680ba1cf0c3258f27349451f17",
+        "source_trace_sha256": "a43dc7b510430213ed09a61ff42d238f3c2af632e05b1699bf64e521e431cec6"
+      },
+      "vehicle_07_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0023322980029958492,
+          "measured_yaw_rmse_deg_s": 0.030534584023592184,
+          "beta_rmse_deg": 0.0008199726557459827
+        },
+        "reused": false,
+        "trace_sha256": "3b7da69ddda49b2cda64d3e9431a5fb0a7af93383ba3dceabc44f91f297f5c66",
+        "source_trace_sha256": "bf7100bcc3aa57c1523ee20296727d58d2213ab5b1774860e12c35b7f2206700"
+      },
+      "vehicle_07_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0016124700106335528,
+          "measured_yaw_rmse_deg_s": 0.0299605192884854,
+          "beta_rmse_deg": 0.0015807283837047535
+        },
+        "reused": false,
+        "trace_sha256": "6889a2f335025726ea6d145c5baf78e57afe0205825fce6ac184e69f4714028f",
+        "source_trace_sha256": "97d34650a914bb8467680da6519a55e9336ce0beb4f4d212cb05ec03f5e856ae"
+      },
+      "vehicle_07_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004271451265836113,
+          "measured_yaw_rmse_deg_s": 0.030382300283121604,
+          "beta_rmse_deg": 0.001211263235955797
+        },
+        "reused": false,
+        "trace_sha256": "ffad6bc915184c63235c81391f1c0d03dc793e0409215591ee79fdf80ce76105",
+        "source_trace_sha256": "74ccf9505dfdcd7aed294d5bd0b8e23db6b1f3ec3735b2da856d2d3ec3903d75"
+      },
+      "vehicle_07_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002601456040030647,
+          "measured_yaw_rmse_deg_s": 0.029853132668063616,
+          "beta_rmse_deg": 0.0024326048701184076
+        },
+        "reused": false,
+        "trace_sha256": "1eb095032b0bb82eba9ebb219712aa66c8ef6a1e5c53ab27705bcde61a764595",
+        "source_trace_sha256": "b32e3473d01327e9cc504313c9a042db8ea51ca26c30d8d1c0b008c939ab300c"
+      },
+      "vehicle_07_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.006553745569059072,
+          "measured_yaw_rmse_deg_s": 0.03079319115397124,
+          "beta_rmse_deg": 0.0017766227599984262
+        },
+        "reused": false,
+        "trace_sha256": "9623149f19717fa69a6f3186696829baef9da6d5489d5e277f96a606692fe6a5",
+        "source_trace_sha256": "ced92232d84a234db17b2a4ce5dcd069dfbfa1a04ca17b5d75476758ae926e58"
+      },
+      "vehicle_07_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003680687553001433,
+          "measured_yaw_rmse_deg_s": 0.03000457188669906,
+          "beta_rmse_deg": 0.003473079219950054
+        },
+        "reused": false,
+        "trace_sha256": "e4e6fa2d0363498ec0ed9a41ae0ea2ef3a833c0a716b97a5f5c90946cdf1bbc8",
+        "source_trace_sha256": "5dcb62728ea0ce1a87ea761cd67630a42f80ddfaed3b9da04104bf7c4da47261"
+      },
+      "vehicle_07_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.009213883401821481,
+          "measured_yaw_rmse_deg_s": 0.030722361915673728,
+          "beta_rmse_deg": 0.0025052490514496538
+        },
+        "reused": false,
+        "trace_sha256": "1b1afe7c9e62399dfb3a393e3c028356a9d122087f897824d2dbfd3da2117730",
+        "source_trace_sha256": "54ac7ddb2bf4c28eb551bdd89894b31a581bebb0a8cc65722f34602ea228dcc7"
+      },
+      "vehicle_07_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004785187725852139,
+          "measured_yaw_rmse_deg_s": 0.030397186109919008,
+          "beta_rmse_deg": 0.004681643789660333
+        },
+        "reused": false,
+        "trace_sha256": "4314c71b2f0400f952b9eda0829c80104ce2ca9e0a5a77c91dafc54e249028b0",
+        "source_trace_sha256": "cd36629f2174ec028b6866344bbdc50322b34bcd3618fa76672ba7d9b549230c"
+      },
+      "vehicle_07_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.012275991080444226,
+          "measured_yaw_rmse_deg_s": 0.03220244033474901,
+          "beta_rmse_deg": 0.003396740009652271
+        },
+        "reused": false,
+        "trace_sha256": "15851b11386111aae3d58da1f4dbf5b76c7aa890a637ff87b7822a4cfda0146d",
+        "source_trace_sha256": "954c034df903afeca7c89ca4fc1c69230dd9477631abeb3feda7582bf89a2350"
+      },
+      "vehicle_07_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005895576552755615,
+          "measured_yaw_rmse_deg_s": 0.030701607594692162,
+          "beta_rmse_deg": 0.0060279168099232104
+        },
+        "reused": false,
+        "trace_sha256": "2a0e9496323348475e0feab87658c1a0eef097df01a88389c61e6e8bba2743cf",
+        "source_trace_sha256": "d3038156a2a212aefc16b7a657ad55c71a1967b772a45b744fc7a18e3fb801c1"
+      },
+      "vehicle_07_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.015761882917268703,
+          "measured_yaw_rmse_deg_s": 0.033992832220790505,
+          "beta_rmse_deg": 0.004456649914513253
+        },
+        "reused": false,
+        "trace_sha256": "ee96dde9b2dd6f151ce3f690313439c94081ac5a9049fcc23ef1e7c87c65168c",
+        "source_trace_sha256": "08b04320849adac4cdef0e14795e8a98fadda28a39e75be348ef82c2df57f1e6"
+      },
+      "vehicle_08_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00020639032685630866,
+          "measured_yaw_rmse_deg_s": 0.029858064084906353,
+          "beta_rmse_deg": 0.003749622887407517
+        },
+        "reused": false,
+        "trace_sha256": "3d657d896156df6439c186516b6785afe932e32d40fc5ce9386f94d7a3d641c8",
+        "source_trace_sha256": "171dff5678bf84ae70249f1884f1c8558c73c8e64d0a9e72c14cfaa40b4fba33"
+      },
+      "vehicle_08_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0008492666975427181,
+          "measured_yaw_rmse_deg_s": 0.029433746053122763,
+          "beta_rmse_deg": 0.0027557833416356516
+        },
+        "reused": false,
+        "trace_sha256": "9086558fdad2ab9066a97a44f7564c65817fa8cc901454b63c62d85fdfdf9b70",
+        "source_trace_sha256": "6affb5a1c9ad9bf1da2a21a928ae9f9a98723dc58e2be446d959b1b8b8282bb1"
+      },
+      "vehicle_08_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00038158316055066744,
+          "measured_yaw_rmse_deg_s": 0.0298623109952043,
+          "beta_rmse_deg": 0.007139884360365668
+        },
+        "reused": false,
+        "trace_sha256": "145cc4648904deb5c8f4205fe370b71fae782afb18b997a468067963c4bb1a70",
+        "source_trace_sha256": "7d5eb6e6969859ac01adc8f31a2245c1f2b02a11bb5b2cc5c1bd621c881e4165"
+      },
+      "vehicle_08_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011287869797248706,
+          "measured_yaw_rmse_deg_s": 0.02953229523640147,
+          "beta_rmse_deg": 0.004348645916497271
+        },
+        "reused": false,
+        "trace_sha256": "96c113f5bee400c226e0a73418a7e9fafe269ba5e7eeae0518844b6939f162ce",
+        "source_trace_sha256": "f056e6eac2af0a305bba4f54c097ff5e68defb6047a7fd1f3fb198e09c1795d3"
+      },
+      "vehicle_08_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.001551146828760311,
+          "measured_yaw_rmse_deg_s": 0.029918696899702592,
+          "beta_rmse_deg": 0.010920638855329987
+        },
+        "reused": false,
+        "trace_sha256": "924226fa83b8b46cb865a06585297f46944e8c68e94eef33cd28e739c05cc2b0",
+        "source_trace_sha256": "fe86f5b0bf45992b0da15ddd7314d4d9660d103bb85dcf7293ca66c0786d742b"
+      },
+      "vehicle_08_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0022169562446348943,
+          "measured_yaw_rmse_deg_s": 0.029676318751298066,
+          "beta_rmse_deg": 0.0061194384536039145
+        },
+        "reused": false,
+        "trace_sha256": "0a882f9d150b80b36d55d870bc568e30864aabb2f5695622a562911569f56fbe",
+        "source_trace_sha256": "4b258dd515c0bc084cb97232f0f415feddd98d7e3d79c8e4b59049ba098b4aad"
+      },
+      "vehicle_08_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003765614494157292,
+          "measured_yaw_rmse_deg_s": 0.03093255356431383,
+          "beta_rmse_deg": 0.014624883489057175
+        },
+        "reused": false,
+        "trace_sha256": "4605092ae27bcecd9e72b64bbce9ab08e9172e9f34ee1b392cc3b08b382de7fd",
+        "source_trace_sha256": "21f1d42cecb1774d911cc6a0e7e149f3173e64a63df797b5eddfe4a06fc61dc4"
+      },
+      "vehicle_08_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003976524666309116,
+          "measured_yaw_rmse_deg_s": 0.02992507440403382,
+          "beta_rmse_deg": 0.007850690078299326
+        },
+        "reused": false,
+        "trace_sha256": "688b8497d9fc8d87f07340917e6609250108c66a5be082f04ae531d33990dc67",
+        "source_trace_sha256": "e163cc437e8cc8f36509452f30d179f35aa9686fb9e7f627799ef5fb8e3d4f32"
+      },
+      "vehicle_08_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0069791998954404745,
+          "measured_yaw_rmse_deg_s": 0.03064059566190146,
+          "beta_rmse_deg": 0.01792342668246912
+        },
+        "reused": false,
+        "trace_sha256": "0e41e5d4f52b63dada6d2dbbe32025d656cc72de4faef218d4e947ace199a5e4",
+        "source_trace_sha256": "182f3f61012509ceae51e16a057959a409c23c7500d916cb7b68e56a65d2ab3b"
+      },
+      "vehicle_08_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0061588962866160665,
+          "measured_yaw_rmse_deg_s": 0.030303488031033932,
+          "beta_rmse_deg": 0.009450408325926056
+        },
+        "reused": false,
+        "trace_sha256": "7145e7ce108857ac7b93a7e3ea7e7302923797ae75845eb86db1ca57a559c9e2",
+        "source_trace_sha256": "95941cfb416875e6ca7a6ba9c4d2c4b9bc35b7716c2f56dee336497f9058cd9d"
+      },
+      "vehicle_08_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.01100113946949891,
+          "measured_yaw_rmse_deg_s": 0.031048413801516343,
+          "beta_rmse_deg": 0.020639918886355416
+        },
+        "reused": false,
+        "trace_sha256": "00f8d07d52857dfadd7f2d58c045e8f4e4fbcb21c41ac603ca92ed6ff76fb9ae",
+        "source_trace_sha256": "d528309a4ac4bb6f7f69a75a1ce23d120a741657774ce11a599d48febf8a8660"
+      },
+      "vehicle_08_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.008642361474717744,
+          "measured_yaw_rmse_deg_s": 0.03145647545787929,
+          "beta_rmse_deg": 0.010865936139136575
+        },
+        "reused": false,
+        "trace_sha256": "e8d72f2b6a6231394aaca5ef39f6097aff57271f3ae297323d39167f1f73ac96",
+        "source_trace_sha256": "486e18fb518afdfba9f60a276c4b7f1778a76c6d0fd55dda53cda19dfcaaa259"
+      },
+      "vehicle_08_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.015558367154530144,
+          "measured_yaw_rmse_deg_s": 0.0337173916353765,
+          "beta_rmse_deg": 0.022720809513466268
+        },
+        "reused": false,
+        "trace_sha256": "00ea382e2ed4bf8907750c4736c3d3d088a2fd2b55f8a55ad4e3c0cf5bd56d39",
+        "source_trace_sha256": "a7c1d5291692a7bf6a77f2f6947a2049fdbd344ce952d8343c3db9b1f63cdcbd"
+      },
+      "vehicle_08_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.011386666219597458,
+          "measured_yaw_rmse_deg_s": 0.03141101501975727,
+          "beta_rmse_deg": 0.012056152348564313
+        },
+        "reused": false,
+        "trace_sha256": "5092562a76a514ab461baa9d69fa5dd7caad7935dc3bd16ab8e42fa935bc823c",
+        "source_trace_sha256": "064acfb9f44740ff62e182d3a86d298f663b20a24b06c8f4c8d448d25234820d"
+      }
+    }
+  },
+  "payload_sha256": "37b0dc070c23fea0f2ae6b2f7a4724b4bac923d158154808d8749817b1a6c2ad"
+}
