@@ -1,0 +1,37 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized FL: convergence continuation</title><style>body{font:16px/1.65 system-ui;background:#edf2f5;color:#173348}main{max-width:1050px;margin:auto;padding:30px}section{background:white;padding:25px;margin:22px 0;border-radius:12px}h1,h2{line-height:1.25}pre{background:#163547;color:white;padding:18px;overflow:auto}table{border-collapse:collapse;width:100%}td,th{padding:10px;border-bottom:1px solid #ddd;text-align:left}</style><main>
+<h1>Does the personalized-FL advantage survive convergence?</h1>
+<p>Continue the existing personalized fits, with the original data and objective. This is a numerical convergence check on the same three pilot fleets, not a new confirmation study.</p>
+<section><h2>Exactly what changes</h2><table><tr><th>Item</th><th>Protocol</th></tr>
+<tr><td>Method</td><td>FedPersonal only: one learned fleet center and individual vehicle parameters.</td></tr>
+<tr><td>Round budget</td><td>30 total rounds, including the rounds already completed. This is not 30 additional rounds.</td></tr>
+<tr><td>Fleets 1301 and 1302</td><td>Resume their saved round-8 estimates, centers and optimizer history. At most 22 additional rounds each; stop earlier when the existing convergence criteria pass.</td></tr>
+<tr><td>Fleet 1303</td><td>Reuse its converged round-5 solution and saved predictions without refitting or resimulation.</td></tr>
+<tr><td>Unchanged</td><td>Client allocation, records and noise realizations, model, parameter bounds, penalty weights, per-client solver budget, convergence tolerances, and all evaluation conditions.</td></tr>
+<tr><td>Baselines</td><td>Reuse the saved LocalOE and NominalPrior metrics. No baseline fits are repeated. Global and FedGroups are not continued.</td></tr></table>
+<p>Copy the original personalized state into a separate checkpoint. Only the former budget-exhausted status is reopened. Each added round uses the same client-local nonlinear OE solver and server center update as the original implementation. Evaluation data never choose the stopping round, model or penalty.</p>
+<p>The original stopping conditions require stable assignments, relative objective change below 10⁻⁶, maximum log-parameter movement below 10⁻³, and converged client solves. The existing local update budget remains 25 function evaluations. A finite model that reaches round 30 is evaluated with an explicit budget-exhausted status. An unavailable local update stops the fleet and preserves the failure; no replacement model is substituted.</p></section>
+<section><h2>Efficient and safe execution</h2><p>Two worker processes run the two unfinished fleets concurrently. Thread limits are set internally; no OPENBLAS/OMP/MKL commands are needed. Each client update, completed round and evaluation case is checkpointed atomically with Windows replacement retries.</p>
+<p>The runner reads the original ignored raw arrays when available and verifies their saved hashes. If arrays are missing, it reconstructs the original records and requires exact numerical-byte hash agreement. No new noise is sampled beyond reproducing the same seed-defined arrays. For missing test arrays, original predictions are reconstructed solely to verify the original full trace hash before evaluating the continued model.</p>
+<p>Use the original machine and numerical environment, or provide the original raw arrays. A hash mismatch stops the run; it does not silently substitute approximately equivalent data. Source checkpoint hashes, implementation files, configuration and numerical package versions are locked. All continued outputs use a separate prefix; original files are never overwritten.</p>
+<p>Repeated run commands skip completed work, including client updates inside an interrupted round. Only one continuation runner should be active. After a forced termination, delete <code>results\data\paper_federated_relaxation_continue\run.lock</code> only after confirming that no continuation process remains active.</p></section>
+<section><h2>Run in Windows CMD</h2><pre>git pull --ff-only origin main
+python code\experiments\paper_federated_relaxation_continue.py preflight
+python code\experiments\paper_federated_relaxation_continue.py smoke
+python code\experiments\paper_federated_relaxation_continue.py run --workers 2</pre>
+<p>The smoke test uses short synthetic records in temporary storage and a spawned worker; it does not advance the scientific checkpoints. Optional progress command:</p><pre>python code\experiments\paper_federated_relaxation_continue.py status</pre>
+<p>Optional first-fleet execution:</p><pre>python code\experiments\paper_federated_relaxation_continue.py run --workers 1 --seed 1301</pre>
+<p>Then run the all-fleets command to complete the others and create the reuse checkpoint for fleet 1303.</p></section>
+<section><h2>Commit execution results first</h2><pre>git add results/tables/paper_federated_relaxation_continue_seed1301.json results/tables/paper_federated_relaxation_continue_seed1302.json results/tables/paper_federated_relaxation_continue_seed1303.json
+git commit -m "Complete personalized FL convergence continuation"
+git push origin main</pre>
+<p>Then generate and inspect the comparison:</p><pre>python code\experiments\paper_federated_relaxation_continue.py analyze
+start report\federated_relaxation_continue.html</pre>
+<p>Commit the analysis separately:</p><pre>git add report/federated_relaxation_continue.html results/tables/paper_federated_relaxation_continue_*.csv results/tables/paper_federated_relaxation_continue_analysis.json
+git commit -m "Compare personalized FL before and after convergence"
+git push origin main</pre></section>
+<section><h2>Interpretation</h2><p>First inspect convergence status and added rounds. Then compare the original and final FedPersonal prediction errors against LocalOE and NominalPrior, separately for each fleet and speed region. Peer-observed speeds remain the primary diagnostic; local-speed degradation and variation between fleets remain visible.</p>
+<p>The report contains objective and parameter changes, added logical communication, paired prediction changes and before/after plots. Percent reductions are ratios of paired mean errors, not averages of casewise percentages. It does not apply a new significance threshold or declare a scientific pass.</p>
+<p>This continuation resolves the finite-round ambiguity. It cannot establish that complementary-speed peers are more useful than same-speed peers, and it does not test closed-loop tracking. Those questions remain subsequent experiments.</p></section>
+<section><h2>Restore ignored continued traces</h2><pre>python code\experiments\paper_federated_relaxation_continue.py restore --seed 1301</pre>
+<p>Restoration performs no fitting, verifies the saved numerical-byte hashes and leaves the committed checkpoint unchanged. Reused predictions for fleet 1303 need no new arrays. Missing original arrays must also reconstruct exactly, as during execution.</p></section></main></html>
