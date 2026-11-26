@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "audit_source": "results/tables/paper_federated_relaxation_consolidation.json",
+  "audit_sha256": "e49432e2dc9d8ee8e1028109551cbf56864fc69b352cc925d27e0bfed17b19f4",
+  "methods": [
+    "LocalOE",
+    "NominalPrior",
+    "SameSpeedAfter",
+    "Complementary"
+  ],
+  "primary_region": "target_unseen_anchor",
+  "trajectory_selection": {
+    "training_speeds": [
+      13,
+      21
+    ],
+    "evaluation_speed": 29,
+    "probe": "broadband",
+    "criterion": "Closest to median NominalPrior clean yaw RMSE within each training-speed stratum; ties ordered by seed then client. No FL metric enters selection."
+  },
+  "replay_tolerance": {
+    "rtol": 1e-08,
+    "atol": 1e-10
+  }
+}

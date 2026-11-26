@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Personalized physical identification: figure package</title>
+<style>body{font:16px/1.65 system-ui;color:#173348;background:#edf3f6;margin:0}main{max-width:1080px;margin:auto;padding:28px}section{background:white;border-radius:12px;padding:24px;margin:22px 0}h1,h2{line-height:1.25}pre{background:#edf2f5;padding:16px;overflow:auto}table{border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}img{width:100%;height:auto}a{color:#087d87}.scroll{overflow:auto}</style><main>
+<h1>Figures for the personalized identification discussion</h1>
+<p>This package presents the completed limited-speed physical-OE experiments. It does not modify the manuscript, historical figures, fitting code or frozen results. The paper discussion document is the next step after reviewing these figures.</p>
+<section><h2>Editable method overview</h2>
+<p><a href="../paper/figures/personalized_id/personalized_id_overview.drawio">Open/download the new draw.io source</a>. Native grouped shapes, connected arrows, editable text and MathJax equations; Times New Roman, mostly 17–20 drawing units, approximately 8.4–9.9 pt at a 7.16-inch figure width.</p>
+<img src="../paper/figures/personalized_id/personalized_id_overview_preview.svg" alt="Local yaw-only physical identification, learned fleet prior, matched same-speed versus complementary peers, and unseen-speed evaluation.">
+<p>The image is a vector layout preview generated from the same geometry using Matplotlib mathtext. It is not a native draw.io PDF export; final MathJax/Times New Roman typesetting should be checked when exporting from draw.io. Mathematical Typesetting is enabled in the diagram. Each logical block is grouped for editing. The old LPV overview is preserved.</p>
+<p>Notation: M=9 vehicles per fitted condition; θ<sub>i</sub> contains the six positive parameters [C<sub>f</sub>/m, C<sub>r</sub>/m, m/I<sub>z</sub>, μ, σ<sub>f</sub>, σ<sub>r</sub>]. The model states are [β,r,F<sub>yf</sub>/m,F<sub>yr</sub>/m]. Only noisy yaw y and known steering/speed enter identification. The normalized yaw residual sum of squares is L<sub>i</sub>; z<sub>i</sub>=log θ<sub>i</sub> uses the fixed numerical unit convention of the implementation. W=diag(10,10,10,0,4,4); friction has no prior penalty. The server averages log parameters and also receives scalar losses for objective/convergence accounting. No trajectory is exchanged. This is the existing single-machine emulation of data-local computation, not a deployed network or privacy guarantee.</p>
+<p>The shared prior is a quadratic regularizer, without a claim of calibrated Bayesian uncertainty. The fixed-nominal-prior baseline uses the same weights but a fixed center. All models stay personalized. The lower coverage panel is an example for a 13 m/s target: the target's own record is excluded from the eight peer counts. Other target speeds use the corresponding permutation. The total is nine records, or 108 s, in either fitted condition.</p>
+</section>
+<section><h2>Result panels and scientific roles</h2><div class="scroll"><table>
+<tr><th>Suggested figure</th><th>PDF suffix (prefix: paper_personalized_id_)</th><th>Purpose</th></tr>
+<tr><td>Overall comparison</td><td>fleet_error_panel; vehicle_comparison_panel</td><td>Separate the large regularization effect from the incremental learned-prior benefit; show negative individual outcomes.</td></tr>
+<tr><td>Peer-speed comparison</td><td>peer_absolute_panel; peer_relative_panel</td><td>Show absolute and relative changes by target training speed, including all three fleet results and zero.</td></tr>
+<tr><td>Trajectory interpretation</td><td>trace_train13_steering/yaw/error_panel; trace_train21_steering/yaw/error_panel</td><td>Show full applied steering, clean yaw and signed prediction error for two deterministically selected cases.</td></tr>
+</table></div>
+<p>Each of the ten panels is a separate 3.48-inch-wide PDF, SVG and PNG. Fonts are 8 pt, ticks 7 pt; PDF fonts are embedded. No embedded panel letters, figure titles, insets, or confidence bands. LaTeX supplies subcaptions later. Colors are consistent across plots, and line styles distinguish trajectory methods without color. The two yaw panels share axis limits, as do the two error panels.</p>
+<p>Primary metric: mean clean yaw prediction RMSE at the two target-unseen speeds among 13/21/29 m/s, using two probes. Each fleet has nine vehicles and 36 primary test cases; the complete primary comparison has 27 vehicles and 108 cases. Fleet means and pooled means have equal vehicle/fleet weighting because the design is balanced. Relative reduction is 100×(1−mean Complementary/mean SameSpeed), not a mean of per-case percentages. Positive differences favor complementary peers. Three reused development fleets are shown explicitly; no inferential confidence interval is implied.</p>
+<p>Trajectory selection is fixed in <code>paper/personalized_id_figures.json</code>: training speeds 13 and 21 m/s, existing evaluation speed 29 m/s, broadband probe. In each nine-vehicle stratum select the case nearest the median nominal-prior clean yaw RMSE, with ties ordered by seed/client. No FL outcome enters selection. The rule is descriptive and was specified after the experiments; it is not a preregistered scientific test. Selection tables expose every candidate.</p>
+</section>
+<section><h2>Generate locally — Windows CMD</h2>
+<pre>git pull --ff-only origin main
+python paper\prepare_personalized_id_figures.py --preflight
+python paper\prepare_personalized_id_figures.py --generate
+start report\personalized_id_figures.html</pre>
+<p>Uses the existing federated_lpv conda environment. No new package or manual thread environment commands are required. Summary panels use saved results; the two trajectory examples replay saved models on existing tests. There is no fitting, controller design, new maneuver, or parameter tuning. Both replays must reproduce saved yaw, noisy-yaw and sideslip metrics within rtol=10<sup>−8</sup>, atol=10<sup>−10</sup>. The manifest distinguishes numerical replay from byte-exact recovery. No original raw arrays are required or overwritten.</p>
+<p>The self-contained HTML gallery embeds all ten SVG panels and their captions. It can be opened without internet access. The manifest records source hashes, selected cases, replay checks, rendering settings and output hashes.</p>
+<pre>git add results/figures/paper_personalized_id_*_panel.pdf results/tables/paper_personalized_id_*.csv results/tables/paper_personalized_id_manifest.json report/personalized_id_figures.html
+git diff --cached --stat
+git commit -m "Generate personalized identification paper panels"
+git push origin main</pre>
+<p>SVG/PNG previews in results/figures are intentionally ignored by git; vector PDFs, summary/selection tables, manifest and the embedded HTML gallery are committed.</p>
+</section>
+<section><h2>Editing and exporting the overview</h2>
+<pre>start paper\figures\personalized_id\personalized_id_overview.drawio</pre>
+<p>Export a cropped vector PDF from draw.io after reviewing math and text. Suggested destination: <code>results/figures/paper_personalized_id_overview.pdf</code>. Commit that PDF and any edited draw.io source. Do not rebuild the source after manual edits unless you intend to replace those edits.</p>
+<pre>git add paper/figures/personalized_id/personalized_id_overview.drawio results/figures/paper_personalized_id_overview.pdf
+git commit -m "Export personalized identification overview"
+git push origin main</pre>
+<p>Optional regeneration of the original diagram design into a separate directory:</p>
+<pre>python paper\build_personalized_id_overview.py --output-dir paper\build\personalized_id_overview</pre>
+<p>This creates the editable XML plus layout-preview PDF/SVG/PNG. The preview uses the same elements but should not be described as a native draw.io export.</p>
+</section></main></html>

@@ -1,0 +1,61 @@
+{
+  "status": "pre_release_validation_passed",
+  "base_commit": "c48a5a9a1bdc9a554c1c064b0a564b8d32d5aefb",
+  "scientific_fits": 0,
+  "new_test_conditions": 0,
+  "existing_test_replays": 2,
+  "tests_passed": 3,
+  "pdf_panels": 10,
+  "single_page_pdf_width_inches": 3.48,
+  "type3_pdf_fonts": false,
+  "drawio_xml": "Unique cells, valid parents/connections, math enabled; grouped editable blocks",
+  "overview_preview": "Same-geometry vector preview, not a native draw.io export",
+  "visual_review": "Overview and representative aggregate, scatter, peer-effect, yaw and error panels inspected",
+  "replays": [
+    {
+      "seed": 1302,
+      "client": "vehicle_03",
+      "training_speed": 13,
+      "evaluation_speed": 29,
+      "probe": "broadband",
+      "source_case": "vehicle_03_v29_broadband",
+      "original_source_trace_sha256": "d79fdbac59e1530d8ea4f2b2f56b1a7c99dc556be2791e50fb733657e4bf0264",
+      "reconstructed_plot_trace_sha256": "f3b01dbf890db7257bb07f6fadf12c77039c965f42fc291316ac4cd79fe65ada",
+      "max_metric_difference": 2.862293735361732e-17,
+      "provenance": "Numerical replay of frozen models on an existing test; no fitting and no claim of byte-exact original trace recovery."
+    },
+    {
+      "seed": 1303,
+      "client": "vehicle_07",
+      "training_speed": 21,
+      "evaluation_speed": 29,
+      "probe": "broadband",
+      "source_case": "vehicle_07_v29_broadband",
+      "original_source_trace_sha256": "1a05e707aa67e808264923776ce6e3cf06b1a04d3ddbf3505086e835ecde160b",
+      "reconstructed_plot_trace_sha256": "1f32ebf8f04f6d7945538c72ecca632d3d0b79ee663461db9d3364a26a467016",
+      "max_metric_difference": 8.760353553682876e-17,
+      "provenance": "Numerical replay of frozen models on an existing test; no fitting and no claim of byte-exact original trace recovery."
+    }
+  ],
+  "source_sha256": {
+    "paper/prepare_personalized_id_figures.py": "4521e20fe0e3a2369c0ea6614f3870fac6ada9adad3c90a3404e52bec6750546",
+    "paper/build_personalized_id_overview.py": "6ed638af0bf3927b0e2b5350c9c29e23ff5b273926372db5945446844fe2d6da",
+    "paper/personalized_id_figures.json": "a782a842ce03b928a65024ceb91996eaddb315aed51e266f6dded9275d8b5091",
+    "paper/figures/personalized_id/personalized_id_overview.drawio": "acd606d7a2d5c881b341f8a478ccbdc862dc5c8a1320dc7343ebf75604ed5922",
+    "paper/figures/personalized_id/personalized_id_overview_preview.svg": "24c46c380dcab666a8e74056aba8eae948b2bc3184b835b9ffff5a20a4add722",
+    "code/tests/test_personalized_id_figures.py": "5dfaed88846c18069ef87199cd81768a3c428e6d51ad59b3ba55f30cae992f4d"
+  },
+  "preview_pdf_sha256": {
+    "paper_personalized_id_trace_train21_error_panel.pdf": "4fdd57ee0dea5d50f3a554efb692a6fcb92de3965750900447937339d37f7012",
+    "paper_personalized_id_trace_train21_yaw_panel.pdf": "e1f082cafa2311cfa7c61d74564e1a43fd045fb262fd7e8b8a452b6f67baa061",
+    "paper_personalized_id_trace_train21_steering_panel.pdf": "3bc1f909331bdbbb1eb7d9e7fb6a2375d9e92a1d5998d0efa185258b606fe436",
+    "paper_personalized_id_trace_train13_error_panel.pdf": "8365ba806d4aae4a496c593412ae4ef2f9fdf1ec30c256a494f9e4ea7b809c55",
+    "paper_personalized_id_trace_train13_yaw_panel.pdf": "389931c7633e1ff4bf6afb0e0ed9a5abde0d18d7baee10735b7e2b7b7b1389ed",
+    "paper_personalized_id_trace_train13_steering_panel.pdf": "3bc1f909331bdbbb1eb7d9e7fb6a2375d9e92a1d5998d0efa185258b606fe436",
+    "paper_personalized_id_peer_relative_panel.pdf": "4f6099b9329855ef76509435557b443219415c5b2cc063f596afc0a9950564de",
+    "paper_personalized_id_peer_absolute_panel.pdf": "a09048c6e182f9f22d0380f85a0ceb114facd895acbffbf90b8f239deed581a9",
+    "paper_personalized_id_vehicle_comparison_panel.pdf": "9959cd62a527e2ae26a655ff036c9d2850c821dbf4e3413463467dd82f862c0e",
+    "paper_personalized_id_fleet_error_panel.pdf": "762cfd08ecc9807d7fd8117e691d08dde36e6c79a654fd62dcf0f1b1357f820d"
+  },
+  "note": "Validation exports used a temporary output directory. User regenerates final PDF panels, gallery and manifest locally using the provided command."
+}

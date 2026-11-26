@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" compressed="false" type="device">
+  <diagram id="personalized-physical-id" name="Personalized physical identification">
+    <mxGraphModel dx="1040" dy="660" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1040" pageHeight="660" math="1" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="local" value="" style="group;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="30" width="655" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="local_frame" value="" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=#aebdc8;strokeWidth=1;" parent="local" vertex="1">
+          <mxGeometry width="655" height="320" as="geometry" />
+        </mxCell>
+        <mxCell id="local_title" value="On each vehicle &lt;i&gt;i&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=20;fontColor=#172b38;fontStyle=1;" parent="local" vertex="1">
+          <mxGeometry x="20" y="12" width="615" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="record" value="" style="group;connectable=1;" parent="local" vertex="1">
+          <mxGeometry x="20" y="70" width="250" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="record_frame" value="" style="rounded=0;html=1;fillColor=#f7f9fb;strokeColor=#bdc7ce;strokeWidth=1;" parent="record" vertex="1">
+          <mxGeometry width="250" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="record_title" value="Local measurements" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#172b38;fontStyle=1;" parent="record" vertex="1">
+          <mxGeometry x="10" y="12" width="230" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="record_duration" value="One 12 s record&lt;br&gt;at one speed" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="record" vertex="1">
+          <mxGeometry x="10" y="50" width="230" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="record_speed" value="$$v_i\in\{13,21,29\}\ \mathrm{m/s}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="record" vertex="1">
+          <mxGeometry x="10" y="99" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="record_known" value="Known steering and speed" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#172b38;fontStyle=0;" parent="record" vertex="1">
+          <mxGeometry x="10" y="139" width="230" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="record_yaw" value="$$y_{i,k}=r_{i,k}+\epsilon_{i,k}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=18;fontColor=#172b38;fontStyle=0;" parent="record" vertex="1">
+          <mxGeometry x="10" y="169" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="update" value="" style="group;connectable=1;" parent="local" vertex="1">
+          <mxGeometry x="315" y="70" width="315" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="update_frame" value="" style="rounded=0;html=1;fillColor=#f5f8fa;strokeColor=#bdc7ce;strokeWidth=1;" parent="update" vertex="1">
+          <mxGeometry width="315" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="update_title" value="Personalized local update" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#172b38;fontStyle=1;" parent="update" vertex="1">
+          <mxGeometry x="10" y="12" width="295" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="update_logs" value="$$\mathbf{z}_i=\log\boldsymbol{\theta}_i\in\mathbb{R}^{6}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=18;fontColor=#172b38;fontStyle=0;" parent="update" vertex="1">
+          <mxGeometry x="10" y="51" width="295" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="update_loss" value="$$\min_{\mathbf{z}_i}\ \{L_i(\mathbf{z}_i)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#172b38;fontStyle=0;" parent="update" vertex="1">
+          <mxGeometry x="10" y="91" width="295" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="update_prior" value="$$+\ \|\mathbf{W}(\mathbf{z}_i-\boldsymbol{\eta})\|_2^2\}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#172b38;fontStyle=0;" parent="update" vertex="1">
+          <mxGeometry x="10" y="127" width="295" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="update_model" value="Four-state physical model" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="update" vertex="1">
+          <mxGeometry x="10" y="176" width="295" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="local_footer" value="Trajectories stay on the vehicle" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="local" vertex="1">
+          <mxGeometry x="20" y="288" width="400" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="server" value="" style="group;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="745" y="100" width="275" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="server_frame" value="" style="rounded=0;html=1;fillColor=#eaf5f3;strokeColor=#64a398;strokeWidth=1;" parent="server" vertex="1">
+          <mxGeometry width="275" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="server_title" value="Learned fleet prior" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=20;fontColor=#172b38;fontStyle=1;" parent="server" vertex="1">
+          <mxGeometry x="10" y="12" width="255" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="server_mean" value="$$\boldsymbol{\eta}=\frac{1}{M}\sum_{j=1}^{M}\mathbf{z}_j$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#172b38;fontStyle=0;" parent="server" vertex="1">
+          <mxGeometry x="10" y="48" width="255" height="77" as="geometry" />
+        </mxCell>
+        <mxCell id="server_desc" value="Mean log parameters" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="server" vertex="1">
+          <mxGeometry x="10" y="130" width="255" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="server_personal" value="One prior; M local models" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="server" vertex="1">
+          <mxGeometry x="10" y="171" width="255" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="data_to_fit" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#536572;strokeWidth=1.4;endArrow=block;endFill=1;endSize=7;exitX=1.0;exitY=0.5047619047619047;exitPerimeter=0;entryX=0.0;entryY=0.5047619047619047;entryPerimeter=0;" parent="1" edge="1" source="record" target="update">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="290" y="206" as="sourcePoint" />
+            <mxPoint x="335" y="206" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="upload" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#536572;strokeWidth=1.4;endArrow=block;endFill=1;endSize=7;exitX=1.0;exitY=0.38095238095238093;exitPerimeter=0;entryX=0.0;entryY=0.38095238095238093;entryPerimeter=0;" parent="1" edge="1" source="update" target="server">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="650" y="180" as="sourcePoint" />
+            <mxPoint x="745" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="upload_label" value="$$\mathbf{z}_i,\ L_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="1" vertex="1">
+          <mxGeometry x="658" y="146" width="79" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="download" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#087d87;strokeWidth=1.4;endArrow=block;endFill=1;endSize=7;exitX=0.0;exitY=0.719047619047619;exitPerimeter=0;entryX=1.0;entryY=0.719047619047619;entryPerimeter=0;" parent="1" edge="1" source="server" target="update">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="745" y="251" as="sourcePoint" />
+            <mxPoint x="650" y="251" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="download_label" value="$$\boldsymbol{\eta}$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#087d87;fontStyle=0;" parent="1" vertex="1">
+          <mxGeometry x="658" y="216" width="79" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="coverage" value="" style="group;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="405" width="655" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="coverage_frame" value="" style="rounded=0;html=1;fillColor=#f8fafb;strokeColor=#bdc7ce;strokeWidth=1;" parent="coverage" vertex="1">
+          <mxGeometry width="655" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="coverage_title" value="Matched peer-speed comparison" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=20;fontColor=#172b38;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="15" y="11" width="625" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="coverage_target" value="Example: target at 13 m/s" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#172b38;fontStyle=0;" parent="coverage" vertex="1">
+          <mxGeometry x="15" y="45" width="290" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="speed_13" value="13 m/s" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="310" y="66" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="speed_21" value="21 m/s" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="410" y="66" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="speed_29" value="29 m/s" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="510" y="66" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="same_label" value="Same-speed peers" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=18;fontColor=#8061a8;fontStyle=0;" parent="coverage" vertex="1">
+          <mxGeometry x="15" y="101" width="285" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="same_0" value="8" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#8061a8;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="310" y="101" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="same_1" value="0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#8061a8;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="410" y="101" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="same_2" value="0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#8061a8;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="510" y="101" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="complementary_label" value="Complementary peers" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=18;fontColor=#087d87;fontStyle=0;" parent="coverage" vertex="1">
+          <mxGeometry x="15" y="138" width="285" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="complementary_0" value="2" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#087d87;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="310" y="138" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="complementary_1" value="3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#087d87;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="410" y="138" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="complementary_2" value="3" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=19;fontColor=#087d87;fontStyle=1;" parent="coverage" vertex="1">
+          <mxGeometry x="510" y="138" width="90" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="coverage_footer" value="Same target record, 8 peer identities and total duration" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#172b38;fontStyle=0;" parent="coverage" vertex="1">
+          <mxGeometry x="15" y="180" width="625" height="23" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluation" value="" style="group;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="745" y="405" width="275" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluation_frame" value="" style="rounded=0;html=1;fillColor=#ffffff;strokeColor=#64a398;strokeWidth=1;" parent="evaluation" vertex="1">
+          <mxGeometry width="275" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluation_title" value="Unseen-speed prediction" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=18;fontColor=#172b38;fontStyle=1;" parent="evaluation" vertex="1">
+          <mxGeometry x="10" y="12" width="255" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluation_speed" value="$$v\ne v_i$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=21;fontColor=#172b38;fontStyle=0;" parent="evaluation" vertex="1">
+          <mxGeometry x="10" y="48" width="255" height="31" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluation_fixed" value="Fixed learned parameters" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="evaluation" vertex="1">
+          <mxGeometry x="10" y="88" width="255" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluation_response" value="$$\hat r(\boldsymbol{\theta}_i,\delta,v)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=20;fontColor=#172b38;fontStyle=0;" parent="evaluation" vertex="1">
+          <mxGeometry x="10" y="122" width="255" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="evaluation_score" value="Clean yaw truth for scoring" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=16;fontColor=#172b38;fontStyle=0;" parent="evaluation" vertex="1">
+          <mxGeometry x="10" y="174" width="255" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="model_to_test" value="" style="edgeStyle=none;rounded=0;html=1;strokeColor=#536572;strokeWidth=1.4;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=1.0;exitPerimeter=0;entryX=0.5;entryY=0.0;entryPerimeter=0;" parent="1" edge="1" source="update" target="evaluation">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="492.5" y="310" as="sourcePoint" />
+            <mxPoint x="882.5" y="405" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="492.5" y="375" />
+              <mxPoint x="882.5" y="375" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="model_label" value="$$\boldsymbol{\theta}_i=\exp(\mathbf{z}_i)$$" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=18;fontColor=#172b38;fontStyle=0;" parent="1" vertex="1">
+          <mxGeometry x="530" y="343" width="290" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="baseline_note" value="Reference baseline: the same local objective with a fixed nominal prior" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontFamily=Times New Roman;fontSize=17;fontColor=#172b38;fontStyle=0;" parent="1" vertex="1">
+          <mxGeometry x="20" y="629" width="1000" height="24" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
