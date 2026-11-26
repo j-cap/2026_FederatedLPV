@@ -1,0 +1,6563 @@
+{
+  "payload": {
+    "seed": 1302,
+    "status": "execution_complete",
+    "provenance": {
+      "peer": {
+        "base": {
+          "files": {
+            "code/config/paper_federated_relaxation_coverage.json": "298c5d1a8b986f8933b4a30cd7c98b344d1502a46ff3bde9a08da5858fad6295",
+            "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
+            "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
+            "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+            "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+            "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+            "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+            "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+            "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5"
+          },
+          "source": {
+            "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+            "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+            "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1"
+          },
+          "runtime": {
+            "python": "3.12",
+            "packages": {
+              "numpy": "2.3.5",
+              "scipy": "1.17.0",
+              "pandas": "2.2.3",
+              "threadpoolctl": "3.6.0",
+              "scikit-learn": "1.8.0"
+            }
+          }
+        },
+        "source_checkpoints": {
+          "results/tables/paper_federated_relaxation_coverage_seed1301.json": "5e393a83067bd5ea03b2fa549878cb53e827b33b72701ff7efd9bac0b36b4437",
+          "results/tables/paper_federated_relaxation_continue_seed1301.json": "64faaad31c8e5324d735c1d4d24cd19629c53e6c58e0648e1b18a718acdff884",
+          "results/tables/paper_federated_relaxation_coverage_seed1302.json": "9997f1b5d3b893f832e859e10b88d8db91ae03f92a717fd3a875ae043bc57b85",
+          "results/tables/paper_federated_relaxation_continue_seed1302.json": "82bf858a751451bec16099916ec98e8b423027de54949c64386c49223d87d418",
+          "results/tables/paper_federated_relaxation_coverage_seed1303.json": "c9108b4dd1154ce32435bca596db43fe1a5846d85ef11a2ebc046c7557f285b3",
+          "results/tables/paper_federated_relaxation_continue_seed1303.json": "9d5b48eafa87bad0fd14088f1bfdf8fc6b2fde5c5bc7ab17e0973744f90f7bd8"
+        },
+        "files": {
+          "code/config/paper_federated_relaxation_peers.json": "9423f23b047170f21ac6f080fa14569983734d5ce30d5f12e3c6545a1e07fd62",
+          "code/experiments/paper_federated_relaxation_peers.py": "5693cb09857b0a18a5010ec59f9e02c26cbfe6de8ecda99098816ea4822b7331",
+          "code/experiments/paper_federated_relaxation_continue.py": "105a796ab8e5ab44a0ad03c42f60fcc8c2b0049dc3f4da3250bbdf43498469b0",
+          "code/config/paper_federated_relaxation_continue.json": "475dd9753ff95b181fb4b23279ba002360e2755c3467604571c7a58caf624068"
+        }
+      },
+      "sources": {
+        "results/tables/paper_federated_relaxation_peers_seed1301.json": "fff094c69e62f20d54ca71dddb9508ba459cf78d48c9953bc084acf016877842",
+        "results/tables/paper_federated_relaxation_peers_seed1302.json": "516a0f21d9ed351c72378b9c8d0b93e62d1efc16989bd08a1f534c7d57acdf33",
+        "results/tables/paper_federated_relaxation_peers_seed1303.json": "61c60f43f77e9ae5768d42077e4a66c952dba50885ba70aea5b7aeeb10277fc9"
+      },
+      "files": {
+        "code/config/paper_federated_relaxation_peers_finish.json": "c385f43d88942604033c838c28f5157fe3bda98c0cad36a55aaf0a680e32ef1e",
+        "code/experiments/paper_federated_relaxation_peers_finish.py": "504c5052d2cf546456ee51880520c5cedd99c6758d709ee57f51d5967ca7d25d"
+      }
+    },
+    "optimization": {
+      "log_parameters": [
+        [
+          3.95114535069177,
+          4.111859456952546,
+          -0.45434871932475834,
+          -0.9162907318741503,
+          -0.9338595132464668,
+          -0.4210840174891744
+        ],
+        [
+          3.888461154464825,
+          4.082300182088439,
+          -0.4670381160573327,
+          0.40546510810816105,
+          -1.1713580167409299,
+          -0.32311118368043207
+        ],
+        [
+          3.9564009605956127,
+          4.000011020462366,
+          -0.5607996532017362,
+          0.18555367724008473,
+          -1.1146993986398832,
+          -0.31666982475446975
+        ],
+        [
+          3.9319846542455648,
+          4.119145143824315,
+          -0.4884758735225847,
+          0.4054651081081612,
+          -0.9774103698758013,
+          -0.30936981525385804
+        ],
+        [
+          3.9602930700781616,
+          3.9670180181448456,
+          -0.542318785569869,
+          -0.32836286162975276,
+          -1.0560630914953697,
+          -0.3180893035900448
+        ],
+        [
+          3.904202254053561,
+          3.902846616414104,
+          -0.604327008576402,
+          0.4054651081081602,
+          -1.1048175463149223,
+          -0.28896878159221046
+        ],
+        [
+          3.983552357018167,
+          3.9255789304839923,
+          -0.6412080091924325,
+          0.40546510810815745,
+          -1.0190185010300548,
+          -0.325908835254031
+        ],
+        [
+          4.057792254545321,
+          3.982220699504923,
+          -0.5235297403022111,
+          0.40546510810816155,
+          -0.8956616000062525,
+          -0.3754528791230303
+        ],
+        [
+          3.9931453730032542,
+          3.9242018047465246,
+          -0.6226811947520366,
+          -0.9162907318741547,
+          -0.9770595255501131,
+          -0.32362340164390907
+        ]
+      ],
+      "centers": [
+        [
+          3.958553047632915,
+          4.001686874735784,
+          -0.5449696778332626,
+          0.005770543600314272,
+          -1.0277719514333103,
+          -0.3335864491534622
+        ]
+      ],
+      "assignments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "round": 46,
+      "history": [
+        {
+          "round": 1,
+          "objective": 10698.877298207715,
+          "data_sse": 10685.353855327185,
+          "penalty": 13.523442880529755,
+          "max_log_step": 1.0920680221043022,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 14,
+              "optimality": 0.0006920481830066788,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.00024390546730703686,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 6,
+              "optimality": 0.004411001513526886,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0002575604214031725,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 6,
+              "optimality": 0.003470073176719809,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 6,
+              "optimality": 0.0032571703152237865,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 6,
+              "optimality": 0.0003982370649144869,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 8,
+              "optimality": 2.76321975088331e-06,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.0005172350991176539,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "objective": 10698.177335817214,
+          "data_sse": 10685.293254570182,
+          "penalty": 12.884081247031018,
+          "max_log_step": 0.22693402155529233,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.003464801618235215,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0001817045201139857,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.005969583003128947,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.001439688348477052,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0008743654810555595,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0008939984629061089,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 4.120509277678377e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00039871157249309394,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 1.0899539280814668e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "objective": 10698.082644695121,
+          "data_sse": 10685.348332089525,
+          "penalty": 12.734312605595871,
+          "max_log_step": 0.07887800305487913,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0015868905870666597,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00026325448806149235,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00919206971887626,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.0007807706736652907,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00010006811168785707,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00014863981153677617,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014349169338202248,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00014519833267998607,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002845073483880307,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "objective": 10698.040892164785,
+          "data_sse": 10685.355646503163,
+          "penalty": 12.685245661621055,
+          "max_log_step": 0.03918204890430825,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0018110799812039232,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012101663125858152,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004292204108704638,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.007250575910736759,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0042147309941354336,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.005943105134763092,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015390886562064556,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.005361239508489833,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003497933310478789,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "objective": 10698.008942134857,
+          "data_sse": 10685.346171322271,
+          "penalty": 12.66277081258475,
+          "max_log_step": 0.02504502302590597,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004963116926760636,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014998078588867698,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0031270966414501332,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004227227674440262,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.003295023443790273,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.005050519678287233,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015724448712999288,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004536161632567572,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00035453356760710463,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "objective": 10697.98258358983,
+          "data_sse": 10685.333638568572,
+          "penalty": 12.648945021257607,
+          "max_log_step": 0.020292741277110823,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.005406995788867997,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014286518470441917,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002622421891719587,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0031790122989599763,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002834147661772989,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00446502195295226,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014961531876695156,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00404298513850984,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003412002043332578,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "objective": 10697.960661481127,
+          "data_sse": 10685.322253717379,
+          "penalty": 12.638407763748315,
+          "max_log_step": 0.018198158589477494,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.005167264057186411,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001299375540050725,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002282651697774385,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0027498916006304663,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0025312168498028346,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004017333212144102,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013900832476188146,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00366524605312936,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003212810727847452,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "objective": 10697.94239938576,
+          "data_sse": 10685.312834528759,
+          "penalty": 12.629564857000451,
+          "max_log_step": 0.016889409857404315,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004775228817246051,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011684067315762049,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0020090564306538337,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0025038944438595125,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0022885203960859245,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0036362076506121707,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012821863934508733,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.003341448475495189,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00030013074212135223,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 9,
+          "objective": 10697.927171306288,
+          "data_sse": 10685.30529725896,
+          "penalty": 12.621874047327772,
+          "max_log_step": 0.01583001560470216,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.004371324017211285,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010483682319128585,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017750679689318642,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0023156384525795104,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0020777897830521934,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0032991227911400196,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001179936035782784,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.003052243746315175,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002793924937230284,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 10,
+          "objective": 10697.91446228788,
+          "data_sse": 10685.299365274914,
+          "penalty": 12.615097012965416,
+          "max_log_step": 0.014867568105019713,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.003991414836997474,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009411473563705082,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015711484999898213,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0021497574384013577,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001889770267433688,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002997162114983892,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010849579556434677,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0027903646743776063,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00025956507297589465,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 11,
+          "objective": 10697.90384730649,
+          "data_sse": 10685.294755575731,
+          "penalty": 12.609091730759907,
+          "max_log_step": 0.01395933765144107,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0036427843324333214,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008459610848963249,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013923535262806146,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0019963736075945646,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017204767445065194,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002725373430560233,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009972730663398632,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002552120276962632,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00024079820143211962,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 12,
+          "objective": 10697.89497495314,
+          "data_sse": 10685.291221431815,
+          "penalty": 12.603753521325512,
+          "max_log_step": 0.013093588278459283,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0033250548602210693,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000761486539598826,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012352270301049003,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0018526945497712617,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001567504830886895,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00248017154721114,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009164893938736763,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002334986715909674,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00022312829801758227,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 13,
+          "objective": 10697.887554248273,
+          "data_sse": 10685.288557032827,
+          "penalty": 12.598997215446138,
+          "max_log_step": 0.012267182913860208,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0030359709127637225,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006864138351254819,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010969758075036792,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017178372599449716,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014290298110297291,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0022586115809849643,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000842130134706265,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0021369161024061617,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00020655028068079187,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 14,
+          "objective": 10697.881343918283,
+          "data_sse": 10685.28659306851,
+          "penalty": 12.594750849773037,
+          "max_log_step": 0.011479247943557001,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0027729782701082033,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000619572663006661,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009752217882672068,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015913954183905921,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00130352054296048,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0020581598886951313,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007737148789886665,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001956129872938227,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000191039245557782,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 15,
+          "objective": 10697.876143649995,
+          "data_sse": 10685.285190913146,
+          "penalty": 12.590952736849767,
+          "max_log_step": 0.01072939560539167,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002533637145364515,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005599450834562583,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008679061181440789,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001473045662835806,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011896446713929518,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0018766008419672411,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007107876428464069,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001791040074324531,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00017655900258979254,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 16,
+          "objective": 10697.87178694103,
+          "data_sse": 10685.284237268894,
+          "penalty": 12.58754967213698,
+          "max_log_step": 0.01001723396366027,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002315703318530322,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005066519483413774,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007732367568140567,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013624752242040827,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001086228135416062,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001711983618608641,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000652922173972246,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0016402177887901027,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00016306672437468625,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 17,
+          "objective": 10697.868135243383,
+          "data_sse": 10685.283639673764,
+          "penalty": 12.584495569620184,
+          "max_log_step": 0.009342240385559017,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0021171730968182613,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004589339841163964,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006896507238700238,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012593543610423092,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009922305987730322,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015625848239051148,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005997221538140887,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015023781514730133,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00015051562002424778,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 18,
+          "objective": 10697.86507315446,
+          "data_sse": 10685.283322744435,
+          "penalty": 12.581750410025947,
+          "max_log_step": 0.008703737780771312,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0019362317513246612,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004161344266160839,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006157834665253514,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00116332683707416,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009067273985259449,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001426877533109238,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005508199947637977,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013763598126562292,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00013885672333826388,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 19,
+          "objective": 10697.862504461766,
+          "data_sse": 10685.283225114757,
+          "penalty": 12.579279347008473,
+          "max_log_step": 0.008100902274439645,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017712414829365933,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003776839524977996,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005504433301913607,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010740257942184021,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008288950187098965,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013035059594590822,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005058753481263938,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012611120205881885,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00012804007389928526,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 20,
+          "objective": 10697.860348883634,
+          "data_sse": 10685.283296922364,
+          "penalty": 12.577051961269781,
+          "max_log_step": 0.007532778927888686,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001620726839424865,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003430877069924475,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004925890469221575,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009910806938945495,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007579978771797237,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001191263760050681,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00046457351257544885,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011556831519574044,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00011801579859025207,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 21,
+          "objective": 10697.858539378916,
+          "data_sse": 10685.283497745528,
+          "penalty": 12.575041633387732,
+          "max_log_step": 0.006998300449560457,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014833578896025783,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003119144230332914,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004413106176560552,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009141231206327439,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006933785027414727,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010890752357071698,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004266237057912338,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010592104688462469,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00010873481686835527,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 22,
+          "objective": 10697.857019922922,
+          "data_sse": 10685.283794909117,
+          "penalty": 12.573225013803645,
+          "max_log_step": 0.006496306594344664,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013579349182957108,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002837875823019527,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00039581244514457555,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008427907646155037,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006344474523790218,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009959796605356792,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00039175756232556226,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009709110181370796,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00010014937962033372,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 23,
+          "objective": 10697.855743666038,
+          "data_sse": 10685.284162092365,
+          "penalty": 12.571581573672752,
+          "max_log_step": 0.0060255632237446455,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012433747588602036,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002583773351149352,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003553988764538357,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007767299086946904,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005806760833707335,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009111169770236511,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003597274306033541,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000890073540615676,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 9.221333906827199e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 24,
+          "objective": 10697.85467140721,
+          "data_sse": 10685.284578183893,
+          "penalty": 12.570093223318429,
+          "max_log_step": 0.005584780566563169,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011386985874899634,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00023539408423043086,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00031946134771255953,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007155966444543981,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005315888958130335,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000833716577496979,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003303050476266977,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000816051998762273,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 8.488252958592246e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 25,
+          "objective": 10697.853770326794,
+          "data_sse": 10685.285026339003,
+          "penalty": 12.56874398779134,
+          "max_log_step": 0.005172630288818952,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001043021116700623,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00021458314876453472,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002874674496334286,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000659069041327672,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00048675802004177694,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007630860359918902,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003032800644794021,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007482579859686496,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 7.811485938102139e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 26,
+          "objective": 10697.853012933529,
+          "data_sse": 10685.285493204326,
+          "penalty": 12.5675197292029,
+          "max_log_step": 0.004787761104709798,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009555409545725056,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001957198308140408,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002589511857911207,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006068338509528451,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004457976948918629,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006986029595226683,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00027845874567504204,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006861566458659503,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 7.187042398209993e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 27,
+          "objective": 10697.8523761885,
+          "data_sse": 10685.285968278662,
+          "penalty": 12.566407909838375,
+          "max_log_step": 0.004428812954847233,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008755321021726176,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001786053785069492,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00023350448647724436,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005585932112948295,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00040835964104737486,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006397068127058056,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00025566268347479936,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006292603687045777,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 6.611155037548141e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 28,
+          "objective": 10697.851840775596,
+          "data_sse": 10685.286443386673,
+          "penalty": 12.565397388923005,
+          "max_log_step": 0.004094429435407249,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000802336244686568,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00016306388257222013,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00021076981907114712,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005140654831862115,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003741291856488245,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000585891896151924,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002347277578297966,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005771249569538667,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 6.0802783641146655e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 29,
+          "objective": 10697.851390493424,
+          "data_sse": 10685.286912245416,
+          "penalty": 12.564478248008912,
+          "max_log_step": 0.003783268676173762,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000735356053812783,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001489390784222284,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001904339661844618,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004729845094085016,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003428214401862472,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005367017870994939,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00021550283468443294,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005293451792018365,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 5.5910842823683144e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 30,
+          "objective": 10697.851011748056,
+          "data_sse": 10685.287370107504,
+          "penalty": 12.563641640553008,
+          "max_log_step": 0.003494012569621674,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006740490670211772,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00013609207378008652,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00017222206668246657,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004351001569141928,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003141784962769252,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004917236890819874,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001978490145354932,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004855516185117007,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 5.140457738533051e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 31,
+          "objective": 10697.85069312947,
+          "data_sse": 10685.287813467272,
+          "penalty": 12.562879662198066,
+          "max_log_step": 0.003225374529689573,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006179223184672457,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001243987362024809,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001558929389674933,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004001776778371896,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00028796658289169353,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004505841786793114,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001816384785096531,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00044540701068140675,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 4.725492284745307e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 32,
+          "objective": 10697.850425057728,
+          "data_sse": 10685.288239819092,
+          "penalty": 12.562185238635339,
+          "max_log_step": 0.0029761057825351545,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005665272401074128,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00011374859969680442,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00014123486381483562,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003679971715571158,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00026397327118678345,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004129447789172123,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00016675372349913192,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004086032464783289,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 4.343469776457099e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 33,
+          "objective": 10697.850198638827,
+          "data_sse": 10685.28866790259,
+          "penalty": 12.561530736237348,
+          "max_log_step": 0.002745000356604743,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005194563565261981,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0016735618687076172,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00012806160001147055,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003383531804409887,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00024200595876882328,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00037849860090774566,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00015308674573561291,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00037485879738021946,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 3.991870079120217e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 34,
+          "objective": 10697.850006621253,
+          "data_sse": 10685.288841925176,
+          "penalty": 12.561164696076686,
+          "max_log_step": 0.0012632296303562718,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.004266006029094971,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0014897310012559198,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0020460401120625344,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0018572078958586456,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0025434831035798734,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0038859562743990893,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00014118089139646193,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002446831785354337,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 3.685039145756366e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 35,
+          "objective": 10697.849845930532,
+          "data_sse": 10685.289215984893,
+          "penalty": 12.560629945639588,
+          "max_log_step": 0.0024318038654647656,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0033747204827491188,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0013664205736798644,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0018540698455369576,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0017790453068864572,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0021454996607221536,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0032569704407804283,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0030323033368474853,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002624270828618741,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0011313492895527843,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 36,
+          "objective": 10697.849710918295,
+          "data_sse": 10685.28958374207,
+          "penalty": 12.560127176225894,
+          "max_log_step": 0.0022719278921424224,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.003180081442132213,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0012340995820339562,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001699716168494506,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001627815963012355,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001935615830048828,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002948048908048352,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002888786248266987,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0024250538802103212,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0010662649934952135,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 37,
+          "objective": 10697.849597453316,
+          "data_sse": 10685.289928712637,
+          "penalty": 12.559668740679003,
+          "max_log_step": 0.002084115992890767,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002938940273127001,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0011187304305834468,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0015666316946973545,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.00150032482047385,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0017578951839790837,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002683949787298489,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002658674057526779,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002253906128640033,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009833476242883039,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 38,
+          "objective": 10697.849502089095,
+          "data_sse": 10685.290251073131,
+          "penalty": 12.559251015963284,
+          "max_log_step": 0.0019160469476019182,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002718088555755873,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0010156975025046597,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0014431718646518534,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0013814547634281337,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0015968777500976377,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0024438862987484536,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0024418037563480747,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0020901025646819986,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009058712721314499,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 39,
+          "objective": 10697.849421932267,
+          "data_sse": 10685.29055237973,
+          "penalty": 12.558869552535803,
+          "max_log_step": 0.0017623341654259828,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0025105784330645255,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009230331993174484,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0013288223714529965,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0012714671389411267,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0014513805608754806,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0022262345524168854,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0022421245707944302,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0019358386790851714,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0008341459725946035,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 40,
+          "objective": 10697.849354553271,
+          "data_sse": 10685.290833538791,
+          "penalty": 12.558521014480103,
+          "max_log_step": 0.0016208187885401182,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.002317426956826759,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0008394452177635349,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0012230880138486427,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0011698320845021774,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0013199723156051674,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0020289556664228768,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0020585385091945857,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0017912072806128899,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0007678251956502552,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 41,
+          "objective": 10697.84929791175,
+          "data_sse": 10685.291095479572,
+          "penalty": 12.55820243217999,
+          "max_log_step": 0.0014903873188814865,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0021378611648265205,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0007639322207488262,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0011254173532859108,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0010760171340306803,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001201220335346766,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0018500570705839252,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0018898134746455396,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0016560091251107626,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.000706554039167141,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 42,
+          "objective": 10697.84925029392,
+          "data_sse": 10685.291339148,
+          "penalty": 12.557911145921805,
+          "max_log_step": 0.0013701811408302622,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001971182033595883,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0006956339907951642,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0010352577582985521,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009894766751119303,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001093804863155296,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0016877034806870102,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0017347783258249941,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001529892831267767,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0006499864181288518,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 43,
+          "objective": 10697.849210260147,
+          "data_sse": 10685.291565511718,
+          "penalty": 12.557644748428471,
+          "max_log_step": 0.0012594323044673172,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0018166438607703172,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0006337972829932407,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009520803842701032,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009096899671322012,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009965499220071451,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0015402517094299543,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001592345941654724,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0014124517085776266,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0005977924560746097,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 44,
+          "objective": 10697.84917660094,
+          "data_sse": 10685.291775544569,
+          "penalty": 12.557401056370354,
+          "max_log_step": 0.0011574318661873029,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0016735096527894368,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0005777573421780158,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0008753842636363999,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0008361643164432439,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0009084124763025561,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0014062356094925723,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0014615108272320876,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0013032530443996915,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0005496597556113918,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 45,
+          "objective": 10697.849148300054,
+          "data_sse": 10685.291970213108,
+          "penalty": 12.557178086947474,
+          "max_log_step": 0.0010635199632845205,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0015410591253803448,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0005269257093611763,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0008046974545086993,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.000768437215275047,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0008284676935904496,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.001284346964444303,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0013413444078088897,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0012018528644955697,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0005052937841361279,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 46,
+          "objective": 10697.849124503544,
+          "data_sse": 10685.292150465584,
+          "penalty": 12.556974037959673,
+          "max_log_step": 0.0009770819929932062,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0014185950814177679,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.00048078007758805164,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0007395767096486807,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0007060751239782395,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0007558944618095717,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0011734172812154628,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0012309898765377827,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.0011078052343583915,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 2,
+              "optimality": 0.000464417615084894,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ],
+      "status": "converged",
+      "pending": {},
+      "communication_float64": 5436
+    },
+    "evaluation": {
+      "vehicle_03_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011554527624116264,
+          "measured_yaw_rmse_deg_s": 0.03047631053284673,
+          "beta_rmse_deg": 0.0003404567418824947
+        },
+        "reused": false,
+        "trace_sha256": "789031ce8f9f19cd938c4638860b8711aebb89253b6024be02c80ee0e1437bbc",
+        "source_trace_sha256": "f9f682e81567c9724a207b043c72e03604d0ea45a81f4f7557933ce100c77fd9"
+      },
+      "vehicle_03_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00028507061629892005,
+          "measured_yaw_rmse_deg_s": 0.029774598570966086,
+          "beta_rmse_deg": 0.00022698648889357584
+        },
+        "reused": false,
+        "trace_sha256": "5111de43b68e2730d071c35d1f3817e25e9f32792d6e50c8c587dfd936948155",
+        "source_trace_sha256": "355d8f27b5663aef3104259e22acc875b7d394d0e12a5db7e134a819c81c781f"
+      },
+      "vehicle_03_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0026371490740472172,
+          "measured_yaw_rmse_deg_s": 0.030486614807765763,
+          "beta_rmse_deg": 0.00036750442730786357
+        },
+        "reused": false,
+        "trace_sha256": "bcc7cb576b8642f5f253e0498c5759e920e232d4656ee2c96620b09a84c13e6c",
+        "source_trace_sha256": "100fca9194b8d501f234965866e0e4053a3f937c289c3eaec39c4934ccba1a9d"
+      },
+      "vehicle_03_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0004305505906084361,
+          "measured_yaw_rmse_deg_s": 0.02933153934534702,
+          "beta_rmse_deg": 0.0003821263597291833
+        },
+        "reused": false,
+        "trace_sha256": "f5c9398f605d1d32da096d7f2a14f0f34078452514d5247f32551a05cef3121d",
+        "source_trace_sha256": "2a3cd96954557798b18e48d92863248c4d7708c3e76ae667b9da48b0a5bb7ea5"
+      },
+      "vehicle_03_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004186617145041266,
+          "measured_yaw_rmse_deg_s": 0.02871365852978992,
+          "beta_rmse_deg": 0.0004804864042584309
+        },
+        "reused": false,
+        "trace_sha256": "8c8fb798410ecdc85b317fd77d9eca37731bfbceb74fef9cf73a31df86147777",
+        "source_trace_sha256": "4cd76df18b6e23d7424f8f258bf2b34539e02543214411aaa30529da693746b9"
+      },
+      "vehicle_03_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0005966049705138188,
+          "measured_yaw_rmse_deg_s": 0.02947675772135096,
+          "beta_rmse_deg": 0.0005524161704575687
+        },
+        "reused": false,
+        "trace_sha256": "2cda25e78a0c8a457007cd406c2cda46c4744ec24a90edf0a4071613e7376159",
+        "source_trace_sha256": "ccc383e7add3588e5d496406eb4ca8543ff757b497f4cf1b2c25a2ac6bdb7ebe"
+      },
+      "vehicle_03_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0057128248986186726,
+          "measured_yaw_rmse_deg_s": 0.029958763326619127,
+          "beta_rmse_deg": 0.00065542263675964
+        },
+        "reused": false,
+        "trace_sha256": "a668c3588d214b10c28b872d4e43f18a93b97d5a802b38c9cb1500f679f0e1b4",
+        "source_trace_sha256": "555ecf5dfefbb7df7b15d28fa137762e1dda52730677765c3899e91f3ef9a3a6"
+      },
+      "vehicle_03_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0007792816605314141,
+          "measured_yaw_rmse_deg_s": 0.029738465118861385,
+          "beta_rmse_deg": 0.000723597812577498
+        },
+        "reused": false,
+        "trace_sha256": "cf99a5a926d5534eda7adca759cdf52f59809699a09026af15edc8a6dd4f76c0",
+        "source_trace_sha256": "883ac97957222f35441596d58ccc7623710103c988db52008ff2bfbaed5f6172"
+      },
+      "vehicle_03_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.007207328642832619,
+          "measured_yaw_rmse_deg_s": 0.030261717717447036,
+          "beta_rmse_deg": 0.0008679413808768769
+        },
+        "reused": false,
+        "trace_sha256": "452f1a07194b353130eaed475197dd560d03f6065664463b8a1ffd0b1f3fa702",
+        "source_trace_sha256": "d79fdbac59e1530d8ea4f2b2f56b1a7c99dc556be2791e50fb733657e4bf0264"
+      },
+      "vehicle_03_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0009830509101334754,
+          "measured_yaw_rmse_deg_s": 0.02965906165493246,
+          "beta_rmse_deg": 0.0008849918011212619
+        },
+        "reused": false,
+        "trace_sha256": "de7ce715aa4c15ec069e6fe47956d9f788f053c9b0612bc785c1a7f7b211a814",
+        "source_trace_sha256": "a55dc7226912b3cd3eb60ca67bf6e6fcc0621df72f1feb396fcf8a5e0a3c69fd"
+      },
+      "vehicle_03_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.008683703550057046,
+          "measured_yaw_rmse_deg_s": 0.03133541595527381,
+          "beta_rmse_deg": 0.0011056074786730248
+        },
+        "reused": false,
+        "trace_sha256": "9f4b62d38058d2245416a1857fedda5996dcc3bd655201e76d66a5d2eb3ac8f4",
+        "source_trace_sha256": "75ed496ee250aa45e97a2196d561566c2c1b14593b093185207a72d149c1c9d5"
+      },
+      "vehicle_03_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0012049654317511608,
+          "measured_yaw_rmse_deg_s": 0.030214010207561516,
+          "beta_rmse_deg": 0.0010306078676936635
+        },
+        "reused": false,
+        "trace_sha256": "89473678f7ba6da51a6447e6298ccff62451f50e8d25321427da9ce28d8b3215",
+        "source_trace_sha256": "71408077d4e9621314b784aadfb2712c0bc3fca2eb7b77a6ebc7c5c2f96c9a23"
+      },
+      "vehicle_03_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0005883195820154852,
+          "measured_yaw_rmse_deg_s": 0.029962287813991847,
+          "beta_rmse_deg": 0.0003923132927176291
+        },
+        "reused": false,
+        "trace_sha256": "992fbc196ff1b3fd3f15d9402f913d26a917002a977fe1c1592a7195c4db0535",
+        "source_trace_sha256": "2091f5f1c7274b3f21fde5bc551ddb47a935cdc30d3371e6e9162f8d04c31feb"
+      },
+      "vehicle_03_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00019114856634666074,
+          "measured_yaw_rmse_deg_s": 0.031043361708055873,
+          "beta_rmse_deg": 0.00010387329576735811
+        },
+        "reused": false,
+        "trace_sha256": "54033b131524455022ef4452a53932ba460f4e0202375ac9eab4b5c529292bac",
+        "source_trace_sha256": "9004b68827c6d1afb1abc72a27650288f759a7e02d9f1ea8e806d3f3dca0ef23"
+      },
+      "vehicle_07_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0022873139872672133,
+          "measured_yaw_rmse_deg_s": 0.030525717488955783,
+          "beta_rmse_deg": 0.0011424051669205017
+        },
+        "reused": false,
+        "trace_sha256": "a43b035f075873e2688b45b0ece984bcc29a16eb7197bd75e24f393999495470",
+        "source_trace_sha256": "bf7100bcc3aa57c1523ee20296727d58d2213ab5b1774860e12c35b7f2206700"
+      },
+      "vehicle_07_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0007970305295445955,
+          "measured_yaw_rmse_deg_s": 0.030055700231997894,
+          "beta_rmse_deg": 0.001548614516514179
+        },
+        "reused": false,
+        "trace_sha256": "8dcda8ffa122489acbb3f199fb6ccb865391943c9a7c19fb1567150c986b9617",
+        "source_trace_sha256": "a43dc7b510430213ed09a61ff42d238f3c2af632e05b1699bf64e521e431cec6"
+      },
+      "vehicle_07_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00400744950807143,
+          "measured_yaw_rmse_deg_s": 0.030348539220717393,
+          "beta_rmse_deg": 0.0016911804844670308
+        },
+        "reused": false,
+        "trace_sha256": "2b44c35861dfc7451d36c0b18da8e9a98458eac8f3a7a08bf7dc7d04b6267189",
+        "source_trace_sha256": "74ccf9505dfdcd7aed294d5bd0b8e23db6b1f3ec3735b2da856d2d3ec3903d75"
+      },
+      "vehicle_07_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0015472023706932583,
+          "measured_yaw_rmse_deg_s": 0.029954839463332345,
+          "beta_rmse_deg": 0.0025632922109084678
+        },
+        "reused": false,
+        "trace_sha256": "ae7a4403025aec42b80c256aeabf9cf21d6d87cf68b60d48a53965e6c14aa4bf",
+        "source_trace_sha256": "97d34650a914bb8467680da6519a55e9336ce0beb4f4d212cb05ec03f5e856ae"
+      },
+      "vehicle_07_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0061175482606737885,
+          "measured_yaw_rmse_deg_s": 0.03069504442877077,
+          "beta_rmse_deg": 0.002396206725839242
+        },
+        "reused": false,
+        "trace_sha256": "bead85e73b1ca39457be2c54b55f0e07fd5290a1b146380618bae8afa2801d32",
+        "source_trace_sha256": "ced92232d84a234db17b2a4ce5dcd069dfbfa1a04ca17b5d75476758ae926e58"
+      },
+      "vehicle_07_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0024910452932455527,
+          "measured_yaw_rmse_deg_s": 0.029841249060398062,
+          "beta_rmse_deg": 0.0037970170557780625
+        },
+        "reused": false,
+        "trace_sha256": "fd1c74677eae1ed621c84957e3fbd1a1bec3e5481ee5781f7ef2a26294deef7f",
+        "source_trace_sha256": "b32e3473d01327e9cc504313c9a042db8ea51ca26c30d8d1c0b008c939ab300c"
+      },
+      "vehicle_07_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.008668071816830396,
+          "measured_yaw_rmse_deg_s": 0.030604411074038114,
+          "beta_rmse_deg": 0.0032529753684746796
+        },
+        "reused": false,
+        "trace_sha256": "2571ec101953e6abac3dab36ab452726a979b8a934455f849376bed425977315",
+        "source_trace_sha256": "54ac7ddb2bf4c28eb551bdd89894b31a581bebb0a8cc65722f34602ea228dcc7"
+      },
+      "vehicle_07_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003557260367545793,
+          "measured_yaw_rmse_deg_s": 0.029992220350688048,
+          "beta_rmse_deg": 0.005222097470065031
+        },
+        "reused": false,
+        "trace_sha256": "fdc2f53777d731a6c046bad3c11f3caf311db190fbd91f6e38afbf4631f06063",
+        "source_trace_sha256": "5dcb62728ea0ce1a87ea761cd67630a42f80ddfaed3b9da04104bf7c4da47261"
+      },
+      "vehicle_07_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.011687437045079463,
+          "measured_yaw_rmse_deg_s": 0.032006173256855265,
+          "beta_rmse_deg": 0.004267099774296202
+        },
+        "reused": false,
+        "trace_sha256": "e2c40629a851c514c717aedb3042b85f2dc1a60045c6bf78599c0e963700e566",
+        "source_trace_sha256": "954c034df903afeca7c89ca4fc1c69230dd9477631abeb3feda7582bf89a2350"
+      },
+      "vehicle_07_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00469895091815677,
+          "measured_yaw_rmse_deg_s": 0.03038965927438711,
+          "beta_rmse_deg": 0.0068040608351060215
+        },
+        "reused": false,
+        "trace_sha256": "657cf1f26e897d705128653bc36121a9f5dfafb274a113c9433c31580e573ee5",
+        "source_trace_sha256": "cd36629f2174ec028b6866344bbdc50322b34bcd3618fa76672ba7d9b549230c"
+      },
+      "vehicle_07_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.015196927668981128,
+          "measured_yaw_rmse_deg_s": 0.03373070286012718,
+          "beta_rmse_deg": 0.005448625391279393
+        },
+        "reused": false,
+        "trace_sha256": "042adaf34e94c5efac92ee415556fc69a7c83cba2f64f7d96f9c668eee1c95b8",
+        "source_trace_sha256": "08b04320849adac4cdef0e14795e8a98fadda28a39e75be348ef82c2df57f1e6"
+      },
+      "vehicle_07_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005907684928909192,
+          "measured_yaw_rmse_deg_s": 0.030682143243589786,
+          "beta_rmse_deg": 0.008504335854388777
+        },
+        "reused": false,
+        "trace_sha256": "02410d4686b498b126105085c6cfb4775878fb95e71fcf988a16efd5ab741f25",
+        "source_trace_sha256": "d3038156a2a212aefc16b7a657ad55c71a1967b772a45b744fc7a18e3fb801c1"
+      },
+      "vehicle_07_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0009125336871054011,
+          "measured_yaw_rmse_deg_s": 0.02863803394185481,
+          "beta_rmse_deg": 0.0007618460386481432
+        },
+        "reused": false,
+        "trace_sha256": "073475d1d000319fda164b9f6969c4f8e9b91bfc1585a1d97b91f8cdda4745d9",
+        "source_trace_sha256": "2b11fc23acac9596773b2a1afc42cb80dc488ef4bbac0641da59be362e72dbaf"
+      },
+      "vehicle_07_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0003011867933599171,
+          "measured_yaw_rmse_deg_s": 0.03085848459214763,
+          "beta_rmse_deg": 0.0007754278021829675
+        },
+        "reused": false,
+        "trace_sha256": "b82f6149e09fec9587bc9b032eb677cc9e30a437e00af350f60f7b96a84789c5",
+        "source_trace_sha256": "66cdb2bc08f7bb72a65f3d86654669a2c6e6e9939adea186f40d6c874a6cbc46"
+      },
+      "vehicle_08_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.001141943660087866,
+          "measured_yaw_rmse_deg_s": 0.02953465443737187,
+          "beta_rmse_deg": 0.004744263210300698
+        },
+        "reused": false,
+        "trace_sha256": "2a188e189268df15a7b6045367646182398d09ba4c378ef957e5f9a70d4b109f",
+        "source_trace_sha256": "f056e6eac2af0a305bba4f54c097ff5e68defb6047a7fd1f3fb198e09c1795d3"
+      },
+      "vehicle_08_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0003912464614377706,
+          "measured_yaw_rmse_deg_s": 0.02986406249154264,
+          "beta_rmse_deg": 0.007830076903531241
+        },
+        "reused": false,
+        "trace_sha256": "7b5550a55318ca4c6797983c2458ce0d4ffaadec9c390d35eadf2a53a96ff5d1",
+        "source_trace_sha256": "7d5eb6e6969859ac01adc8f31a2245c1f2b02a11bb5b2cc5c1bd621c881e4165"
+      },
+      "vehicle_08_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.002264992974933685,
+          "measured_yaw_rmse_deg_s": 0.02967882458882671,
+          "beta_rmse_deg": 0.006689063537348756
+        },
+        "reused": false,
+        "trace_sha256": "17df3ac1c1d9ce796f321899835602a4a22df557c71a1bd58445e894bf7b22ba",
+        "source_trace_sha256": "4b258dd515c0bc084cb97232f0f415feddd98d7e3d79c8e4b59049ba098b4aad"
+      },
+      "vehicle_08_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0016063341528041435,
+          "measured_yaw_rmse_deg_s": 0.029921395350605673,
+          "beta_rmse_deg": 0.012000821882277189
+        },
+        "reused": false,
+        "trace_sha256": "59fffa5819f6a0fa3c3cf82c753521e49cbb075867b3e5184cf4b23a1aacb413",
+        "source_trace_sha256": "fe86f5b0bf45992b0da15ddd7314d4d9660d103bb85dcf7293ca66c0786d742b"
+      },
+      "vehicle_08_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004173701449003317,
+          "measured_yaw_rmse_deg_s": 0.02995773954044207,
+          "beta_rmse_deg": 0.00859595640979071
+        },
+        "reused": false,
+        "trace_sha256": "9e941265818c08785a84294a4e40d066b22d0d1971bde7e72d554b82df14a545",
+        "source_trace_sha256": "e163cc437e8cc8f36509452f30d179f35aa9686fb9e7f627799ef5fb8e3d4f32"
+      },
+      "vehicle_08_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.003940588072417492,
+          "measured_yaw_rmse_deg_s": 0.030949640068274695,
+          "beta_rmse_deg": 0.01612064436155637
+        },
+        "reused": false,
+        "trace_sha256": "76943c96bb4b51210e97c967b7dbb3211478ec0dd25cfe8c2be1c8c08fee8a35",
+        "source_trace_sha256": "21f1d42cecb1774d911cc6a0e7e149f3173e64a63df797b5eddfe4a06fc61dc4"
+      },
+      "vehicle_08_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.006576948406726841,
+          "measured_yaw_rmse_deg_s": 0.030376754180732216,
+          "beta_rmse_deg": 0.010370386684733746
+        },
+        "reused": false,
+        "trace_sha256": "fbf8696453f574fe4bb5bac8bd6ed882f8b3d275d4fd1a41d2407a357e825a4c",
+        "source_trace_sha256": "95941cfb416875e6ca7a6ba9c4d2c4b9bc35b7716c2f56dee336497f9058cd9d"
+      },
+      "vehicle_08_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0073327488898787905,
+          "measured_yaw_rmse_deg_s": 0.030716627186876896,
+          "beta_rmse_deg": 0.019838182638705796
+        },
+        "reused": false,
+        "trace_sha256": "b4f1014d9d80c30a3d01e6bde5958fc50b404b9d61c9dd09768a1a0e1779e6da",
+        "source_trace_sha256": "182f3f61012509ceae51e16a057959a409c23c7500d916cb7b68e56a65d2ab3b"
+      },
+      "vehicle_08_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.009331672018157138,
+          "measured_yaw_rmse_deg_s": 0.03164568049274999,
+          "beta_rmse_deg": 0.011960256067819405
+        },
+        "reused": false,
+        "trace_sha256": "666a97f902ca008698ce046a0022ba80f36be775cf0b5c026b7bdd75765dc114",
+        "source_trace_sha256": "486e18fb518afdfba9f60a276c4b7f1778a76c6d0fd55dda53cda19dfcaaa259"
+      },
+      "vehicle_08_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.011580370916631765,
+          "measured_yaw_rmse_deg_s": 0.03126660820389735,
+          "beta_rmse_deg": 0.02296221407611152
+        },
+        "reused": false,
+        "trace_sha256": "c7276136f745f214de5147ea897b04b6a4c1c7bd721ee6b8e914d36bb5c57d57",
+        "source_trace_sha256": "d528309a4ac4bb6f7f69a75a1ce23d120a741657774ce11a599d48febf8a8660"
+      },
+      "vehicle_08_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.012371069146763263,
+          "measured_yaw_rmse_deg_s": 0.03171725007817507,
+          "beta_rmse_deg": 0.013324765641364367
+        },
+        "reused": false,
+        "trace_sha256": "43c28c968fd263de00768e403842cb859720eedca1102ee821ceb4c670ed0ee0",
+        "source_trace_sha256": "064acfb9f44740ff62e182d3a86d298f663b20a24b06c8f4c8d448d25234820d"
+      },
+      "vehicle_08_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.016395113255573576,
+          "measured_yaw_rmse_deg_s": 0.03409522350541778,
+          "beta_rmse_deg": 0.025428702512551565
+        },
+        "reused": false,
+        "trace_sha256": "dfabc254b01a1d627d4d3f707a5d4b106d82b36d1e7d872c3752502e4529c539",
+        "source_trace_sha256": "a7c1d5291692a7bf6a77f2f6947a2049fdbd344ce952d8343c3db9b1f63cdcbd"
+      },
+      "vehicle_08_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0009582239883568347,
+          "measured_yaw_rmse_deg_s": 0.029439789790801363,
+          "beta_rmse_deg": 0.00299796127131542
+        },
+        "reused": false,
+        "trace_sha256": "4c67b2e252918d7997910a7c83bcf672ce4d3c702542ec6c28913b276aafd746",
+        "source_trace_sha256": "6affb5a1c9ad9bf1da2a21a928ae9f9a98723dc58e2be446d959b1b8b8282bb1"
+      },
+      "vehicle_08_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00024602043007350215,
+          "measured_yaw_rmse_deg_s": 0.02985865924117028,
+          "beta_rmse_deg": 0.004106473998397498
+        },
+        "reused": false,
+        "trace_sha256": "009b53df7d8da05c024272eff17ee220ee6ccd94ac593efb2426576d53a1d6ec",
+        "source_trace_sha256": "171dff5678bf84ae70249f1884f1c8558c73c8e64d0a9e72c14cfaa40b4fba33"
+      }
+    }
+  },
+  "payload_sha256": "1246360e814911d81049369f6155c84f6740d96573c75a5c47f8642fc565957b"
+}

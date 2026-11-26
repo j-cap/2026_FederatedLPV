@@ -1,0 +1,4757 @@
+{
+  "payload": {
+    "seed": 1301,
+    "status": "execution_complete",
+    "provenance": {
+      "peer": {
+        "base": {
+          "files": {
+            "code/config/paper_federated_relaxation_coverage.json": "298c5d1a8b986f8933b4a30cd7c98b344d1502a46ff3bde9a08da5858fad6295",
+            "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
+            "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
+            "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+            "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+            "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+            "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+            "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+            "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5"
+          },
+          "source": {
+            "results/tables/paper_oe_lpv_integration_seed1301.json": "bcbdd683f8a704fc37014ed8ae617b87409f5b65bc602a0b7ad148e9fbe0d140",
+            "results/tables/paper_oe_lpv_integration_seed1302.json": "ee2e8ab62d99ff1bcc8019559ab25a3d80a0061c493d63b0f27cb923a0261ede",
+            "results/tables/paper_oe_lpv_integration_seed1303.json": "7398fc1de7c6569258da42c6e066158e8bdfd7e18bca1b83942d4f1fa7fbe7b1"
+          },
+          "runtime": {
+            "python": "3.12",
+            "packages": {
+              "numpy": "2.3.5",
+              "scipy": "1.17.0",
+              "pandas": "2.2.3",
+              "threadpoolctl": "3.6.0",
+              "scikit-learn": "1.8.0"
+            }
+          }
+        },
+        "source_checkpoints": {
+          "results/tables/paper_federated_relaxation_coverage_seed1301.json": "5e393a83067bd5ea03b2fa549878cb53e827b33b72701ff7efd9bac0b36b4437",
+          "results/tables/paper_federated_relaxation_continue_seed1301.json": "64faaad31c8e5324d735c1d4d24cd19629c53e6c58e0648e1b18a718acdff884",
+          "results/tables/paper_federated_relaxation_coverage_seed1302.json": "9997f1b5d3b893f832e859e10b88d8db91ae03f92a717fd3a875ae043bc57b85",
+          "results/tables/paper_federated_relaxation_continue_seed1302.json": "82bf858a751451bec16099916ec98e8b423027de54949c64386c49223d87d418",
+          "results/tables/paper_federated_relaxation_coverage_seed1303.json": "c9108b4dd1154ce32435bca596db43fe1a5846d85ef11a2ebc046c7557f285b3",
+          "results/tables/paper_federated_relaxation_continue_seed1303.json": "9d5b48eafa87bad0fd14088f1bfdf8fc6b2fde5c5bc7ab17e0973744f90f7bd8"
+        },
+        "files": {
+          "code/config/paper_federated_relaxation_peers.json": "9423f23b047170f21ac6f080fa14569983734d5ce30d5f12e3c6545a1e07fd62",
+          "code/experiments/paper_federated_relaxation_peers.py": "5693cb09857b0a18a5010ec59f9e02c26cbfe6de8ecda99098816ea4822b7331",
+          "code/experiments/paper_federated_relaxation_continue.py": "105a796ab8e5ab44a0ad03c42f60fcc8c2b0049dc3f4da3250bbdf43498469b0",
+          "code/config/paper_federated_relaxation_continue.json": "475dd9753ff95b181fb4b23279ba002360e2755c3467604571c7a58caf624068"
+        }
+      },
+      "sources": {
+        "results/tables/paper_federated_relaxation_peers_seed1301.json": "fff094c69e62f20d54ca71dddb9508ba459cf78d48c9953bc084acf016877842",
+        "results/tables/paper_federated_relaxation_peers_seed1302.json": "516a0f21d9ed351c72378b9c8d0b93e62d1efc16989bd08a1f534c7d57acdf33",
+        "results/tables/paper_federated_relaxation_peers_seed1303.json": "61c60f43f77e9ae5768d42077e4a66c952dba50885ba70aea5b7aeeb10277fc9"
+      },
+      "files": {
+        "code/config/paper_federated_relaxation_peers_finish.json": "c385f43d88942604033c838c28f5157fe3bda98c0cad36a55aaf0a680e32ef1e",
+        "code/experiments/paper_federated_relaxation_peers_finish.py": "504c5052d2cf546456ee51880520c5cedd99c6758d709ee57f51d5967ca7d25d"
+      }
+    },
+    "optimization": {
+      "log_parameters": [
+        [
+          3.927080811024923,
+          3.948032068919234,
+          -0.5762082216169915,
+          0.40546510810816433,
+          -0.8585362843803609,
+          -0.3806280461248614
+        ],
+        [
+          3.854424731090826,
+          4.04827333896628,
+          -0.446195552927197,
+          0.40546510810816433,
+          -1.0663570521668384,
+          -0.36979596526548913
+        ],
+        [
+          3.8407315298376856,
+          4.05985022140373,
+          -0.4411339743866636,
+          0.40546510810816433,
+          -1.1226674891756034,
+          -0.42714550749317104
+        ],
+        [
+          3.9463447892953294,
+          3.896698871949889,
+          -0.5722350224316215,
+          -0.9162907318741549,
+          -0.9700399756242087,
+          -0.2707173152436075
+        ],
+        [
+          3.9565867178136402,
+          3.870586940227574,
+          -0.619933032189178,
+          -0.9162907318741549,
+          -0.845199983882554,
+          -0.34732687341761925
+        ],
+        [
+          3.9909034190719237,
+          3.967813669013088,
+          -0.5048883516559454,
+          -0.9162907318741549,
+          -0.9008353977616226,
+          -0.43460652268823086
+        ],
+        [
+          3.9584369788904294,
+          3.9443149870165257,
+          -0.5381466436038329,
+          -0.5166713448503195,
+          -0.8585182211160433,
+          -0.36758324038410023
+        ],
+        [
+          3.9361429161862245,
+          4.040577444723725,
+          -0.43757680619890593,
+          -0.9162907318741549,
+          -0.9249689092541155,
+          -0.3665961997932533
+        ],
+        [
+          3.9633352390420904,
+          3.954739023862888,
+          -0.49238587082292745,
+          -0.9162907318741549,
+          -0.9156494132451536,
+          -0.35357462290655284
+        ]
+      ],
+      "centers": [
+        [
+          3.9304430146947857,
+          3.9700985073425477,
+          -0.5143003862036959,
+          -0.431303297766289,
+          -0.9403080807340556,
+          -0.3686638103685429
+        ]
+      ],
+      "assignments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "round": 32,
+      "history": [
+        {
+          "round": 1,
+          "objective": 10565.196194831973,
+          "data_sse": 10554.183077439848,
+          "penalty": 11.013117392124887,
+          "max_log_step": 0.29187748234220723,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 6,
+              "optimality": 0.0004190578461838479,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.00039089286512576356,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.00012972453396191793,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 4,
+              "optimality": 0.00035560658184278533,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 7,
+              "optimality": 5.588276537073275e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 7,
+              "optimality": 0.0008106375949493724,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 5,
+              "optimality": 0.00019312543336545782,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 7,
+              "optimality": 0.00025511574498218747,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 7,
+              "optimality": 1.920164888335382e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 2,
+          "objective": 10565.127212129306,
+          "data_sse": 10554.174115051068,
+          "penalty": 10.953097078237525,
+          "max_log_step": 0.02914704270219659,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00105602583438559,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012437286969159546,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008709015733638188,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00011035899349259081,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007401252700453539,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0025975208785072547,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0056335277617061644,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006975777115836119,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00022286387229496205,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 3,
+          "objective": 10565.086702688533,
+          "data_sse": 10554.167528830494,
+          "penalty": 10.919173858040068,
+          "max_log_step": 0.01166053943298373,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011434417270740735,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009118206529624464,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002330403348411667,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.6677607018258164e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007168402480022405,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002068903303467771,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0033632124898448157,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015426732262804636,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000156157750202748,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 4,
+          "objective": 10565.053351948025,
+          "data_sse": 10554.161737868344,
+          "penalty": 10.891614079681094,
+          "max_log_step": 0.00795786765954487,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011136431110073872,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010512398117345596,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002508536235601102,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.6199420639523347e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000691014120835912,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0018381120637335879,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0027564131868868295,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0018026930460575076,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00013256407745844396,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 5,
+          "objective": 10565.024993209185,
+          "data_sse": 10554.157536393577,
+          "penalty": 10.867456815607333,
+          "max_log_step": 0.006707388958383076,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010555121434160913,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010210630977362525,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0023470240554142323,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.7882992467022135e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006516176899695817,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0016932986703924635,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.002406433773538152,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017376653954430431,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00011821063442517091,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 6,
+          "objective": 10565.000796443543,
+          "data_sse": 10554.155007187597,
+          "penalty": 10.845789255946144,
+          "max_log_step": 0.00608965016777141,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000991737796291271,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009568136424720908,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0021370508199933403,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.2186304893189594e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006097352223172604,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015739630928017026,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0021378214405858823,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0016113117721831907,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00010678087610998174,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 7,
+          "objective": 10564.980126900411,
+          "data_sse": 10554.153926117639,
+          "penalty": 10.826200782771782,
+          "max_log_step": 0.0056515556447455095,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009291601517198105,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008881386686046038,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001934281311518378,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.539509437719572e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005691549927778469,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014664510607898364,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0019098371635534268,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001480014979652598,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 9.692286825959506e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 8,
+          "objective": 10564.962454019305,
+          "data_sse": 10554.154022164055,
+          "penalty": 10.808431855250598,
+          "max_log_step": 0.005275937299396571,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008694569338700123,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008222007647676255,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017499203191937414,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.7424531879893776e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005307984964444184,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013669272624366527,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0017103135599577542,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013567874565644383,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 8.819244028943447e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 9,
+          "objective": 10564.94733048222,
+          "data_sse": 10554.15504953435,
+          "penalty": 10.792280947869322,
+          "max_log_step": 0.0049319862146633975,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008129840753796287,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007605893660599367,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0015847386105545338,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.8714727880811807e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004948086582418098,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012741230740627681,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001534060084970855,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012439666714418108,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 8.039090492036284e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 10,
+          "objective": 10564.93437832458,
+          "data_sse": 10554.156800578892,
+          "penalty": 10.777577745687454,
+          "max_log_step": 0.004611056935244662,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007597519669882383,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007034740667350274,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0014371404410838948,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.9455255653941042e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00046112574908293365,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011874501506718728,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013778370398995655,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001141279993432109,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 7.33908946545573e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 11,
+          "objective": 10564.923277660666,
+          "data_sse": 10554.159103673475,
+          "penalty": 10.764173987190748,
+          "max_log_step": 0.004310183000355794,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007096690444086155,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006506645181554244,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0013051698532751785,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.9761652082696466e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00042963948709656165,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011064922546798613,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0012391241761599723,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010478875074482696,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 6.709291701402196e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 12,
+          "objective": 10564.913757352057,
+          "data_sse": 10554.161818123057,
+          "penalty": 10.751939228999305,
+          "max_log_step": 0.004027865350314519,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006626133632578032,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000601885167689082,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011869881357301148,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.972047542647851e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00040022725377062036,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.001030892402329993,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0011157937936228243,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009628923162877931,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 6.14137199081011e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 13,
+          "objective": 10564.905587256055,
+          "data_sse": 10554.164829100926,
+          "penalty": 10.74075815512875,
+          "max_log_step": 0.0037630017496411705,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006184516356048292,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005568484822106611,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010809655937257458,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.9401964387612206e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00037276859170156605,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009603198592588264,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0010060038583973446,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008854602797520345,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 5.628171612143585e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 14,
+          "objective": 10564.898571770866,
+          "data_sse": 10554.168043251659,
+          "penalty": 10.730528519207795,
+          "max_log_step": 0.0035146167674766637,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005770456813321453,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005152753343347443,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009856791558192348,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.886445263782336e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003471452054549165,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000894462062857663,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0009081479917211732,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008148410016689381,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 5.163516706918099e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 15,
+          "objective": 10564.892544447737,
+          "data_sse": 10554.171385003436,
+          "penalty": 10.721159444302323,
+          "max_log_step": 0.003281793900155927,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005382561950743104,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00047690122442887827,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008998898406583731,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.8156628340540883e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00032324355931188193,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000833022932407919,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008208214679285247,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000750364975634362,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 4.742041189566039e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 16,
+          "objective": 10564.887363483898,
+          "data_sse": 10554.174793502798,
+          "penalty": 10.712569981099778,
+          "max_log_step": 0.003063658759218213,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005019445364291799,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004414782224410593,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0008225181850148786,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.7319090250593342e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00030095529593015977,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007757217922224675,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007427944647655272,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006914356959355633,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 4.3590758479517e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 17,
+          "objective": 10564.88290794428,
+          "data_sse": 10554.178220071502,
+          "penalty": 10.704687872777688,
+          "max_log_step": 0.0028593750827501374,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004679745261312326,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004087753712786677,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007526223080445133,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.6385557949646255e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00028017743470791604,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0007222933583305304,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006729892020792389,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006375213585194248,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 4.010535479295707e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 18,
+          "objective": 10564.87907458787,
+          "data_sse": 10554.18162609653,
+          "penalty": 10.697448491340525,
+          "max_log_step": 0.0026681435389979136,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004362133508814488,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00037857850787278606,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006893790970110881,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.5384023308898847e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002608124012663212,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006724868879324648,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006104606633585333,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005881473314406942,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 3.692843813868623e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 19,
+          "objective": 10564.87577519706,
+          "data_sse": 10554.184981276641,
+          "penalty": 10.69079392041981,
+          "max_log_step": 0.002489201345514447,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00040653240832585677,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00035068956135143696,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006320673482670281,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.433758805231331e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00024276803260939368,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0006260661264764696,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005543794222404128,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005428893359822976,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 3.402864269907564e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 20,
+          "objective": 10564.872934326218,
+          "data_sse": 10554.18826216503,
+          "penalty": 10.684672161188258,
+          "max_log_step": 0.0023218212759124057,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00037880793474316036,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003249258480887707,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005800545704937847,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.326536206081937e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00022595742659911803,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00058280921510041,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005040168955326346,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005013676088842569,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 3.137825064351306e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 21,
+          "objective": 10564.870487400452,
+          "data_sse": 10554.191450957333,
+          "penalty": 10.67903644311903,
+          "max_log_step": 0.002165311552119853,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00035292125625301855,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003011191150849433,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005327842970698185,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.2182587011079914e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00021029880147882744,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005425076415929604,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004587325317822114,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00046324176625389446,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.895283574358979e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 22,
+          "objective": 10564.868379107702,
+          "data_sse": 10554.194534482413,
+          "penalty": 10.673844625290121,
+          "max_log_step": 0.002019014997685309,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003287591710158532,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00027911461938087613,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004897663244947097,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.1101558100875393e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00019571534261995823,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0005049634605001895,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00041796284283067447,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0004282056061800112,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.673073831469518e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 23,
+          "objective": 10564.866562036841,
+          "data_sse": 10554.19750336292,
+          "penalty": 10.669058673920441,
+          "max_log_step": 0.0018823080071904696,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003062140919545341,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002587701222725521,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00045056797945211644,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.003230908697744e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00018213495020747623,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000469992718835621,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00038121157496672994,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00039598473878717173,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.469273402482547e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 24,
+          "objective": 10564.864995522528,
+          "data_sse": 10554.200351315309,
+          "penalty": 10.664644207220492,
+          "max_log_step": 0.0017545996380811113,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00028518357153727757,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00023995500858441622,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00041480649218452137,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.898273323990437e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001694900375030976,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00043742287833170443,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003480413347037051,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00036633215467111617,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.2821664191916202e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 25,
+          "objective": 10564.863644664134,
+          "data_sse": 10554.203074567255,
+          "penalty": 10.660570096879546,
+          "max_log_step": 0.0016353305993458411,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00026557093482151915,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00022254926316551038,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003821427589408487,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.7958953170111172e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001577173193327015,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00040709245925191873,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003180661786855297,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003390247182651486,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 2.1102320281239907e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 26,
+          "objective": 10564.862479491578,
+          "data_sse": 10554.20567137336,
+          "penalty": 10.656808118218486,
+          "max_log_step": 0.0015239721702073883,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00024728470170916236,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00020644278578868966,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00035227539501707936,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.696569871552151e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001467576349485357,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003788501514914988,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00029094531843834663,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003138608880850917,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.952096488792856e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 27,
+          "objective": 10564.861474255167,
+          "data_sse": 10554.208141612158,
+          "penalty": 10.653332643009387,
+          "max_log_step": 0.0014200250610789666,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00023023866751561818,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000191534412196022,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.000324936498330547,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.6006399190347128e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00013655558127594937,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003525546205153029,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00026637752341398716,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00029065844464900464,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.8065407293363828e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 28,
+          "objective": 10564.860606820372,
+          "data_sse": 10554.210486451346,
+          "penalty": 10.650120369026135,
+          "max_log_step": 0.001323018241921159,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00021435173736482344,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001777313090746356,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00029988723092074166,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.5083514123853053e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00012705945440145703,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003280735347372178,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00024409616874408873,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00026925236815936523,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.672462284154596e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 29,
+          "objective": 10564.859858151589,
+          "data_sse": 10554.212708070132,
+          "penalty": 10.647150081456703,
+          "max_log_step": 0.0012325077670248819,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00019954745791992011,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001649481693852934,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00027691426975070497,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.4198667554543156e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00011822095454926743,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0003052832657440352,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00022386505787929498,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002494930338928014,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.5488648754114765e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 30,
+          "objective": 10564.859211871253,
+          "data_sse": 10554.214809429242,
+          "penalty": 10.644402442010211,
+          "max_log_step": 0.001148075575354346,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00018575415219782116,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00015310662517699328,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00025582697667640085,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.3352796323922237e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001099949725415502,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002840685083889619,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002054747877131734,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002312446079212606,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.4348639079258953e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 31,
+          "objective": 10564.858653883128,
+          "data_sse": 10554.216794080983,
+          "penalty": 10.641859802145062,
+          "max_log_step": 0.0010693283163816236,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001729045141585608,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00014213462378496084,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00023645425481535326,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.2546301993729574e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00010233945300929197,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00026432151602830513,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00018873940050644552,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002143836144198025,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.3296483315484466e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        },
+        {
+          "round": 32,
+          "objective": 10564.858172050013,
+          "data_sse": 10554.218666012657,
+          "penalty": 10.639506037356751,
+          "max_log_step": 0.0009958961665673671,
+          "assignments_changed": false,
+          "all_local_optimizers_converged": true,
+          "active_groups": 1,
+          "local_updates": [
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0001609368435675118,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00013196591048023578,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00021864266155102334,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.1779075861744412e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 9.521512085952438e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.0002459416190696632,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00017349357041802538,
+              "near_bound": [
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 0.00019879765750634954,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            },
+            {
+              "optimizer_converged": true,
+              "nfev": 3,
+              "optimality": 1.2324823762060281e-05,
+              "near_bound": [
+                false,
+                false,
+                false,
+                true,
+                false,
+                false
+              ]
+            }
+          ]
+        }
+      ],
+      "status": "converged",
+      "pending": {},
+      "communication_float64": 3798
+    },
+    "evaluation": {
+      "vehicle_00_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0020481407519158837,
+          "measured_yaw_rmse_deg_s": 0.029880260035812935,
+          "beta_rmse_deg": 0.0037052247536968393
+        },
+        "reused": false,
+        "trace_sha256": "d0ffdc75041d46e939d19adc0999737f2529625b603dc6194fc822e07fefbd0f",
+        "source_trace_sha256": "5db6d8a2f2ab32a9bb18eb3de31706c1e43a1443e98e5c9c9b2448d877ecf23a"
+      },
+      "vehicle_00_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0026179232191704655,
+          "measured_yaw_rmse_deg_s": 0.02940046454744754,
+          "beta_rmse_deg": 0.005528609989626034
+        },
+        "reused": false,
+        "trace_sha256": "3e952b30ab1a1f9fdebf9b5f7a01c732f587ad3dd88660af574bf6bf3cd49439",
+        "source_trace_sha256": "4225400624a8b5b6e890b96a1235c483e3090ffdd7a2f9c9903eff60efd6afcd"
+      },
+      "vehicle_00_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004251121863477068,
+          "measured_yaw_rmse_deg_s": 0.03076308541489109,
+          "beta_rmse_deg": 0.005074483011783384
+        },
+        "reused": false,
+        "trace_sha256": "2dcfd1d3254bb78710d7d1fe866fc1fdc49b047ac83bd20315bd957aac378727",
+        "source_trace_sha256": "e57b8510c80be8a70f173692b21386e29999e7d38b9d596eb2cd497b1fe05cf6"
+      },
+      "vehicle_00_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004662899433567921,
+          "measured_yaw_rmse_deg_s": 0.029853406271841004,
+          "beta_rmse_deg": 0.008209039332757202
+        },
+        "reused": false,
+        "trace_sha256": "594aea56ecc23e4988bce731a542c71f99b058e27c2e0087f0852c56f5822e3a",
+        "source_trace_sha256": "8ba19fe44452ba73f1ac97568fa90b700078b8c3af353e7890644a5ee407bbb6"
+      },
+      "vehicle_00_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.007241279143202498,
+          "measured_yaw_rmse_deg_s": 0.030417132271442413,
+          "beta_rmse_deg": 0.006577120988923795
+        },
+        "reused": false,
+        "trace_sha256": "bb15faff9454e54492d86eebdc88792fc5970ad676bf5e38d9eeb950f0c6be28",
+        "source_trace_sha256": "30fe58c72bdeaa70a08606e251fad4018ff2e370b7ebc65d3b746b1060b1615f"
+      },
+      "vehicle_00_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.007032899584989726,
+          "measured_yaw_rmse_deg_s": 0.031800467347654605,
+          "beta_rmse_deg": 0.01081146013872231
+        },
+        "reused": false,
+        "trace_sha256": "d739ac487028a5373769406bbc00c90491d56767b41cd4dfe39a82869dde10cd",
+        "source_trace_sha256": "78a1ed2d035d81cc30eb6ed26f314b958b71cd0e26669c06b4a092c296b3f2d0"
+      },
+      "vehicle_00_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.010980992972876634,
+          "measured_yaw_rmse_deg_s": 0.03228888346259206,
+          "beta_rmse_deg": 0.00819171846842506
+        },
+        "reused": false,
+        "trace_sha256": "af85fe1475e77ed27eedff91e052f2233cf887e5696220a20bf53330f0993e49",
+        "source_trace_sha256": "9c4b112ffe1b7ec7ca62669f9e8ca38bb35263d7ce26d320bed9a6b7ab6664c7"
+      },
+      "vehicle_00_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.009512193240885236,
+          "measured_yaw_rmse_deg_s": 0.031700130599047555,
+          "beta_rmse_deg": 0.013209517130858807
+        },
+        "reused": false,
+        "trace_sha256": "094c344f9a4b5f0f04019325f5ebc57bb5ae44317303ad136b14601f91fd7cd7",
+        "source_trace_sha256": "2dda1a2ac0f50b548a0d79e759f585ef89b14d870cd705da0d787b118afc2b90"
+      },
+      "vehicle_00_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.015407730184547348,
+          "measured_yaw_rmse_deg_s": 0.035205184942847,
+          "beta_rmse_deg": 0.009923087637563863
+        },
+        "reused": false,
+        "trace_sha256": "fa47566964aabc250a4d7514379fed5dd66cb14ee0334bddba86b48bee2ff40f",
+        "source_trace_sha256": "0f3d93e4e343fcc4f21bc1fcf6eae0e435f71b539a9e6e3a45fe131de24e22d9"
+      },
+      "vehicle_00_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.011957096302428303,
+          "measured_yaw_rmse_deg_s": 0.032717896485345656,
+          "beta_rmse_deg": 0.015359607234344078
+        },
+        "reused": false,
+        "trace_sha256": "fde09220b78e96b0ff66041e26c557cbd08ccde856ed398a4e8d536fd9bb27b7",
+        "source_trace_sha256": "e9ec659a26717ce86be9e9f35945942ca83065e3dff395e17f04ad9e3868b6d0"
+      },
+      "vehicle_00_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.020455026914432448,
+          "measured_yaw_rmse_deg_s": 0.03774726410499286,
+          "beta_rmse_deg": 0.01178137841498024
+        },
+        "reused": false,
+        "trace_sha256": "f795664a8bb88f4630026d4704a8d185e77c418952e9c00c665c6117e0a22458",
+        "source_trace_sha256": "a197c1842eb302d66dab211e4cef3d70bca6e3a490a15ede6b6df6efe7b8b627"
+      },
+      "vehicle_00_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.01429306001894909,
+          "measured_yaw_rmse_deg_s": 0.032921718704726814,
+          "beta_rmse_deg": 0.0172625107996136
+        },
+        "reused": false,
+        "trace_sha256": "253bbd34deca0ad8b7fc3b36d22deb195f3628395a06b06dbcd2f64ef9ced662",
+        "source_trace_sha256": "995dd2ace81cb440f9ba8b6d9f88f1047d13b43ce47fa5dc74289d5b0231ccbb"
+      },
+      "vehicle_00_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0010900744930033657,
+          "measured_yaw_rmse_deg_s": 0.03045443092569124,
+          "beta_rmse_deg": 0.0025533737636814807
+        },
+        "reused": false,
+        "trace_sha256": "045baa8b06db10667007d7c727b5d1b1ad2fcd4865b57b2e8bcb573d518a5df7",
+        "source_trace_sha256": "2ca63f5e3d6dc9f918c3d94f8abd846fc9196ce6d90b3c630530db85bc20351d"
+      },
+      "vehicle_00_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0011368136164818165,
+          "measured_yaw_rmse_deg_s": 0.030197203568675817,
+          "beta_rmse_deg": 0.003023641374488023
+        },
+        "reused": false,
+        "trace_sha256": "9e78d11640eca2a6e6104cae4683bda027763a156256d55d40265d5762f2e9b6",
+        "source_trace_sha256": "dc58cb15a3c7af484bb83a09803a492256b3fbdd6d6b08c3a45753326942aa20"
+      },
+      "vehicle_01_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00233971958017658,
+          "measured_yaw_rmse_deg_s": 0.030380359191586086,
+          "beta_rmse_deg": 0.003829431686377974
+        },
+        "reused": false,
+        "trace_sha256": "48155f47fab55e6e97893cf8aa0e65d01f8ecc5d9dc311d3fb77bead7bca65a4",
+        "source_trace_sha256": "57367a6d436eb697abc4fb85e36ea2c926ab73d346050bdb8aa42cb6ee54fde6"
+      },
+      "vehicle_01_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0026209104351127,
+          "measured_yaw_rmse_deg_s": 0.030932123043957878,
+          "beta_rmse_deg": 0.005464331201442753
+        },
+        "reused": false,
+        "trace_sha256": "f354e26446df0ff1180a3afcf0ab9fd9dc26d8567ae2624a37d7701a5be41c06",
+        "source_trace_sha256": "745720d9080d2745b403529b2c786154c78f5736cecf6ba8f00b72b284805e43"
+      },
+      "vehicle_01_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005634976670587003,
+          "measured_yaw_rmse_deg_s": 0.031145763456146232,
+          "beta_rmse_deg": 0.005221117624802669
+        },
+        "reused": false,
+        "trace_sha256": "506d618f02fba9cfb2a057a6f935e392ec56eb98618c3da24a71fc1c81309c96",
+        "source_trace_sha256": "f3d1f430aaf3e96a8253f422c4778831660a3e79c085a6876edf807b441190cb"
+      },
+      "vehicle_01_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004153613863407421,
+          "measured_yaw_rmse_deg_s": 0.02977349092987566,
+          "beta_rmse_deg": 0.007819228888865102
+        },
+        "reused": false,
+        "trace_sha256": "9d0100e3c5875cffe8ace8eb51047ff5769eea80ce5864e5ec297b4e1f4a85e3",
+        "source_trace_sha256": "cf1e3cb7a9331b71b99dc71bd0cad96bb70fdd88e7703b82798c874e141e9593"
+      },
+      "vehicle_01_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.010775012049370654,
+          "measured_yaw_rmse_deg_s": 0.03247002334619216,
+          "beta_rmse_deg": 0.006766487142959261
+        },
+        "reused": false,
+        "trace_sha256": "3657a7d00ee1602310a6dc61acc4ee874122c59ca1f56aaa799a3e07c7adb2c5",
+        "source_trace_sha256": "dc99724a5280ebff87ce2ed44c7ef07dd027d17922b08268330c90d53a1c5e4b"
+      },
+      "vehicle_01_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.005901790104987633,
+          "measured_yaw_rmse_deg_s": 0.030938910236807695,
+          "beta_rmse_deg": 0.009939427823742441
+        },
+        "reused": false,
+        "trace_sha256": "c2d1eea1f954f1dcea7d820d620bdeb638eb8786f95b08adf7a32b3b0c32f8fe",
+        "source_trace_sha256": "08e07f94a3c2f491ab05081951ebd362ee50cbeb645f71c4cf0972d3b9735631"
+      },
+      "vehicle_01_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.01692803574038549,
+          "measured_yaw_rmse_deg_s": 0.03329351057812942,
+          "beta_rmse_deg": 0.008421427527762307
+        },
+        "reused": false,
+        "trace_sha256": "26c4bdac80e4965337c63a59053f3de00c08474368b6a36b88d895f522fbd12f",
+        "source_trace_sha256": "d74d53b86ab93b894c3ba5492df4ff8dbdab91921c85596f0dc510a1c5a3bd18"
+      },
+      "vehicle_01_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.007757827078033858,
+          "measured_yaw_rmse_deg_s": 0.029880746970545203,
+          "beta_rmse_deg": 0.011757683121821435
+        },
+        "reused": false,
+        "trace_sha256": "13ae4e647c4d43459343dbc52219fca01230f8b5f000fd111ffe7ff7801ff397",
+        "source_trace_sha256": "12cfad26e124c939adcf8a6f4671c37e5cc56f9a817d62f8293a9f01e36d42ec"
+      },
+      "vehicle_01_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.023904670644279948,
+          "measured_yaw_rmse_deg_s": 0.03903827996681461,
+          "beta_rmse_deg": 0.010160135344834252
+        },
+        "reused": false,
+        "trace_sha256": "0be09cc0aec4c72961639074ddde6b74e3bf26b03ceef1c28bfb3d1cdfd45ea3",
+        "source_trace_sha256": "f635cdaad54066ded94f2e9f5225a22285db8b573c23d102ccf1499c656fe8b8"
+      },
+      "vehicle_01_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00964556175934858,
+          "measured_yaw_rmse_deg_s": 0.02982617461421163,
+          "beta_rmse_deg": 0.01328429635830615
+        },
+        "reused": false,
+        "trace_sha256": "51ef0c0469a6d7420e2f79d6dfecf2fdbf6ed0606521974415b39805c0812339",
+        "source_trace_sha256": "089b7606d7d4cc695241aab50f08aeeefdbca26fa85d63a15b27de68768b5240"
+      },
+      "vehicle_01_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.03160317206491836,
+          "measured_yaw_rmse_deg_s": 0.04390730513509106,
+          "beta_rmse_deg": 0.011966097821858224
+        },
+        "reused": false,
+        "trace_sha256": "737912c3493daa740901b7678b9fd647c065aa41ff7117ae7ff18649f96816bf",
+        "source_trace_sha256": "bf461a76bb45f50b3cf1ebcbced86fbc9675732e225a3e82468924c2524f00cb"
+      },
+      "vehicle_01_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.011516022239013964,
+          "measured_yaw_rmse_deg_s": 0.032806431815591626,
+          "beta_rmse_deg": 0.014557856367798808
+        },
+        "reused": false,
+        "trace_sha256": "f898333bf9c9fcf30db99169a83cdb5b3aef3aff6ea169eb03de41f11c2d13c6",
+        "source_trace_sha256": "c09053150655980b86155feac4fa0c2227ff21f50a2335293658b1939a24e8aa"
+      },
+      "vehicle_01_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0030353585537485055,
+          "measured_yaw_rmse_deg_s": 0.03040957682940787,
+          "beta_rmse_deg": 0.0026652188881412524
+        },
+        "reused": false,
+        "trace_sha256": "b58274406e81fd86b6b3539ad45487a226e384551f3281fd10f8ad461659bbc8",
+        "source_trace_sha256": "49601aa5a215ab71f5724f6e0efaedd32a00739de3a2efb0e8fc261bfffbae5d"
+      },
+      "vehicle_01_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0014194569330429525,
+          "measured_yaw_rmse_deg_s": 0.029973135643295186,
+          "beta_rmse_deg": 0.0030964826318491696
+        },
+        "reused": false,
+        "trace_sha256": "196f9e5d3035355f0ffb29e1ebf0fc5fbe6354c0d064160f6d4a2309c642b0e6",
+        "source_trace_sha256": "997f1d4ffc6293c1fd8ca7b871f63db93568b5e0e40e25412ad87d080a7eeaa7"
+      },
+      "vehicle_05_v13_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0032529605950922854,
+          "measured_yaw_rmse_deg_s": 0.030790503656657604,
+          "beta_rmse_deg": 0.0029325215285404705
+        },
+        "reused": false,
+        "trace_sha256": "62f3ec42e3120abff60307a831e0e33d41c7b9cde567895a0b17d5caa3027565",
+        "source_trace_sha256": "f81dda76c089e577c8d1e9f4d3f20f34cce2474d616e01e16d39ddbfb68fc512"
+      },
+      "vehicle_05_v13_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0025356832807178105,
+          "measured_yaw_rmse_deg_s": 0.02971839408412872,
+          "beta_rmse_deg": 0.005005577307742524
+        },
+        "reused": false,
+        "trace_sha256": "cd43e8af5e4a46faf25b24968a211715bdc3325150cefa000630a2f1920c879f",
+        "source_trace_sha256": "64d305dfc8f220b76bd9745548807ab3466c2de5017a0108cb35dd115639b019"
+      },
+      "vehicle_05_v17_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00521783425544839,
+          "measured_yaw_rmse_deg_s": 0.030991483908834362,
+          "beta_rmse_deg": 0.004539076476494663
+        },
+        "reused": false,
+        "trace_sha256": "0f31bf159dba5fb11a2c5ffdcc0dad57bdbaf007f4f28f129639e357de201f0b",
+        "source_trace_sha256": "fd841ebb9dce67dfc7f1987abe3c195bf43742e1bc1903557c75fb2605d418df"
+      },
+      "vehicle_05_v17_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.004473601146438223,
+          "measured_yaw_rmse_deg_s": 0.02883694159084898,
+          "beta_rmse_deg": 0.008259798266635946
+        },
+        "reused": false,
+        "trace_sha256": "43215d0abdd64df88064cb57243a603179ff02d032026abc442efcda4488c5f5",
+        "source_trace_sha256": "269a9ae8c30644f15a2a015d55678bd35f797485c82b32ba7078b19a1c43369c"
+      },
+      "vehicle_05_v21_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.008682669195733588,
+          "measured_yaw_rmse_deg_s": 0.031100133033724005,
+          "beta_rmse_deg": 0.006450000859846758
+        },
+        "reused": false,
+        "trace_sha256": "0175d6f01c53835d7eba3345c4f05414dd1dd519b4bfb227c57b73e0876fcbdb",
+        "source_trace_sha256": "95f405968f37ea5d142726e78321365daaa0ff88dd4ac6b1500a31e2ff1ae65c"
+      },
+      "vehicle_05_v21_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.006611197130350991,
+          "measured_yaw_rmse_deg_s": 0.03005623307742075,
+          "beta_rmse_deg": 0.01214416904550075
+        },
+        "reused": false,
+        "trace_sha256": "e69e36952258324ad6e9724cb6a9c3eba3a799dcef40a399f611345884513886",
+        "source_trace_sha256": "cee3ce0b62c241b978185fb08ea75ae08aa5a66d4c3b0d8270d52d353641b39b"
+      },
+      "vehicle_05_v25_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.013902736551238637,
+          "measured_yaw_rmse_deg_s": 0.033074364976669435,
+          "beta_rmse_deg": 0.008722205721320693
+        },
+        "reused": false,
+        "trace_sha256": "fe4b3af783bb5768fe71598379e3787f9c83b269e1266e2b358f7c2a0ac70fcb",
+        "source_trace_sha256": "0a61d82674cecd102baef7440b9215eaab9fdf83fd76f31c0e25eb656e7835ff"
+      },
+      "vehicle_05_v25_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.00873382680590454,
+          "measured_yaw_rmse_deg_s": 0.031804795452820805,
+          "beta_rmse_deg": 0.016524493963646567
+        },
+        "reused": false,
+        "trace_sha256": "d0e71e5646a019733974084bd5807cc679baf13eb771e40905db5c6714ef66c7",
+        "source_trace_sha256": "014bce71e5e342c34cce11b3a15d18c197ae5d071beb8cce595b40457447c5a6"
+      },
+      "vehicle_05_v29_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.020977507210831067,
+          "measured_yaw_rmse_deg_s": 0.037170084591769424,
+          "beta_rmse_deg": 0.011428433331646101
+        },
+        "reused": false,
+        "trace_sha256": "cae8d1f37b24aab72e071e751d8dc62aeff9e931fc21b50800013cc81020d5ad",
+        "source_trace_sha256": "bd7954d7e688f8742b11cafa42e3c58432f156d70de471520c741d519fbd8150"
+      },
+      "vehicle_05_v29_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.010870798665326408,
+          "measured_yaw_rmse_deg_s": 0.031507257713167126,
+          "beta_rmse_deg": 0.021244286335049628
+        },
+        "reused": false,
+        "trace_sha256": "bd84e4bb369880cb5eb9a3662f8df6da64686a8014587bf3f8f1b2197ad17427",
+        "source_trace_sha256": "86c61012161bdf60c4586b580f0486952b5371c8a619c4684a83b413f2c81413"
+      },
+      "vehicle_05_v33_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.029997873023601327,
+          "measured_yaw_rmse_deg_s": 0.043323909277846864,
+          "beta_rmse_deg": 0.014643833020031312
+        },
+        "reused": false,
+        "trace_sha256": "2430a4aaf4a19b6b79460112d89320776764d8dd468632d104dc2d985d2385d9",
+        "source_trace_sha256": "d6e11451613b71aed7ae79dfc38874deb3339c26c2570236ede2ebba64dc098b"
+      },
+      "vehicle_05_v33_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.013270924133292998,
+          "measured_yaw_rmse_deg_s": 0.0335991862655003,
+          "beta_rmse_deg": 0.026149657498414924
+        },
+        "reused": false,
+        "trace_sha256": "462fd76cc20379d95d9b75a460cec7e24ba5af97a7450e229334cdf2e262de86",
+        "source_trace_sha256": "3421481ca606c8d5cb274315d1c81c230311fa1b2dfa76af32c65ef314b4ec1b"
+      },
+      "vehicle_05_v9_broadband": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.0021120993321411857,
+          "measured_yaw_rmse_deg_s": 0.029659067043339923,
+          "beta_rmse_deg": 0.001630324395336793
+        },
+        "reused": false,
+        "trace_sha256": "db3b3897691268374a9e1f4c549018f65ad08bb85af5a6219d081a5383b0d6ee",
+        "source_trace_sha256": "c7f67b30c0e9502d907f3422ea952486f5d81385782d0cfa66fac11da7077856"
+      },
+      "vehicle_05_v9_slow": {
+        "metrics": {
+          "status": "complete",
+          "yaw_rmse_deg_s": 0.001098660233134812,
+          "measured_yaw_rmse_deg_s": 0.029314944639628658,
+          "beta_rmse_deg": 0.002486462055170354
+        },
+        "reused": false,
+        "trace_sha256": "629068cbac06bfcd12a938a74a5327800c07393ca7265f47f4f8ff5838ad5cb6",
+        "source_trace_sha256": "dff0f99a2cbcc7f285b9e71fe52e9e3ad6e915d12e599060ba9b8bfbbfd41d36"
+      }
+    }
+  },
+  "payload_sha256": "4ffb1cc597a8d07cedb28bd56269bea069d548eea9debffade28882bfa86f0c6"
+}
