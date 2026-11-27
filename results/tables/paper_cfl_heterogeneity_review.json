@@ -1,0 +1,372 @@
+{
+  "payload": {
+    "status": "frozen_results_audit_passed",
+    "decision": {
+      "status": "supports_testing_learned_groups",
+      "comparisons": {
+        "SharedPrior": {
+          "gain_percent": 37.64493820828208,
+          "absolute_reduction_deg_s": 0.0029277805280202027,
+          "fleets_improved": 3
+        },
+        "MixedGroups": {
+          "gain_percent": 39.29209730213786,
+          "absolute_reduction_deg_s": 0.0031387998622049457,
+          "fleets_improved": 3
+        },
+        "NominalPrior": {
+          "gain_percent": 37.36151285656801,
+          "absolute_reduction_deg_s": 0.0028925897098833675,
+          "fleets_improved": 3
+        }
+      },
+      "all_fits_converged": true,
+      "all_operating_checks_passed": true,
+      "interpretation": "Family labels define one privileged partition, not the optimal partition. A negative result does not rule out other useful groups."
+    },
+    "checkpoint_count": 129,
+    "selected_local_and_nominal_fits": 108,
+    "learned_group_jobs": 21,
+    "training_operating_checks_passed": 54,
+    "test_records": 756,
+    "primary_test_records": 216,
+    "methods": [
+      "LocalOE",
+      "NominalPrior",
+      "SharedPrior",
+      "OracleFamily",
+      "MixedGroups"
+    ],
+    "means_deg_s": {
+      "LocalOE": 0.00893102132239941,
+      "NominalPrior": 0.0077421642988283355,
+      "SharedPrior": 0.007777355116965171,
+      "OracleFamily": 0.004849574588944968,
+      "MixedGroups": 0.007988374451149914
+    },
+    "vehicle_wins_of_oracle": {
+      "LocalOE": 40,
+      "NominalPrior": 41,
+      "SharedPrior": 42,
+      "MixedGroups": 41
+    },
+    "family_means_deg_s": {
+      "Compact": {
+        "LocalOE": 0.007517242134408871,
+        "NominalPrior": 0.005496894904547074,
+        "SharedPrior": 0.005378151715509618,
+        "OracleFamily": 0.004500503263193492,
+        "MixedGroups": 0.005664664830159449
+      },
+      "SUV": {
+        "LocalOE": 0.00616886118515998,
+        "NominalPrior": 0.005620621474413109,
+        "SharedPrior": 0.005421141282962537,
+        "OracleFamily": 0.004215978491488773,
+        "MixedGroups": 0.005391542169320147
+      },
+      "Sport": {
+        "LocalOE": 0.013106960647629383,
+        "NominalPrior": 0.012108976517524824,
+        "SharedPrior": 0.012532772352423357,
+        "OracleFamily": 0.0058322420121526405,
+        "MixedGroups": 0.01290891635397014
+      }
+    },
+    "family_gain_vs_shared_percent": {
+      "Compact": 16.31877452964272,
+      "SUV": 22.230794745404026,
+      "Sport": 53.46407125136277
+    },
+    "family_contribution_to_absolute_gain_percent": {
+      "Compact": 9.992193106878837,
+      "SUV": 13.721005609764843,
+      "Sport": 76.28680128335631
+    },
+    "training_speed_gain_vs_shared_percent": {
+      "13": 40.29909467967685,
+      "21": 26.985342525390767,
+      "29": 39.12942071508184
+    },
+    "fleet_gain_vs_shared_percent": {
+      "2301": 31.034459261967907,
+      "2302": 38.78618894839862,
+      "2303": 43.33888570829131
+    },
+    "improved_family_fleet_strata": 8,
+    "family_fleet_strata": 9,
+    "region_means_deg_s": {
+      "fleet_extrapolation": {
+        "LocalOE": 0.011637735235354031,
+        "NominalPrior": 0.010242541387968327,
+        "SharedPrior": 0.010287114101498749,
+        "OracleFamily": 0.007109746851466562,
+        "MixedGroups": 0.010561868266610219
+      },
+      "fleet_interpolation": {
+        "LocalOE": 0.005695507863804448,
+        "NominalPrior": 0.005037711681104169,
+        "SharedPrior": 0.005057301749645417,
+        "OracleFamily": 0.003267863593455533,
+        "MixedGroups": 0.005178889557066516
+      },
+      "local_observed": {
+        "LocalOE": 0.0024429831416998065,
+        "NominalPrior": 0.0023873973021164277,
+        "SharedPrior": 0.0023839693019206127,
+        "OracleFamily": 0.0021520885513150964,
+        "MixedGroups": 0.002404698310997695
+      },
+      "peer_observed": {
+        "LocalOE": 0.008931021322399412,
+        "NominalPrior": 0.0077421642988283355,
+        "SharedPrior": 0.00777735511696517,
+        "OracleFamily": 0.004849574588944968,
+        "MixedGroups": 0.007988374451149912
+      }
+    },
+    "vehicle_error_quantiles_deg_s": {
+      "0.5": {
+        "LocalOE": 0.0038550851442559785,
+        "NominalPrior": 0.004056566831284065,
+        "SharedPrior": 0.004198818139368505,
+        "OracleFamily": 0.0033052796817056467,
+        "MixedGroups": 0.004432003046172918
+      },
+      "0.9": {
+        "LocalOE": 0.02350756749095561,
+        "NominalPrior": 0.018760078749227055,
+        "SharedPrior": 0.018467688496771797,
+        "OracleFamily": 0.00986099664264423,
+        "MixedGroups": 0.019127507464608964
+      },
+      "0.95": {
+        "LocalOE": 0.03553877714927351,
+        "NominalPrior": 0.027892091013708972,
+        "SharedPrior": 0.028900603262258916,
+        "OracleFamily": 0.014854604293826299,
+        "MixedGroups": 0.02919689711385235
+      },
+      "1.0": {
+        "LocalOE": 0.050536332008445095,
+        "NominalPrior": 0.042264971366589285,
+        "SharedPrior": 0.04235838846781142,
+        "OracleFamily": 0.030515657044030357,
+        "MixedGroups": 0.04522984178955621
+      }
+    },
+    "parameter_order": [
+      "p1",
+      "p2",
+      "p3",
+      "mu",
+      "sigma_f",
+      "sigma_r"
+    ],
+    "near_bound_counts": {
+      "LocalOE": [
+        0,
+        0,
+        3,
+        26,
+        1,
+        0
+      ],
+      "NominalPrior": [
+        0,
+        0,
+        0,
+        28,
+        0,
+        0
+      ],
+      "SharedPrior": [
+        0,
+        0,
+        0,
+        28,
+        0,
+        0
+      ],
+      "OracleFamily": [
+        0,
+        0,
+        0,
+        25,
+        0,
+        0
+      ],
+      "MixedGroups": [
+        0,
+        0,
+        0,
+        28,
+        0,
+        0
+      ]
+    },
+    "implementation_commits": [
+      "693706f8b5459b77bb1ed75b65174ffc42b14276"
+    ],
+    "original_numerical_runtimes": [
+      {
+        "packages": {
+          "numpy": "2.3.5",
+          "pandas": "2.2.3",
+          "scikit-learn": "1.8.0",
+          "scipy": "1.17.0",
+          "threadpoolctl": "3.6.0"
+        },
+        "python": "3.12"
+      }
+    ],
+    "source_sha256": {
+      "results/tables/paper_cfl_heterogeneity_analysis.json": "737e4b63f6832c60e17c5311e25c089be977f6d262bd5d0feea8d63acf5977fc",
+      "results/tables/paper_cfl_heterogeneity_seed2301_group_SharedPrior_all.json": "0ba99957a86c5cde24507824bf6106618005a0765a7dfe8d15a6cdc70864251d",
+      "results/tables/paper_cfl_heterogeneity_seed2301_group_OracleFamily_Compact.json": "d5dc6d1d03f09e0626eed64da8cce098e36ea35e3345405f65c8e89f61eab10d",
+      "results/tables/paper_cfl_heterogeneity_seed2301_group_OracleFamily_Sport.json": "2a2bce62af579c55ec8d69f2072abc5eedee52b71ee222995b86b1b4eea4efc5",
+      "results/tables/paper_cfl_heterogeneity_seed2301_group_OracleFamily_SUV.json": "9801a16da86eea18c6649ec0a075a2ac53d200103a2ca96ea9cdb9e72b258d15",
+      "results/tables/paper_cfl_heterogeneity_seed2301_group_MixedGroups_0.json": "dc8f3f02f332a251ce96cb29ad82bc5010084a7e61db427238d338397feb5546",
+      "results/tables/paper_cfl_heterogeneity_seed2301_group_MixedGroups_1.json": "4c90c06b9e056967dcc4c8d5f4234f012a992802ec6dd8ef67a3b36b6cb53d6d",
+      "results/tables/paper_cfl_heterogeneity_seed2301_group_MixedGroups_2.json": "bbd852c621d98667d8963ca03d0a18f30edbe43b073bfd7e241f8956a3fba99d",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_00.json": "3fc5c34011b14af2ebd1fd4cfaa14a352e5baa0145d1774c7bc400579f5f55c8",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_00.json": "8301e815271d3503e4d956864a4cad672f1bbc7e8a620da1670f6dde68aa4525",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_01.json": "02d629b7c599622a05642a746b44da48916eb72c35e5734eb47b860cf1a85788",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_01.json": "0f66e2344611fcfe54e0fa2415355e9804071d4fc2dd19d9873b95f4bd97b6b0",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_02.json": "7ae6dae0faf5770c5112d0533326e2a608818a3bb15ef26dc42dbae7b4f88cf0",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_02.json": "cd0f58a1adb074c0f6dbafeba5a637fe0c3d345664595cd77eebfe8c21b3bde5",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_03.json": "b8e5329dc1cb6d964baad4c64c66a2a1948163301588ce8912d8728e08fae6dd",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_03.json": "2fb80deb42343465328851add3d9dbbd0b93975fd508c349da8353fc5aea1e5c",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_04.json": "a8c8e8586af2c66d8e4aa260acba7377cad0a2468a7fc881a303c9f24c9a3fa8",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_04.json": "3a1c6c379bcb0ea56275e4e860f2dd9b2413157caca6f81b2b4b0b147dc77e6d",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_05.json": "331a277e8730f44f6f04d8009deba84fe4084e081ec42acea6baa4adba03bcb6",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_05.json": "8c05d1977bc62f016eaa6d404bb1919dcef9a4d37247ae2d9d65c018826fb497",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_06.json": "4ac9675390942f733ee933920b5a9792217580f393ddf13008a715a8daa424bd",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_06.json": "3bbf16b2de1f10335a3d2ea0013aac7aa3ba21f742edc76d05849ab2d683d715",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_07.json": "83ca0711028d0bc22baf31ca9d6294366ef8b8a6203e5e18429e61c499f28b49",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_07.json": "fb743ce55d9e54d23bca7fea09dd0de312e1c33bb0c8eb173e5207c3db9197b7",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_08.json": "956770782ed45f9c1e856022e119213ee74f0b9cbc62704095e071a0c6875552",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_08.json": "f4d0fec916bf9e2709a841bf3daecd5d58949e63e30fd2105b4a6736de63614c",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_09.json": "63bef2337caadda20ae1a921eb49e1e720255e1582d948e8b67c74d80c22ff03",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_09.json": "a2bd6ef679d1552c311e2acd54ca8d17fe53e8c62ee0a40df373f3bd891cf039",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_10.json": "ba88f451345315ea0000f0fd35520cd84965e37936c072096616dbe3027b6242",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_10.json": "c1010448ce0a6a6b05afcf83325887f49575c8147214ea3835a6a947abd38f0e",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_11.json": "d51d7a09e8eab3ca4ff422ab0ca361633f37a8d3698d25de93b2f716bafbabc3",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_11.json": "cd84b345c05f4fd1dd0c131cb536d50b366c99f033f1d35a1ed4aa972c0cfae4",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_12.json": "2bfffc2f90676a1ffde15f47c469ac22e570ca22a603208fc15bd977992d15a4",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_12.json": "2c346349cf9966c223fed32da63019f81f7595896d8800c3428fb9b658bd4266",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_13.json": "012b16750fd4c407e95637e8fac311c13d6cdd0b3d107a84e4ead1c89a45e774",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_13.json": "2220fbc07e725896494d272603812c0b466722478490dd565574b763139d7d92",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_14.json": "59a1f2893008c8a3bd5c2aee0e9cf278f755341039ba33f85e87a43ef908a937",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_14.json": "a8aa921e71e5dea63bf2ff54c33909db7fc6ece6a70fe64016ac56ca171224eb",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_15.json": "850dd1ad1dec37a2fbef055509558d0886739e6154cdad65968d8f46af4afafb",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_15.json": "4fe8ea3e2ee04cdeea6f076a48a7b4726ca39ad99a7b2a80dc0de06550e66474",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_16.json": "39a29e4468b3d2c8875f42c7c5eddf1faa7923168ead307ee9f40aa50da437f1",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_16.json": "676626ac350cd12b9da2601ed91b75465f6deafc910ee63c4a9f21916c7d9a93",
+      "results/tables/paper_cfl_heterogeneity_seed2301_eval_vehicle_17.json": "3b424c69561f3a032fe20a67cda1fd28ee1689481839234a9070819346f96429",
+      "results/tables/paper_cfl_heterogeneity_seed2301_local_vehicle_17.json": "9a5302325a53865678ecc95f1e40d9de3244ba7aff82f8979b0fafb574d5ecb9",
+      "results/tables/paper_cfl_heterogeneity_seed2302_group_SharedPrior_all.json": "57122054007c48ec24291af22c3ed933801d0b3bc49d667c9a668e8437bdf5bf",
+      "results/tables/paper_cfl_heterogeneity_seed2302_group_OracleFamily_Compact.json": "411afe0fe68e93eb07a9e3e8bf48271df9a468d450a29993eb53cae0993acfde",
+      "results/tables/paper_cfl_heterogeneity_seed2302_group_OracleFamily_Sport.json": "22520f4df288d8f237f5d93435a8d1709603dcb864c6552e2e8925bb8f371fc1",
+      "results/tables/paper_cfl_heterogeneity_seed2302_group_OracleFamily_SUV.json": "dc994d2a9fc0f6f69533f114272475e2032922ddb049fb58b093839eed5fcde5",
+      "results/tables/paper_cfl_heterogeneity_seed2302_group_MixedGroups_0.json": "6fac9255ac3635839442864866f1ec9336030195c3d1a96e68246ded85c14cb4",
+      "results/tables/paper_cfl_heterogeneity_seed2302_group_MixedGroups_1.json": "31a38c5838fa44072d09517186dd5b8b4124a3a6ec4b67b593a20ca0a79c95d2",
+      "results/tables/paper_cfl_heterogeneity_seed2302_group_MixedGroups_2.json": "b616bfd3febcccf9e722a8d088f4c3d0db00e361f1d531e42b908e1165eb9534",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_00.json": "ad952e39951d0eb61e1cb44cf16ebc44cf7d01be6a668441a25ca8f3acec457d",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_00.json": "7758ee95b1ce2b80209c25cc36c5f7fd484cf83c5ec9bee96bc7ea43c06cf5e6",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_01.json": "4f1e0732aca0f207e7df943b40202cb2421a3f0171cfe89657fb8e82b670a200",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_01.json": "dcf3d9d724990fe893c6b0860d236583bf8c448c94db1e547e4a8f9957ab9224",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_02.json": "32358f96cbe5ac7efef93981c2067678b1a663513fef8b22b7b049e645c3aa65",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_02.json": "c74908405e304a296f1a4efd6c7c783040631753375fd750558cf7d92d67a847",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_03.json": "0211277d4542c2dbfdc71afa08f4f7d0d27cb7142fe01e80b6772ff729f869ab",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_03.json": "e8bbf1a6d2996968fbf5d8300723cc5e85c9744375404948bd14f7816f3e7ef8",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_04.json": "12a2ce9fce374f6a451933bfe29b9725911de8087739f2f1cc38499084498577",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_04.json": "112f96413e5f4accdaba1632245a5bcef4081e0c66f037b432466c702b61672e",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_05.json": "2c905832f0abf77bbb24629ba5c2d99d7808e9a890dbc3a65b62f02c4157a205",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_05.json": "a9d7939725ae9d6c550527ac6881b8d54cf54a4c307c3aa495827774b5961e56",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_06.json": "5e9bc78f78ec644d63e48a97f51f08f7cfd68a7bbf44579ddfaf91d967b5cee8",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_06.json": "4d63a2ef72b1b730dfd27412a4efb72636fc73bc1812e3b862dbb6f0536105f6",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_07.json": "adbf5626d3da850c26b30c0fc294aff6af6f4c0dcd3dc9c6f3c28d0bb006f82d",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_07.json": "966932171462353efe47b4db25327cb6c1e02ebe4667c2a5bf71ff26d802a80e",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_08.json": "4f2b94cdb69636224711882ea3daa78e510deed95c80f7b3345acad87976c846",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_08.json": "29b3c46cdf6e74352a10304727594a1f039b05d8e308807d6b41a7a34b8f74a0",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_09.json": "a97d7b3e893a103c23a89f3c2933b3bf7b2f0e82237726049417fcf53ae9d725",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_09.json": "99cdeef4048a49f7dd65185e1150bdbf28debc16cbe56190362af5da8c0f5e64",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_10.json": "5b73266c90e941475cd133a4b1575367ebf23be1d173c0937298099021d448d1",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_10.json": "f2a513837abdd4fd7539c0d52116bb3aa8eb569fdb9266bf63ac067c29b26adc",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_11.json": "7f3f9a46953ecc235d871b7a8478bce08dc86dbec4aa8d36bdcbbff5664391dc",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_11.json": "1ff6204cd71044e71954aaa4ffe6fbbc749ce5fe88ab31a1868ea890bcd2be6d",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_12.json": "67e3876494697ad84436c74c65cad024fabcae6efb37cdd7ac0441f82ab24bef",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_12.json": "e874e6775661625bdbce21bf0c99a491d6deb4ccc9c775bdd62d64bde1629e3e",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_13.json": "ea8c7cdf183afffd19f60ececf64b571fca8866e54b0f3dfeea2be1b142dc45e",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_13.json": "5c59ccb4a06168042d2f90b28511520079366a9855668f5cd9713f68bb6295d8",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_14.json": "2c856d9fb553bcc7e757e5fdc007f6c2d5ca0429889ad64e3c465a4a1bdbf8d1",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_14.json": "d4cd415b91f46ad73adef3726b67b5225cacb255d4d0b606590ac9e4e2379cb3",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_15.json": "b5b53f1e9238d7593d13e8cc3a89e7994609512d9d00c4223f0613db64c6d060",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_15.json": "ddd016caeceebc41267a2c5a4df6a9444e722b2b6199c5d0e31546ec6ab8727d",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_16.json": "79df6b5be138d677b7dc461cc93b75ba49e027b0ece0aebe12f4795ce0793343",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_16.json": "3b26c23107c36c0e3689aa11557860a361056d20340c44eabb5b77d0157f7eba",
+      "results/tables/paper_cfl_heterogeneity_seed2302_eval_vehicle_17.json": "e5a6461288fa21140614a47cb4fcf64afac28e59b3f76eb79d4adc8fad28029e",
+      "results/tables/paper_cfl_heterogeneity_seed2302_local_vehicle_17.json": "0b6b69e5e3acd7ef1d17d6d1fc99a348765aae4ebf60829930669256a2f0b954",
+      "results/tables/paper_cfl_heterogeneity_seed2303_group_SharedPrior_all.json": "6005b49a9af3a0a5003ef06c3adc7b5d338e1a8251cf82450b29a230f943e6a6",
+      "results/tables/paper_cfl_heterogeneity_seed2303_group_OracleFamily_Compact.json": "31278216714c0f33271b9ad503abe2ba1a7f2fa01bc38fdd8f87eee668d05114",
+      "results/tables/paper_cfl_heterogeneity_seed2303_group_OracleFamily_Sport.json": "3e0533b38c83eec9a826e3f04ea7b13a7a4bd72ecad3646e3b46f9f556f23b22",
+      "results/tables/paper_cfl_heterogeneity_seed2303_group_OracleFamily_SUV.json": "6cf363a957893d0b6b43d6e0e3a433305b8d17d70e389b8a443f4f0306082814",
+      "results/tables/paper_cfl_heterogeneity_seed2303_group_MixedGroups_0.json": "ee370857d213ce328a5563f8d4efd642b991195b2db0c6d02e996842476e3ce2",
+      "results/tables/paper_cfl_heterogeneity_seed2303_group_MixedGroups_1.json": "69ac3cb27f6c67dec15a418a2c71ea0b39d9b8deb4a9d76083a3c0892dcc386e",
+      "results/tables/paper_cfl_heterogeneity_seed2303_group_MixedGroups_2.json": "90ae41e28b711c5c1f1071a52f4d91de0081e49087f343a2fc8a7ff8ddcbed45",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_00.json": "0e6609dc0188f305f7a2ff1ddfc39f3ae399b8781273ed25a1bd9ba78f7eb073",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_00.json": "d042068704103914572e8c9b0cbf78447b3eb7428aa129370d65efd84d244ab2",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_01.json": "3d043faf2c53c736cdaf10e0434f184aa9ef6c8847085d808864caf03e2b67e3",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_01.json": "56f598f413d67270e60d0d1fc218567a041b8514eb053854d1f632321a7f0fd6",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_02.json": "cb0c3a8d8182530a9d2d376c4b975551043d27e8f5c5943fbf2c67b6c2785165",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_02.json": "b1e68562e4b92d7fc89105e511b7cea6ffd38bd1fef523b3e46d7a23eb0f22f8",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_03.json": "6be19283ee736371b0a1f8942c7a9121ad9ea5bc25c259ecfc02d625e5ec676f",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_03.json": "7cdaa9af098d17f3ad00d7bfecf52398d419b519d8a500e8aa6b11c75d2dbf2c",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_04.json": "3ff7a5b4523e8165c2d4b9b284f9af590f1ea9293065ada914556adc825d1fac",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_04.json": "d382a40838b8323e248b1b3f1b341b6f0833702df574873a14e8cd269c59ab57",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_05.json": "5c286878cb64c2a433a61bde9fd3c4f58d46991f8f5996eabdacb9b3d8555d6c",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_05.json": "ee1a4ef1fd25d3e3f8e3fc91875fd31bf5e6adbf4b9b2ed1b4833f4976a4412c",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_06.json": "09fac55b7d10b49d49cac3da1df9fa27a180746b1eb85fe42d4484720712f40b",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_06.json": "7dd9acab56d3446f8294a5966c0bdb26910cee57ebd6941dce3a6880779b603c",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_07.json": "d1c88fb9455d962085bd95ff0a29ca1c2a8f4d3b6f819bcc063f0604a52a09ba",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_07.json": "7a64af765578647a5b264b3f89bdfce18ce53ace3412d549ec741892bbce551d",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_08.json": "3a4c088fed056d3c8d1235c69c54b2b6779310e797cfa892e31026910eb831d0",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_08.json": "4107b92ded1f1977d1dfae68fdccb8ba4dd1086ad916d811a82859336d6fe05d",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_09.json": "972e1a98a66e79e8f230571ce1dcac370586384cd9bb0847e8c5ead7958a45ae",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_09.json": "1e4721ca19dda765a3ca99197bc26e2cbd7a94c4b51dc50e9eb0bee45cc28f31",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_10.json": "721b73b9a4a989f97ebd02e4bcf37e494b09a7c0643794c564b13b95ad113b9d",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_10.json": "5e6ab689fb95c654eca7433328a45a995e7df89febd7e0ab2129fadaab3a493e",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_11.json": "64a4fe068361967871ab9116af47a5240988ff1c1fb44a307905936a64f5f7b2",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_11.json": "8b7729722bd15c7300f45506cd07b38a97cb5157199f55b4b99601c739681876",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_12.json": "51c8cc95f877bb299217e1583bc2b33265dd6eee5e58e122c95d8542b97a34ce",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_12.json": "7ba1ad2f021a51c2daba516730cf36ae23added28f30fa37c845a8a988ed842d",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_13.json": "93910e89728318c0c5d3e1fe881b07bd8961743296a7ce03a7c7d49e80f4b2e6",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_13.json": "2c18f3a40c76d3fc2f9b215a624b4a8a2fbc678e7edc742449c0927d8b7cf5c6",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_14.json": "c74013c393ab28034feb5ac13865858a51bb4c898325b21979de30f79c9e99d8",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_14.json": "b345b4d7acc3965f96154a83275658dcfef127ccac0e22bb9540a8f8b9d81ac1",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_15.json": "1aa70897385e1d0a4ec98e136cfcf2f0203d3ef29f238ffb37cab5d9d0a7003e",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_15.json": "53ac7b03b49eaa7a84eeac5f665cb11d17b40df3ffa2dddd3a0cc9d01f8d17dd",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_16.json": "c87cb7653bb171e5cfd3451b29ecaf3dc5fe304c6b3702a814fc178a1ee16cd9",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_16.json": "59194de4fbdf29418898f0d011a3e37ad4e4d1e29c7175d8076dea562d63a0ea",
+      "results/tables/paper_cfl_heterogeneity_seed2303_eval_vehicle_17.json": "7174bed3be5aace52c53d6b8c8f31969e08eee1c5bdb275e5f6309fba1c566d6",
+      "results/tables/paper_cfl_heterogeneity_seed2303_local_vehicle_17.json": "b0ab135f521e842f65fc5ce9cd08ab8e513d936e36fe4ea260e4d6bb29a27188",
+      "report/cfl_heterogeneity.html": "511d13cf65b0b9692a3335ab7c1fd9336288a50ad331e220e5f23e8cd5a34df9",
+      "results/tables/paper_cfl_heterogeneity_cases.csv": "1693b9b5afcfdf5f3343a2fefafca6fc1ccb8d63c59dc13e1031830cf0771cea",
+      "results/tables/paper_cfl_heterogeneity_families.csv": "670868427a034df9d32df8d94900c56ca322569ad05b96bcca6385356f33a315",
+      "results/tables/paper_cfl_heterogeneity_fleets.csv": "8aa9f626e728a986e817964300a7353323e0cec583d7acde891ba3dc9f081990",
+      "results/tables/paper_cfl_heterogeneity_optimization.csv": "c4e51b22da829e292ddf887386dd5f8a6476822c3cfac917fe02d3a2b160b3e6",
+      "results/tables/paper_cfl_heterogeneity_parameters.csv": "8fa6d608bfa0e27f3bd4dad6b5425ec0905bc29b5fd2138529bf67c17a610151",
+      "results/tables/paper_cfl_heterogeneity_population.csv": "4df7b2de7a6b3e8b8ae66f927a966a6f3fc2bd9e9faa1da9d5aba7f44e65d5ac",
+      "results/tables/paper_cfl_heterogeneity_speeds.csv": "2419f98be6fd0553e4444d333fba95b84b44492e6d57942b319634ef512b33b4",
+      "results/tables/paper_cfl_heterogeneity_vehicles.csv": "caf321d675f7dd0ec13aa54355a44acfa25d54ccb470a21a21816e8d83aa55d1",
+      "code/config/paper_cfl_heterogeneity.json": "f1da998417e75edad5dca5c647996038db17c59a1155e6f3eac7d36589dcf52b"
+    },
+    "new_optimizer_calls": 0,
+    "new_simulations": 0,
+    "scope": "Three exploratory fleets, oracle fixed family labels, matched tanh/relaxation plant, known geometry, yaw prediction. Learned grouping and control benefits remain untested.",
+    "review_sha256": "0ab31fc9c6d1b3d642eb94e85d753fed6f38443802f6cb46ae0da0d0d3feba81",
+    "review_code_sha256": "a04fc960531e407a61d1050f7ec2dd1303b186e4cdc95439d793352190bc4030"
+  },
+  "payload_sha256": "efebfe5b3352e45c924030cb6e4d76d752eba888065d0ea924e7e4c5bee81f02"
+}

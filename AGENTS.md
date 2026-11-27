@@ -27,3 +27,9 @@ separate action.
 - Do not force-push unrelated history or alter historical locked files merely
   to update workflow wording. Record the branch and remote commit in the final
   status. Distinguish recovered original artifacts from reconstructed experiments.
+
+## Local experiment handoffs
+
+Whenever preparing an experiment for the user to run locally, include the exact
+run commands and the matching `git add`, `git commit`, and `git push` commands
+for its checkpoints, result tables and reports in the final handoff.
