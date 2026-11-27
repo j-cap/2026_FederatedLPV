@@ -1,0 +1,87 @@
+{
+  "status": "implementation_checks_passed",
+  "test_command": "python -m pytest -q code/tests/test_cfl_learned_groups.py code/tests/test_cfl_heterogeneity.py",
+  "tests_passed": 17,
+  "preflight": {
+    "status": "preflight_passed",
+    "development_fleets": 3,
+    "confirmation_fleets": 10,
+    "conditions": [
+      "complement",
+      "same13"
+    ],
+    "groups": 3,
+    "restarts": 3,
+    "reused_local_jobs": 72,
+    "new_development_local_jobs": 36,
+    "reused_development_group_jobs": 21,
+    "new_development_group_jobs": 39,
+    "development_test_records": 1008,
+    "confirmation_requires_freeze": true,
+    "new_fits": 0
+  },
+  "smoke": {
+    "spawn_worker": true,
+    "real_nonlinear_short_record_fit": true,
+    "analytic_jacobian_checked": true,
+    "learned_server_update_checked": true
+  },
+  "workflow_tests": {
+    "optimizer_stub_used": true,
+    "real_data_generation_and_evaluation": true,
+    "mid_round_resume": true,
+    "unchanged_target_cache_and_fits_reused": true,
+    "cached_original_evaluation_reused": true,
+    "family_label_invariance": true,
+    "friction_coordinate_ignored_for_grouping": true,
+    "training_only_converged_restart_selection": true,
+    "stale_parent_rejected": true,
+    "cross_platform_resume_rejected": true,
+    "scalar_analysis_can_use_another_runtime": true,
+    "confirmation_freeze_checked": true,
+    "exact_raw_restore": true,
+    "analysis_html_generated": true,
+    "cross_platform_analysis_preserves_fitting_provenance": true
+  },
+  "original_cross_platform_regeneration": {
+    "bitwise_identical": false,
+    "saved_preview_max_state_difference": 8.326672684688674e-17,
+    "explanation": "Original cached arrays are reused and hash-checked. Missing original arrays must be regenerated on their original numerical platform; approximate replacements are rejected."
+  },
+  "production_experiment_executed": false,
+  "native_windows_execution_tested": false,
+  "numerical_provenance": {
+    "files": {
+      "code/config/paper_cfl_heterogeneity.json": "f1da998417e75edad5dca5c647996038db17c59a1155e6f3eac7d36589dcf52b",
+      "code/experiments/paper_cfl_heterogeneity.py": "95d6f490cccf789790f114792cb1a5cacf8ded3daf8899e0e69a6c496b02337c",
+      "code/src/federated_lpv/cfl_population.py": "db0625ef33f1476fcb50476982c613cdfced9e53c798d000b3100c9d2326f081",
+      "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
+      "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
+      "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+      "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5",
+      "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+      "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+      "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+      "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
+      "code/config/paper_cfl_learned_groups.json": "d744916827fef6a79e6f19da433ad4b7fe13912a325eb88ca6e9e8913052e1f5",
+      "code/experiments/paper_cfl_learned_groups.py": "4529de532390e67af55c080d84a27724881f3abb506666629936cfb0cac52646"
+    },
+    "runtime": {
+      "python": "3.12",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      },
+      "python_full": "3.12.14",
+      "system": "Linux",
+      "machine": "x86_64"
+    }
+  },
+  "supporting_files_sha256": {
+    "code/tests/test_cfl_learned_groups.py": "65371c83e03fa4949942e2977beb959c65efe4d73be65244028d424edde6638b",
+    "docs/cfl_learned_groups_experiment.md": "11178ac12b8588296abea5eda453560144a6d49b95822df2a3afcdf46042f674"
+  }
+}
