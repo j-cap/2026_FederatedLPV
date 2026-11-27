@@ -1,0 +1,70 @@
+{
+  "status": "implementation_checks_passed",
+  "tests_passed": 6,
+  "preflight": {
+    "fleets": 3,
+    "vehicles": 54,
+    "sharing_jobs": 21,
+    "primary_cases": 216,
+    "all_test_cases": 756,
+    "unstable_linearizations": 0
+  },
+  "smoke": {
+    "spawn_worker": true,
+    "real_short_record_fit": true,
+    "analytic_jacobian_checked": true,
+    "utf8_roundtrip": true
+  },
+  "full_duration_acquisition_checks": {
+    "fleet": 2301,
+    "speed": 29,
+    "families": [
+      "Mini",
+      "Sport",
+      "SUV"
+    ],
+    "samples_per_record": 1201,
+    "operating_checks_passed": true
+  },
+  "workflow_tests": {
+    "optimizer_stub_used": true,
+    "real_data_generation_and_evaluation": true,
+    "mid_round_resume": true,
+    "exact_raw_restore": true,
+    "stale_parent_rejected": true,
+    "writer_lock_checked": true,
+    "analysis_html_generated": true
+  },
+  "production_experiment_executed": false,
+  "native_windows_execution_tested": false,
+  "numerical_provenance": {
+    "files": {
+      "code/config/paper_cfl_heterogeneity.json": "5f8850a304549e4db2befb6a911095010a5831a5967982cf036099f87867d321",
+      "code/experiments/paper_cfl_heterogeneity.py": "00767b1393e1358f29698a3455b06563d383b47a4f963ef1297c721b983f138b",
+      "code/src/federated_lpv/cfl_population.py": "db0625ef33f1476fcb50476982c613cdfced9e53c798d000b3100c9d2326f081",
+      "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
+      "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
+      "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+      "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5",
+      "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+      "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+      "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+      "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4"
+    },
+    "runtime": {
+      "python": "3.12",
+      "packages": {
+        "numpy": "2.3.5",
+        "scipy": "1.17.0",
+        "pandas": "2.2.3",
+        "scikit-learn": "1.8.0",
+        "threadpoolctl": "3.6.0"
+      }
+    }
+  },
+  "supporting_files_sha256": {
+    "code/tests/test_cfl_heterogeneity.py": "fd69effce7eefab2b2e0f58ec6e86868727d1880dee6c767a08f268fcbe64f9d",
+    "docs/cfl_heterogeneity_experiment.html": "ba350e968b07bd224acaf70dbaf5deb2e3a86fe37c62693b77858f2040ac0c14",
+    "docs/sources/cfl_ff_population_excerpt.tex": "61f785ba1f8296e3faa43d608c074907e34706ee226aeecce85e807baf8dd247"
+  }
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CFL-FF heterogeneity: experiment protocol</title>
+<style>body{margin:0;background:#edf2f5;color:#193443;font:17px/1.6 system-ui}main{max-width:1020px;margin:auto;background:white;padding:32px}h1{line-height:1.2}h2{margin-top:34px}table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:10px;border-bottom:1px solid #ddd;text-align:left}pre{padding:16px;background:#edf4f5;overflow:auto;font-size:14px}.note{border-left:4px solid #087d87;padding:12px 20px;background:#eff8f7}.scroll{overflow:auto}a{color:#087d87}</style></head><body><main>
+<h1>Do Mini, Sport and SUV dynamics justify separate learned priors?</h1>
+<p>Frozen exploratory protocol · 27 November 2026 · identification only</p>
+<p class="note">Question: Does an oracle family-specific prior improve yaw prediction beyond both one shared fleet prior and a strong fixed nominal prior? A size-matched mixed-group control checks whether family compatibility contributes beyond merely reducing group size.</p>
+<h2>1. Population transferred from CFL-FF</h2>
+<p>The source is the <a href="https://github.com/j-cap/2026_CFL_FF/blob/6bc92119910f10a853309e26f32cefe68ff9c5d4/main_clean.tex">CFL-FF manuscript at commit 6bc9211</a>, section “Heterogeneous fleet.” A frozen <a href="sources/cfl_ff_population_excerpt.tex">source excerpt</a> is included. “Mini” uses its Compact parameters. These are new draws from the documented distribution, not a replay of the original clients.</p>
+<div class="scroll"><table><tr><th>Parameter</th><th>Mini (Compact)</th><th>Sport</th><th>SUV</th></tr>
+<tr><td>Mass [kg]</td><td>1220</td><td>1520</td><td>2550</td></tr>
+<tr><td>Yaw inertia [kg m²]</td><td>1500</td><td>1800</td><td>5200</td></tr>
+<tr><td>Front/rear CG distances [m]</td><td>1.05 / 1.45</td><td>1.15 / 1.35</td><td>1.30 / 1.55</td></tr>
+<tr><td>Front lateral (B,C,E)</td><td>(9, 1.27, 0.93)</td><td>(13.5, 1.38, 0.86)</td><td>(7.5, 1.22, 0.95)</td></tr>
+<tr><td>Rear lateral (B,C,E)</td><td>(10, 1.27, 0.93)</td><td>(14, 1.38, 0.86)</td><td>(8, 1.22, 0.95)</td></tr></table></div>
+<p>Apply the three documented variation levels in order:</p><ol>
+<li>Correlated mass/inertia log perturbations (SD 0.03, correlation 0.72), an independent wheelbase log perturbation (SD 0.03), and independent additive front/rear B,C,E perturbations (SD 0.05, 0.015, 0.015).</li>
+<li>Payload fraction uniform on [0,0.25], payload position divided by wheelbase uniform on [−0.20,0.25], and independent front/rear tire-condition factors uniform on [0.85,1.10].</li>
+<li>Independent log perturbations (SD 0.02) of mass, inertia, both axle distances and both B factors.</li></ol>
+<p>Payload position is positive forward of the original CG. For original mass m, payload ratio γ and position x, the CG shift is d=γx/(1+γ); the updated mass is m(1+γ), axle distances are l<sub>f</sub>−d and l<sub>r</sub>+d, and inertia is I<sub>z</sub>+mγx²/(1+γ). This point-payload convention and the numerical formulas are explicit in the new sampler. It implements the manuscript description rather than claiming bitwise equivalence to the CFL-FF simulator.</p>
+<h2>2. Mapping into the current identification model</h2>
+<p>After all physical perturbations, compute static axle loads F<sub>zf</sub>=mg l<sub>r</sub>/L and F<sub>zr</sub>=mg l<sub>f</sub>/L. The zero-slip lateral stiffnesses are C<sub>αf</sub>=B<sub>f</sub>C<sub>f</sub>μF<sub>zf</sub> and C<sub>αr</sub>=B<sub>r</sub>C<sub>r</sub>μF<sub>zr</sub>. Here the tire-shape coefficient C and the resulting cornering stiffness C<sub>α</sub> are different quantities.</p>
+<p>The six identified parameters are θ=(C<sub>αf</sub>/m, C<sub>αr</sub>/m, m/I<sub>z</sub>, μ, σ<sub>f</sub>, σ<sub>r</sub>). Each vehicle's geometry is known to its local estimator. The four-state tanh/relaxation equations remain unchanged and matched between plant and estimator. E is recorded but drops out of the zero-slip slope; longitudinal tire blocks and the nonlinear Pacejka curve are not imported.</p>
+<p class="note">The CFL-FF source does not specify relaxation lengths. Keep σ<sub>f</sub>=0.4 m and σ<sub>r</sub>=0.7 m for every vehicle, and center the nominal prior at those values. This first experiment isolates the source population's physical heterogeneity; it does not test heterogeneous relaxation lengths or model mismatch.</p>
+<h2>3. Matched data and methods</h2>
+<p>Three pilot seeds (2301–2303), 18 clients per fleet: six per family, two at each of 13, 21 and 29 m/s. Opaque client IDs and a randomized record order prevent family names from entering ordinary fitting. Every client supplies one 12 s tapered multisine steering record at its assigned speed. Peak steering 0.35°, sample time 0.01 s, RK4 step 0.001 s, yaw noise SD 0.03 deg/s; steering and speed are known. All trajectories begin from the known zero state. No sideslip/force measurements enter OE.</p>
+<p>The common local objective is normalized yaw simulation-error SSE plus ‖W(log θ−η)‖², with W=diag(10,10,10,0,4,4). Every vehicle keeps its own θ. Friction is fitted but not regularized. Local OE omits the penalty.</p>
+<table><tr><th>Method</th><th>Center and information</th><th>Why needed</th></tr>
+<tr><td>LocalOE</td><td>No prior</td><td>Effect of regularization</td></tr>
+<tr><td>NominalPrior</td><td>One fixed population-design center</td><td>Strong baseline without peer fitting</td></tr>
+<tr><td>SharedPrior</td><td>One center learned from all 18 clients</td><td>Current personalized method</td></tr>
+<tr><td>OracleFamily</td><td>Three fixed family groups; six clients each</td><td>Privileged diagnostic for family-compatible sharing</td></tr>
+<tr><td>MixedGroups</td><td>Three fixed six-client groups; two per family and speed</td><td>Control for group size and speed support</td></tr>
+<tr><td>Exact</td><td>Generating parameters, evaluation only</td><td>Numerical consistency reference</td></tr></table>
+<p>The fixed nominal center is the geometric population center estimated from 2000 independent design draws per family (separate seed 9202711), not from any pilot vehicle or test output. It is approximately (59.605,50.829,0.77535,0.9,0.4,0.7). This assumes the population distribution is known to the engineering baseline, making the test deliberately demanding. The center and all individual vehicles are frozen in the configuration.</p>
+<p>All learned centers start from the same selected local OE fits. The server averages only log parameters within each fixed group. Group assignments never change. Family labels are used to construct the two diagnostic partitions, but no family-specific true parameter or prior center is supplied. MixedGroups is a stratified control, not learned clustering. Each grouping partitions all clients exactly once; every group spans all three training speeds.</p>
+<h2>4. Optimization, efficiency and interruption handling</h2>
+<p>Local OE uses three common initial guesses and at most 150 function evaluations per attempt. The nominal prior uses two starts: the selected local fit and the nominal center. Learned-prior solves use at most 80 rounds and 50 evaluations per client update, with the existing objective/step convergence tests. A budget-exhausted fit is reported and blocks automatic progression; it is never silently treated as converged.</p>
+<p>Local jobs run in parallel across clients, then learned-prior jobs across the seven groups per fleet, then evaluation across clients. Each completed initial guess and each local update within a round is checkpointed. Training data and local fits are reused across all sharing methods. Thread limits are set by the script; no manual OPENBLAS/MKL commands are needed. OS-level locks prevent two processes from writing the same checkpoint. A process crash releases its lock.</p>
+<p>Checkpoints record protocol/code hashes, numerical package versions, local optimizer diagnostics, convergence histories and exact data hashes. Resume requires the same numerical runtime and unchanged fitting code. Analysis can run on another platform using the saved scalar results. Raw arrays are ignored by git and can be regenerated exactly on the original numerical platform using the restore command.</p>
+<h2>5. Evaluation and next-step decision</h2>
+<p>Primary endpoint: clean yaw prediction RMSE averaged over the two locally unseen anchor speeds and two new steering probes. This gives four cases per vehicle, 72 per fleet and 216 in total. Additional 9,17,25,33 m/s tests are secondary; all 756 test records are stored in the case table. Compare vehicle means, fleet means, family strata and training-speed strata. Include absolute error differences, not only percentages. The three fleets are exploratory, not independent confirmation of a previously frozen claim.</p>
+<p>The predeclared progression screen requires OracleFamily to reduce pooled mean error by at least 5% relative to each of SharedPrior, MixedGroups and NominalPrior, with improvement in at least two of three fleets for each comparison. All fits must converge and all operating checks must pass. This is a practical screening threshold, not a significance test or evidence that family clusters are recoverable.</p>
+<ul><li>If the screen passes, investigate learned grouping while retaining the nominal prior as a baseline.</li><li>If family grouping helps over SharedPrior but not MixedGroups, group size or generic partitioning may explain the gain.</li><li>If learned priors do not beat NominalPrior, the evidence does not justify a stronger sharing claim.</li><li>If OracleFamily fails, do not conclude that all clustering is useless: nominal family identity is only one partition and is not an upper bound over possible dynamic groupings.</li></ul>
+<p>Preflight checks the zero-state linearizations but does not certify nonlinear safety. Simulation checks sideslip ≤5°, lateral acceleration ≤6 m/s² and steering rate ≤30°/s. Failed training records stop the run with their checkpoint preserved. Test operating failures remain visible and block progression. There is no resampling or result-dependent exclusion.</p>
+<h2>6. Windows commands</h2>
+<pre>git pull --ff-only origin main
+conda activate federated_lpv
+python code\experiments\paper_cfl_heterogeneity.py preflight
+python code\experiments\paper_cfl_heterogeneity.py smoke
+python code\experiments\paper_cfl_heterogeneity.py run --workers 5</pre>
+<p>Rerun the last command after an interruption; it resumes. It creates the CSV summaries and HTML automatically when all stages finish. To rebuild analysis without rerunning fitting:</p>
+<pre>python code\experiments\paper_cfl_heterogeneity.py analyze
+start report\cfl_heterogeneity.html</pre>
+<p>To regenerate missing ignored trajectories from saved models and verify their original hashes:</p>
+<pre>python code\experiments\paper_cfl_heterogeneity.py restore</pre>
+<p>Commit all checkpoints and analysis after execution:</p>
+<pre>git add results/tables/paper_cfl_heterogeneity_*.json results/tables/paper_cfl_heterogeneity_*.csv report/cfl_heterogeneity.html
+git diff --cached --stat
+git commit -m "Run CFL fleet heterogeneity and oracle grouping diagnostic"
+git push origin main</pre>
+<p>If execution stops before analysis, commit the JSON checkpoint files first. No new manuscript or publication-figure changes are part of this experiment.</p>
+</main></body></html>
