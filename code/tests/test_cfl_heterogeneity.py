@@ -19,8 +19,8 @@ def test_population_slope_and_payload_physics(cfg):
     spec=copy.deepcopy(cfg['population'])
     s=spec['variation'];s.update(family_log_sd=0.,client_log_sd=0.,BCE_additive_sd=[0.,0.,0.],
         payload_fraction=[.2,.2],payload_position_wheelbase=[.1,.1],tire_condition=[1.,1.])
-    a=spec['anchors']['Mini'];m=a['mass_kg'];lf,lr=a['geometry_m'];x=.1*(lf+lr)
-    draw=pop.draw_vehicle('Mini',np.random.default_rng(1),spec)
+    a=spec['anchors']['Compact'];m=a['mass_kg'];lf,lr=a['geometry_m'];x=.1*(lf+lr)
+    draw=pop.draw_vehicle('Compact',np.random.default_rng(1),spec)
     new_lf,new_lr=draw['geometry_m'];mass=1.2*m
     np.testing.assert_allclose(new_lf+new_lr,lf+lr)
     np.testing.assert_allclose(new_lf,lf-.2*x/1.2)
@@ -121,7 +121,7 @@ def test_partial_group_round_uses_saved_client_updates(tmp_path,monkeypatch,cfg)
     cfg=copy.deepcopy(cfg);cfg['duration_s']=.12;cfg['taper_s']=.03
     cfg['sharing']['personal_max_rounds']=1
     monkeypatch.setattr(run,'OUT',tmp_path/'tables');monkeypatch.setattr(run,'RAW',tmp_path/'raw')
-    provenance=run.identity();seed=cfg['seeds'][0];key='OracleFamily_Mini'
+    provenance=run.identity();seed=cfg['seeds'][0];key='OracleFamily_Compact'
     members=run.blocks(run.fleet_for(cfg,seed))[key]
     q=np.log(cfg['nominal_parameters']).tolist()
     def fit(self,start,center=None,weights=None,max_nfev=None):

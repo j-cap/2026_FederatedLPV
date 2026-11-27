@@ -7,7 +7,12 @@
     "sharing_jobs": 21,
     "primary_cases": 216,
     "all_test_cases": 756,
-    "unstable_linearizations": 0
+    "unstable_linearizations": 0,
+    "families": [
+      "Compact",
+      "Sport",
+      "SUV"
+    ]
   },
   "smoke": {
     "spawn_worker": true,
@@ -19,7 +24,7 @@
     "fleet": 2301,
     "speed": 29,
     "families": [
-      "Mini",
+      "Compact",
       "Sport",
       "SUV"
     ],
@@ -39,8 +44,8 @@
   "native_windows_execution_tested": false,
   "numerical_provenance": {
     "files": {
-      "code/config/paper_cfl_heterogeneity.json": "5f8850a304549e4db2befb6a911095010a5831a5967982cf036099f87867d321",
-      "code/experiments/paper_cfl_heterogeneity.py": "00767b1393e1358f29698a3455b06563d383b47a4f963ef1297c721b983f138b",
+      "code/config/paper_cfl_heterogeneity.json": "f1da998417e75edad5dca5c647996038db17c59a1155e6f3eac7d36589dcf52b",
+      "code/experiments/paper_cfl_heterogeneity.py": "95d6f490cccf789790f114792cb1a5cacf8ded3daf8899e0e69a6c496b02337c",
       "code/src/federated_lpv/cfl_population.py": "db0625ef33f1476fcb50476982c613cdfced9e53c798d000b3100c9d2326f081",
       "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
       "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
@@ -63,8 +68,55 @@
     }
   },
   "supporting_files_sha256": {
-    "code/tests/test_cfl_heterogeneity.py": "fd69effce7eefab2b2e0f58ec6e86868727d1880dee6c767a08f268fcbe64f9d",
-    "docs/cfl_heterogeneity_experiment.html": "ba350e968b07bd224acaf70dbaf5deb2e3a86fe37c62693b77858f2040ac0c14",
-    "docs/sources/cfl_ff_population_excerpt.tex": "61f785ba1f8296e3faa43d608c074907e34706ee226aeecce85e807baf8dd247"
-  }
+    "code/tests/test_cfl_heterogeneity.py": "bc4d34fac6bd7295fdee1629691a78b5c93a022f0a5a12502c79c4838eb830d3",
+    "docs/cfl_heterogeneity_experiment.html": "631b75a3522e84383a432b0e473acbeb28a1064c3c346b5715b10b5c7dfddcc5",
+    "docs/sources/cfl_ff_population_excerpt.tex": "61f785ba1f8296e3faa43d608c074907e34706ee226aeecce85e807baf8dd247",
+    "README.md": "eebb118d268f1833680fcd538a75fde7b2e52cf369109dbedf23894606a3e7a4"
+  },
+  "family_label_update": {
+    "original_implementation_commit": "ca6d0f805e29ca743175614971f7387137d73d00",
+    "original_config_only_changes": [
+      "family_label_Mini_to_Compact",
+      "protocol_version_1_to_2"
+    ],
+    "frozen_numerical_configuration_unchanged": true,
+    "full_duration_acquisition_records": [
+      {
+        "family": "Compact",
+        "client": "vehicle_03",
+        "samples": 1201,
+        "trace_sha256": "886bb4a19ecf7bde69495415092e1f0a4f8df1c0cc7b9fa0bb67afa5f9be1672",
+        "metrics": {
+          "beta_peak_deg": 0.5352480033293833,
+          "ay_peak_mps2": 1.1654670545700299,
+          "steering_rate_peak_deg_s": 1.3382781610063599
+        }
+      },
+      {
+        "family": "Sport",
+        "client": "vehicle_04",
+        "samples": 1201,
+        "trace_sha256": "88eae8413a8e441db645847e39304423e8ad97133477e20f4da8136bff92a87f",
+        "metrics": {
+          "beta_peak_deg": 0.3628927356159964,
+          "ay_peak_mps2": 1.352085826727897,
+          "steering_rate_peak_deg_s": 1.3382781610063599
+        }
+      },
+      {
+        "family": "SUV",
+        "client": "vehicle_15",
+        "samples": 1201,
+        "trace_sha256": "79a955a54ee0c1ff0b886469c9dc443f384fe4422dfb54f4d5bd61ed0675418c",
+        "metrics": {
+          "beta_peak_deg": 0.4468737818645729,
+          "ay_peak_mps2": 0.6894782435524355,
+          "steering_rate_peak_deg_s": 1.3382781610063599
+        }
+      }
+    ]
+  },
+  "test_command": "python -m pytest -q code/tests/test_cfl_heterogeneity.py",
+  "tested_platform": "linux",
+  "tested_on": "2026-11-27"
 }

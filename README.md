@@ -29,6 +29,30 @@ the [active identification manuscript](paper/main.tex), and
 [paper build instructions](paper/README.md). The prior cold-start manuscript is
 preserved in [paper/archive/9m_cold_start](paper/archive/9m_cold_start).
 
+## Prepared heterogeneous-family prior diagnostic
+
+The [CFL-FF heterogeneity protocol](docs/cfl_heterogeneity_experiment.html) tests
+whether Compact, Sport and SUV dynamics benefit from separate learned priors.
+It compares Local OE, a fixed nominal prior, one shared learned prior, oracle
+family priors and size-matched mixed groups on the same restricted-speed yaw
+records. Three fleets contain 18 vehicles each, balanced across the three
+families and training speeds of 13, 21 and 29 m/s. The primary endpoint is yaw
+prediction at each vehicle's two unobserved anchor speeds. This diagnostic
+precedes learned clustering; its production results are not yet available.
+
+From the repository root, with the environment below activated:
+
+```text
+python code/experiments/paper_cfl_heterogeneity.py preflight
+python code/experiments/paper_cfl_heterogeneity.py smoke
+python code/experiments/paper_cfl_heterogeneity.py run --workers 5
+```
+
+The run command resumes saved work and generates the analysis report when
+complete. The protocol includes analysis, trajectory restoration and result
+commit commands. The CFL-FF physical parameters are mapped to the existing
+tanh tire/relaxation model; the full Pacejka plant is not imported.
+
 ## Conda setup (Windows, Linux, or macOS)
 
 Create the environment from the repository root. On Windows, use Anaconda

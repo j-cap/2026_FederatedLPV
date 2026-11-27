@@ -2,12 +2,12 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CFL-FF heterogeneity: experiment protocol</title>
 <style>body{margin:0;background:#edf2f5;color:#193443;font:17px/1.6 system-ui}main{max-width:1020px;margin:auto;background:white;padding:32px}h1{line-height:1.2}h2{margin-top:34px}table{border-collapse:collapse;width:100%;font-size:15px}td,th{padding:10px;border-bottom:1px solid #ddd;text-align:left}pre{padding:16px;background:#edf4f5;overflow:auto;font-size:14px}.note{border-left:4px solid #087d87;padding:12px 20px;background:#eff8f7}.scroll{overflow:auto}a{color:#087d87}</style></head><body><main>
-<h1>Do Mini, Sport and SUV dynamics justify separate learned priors?</h1>
+<h1>Do Compact, Sport and SUV dynamics justify separate learned priors?</h1>
 <p>Frozen exploratory protocol · 27 November 2026 · identification only</p>
 <p class="note">Question: Does an oracle family-specific prior improve yaw prediction beyond both one shared fleet prior and a strong fixed nominal prior? A size-matched mixed-group control checks whether family compatibility contributes beyond merely reducing group size.</p>
 <h2>1. Population transferred from CFL-FF</h2>
-<p>The source is the <a href="https://github.com/j-cap/2026_CFL_FF/blob/6bc92119910f10a853309e26f32cefe68ff9c5d4/main_clean.tex">CFL-FF manuscript at commit 6bc9211</a>, section “Heterogeneous fleet.” A frozen <a href="sources/cfl_ff_population_excerpt.tex">source excerpt</a> is included. “Mini” uses its Compact parameters. These are new draws from the documented distribution, not a replay of the original clients.</p>
-<div class="scroll"><table><tr><th>Parameter</th><th>Mini (Compact)</th><th>Sport</th><th>SUV</th></tr>
+<p>The source is the <a href="https://github.com/j-cap/2026_CFL_FF/blob/6bc92119910f10a853309e26f32cefe68ff9c5d4/main_clean.tex">CFL-FF manuscript at commit 6bc9211</a>, section “Heterogeneous fleet.” A frozen <a href="sources/cfl_ff_population_excerpt.tex">source excerpt</a> is included. The Compact, Sport and SUV names match the source. These are new draws from the documented distribution, not a replay of the original clients.</p>
+<div class="scroll"><table><tr><th>Parameter</th><th>Compact</th><th>Sport</th><th>SUV</th></tr>
 <tr><td>Mass [kg]</td><td>1220</td><td>1520</td><td>2550</td></tr>
 <tr><td>Yaw inertia [kg m²]</td><td>1500</td><td>1800</td><td>5200</td></tr>
 <tr><td>Front/rear CG distances [m]</td><td>1.05 / 1.45</td><td>1.15 / 1.35</td><td>1.30 / 1.55</td></tr>

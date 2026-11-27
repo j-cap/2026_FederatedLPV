@@ -50,7 +50,8 @@ def preflight():
     assert cfg['methods'] == METHODS+['Exact']
     assert len(set(cfg['seeds'])) == len(cfg['seeds']) == 3
     assert [f['seed'] for f in cfg['fleets']] == cfg['seeds']
-    assert cfg['population']['anchors']['Mini']['source_label'] == 'Compact'
+    assert list(cfg['population']['anchors']) == ['Compact', 'Sport', 'SUV']
+    assert all(a['source_label'] == name for name, a in cfg['population']['anchors'].items())
     assert cfg['population']['relaxation_lengths_m'] == [.4, .7]
     np.testing.assert_allclose(cfg['nominal_parameters'], population.nominal_center(cfg['population']), rtol=1e-13)
     bounds = np.array(cfg['fit']['bounds'])
@@ -82,7 +83,7 @@ def preflight():
 def blocks(fleet):
     clients = fleet['clients']
     groups = {'SharedPrior_all': clients}
-    groups.update({f'OracleFamily_{f}':[c for c in clients if c['family']==f] for f in ['Mini','Sport','SUV']})
+    groups.update({f'OracleFamily_{f}':[c for c in clients if c['family']==f] for f in ['Compact','Sport','SUV']})
     groups.update({f'MixedGroups_{g}':[c for c in clients if c['mixed_group']==g] for g in range(3)})
     return groups
 
@@ -379,9 +380,9 @@ def analyze(cfg):
     ax.grid(axis='y',alpha=.25);ax.legend();plot1=svg(fig)
     fig,ax=plt.subplots(figsize=(8,3.6))
     for seed in cfg['seeds']:
-        r=by_family[by_family.seed==seed].set_index('family').reindex(['Mini','Sport','SUV'])
+        r=by_family[by_family.seed==seed].set_index('family').reindex(['Compact','Sport','SUV'])
         ax.plot(range(3),100*(1-r.OracleFamily/r.SharedPrior),marker='o',label=f'Fleet {seed}')
-    ax.axhline(0,color='black',lw=.8);ax.set(xticks=range(3),xticklabels=['Mini','Sport','SUV'],ylabel='Oracle reduction versus shared prior [%]')
+    ax.axhline(0,color='black',lw=.8);ax.set(xticks=range(3),xticklabels=['Compact','Sport','SUV'],ylabel='Oracle reduction versus shared prior [%]')
     ax.legend();ax.grid(axis='y',alpha=.25);plot2=svg(fig)
     means=fleet.mean();table=pd.DataFrame({'Method':METHODS,'Mean RMSE [deg/s]':means[METHODS].values,
         'Vehicle wins of oracle family':[(vehicle.OracleFamily<vehicle[m]).sum() if m!='OracleFamily' else 0 for m in METHODS]})
@@ -397,7 +398,7 @@ def analyze(cfg):
 <p>Progression requires at least 5% pooled reduction and improvement in at least two of three fleets against each of SharedPrior, MixedGroups, and NominalPrior, with converged fits and valid operating conditions. Inspect absolute errors and family/speed variation as well.</p>
 <h2>What this experiment isolates</h2><p>SharedPrior learns one regularization center from 18 clients. OracleFamily learns one center per known family from six clients. MixedGroups also uses three six-client centers, but each group has two clients per family and per speed. All methods use identical local records, bounds and penalty weights. Local OE and the population-centered nominal prior establish whether learned sharing adds value.</p>
 <p>The oracle is a privileged family partition, not an upper bound over all partitions. Failure of family grouping does not rule out dynamic similarity groups. Success supports investigating learned grouping; it does not establish that groups can be recovered from the short noisy records.</p>
-<h2>Population transfer and scope</h2><p>The Mini anchor is the CFL-FF paper's Compact vehicle. Mass, inertia, geometry, payload and tire-slope variability follow its declared distribution, with new draws. Lateral Pacejka zero-slip slopes B C μ Fz are mapped into the current tanh model; the nonlinear Pacejka curve is not imported. E is recorded but does not enter the slope. Plant and estimator remain matched four-state models. Geometry is known per vehicle.</p>
+<h2>Population transfer and scope</h2><p>The Compact, Sport and SUV anchors use the corresponding CFL-FF vehicle parameters. Mass, inertia, geometry, payload and tire-slope variability follow its declared distribution, with new draws. Lateral Pacejka zero-slip slopes B C μ Fz are mapped into the current tanh model; the nonlinear Pacejka curve is not imported. E is recorded but does not enter the slope. Plant and estimator remain matched four-state models. Geometry is known per vehicle.</p>
 <p>Relaxation lengths remain 0.4/0.7 m for all vehicles; the nominal prior is centered at these values. No family-specific relaxation lengths are invented. Thus this tests CFL-FF-style physical heterogeneity, not heterogeneity of force-relaxation time constants. The engineering prior is built from independent population-design draws, never from the simulated test vehicles or evaluation outcomes.</p>
 <h2>Optimization and secondary diagnostics</h2><div class="scroll">{pd.DataFrame(optim).to_html(index=False,border=0)}</div>
 <details><summary>Training-speed strata</summary><div class="scroll">{by_speed.to_html(index=False,border=0)}</div></details>
@@ -425,7 +426,7 @@ def smoke(cfg):
     fit=endpoint.fit(q+1e-3,np.log(cfg['nominal_parameters']),cfg['sharing']['weights'],max_nfev=20)
     assert fit['available'] and fit['objective']<=fit['initial_objective']
     with tempfile.TemporaryDirectory() as directory:
-        pth=Path(directory)/'unicode.json';storage.atomic_json(pth,dict(label='Mini / Sport / SUV — yaw β'))
+        pth=Path(directory)/'unicode.json';storage.atomic_json(pth,dict(label='Compact / Sport / SUV — yaw β'))
         assert storage.read_checkpoint(pth)['label'].endswith('β')
     print(json.dumps(dict(status='smoke_passed',analytic_jacobian_checked=True,production_outputs_modified=False)))
 
@@ -444,7 +445,7 @@ def main():
                 for v in cfg['evaluation_speeds']:
                     abscissa=max(np.linalg.eigvals(continuous_matrices(c['physical_parameters'],v,c['geometry_m'])[0]).real)
                     if abscissa>=0:unstable.append([f['seed'],c['client'],v,float(abscissa)])
-        print(json.dumps(dict(status='preflight_passed',fleets=3,vehicles=54,local_records=54,
+        print(json.dumps(dict(status='preflight_passed',families=list(cfg['population']['anchors']),fleets=3,vehicles=54,local_records=54,
             sharing_jobs=21,primary_cases=216,all_test_cases=756,unstable_linearizations=unstable,
             nominal_prior=cfg['nominal_parameters'],new_fits=0)))
     elif args.command=='smoke':
