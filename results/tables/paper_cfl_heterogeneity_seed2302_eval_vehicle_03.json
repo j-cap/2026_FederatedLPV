@@ -1,0 +1,658 @@
+{
+  "payload": {
+    "seed": 2302,
+    "key": "vehicle_03",
+    "status": "complete",
+    "provenance": {
+      "files": {
+        "code/config/paper_cfl_heterogeneity.json": "f1da998417e75edad5dca5c647996038db17c59a1155e6f3eac7d36589dcf52b",
+        "code/experiments/paper_cfl_heterogeneity.py": "95d6f490cccf789790f114792cb1a5cacf8ded3daf8899e0e69a6c496b02337c",
+        "code/src/federated_lpv/cfl_population.py": "db0625ef33f1476fcb50476982c613cdfced9e53c798d000b3100c9d2326f081",
+        "code/experiments/paper_federated_relaxation_coverage.py": "b450872a709ccf4b7d3a96bbb70f00766f19642c7025809b949ce12fbb907e3e",
+        "code/src/federated_lpv/federated_relaxation.py": "f5929cee6d2772b42749336d691d1c0f3c1c38137c1ddeab83f333ded46d787e",
+        "code/experiments/paper_tire_relaxation_gate.py": "ef0669a1c3a09d81d2e6bdf5dd10ce91611d6e8489e8cc7484cf19aebe708003",
+        "code/experiments/paper_tire_relaxation_pilot.py": "5718343028576d423687c2a654e7c5ad9cd7a1b3270fb13c9ee203adbba195e5",
+        "code/src/federated_lpv/tire_relaxation.py": "6e0222feb164a97261f7676bda954e814e8461110c73fe8f84628013ee743198",
+        "code/src/federated_lpv/tire_relaxation_pilot.py": "c22fa3353e77d42bcf5114403979b9110d8aa83bac44efae39175e6bed77b568",
+        "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
+        "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4"
+      },
+      "runtime": {
+        "python": "3.12",
+        "packages": {
+          "numpy": "2.3.5",
+          "scipy": "1.17.0",
+          "pandas": "2.2.3",
+          "scikit-learn": "1.8.0",
+          "threadpoolctl": "3.6.0"
+        }
+      }
+    },
+    "implementation_commit": "693706f8b5459b77bb1ed75b65174ffc42b14276",
+    "parents": {
+      "paper_cfl_heterogeneity_seed2302_local_vehicle_03.json": "e8bbf1a6d2996968fbf5d8300723cc5e85c9744375404948bd14f7816f3e7ef8",
+      "paper_cfl_heterogeneity_seed2302_group_SharedPrior_all.json": "57122054007c48ec24291af22c3ed933801d0b3bc49d667c9a668e8437bdf5bf",
+      "paper_cfl_heterogeneity_seed2302_group_OracleFamily_Sport.json": "22520f4df288d8f237f5d93435a8d1709603dcb864c6552e2e8925bb8f371fc1",
+      "paper_cfl_heterogeneity_seed2302_group_MixedGroups_0.json": "6fac9255ac3635839442864866f1ec9336030195c3d1a96e68246ded85c14cb4"
+    },
+    "cases": {
+      "v9_slow": {
+        "speed": 9,
+        "probe": "slow",
+        "region": "fleet_extrapolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.0007188103732688781,
+            "beta_rmse_deg": 0.0030784565636568424,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0009027355664171035,
+            "beta_rmse_deg": 0.00509448987003824,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.0010246335219068494,
+            "beta_rmse_deg": 0.005959542682761861,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.00015680714769631207,
+            "beta_rmse_deg": 0.0005795346457058352,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.0010623629367976699,
+            "beta_rmse_deg": 0.006183041761182445,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.11953888019195394,
+          "ay_peak_mps2": 0.18609862534830046,
+          "steering_rate_peak_deg_s": 0.5427329687935278
+        },
+        "trace_sha256": "4f1927eae1a6c3125171b9f2fe161650fc81795d48807a12be5a4eae4029c700"
+      },
+      "v9_broadband": {
+        "speed": 9,
+        "probe": "broadband",
+        "region": "fleet_extrapolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.004196603547415119,
+            "beta_rmse_deg": 0.0029442721048124026,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0048114747713552996,
+            "beta_rmse_deg": 0.004617691954330957,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.005426355369057679,
+            "beta_rmse_deg": 0.0053960786686131235,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.0009855752519287594,
+            "beta_rmse_deg": 0.00048580769402962695,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.005634143195839767,
+            "beta_rmse_deg": 0.005607029387982123,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.11866268083370188,
+          "ay_peak_mps2": 0.23097366918942414,
+          "steering_rate_peak_deg_s": 1.621833832618037
+        },
+        "trace_sha256": "9cc3f9189f24d10fd8b9e7285c810d260256e37595b39cb4cb29809e66a1ef8a"
+      },
+      "v13_slow": {
+        "speed": 13,
+        "probe": "slow",
+        "region": "peer_observed",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.0010456296459350539,
+            "beta_rmse_deg": 0.006108717316668266,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0013358059881892457,
+            "beta_rmse_deg": 0.01013564332913691,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.0014930292990310698,
+            "beta_rmse_deg": 0.011859908155601548,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.00035368638090023727,
+            "beta_rmse_deg": 0.001186941757247083,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.0015409796657952935,
+            "beta_rmse_deg": 0.012304621183426704,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.05119033641503973,
+          "ay_peak_mps2": 0.3719583389772698,
+          "steering_rate_peak_deg_s": 0.5427329687935278
+        },
+        "trace_sha256": "1a91d8d35e7ef87eee1181dbb97ac6d10c10235989319a8b6605b094ef8ed446"
+      },
+      "v13_broadband": {
+        "speed": 13,
+        "probe": "broadband",
+        "region": "peer_observed",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.003773243778170246,
+            "beta_rmse_deg": 0.0045218562417644985,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.004363753362225365,
+            "beta_rmse_deg": 0.0073570892542125215,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.004888148359037126,
+            "beta_rmse_deg": 0.008598311616452265,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.001012898470804386,
+            "beta_rmse_deg": 0.0008338596525506237,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.005064463746547858,
+            "beta_rmse_deg": 0.00892411100659452,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.04260750417174791,
+          "ay_peak_mps2": 0.3912802131800391,
+          "steering_rate_peak_deg_s": 1.621833832618037
+        },
+        "trace_sha256": "4a3387f723273f8d5c5f21376c9cd17d64cd412bb9d01dee7de265ff0dcd37f7"
+      },
+      "v17_slow": {
+        "speed": 17,
+        "probe": "slow",
+        "region": "fleet_interpolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.0013956999164983432,
+            "beta_rmse_deg": 0.009856129699007676,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0017744253674202752,
+            "beta_rmse_deg": 0.016406104634276945,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.0019248296938231572,
+            "beta_rmse_deg": 0.019208882493398645,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.0007036012903384487,
+            "beta_rmse_deg": 0.002018855077707292,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.0019705138435733216,
+            "beta_rmse_deg": 0.019931040545800034,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.03574047711383245,
+          "ay_peak_mps2": 0.6075601113146112,
+          "steering_rate_peak_deg_s": 0.5427329687935278
+        },
+        "trace_sha256": "59940142ee552b809e8eb605ee4b8957668b9ea65887fd282799e171e01c1687"
+      },
+      "v17_broadband": {
+        "speed": 17,
+        "probe": "broadband",
+        "region": "fleet_interpolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.002475060666421659,
+            "beta_rmse_deg": 0.006507830111545924,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.002867047350134984,
+            "beta_rmse_deg": 0.010705696598118914,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.0031739232389148024,
+            "beta_rmse_deg": 0.012507174528906642,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.000985177139248626,
+            "beta_rmse_deg": 0.0012998170090824453,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.0032791058459350686,
+            "beta_rmse_deg": 0.01297463238159605,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.04612418028380006,
+          "ay_peak_mps2": 0.5779895623199369,
+          "steering_rate_peak_deg_s": 1.621833832618037
+        },
+        "trace_sha256": "26ea121aade338c4d28a0d22980dd72ebe2d68b7723f0bd7dc07dcf7a267ad8b"
+      },
+      "v21_slow": {
+        "speed": 21,
+        "probe": "slow",
+        "region": "local_observed",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.001840515642207763,
+            "beta_rmse_deg": 0.014038034995700135,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0024447358382816502,
+            "beta_rmse_deg": 0.0234777466592746,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.0026136440377819135,
+            "beta_rmse_deg": 0.027516363753768692,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.00115866171177992,
+            "beta_rmse_deg": 0.0030989501549298173,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.002659579869585395,
+            "beta_rmse_deg": 0.028556098641892923,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.13640967396206233,
+          "ay_peak_mps2": 0.8802865774092665,
+          "steering_rate_peak_deg_s": 0.5427329687935278
+        },
+        "trace_sha256": "f4ec1f81253d1d5e1d3006e72e011dfb06547cb8961d1ed4dd721887994b9947"
+      },
+      "v21_broadband": {
+        "speed": 21,
+        "probe": "broadband",
+        "region": "local_observed",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.0016479558915499792,
+            "beta_rmse_deg": 0.008591154492096818,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0013457744626418008,
+            "beta_rmse_deg": 0.014252529949543841,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.0014158672422064978,
+            "beta_rmse_deg": 0.016653716757636768,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.0014585560533208382,
+            "beta_rmse_deg": 0.001886351581214724,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.0014530050283099822,
+            "beta_rmse_deg": 0.017272566272881328,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.13887392845924681,
+          "ay_peak_mps2": 0.7810400670485858,
+          "steering_rate_peak_deg_s": 1.621833832618037
+        },
+        "trace_sha256": "cc729588705cfbe9e173c092eb3e1297c5681cc68f08fc75f8e5c09289e74ce0"
+      },
+      "v25_slow": {
+        "speed": 25,
+        "probe": "slow",
+        "region": "fleet_interpolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.0025546984935527163,
+            "beta_rmse_deg": 0.01838131833591604,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0037822673425049846,
+            "beta_rmse_deg": 0.03094237098088158,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.004149168974620596,
+            "beta_rmse_deg": 0.03631690347713701,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.001643727172485579,
+            "beta_rmse_deg": 0.0044603570978656824,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.0042397072670739425,
+            "beta_rmse_deg": 0.03769954189217164,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.24679655846112106,
+          "ay_peak_mps2": 1.1775919630235319,
+          "steering_rate_peak_deg_s": 0.5427329687935278
+        },
+        "trace_sha256": "e19554eada8b3a10a37cb1718fc0cb8d865e4629fc14aab34664af59ecfbcd59"
+      },
+      "v25_broadband": {
+        "speed": 25,
+        "probe": "broadband",
+        "region": "fleet_interpolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.0035941464356164547,
+            "beta_rmse_deg": 0.010619014807007346,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.0034420436951383446,
+            "beta_rmse_deg": 0.017787320318264847,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.003861630950828004,
+            "beta_rmse_deg": 0.020800452300475013,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.002736751221982025,
+            "beta_rmse_deg": 0.00261259591620393,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.003995586388069285,
+            "beta_rmse_deg": 0.021572973909843644,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.23336640777597972,
+          "ay_peak_mps2": 0.9934021078140598,
+          "steering_rate_peak_deg_s": 1.621833832618037
+        },
+        "trace_sha256": "211dff357fa3bda4fd57f8b3cbbb2b5b3d740b1a8f477f3be7e6cbe24aefd330"
+      },
+      "v29_slow": {
+        "speed": 29,
+        "probe": "slow",
+        "region": "peer_observed",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.0037236252250957055,
+            "beta_rmse_deg": 0.022652755048569277,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.006050516880549398,
+            "beta_rmse_deg": 0.038452258890922235,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.006841495576081537,
+            "beta_rmse_deg": 0.045214402867778856,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.0020995493818846355,
+            "beta_rmse_deg": 0.006133376709564292,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.007034873607646789,
+            "beta_rmse_deg": 0.046952811830368535,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.363053588785858,
+          "ay_peak_mps2": 1.4881949277907531,
+          "steering_rate_peak_deg_s": 0.5427329687935278
+        },
+        "trace_sha256": "e154d08afe9d7eceb0f15ab348211eaa3d6062f44d9f97010d15f72585f930f0"
+      },
+      "v29_broadband": {
+        "speed": 29,
+        "probe": "broadband",
+        "region": "peer_observed",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.00675350478058118,
+            "beta_rmse_deg": 0.01250415146496836,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.007210539155067542,
+            "beta_rmse_deg": 0.021192986306411886,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.008145471244686129,
+            "beta_rmse_deg": 0.024818344611556256,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.004798875482475825,
+            "beta_rmse_deg": 0.0035107449571042814,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.008426036740256698,
+            "beta_rmse_deg": 0.02574374286472912,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.32749961054137827,
+          "ay_peak_mps2": 1.2092711414415158,
+          "steering_rate_peak_deg_s": 1.621833832618037
+        },
+        "trace_sha256": "67ed35b59007e783d03b6661f6bbdba6b84f1211030223957d22a8c35be5a643"
+      },
+      "v33_slow": {
+        "speed": 33,
+        "probe": "slow",
+        "region": "fleet_extrapolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.00544046231328415,
+            "beta_rmse_deg": 0.02667691414764651,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.009267758577713678,
+            "beta_rmse_deg": 0.0457415018453181,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.01067372236598787,
+            "beta_rmse_deg": 0.05390483715644361,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.002548069174415059,
+            "beta_rmse_deg": 0.008134411390563262,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.011018990378252129,
+            "beta_rmse_deg": 0.05600211539415643,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.4819897284731325,
+          "ay_peak_mps2": 1.802474444122773,
+          "steering_rate_peak_deg_s": 0.5427329687935278
+        },
+        "trace_sha256": "9b7eef3e872f2b8ac2a64e6440cc6c801f19dcf1fb905c2a974555170d194ab8"
+      },
+      "v33_broadband": {
+        "speed": 33,
+        "probe": "broadband",
+        "region": "fleet_extrapolation",
+        "methods": {
+          "LocalOE": {
+            "yaw_rmse_deg_s": 0.010533157968100572,
+            "beta_rmse_deg": 0.014192847790349015,
+            "optimizer_status": "converged"
+          },
+          "NominalPrior": {
+            "yaw_rmse_deg_s": 0.011734200501854268,
+            "beta_rmse_deg": 0.02440258980381497,
+            "optimizer_status": "converged"
+          },
+          "SharedPrior": {
+            "yaw_rmse_deg_s": 0.013275737770897345,
+            "beta_rmse_deg": 0.028636623305449437,
+            "optimizer_status": "converged"
+          },
+          "OracleFamily": {
+            "yaw_rmse_deg_s": 0.007720543141654472,
+            "beta_rmse_deg": 0.004622655127156513,
+            "optimizer_status": "converged"
+          },
+          "MixedGroups": {
+            "yaw_rmse_deg_s": 0.013726845391558376,
+            "beta_rmse_deg": 0.029713234300353865,
+            "optimizer_status": "converged"
+          },
+          "Exact": {
+            "yaw_rmse_deg_s": 0.0,
+            "beta_rmse_deg": 0.0,
+            "optimizer_status": "reference"
+          }
+        },
+        "operating_checks_passed": true,
+        "plant_metrics": {
+          "beta_peak_deg": 0.4202562033984893,
+          "ay_peak_mps2": 1.4253963743528337,
+          "steering_rate_peak_deg_s": 1.621833832618037
+        },
+        "trace_sha256": "502c9214f4eff652392b265226803f339904fb759c92946d900c73f99443c78a"
+      }
+    }
+  },
+  "payload_sha256": "a587b503bd88314300ece963276281a4fae700a0724af433ec01ac60fcc1cee0"
+}
