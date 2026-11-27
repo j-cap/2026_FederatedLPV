@@ -18,6 +18,46 @@ def cfg():
     return run.preflight()
 
 
+def test_preflight_accepts_platform_roundoff_without_replacing_frozen_values(monkeypatch):
+    frozen = json.loads(run.CONFIG.read_text(encoding='utf-8'))
+    generate = run.original.population.generate_fleet
+    def with_roundoff(seed, specification, speeds):
+        fleet = generate(seed, specification, speeds)
+        if seed in frozen['confirmation_seeds']:
+            for c in fleet['clients']:
+                for name in ['geometry_m', 'physical_parameters']:
+                    c[name] = np.nextafter(c[name], np.inf).tolist()
+                for name, value in c['physical_draw'].items():
+                    changed = np.nextafter(value, np.inf)
+                    c['physical_draw'][name] = changed.tolist()
+        return fleet
+    monkeypatch.setattr(run.original.population, 'generate_fleet', with_roundoff)
+    checked = run.preflight()
+    assert checked['confirmation_fleets'] == frozen['confirmation_fleets']
+
+
+@pytest.mark.parametrize('field', ['client', 'family', 'training_speed', 'mixed_group'])
+def test_confirmation_assignment_checks_remain_exact(cfg, field):
+    saved = cfg['confirmation_fleets'][0]
+    changed = copy.deepcopy(saved)
+    value = changed['clients'][0][field]
+    changed['clients'][0][field] = value + '_changed' if isinstance(value, str) else value + 1
+    with pytest.raises(AssertionError, match='Population assignment changed'):
+        run.validate_fleet(saved, changed)
+
+
+@pytest.mark.parametrize('field', ['geometry_m', 'physical_parameters', 'physical_draw'])
+def test_confirmation_physical_changes_are_rejected(cfg, field):
+    saved = cfg['confirmation_fleets'][0]
+    changed = copy.deepcopy(saved)
+    if field == 'physical_draw':
+        changed['clients'][0][field]['mass_kg'] *= 1.001
+    else:
+        changed['clients'][0][field][0] *= 1.001
+    with pytest.raises(AssertionError):
+        run.validate_fleet(saved, changed)
+
+
 def test_same_speed_control_preserves_vehicles_targets_and_budget(cfg):
     seed = cfg['simulation']['seeds'][0]
     original_clients = run.clients_for(cfg, 'development', seed)

@@ -48,6 +48,24 @@ fl = original.fl
 file_hash = original.base.canonical_hash
 
 
+def validate_fleet(saved, regenerated):
+    """Keep frozen draws; tolerate only roundoff when checking another platform."""
+    assert saved.keys() == regenerated.keys(), 'Fleet fields changed'
+    assert saved['seed'] == regenerated['seed'], 'Fleet seed changed'
+    assert len(saved['clients']) == len(regenerated['clients']), 'Fleet size changed'
+    for actual, expected in zip(saved['clients'], regenerated['clients']):
+        assert actual.keys() == expected.keys(), 'Client fields changed'
+        for name in ['client', 'family', 'training_speed', 'mixed_group']:
+            assert actual[name] == expected[name], f'Population assignment changed: {name}'
+        for name in ['geometry_m', 'physical_parameters']:
+            np.testing.assert_allclose(actual[name], expected[name], rtol=1e-12, atol=1e-14,
+                                       equal_nan=False, err_msg=f'Frozen vehicle values changed: {name}')
+        assert actual['physical_draw'].keys() == expected['physical_draw'].keys(), 'Physical draw fields changed'
+        for name in actual['physical_draw']:
+            np.testing.assert_allclose(actual['physical_draw'][name], expected['physical_draw'][name],
+                rtol=1e-12, atol=1e-14, equal_nan=False, err_msg=f'Frozen physical draw changed: {name}')
+
+
 def preflight():
     cfg = json.loads(CONFIG.read_text(encoding='utf-8'))
     for name, sha in cfg['source_sha256'].items():
@@ -65,7 +83,7 @@ def preflight():
     for fleet in cfg['confirmation_fleets']:
         expected = original.population.generate_fleet(fleet['seed'], cfg['simulation']['population'],
                                                        cfg['simulation']['fleet_training_speeds'])
-        assert fleet == expected
+        validate_fleet(fleet, expected)
         for c in fleet['clients']:
             assert np.all(np.array(c['physical_parameters']) > bounds[:, 0])
             assert np.all(np.array(c['physical_parameters']) < bounds[:, 1])

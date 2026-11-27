@@ -1,7 +1,7 @@
 {
   "status": "implementation_checks_passed",
   "test_command": "python -m pytest -q code/tests/test_cfl_learned_groups.py code/tests/test_cfl_heterogeneity.py",
-  "tests_passed": 17,
+  "tests_passed": 25,
   "preflight": {
     "status": "preflight_passed",
     "development_fleets": 3,
@@ -41,7 +41,8 @@
     "confirmation_freeze_checked": true,
     "exact_raw_restore": true,
     "analysis_html_generated": true,
-    "cross_platform_analysis_preserves_fitting_provenance": true
+    "cross_platform_analysis_preserves_fitting_provenance": true,
+    "confirmation_preflight_roundoff_regression": true
   },
   "original_cross_platform_regeneration": {
     "bitwise_identical": false,
@@ -64,7 +65,7 @@
       "code/src/federated_lpv/physical_ct_oe.py": "c7be2f076ca25c55b442df82776928723153b173e321bc2ce492b80d155e012c",
       "code/src/federated_lpv/structured_oe.py": "922f9d460e0956d5b30112c499328434b8aa2284011ed383731dd8575bb7f7f4",
       "code/config/paper_cfl_learned_groups.json": "d744916827fef6a79e6f19da433ad4b7fe13912a325eb88ca6e9e8913052e1f5",
-      "code/experiments/paper_cfl_learned_groups.py": "4529de532390e67af55c080d84a27724881f3abb506666629936cfb0cac52646"
+      "code/experiments/paper_cfl_learned_groups.py": "f86e85f226f7622e10e104c8f2330c029e0883c6e788882ea714802a9f70b818"
     },
     "runtime": {
       "python": "3.12",
@@ -81,7 +82,20 @@
     }
   },
   "supporting_files_sha256": {
-    "code/tests/test_cfl_learned_groups.py": "65371c83e03fa4949942e2977beb959c65efe4d73be65244028d424edde6638b",
-    "docs/cfl_learned_groups_experiment.md": "11178ac12b8588296abea5eda453560144a6d49b95822df2a3afcdf46042f674"
+    "code/tests/test_cfl_learned_groups.py": "10133106c649f9a402213f2754bc371ac8d1a4a089341613e5673d62d8a989bd",
+    "docs/cfl_learned_groups_experiment.md": "d6c7d8d70ec294d7a7323a91c577f2540eecd55c30f3747c3142ebc472e7efee"
+  },
+  "confirmation_fleet_validation": {
+    "relative_tolerance": 1e-12,
+    "absolute_tolerance": 1e-14,
+    "exact_fields": [
+      "seed",
+      "client",
+      "family",
+      "training_speed",
+      "mixed_group"
+    ],
+    "frozen_values_retained": true,
+    "substantive_parameter_changes_rejected": true
   }
 }

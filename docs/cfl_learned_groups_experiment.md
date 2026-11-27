@@ -20,6 +20,12 @@ It locks the original protocol, numerical fitting code, and 129 source
 checkpoints by hashes. It also freezes the ten confirmation fleets (seeds
 2401–2410). Source results and the manuscript remain untouched.
 
+Preflight verifies regenerated floating-point parameters with relative tolerance
+1e-12 and absolute tolerance 1e-14, matching the preceding diagnostic. Seeds,
+client IDs, family labels, speed assignments and mixed-group assignments must
+match exactly. Fitting always uses the frozen stored vehicles; this check never
+replaces them with platform-specific regenerated values.
+
 ## Two conditions, matched target records
 
 | Condition | Local training records | Evaluated vehicles |
